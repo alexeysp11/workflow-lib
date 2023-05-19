@@ -6,6 +6,9 @@ namespace Cims.WorkflowLib.DbConnections
     {
         public string GetSqlFromDataTable(DataTable dt, string tableName)
         {
+            if (dt == null) throw new System.Exception("Data table could not be null"); 
+            if (string.IsNullOrEmpty(tableName)) throw new System.Exception("Table name is not assigned"); 
+
             int i = 0; 
             string sqlRequest = "CREATE TABLE " + tableName + " ("; 
             string sqlInsert = "INSERT INTO " + tableName + " ("; 
@@ -15,7 +18,7 @@ namespace Cims.WorkflowLib.DbConnections
                 sqlInsert += column.ColumnName + (i != dt.Columns.Count - 1 ? "," : ")\nVALUES ("); 
                 i += 1; 
             }
-            foreach(DataRow row in dt.Rows)
+            foreach (DataRow row in dt.Rows)
             {
                 i = 0; 
                 sqlRequest += sqlInsert; 
