@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq; 
 using System.Reflection;
 using System.Data; 
 using Xunit;
@@ -10,7 +11,7 @@ namespace Cims.Tests.WorkflowLib.DocFormats.Images
     public class PngConverterTest
     {
         private string Text = "Hello,_world! 123;532.52,642'2332\"w342\\432/243^w\n(test&something#1@ok)+$32.5~tt`qwerty\ttabulated\n\nTest text was written!";
-        private string FolderName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "PngConverterTest"); 
+        private string FolderName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), typeof(PngConverterTest).ToString().Split('.').Last()); 
 
         #region TextToImg
         [Theory]
@@ -71,7 +72,7 @@ namespace Cims.Tests.WorkflowLib.DocFormats.Images
         }
 
         [Fact]
-        public void TextToImg_CorrectParameters_ImageExists()
+        public void TextToImg_CorrectParameters_FileExists()
         {
             // Arrange
             string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".png"; 

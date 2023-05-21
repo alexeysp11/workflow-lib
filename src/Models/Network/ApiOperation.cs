@@ -1,4 +1,4 @@
-namespace Cims.WorkflowLib.Models 
+namespace Cims.WorkflowLib.Models.Network 
 {
     /// <summary>
     /// Represents any attempt to communcate with API server as an operation 

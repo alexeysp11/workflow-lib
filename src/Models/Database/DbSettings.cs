@@ -1,4 +1,4 @@
-namespace Cims.WorkflowLib.Models 
+namespace Cims.WorkflowLib.Models.Database 
 {
     /// <summary>
     /// 
