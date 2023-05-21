@@ -58,7 +58,7 @@ namespace Examples.WorkflowLib
 
             // 
             IImageConverter pngConverter = new PngConverter(); 
-            pngConverter.TextToImg(text, FolderName, filename);
+            pngConverter.TextToImg(text, foldername, filename);
         }
         ...
     }
