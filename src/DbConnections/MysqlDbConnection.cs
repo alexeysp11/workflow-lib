@@ -39,8 +39,7 @@ namespace Cims.WorkflowLib.DbConnections
             }
             finally
             {
-                if (connection != null)
-                    connection.Close();
+                if (connection != null) connection.Close();
             }
             return table; 
         }

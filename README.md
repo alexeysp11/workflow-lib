@@ -19,7 +19,7 @@ This repository could be used for development applications.
 
 You can use this library in C# code directly:
 
-1. Clone the repository (suppose that the `csproj` file your project is located in the folder `C:\PathToProj\your-project`): 
+1. Clone the repository (suppose that the `csproj` file of your project is located in the folder `C:\PathToProj\your-project`): 
 ```
 cd ..
 git clone https://github.com/alexeysp11/workflow-lib.git
@@ -128,3 +128,7 @@ namespace Examples.WorkflowLib
 ## How to use with XML/JSON wrapper 
 
 You can also use XML/JSON wrapper (kind of no-code approach). 
+
+## How to improve the application  
+
+- Explain what is the differnece between `DataSource` and `ConnString` in database classes and to use them properly. 
