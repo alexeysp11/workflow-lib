@@ -8,6 +8,11 @@ namespace Cims.WorkflowLib.DbConnections
         private string ConnString { get; set; }
         private string AbsolutePathToDb { get; set; }
 
+        public SqliteDbConnection() 
+            : this(string.Empty)
+        {
+        }
+        
         public SqliteDbConnection(string path)
         {
             try
@@ -28,14 +33,9 @@ namespace Cims.WorkflowLib.DbConnections
 
         public void SetPathToDb(string path)
         {
-            if (System.IO.File.Exists(path))
-            {
-                this.AbsolutePathToDb = path; 
-            }
-            else
-            {
-                throw new System.Exception($"Database file '{path}' does not exists");
-            }
+            if (!System.IO.File.Exists(path)) throw new System.Exception($"Database file '{path}' does not exists");
+            
+            this.AbsolutePathToDb = path; 
         }
 
         public DataTable ExecuteSqlCommand(string sqlRequest)

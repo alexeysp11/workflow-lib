@@ -2,7 +2,7 @@ using System.Data;
 
 namespace Cims.WorkflowLib.DbConnections
 {
-    public class BaseDbConnection 
+    public abstract class BaseDbConnection 
     {
         public string GetSqlFromDataTable(DataTable dt, string tableName)
         {

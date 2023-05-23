@@ -4,13 +4,13 @@ using System.Linq;
 
 namespace Cims.WorkflowLib.DocFormats.Images
 {
-    public class PngConverter : IImageConverter
+    public class PngConverter : BaseImageConverter, IImageConverter
     {
         public void TextToImg(string text, string foldername, string filename)
         {
-            this.CheckText(text); 
-            this.CheckFolderName(foldername); 
-            this.CheckFileName(filename); 
+            base.CheckText(text); 
+            base.CheckFolderName(foldername); 
+            base.CheckFileName(filename); 
 
             // 
             MemoryStream ms = new MemoryStream();            
@@ -49,35 +49,17 @@ namespace Cims.WorkflowLib.DocFormats.Images
         public void BinaryToImg(byte[] bytes, string foldername, string filename)
         {
             // 
-            this.CheckFolderName(foldername); 
-            this.CheckFileName(filename); 
+            base.CheckFolderName(foldername); 
+            base.CheckFileName(filename); 
         }
 
         public byte[] ImgToBinary(string foldername, string filename)
         {
             // 
-            this.CheckFolderName(foldername); 
-            this.CheckFileName(filename); 
+            base.CheckFolderName(foldername); 
+            base.CheckFileName(filename); 
 
             return new byte[1]; 
         }
-
-        #region Parameters correctness 
-        private void CheckText(string text)
-        {
-            if (string.IsNullOrEmpty(text)) throw new System.Exception("Text could not be null or empty"); 
-        }
-
-        private void CheckFolderName(string foldername)
-        {
-            if (!Directory.Exists(foldername)) throw new System.Exception("Folder name does not exist"); 
-        }
-
-        private void CheckFileName(string filename)
-        {
-            if (string.IsNullOrEmpty(filename)) throw new System.Exception("File name could not be null or empty"); 
-            if (filename.Split('.').Last().ToLower() != "png") throw new System.Exception("Incorrect file extension"); 
-        }
-        #endregion  // Parameters correctness 
     }
 }

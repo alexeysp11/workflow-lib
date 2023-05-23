@@ -7,7 +7,7 @@ namespace Cims.Tests.WorkflowLib.DbConnections
 {
     public class MssqlDbConnectionTest 
     {
-        private string ConnectionString = "Data Source=LAPTOP\\SQLEXPRESS;Initial Catalog=RealEstate;Trusted_Connection=True;MultipleActiveResultSets=true"; 
+        private string ConnectionString = "Data Source=LAPTOP\\SQLEXPRESS;Trusted_Connection=True;MultipleActiveResultSets=true"; 
 
         // 
         [Fact]
@@ -29,6 +29,21 @@ namespace Cims.Tests.WorkflowLib.DbConnections
 
             // Assert 
             Assert.True(table.Rows[table.Rows.Count-1]["name"].ToString() == employeeName); 
+        }
+
+        [Theory]
+        [InlineData(null, "")]
+        [InlineData(null, "TestName")]
+        public void GetSqlFromDataTable_OneOfTheParametersIsNull_ReturnsException(DataTable dt, string tableName)
+        {
+            // Arrange 
+            ICommonDbConnection dbConnection = new MssqlDbConnection(ConnectionString); 
+
+            // Act 
+            Action act = () => dbConnection.GetSqlFromDataTable(dt, tableName); 
+
+            // Assert 
+            System.Exception exception = Assert.Throws<System.Exception>(act);
         }
     }
 }

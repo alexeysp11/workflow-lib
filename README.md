@@ -74,6 +74,7 @@ using System.IO;
 using System.Collections.Generic; 
 using Cims.WorkflowLib.DocFormats; 
 using Cims.WorkflowLib.Models.Text; 
+using Cims.WorkflowLib.Models.Text.Enums; 
 
 namespace Examples.WorkflowLib
 {
@@ -131,4 +132,10 @@ You can also use XML/JSON wrapper (kind of no-code approach).
 
 ## How to improve the application  
 
+### Database connections 
+
 - Explain what is the differnece between `DataSource` and `ConnString` in database classes and to use them properly. 
+- Create template for using multiple database connections. 
+- How to deal with `blob` objects in databases connection classes?
+- Method `Cims.WorkflowLib.DbConnections.BaseDbConnection.GetSqlFromDataTable()` does not correct SQL statement, so you need to explain how to use this method properly. 
+- How to transfer data from one database to another? 

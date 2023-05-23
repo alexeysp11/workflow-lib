@@ -26,7 +26,7 @@ namespace Cims.WorkflowLib.DbConnections
             DataTable table = new DataTable(); 
             SqlConnection connection = null; 
             try 
-            { 
+            {
                 SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
                 builder.ConnectionString = string.IsNullOrEmpty(DataSource) ? ConnString : DataSource;
                 using (connection = new SqlConnection(builder.ConnectionString))

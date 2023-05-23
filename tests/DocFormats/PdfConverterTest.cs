@@ -6,6 +6,7 @@ using System.Data;
 using Xunit;
 using Cims.WorkflowLib.DocFormats; 
 using Cims.WorkflowLib.Models.Text; 
+using Cims.WorkflowLib.Models.Text.Enums; 
 
 namespace Cims.Tests.WorkflowLib.DocFormats
 {
