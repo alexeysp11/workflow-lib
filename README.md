@@ -1,7 +1,8 @@
 # workflow-lib 
 
 `workflow-lib` is a C# library that consists of:
-- visual elements for WPF and ASP.NET applications (Blazor, Razor Pages, MVC);
+- Visual elements for WPF and ASP.NET applications (Blazor, Razor Pages, MVC);
+- Dynamic compilation for C# code; 
 - Configurations (JSON, XML); 
 - Network; 
 - Databases (SQLite, PostgreSQL, MySQL, MS SQL, Oracle);
