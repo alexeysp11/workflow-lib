@@ -10,7 +10,7 @@
     - Text-based: MS Word (DOC, DOT, DOCX, DOTX, DOCM, DOTM), OpenDocument (ODT, FODT, OTT), TXT;
     - Spreadsheets: MS Excel (XLS, XLT, XLW, XLSX, XLTX, XLSM, XLTM), OpenDocument (ODS, FODS, OTS); 
     - PDF; 
-    - Images: PNG, BMP, JPG, JPEG, SVG, GIF; 
+    - Images: PNG, BMP, JPEG, SVG, GIF, ICO; 
     - XML, JSON, OOXML, CSV; 
     - Binary. 
 
