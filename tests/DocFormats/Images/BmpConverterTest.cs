@@ -8,10 +8,10 @@ using Cims.WorkflowLib.DocFormats.Images;
 
 namespace Cims.Tests.WorkflowLib.DocFormats.Images
 {
-    public class PngConverterTest
+    public class BmpConverterTest
     {
         private string Text = "Hello,_world! 123;532.52,642'2332\"w342\\432/243^w\n(test&something#1@ok)+$32.5~tt`qwerty\ttabulated\n\nTest text was written!";
-        private string FolderName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), typeof(PngConverterTest).ToString().Split('.').Last()); 
+        private string FolderName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), typeof(BmpConverterTest).ToString().Split('.').Last()); 
 
         #region TextToImg
         [Theory]
@@ -27,9 +27,9 @@ namespace Cims.Tests.WorkflowLib.DocFormats.Images
             // Arrange 
             string text = isTextEmpty ? string.Empty : Text; 
             string foldername = isFoldernameEmpty ? string.Empty : FolderName; 
-            string filename = isFilenameEmpty ? string.Empty : System.Reflection.MethodBase.GetCurrentMethod().Name + ".png"; 
+            string filename = isFilenameEmpty ? string.Empty : System.Reflection.MethodBase.GetCurrentMethod().Name + ".bmp"; 
 
-            IImageConverter converter = new PngConverter(); 
+            IImageConverter converter = new BmpConverter(); 
             if (!string.IsNullOrEmpty(foldername)) CreateFolderIfNotExists(FolderName); 
 
             // Act 
@@ -44,9 +44,9 @@ namespace Cims.Tests.WorkflowLib.DocFormats.Images
         {
             // Arrange 
             string foldername = "incorrect path"; 
-            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".png"; 
+            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".bmp"; 
 
-            IImageConverter converter = new PngConverter(); 
+            IImageConverter converter = new BmpConverter(); 
 
             // Act 
             Action act = () => converter.TextToImg(Text, foldername, filename); 
@@ -61,7 +61,7 @@ namespace Cims.Tests.WorkflowLib.DocFormats.Images
             // Arrange 
             string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".jpg"; 
 
-            IImageConverter converter = new PngConverter(); 
+            IImageConverter converter = new BmpConverter(); 
             CreateFolderIfNotExists(FolderName); 
 
             // Act 
@@ -75,9 +75,9 @@ namespace Cims.Tests.WorkflowLib.DocFormats.Images
         public void TextToImg_CorrectParameters_FileExists()
         {
             // Arrange
-            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".png"; 
+            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".bmp"; 
 
-            IImageConverter converter = new PngConverter(); 
+            IImageConverter converter = new BmpConverter(); 
             CreateFolderIfNotExists(FolderName); 
 
             // Act

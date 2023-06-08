@@ -14,10 +14,12 @@ namespace Cims.WorkflowLib.DocFormats.Images
             if (!System.IO.Directory.Exists(foldername)) throw new System.Exception("Folder name does not exist"); 
         }
 
-        protected void CheckFileName(string filename)
+        protected void CheckFileName(string filename, string extension)
         {
+            if (string.IsNullOrEmpty(extension)) throw new System.Exception("Desired extension is not specified"); 
+
             if (string.IsNullOrEmpty(filename)) throw new System.Exception("File name could not be null or empty"); 
-            if (filename.Split('.').Last().ToLower() != "png") throw new System.Exception("Incorrect file extension"); 
+            if (filename.Split('.').Last().ToLower() != extension.ToLower()) throw new System.Exception("Incorrect file extension"); 
         }
     }
 }

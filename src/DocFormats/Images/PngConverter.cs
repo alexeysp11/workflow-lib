@@ -10,7 +10,7 @@ namespace Cims.WorkflowLib.DocFormats.Images
         {
             base.CheckText(text); 
             base.CheckFolderName(foldername); 
-            base.CheckFileName(filename); 
+            base.CheckFileName(filename, "png"); 
 
             // 
             MemoryStream ms = new MemoryStream();            
@@ -50,14 +50,14 @@ namespace Cims.WorkflowLib.DocFormats.Images
         {
             // 
             base.CheckFolderName(foldername); 
-            base.CheckFileName(filename); 
+            base.CheckFileName(filename, "png"); 
         }
 
         public byte[] ImgToBinary(string foldername, string filename)
         {
             // 
             base.CheckFolderName(foldername); 
-            base.CheckFileName(filename); 
+            base.CheckFileName(filename, "bin"); 
 
             return new byte[1]; 
         }
