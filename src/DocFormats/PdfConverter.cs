@@ -10,12 +10,12 @@ namespace Cims.WorkflowLib.DocFormats
     /// <summary>
     /// 
     /// </summary>
-    public class PdfConverter
+    public class PdfConverter : Cims.WorkflowLib.DocFormats.TextBased.ITextBased
     {
         /// <summary>
         /// 
         /// </summary>
-        public void TextDocElementsToPdf(string foldername, string filename, System.Collections.Generic.List<TextDocElement> elements)
+        public void TextDocElementsToDocument(string foldername, string filename, System.Collections.Generic.List<TextDocElement> elements)
         {
             if (!Directory.Exists(foldername)) throw new System.Exception("Folder name does not exist"); 
             if (string.IsNullOrEmpty(filename)) throw new System.Exception("File name could not be null or empty"); 

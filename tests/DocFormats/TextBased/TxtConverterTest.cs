@@ -4,21 +4,21 @@ using System.Linq;
 using System.Reflection;
 using System.Data; 
 using Xunit;
-using Cims.WorkflowLib.DocFormats; 
+using Cims.WorkflowLib.DocFormats.TextBased; 
 using Cims.WorkflowLib.Models.Text; 
 using Cims.WorkflowLib.Models.Text.Enums; 
 
-namespace Cims.Tests.WorkflowLib.DocFormats
+namespace Cims.Tests.WorkflowLib.DocFormats.TextBased
 {
-    public class PdfConverterTest
+    public class TxtConverterTest
     {
-        private string FolderName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), typeof(PdfConverterTest).ToString().Split('.').Last()); 
+        private string FolderName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), typeof(TxtConverterTest).ToString().Split('.').Last()); 
 
         [Fact]
         public void TextDocElementsToDocument_CorrectParams_FileExists()
         {
             // Arrange
-            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".pdf"; 
+            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".txt"; 
             var elements = new System.Collections.Generic.List<TextDocElement>()
             {
                 new TextDocElement() 
@@ -47,7 +47,7 @@ namespace Cims.Tests.WorkflowLib.DocFormats
                 }
             }; 
 
-            PdfConverter pdfConverter = new PdfConverter(); 
+            TxtConverter pdfConverter = new TxtConverter(); 
             CreateFolderIfNotExists(FolderName); 
 
             // Act

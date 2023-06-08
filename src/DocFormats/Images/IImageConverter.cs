@@ -1,5 +1,8 @@
 namespace Cims.WorkflowLib.DocFormats.Images
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IImageConverter
     {
         void TextToImg(string text, string foldername, string filename); 

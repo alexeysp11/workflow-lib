@@ -120,7 +120,7 @@ namespace Examples.WorkflowLib
 
             // 
             PdfConverter pdfConverter = new PdfConverter(); 
-            pdfConverter.TextDocElementsToPdf(foldername, filename, elements);
+            pdfConverter.TextDocElementsToDocument(foldername, filename, elements);
         }
         ...
     }
