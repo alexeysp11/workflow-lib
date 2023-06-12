@@ -1,44 +1,44 @@
 # workflow-lib 
 
-Read this in other languages: [English](README.md), [Russian/Русский](README.ru.md). 
+Доступно на других языках: [English/Английский](README.md), [Russian/Русский](README.ru.md). 
 
-`workflow-lib` is a C# library that consists of:
-- Visual elements for WPF and ASP.NET applications (Blazor, Razor Pages, MVC);
-- Dynamic compilation for C# code; 
-- Configurations (JSON, XML); 
-- Network; 
-- Databases (SQLite, PostgreSQL, MySQL, MS SQL, Oracle);
-- Document operations (writing, reading, conversion):
-    - Text-based: MS Word (DOC, DOT, DOCX, DOTX, DOCM, DOTM), OpenDocument (ODT, FODT, OTT), TXT;
-    - Spreadsheets: MS Excel (XLS, XLT, XLW, XLSX, XLTX, XLSM, XLTM), OpenDocument (ODS, FODS, OTS); 
+`workflow-lib` - это библиотека на C#, состоящая из:
+- Визуальных элементов для WPF и ASP.NET приложение (Blazor, Razor Pages, MVC); 
+- Динамической компиляции кода на C#; 
+- Операций с конфигурационными файлами (JSON, XML); 
+- Сетевых операций; 
+- Операций с базами данных (SQLite, PostgreSQL, MySQL, MS SQL, Oracle); 
+- Операций с документами (запись, чтение, конвертация): 
+    - Текстовые: MS Word (DOC, DOT, DOCX, DOTX, DOCM, DOTM), OpenDocument (ODT, FODT, OTT), TXT; 
+    - Spreadsheets-таблицы: MS Excel (XLS, XLT, XLW, XLSX, XLTX, XLSM, XLTM), OpenDocument (ODS, FODS, OTS); 
     - PDF; 
-    - Images: PNG, BMP, JPEG, SVG, GIF, ICO; 
+    - Изображения: PNG, BMP, JPEG, SVG, GIF, ICO; 
     - XML, JSON, OOXML, CSV; 
     - Binary. 
 
-So this repository could definitely be used for development applications. 
+Таким обрзаом, данный репозиторий вполне может быть использован для разработки разного рода клиентских приложений. 
 
-## How to use this library in C# code 
+## Как использовать библиотеку в C# коде 
 
-You can use this library in C# code directly:
+Данную библитеку возможно использовать напрямую из C# кода: 
 
-1. Clone the repository (suppose that the `csproj` file of your target project is located in the folder `C:\PathToProj\your-project`): 
+1. Склонировать репозиторий (предполагается, что `csproj` файл таргет-проекта расположен по адресу `C:\PathToProj\your-project`): 
 ```
 cd ..
 git clone https://github.com/alexeysp11/workflow-lib.git
 cd your-project
 ```
 
-2. Add the reference to the repository in the `csproj` file of your target project: 
+2. В `csproj` файле таргет-проекта добавить ссылку на данный репозиторий: 
 ```XML
   <ItemGroup>
     <ProjectReference Include="../../workflow-lib/src/Cims.WorkflowLib.csproj" />
   </ItemGroup>
 ```
 
-### Image converter 
+### Конвертация изображений  
 
-Since all the image converters implement `IImageConverter` interface, the following code will be equivalent for all of the image converters from the library: 
+Поскольку все конвертаторы изображений имплементируют общий `IImageConverter` интерфейс, то приведенный ниже код будет эквивалентен для каждого из конвертаторов изображений из данной библиотеки: 
 
 ```C#
 using System.IO;
@@ -68,9 +68,9 @@ namespace Examples.WorkflowLib
 }
 ```
 
-### PDF converter
+### PDF конвертатор
 
-You can get PDF file using `PdfConverter` class: 
+Для операций над PDF файлом используется класс `PdfConverter`:
 
 ```C#
 using System.IO;
@@ -129,11 +129,11 @@ namespace Examples.WorkflowLib
 }
 ```
 
-## How to use with XML/JSON wrapper 
+## Как использовать данную библиотеку совместно с XML/JSON оболочкой  
 
-You can also use XML/JSON wrapper (kind of no-code approach). 
+Подразумевается использование данной библиотеки с помощью XML/JSON оболочки (своего рода no-code подход).
 
-## How to improve the library   
+## Как улучшить библиотеку 
 
 ### Database connections 
 
