@@ -47,11 +47,11 @@ namespace Cims.Tests.WorkflowLib.DocFormats
                 }
             }; 
 
-            PdfConverter pdfConverter = new PdfConverter(); 
+            PdfConverter converter = new PdfConverter(); 
             CreateFolderIfNotExists(FolderName); 
 
             // Act
-            pdfConverter.TextDocElementsToDocument(FolderName, filename, elements);
+            converter.TextDocElementsToDocument(FolderName, filename, elements);
             string filepath = Path.Combine(FolderName, filename); 
 
             // Assert

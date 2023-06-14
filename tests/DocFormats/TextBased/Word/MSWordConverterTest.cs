@@ -5,20 +5,21 @@ using System.Reflection;
 using System.Data; 
 using Xunit;
 using Cims.WorkflowLib.DocFormats.TextBased; 
+using Cims.WorkflowLib.DocFormats.TextBased.Word; 
 using Cims.WorkflowLib.Models.Text; 
 using Cims.WorkflowLib.Models.Text.Enums; 
 
-namespace Cims.Tests.WorkflowLib.DocFormats.TextBased
+namespace Cims.Tests.WorkflowLib.DocFormats.TextBased.Word
 {
-    public class TxtConverterTest
+    public class MSWordConverterTest
     {
-        private string FolderName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), typeof(TxtConverterTest).ToString().Split('.').Last()); 
+        private string FolderName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), typeof(MSWordConverterTest).ToString().Split('.').Last()); 
 
         [Fact]
         public void TextDocElementsToDocument_CorrectParams_FileExists()
         {
             // Arrange
-            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".txt"; 
+            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".doc"; 
             var elements = new System.Collections.Generic.List<TextDocElement>()
             {
                 new TextDocElement() 
@@ -47,7 +48,7 @@ namespace Cims.Tests.WorkflowLib.DocFormats.TextBased
                 }
             }; 
 
-            ITextBased converter = new TxtConverter(); 
+            ITextBased converter = new MSWordConverter(); 
             CreateFolderIfNotExists(FolderName); 
 
             // Act

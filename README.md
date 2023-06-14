@@ -6,17 +6,19 @@ Read this in other languages: [English](README.md), [Russian/Русский](REA
 - Visual elements for ASP.NET applications (Blazor, Razor Pages, MVC);
 - Dynamic compilation for C# code; 
 - Configurations (JSON, XML); 
-- Network; 
+- Network: REST API, SOAP, WebAPI; 
 - Databases (SQLite, PostgreSQL, MySQL, MS SQL, Oracle);
 - Document operations (writing, reading, conversion):
     - Text-based: MS Word (DOC, DOT, DOCX, DOTX, DOCM, DOTM), OpenDocument (ODT, FODT, OTT), TXT;
     - Spreadsheets: MS Excel (XLS, XLT, XLW, XLSX, XLTX, XLSM, XLTM), OpenDocument (ODS, FODS, OTS); 
     - PDF; 
     - Images: PNG, BMP, JPEG, SVG, GIF, ICO; 
-    - XML, JSON, OOXML, CSV; 
-    - Binary. 
+    - XML, JSON, OOXML, CSV;
+    - HTML, markdown; 
+    - Binary;
+- Data visualization: Line chart, Bar chart, Histogram, Scatter plot, Box plot, Pareto chart, Pie chart, Area chart, Tree map, Bubble chart, Stripe graphic, Control chart, Run chart, Stem-and-leaf display, Cartogram, Small multiple, Sparkline, Table, Marimekko chart. 
 
-So this repository could definitely be used for development applications. 
+So this repository could definitely be used for development various types applications - both commercial (ERP, CRM) and non-commercial (studying, open-source). 
 
 ## How to use this library in C# code 
 
