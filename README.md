@@ -27,6 +27,7 @@ You can use this library in C# code directly:
 1. Clone the repository (suppose that the `csproj` file of your target project is located in the folder `C:\PathToProj\your-project`): 
 ```
 cd ..
+git clone https://github.com/alexeysp11/Open-Xml-PowerTools.git 
 git clone https://github.com/alexeysp11/workflow-lib.git
 cd your-project
 ```

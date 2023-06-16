@@ -26,6 +26,7 @@
 1. Склонировать репозиторий (предполагается, что `csproj` файл таргет-проекта расположен по адресу `C:\PathToProj\your-project`): 
 ```
 cd ..
+git clone https://github.com/alexeysp11/Open-Xml-PowerTools.git 
 git clone https://github.com/alexeysp11/workflow-lib.git
 cd your-project
 ```
