@@ -49,8 +49,8 @@ namespace Cims.WorkflowLib.DocFormats.TextBased.Word
         {
             if (!Directory.Exists(foldername)) throw new System.Exception("Folder name does not exist"); 
             if (string.IsNullOrEmpty(wordFilename) || string.IsNullOrEmpty(pdfFilename)) throw new System.Exception("File name could not be null or empty"); 
-            if (wordFilename.Split('.').Last().ToLower() != "doc" && wordFilename.Split('.').Last().ToLower() != "docx") throw new System.Exception("Incorrect file extension"); 
-            if (pdfFilename.Split('.').Last().ToLower() != "pdf") throw new System.Exception("Incorrect file extension"); 
+            if (wordFilename.Split('.').Last().ToLower() != "doc" && wordFilename.Split('.').Last().ToLower() != "docx") throw new System.Exception("Incorrect MS Word extension"); 
+            if (pdfFilename.Split('.').Last().ToLower() != "pdf") throw new System.Exception("Incorrect PDF extension"); 
 
             string wordPath = Path.Combine(foldername, wordFilename); 
             string pdfPath = Path.Combine(foldername, pdfFilename); 
@@ -66,7 +66,85 @@ namespace Cims.WorkflowLib.DocFormats.TextBased.Word
             iText.Html2pdf.HtmlConverter.ConvertToPdf(new FileInfo(htmlPath), new FileInfo(pdfPath)); 
         }
 
-        private static void ConvertToHtml(FileInfo sourceDocx, FileInfo destFileName)
+        #region Convert to WordprocessingML and save into XML file
+        /// <summary>
+        /// 
+        /// </summary>
+        public void ConvertToWml(string foldername, string wordFilename, string xmlFilename)
+        {
+            if (!Directory.Exists(foldername)) throw new System.Exception("Folder name does not exist"); 
+            if (string.IsNullOrEmpty(wordFilename) || string.IsNullOrEmpty(xmlFilename)) throw new System.Exception("File name could not be null or empty"); 
+            if (wordFilename.Split('.').Last().ToLower() != "doc" && wordFilename.Split('.').Last().ToLower() != "docx") throw new System.Exception("Incorrect MS Word extension"); 
+            if (xmlFilename.Split('.').Last().ToLower() != "xml") throw new System.Exception("Incorrect XML extension"); 
+
+            string wordPath = Path.Combine(foldername, wordFilename); 
+            string xmlPath = Path.Combine(foldername, xmlFilename); 
+
+            ConvertToWml(new FileInfo(wordPath), new FileInfo(xmlPath)); 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void ConvertToWml(string wordFilename, string xmlFilename)
+        {
+            if (string.IsNullOrEmpty(wordFilename) || string.IsNullOrEmpty(xmlFilename)) throw new System.Exception("File name could not be null or empty"); 
+            if (wordFilename.Split('.').Last().ToLower() != "doc" && wordFilename.Split('.').Last().ToLower() != "docx") throw new System.Exception("Incorrect MS Word extension"); 
+            if (xmlFilename.Split('.').Last().ToLower() != "xml") throw new System.Exception("Incorrect XML extension"); 
+
+            ConvertToWml(new FileInfo(wordFilename), new FileInfo(xmlFilename)); 
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void ConvertToWml(FileInfo sourceDocx, FileInfo destFileName)
+        {
+            byte[] byteArray = File.ReadAllBytes(sourceDocx.FullName);
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                memoryStream.Write(byteArray, 0, byteArray.Length);
+                using (WordprocessingDocument wDoc = WordprocessingDocument.Open(memoryStream, true))
+                {
+                    wDoc.MainDocumentPart.GetXDocument().Save(destFileName.FullName); 
+                }
+            }
+        }
+        #endregion  // Convert to WordprocessingML and save into XML file
+
+        #region Convert to HTML 
+        /// <summary>
+        /// 
+        /// </summary>
+        public void ConvertToHtml(string foldername, string wordFilename, string htmlFilename)
+        {
+            if (!Directory.Exists(foldername)) throw new System.Exception("Folder name does not exist"); 
+            if (string.IsNullOrEmpty(wordFilename) || string.IsNullOrEmpty(htmlFilename)) throw new System.Exception("File name could not be null or empty"); 
+            if (wordFilename.Split('.').Last().ToLower() != "doc" && wordFilename.Split('.').Last().ToLower() != "docx") throw new System.Exception("Incorrect MS Word extension"); 
+            if (htmlFilename.Split('.').Last().ToLower() != "html") throw new System.Exception("Incorrect HTML extension"); 
+
+            string wordPath = Path.Combine(foldername, wordFilename); 
+            string htmlPath = Path.Combine(foldername, htmlFilename); 
+
+            ConvertToHtml(new FileInfo(wordPath), new FileInfo(htmlPath)); 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void ConvertToHtml(string wordFilename, string htmlFilename)
+        {
+            if (string.IsNullOrEmpty(wordFilename) || string.IsNullOrEmpty(htmlFilename)) throw new System.Exception("File name could not be null or empty"); 
+            if (wordFilename.Split('.').Last().ToLower() != "doc" && wordFilename.Split('.').Last().ToLower() != "docx") throw new System.Exception("Incorrect MS Word extension"); 
+            if (htmlFilename.Split('.').Last().ToLower() != "html") throw new System.Exception("Incorrect HTML extension"); 
+
+            ConvertToHtml(new FileInfo(wordFilename), new FileInfo(htmlFilename)); 
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void ConvertToHtml(FileInfo sourceDocx, FileInfo destFileName)
         {
             byte[] byteArray = File.ReadAllBytes(sourceDocx.FullName);
             using (MemoryStream memoryStream = new MemoryStream())
@@ -81,7 +159,6 @@ namespace Cims.WorkflowLib.DocFormats.TextBased.Word
                     var pageTitle = (string)wDoc.CoreFilePropertiesPart.GetXDocument().Descendants(DC.title).FirstOrDefault();
                     if (pageTitle == null)
                         pageTitle = sourceDocx.FullName;
-                    // var pageTitle = sourceDocx.FullName;
 
                     WmlToHtmlConverterSettings settings = new WmlToHtmlConverterSettings()
                     {
@@ -106,13 +183,14 @@ namespace Cims.WorkflowLib.DocFormats.TextBased.Word
                 }
             }
         }
+        #endregion  // Convert to HTML 
 
         /// <summary>
         /// Convert WordprocessingML to list of TextDocElement 
         /// </summary>
-        private System.Collections.Generic.List<TextDocElement> WordprocessingMLToTextDocElements(string xmlContent)
+        private System.Collections.Generic.List<TextDocElement> ConvertWmlToTde(string xmlContent)
         {
-            if (string.IsNullOrEmpty(xmlContent)) throw new System.Exception("InnerXml could not be empty"); 
+            if (string.IsNullOrEmpty(xmlContent)) throw new System.Exception("XML content could not be empty"); 
 
             // 
 
