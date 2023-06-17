@@ -19,7 +19,7 @@ namespace Cims.WorkflowLib.DocFormats.TextBased.Word
         /// </summary>
         public void TextDocElementsToDocument(string foldername, string filename, System.Collections.Generic.List<TextDocElement> elements)
         {
-            if (!Directory.Exists(foldername)) throw new System.Exception("Folder name does not exist"); 
+            if (!Directory.Exists(foldername)) throw new System.Exception("Folder does not exist"); 
             if (string.IsNullOrEmpty(filename)) throw new System.Exception("File name could not be null or empty"); 
             if (filename.Split('.').Last().ToLower() != "doc" && filename.Split('.').Last().ToLower() != "docx") throw new System.Exception("Incorrect file extension"); 
 
@@ -42,12 +42,59 @@ namespace Cims.WorkflowLib.DocFormats.TextBased.Word
             }
         }
 
+        #region Convert to list of TextDocElement 
+        /// <summary>
+        /// Convert WordprocessingML to list of TextDocElement 
+        /// </summary>
+        public System.Collections.Generic.List<TextDocElement> ConvertFileToTde(string foldername, string filename)
+        {
+            if (!Directory.Exists(foldername)) throw new System.Exception("Folder does not exist"); 
+            if (string.IsNullOrEmpty(filename)) throw new System.Exception("File name could not be null or empty"); 
+
+            return ConvertFileToTde(Path.Combine(foldername, filename)); 
+        }
+
+        /// <summary>
+        /// Convert WordprocessingML to list of TextDocElement 
+        /// </summary>
+        public System.Collections.Generic.List<TextDocElement> ConvertFileToTde(string filepath)
+        {
+            if (string.IsNullOrEmpty(filepath)) throw new System.Exception("File name could not be null or empty"); 
+            if (!File.Exists(filepath)) throw new System.Exception("File does not exist"); 
+
+            return ConvertFileToTde(new FileInfo(filepath));
+        }
+
+        /// <summary>
+        /// Convert WordprocessingML to list of TextDocElement 
+        /// </summary>
+        public System.Collections.Generic.List<TextDocElement> ConvertFileToTde(FileInfo file)
+        {
+            string content = System.IO.File.ReadAllText(file.FullName); 
+            if (string.IsNullOrEmpty(content)) throw new System.Exception("File content could not be empty"); 
+
+            return ConvertStringToTde(content);
+        }
+
+        /// <summary>
+        /// Convert WordprocessingML to list of TextDocElement 
+        /// </summary>
+        public System.Collections.Generic.List<TextDocElement> ConvertStringToTde(string xmlContent)
+        {
+            if (string.IsNullOrEmpty(xmlContent)) throw new System.Exception("XML content could not be empty"); 
+
+            // 
+
+            return new System.Collections.Generic.List<TextDocElement>();
+        }
+        #endregion  // Convert to list of TextDocElement 
+
         /// <summary>
         /// 
         /// </summary>
         public void ConvertToPdf(string foldername, string wordFilename, string pdfFilename)
         {
-            if (!Directory.Exists(foldername)) throw new System.Exception("Folder name does not exist"); 
+            if (!Directory.Exists(foldername)) throw new System.Exception("Folder does not exist"); 
             if (string.IsNullOrEmpty(wordFilename) || string.IsNullOrEmpty(pdfFilename)) throw new System.Exception("File name could not be null or empty"); 
             if (wordFilename.Split('.').Last().ToLower() != "doc" && wordFilename.Split('.').Last().ToLower() != "docx") throw new System.Exception("Incorrect MS Word extension"); 
             if (pdfFilename.Split('.').Last().ToLower() != "pdf") throw new System.Exception("Incorrect PDF extension"); 
@@ -72,7 +119,7 @@ namespace Cims.WorkflowLib.DocFormats.TextBased.Word
         /// </summary>
         public void ConvertToWml(string foldername, string wordFilename, string xmlFilename)
         {
-            if (!Directory.Exists(foldername)) throw new System.Exception("Folder name does not exist"); 
+            if (!Directory.Exists(foldername)) throw new System.Exception("Folder does not exist"); 
             if (string.IsNullOrEmpty(wordFilename) || string.IsNullOrEmpty(xmlFilename)) throw new System.Exception("File name could not be null or empty"); 
             if (wordFilename.Split('.').Last().ToLower() != "doc" && wordFilename.Split('.').Last().ToLower() != "docx") throw new System.Exception("Incorrect MS Word extension"); 
             if (xmlFilename.Split('.').Last().ToLower() != "xml") throw new System.Exception("Incorrect XML extension"); 
@@ -118,7 +165,7 @@ namespace Cims.WorkflowLib.DocFormats.TextBased.Word
         /// </summary>
         public void ConvertToHtml(string foldername, string wordFilename, string htmlFilename)
         {
-            if (!Directory.Exists(foldername)) throw new System.Exception("Folder name does not exist"); 
+            if (!Directory.Exists(foldername)) throw new System.Exception("Folder does not exist"); 
             if (string.IsNullOrEmpty(wordFilename) || string.IsNullOrEmpty(htmlFilename)) throw new System.Exception("File name could not be null or empty"); 
             if (wordFilename.Split('.').Last().ToLower() != "doc" && wordFilename.Split('.').Last().ToLower() != "docx") throw new System.Exception("Incorrect MS Word extension"); 
             if (htmlFilename.Split('.').Last().ToLower() != "html") throw new System.Exception("Incorrect HTML extension"); 
@@ -184,17 +231,5 @@ namespace Cims.WorkflowLib.DocFormats.TextBased.Word
             }
         }
         #endregion  // Convert to HTML 
-
-        /// <summary>
-        /// Convert WordprocessingML to list of TextDocElement 
-        /// </summary>
-        private System.Collections.Generic.List<TextDocElement> ConvertWmlToTde(string xmlContent)
-        {
-            if (string.IsNullOrEmpty(xmlContent)) throw new System.Exception("XML content could not be empty"); 
-
-            // 
-
-            return new System.Collections.Generic.List<TextDocElement>();
-        }
     }
 }

@@ -20,6 +20,7 @@ namespace Cims.Tests.WorkflowLib.DocFormats.TextBased.Word
         {
             // Arrange
             string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".doc"; 
+            string filepath = Path.Combine(FolderName, filename); 
             var elements = new System.Collections.Generic.List<TextDocElement>()
             {
                 new TextDocElement() 
@@ -53,11 +54,58 @@ namespace Cims.Tests.WorkflowLib.DocFormats.TextBased.Word
 
             // Act
             converter.TextDocElementsToDocument(FolderName, filename, elements);
-            string filepath = Path.Combine(FolderName, filename); 
 
             // Assert
             Assert.True(File.Exists(filepath)); 
         }
+
+        // [Fact]
+        // public void ConvertToPdf_CorrectParams_FileExists()
+        // {
+        //     // Arrange
+        //     string wordFilename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".doc"; 
+        //     string pdfFilename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".pdf"; 
+        //     string wordFilepath = Path.Combine(FolderName, wordFilename); 
+        //     string pdfFilepath = Path.Combine(FolderName, pdfFilename); 
+        //     var elements = new System.Collections.Generic.List<TextDocElement>()
+        //     {
+        //         new TextDocElement() 
+        //         {
+        //             Content = "Header 1", 
+        //             FontSize = 50, 
+        //             TextAlignment = TextAlignment.CENTER
+        //         }, 
+        //         new TextDocElement() 
+        //         {
+        //             Content = "Paragraph 1\nLet's print out some content to the paragraph...", 
+        //             FontSize = 14, 
+        //             TextAlignment = TextAlignment.LEFT
+        //         }, 
+        //         new TextDocElement() 
+        //         {
+        //             Content = "Header 2", 
+        //             FontSize = 50, 
+        //             TextAlignment = TextAlignment.CENTER
+        //         }, 
+        //         new TextDocElement() 
+        //         {
+        //             Content = "Paragraph 2\nLet's print out again some content to the paragraph...", 
+        //             FontSize = 14, 
+        //             TextAlignment = TextAlignment.JUSTIFIED
+        //         }
+        //     }; 
+
+        //     MSWordConverter converter = new MSWordConverter(); 
+        //     CreateFolderIfNotExists(FolderName); 
+
+        //     // Act
+        //     converter.TextDocElementsToDocument(FolderName, wordFilename, elements);
+        //     converter.ConvertToPdf(FolderName, wordFilename, pdfFilename);
+
+        //     // Assert
+        //     Assert.True(File.Exists(wordFilepath)); 
+        //     Assert.True(File.Exists(pdfFilepath)); 
+        // }
 
         #region Private methods
         private void CreateFolderIfNotExists(string foldername)
