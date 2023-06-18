@@ -41,98 +41,11 @@ cd your-project
   </ItemGroup>
 ```
 
-### Конвертация изображений  
+Примеры: 
 
-Поскольку все конвертаторы изображений имплементируют общий `IImageConverter` интерфейс, то приведенный ниже код будет эквивалентен для каждого из конвертаторов изображений из данной библиотеки: 
-
-```C#
-using System.IO;
-using Cims.WorkflowLib.DocFormats.Images; 
-
-namespace Examples.WorkflowLib
-{
-    public class ImagesExample 
-    {
-        ...
-        public GetPngFromText()
-        {
-            // 
-            string text = "Some text message in png file..."; 
-            string filename = "testimage.png"; 
-            string foldername = @"C:\PathToImages"; 
-
-            // 
-            if (!Directory.Exists(foldername)) Directory.CreateDirectory(foldername); 
-
-            // 
-            IImageConverter pngConverter = new PngConverter(); 
-            pngConverter.TextToImg(text, foldername, filename);
-        }
-        ...
-    }
-}
-```
-
-### PDF конвертатор
-
-Для операций над PDF файлом используется класс `PdfConverter`:
-
-```C#
-using System.IO;
-using System.Collections.Generic; 
-using Cims.WorkflowLib.DocFormats; 
-using Cims.WorkflowLib.Models.Text; 
-using Cims.WorkflowLib.Models.Text.Enums; 
-
-namespace Examples.WorkflowLib
-{
-    public class PdfExample 
-    {
-        ...
-        public void UsePdfConverter()
-        {
-            // 
-            string filename = "testpdf.pdf"; 
-            string foldername = @"C:\PathToPdf"; 
-            var elements = new List<TextDocElement>()
-            {
-                new TextDocElement() 
-                {
-                    Content = "Header 1", 
-                    FontSize = 50, 
-                    TextAlignment = TextAlignment.CENTER
-                }, 
-                new TextDocElement() 
-                {
-                    Content = "Paragraph 1\nLet's print out some content to the paragraph...", 
-                    FontSize = 14, 
-                    TextAlignment = TextAlignment.LEFT
-                }, 
-                new TextDocElement() 
-                {
-                    Content = "Header 2", 
-                    FontSize = 50, 
-                    TextAlignment = TextAlignment.CENTER
-                }, 
-                new TextDocElement() 
-                {
-                    Content = "Paragraph 2\nLet's print out again some content to the paragraph...", 
-                    FontSize = 14, 
-                    TextAlignment = TextAlignment.JUSTIFIED
-                }
-            }; 
-
-            // 
-            if (!Directory.Exists(foldername)) Directory.CreateDirectory(foldername); 
-
-            // 
-            PdfConverter pdfConverter = new PdfConverter(); 
-            pdfConverter.TextDocElementsToDocument(foldername, filename, elements);
-        }
-        ...
-    }
-}
-```
+- [Конвертация изображений](docs/ImageConverter.md)
+- [PDF конвертатор](docs/PdfConverter.md)
+- [MS Word конвертатор](docs/MSWordConverter.md)
 
 ## Как использовать данную библиотеку совместно с XML/JSON оболочкой  
 
