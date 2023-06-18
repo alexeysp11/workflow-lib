@@ -16,6 +16,8 @@ Read this in other languages: [English](README.md), [Russian/Русский](REA
     - XML, JSON, OOXML, CSV;
     - HTML, markdown; 
     - Binary;
+- Basic monetary operations; 
+- Translation; 
 - Data visualization: Line chart, Bar chart, Histogram, Scatter plot, Box plot, Pareto chart, Pie chart, Area chart, Tree map, Bubble chart, Stripe graphic, Control chart, Run chart, Stem-and-leaf display, Cartogram, Small multiple, Sparkline, Table, Marimekko chart. 
 
 So this repository could definitely be used for development various types applications - both commercial (ERP, CRM) and non-commercial (studying, open-source). 

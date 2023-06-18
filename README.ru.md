@@ -15,6 +15,8 @@
     - Изображения: PNG, BMP, JPEG, SVG, GIF, ICO; 
     - XML, JSON, OOXML, CSV; 
     - Binary;
+- Базовые денежные операции; 
+- Перевод текста;
 - Визуализация данных: Line chart, Bar chart, Histogram, Scatter plot, Box plot, Pareto chart, Pie chart, Area chart, Tree map, Bubble chart, Stripe graphic, Control chart, Run chart, Stem-and-leaf display, Cartogram, Small multiple, Sparkline, Table, Marimekko chart. 
 
 Таким обрзаом, данный репозиторий вполне может быть использован для разработки разного рода клиентских приложений - как коммерческих (ERP, CRM), так и некоммерческих (учебных, open-source). 
