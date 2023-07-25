@@ -6,8 +6,8 @@ using System.Data;
 using Xunit;
 using Cims.WorkflowLib.DocFormats.Spreadsheets; 
 using Cims.WorkflowLib.DocFormats.Spreadsheets.Excel; 
-using Cims.WorkflowLib.Models.Text; 
-using Cims.WorkflowLib.Models.Text.Enums; 
+using Cims.WorkflowLib.Models.Documents; 
+using Cims.WorkflowLib.Models.Documents.Enums; 
 
 namespace Cims.Tests.WorkflowLib.DocFormats.Spreadsheets.Excel
 {
@@ -16,36 +16,32 @@ namespace Cims.Tests.WorkflowLib.DocFormats.Spreadsheets.Excel
         private string FolderName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), typeof(MSExcelConverterTest).ToString().Split('.').Last()); 
 
         [Fact]
-        public void TextDocElementsToDocument_CorrectParams_FileExists()
+        public void SpreadsheetElementsToDocument_CorrectParams_FileExists()
         {
             // Arrange
             string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".xlsx"; 
             string filepath = Path.Combine(FolderName, filename); 
-            var elements = new System.Collections.Generic.List<TextDocElement>()
+            var elements = new System.Collections.Generic.List<SpreadsheetElement>()
             {
-                new TextDocElement() 
+                new SpreadsheetElement() 
                 {
-                    Content = "Header 1", 
-                    FontSize = 50, 
-                    TextAlignment = TextAlignment.CENTER
+                    CellName = "A1",
+                    TextDocElement = new TextDocElement 
+                    {
+                        Content = "First test header", 
+                        FontSize = 14, 
+                        TextAlignment = TextAlignment.CENTER
+                    }
                 }, 
-                new TextDocElement() 
+                new SpreadsheetElement() 
                 {
-                    Content = "Paragraph 1\nLet's print out some content to the paragraph...", 
-                    FontSize = 14, 
-                    TextAlignment = TextAlignment.LEFT
-                }, 
-                new TextDocElement() 
-                {
-                    Content = "Header 2", 
-                    FontSize = 50, 
-                    TextAlignment = TextAlignment.CENTER
-                }, 
-                new TextDocElement() 
-                {
-                    Content = "Paragraph 2\nLet's print out again some content to the paragraph...", 
-                    FontSize = 14, 
-                    TextAlignment = TextAlignment.JUSTIFIED
+                    CellName = "A2",
+                    TextDocElement = new TextDocElement 
+                    {
+                        Content = "Header 2", 
+                        FontSize = 14, 
+                        TextAlignment = TextAlignment.CENTER
+                    }
                 }
             }; 
 
@@ -53,7 +49,7 @@ namespace Cims.Tests.WorkflowLib.DocFormats.Spreadsheets.Excel
             CreateFolderIfNotExists(FolderName); 
 
             // Act
-            converter.TextDocElementsToDocument(FolderName, filename, elements);
+            converter.SpreadsheetElementsToDocument(FolderName, filename, elements);
 
             // Assert
             Assert.True(File.Exists(filepath)); 

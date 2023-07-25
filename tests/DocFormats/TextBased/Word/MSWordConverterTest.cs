@@ -6,8 +6,8 @@ using System.Data;
 using Xunit;
 using Cims.WorkflowLib.DocFormats.TextBased; 
 using Cims.WorkflowLib.DocFormats.TextBased.Word; 
-using Cims.WorkflowLib.Models.Text; 
-using Cims.WorkflowLib.Models.Text.Enums; 
+using Cims.WorkflowLib.Models.Documents; 
+using Cims.WorkflowLib.Models.Documents.Enums; 
 
 namespace Cims.Tests.WorkflowLib.DocFormats.TextBased.Word
 {

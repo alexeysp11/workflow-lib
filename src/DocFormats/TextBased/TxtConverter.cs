@@ -1,6 +1,6 @@
 using System.IO; 
 using System.Linq; 
-using Cims.WorkflowLib.Models.Text; 
+using Cims.WorkflowLib.Models.Documents; 
 
 namespace Cims.WorkflowLib.DocFormats.TextBased
 {

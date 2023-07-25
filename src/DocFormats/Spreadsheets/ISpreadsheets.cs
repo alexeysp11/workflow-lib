@@ -1,5 +1,5 @@
 using System.IO; 
-using Cims.WorkflowLib.Models.Text; 
+using Cims.WorkflowLib.Models.Documents; 
 
 namespace Cims.WorkflowLib.DocFormats.Spreadsheets
 {
@@ -8,11 +8,11 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets
     /// </summary>
     public interface ISpreadsheets 
     {
-        void TextDocElementsToDocument(string foldername, string filename, System.Collections.Generic.List<TextDocElement> elements); 
+        void SpreadsheetElementsToDocument(string foldername, string filename, System.Collections.Generic.List<SpreadsheetElement> elements); 
 
-        // System.Collections.Generic.List<TextDocElement> ConvertFileToTde(string foldername, string filename); 
-        // System.Collections.Generic.List<TextDocElement> ConvertFileToTde(string filepath);
-        // System.Collections.Generic.List<TextDocElement> ConvertFileToTde(FileInfo file);
-        // System.Collections.Generic.List<TextDocElement> ConvertStringToTde(string xmlContent);
+        // System.Collections.Generic.List<SpreadsheetElement> ConvertFileToTde(string foldername, string filename); 
+        // System.Collections.Generic.List<SpreadsheetElement> ConvertFileToTde(string filepath);
+        // System.Collections.Generic.List<SpreadsheetElement> ConvertFileToTde(FileInfo file);
+        // System.Collections.Generic.List<SpreadsheetElement> ConvertStringToTde(string xmlContent);
     }
 }

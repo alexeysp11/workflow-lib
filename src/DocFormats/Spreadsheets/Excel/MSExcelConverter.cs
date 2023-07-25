@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
-using Cims.WorkflowLib.Models.Text; 
+using Cims.WorkflowLib.Models.Documents; 
 
 namespace Cims.WorkflowLib.DocFormats.Spreadsheets.Excel
 {
@@ -17,11 +17,17 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets.Excel
         /// <summary>
         /// 
         /// </summary>
-        public void TextDocElementsToDocument(string foldername, string filename, System.Collections.Generic.List<TextDocElement> elements)
+        public void SpreadsheetElementsToDocument(
+            string foldername, 
+            string filename, 
+            System.Collections.Generic.List<SpreadsheetElement> elements)
         {
-            if (!Directory.Exists(foldername)) throw new System.Exception("Folder does not exist"); 
-            if (string.IsNullOrEmpty(filename)) throw new System.Exception("File name could not be null or empty"); 
-            if (filename.Split('.').Last().ToLower() != "xls" && filename.Split('.').Last().ToLower() != "xlsx") throw new System.Exception("Incorrect file extension"); 
+            if (!Directory.Exists(foldername)) 
+                throw new System.Exception("Folder does not exist"); 
+            if (string.IsNullOrEmpty(filename)) 
+                throw new System.Exception("File name could not be null or empty"); 
+            if (filename.Split('.').Last().ToLower() != "xls" && filename.Split('.').Last().ToLower() != "xlsx") 
+                throw new System.Exception("Incorrect file extension"); 
 
             // Read: 
             // https://learn.microsoft.com/en-us/office/open-xml/how-to-calculate-the-sum-of-a-range-of-cells-in-a-spreadsheet-document
@@ -49,6 +55,34 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets.Excel
                 Name = "mySheet" 
             };
             sheets.Append(sheet);
+
+            // Set the values of the cells.
+            foreach (var element in elements)
+            {
+                if (element != null && element.TextDocElement != null)
+                {
+                    SharedStringTablePart shareStringPart;
+                    if (spreadsheetDocument.WorkbookPart.GetPartsOfType<SharedStringTablePart>().Count() > 0)
+                    {
+                        shareStringPart = spreadsheetDocument.WorkbookPart.GetPartsOfType<SharedStringTablePart>().First();
+                    }
+                    else
+                    {
+                        shareStringPart = spreadsheetDocument.WorkbookPart.AddNewPart<SharedStringTablePart>();
+                    }
+
+                    // Insert the result into the SharedStringTablePart.
+                    int index = InsertSharedStringItem(element.TextDocElement.Content, shareStringPart);
+
+                    var column = GetColumnName(element.CellName); 
+                    var row = GetRowIndex(element.CellName); 
+                    Cell result = InsertCellInWorksheet(column, row, worksheetPart);
+
+                    // Set the value of the cell.
+                    result.CellValue = new CellValue(index.ToString());
+                    result.DataType = new EnumValue<CellValues>(CellValues.SharedString);
+                }
+            }
 
             workbookpart.Workbook.Save();
 

@@ -4,7 +4,7 @@ using System.Xml.Linq;
 using DocumentFormat.OpenXml.Packaging; 
 using DocumentFormat.OpenXml.Wordprocessing; 
 using OpenXmlPowerTools;
-using Cims.WorkflowLib.Models.Text; 
+using Cims.WorkflowLib.Models.Documents; 
 using Cims.WorkflowLib.DocFormats.TextBased; 
 
 namespace Cims.WorkflowLib.DocFormats.TextBased.Word

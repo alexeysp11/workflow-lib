@@ -1,4 +1,4 @@
-namespace Cims.WorkflowLib.Models.Text.Enums
+namespace Cims.WorkflowLib.Models.Documents.Enums
 {
     /// <summary>
     /// 

@@ -1,6 +1,6 @@
-using Cims.WorkflowLib.Models.Text.Enums; 
+using Cims.WorkflowLib.Models.Documents.Enums; 
 
-namespace Cims.WorkflowLib.Models.Text
+namespace Cims.WorkflowLib.Models.Documents
 {
     /// <summary>
     /// 

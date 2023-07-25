@@ -7,8 +7,8 @@ using System.IO;
 using System.Collections.Generic; 
 using Cims.WorkflowLib.DocFormats.TextBased; 
 using Cims.WorkflowLib.DocFormats.TextBased.Word; 
-using Cims.WorkflowLib.Models.Text; 
-using Cims.WorkflowLib.Models.Text.Enums; 
+using Cims.WorkflowLib.Models.Documents; 
+using Cims.WorkflowLib.Models.Documents.Enums; 
 
 namespace Examples.WorkflowLib
 {

@@ -3,7 +3,7 @@ using System.Linq;
 using iText.Kernel.Pdf; 
 using iText.Layout; 
 using iText.Layout.Element; 
-using Cims.WorkflowLib.Models.Text; 
+using Cims.WorkflowLib.Models.Documents; 
 
 namespace Cims.WorkflowLib.DocFormats
 {
