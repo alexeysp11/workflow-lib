@@ -5,11 +5,10 @@ using System.Reflection;
 using System.Data; 
 using Xunit;
 using Cims.WorkflowLib.DocFormats.Spreadsheets; 
-using Cims.WorkflowLib.DocFormats.Spreadsheets.Excel; 
 using Cims.WorkflowLib.Models.Documents; 
 using Cims.WorkflowLib.Models.Documents.Enums; 
 
-namespace Cims.Tests.WorkflowLib.DocFormats.Spreadsheets.Excel
+namespace Cims.Tests.WorkflowLib.DocFormats.Spreadsheets
 {
     public class MSExcelConverterTest
     {

@@ -7,7 +7,7 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using Cims.WorkflowLib.Models.Documents; 
 
-namespace Cims.WorkflowLib.DocFormats.Spreadsheets.Excel
+namespace Cims.WorkflowLib.DocFormats.Spreadsheets
 {
     /// <summary>
     /// 

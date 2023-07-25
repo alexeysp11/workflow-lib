@@ -7,7 +7,7 @@ using OpenXmlPowerTools;
 using Cims.WorkflowLib.Models.Documents; 
 using Cims.WorkflowLib.DocFormats.TextBased; 
 
-namespace Cims.WorkflowLib.DocFormats.TextBased.Word
+namespace Cims.WorkflowLib.DocFormats.TextBased
 {
     /// <summary>
     /// 
