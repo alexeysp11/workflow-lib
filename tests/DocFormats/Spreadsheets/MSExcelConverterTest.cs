@@ -20,6 +20,7 @@ namespace Cims.Tests.WorkflowLib.DocFormats.Spreadsheets
             // Arrange
             string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".xlsx"; 
             string filepath = Path.Combine(FolderName, filename); 
+            string worksheetName = "TestSheet"; 
             var elements = new System.Collections.Generic.List<SpreadsheetElement>()
             {
                 new SpreadsheetElement() 
@@ -48,7 +49,52 @@ namespace Cims.Tests.WorkflowLib.DocFormats.Spreadsheets
             CreateFolderIfNotExists(FolderName); 
 
             // Act
-            converter.SpreadsheetElementsToDocument(FolderName, filename, elements);
+            converter.SpreadsheetElementsToDocument(FolderName, filename, worksheetName, elements);
+
+            // Assert
+            Assert.True(File.Exists(filepath)); 
+        }
+
+        [Fact]
+        public void CalculateSumOfCellRange_CorrectParams_FileExists()
+        {
+            // Arrange
+            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".xlsx"; 
+            string filepath = Path.Combine(FolderName, filename); 
+            string worksheetName = "TestSheet"; 
+            string firstCellName = "A1"; 
+            string lastCellName = "A2"; 
+            string resultCell = "A3"; 
+            var elements = new System.Collections.Generic.List<SpreadsheetElement>()
+            {
+                new SpreadsheetElement() 
+                {
+                    CellName = firstCellName,
+                    TextDocElement = new TextDocElement 
+                    {
+                        Content = "12", 
+                        FontSize = 14, 
+                        TextAlignment = TextAlignment.CENTER
+                    }
+                }, 
+                new SpreadsheetElement() 
+                {
+                    CellName = lastCellName,
+                    TextDocElement = new TextDocElement 
+                    {
+                        Content = "24", 
+                        FontSize = 14, 
+                        TextAlignment = TextAlignment.CENTER
+                    }
+                }
+            }; 
+
+            ISpreadsheets converter = new MSExcelConverter(); 
+            CreateFolderIfNotExists(FolderName); 
+
+            // Act
+            converter.SpreadsheetElementsToDocument(FolderName, filename, worksheetName, elements);
+            converter.CalculateSumOfCellRange(filepath, worksheetName, firstCellName, lastCellName, resultCell); 
 
             // Assert
             Assert.True(File.Exists(filepath)); 

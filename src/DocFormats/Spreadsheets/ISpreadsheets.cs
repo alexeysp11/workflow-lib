@@ -8,11 +8,16 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets
     /// </summary>
     public interface ISpreadsheets 
     {
-        void SpreadsheetElementsToDocument(string foldername, string filename, System.Collections.Generic.List<SpreadsheetElement> elements); 
-
-        // System.Collections.Generic.List<SpreadsheetElement> ConvertFileToTde(string foldername, string filename); 
-        // System.Collections.Generic.List<SpreadsheetElement> ConvertFileToTde(string filepath);
-        // System.Collections.Generic.List<SpreadsheetElement> ConvertFileToTde(FileInfo file);
-        // System.Collections.Generic.List<SpreadsheetElement> ConvertStringToTde(string xmlContent);
+        void SpreadsheetElementsToDocument(
+            string foldername, 
+            string filename, 
+            string worksheetName, 
+            System.Collections.Generic.List<SpreadsheetElement> elements); 
+        void CalculateSumOfCellRange(
+            string docName, 
+            string worksheetName, 
+            string firstCellName, 
+            string lastCellName, 
+            string resultCell); 
     }
 }

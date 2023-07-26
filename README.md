@@ -3,7 +3,6 @@
 Read this in other languages: [English](README.md), [Russian/Русский](README.ru.md). 
 
 `workflow-lib` is a C# library that consists of:
-- Visual elements for ASP.NET applications (Blazor, Razor Pages, MVC);
 - Dynamic compilation for C# code; 
 - Configurations (JSON, XML); 
 - Network: REST API, SOAP, WebAPI; 

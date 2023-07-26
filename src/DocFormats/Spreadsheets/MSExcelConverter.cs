@@ -20,6 +20,7 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets
         public void SpreadsheetElementsToDocument(
             string foldername, 
             string filename, 
+            string worksheetName,
             System.Collections.Generic.List<SpreadsheetElement> elements)
         {
             if (!Directory.Exists(foldername)) 
@@ -52,7 +53,7 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets
             { 
                 Id = spreadsheetDocument.WorkbookPart.GetIdOfPart(worksheetPart), 
                 SheetId = 1, 
-                Name = "mySheet" 
+                Name = worksheetName 
             };
             sheets.Append(sheet);
 
@@ -60,33 +61,10 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets
             foreach (var element in elements)
             {
                 if (element != null && element.TextDocElement != null)
-                {
-                    SharedStringTablePart shareStringPart;
-                    if (spreadsheetDocument.WorkbookPart.GetPartsOfType<SharedStringTablePart>().Count() > 0)
-                    {
-                        shareStringPart = spreadsheetDocument.WorkbookPart.GetPartsOfType<SharedStringTablePart>().First();
-                    }
-                    else
-                    {
-                        shareStringPart = spreadsheetDocument.WorkbookPart.AddNewPart<SharedStringTablePart>();
-                    }
-
-                    // Insert the result into the SharedStringTablePart.
-                    int index = InsertSharedStringItem(element.TextDocElement.Content, shareStringPart);
-
-                    var column = GetColumnName(element.CellName); 
-                    var row = GetRowIndex(element.CellName); 
-                    Cell result = InsertCellInWorksheet(column, row, worksheetPart);
-
-                    // Set the value of the cell.
-                    result.CellValue = new CellValue(index.ToString());
-                    result.DataType = new EnumValue<CellValues>(CellValues.SharedString);
-                }
+                    InsertValue(element.TextDocElement.Content, element.CellName, spreadsheetDocument, worksheetPart); 
             }
-
+            // Save and close the document.
             workbookpart.Workbook.Save();
-
-            // Close the document.
             spreadsheetDocument.Close();
         }
 
@@ -96,17 +74,20 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets
         /// calculates the sum of the cells in the contiguous range and inserts the result into the results cell.
         /// Note: All cells in the contiguous range must contain numbers.
         /// </summary>
-        public void CalculateSumOfCellRange(string docName, string worksheetName, string firstCellName, string lastCellName, string resultCell)
+        public void CalculateSumOfCellRange(
+            string docName, 
+            string worksheetName, 
+            string firstCellName, 
+            string lastCellName, 
+            string resultCell)
         {
             // Open the document for editing.
             using (SpreadsheetDocument document = SpreadsheetDocument.Open(docName, true))
             {
                 IEnumerable<Sheet> sheets = document.WorkbookPart.Workbook.Descendants<Sheet>().Where(s => s.Name == worksheetName);
+                // If the specified worksheet does not exist.
                 if (sheets.Count() == 0)
-                {
-                    // The specified worksheet does not exist.
                     return; 
-                }
 
                 WorksheetPart worksheetPart = (WorksheetPart)document.WorkbookPart.GetPartById(sheets.First().Id);
                 Worksheet worksheet = worksheetPart.Worksheet;
@@ -126,35 +107,33 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets
                     {
                         string columnName = GetColumnName(cell.CellReference.Value);
                         if (CompareColumn(columnName, firstColumn) >= 0 && CompareColumn(columnName, lastColumn) <= 0)
-                        {
                             sum += double.Parse(cell.CellValue.Text);
-                        }
                     }
                 }
-
-                // Get the SharedStringTablePart and add the result to it.
-                // If the SharedStringPart does not exist, create a new one.
-                SharedStringTablePart shareStringPart;
-                if (document.WorkbookPart.GetPartsOfType<SharedStringTablePart>().Count() > 0)
-                {
-                    shareStringPart = document.WorkbookPart.GetPartsOfType<SharedStringTablePart>().First();
-                }
-                else
-                {
-                    shareStringPart = document.WorkbookPart.AddNewPart<SharedStringTablePart>();
-                }
-
-                // Insert the result into the SharedStringTablePart.
-                int index = InsertSharedStringItem("Result:" + sum, shareStringPart);
-
-                Cell result = InsertCellInWorksheet(GetColumnName(resultCell), GetRowIndex(resultCell), worksheetPart);
-
-                // Set the value of the cell.
-                result.CellValue = new CellValue(index.ToString());
-                result.DataType = new EnumValue<CellValues>(CellValues.SharedString);
-
+                InsertValue(sum.ToString(), resultCell, document, worksheetPart); 
                 worksheetPart.Worksheet.Save();
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void InsertValue(string resultString, string resultCell, SpreadsheetDocument document, WorksheetPart worksheetPart)
+        {
+            // Get the SharedStringTablePart and add the result to it.
+            // If the SharedStringPart does not exist, create a new one.
+            SharedStringTablePart shareStringPart = 
+                document.WorkbookPart.GetPartsOfType<SharedStringTablePart>().Count() > 0 
+                ? document.WorkbookPart.GetPartsOfType<SharedStringTablePart>().First() 
+                : document.WorkbookPart.AddNewPart<SharedStringTablePart>();
+
+            // Insert the result into the SharedStringTablePart.
+            int index = InsertSharedStringItem(resultString, shareStringPart);
+            Cell result = InsertCellInWorksheet(GetColumnName(resultCell), GetRowIndex(resultCell), worksheetPart);
+
+            // Set the value of the cell.
+            result.CellValue = new CellValue(index.ToString());
+            result.DataType = new EnumValue<CellValues>(CellValues.SharedString);
         }
 
         /// <summary>
@@ -181,17 +160,11 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets
         private int CompareColumn(string column1, string column2)
         {
             if (column1.Length > column2.Length)
-            {
                 return 1;
-            }
             else if (column1.Length < column2.Length)
-            {
                 return -1;
-            }
             else
-            {
                 return string.Compare(column1, column2, true);
-            }
         }
 
         /// <summary>
@@ -202,25 +175,18 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets
         {
             // If the part does not contain a SharedStringTable, create it.
             if (shareStringPart.SharedStringTable == null)
-            {
                 shareStringPart.SharedStringTable = new SharedStringTable();
-            }
-
             int i = 0;
             foreach (SharedStringItem item in shareStringPart.SharedStringTable.Elements<SharedStringItem>())
             {
+                // The text already exists in the part. Return its index.
                 if (item.InnerText == text)
-                {
-                    // The text already exists in the part. Return its index.
                     return i;
-                }
                 i++;
             }
-
             // The text does not exist in the part. Create the SharedStringItem.
             shareStringPart.SharedStringTable.AppendChild(new SharedStringItem(new DocumentFormat.OpenXml.Spreadsheet.Text(text)));
             shareStringPart.SharedStringTable.Save();
-
             return i;
         }
 
@@ -237,9 +203,7 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets
             // If the worksheet does not contain a row with the specified row index, insert one.
             Row row;
             if (sheetData.Elements<Row>().Where(r => r.RowIndex == rowIndex).Count() != 0)
-            {
                 row = sheetData.Elements<Row>().Where(r => r.RowIndex == rowIndex).First();
-            }
             else
             {
                 row = new Row() { RowIndex = rowIndex };
@@ -263,10 +227,8 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets
                         break;
                     }
                 }
-
                 Cell newCell = new Cell() { CellReference = cellReference };
                 row.InsertBefore(newCell, refCell);
-
                 worksheet.Save();
                 return newCell;
             }
