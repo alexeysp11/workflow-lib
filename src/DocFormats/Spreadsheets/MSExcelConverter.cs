@@ -120,20 +120,9 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets
         /// </summary>
         private void InsertValue(string resultString, string resultCell, SpreadsheetDocument document, WorksheetPart worksheetPart)
         {
-            // Get the SharedStringTablePart and add the result to it.
-            // If the SharedStringPart does not exist, create a new one.
-            SharedStringTablePart shareStringPart = 
-                document.WorkbookPart.GetPartsOfType<SharedStringTablePart>().Count() > 0 
-                ? document.WorkbookPart.GetPartsOfType<SharedStringTablePart>().First() 
-                : document.WorkbookPart.AddNewPart<SharedStringTablePart>();
-
-            // Insert the result into the SharedStringTablePart.
-            int index = InsertSharedStringItem(resultString, shareStringPart);
             Cell result = InsertCellInWorksheet(GetColumnName(resultCell), GetRowIndex(resultCell), worksheetPart);
-
-            // Set the value of the cell.
-            result.CellValue = new CellValue(index.ToString());
-            result.DataType = new EnumValue<CellValues>(CellValues.SharedString);
+            result.CellValue = new CellValue(resultString);
+            result.DataType = new EnumValue<CellValues>(CellValues.String);
         }
 
         /// <summary>
@@ -165,29 +154,6 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets
                 return -1;
             else
                 return string.Compare(column1, column2, true);
-        }
-
-        /// <summary>
-        /// Given text and a SharedStringTablePart, creates a SharedStringItem with the specified text 
-        /// and inserts it into the SharedStringTablePart. If the item already exists, returns its index.
-        /// </summary>
-        private int InsertSharedStringItem(string text, SharedStringTablePart shareStringPart)
-        {
-            // If the part does not contain a SharedStringTable, create it.
-            if (shareStringPart.SharedStringTable == null)
-                shareStringPart.SharedStringTable = new SharedStringTable();
-            int i = 0;
-            foreach (SharedStringItem item in shareStringPart.SharedStringTable.Elements<SharedStringItem>())
-            {
-                // The text already exists in the part. Return its index.
-                if (item.InnerText == text)
-                    return i;
-                i++;
-            }
-            // The text does not exist in the part. Create the SharedStringItem.
-            shareStringPart.SharedStringTable.AppendChild(new SharedStringItem(new DocumentFormat.OpenXml.Spreadsheet.Text(text)));
-            shareStringPart.SharedStringTable.Save();
-            return i;
         }
 
         /// <summary>
