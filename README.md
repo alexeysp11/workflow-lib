@@ -5,7 +5,7 @@ Read this in other languages: [English](README.md), [Russian/Русский](REA
 `workflow-lib` is a C# library that consists of:
 - Dynamic compilation for C# code; 
 - Configurations (JSON, XML); 
-- Network: REST API, SOAP, WebAPI; 
+- Network: REST API, SOAP; 
 - Databases (SQLite, PostgreSQL, MySQL, MS SQL, Oracle);
 - Document operations (writing, reading, conversion):
     - Text-based: MS Word (DOC, DOT, DOCX, DOTX, DOCM, DOTM), OpenDocument (ODT, FODT, OTT), TXT;
@@ -16,10 +16,7 @@ Read this in other languages: [English](README.md), [Russian/Русский](REA
     - HTML, markdown; 
     - Binary;
 - Basic monetary operations; 
-- Translation; 
 - Data visualization: Line chart, Bar chart, Histogram, Scatter plot, Box plot, Pareto chart, Pie chart, Area chart, Tree map, Bubble chart, Stripe graphic, Control chart, Run chart, Stem-and-leaf display, Cartogram, Small multiple, Sparkline, Table, Marimekko chart. 
-
-So this repository could definitely be used for development various types applications - both commercial (ERP, CRM) and non-commercial (studying, open-source). 
 
 ## How to use this library in C# code 
 
