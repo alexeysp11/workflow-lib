@@ -5,7 +5,6 @@
 `workflow-lib` - это библиотека на C#, состоящая из:
 - Динамической компиляции кода на C#; 
 - Операций с конфигурационными файлами (JSON, XML); 
-- Сетевых операций; 
 - Операций с базами данных (SQLite, PostgreSQL, MySQL, MS SQL, Oracle); 
 - Операций с документами (запись, чтение, конвертация): 
     - Текстовые: MS Word (DOC, DOT, DOCX, DOTX, DOCM, DOTM), OpenDocument (ODT, FODT, OTT), TXT; 

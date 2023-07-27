@@ -5,7 +5,6 @@ Read this in other languages: [English](README.md), [Russian/Русский](REA
 `workflow-lib` is a C# library that consists of:
 - Dynamic compilation for C# code; 
 - Configurations (JSON, XML); 
-- Network: REST API, SOAP; 
 - Databases (SQLite, PostgreSQL, MySQL, MS SQL, Oracle);
 - Document operations (writing, reading, conversion):
     - Text-based: MS Word (DOC, DOT, DOCX, DOTX, DOCM, DOTM), OpenDocument (ODT, FODT, OTT), TXT;
