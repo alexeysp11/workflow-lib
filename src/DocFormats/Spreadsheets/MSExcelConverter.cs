@@ -20,6 +20,7 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets
         public void SpreadsheetElementsToDocument(
             string foldername, 
             string filename, 
+            uint worksheetId, 
             string worksheetName,
             System.Collections.Generic.List<SpreadsheetElement> elements)
         {
@@ -34,7 +35,12 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets
             // https://learn.microsoft.com/en-us/office/open-xml/how-to-calculate-the-sum-of-a-range-of-cells-in-a-spreadsheet-document
             // 
             string filepath = Path.Combine(foldername, filename); 
-            if (!File.Exists(foldername)) using (FileStream fs = File.Create(filepath)); 
+            if (!File.Exists(foldername))
+            {
+                using (FileStream fs = File.Create(filepath)) 
+                {
+                }
+            }
             SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Open(filepath, true);
 
             // Add a WorkbookPart to the document.
@@ -52,7 +58,7 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets
             Sheet sheet = new Sheet() 
             { 
                 Id = spreadsheetDocument.WorkbookPart.GetIdOfPart(worksheetPart), 
-                SheetId = 1, 
+                SheetId = worksheetId, 
                 Name = worksheetName 
             };
             sheets.Append(sheet);
@@ -61,7 +67,7 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets
             foreach (var element in elements)
             {
                 if (element != null && element.TextDocElement != null)
-                    InsertValue(element.TextDocElement.Content, element.CellName, spreadsheetDocument, worksheetPart); 
+                    InsertValue(element.TextDocElement.Content, element.CellName, worksheetId, spreadsheetDocument, worksheetPart); 
             }
             // Save and close the document.
             workbookpart.Workbook.Save();
@@ -88,7 +94,6 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets
                 // If the specified worksheet does not exist.
                 if (sheets.Count() == 0)
                     return; 
-
                 WorksheetPart worksheetPart = (WorksheetPart)document.WorkbookPart.GetPartById(sheets.First().Id);
                 Worksheet worksheet = worksheetPart.Worksheet;
 
@@ -110,7 +115,15 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets
                             sum += double.Parse(cell.CellValue.Text);
                     }
                 }
-                InsertValue(sum.ToString(), resultCell, document, worksheetPart); 
+                uint worksheetId = 0; 
+                try
+                {
+                    worksheetId = System.UInt32.Parse(sheets.First().Id.Value); 
+                }
+                catch (System.Exception ex)
+                {
+                }
+                InsertValue(sum.ToString(), resultCell, worksheetId, document, worksheetPart); 
                 worksheetPart.Worksheet.Save();
             }
         }
@@ -118,9 +131,14 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets
         /// <summary>
         /// 
         /// </summary>
-        private void InsertValue(string resultString, string resultCell, SpreadsheetDocument document, WorksheetPart worksheetPart)
+        private void InsertValue(
+            string resultString, 
+            string resultCell, 
+            uint worksheetId, 
+            SpreadsheetDocument document, 
+            WorksheetPart worksheetPart)
         {
-            Cell result = InsertCellInWorksheet(GetColumnName(resultCell), GetRowIndex(resultCell), worksheetPart);
+            Cell result = InsertCellInWorksheet(GetColumnName(resultCell), GetRowIndex(resultCell), (int)worksheetId, worksheetPart);
             result.CellValue = new CellValue(resultString);
             result.DataType = new EnumValue<CellValues>(CellValues.String);
         }
@@ -160,7 +178,7 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets
         /// Given a column name, a row index, and a WorksheetPart, inserts a cell into the worksheet. 
         /// If the cell already exists, returns it. 
         /// </summary>
-        private Cell InsertCellInWorksheet(string columnName, uint rowIndex, WorksheetPart worksheetPart)
+        private Cell InsertCellInWorksheet(string columnName, uint rowIndex, int worksheetId, WorksheetPart worksheetPart)
         {
             Worksheet worksheet = worksheetPart.Worksheet;
             SheetData sheetData = worksheet.GetFirstChild<SheetData>();

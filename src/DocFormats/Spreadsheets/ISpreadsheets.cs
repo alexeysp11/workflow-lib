@@ -11,6 +11,7 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets
         void SpreadsheetElementsToDocument(
             string foldername, 
             string filename, 
+            uint worksheetId, 
             string worksheetName, 
             System.Collections.Generic.List<SpreadsheetElement> elements); 
         void CalculateSumOfCellRange(

@@ -20,6 +20,7 @@ namespace Cims.Tests.WorkflowLib.DocFormats.Spreadsheets
             // Arrange
             string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".xlsx"; 
             string filepath = Path.Combine(FolderName, filename); 
+            uint worksheetId = 1; 
             string worksheetName = "TestSheet"; 
             var elements = new System.Collections.Generic.List<SpreadsheetElement>()
             {
@@ -49,19 +50,23 @@ namespace Cims.Tests.WorkflowLib.DocFormats.Spreadsheets
             CreateFolderIfNotExists(FolderName); 
 
             // Act
-            converter.SpreadsheetElementsToDocument(FolderName, filename, worksheetName, elements);
+            converter.SpreadsheetElementsToDocument(FolderName, filename, worksheetId, worksheetName, elements);
 
             // Assert
             Assert.True(File.Exists(filepath)); 
         }
 
-        [Fact]
-        public void CalculateSumOfCellRange_CorrectParams_FileExists()
+        [Theory]
+        [InlineData(1, "OnlyPositive", "12", "24")]
+        public void CalculateSumOfCellRange_CorrectParams_FileExists(
+            uint worksheetId, 
+            string worksheetName, 
+            string content1, 
+            string content2)
         {
             // Arrange
             string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".xlsx"; 
             string filepath = Path.Combine(FolderName, filename); 
-            string worksheetName = "TestSheet"; 
             string firstCellName = "A1"; 
             string lastCellName = "A2"; 
             string resultCell = "A3"; 
@@ -72,7 +77,7 @@ namespace Cims.Tests.WorkflowLib.DocFormats.Spreadsheets
                     CellName = firstCellName,
                     TextDocElement = new TextDocElement 
                     {
-                        Content = "12", 
+                        Content = content1, 
                         FontSize = 14, 
                         TextAlignment = TextAlignment.CENTER
                     }
@@ -82,7 +87,7 @@ namespace Cims.Tests.WorkflowLib.DocFormats.Spreadsheets
                     CellName = lastCellName,
                     TextDocElement = new TextDocElement 
                     {
-                        Content = "24", 
+                        Content = content2, 
                         FontSize = 14, 
                         TextAlignment = TextAlignment.CENTER
                     }
@@ -93,7 +98,7 @@ namespace Cims.Tests.WorkflowLib.DocFormats.Spreadsheets
             CreateFolderIfNotExists(FolderName); 
 
             // Act
-            converter.SpreadsheetElementsToDocument(FolderName, filename, worksheetName, elements);
+            converter.SpreadsheetElementsToDocument(FolderName, filename, worksheetId, worksheetName, elements);
             converter.CalculateSumOfCellRange(filepath, worksheetName, firstCellName, lastCellName, resultCell); 
 
             // Assert

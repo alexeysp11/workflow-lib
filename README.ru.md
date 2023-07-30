@@ -4,8 +4,8 @@
 
 `workflow-lib` - это библиотека на C#, состоящая из:
 - Динамической компиляции кода на C#; 
-- Операций с конфигурационными файлами (JSON, XML); 
-- Операций с базами данных (SQLite, PostgreSQL, MySQL, MS SQL, Oracle); 
+- Конфигурационные файлы (JSON, XML); 
+- Базы данных (SQLite, PostgreSQL, MySQL, MS SQL, Oracle); 
 - Операций с документами (запись, чтение, конвертация): 
     - Текстовые: MS Word (DOC, DOT, DOCX, DOTX, DOCM, DOTM), OpenDocument (ODT, FODT, OTT), TXT; 
     - Spreadsheets-таблицы: MS Excel (XLS, XLT, XLW, XLSX, XLTX, XLSM, XLTM), OpenDocument (ODS, FODS, OTS); 
@@ -48,10 +48,4 @@ cd your-project
 
 ## Как улучшить библиотеку 
 
-### Database connections 
-
-- Explain what is the differnece between `DataSource` and `ConnString` in database classes and to use them properly. 
-- Create template for using multiple database connections. 
-- How to deal with `blob` objects in databases connection classes?
-- Method `Cims.WorkflowLib.DbConnections.BaseDbConnection.GetSqlFromDataTable()` does not correct SQL statement, so you need to explain how to use this method properly. 
-- How to transfer data from one database to another? 
+[Кликните здесь](docs/TODO.md) для того, чтобы прочитать информацию о том, как можно улучшить данную библиотеку. 

@@ -24,7 +24,12 @@ namespace Cims.WorkflowLib.DocFormats.TextBased
             if (filename.Split('.').Last().ToLower() != "doc" && filename.Split('.').Last().ToLower() != "docx") throw new System.Exception("Incorrect file extension"); 
 
             string filepath = Path.Combine(foldername, filename); 
-            if (!File.Exists(foldername)) using (FileStream fs = File.Create(filepath)); 
+            if (!File.Exists(foldername)) 
+            {
+                using (FileStream fs = File.Create(filepath))
+                {
+                }
+            }
             using (WordprocessingDocument doc = WordprocessingDocument.Open(filepath, true))
             {
                 MainDocumentPart mainPart = doc.AddMainDocumentPart();
@@ -202,7 +207,6 @@ namespace Cims.WorkflowLib.DocFormats.TextBased
                     var outputDirectory = destFileName.Directory;
                     destFileName = new FileInfo(Path.Combine(outputDirectory.FullName, destFileName.Name));
                     var imageDirectoryName = destFileName.FullName.Substring(0, destFileName.FullName.Length - 5) + "_files";
-                    int imageCounter = 0;
                     var pageTitle = (string)wDoc.CoreFilePropertiesPart.GetXDocument().Descendants(DC.title).FirstOrDefault();
                     if (pageTitle == null)
                         pageTitle = sourceDocx.FullName;
