@@ -39,9 +39,9 @@ namespace Cims.WorkflowLib.DocFormats
                     doc.Close(); 
                 }
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
-                throw ex; 
+                throw; 
             }
         }
 

@@ -14,6 +14,16 @@ namespace Cims.WorkflowLib.DocFormats.Images
         /// </summary>
         public void TextToImg(string text, string foldername, string filename)
         {
+#if NET5_0_OR_GREATER
+            if (!System.OperatingSystem.IsWindows())
+#else
+            if (System.Environment.OSVersion.Platform != System.PlatformID.Win32NT 
+                && System.Environment.OSVersion.Platform != System.PlatformID.Win32S
+                && System.Environment.OSVersion.Platform != System.PlatformID.Win32Windows
+                && System.Environment.OSVersion.Platform != System.PlatformID.WinCE)
+#endif
+                throw new System.NotSupportedException("The method is available only on Windows OS");
+            
             base.CheckText(text); 
             base.CheckFolderName(foldername); 
             base.CheckFileName(filename, "gif"); 

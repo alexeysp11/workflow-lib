@@ -120,7 +120,7 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets
                 {
                     worksheetId = System.UInt32.Parse(sheets.First().Id.Value); 
                 }
-                catch (System.Exception ex)
+                catch (System.Exception)
                 {
                 }
                 InsertValue(sum.ToString(), resultCell, worksheetId, document, worksheetPart); 

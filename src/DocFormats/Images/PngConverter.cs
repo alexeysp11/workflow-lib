@@ -4,10 +4,26 @@ using System.Linq;
 
 namespace Cims.WorkflowLib.DocFormats.Images
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class PngConverter : BaseImageConverter, IImageConverter
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public void TextToImg(string text, string foldername, string filename)
         {
+#if NET5_0_OR_GREATER
+            if (!System.OperatingSystem.IsWindows())
+#else
+            if (System.Environment.OSVersion.Platform != System.PlatformID.Win32NT 
+                && System.Environment.OSVersion.Platform != System.PlatformID.Win32S
+                && System.Environment.OSVersion.Platform != System.PlatformID.Win32Windows
+                && System.Environment.OSVersion.Platform != System.PlatformID.WinCE)
+#endif
+                throw new System.NotSupportedException("The method is available only on Windows OS");
+            
             base.CheckText(text); 
             base.CheckFolderName(foldername); 
             base.CheckFileName(filename, "png"); 
@@ -46,6 +62,9 @@ namespace Cims.WorkflowLib.DocFormats.Images
             img.Dispose();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void BinaryToImg(byte[] bytes, string foldername, string filename)
         {
             // 
@@ -53,6 +72,9 @@ namespace Cims.WorkflowLib.DocFormats.Images
             base.CheckFileName(filename, "png"); 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public byte[] ImgToBinary(string foldername, string filename)
         {
             // 

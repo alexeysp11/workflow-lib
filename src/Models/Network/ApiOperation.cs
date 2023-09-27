@@ -1,4 +1,6 @@
-namespace Cims.WorkflowLib.Models.Network 
+using Cims.WorkflowLib.Models.Performance;
+
+namespace Cims.WorkflowLib.Models.Network
 {
     /// <summary>
     /// Represents any attempt to communcate with API server as an operation 
@@ -56,5 +58,10 @@ namespace Cims.WorkflowLib.Models.Network
         /// </summary>
         public string StatusDescription { get; set; }
         #endregion  // Messages between client and server 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ExecutionTime ExecutionTime { get; set; }
     }
 }

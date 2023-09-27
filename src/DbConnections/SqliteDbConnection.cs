@@ -19,9 +19,9 @@ namespace Cims.WorkflowLib.DbConnections
             {
                 SetPathToDb(path); 
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
-                throw ex; 
+                throw; 
             }
         }
 
@@ -55,9 +55,9 @@ namespace Cims.WorkflowLib.DbConnections
                         table.Load(reader);
                     }
                 }
-                catch (System.Exception ex)
+                catch (System.Exception)
                 {
-                    throw ex; 
+                    throw; 
                 }
             }
             return table; 

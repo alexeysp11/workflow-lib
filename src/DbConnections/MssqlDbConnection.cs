@@ -41,13 +41,13 @@ namespace Cims.WorkflowLib.DbConnections
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
-                throw ex;
+                throw;
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
-                throw ex; 
+                throw; 
             }
             finally
             {

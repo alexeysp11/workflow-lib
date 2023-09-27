@@ -33,9 +33,9 @@ namespace Cims.WorkflowLib.DbConnections
                 var reader = (new MySqlCommand(sqlRequest, connection)).ExecuteReader();
                 table = GetDataTable(reader); 
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
-                throw e; 
+                throw; 
             }
             finally
             {
