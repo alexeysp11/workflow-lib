@@ -18,6 +18,21 @@ namespace Cims.WorkflowLib.NetworkApis
     public class HttpSender 
     {
         /// <summary>
+        /// Synchronous method for sending an object via HTTP
+        /// </summary>
+        public string Send(string url, object parameter)
+        {
+            var client = new HttpClient();
+            var webRequest = new HttpRequestMessage(HttpMethod.Post, url)
+            {
+                Content = new StringContent(JsonSerializer.Serialize(parameter), System.Text.Encoding.UTF8, "application/json")
+            };
+            var response = client.Send(webRequest);
+            using var reader = new System.IO.StreamReader(response.Content.ReadAsStream());
+            return reader.ReadToEnd();
+        }
+
+        /// <summary>
         /// Method for sending an object via HTTP asynchronously
         /// </summary>
         public async Task<ApiOperation> SendAsync(string url, object parameter, string methodName = "")
