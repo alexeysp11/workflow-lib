@@ -5,7 +5,7 @@ using System.Linq;
 namespace Cims.WorkflowLib.DocFormats.Images
 {
     /// <summary>
-    /// 
+    /// Class for converting text into a BMP image
     /// </summary>
     public class BmpConverter : BaseImageConverter, IImageConverter
     {

@@ -5,7 +5,7 @@ using System.Linq;
 namespace Cims.WorkflowLib.DocFormats.Images
 {
     /// <summary>
-    /// 
+    /// Class for converting text into a PNG image
     /// </summary>
     public class PngConverter : BaseImageConverter, IImageConverter
     {

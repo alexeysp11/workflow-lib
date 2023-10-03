@@ -1,5 +1,10 @@
 # TODO 
 
+## Documentation 
+
+- Use namespaces to structure all the docs, and visualize the structure.
+- Add docs for all the classess.
+
 ## Database connections 
 
 - Explain what is the differnece between `DataSource` and `ConnString` in database classes and to use them properly. 

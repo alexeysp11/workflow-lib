@@ -1,6 +1,12 @@
-# MS Word converter
+# MSWordConverter
 
-You can interact with MS Word using `MSWordConverter` class: 
+`MSWordConverter` is a class for using **MS Word** (**MS Word converter**).
+
+Namespace: `Cims.WorkflowLib.DocFormats.TextBased`.
+
+## TextDocElementsToDocument()
+
+Example of interacting with MS Word using `MSWordConverter.TextDocElementsToDocument()`: 
 
 ```C#
 using System.IO;

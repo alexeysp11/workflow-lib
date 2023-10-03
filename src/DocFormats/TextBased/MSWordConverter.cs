@@ -1,16 +1,15 @@
-using System.IO; 
-using System.Linq; 
+using System.IO;
+using System.Linq;
 using System.Xml.Linq;
-using DocumentFormat.OpenXml.Packaging; 
-using DocumentFormat.OpenXml.Wordprocessing; 
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
 using OpenXmlPowerTools;
-using Cims.WorkflowLib.Models.Documents; 
-using Cims.WorkflowLib.DocFormats.TextBased; 
+using Cims.WorkflowLib.Models.Documents;
 
 namespace Cims.WorkflowLib.DocFormats.TextBased
 {
     /// <summary>
-    /// 
+    /// Class for using MS Word (MS Word converter)
     /// </summary>
     public class MSWordConverter : ITextBased 
     {

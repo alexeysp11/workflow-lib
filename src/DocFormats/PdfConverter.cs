@@ -8,7 +8,7 @@ using Cims.WorkflowLib.Models.Documents;
 namespace Cims.WorkflowLib.DocFormats
 {
     /// <summary>
-    /// 
+    /// Class for using PDF (PDF converter)
     /// </summary>
     public class PdfConverter : Cims.WorkflowLib.DocFormats.TextBased.ITextBased
     {

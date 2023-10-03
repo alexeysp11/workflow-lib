@@ -1,6 +1,12 @@
-# PDF converter
+# PdfConverter
 
-You can get PDF file using `PdfConverter` class: 
+`PdfConverter` is a class for using **PDF** (**PDF converter**).
+
+Namespace: `Cims.WorkflowLib.DocFormats`.
+
+## TextDocElementsToDocument()
+
+Example of getting PDF file using `PdfConverter.TextDocElementsToDocument()`: 
 
 ```C#
 using System.IO;
