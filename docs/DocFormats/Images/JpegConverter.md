@@ -2,7 +2,7 @@
 
 `JpegConverter` is a class for converting text into a **JPEG** image. 
 
-Namespace: `Cims.WorkflowLib.DocFormats.Images`.
+Namespace: [Cims.WorkflowLib.DocFormats.Images](Cims.WorkflowLib.DocFormats.Images.md)
 
 ## TextToImg()
 

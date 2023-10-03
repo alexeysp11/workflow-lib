@@ -3,6 +3,9 @@ using Microsoft.Data.Sqlite;
 
 namespace Cims.WorkflowLib.DbConnections
 {
+    /// <summary>
+    /// Class for using SQLite database
+    /// </summary>
     public class SqliteDbConnection : BaseDbConnection, ICommonDbConnection 
     {
         private string ConnString { get; set; }
@@ -38,6 +41,9 @@ namespace Cims.WorkflowLib.DbConnections
             this.AbsolutePathToDb = path; 
         }
 
+        /// <summary>
+        /// Executes SQL string and returns DataTable
+        /// </summary>
         public DataTable ExecuteSqlCommand(string sqlRequest)
         {
             DataTable table = new DataTable(); 

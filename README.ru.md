@@ -3,18 +3,18 @@
 Доступно на других языках: [English/Английский](README.md), [Russian/Русский](README.ru.md). 
 
 `workflow-lib` - это библиотека на C#, состоящая из:
-- Динамической компиляции кода на C#;
+- [Динамической компиляции кода на C#](docs/Dynamical/DynamicCompiling.md);
 - Конфигурационные файлы (JSON, XML);
-- Базы данных (SQLite, PostgreSQL, MySQL, MS SQL, Oracle);
-- Сетевое взаимодействие: [HTTP](docs/HttpSender.md);
+- Базы данных: [SQLite](docs/DbConnections/SqliteDbConnection.md), [PostgreSQL](docs/DbConnections/PgDbConnection.md), [MySQL](docs/DbConnections/MysqlDbConnection.md), [MS SQL](docs/DbConnections/MssqlDbConnection.md), [Oracle](docs/DbConnections/OracleDbConnection.md);
+- Сетевое взаимодействие: [HTTP](docs/NetworkApis/HttpSender.md);
 - Операций с документами (запись, чтение, конвертация): 
-    - Текстовые: [MS Word](docs/MSWordConverter.md) (DOC, DOT, DOCX, DOTX, DOCM, DOTM), OpenDocument (ODT, FODT, OTT), TXT;
-    - Spreadsheets-таблицы: MS Excel (XLS, XLT, XLW, XLSX, XLTX, XLSM, XLTM), OpenDocument (ODS, FODS, OTS);
-    - [PDF](docs/PdfConverter.md);
-    - Изображения: [PNG](docs/PngConverter.md), [BMP](docs/BmpConverter.md), [JPEG](docs/JpegConverter.md), SVG, GIF, ICO;
+    - Текстовые: [MS Word](docs/DocFormats/TextBased/MSWordConverter.md) (DOC, DOT, DOCX, DOTX, DOCM, DOTM), OpenDocument (ODT, FODT, OTT), TXT;
+    - Spreadsheets-таблицы: [MS Excel](docs/DocFormats/Spreadsheets/MSExcelConverter.md) (XLS, XLT, XLW, XLSX, XLTX, XLSM, XLTM), OpenDocument (ODS, FODS, OTS);
+    - [PDF](docs/DocFormats/PdfConverter.md);
+    - Изображения: [PNG](docs/DocFormats/Images/PngConverter.md), [BMP](docs/DocFormats/Images/BmpConverter.md), [JPEG](docs/DocFormats/Images/JpegConverter.md), SVG, GIF, ICO;
     - XML, JSON, OOXML, CSV;
-    - Binary;
-- Базовые денежные операции;
+    - [Binary](docs/DocFormats/BinaryConverter.md);
+- Базовые денежные модели (классы) и операции;
 - Визуализация данных: Line chart, Bar chart, Histogram, Scatter plot, Box plot, Pareto chart, Pie chart, Area chart, Tree map, Bubble chart, Stripe graphic, Control chart, Run chart, Stem-and-leaf display, Cartogram, Small multiple, Sparkline, Table, Marimekko chart. 
 
 ## Как использовать библиотеку в C# коде 

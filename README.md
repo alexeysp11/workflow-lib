@@ -3,19 +3,19 @@
 Read this in other languages: [English](README.md), [Russian/Русский](README.ru.md). 
 
 `workflow-lib` is a C# library that consists of:
-- Dynamic compilation for C# code;
+- [Dynamic compilation for C# code](docs/Dynamical/DynamicCompiling.md);
 - Configurations (JSON, XML);
-- Databases (SQLite, PostgreSQL, MySQL, MS SQL, Oracle);
-- Network operations: [HTTP](docs/HttpSender.md);
+- Databases: [SQLite](docs/DbConnections/SqliteDbConnection.md), [PostgreSQL](docs/DbConnections/PgDbConnection.md), [MySQL](docs/DbConnections/MysqlDbConnection.md), [MS SQL](docs/DbConnections/MssqlDbConnection.md), [Oracle](docs/DbConnections/OracleDbConnection.md);
+- Network operations: [HTTP](docs/NetworkApis/HttpSender.md);
 - Document operations (writing, reading, conversion):
-    - Text-based: [MS Word](docs/MSWordConverter.md) (DOC, DOT, DOCX, DOTX, DOCM, DOTM), OpenDocument (ODT, FODT, OTT), TXT;
-    - Spreadsheets: MS Excel (XLS, XLT, XLW, XLSX, XLTX, XLSM, XLTM), OpenDocument (ODS, FODS, OTS);
-    - [PDF](docs/PdfConverter.md);
-    - Images: [PNG](docs/PngConverter.md), [BMP](docs/BmpConverter.md), [JPEG](docs/JpegConverter.md), SVG, GIF, ICO;
+    - Text-based: [MS Word](docs/DocFormats/TextBased/MSWordConverter.md) (DOC, DOT, DOCX, DOTX, DOCM, DOTM), OpenDocument (ODT, FODT, OTT), TXT;
+    - Spreadsheets: [MS Excel](docs/DocFormats/Spreadsheets/MSExcelConverter.md) (XLS, XLT, XLW, XLSX, XLTX, XLSM, XLTM), OpenDocument (ODS, FODS, OTS);
+    - [PDF](docs/DocFormats/PdfConverter.md);
+    - Images: [PNG](docs/DocFormats/Images/PngConverter.md), [BMP](docs/DocFormats/Images/BmpConverter.md), [JPEG](docs/DocFormats/Images/JpegConverter.md), SVG, GIF, ICO;
     - XML, JSON, OOXML, CSV;
     - HTML, markdown;
-    - Binary;
-- Basic monetary operations;
+    - [Binary](docs/DocFormats/BinaryConverter.md);
+- Basic monetary models (classes) and operations;
 - Data visualization: Line chart, Bar chart, Histogram, Scatter plot, Box plot, Pareto chart, Pie chart, Area chart, Tree map, Bubble chart, Stripe graphic, Control chart, Run chart, Stem-and-leaf display, Cartogram, Small multiple, Sparkline, Table, Marimekko chart. 
 
 ## How to use this library in C# code 

@@ -11,8 +11,14 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace Cims.WorkflowLib.Dynamical
 {
+    /// <summary>
+    /// Class for dynamically compiling a string containing a C# code
+    /// </summary>
     public class DynamicCompiling 
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public string CompileAndRunCSharpString(string code, string assemblyName, string instanceName)
         {
             if (string.IsNullOrEmpty(code)) throw new System.Exception("Code could not be null or empty"); 
@@ -26,6 +32,9 @@ namespace Cims.WorkflowLib.Dynamical
             return result; 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private static (byte[], byte[]) CreateAssembly(string code, string assemblyName, string instanceName)
         {
             var encoding = Encoding.UTF8;

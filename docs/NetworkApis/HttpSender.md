@@ -2,7 +2,7 @@
 
 `HttpSender` is a class for **sending objects via HTTP**.
 
-Namespace: `Cims.WorkflowLib.NetworkApis`.
+Namespace: [Cims.WorkflowLib.NetworkApis](Cims.WorkflowLib.NetworkApis.md)
 
 ## Send()
 

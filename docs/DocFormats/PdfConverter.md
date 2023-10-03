@@ -1,31 +1,31 @@
-# MSWordConverter
+# PdfConverter
 
-`MSWordConverter` is a class for using **MS Word** (**MS Word converter**).
+`PdfConverter` is a class for using **PDF** (**PDF converter**).
 
-Namespace: `Cims.WorkflowLib.DocFormats.TextBased`.
+Namespace: [Cims.WorkflowLib.DocFormats](Cims.WorkflowLib.DocFormats.md).
 
 ## TextDocElementsToDocument()
 
-Example of interacting with MS Word using `MSWordConverter.TextDocElementsToDocument()`: 
+Example of getting PDF file using `PdfConverter.TextDocElementsToDocument()`: 
 
 ```C#
 using System.IO;
 using System.Collections.Generic; 
-using Cims.WorkflowLib.DocFormats.TextBased; 
+using Cims.WorkflowLib.DocFormats; 
 using Cims.WorkflowLib.Models.Documents; 
 using Cims.WorkflowLib.Models.Documents.Enums; 
 
 namespace Examples.WorkflowLib
 {
-    public class MSWordExample 
+    public class PdfExample 
     {
         ...
-        public void UseMSWordConverter()
+        public void UsePdfConverter()
         {
             // 
-            string filename = "testmsword.doc"; 
-            string foldername = @"C:\PathToMSWord"; 
-            var elements = new System.Collections.Generic.List<TextDocElement>()
+            string filename = "testpdf.pdf"; 
+            string foldername = @"C:\PathToPdf"; 
+            var elements = new List<TextDocElement>()
             {
                 new TextDocElement() 
                 {
@@ -52,13 +52,13 @@ namespace Examples.WorkflowLib
                     TextAlignment = TextAlignment.JUSTIFIED
                 }
             }; 
-            
+
             // 
             if (!Directory.Exists(foldername)) Directory.CreateDirectory(foldername); 
 
             // 
-            ITextBased converter = new MSWordConverter(); 
-            converter.TextDocElementsToDocument(foldername, filename, elements);
+            PdfConverter pdfConverter = new PdfConverter(); 
+            pdfConverter.TextDocElementsToDocument(foldername, filename, elements);
         }
         ...
     }

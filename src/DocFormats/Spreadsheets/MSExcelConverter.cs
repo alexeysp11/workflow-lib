@@ -10,7 +10,7 @@ using Cims.WorkflowLib.Models.Documents;
 namespace Cims.WorkflowLib.DocFormats.Spreadsheets
 {
     /// <summary>
-    /// 
+    /// Class for using MS Excel (MS Excel converter).
     /// </summary>
     public class MSExcelConverter : Cims.WorkflowLib.DocFormats.Spreadsheets.ISpreadsheets
     {
