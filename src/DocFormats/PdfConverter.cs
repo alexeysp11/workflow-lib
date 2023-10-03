@@ -13,7 +13,7 @@ namespace Cims.WorkflowLib.DocFormats
     public class PdfConverter : Cims.WorkflowLib.DocFormats.TextBased.ITextBased
     {
         /// <summary>
-        /// 
+        /// Method for converting a list of TextDocElement into TXT document.
         /// </summary>
         public void TextDocElementsToDocument(string foldername, string filename, System.Collections.Generic.List<TextDocElement> elements)
         {

@@ -1,8 +1,8 @@
 # MysqlDbConnection
 
-`MysqlDbConnection` is a class for using MySQL database.
-
 Namespace: [Cims.WorkflowLib.DbConnections](Cims.WorkflowLib.DbConnections.md)
+
+`MysqlDbConnection` is a class for using MySQL database.
 
 ## Constructors 
 

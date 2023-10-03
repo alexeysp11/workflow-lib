@@ -1,12 +1,46 @@
 # HttpSender
 
-`HttpSender` is a class for **sending objects via HTTP**.
-
 Namespace: [Cims.WorkflowLib.NetworkApis](Cims.WorkflowLib.NetworkApis.md)
 
-## Send()
+`HttpSender` is a class for **sending objects via HTTP**.
+
+## Constructors 
+
+### HttpSender()
+
+Default constructor.
+
+```C#
+public HttpSender();
+```
+
+## Methods
+
+### Send(String, Object)
 
 `Send()` is a method for sending an object via HTTP **synchronously**.
+
+```C#
+public string Send(string url, object parameter);
+```
+
+#### Parameters 
+
+- `url`: [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
+
+URL address to send an object to.
+
+- `parameter`: [Object](https://learn.microsoft.com/en-us/dotnet/api/system.object)
+
+An object that is going to be sent.
+
+#### Returns 
+
+[String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
+
+String response.
+
+#### Examples 
 
 Example of using `Send()` method: 
 ```C#
@@ -26,9 +60,35 @@ Example of using `Send()` method:
         }
 ```
 
-## SendAsync()
+### SendAsync(String, Object, String)
 
 `SendAsync()` is a method for sending an object via HTTP **asynchronously**.
+
+```C#
+public async Task<ApiOperation> SendAsync(string url, object parameter, string methodName = "");
+```
+
+#### Parameters 
+
+- `url`: [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
+
+URL address to send an object to.
+
+- `parameter`: [Object](https://learn.microsoft.com/en-us/dotnet/api/system.object)
+
+An object that is going to be sent.
+
+- `methodName`: [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
+
+Method name (optional).
+
+#### Returns 
+
+[Task](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1)<[ApiOperation](../Models/ApiOperation.md)>
+
+All information about HTTP request incapsulated into [ApiOperation](../Models/ApiOperation.md) object.
+
+#### Examples
 
 Example of using `SendAsync()` method: 
 ```C#
@@ -53,9 +113,35 @@ Example of using `SendAsync()` method:
         }
 ```
 
-## SendMultipleAsync()
+### SendMultipleAsync(String, List\<Object\>, String)
 
 `SendMultipleAsync()` is a method for sending **multiple objects** via HTTP **asynchronously**.
+
+```C#
+public async Task<List<ApiOperation>> SendMultipleAsync(string url, List<object> parameters, string methodName = "");
+```
+
+#### Parameters 
+
+- `url`: [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
+
+URL address to send an object to.
+
+- `parameters`: [List](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1)<[Object](https://learn.microsoft.com/en-us/dotnet/api/system.object)>
+
+List of objects that are going to be sent.
+
+- `methodName`: [Object](https://learn.microsoft.com/en-us/dotnet/api/system.object)
+
+Method name (optional).
+
+#### Returns 
+
+[Task](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1)<[List](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1)\<[ApiOperation](../Models/ApiOperation.md)>>
+
+All information about HTTP requests incapsulated into [ApiOperation](../Models/ApiOperation.md) object.
+
+#### Examples
 
 Example of using `SendMultipleAsync()` method: 
 ```C#

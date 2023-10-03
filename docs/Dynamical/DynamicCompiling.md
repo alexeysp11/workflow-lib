@@ -1,10 +1,50 @@
 # DynamicCompiling
 
-`DynamicCompiling` is class for **dynamically compiling** a string containing a C# code.
-
 Namespace: [Cims.WorkflowLib.Dynamical](Cims.WorkflowLib.Dynamical.md)
 
-## CompileAndRunCSharpString()
+`DynamicCompiling` is class for **dynamically compiling** a string containing a C# code.
+
+## Constructors 
+
+### DynamicCompiling()
+
+Default constructor.
+
+```C#
+public DynamicCompiling();
+```
+
+## Methods 
+
+### CompileAndRunCSharpString(String, String, String)
+
+Method for compiling a string containing C# code and run it.
+
+```C#
+public string CompileAndRunCSharpString(string code, string assemblyName, string instanceName);
+```
+
+#### Parameters 
+
+- `code`: [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
+
+A string that contains C# code.
+
+- `assemblyName`: [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
+
+Assembly name.
+
+- `instanceName`: [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
+
+Instance name.
+
+#### Returns
+
+[String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
+
+Result of the method that was compiled and executed.
+
+#### Examples
 
 Example of using `DynamicCompiling.CompileAndRunCSharpString()`: 
 

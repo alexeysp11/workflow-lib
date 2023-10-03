@@ -17,7 +17,7 @@ namespace Cims.WorkflowLib.Dynamical
     public class DynamicCompiling 
     {
         /// <summary>
-        /// 
+        /// Method for compiling a string containing C# code and run it
         /// </summary>
         public string CompileAndRunCSharpString(string code, string assemblyName, string instanceName)
         {
@@ -33,7 +33,7 @@ namespace Cims.WorkflowLib.Dynamical
         }
 
         /// <summary>
-        /// 
+        /// Creates assembly
         /// </summary>
         private static (byte[], byte[]) CreateAssembly(string code, string assemblyName, string instanceName)
         {

@@ -1,18 +1,64 @@
 # BinaryConverter
 
+Namespace: [Cims.WorkflowLib.DocFormats](Cims.WorkflowLib.DocFormats.md)
+
 `BinaryConverter` is a class for using **binaries** (**binary converter**).
 
-Namespace: [Cims.WorkflowLib.DocFormats](Cims.WorkflowLib.DocFormats.md)
+## Constructors 
+
+### BinaryConverter()
+
+Default constructor.
+
+```C#
+public BinaryConverter();
+```
 
 ## Methods
 
-### SaveAsBinaryFile()
+### SaveAsBinaryFile(String, Byte[])
 
 `BinaryConverter.SaveAsBinaryFile()` saves a byte array as a binary file.
 
-## GetBinaryFile()
+```C#
+public void SaveAsBinaryFile(string filename, byte[] bytes);
+```
+
+#### Parameters
+
+- `filename`: [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
+
+File name (with extension).
+
+- `bytes`: [Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte)[]
+
+The byte array.
+
+#### Examples 
+
+Example of using `BinaryConverter.SaveAsBinaryFile()` is shown below.
+
+### GetBinaryFile(String)
 
 `BinaryConverter.GetBinaryFile()` reads all data from a file and gets an array of bytes.
+
+```C#
+public byte[] GetBinaryFile(string filename);
+```
+
+#### Parameters 
+
+- `filename`: [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
+
+File name (with extension).
+
+#### Returns 
+
+[Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte)[]
+
+The byte array.
+
+#### Examples
 
 Example of using `BinaryConverter.SaveAsBinaryFile()` and `BinaryConverter.GetBinaryFile()`:
 

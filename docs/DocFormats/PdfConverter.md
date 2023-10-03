@@ -1,12 +1,44 @@
 # PdfConverter
 
+Namespace: [Cims.WorkflowLib.DocFormats](Cims.WorkflowLib.DocFormats.md)
+
 `PdfConverter` is a class for using **PDF** (**PDF converter**).
 
-Namespace: [Cims.WorkflowLib.DocFormats](Cims.WorkflowLib.DocFormats.md)
+## Constructors 
+
+### PdfConverter()
+
+Default constructor.
+
+```C#
+public PdfConverter();
+```
 
 ## Methods
 
-### TextDocElementsToDocument()
+### TextDocElementsToDocument(String, String, List\<TextDocElement\>)
+
+Method for converting a list of [TextDocElement](../Models/TextDocElement.md) into TXT document.
+
+```C#
+public void TextDocElementsToDocument(string foldername, string filename, System.Collections.Generic.List<TextDocElement> elements);
+```
+
+#### Parameters 
+
+- `foldername`: [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
+
+Folder name
+
+- `filename`: [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
+
+File name (with extension)
+
+- `elements`: [List](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1)<[TextDocElement](../Models/TextDocElement.md)>
+
+Collection of [TextDocElement](../Models/TextDocElement.md)
+
+#### Examples 
 
 Example of getting PDF file using `PdfConverter.TextDocElementsToDocument()`: 
 

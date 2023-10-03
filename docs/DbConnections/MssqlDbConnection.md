@@ -1,8 +1,8 @@
 # MssqlDbConnection
 
-`MssqlDbConnection` is a class for using MS SQL database.
-
 Namespace: [Cims.WorkflowLib.DbConnections](Cims.WorkflowLib.DbConnections.md)
+
+`MssqlDbConnection` is a class for using MS SQL database.
 
 ## Constructors 
 

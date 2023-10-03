@@ -1,12 +1,42 @@
 # MSWordConverter
 
+Namespace: [Cims.WorkflowLib.DocFormats.TextBased](Cims.WorkflowLib.DocFormats.TextBased.md)
+
 `MSWordConverter` is a class for using **MS Word** (**MS Word converter**).
 
-Namespace: [Cims.WorkflowLib.DocFormats.TextBased](Cims.WorkflowLib.DocFormats.TextBased.md)
+## Constructors 
+
+### MSWordConverter()
+
+Default constructor.
+
+```C#
+public MSWordConverter();
+```
 
 ## Methods
 
-### TextDocElementsToDocument()
+### TextDocElementsToDocument(String, String, List\<TextDocElement\>)
+
+```C#
+public void TextDocElementsToDocument(string foldername, string filename, System.Collections.Generic.List<TextDocElement> elements);
+```
+
+#### Parameters 
+
+- `foldername`: [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
+
+Folder name
+
+- `filename`: [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
+
+File name (with extension)
+
+- `elements`: [List](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1)\<[TextDocElement](../../Models/TextDocElement.md)\>
+
+Collection of [TextDocElement](../../Models/TextDocElement.md)
+
+#### Examples 
 
 Example of interacting with MS Word using `MSWordConverter.TextDocElementsToDocument()`: 
 

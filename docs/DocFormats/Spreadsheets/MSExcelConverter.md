@@ -1,12 +1,57 @@
 # MSExcelConverter
 
+Namespace: [Cims.WorkflowLib.DocFormats.Spreadsheets](Cims.WorkflowLib.DocFormats.Spreadsheets.md)
+
 `MSExcelConverter` is a class for using **MS Excel** (**MS Excel converter**).
 
-Namespace: [Cims.WorkflowLib.DocFormats.Spreadsheets](Cims.WorkflowLib.DocFormats.Spreadsheets.md)
+## Constructors 
+
+### MSExcelConverter()
+
+Default constructor.
+
+```C#
+public MSExcelConverter();
+```
 
 ## Methods
 
-### SpreadsheetElementsToDocument()
+### SpreadsheetElementsToDocument(String, String, UInt32, String, List\<SpreadsheetElement\>)
+
+Method for converting a list of [SpreadsheetElement](../../Models/SpreadsheetElement.md) into Excel document.
+
+```C#
+public void SpreadsheetElementsToDocument(
+        string foldername, 
+        string filename, 
+        uint worksheetId, 
+        string worksheetName,
+        System.Collections.Generic.List<SpreadsheetElement> elements);
+```
+
+#### Parameters 
+
+- `foldername`: [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
+
+Folder name.
+
+- `filename`: [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
+
+File name (with extension).
+
+- `worksheetId`: [UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32)
+
+Worksheet ID.
+
+- `worksheetName`: [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
+
+Worksheet name.
+
+- `elements`: [List](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1)<[SpreadsheetElement](../../Models/SpreadsheetElement.md)>
+
+Collection of [SpreadsheetElement](../../Models/SpreadsheetElement.md).
+
+#### Examples
 
 Example of using `MSExcelConverter.SpreadsheetElementsToDocument()`:
 
@@ -34,7 +79,7 @@ namespace Examples.WorkflowLib
                 new SpreadsheetElement() 
                 {
                     CellName = "A1",
-                    TextDocElement = new TextDocElement 
+                    SpreadsheetElement = new SpreadsheetElement 
                     {
                         Content = "First test header", 
                         FontSize = 14, 
@@ -44,7 +89,7 @@ namespace Examples.WorkflowLib
                 new SpreadsheetElement() 
                 {
                     CellName = "A2",
-                    TextDocElement = new TextDocElement 
+                    SpreadsheetElement = new SpreadsheetElement 
                     {
                         Content = "Header 2", 
                         FontSize = 14, 

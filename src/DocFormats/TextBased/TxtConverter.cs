@@ -10,7 +10,7 @@ namespace Cims.WorkflowLib.DocFormats.TextBased
     public class TxtConverter : ITextBased
     {
         /// <summary>
-        /// 
+        /// Method for converting a list of TextDocElement into TXT document.
         /// </summary>
         public void TextDocElementsToDocument(string foldername, string filename, System.Collections.Generic.List<TextDocElement> elements)
         {

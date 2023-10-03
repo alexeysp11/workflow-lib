@@ -5,12 +5,12 @@ using System.Linq;
 namespace Cims.WorkflowLib.DocFormats.Images
 {
     /// <summary>
-    /// Class for converting text into a BMP image
+    /// Class for converting text into a BMP image.
     /// </summary>
     public class BmpConverter : BaseImageConverter, IImageConverter
     {
         /// <summary>
-        /// 
+        /// Method for converting text into an image.
         /// </summary>
         public void TextToImg(string text, string foldername, string filename)
         {
@@ -63,7 +63,7 @@ namespace Cims.WorkflowLib.DocFormats.Images
         }
 
         /// <summary>
-        /// 
+        /// Method for converting binary to image 
         /// </summary>
         public void BinaryToImg(byte[] bytes, string foldername, string filename)
         {
@@ -74,7 +74,7 @@ namespace Cims.WorkflowLib.DocFormats.Images
         }
 
         /// <summary>
-        /// 
+        /// Method for converting image into binary 
         /// </summary>
         public byte[] ImgToBinary(string foldername, string filename)
         {

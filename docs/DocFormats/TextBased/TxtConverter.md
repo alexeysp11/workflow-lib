@@ -1,10 +1,14 @@
 # TxtConverter
 
-`TxtConverter` is a class for using **TXT** documents .
-
 Namespace: [Cims.WorkflowLib.DocFormats.TextBased](Cims.WorkflowLib.DocFormats.TextBased.md)
 
+`TxtConverter` is a class for using **TXT** documents .
+
 ## Constructors 
+
+### TxtConverter()
+
+Default constructor.
 
 ```C#
 public TxtConverter();
@@ -13,6 +17,8 @@ public TxtConverter();
 ## Methods 
 
 ### TextDocElementsToDocument(String, String, List\<TextDocElement\>)
+
+Method for converting a list of [TextDocElement](../../Models/TextDocElement.md) into TXT document.
 
 ```C#
 public void TextDocElementsToDocument(string foldername, string filename, System.Collections.Generic.List<TextDocElement> elements);
@@ -107,7 +113,7 @@ namespace Cims.Tests.WorkflowLib.DocFormats.TextBased
 }
 ```
 
-### ConvertFileToTde()
+### ConvertFileToTde(String, String)
 
 ```C#
 public System.Collections.Generic.List<TextDocElement> ConvertFileToTde(string foldername, string filename);

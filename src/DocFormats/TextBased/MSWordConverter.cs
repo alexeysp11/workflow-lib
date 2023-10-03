@@ -14,7 +14,7 @@ namespace Cims.WorkflowLib.DocFormats.TextBased
     public class MSWordConverter : ITextBased 
     {
         /// <summary>
-        /// 
+        /// Method for converting a list of TextDocElement into TXT document.
         /// </summary>
         public void TextDocElementsToDocument(string foldername, string filename, System.Collections.Generic.List<TextDocElement> elements)
         {

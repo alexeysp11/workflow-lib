@@ -15,7 +15,7 @@ namespace Cims.WorkflowLib.DocFormats.Spreadsheets
     public class MSExcelConverter : Cims.WorkflowLib.DocFormats.Spreadsheets.ISpreadsheets
     {
         /// <summary>
-        /// 
+        /// Method for converting a list of SpreadsheetElement into Excel document.
         /// </summary>
         public void SpreadsheetElementsToDocument(
             string foldername, 

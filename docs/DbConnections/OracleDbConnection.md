@@ -1,8 +1,8 @@
 # OracleDbConnection
 
-`OracleDbConnection` is a class for using Oracle database.
-
 Namespace: [Cims.WorkflowLib.DbConnections](Cims.WorkflowLib.DbConnections.md)
+
+`OracleDbConnection` is a class for using Oracle database.
 
 ## Constructors 
 
