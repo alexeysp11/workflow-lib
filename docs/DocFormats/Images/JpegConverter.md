@@ -4,7 +4,9 @@
 
 Namespace: [Cims.WorkflowLib.DocFormats.Images](Cims.WorkflowLib.DocFormats.Images.md)
 
-## TextToImg()
+## Methods
+
+### TextToImg()
 
 Example of using `JpegConverter.TextToImg()`. 
 Since all the image imgConverters implement `IImageConverter` interface, the following code will be equivalent for all of the image imgConverters from the library:

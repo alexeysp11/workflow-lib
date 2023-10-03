@@ -4,7 +4,9 @@
 
 Namespace: [Cims.WorkflowLib.DocFormats.Images](Cims.WorkflowLib.DocFormats.Images.md)
 
-## TextToImg()
+## Methods
+
+### TextToImg()
 
 Example of using `BmpConverter.TextToImg()`. 
 Since all the image converters implement `IImageConverter` interface, the following code will be equivalent for all of the image converters from the library:

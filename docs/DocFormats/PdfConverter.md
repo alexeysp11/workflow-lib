@@ -2,9 +2,11 @@
 
 `PdfConverter` is a class for using **PDF** (**PDF converter**).
 
-Namespace: [Cims.WorkflowLib.DocFormats](Cims.WorkflowLib.DocFormats.md).
+Namespace: [Cims.WorkflowLib.DocFormats](Cims.WorkflowLib.DocFormats.md)
 
-## TextDocElementsToDocument()
+## Methods
+
+### TextDocElementsToDocument()
 
 Example of getting PDF file using `PdfConverter.TextDocElementsToDocument()`: 
 

@@ -4,7 +4,9 @@
 
 Namespace: [Cims.WorkflowLib.DocFormats.TextBased](Cims.WorkflowLib.DocFormats.TextBased.md)
 
-## TextDocElementsToDocument()
+## Methods
+
+### TextDocElementsToDocument()
 
 Example of interacting with MS Word using `MSWordConverter.TextDocElementsToDocument()`: 
 

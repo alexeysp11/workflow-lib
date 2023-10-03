@@ -5,7 +5,7 @@ using Cims.WorkflowLib.Models.Documents;
 namespace Cims.WorkflowLib.DocFormats.TextBased
 {
     /// <summary>
-    /// 
+    /// Class for using TXT documents 
     /// </summary>
     public class TxtConverter : ITextBased
     {

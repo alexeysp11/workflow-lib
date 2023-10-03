@@ -4,7 +4,9 @@
 
 Namespace: [Cims.WorkflowLib.DocFormats.Spreadsheets](Cims.WorkflowLib.DocFormats.Spreadsheets.md)
 
-## SpreadsheetElementsToDocument()
+## Methods
+
+### SpreadsheetElementsToDocument()
 
 Example of using `MSExcelConverter.SpreadsheetElementsToDocument()`:
 

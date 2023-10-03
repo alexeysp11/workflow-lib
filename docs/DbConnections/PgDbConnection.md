@@ -46,6 +46,6 @@ A [DataTable](https://learn.microsoft.com/en-us/dotnet/api/system.data.datatable
 
 Example of using `PgDbConnection.ExecuteSqlCommand()`:
 ```C#
-ICommonDbConnection dbConncection = new PgDbConnection("PathToDb/yourdb.db");
+ICommonDbConnection dbConncection = new PgDbConnection("CONNECTION_STRING");
 var dt = dbConncection.ExecuteSqlCommand("select id, name from your_table;");
 ```

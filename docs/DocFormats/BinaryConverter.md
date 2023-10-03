@@ -2,9 +2,11 @@
 
 `BinaryConverter` is a class for using **binaries** (**binary converter**).
 
-Namespace: [Cims.WorkflowLib.DocFormats](Cims.WorkflowLib.DocFormats.md).
+Namespace: [Cims.WorkflowLib.DocFormats](Cims.WorkflowLib.DocFormats.md)
 
-## SaveAsBinaryFile()
+## Methods
+
+### SaveAsBinaryFile()
 
 `BinaryConverter.SaveAsBinaryFile()` saves a byte array as a binary file.
 
