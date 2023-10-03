@@ -28,9 +28,9 @@ Folder name
 
 File name (with extension)
 
-- `elements`: [List](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1)\<[TextDocElement](../Models/TextDocElement.md)\>
+- `elements`: [List](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1)\<[TextDocElement](../../Models/TextDocElement.md)\>
 
-Collection of [TextDocElement](../Models/TextDocElement.md)
+Collection of [TextDocElement](../../Models/TextDocElement.md)
 
 #### Examples 
 
@@ -125,9 +125,9 @@ File name (with extension)
 
 #### Returns 
 
-[List](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1)\<[TextDocElement](../Models/TextDocElement.md)\>
+[List](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1)\<[TextDocElement](../../Models/TextDocElement.md)\>
 
-Collection of [TextDocElement](../Models/TextDocElement.md)
+Collection of [TextDocElement](../../Models/TextDocElement.md)
 
 #### Examples 
 
