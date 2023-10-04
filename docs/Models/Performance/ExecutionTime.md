@@ -2,7 +2,7 @@
 
 Namespace: [Cims.WorkflowLib.Models.Performance](Cims.WorkflowLib.Models.Performance.md)
 
-Property that shows the execution time of the operation (could be used for measuring performance).
+Represents the execution time of the operation (could be used for measuring performance).
 
 ## Constructors
 
