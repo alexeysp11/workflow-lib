@@ -6,6 +6,8 @@ Represents any attempt to communcate with API server as an operation.
 
 ## Constructors
 
+### ApiOperation()
+
 Default constructor.
 
 ```C#

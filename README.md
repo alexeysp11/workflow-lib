@@ -18,6 +18,8 @@ Read this in other languages: [English](README.md), [Russian/Русский](REA
 - Basic monetary models (classes) and operations;
 - Data visualization: Line chart, Bar chart, Histogram, Scatter plot, Box plot, Pareto chart, Pie chart, Area chart, Tree map, Bubble chart, Stripe graphic, Control chart, Run chart, Stem-and-leaf display, Cartogram, Small multiple, Sparkline, Table, Marimekko chart. 
 
+Documentation about namespaces and data types, used in the library, is presented at [this link](docs/documentation.md).
+
 ## How to use this library in C# code 
 
 You can use this library in C# code directly:

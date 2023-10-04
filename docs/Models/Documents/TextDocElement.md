@@ -4,6 +4,8 @@ Namespace: [Cims.WorkflowLib.Models.Documents](Cims.WorkflowLib.Models.Documents
 
 ## Constructors
 
+### TextDocElement()
+
 ```C#
 public TextDocElement();
 ```

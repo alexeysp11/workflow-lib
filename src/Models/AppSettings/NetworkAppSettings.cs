@@ -1,42 +1,42 @@
 namespace Cims.WorkflowLib.Models.AppSettings
 {
     /// <summary>
-    /// Class for storing confidurations related to the core server
+    /// Class for storing confidurations related to the core server.
     /// </summary>
     public sealed class NetworkAppSettings
     {
         /// <summary>
-        /// Network address of the server application
+        /// Network address of the server application.
         /// </summary>
         public string ServerAddress { get; set; }
 
         /// <summary>
-        /// Network address of the client application 
+        /// Network address of the client application.
         /// </summary>
-        public string CleintAddress { get; set; }
+        public string ClientAddress { get; set; }
         
         /// <summary>
-        /// Environment (test, production)
+        /// String representation of the environment (e.g. test, production).
         /// </summary>
         public string Environment { get; set; }
         
         /// <summary>
-        /// HTTP paths 
+        /// HTTP paths.
         /// </summary>
         public string[] HttpPaths { get; set; }
         
         /// <summary>
-        /// HTTP paths used for testing and debugging the server
+        /// HTTP paths used for testing and debugging the server.
         /// </summary>
         public string[] HttpPathsDbg { get; set; }
 
         /// <summary>
-        /// Allows to print web paths which API server uses to listen to requests 
+        /// Allows to print web paths which API server uses to listen to requests.
         /// </summary>
         public bool PrintWebPaths { get; set; }
 
         /// <summary>
-        /// Allows to print debug information about processing HTTP requests 
+        /// Allows to print debug information about processing HTTP requests.
         /// </summary>
         public bool PrintHttpRequestProcInfo { get; set; }
     }

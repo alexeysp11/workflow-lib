@@ -6,6 +6,8 @@ Exception that is occurred during execution of the API operation.
 
 ## Constructors
 
+### WorkflowException()
+
 Default constructor.
 
 ```C#

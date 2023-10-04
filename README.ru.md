@@ -17,6 +17,8 @@
 - Базовые денежные модели (классы) и операции;
 - Визуализация данных: Line chart, Bar chart, Histogram, Scatter plot, Box plot, Pareto chart, Pie chart, Area chart, Tree map, Bubble chart, Stripe graphic, Control chart, Run chart, Stem-and-leaf display, Cartogram, Small multiple, Sparkline, Table, Marimekko chart. 
 
+Документация по неймспейсам и типам данных, используемых в библиотеке, представлена по [данной ссылке](docs/documentation.md).
+
 ## Как использовать библиотеку в C# коде 
 
 Данную библитеку возможно использовать напрямую из C# кода: 
