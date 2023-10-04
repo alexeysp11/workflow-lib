@@ -1,4 +1,4 @@
-# WorkflowException
+# WorkflowException Class
 
 Namespace: [Cims.WorkflowLib.Models.ErrorHandling](Cims.WorkflowLib.Models.ErrorHandling.md)
 

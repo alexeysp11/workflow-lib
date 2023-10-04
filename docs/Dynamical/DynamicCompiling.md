@@ -1,4 +1,4 @@
-# DynamicCompiling
+# DynamicCompiling Class
 
 Namespace: [Cims.WorkflowLib.Dynamical](Cims.WorkflowLib.Dynamical.md)
 

@@ -1,4 +1,4 @@
-# Cims.WorkflowLib.Dynamical
+# Cims.WorkflowLib.Dynamical Namespace
 
 Classes 
 

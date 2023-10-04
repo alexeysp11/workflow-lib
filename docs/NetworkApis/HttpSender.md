@@ -1,4 +1,4 @@
-# HttpSender
+# HttpSender Class
 
 Namespace: [Cims.WorkflowLib.NetworkApis](Cims.WorkflowLib.NetworkApis.md)
 

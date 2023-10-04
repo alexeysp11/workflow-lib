@@ -1,4 +1,4 @@
-# Cims.WorkflowLib.DocFormats.TextBased
+# Cims.WorkflowLib.DocFormats.TextBased Namespace
 
 ## Classes
 

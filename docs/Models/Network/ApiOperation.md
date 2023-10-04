@@ -1,4 +1,4 @@
-# ApiOperation
+# ApiOperation Class
 
 Namespace: [Cims.WorkflowLib.Models.Network](Cims.WorkflowLib.Models.Network.md)
 

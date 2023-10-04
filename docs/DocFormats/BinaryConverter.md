@@ -1,4 +1,4 @@
-# BinaryConverter
+# BinaryConverter Class
 
 Namespace: [Cims.WorkflowLib.DocFormats](Cims.WorkflowLib.DocFormats.md)
 

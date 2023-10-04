@@ -1,4 +1,4 @@
-# Cims.WorkflowLib.DocFormats.Images
+# Cims.WorkflowLib.DocFormats.Images Namespace
 
 ## Classes 
 

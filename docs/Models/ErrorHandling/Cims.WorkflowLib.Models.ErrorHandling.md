@@ -1,4 +1,4 @@
-# Cims.WorkflowLib.Models.ErrorHandling
+# Cims.WorkflowLib.Models.ErrorHandling Namespace
 
 ## Classes 
 

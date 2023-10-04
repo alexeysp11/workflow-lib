@@ -1,4 +1,4 @@
-# MSExcelConverter
+# MSExcelConverter Class
 
 Namespace: [Cims.WorkflowLib.DocFormats.Spreadsheets](Cims.WorkflowLib.DocFormats.Spreadsheets.md)
 

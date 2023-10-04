@@ -1,4 +1,4 @@
-# Cims.WorkflowLib.DbConnections
+# Cims.WorkflowLib.DbConnections Namespace
 
 ## Classes 
 

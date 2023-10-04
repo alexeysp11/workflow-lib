@@ -1,4 +1,4 @@
-# PgDbConnection
+# PgDbConnection Class
 
 Namespace: [Cims.WorkflowLib.DbConnections](Cims.WorkflowLib.DbConnections.md)
 

@@ -1,4 +1,4 @@
-# Cims.WorkflowLib.DocFormats
+# Cims.WorkflowLib.DocFormats Namespace
 
 ## Namespaces
 

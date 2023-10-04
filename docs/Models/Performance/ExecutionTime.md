@@ -1,4 +1,4 @@
-# ExecutionTime
+# ExecutionTime Class
 
 Namespace: [Cims.WorkflowLib.Models.Performance](Cims.WorkflowLib.Models.Performance.md)
 

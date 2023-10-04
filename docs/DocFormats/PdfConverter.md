@@ -1,4 +1,4 @@
-# PdfConverter
+# PdfConverter Class
 
 Namespace: [Cims.WorkflowLib.DocFormats](Cims.WorkflowLib.DocFormats.md)
 

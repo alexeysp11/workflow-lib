@@ -1,4 +1,4 @@
-# BmpConverter
+# BmpConverter Class
 
 Namespace: [Cims.WorkflowLib.DocFormats.Images](Cims.WorkflowLib.DocFormats.Images.md)
 

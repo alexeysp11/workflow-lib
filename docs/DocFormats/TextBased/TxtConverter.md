@@ -1,4 +1,4 @@
-# TxtConverter
+# TxtConverter Class
 
 Namespace: [Cims.WorkflowLib.DocFormats.TextBased](Cims.WorkflowLib.DocFormats.TextBased.md)
 
