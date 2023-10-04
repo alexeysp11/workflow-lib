@@ -2,8 +2,7 @@
 
 ## Documentation 
 
-- Use namespaces to structure all the docs, and visualize the structure.
-- Add docs for all the classess.
+- Add docs for all the `Monetary` classess.
 
 ## Database connections 
 
