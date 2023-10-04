@@ -18,7 +18,7 @@ public PdfConverter();
 
 ### TextDocElementsToDocument(String, String, List\<TextDocElement\>)
 
-Method for converting a list of [TextDocElement](../Models/TextDocElement.md) into TXT document.
+Method for converting a list of [TextDocElement](../Models/Documents/TextDocElement.md) into TXT document.
 
 ```C#
 public void TextDocElementsToDocument(string foldername, string filename, System.Collections.Generic.List<TextDocElement> elements);
@@ -34,9 +34,9 @@ Folder name
 
 File name (with extension)
 
-- `elements`: [List](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1)<[TextDocElement](../Models/TextDocElement.md)>
+- `elements`: [List](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1)<[TextDocElement](../Models/Documents/TextDocElement.md)>
 
-Collection of [TextDocElement](../Models/TextDocElement.md)
+Collection of [TextDocElement](../Models/Documents/TextDocElement.md)
 
 #### Examples 
 

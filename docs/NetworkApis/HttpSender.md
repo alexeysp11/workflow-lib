@@ -84,9 +84,9 @@ Method name (optional).
 
 #### Returns 
 
-[Task](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1)<[ApiOperation](../Models/ApiOperation.md)>
+[Task](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1)<[ApiOperation](../Models/Network/ApiOperation.md)>
 
-All information about HTTP request incapsulated into [ApiOperation](../Models/ApiOperation.md) object.
+All information about HTTP request incapsulated into [ApiOperation](../Models/Network/ApiOperation.md) object.
 
 #### Examples
 
@@ -137,9 +137,9 @@ Method name (optional).
 
 #### Returns 
 
-[Task](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1)<[List](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1)\<[ApiOperation](../Models/ApiOperation.md)>>
+[Task](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1)<[List](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1)\<[ApiOperation](../Models/Network/ApiOperation.md)>>
 
-All information about HTTP requests incapsulated into [ApiOperation](../Models/ApiOperation.md) object.
+All information about HTTP requests incapsulated into [ApiOperation](../Models/Network/ApiOperation.md) object.
 
 #### Examples
 

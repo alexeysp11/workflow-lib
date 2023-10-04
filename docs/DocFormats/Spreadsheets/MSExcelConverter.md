@@ -18,7 +18,7 @@ public MSExcelConverter();
 
 ### SpreadsheetElementsToDocument(String, String, UInt32, String, List\<SpreadsheetElement\>)
 
-Method for converting a list of [SpreadsheetElement](../../Models/SpreadsheetElement.md) into Excel document.
+Method for converting a list of [SpreadsheetElement](../../Models/Documents/SpreadsheetElement.md) into Excel document.
 
 ```C#
 public void SpreadsheetElementsToDocument(
@@ -47,9 +47,9 @@ Worksheet ID.
 
 Worksheet name.
 
-- `elements`: [List](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1)<[SpreadsheetElement](../../Models/SpreadsheetElement.md)>
+- `elements`: [List](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1)<[SpreadsheetElement](../../Models/Documents/SpreadsheetElement.md)>
 
-Collection of [SpreadsheetElement](../../Models/SpreadsheetElement.md).
+Collection of [SpreadsheetElement](../../Models/Documents/SpreadsheetElement.md).
 
 #### Examples
 
