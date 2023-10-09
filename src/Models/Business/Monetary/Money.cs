@@ -1,6 +1,6 @@
-using Cims.WorkflowLib.Models.Monetary.Enums; 
+using Cims.WorkflowLib.Models.Business.Monetary.Enums; 
 
-namespace Cims.WorkflowLib.Models.Monetary
+namespace Cims.WorkflowLib.Models.Business.Monetary
 {
     /// <summary>
     /// 

@@ -1,4 +1,4 @@
-namespace Cims.WorkflowLib.Models.Monetary.Enums
+namespace Cims.WorkflowLib.Models.Business.Monetary.Enums
 {
     public enum CardType
     {

@@ -1,12 +1,87 @@
-#BusinessOperationClass
+# BusinessOperation Class
 
-- **Business operation** - business operation (name: `BusinessOperation`):
-    - `Name` - name,
-    - `Description` - description,
-    - `ActualBeginDt` - actual start time of the business operation,
-    - `ActualEndDt` - actual end time of the business operation,
-    - `ActualDuration` - actual time of execution of a business operation,
-    - `EstimatedBeginDt` - estimated start time of the business operation,
-    - `EstimatedEndDt` - estimated end time of the business transaction,
-    - `EstimatedDuration` - estimated time for completing a business operation,
-    - `Status: string` - status.
+Namespace: [Cims.WorkflowLib.Models.Business](Cims.WorkflowLib.Models.Business.md)
+
+Representation of a business operation.
+
+## Constructors
+
+### BusinessOperation()
+
+Default constructor.
+
+```C#
+public BusinessOperation();
+```
+
+## Properties
+
+### Name
+
+Name of the business operation.
+
+```C#
+public string Name { get; set; }
+```
+
+#### Property Value
+
+[String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
+
+Name of the business operation.
+
+### Description
+
+Description of the business operation.
+
+```C#
+public string Description { get; set; }
+```
+
+#### Property Value
+
+[String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
+
+Description of the business operation.
+
+### ActualExecutionTime
+
+Actual execution time of the business operation.
+
+```C#
+public ExecutionTime ActualExecutionTime { get; set; }
+```
+
+#### Property Value
+
+[ExecutionTime](../Performance/ExecutionTime.md)
+
+Actual execution time of the business operation.
+
+### EstimatedExecutionTime
+
+Estimated execution time of the business operation.
+
+```C#
+public ExecutionTime EstimatedExecutionTime { get; set; }
+```
+
+#### Property Value
+
+[ExecutionTime](../Performance/ExecutionTime.md)
+
+Estimated execution time of the business operation.
+
+### Status
+
+Status of the business operation.
+
+```C#
+public string Status { get; set; }
+```
+
+#### Property Value
+
+[String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
+
+Status of the business operation.
