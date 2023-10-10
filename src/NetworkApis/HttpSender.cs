@@ -17,6 +17,7 @@ namespace Cims.WorkflowLib.NetworkApis
     /// </summary>
     public class HttpSender 
     {
+#if NET5_0_OR_GREATER
         /// <summary>
         /// Synchronous method for sending an object via HTTP
         /// </summary>
@@ -31,6 +32,7 @@ namespace Cims.WorkflowLib.NetworkApis
             using var reader = new System.IO.StreamReader(response.Content.ReadAsStream());
             return reader.ReadToEnd();
         }
+#endif
 
         /// <summary>
         /// Method for sending an object via HTTP asynchronously

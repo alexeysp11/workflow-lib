@@ -4,6 +4,9 @@ using Cims.WorkflowLib.Models.Business.Monetary;
 
 namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class DeliveryOrder
     {
         public string OrderUid { get; set; }
@@ -19,6 +22,7 @@ namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
         public float ProductsPrice { get; set; }
         public float AdditonalPrice { get; set; }
         public float DeliveryPrice { get; set; }
+        public float TaxPrice { get; set; }
         public float TotalPrice { get; set; }
         public Address Origin { get; set; }
         public Address Destination { get; set; }
