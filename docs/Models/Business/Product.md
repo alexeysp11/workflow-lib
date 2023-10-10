@@ -47,12 +47,12 @@ Description of a product.
 Price of a product.
 
 ```C#
-public string Price { get; set; }
+public decimal Price { get; set; }
 ```
 
 #### Property Value
 
-[Single](https://learn.microsoft.com/en-us/dotnet/api/system.single)
+[Decimal](https://learn.microsoft.com/en-us/dotnet/api/system.decimal)
 
 Price of a product.
 
@@ -61,12 +61,12 @@ Price of a product.
 Quantity of a product.
 
 ```C#
-public float Quantity { get; set; }
+public int Quantity { get; set; }
 ```
 
 #### Property Value
 
-[Single](https://learn.microsoft.com/en-us/dotnet/api/system.single)
+[Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32)
 
 Quantity of a product.
 

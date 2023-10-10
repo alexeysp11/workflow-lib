@@ -27,7 +27,7 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// 
         /// </summary>
         public string Description { get; set; }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -42,6 +42,11 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// 
         /// </summary>
         public bool HardDelete { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Organization Organization { get; set; }
         
         /// <summary>
         /// 

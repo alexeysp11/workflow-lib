@@ -1,53 +1,50 @@
+using Cims.WorkflowLib.Models.Business.InformationSystem;
+
 namespace Cims.WorkflowLib.Models.Business.Monetary
 {
     /// <summary>
     /// 
     /// </summary>
-    public class Payment
+    public class Paycheck 
     {
         /// <summary>
         /// 
         /// </summary>
-        public int Id { get; set; }
-        
+        public DateTime Date { get; private set; }
+
         /// <summary>
         /// 
         /// </summary>
-        public string Uid { get; set; }
-        
+        public string Period { get; private set; }
+
         /// <summary>
         /// 
         /// </summary>
-        public string PaymentType { get; set; }
-        
+        public string WorkingHours { get; private set; }
+
         /// <summary>
         /// 
         /// </summary>
-        public string PaymentMethod { get; set; }
-        
+        public string DaysOff { get; private set; }
+
         /// <summary>
         /// 
         /// </summary>
-        public string CardNumber { get; set; }
-        
+        public string SubTotals { get; private set; }
+
         /// <summary>
         /// 
         /// </summary>
-        public float Amount { get; set; }
-        
+        public decimal Total { get; private set; }
+
         /// <summary>
         /// 
         /// </summary>
-        public string Payer { get; set; }
-        
+        public string EmployeeId { get; private set; }
+
         /// <summary>
         /// 
         /// </summary>
-        public string Receiver { get; set; }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Status { get; set; }
+        public virtual Employee Employee { get; private set; }
     }
 }

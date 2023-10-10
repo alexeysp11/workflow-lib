@@ -32,6 +32,10 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// 
         /// </summary>
+        public AbsenseReason Reason { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public AbsenseStatus Status { get; set; }
     }
 }
