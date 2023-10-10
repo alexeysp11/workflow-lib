@@ -2,4 +2,5 @@
 
 ## Classes 
 
-- [DeliveryOrder](DeliveryOrder.md).
+- [DeliveryOrder](DeliveryOrder.md);
+- [Offer](Offer.md).

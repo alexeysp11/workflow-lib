@@ -2,6 +2,9 @@ using System.Collections.Generic;
 
 namespace Cims.WorkflowLib.Models.Business.InformationSystem
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Employee
     {
         /// <summary>
@@ -13,6 +16,11 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// 
         /// </summary>
         public string Uid { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Description { get; set; }
         
         /// <summary>
         /// 
@@ -52,6 +60,21 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// 
         /// </summary>
+        public string ICQ { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public System.DateTime BirthDate { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public System.DateTime EmployDate { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public UserAccount User { get; set; }
 
         /// <summary>
@@ -68,5 +91,15 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// 
         /// </summary>
         public ReplacementMode ReplacementMode { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public AuthProviderType AuthProviderType { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Locale { get; set; }
     }
 }

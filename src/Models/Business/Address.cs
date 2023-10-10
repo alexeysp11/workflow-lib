@@ -9,6 +9,7 @@ namespace Cims.WorkflowLib.Models.Business
         public string Description { get; set; }
         public string AdditionalInfo { get; set; }
         public string RoomNumber { get; set; }
+        public int Floor { get; private set; }
         public string StreetNumber { get; set; }
         public string StreetName { get; set; }
         public string PostalCode { get; set; }
