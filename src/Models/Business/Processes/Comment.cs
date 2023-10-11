@@ -1,14 +1,13 @@
+using Cims.WorkflowLib.Models.Business.InformationSystem;
+
 namespace Cims.WorkflowLib.Models.Business
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public class DeliveryMethod
+    public class Comment
     {
         /// <summary>
         /// 
         /// </summary>
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// 
@@ -18,21 +17,16 @@ namespace Cims.WorkflowLib.Models.Business
         /// <summary>
         /// 
         /// </summary>
-        public string Name { get; set; }
+        public string Text { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string Description { get; set; }
+        public System.DateTime CreationDate { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public DeliveryMethodType Type { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public decimal Price { get; set; }
+        public UserAccount CreationAuthor { get; set; }
     }
 }
