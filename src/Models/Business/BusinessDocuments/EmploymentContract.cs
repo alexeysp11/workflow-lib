@@ -45,6 +45,11 @@ namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// 
         /// </summary>
+        public EmploymentContract ExpiredEmploymentContract { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public Company Company { get; set; }
 
         /// <summary>
@@ -60,7 +65,12 @@ namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// 
         /// </summary>
-        public Period Period { get; set; }
+        public Period EstimatedPeriod { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Period ActualPeriod { get; set; }
 
         /// <summary>
         /// 
@@ -71,5 +81,35 @@ namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
         /// 
         /// </summary>
         public ICollection<EmployerResponsibility> EmployerResponsibilities { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public ICollection<EmployeeBenefit> EmployeeBenifits { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Schedule Schedule { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public NonCompeteClause NonCompeteClause { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public EmploymentContractStatus Status { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ICollection<EmploymentTerminationReason> InternalTerminationReasons { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public EmploymentTerminationReason OfficialTerminationReason { get; set; }
     }
 }

@@ -13,7 +13,12 @@ namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// 
         /// </summary>
-        public string OrderUid { get; set; }
+        public string Id { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Uid { get; set; }
         
         /// <summary>
         /// 
@@ -33,7 +38,7 @@ namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// 
         /// </summary>
-        public string UserUid { get; set; }
+        public string CustomerUid { get; set; }
         
         /// <summary>
         /// 

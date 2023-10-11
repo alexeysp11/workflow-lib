@@ -24,7 +24,7 @@ namespace Cims.WorkflowLib.Models.Business.Products
         /// <summary>
         /// 
         /// </summary>
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// 
@@ -34,66 +34,76 @@ namespace Cims.WorkflowLib.Models.Business.Products
         /// <summary>
         /// 
         /// </summary>
-        public bool IsActive { get; private set; }
+        public bool IsActive { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public Address Location { get; private set; }
+        public Address Location { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string ContractId { get; private set; }
+        public string ContractId { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual Company Company { get; private set; }
+        public virtual Company Company { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual Customer Customer { get; private set; }
+        public virtual Customer Customer { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public System.DateTime StartDate { get; private set; }
+        public System.DateTime StartDate { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public System.DateTime EndDate { get; private set; }
+        public System.DateTime EndDate { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public System.DateTime? ActualEndDate { get; private set; }
+        public System.DateTime? ActualEndDate { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int GuaranteePeriodInMonths { get; private set; }        
+        public int GuaranteePeriodInMonths { get; set; }        
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual Employee Manager { get; private set; }
+        public Employee Manager { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual ICollection<Employee> Employees { get; private set; }
+        public ICollection<Employee> Employees { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual Contract Contract { get; private set; }
+        public Contract Contract { get; set; }
         
         /// <summary>
         /// 
         /// </summary>
-        public virtual ICollection<Risk> Risks { get; private set; }
+        public ICollection<Risk> Risks { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public ICollection<ProjectPhase> ProjectPhases { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public int CompletePercent { get; set; }
     }
 }

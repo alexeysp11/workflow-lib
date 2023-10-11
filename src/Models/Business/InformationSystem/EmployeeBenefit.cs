@@ -1,20 +1,17 @@
-namespace Cims.WorkflowLib.Models.Business
+namespace Cims.WorkflowLib.Models.Business.InformationSystem
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public class DeliveryMethod
+    public class EmployeeBenefit
     {
         /// <summary>
         /// 
         /// </summary>
         public int Id { get; set; }
-
+        
         /// <summary>
         /// 
         /// </summary>
-        public DeliveryMethodType Uid { get; set; }
-
+        public string Uid { get; set; }
+        
         /// <summary>
         /// 
         /// </summary>
@@ -28,11 +25,6 @@ namespace Cims.WorkflowLib.Models.Business
         /// <summary>
         /// 
         /// </summary>
-        public DeliveryMethodType Type { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public decimal Price { get; set; }
+        public EmployeeBenefitType Type { get; set; }
     }
 }
