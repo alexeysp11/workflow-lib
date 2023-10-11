@@ -81,12 +81,12 @@ Card number.
 Amount of the payment.
 
 ```C#
-public float Amount { get; set; }
+public decimal Amount { get; set; }
 ```
 
 #### Property Value
 
-[Single](https://learn.microsoft.com/en-us/dotnet/api/system.single)
+[Decimal](https://learn.microsoft.com/en-us/dotnet/api/system.decimal)
 
 Amount of the payment.
 

@@ -36,5 +36,10 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// 
         /// </summary>
         public Product Product { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public WarehouseItemStatus WarehouseItemStatus { get; set; }
     }
 }

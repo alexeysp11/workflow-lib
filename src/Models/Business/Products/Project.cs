@@ -1,4 +1,5 @@
-using Cims.WorkflowLib.Models.Business.Customer;
+using Cims.WorkflowLib.Models.Business;
+using Cims.WorkflowLib.Models.Business.Customers;
 using Cims.WorkflowLib.Models.Business.InformationSystem;
 
 namespace Cims.WorkflowLib.Models.Business.Products
@@ -21,22 +22,22 @@ namespace Cims.WorkflowLib.Models.Business.Products
         /// <summary>
         /// 
         /// </summary>
-        public string Location { get; private set; }
+        public Address Location { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string CustomerId { get; private set; }
+        public string ContractId { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string ContractId { get; private set; }        
+        public virtual Company Company { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual Company CompanyCustomer { get; private set; }
+        public virtual Customer Customer { get; private set; }
 
         /// <summary>
         /// 

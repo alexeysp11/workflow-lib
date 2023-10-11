@@ -37,7 +37,7 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// 
         /// </summary>
-        public List<OrganizationItem> OrganizationItems { get; set; }
+        public ICollection<OrganizationItem> OrganizationItems { get; set; }
         /// <summary>
         /// 
         /// </summary>

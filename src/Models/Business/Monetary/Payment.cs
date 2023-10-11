@@ -33,7 +33,7 @@ namespace Cims.WorkflowLib.Models.Business.Monetary
         /// <summary>
         /// 
         /// </summary>
-        public float Amount { get; set; }
+        public decimal Amount { get; set; }
         
         /// <summary>
         /// 

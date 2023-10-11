@@ -1,4 +1,4 @@
-namespace Wilson.Companies.Core.Enumerations
+namespace Cims.WorkflowLib.Models.Business.InformationSystem
 {
     /// <summary>
     /// 

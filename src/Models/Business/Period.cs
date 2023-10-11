@@ -3,19 +3,21 @@ namespace Cims.WorkflowLib.Models.Business
     /// <summary>
     /// 
     /// </summary>
-    public class DeliveryMethod
+    public class Period
     {
         /// <summary>
         /// 
         /// </summary>
-        public string Name { get; set; }
+        public System.DateTime From { get; private set; }
+
         /// <summary>
         /// 
         /// </summary>
-        public string Description { get; set; }
+        public System.DateTime To { get; private set; }
+
         /// <summary>
         /// 
         /// </summary>
-        public decimal Price { get; set; }
+        public System.TimeSpan TimeDifference { get { return To - From; } }
     }
 }

@@ -18,7 +18,7 @@ namespace Cims.WorkflowLib.Models.Documents
         /// <summary>
         /// 
         /// </summary>
-        public DateTime UploadDate { get; private set; }
+        public System.DateTime UploadDate { get; private set; }
 
         /// <summary>
         /// 

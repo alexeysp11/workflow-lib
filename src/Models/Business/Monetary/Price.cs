@@ -7,15 +7,33 @@ namespace Cims.WorkflowLib.Models.Business.Monetary
     /// </summary>
     public class Price
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public Price() {}
-        public Price(float netPrice)
+        /// <summary>
+        /// 
+        /// </summary>
+        public Price(decimal netPrice)
         {
             NetPrice = netPrice;
         }
 
-        public float ListPrice { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public decimal ListPrice { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public List<Tax> Taxes { get; set; }
-        public float Discount { get; set; }
-        public float NetPrice { get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public decimal Discount { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public decimal NetPrice { get; }
     }
 }

@@ -56,7 +56,7 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// 
         /// </summary>
-        public List<OrganizationItem> SubItems { get; set; }
+        public ICollection<OrganizationItem> SubItems { get; set; }
         
         /// <summary>
         /// 
@@ -66,7 +66,7 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// 
         /// </summary>
-        public List<UserAccount> Users { get; set; }
+        public ICollection<UserAccount> Users { get; set; }
 
         /// <summary>
         /// 

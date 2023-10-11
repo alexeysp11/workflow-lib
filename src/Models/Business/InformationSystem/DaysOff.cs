@@ -1,21 +1,23 @@
-namespace Cims.WorkflowLib.Models.Business
+namespace Cims.WorkflowLib.Models.Business.InformationSystem
 {
     /// <summary>
     /// 
     /// </summary>
-    public class DeliveryMethod
+    public class DaysOff
     {
         /// <summary>
         /// 
         /// </summary>
-        public string Name { get; set; }
+        public int PaidDaysOff { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
-        public string Description { get; set; }
+        public int UnpaidDaysOff { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
-        public decimal Price { get; set; }
+        public int SickDaysOff { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-namespace Cims.WorkflowLib.Models.Customers
+namespace Cims.WorkflowLib.Models.Business.Customers
 {
     /// <summary>
     /// 

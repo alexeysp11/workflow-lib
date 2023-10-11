@@ -1,11 +1,17 @@
-namespace Cims.WorkflowLib.Models.Customers
+namespace Cims.WorkflowLib.Models.Business.Customers
 {
     /// <summary>
     /// 
     /// </summary>
     public class PhoneNumber
     {
-        private string Number { get; set; }
-        private string Notes { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Number { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Notes { get; set; }
     }
 }

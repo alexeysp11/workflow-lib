@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Cims.WorkflowLib.Models.Business.InformationSystem
 {
     /// <summary>
@@ -28,6 +30,6 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// 
         /// </summary>
-        public virtual ICollection<StorehouseItem> StorehouseItems { get; set; }
+        public virtual ICollection<WarehouseItem> WarehouseItems { get; set; }
     }
 }

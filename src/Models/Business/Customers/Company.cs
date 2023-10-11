@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+using Cims.WorkflowLib.Models.Business;
+using Cims.WorkflowLib.Models.Business.Products;
+
 namespace Cims.WorkflowLib.Models.Business.Customers
 {
     /// <summary>
@@ -48,7 +52,7 @@ namespace Cims.WorkflowLib.Models.Business.Customers
         /// <summary>
         /// 
         /// </summary>
-        public string Address { get; private set; }
+        public Address Address { get; private set; }
 
         /// <summary>
         /// 
@@ -60,8 +64,14 @@ namespace Cims.WorkflowLib.Models.Business.Customers
         /// </summary>
         public bool HasVatRegistration { get; private set; }
 
-        //public ICollection<Employee> Employees { get; private set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public ICollection<Customer> Employees { get; private set; }
 
-        //public ICollection<Project> Projects { get; private set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public ICollection<Project> Projects { get; private set; }
     }
 }

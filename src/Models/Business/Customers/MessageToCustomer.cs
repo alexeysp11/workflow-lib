@@ -1,6 +1,6 @@
 using Cims.WorkflowLib.Models.Business.InformationSystem;
 
-namespace Cims.WorkflowLib.Models.Customers
+namespace Cims.WorkflowLib.Models.Business.Customers
 {
     /// <summary>
     /// 

@@ -7,8 +7,17 @@ namespace Cims.WorkflowLib.Models.Business.Monetary
     /// </summary>
     public class Money
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public int Integer { get; private set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public int Fraction { get; private set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public Currency Currency { get; private set; }
 
         #region Constructors
@@ -51,12 +60,18 @@ namespace Cims.WorkflowLib.Models.Business.Monetary
         }
         #endregion  // Constructors
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Add(int integer, int fraction)
         {
             Integer += integer; 
             Fraction += fraction; 
             if (Fraction > 99) { Fraction -= 100; Integer += 1; }
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public void Substract(int integer, int fraction)
         {
             Integer -= integer; 
@@ -64,21 +79,33 @@ namespace Cims.WorkflowLib.Models.Business.Monetary
             if (Fraction < 0) { Fraction += 100; Integer -= 1; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string GetString()
         {
             CheckFractionFormat(Fraction); 
             return Integer.ToString() + "." + Fraction.ToString() + " " + Currency.ToString(); 
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public string GetAmount()
         {
             CheckFractionFormat(Fraction); 
             return Integer.ToString() + "." + Fraction.ToString(); 
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public string GetCurrency()
         {
             return Currency.ToString(); 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void CheckFractionFormat(int fraction)
         {
             if (fraction < 0 || fraction > 99) throw new System.Exception("Fraction could not be less than 0 and begger than 99"); 

@@ -1,3 +1,4 @@
+using Cims.WorkflowLib.Models.Business;
 using Cims.WorkflowLib.Models.Business.InformationSystem;
 
 namespace Cims.WorkflowLib.Models.Business.Monetary
@@ -10,37 +11,32 @@ namespace Cims.WorkflowLib.Models.Business.Monetary
         /// <summary>
         /// 
         /// </summary>
-        public DateTime Date { get; private set; }
+        public System.DateTime Date { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string Period { get; private set; }
+        public Period Period { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string WorkingHours { get; private set; }
+        public WorkingHours WorkingHours { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string DaysOff { get; private set; }
+        public DaysOff DaysOff { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string SubTotals { get; private set; }
+        public SubTotalPayments SubTotalPayments { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
         public decimal Total { get; private set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string EmployeeId { get; private set; }
 
         /// <summary>
         /// 

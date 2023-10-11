@@ -11,12 +11,12 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// 
         /// </summary>
-        public DateTime Date { get; private set; }
+        public System.DateTime Date { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public ScheduleOption ScheduleOption { get; private set; }
+        public WorkingDayOption WorkingDayOption { get; private set; }
 
         /// <summary>
         /// 
