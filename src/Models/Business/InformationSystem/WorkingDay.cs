@@ -11,41 +11,31 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// 
         /// </summary>
-        public System.DateTime Date { get; private set; }
+        public System.DateTime Date { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public WorkingDayOption WorkingDayOption { get; private set; }
+        public WorkingDayOption WorkingDayOption { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int WorkHours { get; private set; }
+        public WorkingHours ExpectedWorkingHours { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int ExtraWorkHours { get; private set; }
+        public WorkingHours ActualWorkingHours { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string EmployeeId { get; private set; }
+        public virtual Employee Employee { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string ProjectId { get; private set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public virtual Employee Employee { get; private set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public virtual Project Project { get; private set; }
+        public virtual Project Project { get; set; }
     }
 }

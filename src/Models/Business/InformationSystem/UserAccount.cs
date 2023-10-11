@@ -14,6 +14,11 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// 
         /// </summary>
         public string Uid { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Description { get; set; }
 
         /// <summary>
         /// 

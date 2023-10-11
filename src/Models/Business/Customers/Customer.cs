@@ -1,3 +1,4 @@
+using Cims.WorkflowLib.Models.Business;
 using Cims.WorkflowLib.Models.Business.InformationSystem;
 
 namespace Cims.WorkflowLib.Models.Business.Customers
@@ -36,10 +37,20 @@ namespace Cims.WorkflowLib.Models.Business.Customers
         /// 
         /// </summary>
         public string FullName { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Contact Contact { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         public UserAccount UserAccount { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Company Company { get; set; }
     }
 }

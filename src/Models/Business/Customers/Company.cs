@@ -32,46 +32,41 @@ namespace Cims.WorkflowLib.Models.Business.Customers
         /// <summary>
         /// 
         /// </summary>
-        public string RegistrationNumber { get; private set; }
+        public string RegistrationNumber { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string VatNumber { get; private set; }
+        public string VatNumber { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string OfficeEmail { get; private set; }
+        public Contact Contact { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string OfficePhone { get; private set; }
+        public Address Address { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public Address Address { get; private set; }
+        public Address ShippingAddress { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string ShippingAddress { get; private set; }
+        public bool HasVatRegistration { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public bool HasVatRegistration { get; private set; }
+        public ICollection<Customer> Employees { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public ICollection<Customer> Employees { get; private set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public ICollection<Project> Projects { get; private set; }
+        public ICollection<Project> Projects { get; set; }
     }
 }

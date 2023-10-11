@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Cims.WorkflowLib.Models.Business.Customers;
 
 namespace Cims.WorkflowLib.Models.Business.InformationSystem
 {
@@ -75,17 +76,22 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// 
         /// </summary>
-        public UserAccount User { get; set; }
+        public ICollection<UserAccount> UserAccounts { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public List<UserGroup> UserGroups { get; set; }
+        public ICollection<UserGroup> UserGroups { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public List<OrganizationItem> OrganizationItems { get; set; }
+        public ICollection<Company> Companies { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ICollection<OrganizationItem> OrganizationItems { get; set; }
 
         /// <summary>
         /// 
@@ -101,5 +107,10 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// 
         /// </summary>
         public string Locale { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public ICollection<Skill> Skills { get; set; }
     }
 }
