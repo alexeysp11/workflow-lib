@@ -1,24 +1,24 @@
-# Product Class 
+# ProductCategory Class 
 
 Namespace: [Cims.WorkflowLib.Models.Business.Products](Cims.WorkflowLib.Models.Business.Products.md)
 
-Product.
+Product category.
 
 ## Constructors 
 
-### Product()
+### ProductCategory()
 
 Default constructor.
 
 ```C#
-public Product();
+public ProductCategory();
 ```
 
 ## Properties
 
 ### Id
 
-ID of the product.
+ID of the product category.
 
 ```C#
 public int Id { get; set; }
@@ -28,11 +28,11 @@ public int Id { get; set; }
 
 [Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32)
 
-ID of the product.
+ID of the product category.
 
 ### Uid
 
-UID of the product.
+UID of the product category.
 
 ```C#
 public string Uid { get; set; }
@@ -42,11 +42,11 @@ public string Uid { get; set; }
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
-UID of the product.
+UID of the product category.
 
 ### Name
 
-Name of the product.
+Name of the product category.
 
 ```C#
 public string Name { get; set; }
@@ -56,11 +56,11 @@ public string Name { get; set; }
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
-Name of the product.
+Name of the product category.
 
 ### Description
 
-Description of the product.
+Description of the product category.
 
 ```C#
 public string Description { get; set; }
@@ -70,53 +70,26 @@ public string Description { get; set; }
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
-Description of the product.
+Description of the product category.
 
-### Price
+### Products
 
-Price of the product.
+Products with the product category.
 
 ```C#
-public decimal Price { get; set; }
+public ICollection<Product> Products { get; set; }
 ```
 
 #### Property Value
 
-[Decimal](https://learn.microsoft.com/en-us/dotnet/api/system.decimal)
+[ICollection](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.icollection-1)<[Product](Product.md)>
 
-Price of the product.
+Products with the product category.
 
-### Quantity
-
-Quantity of the product.
-
-```C#
-public int Quantity { get; set; }
-```
-
-#### Property Value
-
-[Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32)
-
-Quantity of the product.
-
-### ProductCategory
-
-Category of the product.
-
-```C#
-public ProductCategory ProductCategory { get; set; }
-```
-
-#### Property Value
-
-[ProductCategory](ProductCategory.md)
-
-Category of the product.
 
 ### PictureUrl
 
-Picture URL of the product.
+Picture URL of the product category.
 
 ```C#
 public string PictureUrl { get; set; }
@@ -126,11 +99,11 @@ public string PictureUrl { get; set; }
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
-Picture URL of the product.
+Picture URL of the product category.
 
 ### PictureDescription
 
-Picture description of the product.
+Picture description of the product category.
 
 ```C#
 public string PictureDescription { get; set; }
@@ -140,4 +113,4 @@ public string PictureDescription { get; set; }
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
-Picture description of the product.
+Picture description of the product category.

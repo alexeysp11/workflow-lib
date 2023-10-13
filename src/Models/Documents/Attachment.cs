@@ -1,3 +1,5 @@
+using Cims.WorkflowLib.Models.Documents.Enums;
+
 namespace Cims.WorkflowLib.Models.Documents
 {
     /// <summary>
@@ -29,5 +31,10 @@ namespace Cims.WorkflowLib.Models.Documents
         /// 
         /// </summary>
         public long Size { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public AttachmentFileType FileType { get; private set; }
     }
 }

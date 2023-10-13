@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace Cims.WorkflowLib.Models.Business.Products
 {
     /// <summary>
-    /// 
+    /// Product category.
     /// </summary>
     public class ProductCategory
     {
@@ -11,6 +11,11 @@ namespace Cims.WorkflowLib.Models.Business.Products
         /// 
         /// </summary>
         public int Id { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Uid { get; set; }
         
         /// <summary>
         /// 
@@ -25,7 +30,7 @@ namespace Cims.WorkflowLib.Models.Business.Products
         /// <summary>
         /// 
         /// </summary>
-        public List<Product> Products { get; set; }
+        public ICollection<Product> Products { get; set; }
         
         /// <summary>
         /// 
