@@ -4,10 +4,10 @@ namespace Cims.WorkflowLib.Models.Business
 {
     public enum DeliveryMethodType
     {
-        [Display(Name = "On Foot")]
+        [Display(Name = "On foot")]
         OnFoot,
 
-        [Display(Name = "Electric Scooter")]
+        [Display(Name = "Electric scooter")]
         ElectricScooter,
         
         [Display(Name = "Car")]
