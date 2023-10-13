@@ -7,12 +7,12 @@
 ID of the user.
 
 ```C#
-public int Id { get; set; }
+public long Id { get; set; }
 ```
 
 #### Property Value
 
-[Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32)
+[Int64](https://learn.microsoft.com/en-us/dotnet/api/system.int64)
 
 ID of the user.
 

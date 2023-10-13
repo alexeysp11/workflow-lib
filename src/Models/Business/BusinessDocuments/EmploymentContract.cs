@@ -8,14 +8,14 @@ using Cims.WorkflowLib.Models.Business.Responsibilities;
 namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
 {
     /// <summary>
-    /// 
+    /// Employment contract.
     /// </summary>
     public class EmploymentContract
     {
         /// <summary>
         /// 
         /// </summary>
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         /// <summary>
         /// 

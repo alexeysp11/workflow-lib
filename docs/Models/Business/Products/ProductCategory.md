@@ -21,12 +21,12 @@ public ProductCategory();
 ID of the product category.
 
 ```C#
-public int Id { get; set; }
+public long Id { get; set; }
 ```
 
 #### Property Value
 
-[Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32)
+[Int64](https://learn.microsoft.com/en-us/dotnet/api/system.int64)
 
 ID of the product category.
 
@@ -74,7 +74,7 @@ Description of the product category.
 
 ### Products
 
-Products with the product category.
+Products associated with the product category.
 
 ```C#
 public ICollection<Product> Products { get; set; }
@@ -84,8 +84,7 @@ public ICollection<Product> Products { get; set; }
 
 [ICollection](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.icollection-1)<[Product](Product.md)>
 
-Products with the product category.
-
+Products associated with the product category.
 
 ### PictureUrl
 

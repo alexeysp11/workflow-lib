@@ -8,7 +8,7 @@ namespace Cims.WorkflowLib.Models.Business.Products
         /// <summary>
         /// ID of the product.
         /// </summary>
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         /// <summary>
         /// UID of the product.

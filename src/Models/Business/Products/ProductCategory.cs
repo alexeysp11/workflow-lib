@@ -10,7 +10,7 @@ namespace Cims.WorkflowLib.Models.Business.Products
         /// <summary>
         /// 
         /// </summary>
-        public int Id { get; set; }
+        public long Id { get; set; }
         
         /// <summary>
         /// 

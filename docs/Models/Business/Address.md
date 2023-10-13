@@ -2,6 +2,16 @@
 
 Namespace: [Cims.WorkflowLib.Models.Business](Cims.WorkflowLib.Models.Business.md)
 
+## Constructors 
+
+### Address()
+
+Default constructor.
+
+```C#
+public Address();
+```
+
 ## Properties 
 
 ### Name

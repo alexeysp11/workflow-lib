@@ -9,7 +9,7 @@ namespace Cims.WorkflowLib.Models.Business.Responsibilities
         /// <summary>
         /// 
         /// </summary>
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         /// <summary>
         /// 
