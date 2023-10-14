@@ -2,6 +2,8 @@
 
 Namespace: [Cims.WorkflowLib.Models.Business](Cims.WorkflowLib.Models.Business.md)
 
+Address.
+
 ## Constructors 
 
 ### Address()

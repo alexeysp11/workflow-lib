@@ -2,6 +2,18 @@
 
 [Employment contract](https://en.wikipedia.org/wiki/Employment_contract)
 
+Employment contract.
+
+## Constructors
+
+### EmploymentContract()
+
+Default constructor.
+
+```C#
+public EmploymentContract();
+```
+
 ## Properties 
 
 An employment contract should clearly define all terms and conditions of the employment relationship. The most common elements to any employment contract include the following:

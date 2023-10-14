@@ -2,6 +2,18 @@
 
 Namespace: [Cims.WorkflowLib.Models.Business.BusinessDocuments](Cims.WorkflowLib.Models.Business.BusinessDocuments.md)
 
+Bill.
+
+## Constructors
+
+### Bill()
+
+Default constructor.
+
+```C#
+public Bill();
+```
+
 ## Properties
 
 Date - When the bill is created.

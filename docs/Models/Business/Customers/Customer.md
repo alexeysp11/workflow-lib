@@ -1,4 +1,18 @@
-# Customer
+# Customer Class
+
+Namespace: [Cims.WorkflowLib.Models.Business.Customers](Cims.WorkflowLib.Models.Business.Customers.md)
+
+Customer. 
+
+## Constructors
+
+### Customer()
+
+Default constructor.
+
+```C#
+public Customer();
+```
 
 ## Properties 
 

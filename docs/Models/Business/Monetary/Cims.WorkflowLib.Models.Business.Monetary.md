@@ -6,4 +6,6 @@
 
 ## Classes 
 
-- [Payment](Payment.md).
+- [Paycheck](Paycheck.md)
+- [Payment](Payment.md)
+- [PayRate](PayRate.md)

@@ -1,6 +1,20 @@
-# Company 
+# Company Class
 
 Namespace: [Cims.WorkflowLib.Models.Business.Customers](Cims.WorkflowLib.Models.Business.Customers.md)
+
+Company. 
+
+## Constructors
+
+### Company()
+
+Default constructor.
+
+```C#
+public Company();
+```
+
+## Properties
 
 Name - The company/customer name.
 Registration number - The company registration number.

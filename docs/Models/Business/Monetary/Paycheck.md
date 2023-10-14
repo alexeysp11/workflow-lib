@@ -1,5 +1,9 @@
 # Paycheck Class 
 
+Namespace: [Cims.WorkflowLib.Models.Business.Monetary](Cims.WorkflowLib.Models.Business.Monetary.md)
+
+Paycheck.
+
 ## Properties 
 
 Date - The pay date.
