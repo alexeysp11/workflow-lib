@@ -4,10 +4,10 @@
 
 `workflow-lib` - это библиотека на C#, состоящая из:
 - [Динамической компиляции кода на C#](docs/Dynamical/DynamicCompiling.md);
-- Конфигурационные файлы (JSON, XML);
 - Базы данных: [SQLite](docs/DbConnections/SqliteDbConnection.md), [PostgreSQL](docs/DbConnections/PgDbConnection.md), [MySQL](docs/DbConnections/MysqlDbConnection.md), [MS SQL](docs/DbConnections/MssqlDbConnection.md), [Oracle](docs/DbConnections/OracleDbConnection.md);
 - Сетевое взаимодействие: [HTTP](docs/NetworkApis/HttpSender.md);
-- Операций с документами (запись, чтение, конвертация): 
+- Документы и операции с документами (запись, чтение, конвертация): 
+    - Общие: [вложение](docs/Models/Documents/Attachment.md), [spreadsheet-элемент](docs/Models/Documents/SpreadsheetElement.md), [элемент текстового документа](docs/Models/Documents/TextDocElement.md).
     - Текстовые: [MS Word](docs/DocFormats/TextBased/MSWordConverter.md) (DOC, DOT, DOCX, DOTX, DOCM, DOTM), OpenDocument (ODT, FODT, OTT), [TXT](docs/DocFormats/TextBased/TxtConverter.md);
     - Spreadsheets-таблицы: [MS Excel](docs/DocFormats/Spreadsheets/MSExcelConverter.md) (XLS, XLT, XLW, XLSX, XLTX, XLSM, XLTM), OpenDocument (ODS, FODS, OTS);
     - [PDF](docs/DocFormats/PdfConverter.md);
@@ -22,11 +22,13 @@
     - Деньги: [зарплата/чек оплаты](docs/Models/Business/Monetary/Paycheck.md), [оплата](docs/Models/Business/Monetary/Payment.md), [ставка оплаты](docs/Models/Business/Monetary/PayRate.md), etc.
     - Продукты: [продукт](docs/Models/Business/Products/Product.md), [категория продукта](docs/Models/Business/Products/ProductCategory.md), [проект](docs/Models/Business/Products/Project.md).
     - Обязанности: [обязанности работника](docs/Models/Business/Responsibilities/EmployeeResponsibility.md), [обязанности работодателя](docs/Models/Business/Responsibilities/EmployerResponsibility.md).
+<!--
 - Визуализация данных: Line chart, Bar chart, Histogram, Scatter plot, Box plot, Pareto chart, Pie chart, Area chart, Tree map, Bubble chart, Stripe graphic, Control chart, Run chart, Stem-and-leaf display, Cartogram, Small multiple, Sparkline, Table, Marimekko chart. 
+-->
 
 Документация по неймспейсам и типам данных, используемых в библиотеке, представлена по [данной ссылке](docs/documentation.md).
 
-## Как использовать библиотеку в C# коде 
+## Рекомендации к использованию 
 
 Данную библитеку возможно использовать напрямую из C# кода: 
 
@@ -45,10 +47,11 @@ cd your-project
     <ProjectReference Include="../../workflow-lib/src/Cims.WorkflowLib.csproj" />
   </ItemGroup>
 ```
-
+<!--
 ## Как использовать данную библиотеку совместно с XML/JSON оболочкой  
 
 Подразумевается использование данной библиотеки с помощью XML/JSON оболочки (своего рода no-code подход).
+-->
 
 ## Как улучшить библиотеку 
 
