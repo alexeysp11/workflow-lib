@@ -28,6 +28,17 @@
 
 Документация по неймспейсам и типам данных, используемых в библиотеке, представлена по [данной ссылке](docs/documentation.md).
 
+## Технологии 
+
+- Фреймворки .NET:
+  - .NET Core 3.1 (C# 8.0)
+  - .NET 6 (C# 10)
+- [itext7](https://github.com/itext/itext7-dotnet)
+- [itext7.pdfhtml](https://github.com/itext/i7n-pdfhtml)
+- [Open XML SDK](https://github.com/dotnet/Open-XML-SDK)
+- [Open-Xml-PowerTools](https://github.com/alexeysp11/Open-Xml-PowerTools.git)
+- [RabbitMQ](https://github.com/rabbitmq/rabbitmq-dotnet-client)
+
 ## Рекомендации к использованию 
 
 Данную библитеку возможно использовать напрямую из C# кода: 
