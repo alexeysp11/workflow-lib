@@ -1,4 +1,4 @@
-namespace jihadkhawaja.mobilechat.client.Models
+namespace Cims.WorkflowLib.Models.Business.SocialCommunication
 {
     /// <summary>
     /// 
@@ -9,6 +9,11 @@ namespace jihadkhawaja.mobilechat.client.Models
         /// 
         /// </summary>
         public long Id { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Uid { get; set; }
         
         /// <summary>
         /// 

@@ -10,6 +10,16 @@ namespace Cims.WorkflowLib.Models.Business.SocialCommunication
         /// <summary>
         /// 
         /// </summary>
+        public long Id { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Uid { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string Subject { get; set; }
 
         /// <summary>

@@ -3,7 +3,7 @@ namespace Cims.WorkflowLib.Models.Business.SocialCommunication
     /// <summary>
     /// 
     /// </summary>
-    public class Channel
+    public class Post
     {
         /// <summary>
         /// 
@@ -14,15 +14,10 @@ namespace Cims.WorkflowLib.Models.Business.SocialCommunication
         /// 
         /// </summary>
         public string Uid { get; set; }
-        
+
         /// <summary>
         /// 
         /// </summary>
-        public string? Title { get; set; }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public System.DateTime? DateCreated { get; set; }
+        public string ContentText { get; set; }
     }
 }
