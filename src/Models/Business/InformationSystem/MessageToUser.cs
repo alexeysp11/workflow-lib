@@ -28,7 +28,7 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// 
         /// </summary>
-        public System.DateTime? RecivedAt { get; private set; }
+        public System.DateTime? ReceivedAt { get; private set; }
 
         /// <summary>
         /// 
@@ -43,7 +43,7 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// 
         /// </summary>
-        public bool IsRecived { get; private set; }
+        public bool IsReceived { get; private set; }
 
         /// <summary>
         /// 

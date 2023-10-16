@@ -11,45 +11,52 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// 
         /// </summary>
         public long Id { get; set; }
+        
         /// <summary>
         /// 
         /// </summary>
         public string Uid { get; set; }
+        
         /// <summary>
         /// 
         /// </summary>
         public string Name { get; set; }
+        
         /// <summary>
         /// Is it a group by default for the new user
         /// </summary>
-        /// <summary>
-        /// 
-        /// </summary>
         public bool IsGroupByDefault { get; set; }
+        
         /// <summary>
         /// 
         /// </summary>
         public bool IsSystem { get; set; }
+        
         /// <summary>
         /// 
         /// </summary>
         public UserAccount Users { get; set; }
+        
         /// <summary>
         /// 
         /// </summary>
         public ICollection<OrganizationItem> OrganizationItems { get; set; }
+        
         /// <summary>
         /// 
         /// </summary>
         public UserAccount CreationAuthor { get; set; }
+        
         /// <summary>
         /// 
         /// </summary>
         public System.DateTime CreationDate { get; set; }
+        
         /// <summary>
         /// 
         /// </summary>
         public UserAccount ChangeAuthor { get; set; }
+        
         /// <summary>
         /// 
         /// </summary>
