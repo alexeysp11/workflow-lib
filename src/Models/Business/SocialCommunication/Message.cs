@@ -1,4 +1,8 @@
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
+using MimeKit;
 using Cims.WorkflowLib.Models.Business.InformationSystem;
+using Cims.WorkflowLib.Models.Documents;
 
 namespace Cims.WorkflowLib.Models.Business.SocialCommunication
 {
@@ -76,6 +80,21 @@ namespace Cims.WorkflowLib.Models.Business.SocialCommunication
         /// 
         /// </summary>
         public string RecipientId { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ICollection<Attachment> Attachments { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IFormFileCollection AttachmentsHttpRequest { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<MailboxAddress> To { get; set; }
 
         /// <summary>
         /// 
