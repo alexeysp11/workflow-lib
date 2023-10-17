@@ -5,7 +5,10 @@
 `workflow-lib` - это библиотека на C#, состоящая из:
 - [Динамической компиляции кода на C#](docs/Dynamical/DynamicCompiling.md);
 - Базы данных: [SQLite](docs/DbConnections/SqliteDbConnection.md), [PostgreSQL](docs/DbConnections/PgDbConnection.md), [MySQL](docs/DbConnections/MysqlDbConnection.md), [MS SQL](docs/DbConnections/MssqlDbConnection.md), [Oracle](docs/DbConnections/OracleDbConnection.md);
-- Сетевое взаимодействие: [HTTP](docs/NetworkApis/HttpSender.md);
+- Сетевое взаимодействие и APIs: 
+    - [HTTP](docs/NetworkApis/HttpSender.md), 
+    - TCP: [client](docs/NetworkApis/TcpClientWF.md), [listener](docs/NetworkApis/TcpListenerWF.md), 
+    - Email sender: [MimeKit based](docs/NetworkApis/EmailSenderMimeKit.md);
 - Документы и операции с документами (запись, чтение, конвертация): 
     - Общие: [вложение](docs/Models/Documents/Attachment.md), [spreadsheet-элемент](docs/Models/Documents/SpreadsheetElement.md), [элемент текстового документа](docs/Models/Documents/TextDocElement.md).
     - Текстовые: [MS Word](docs/DocFormats/TextBased/MSWordConverter.md) (DOC, DOT, DOCX, DOTX, DOCM, DOTM), OpenDocument (ODT, FODT, OTT), [TXT](docs/DocFormats/TextBased/TxtConverter.md);
@@ -38,6 +41,7 @@
 - [Open XML SDK](https://github.com/dotnet/Open-XML-SDK)
 - [Open-Xml-PowerTools](https://github.com/alexeysp11/Open-Xml-PowerTools.git)
 - [RabbitMQ](https://github.com/rabbitmq/rabbitmq-dotnet-client)
+- [MailKit](https://github.com/jstedfast/MailKit) и [MimeKit](https://github.com/jstedfast/MimeKit)
 
 ## Рекомендации к использованию 
 

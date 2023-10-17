@@ -5,7 +5,10 @@ Read this in other languages: [English](README.md), [Russian/Русский](REA
 `workflow-lib` is a C# library that consists of:
 - [Dynamic compilation for C# code](docs/Dynamical/DynamicCompiling.md);
 - Databases: [SQLite](docs/DbConnections/SqliteDbConnection.md), [PostgreSQL](docs/DbConnections/PgDbConnection.md), [MySQL](docs/DbConnections/MysqlDbConnection.md), [MS SQL](docs/DbConnections/MssqlDbConnection.md), [Oracle](docs/DbConnections/OracleDbConnection.md);
-- Network operations: [HTTP](docs/NetworkApis/HttpSender.md);
+- Network APIs and operations: 
+    - HTTP: [sender](docs/NetworkApis/HttpSender.md), 
+    - TCP: [client](docs/NetworkApis/TcpClientWF.md), [listener](docs/NetworkApis/TcpListenerWF.md), 
+    - Email sender: [MimeKit based](docs/NetworkApis/EmailSenderMimeKit.md);
 - Documents and document related operations (writing, reading, conversion):
     - Common: [attachment](docs/Models/Documents/Attachment.md), [spreadsheet element](docs/Models/Documents/SpreadsheetElement.md), [text document element](docs/Models/Documents/TextDocElement.md).
     - Text-based: [MS Word](docs/DocFormats/TextBased/MSWordConverter.md) (DOC, DOT, DOCX, DOTX, DOCM, DOTM), OpenDocument (ODT, FODT, OTT), [TXT](docs/DocFormats/TextBased/TxtConverter.md);
@@ -39,6 +42,7 @@ Documentation about namespaces and data types, used in the library, is presented
 - [Open XML SDK](https://github.com/dotnet/Open-XML-SDK)
 - [Open-Xml-PowerTools](https://github.com/alexeysp11/Open-Xml-PowerTools.git)
 - [RabbitMQ](https://github.com/rabbitmq/rabbitmq-dotnet-client)
+- [MailKit](https://github.com/jstedfast/MailKit) and [MimeKit](https://github.com/jstedfast/MimeKit)
 
 ## How to use 
 
