@@ -1,20 +1,12 @@
+using Cims.WorkflowLib.Models.Business;
+
 namespace Cims.WorkflowLib.Models.Business.Monetary
 {
     /// <summary>
     /// 
     /// </summary>
-    public class Payment
+    public class Payment : BusinessEntityWF, IBusinessEntityWF
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public long Id { get; set; }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Uid { get; set; }
-        
         /// <summary>
         /// 
         /// </summary>

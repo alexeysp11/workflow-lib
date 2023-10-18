@@ -3,7 +3,7 @@ using Cims.WorkflowLib.Models.Documents.Enums;
 namespace Cims.WorkflowLib.Models.Documents
 {
     /// <summary>
-    /// 
+    /// Attachment to the message.
     /// </summary>
     public class Attachment
     {

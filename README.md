@@ -72,4 +72,4 @@ You can also use XML/JSON wrapper (kind of no-code approach).
 
 ## How to improve the library   
 
-[Click here](docs/TODO.md) to read info on how to improve this library. 
+- [TODO](docs/TODO.md)

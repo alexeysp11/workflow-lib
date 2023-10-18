@@ -3,18 +3,8 @@ namespace Cims.WorkflowLib.Models.Business
     /// <summary>
     /// 
     /// </summary>
-    public class Address
+    public class Address : BusinessEntityWF, IBusinessEntityWF
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Name { get; set; }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Description { get; set; }
-        
         /// <summary>
         /// 
         /// </summary>

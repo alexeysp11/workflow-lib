@@ -5,7 +5,7 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
     /// <summary>
     /// 
     /// </summary>
-    public class Organization
+    public class Organization : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
         /// 

@@ -1,27 +1,13 @@
 using System.Collections.Generic;
+using Cims.WorkflowLib.Models.Business;
 
 namespace Cims.WorkflowLib.Models.Business.InformationSystem
 {
     /// <summary>
     /// 
     /// </summary>
-    public class UserGroup
+    public class UserGroup : BusinessEntityWF, IBusinessEntityWF
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public long Id { get; set; }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Uid { get; set; }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Name { get; set; }
-        
         /// <summary>
         /// Is it a group by default for the new user
         /// </summary>

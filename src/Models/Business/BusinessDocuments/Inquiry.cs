@@ -7,7 +7,7 @@ namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
     /// <summary>
     /// 
     /// </summary>
-    public class Inquiry
+    public class Inquiry : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
         /// 

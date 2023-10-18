@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Cims.WorkflowLib.Models.Business;
 using Cims.WorkflowLib.Models.Business.Customers;
 using Cims.WorkflowLib.Models.Business.InformationSystem;
 
@@ -7,28 +8,8 @@ namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
     /// <summary>
     /// 
     /// </summary>
-    public class Contract
+    public class Contract : BusinessEntityWF, IBusinessEntityWF
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public long Id { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Uid { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Description { get; set; }
-
         /// <summary>
         /// 
         /// </summary>

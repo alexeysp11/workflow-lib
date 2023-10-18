@@ -1,9 +1,11 @@
+using Cims.WorkflowLib.Models.Business;
+
 namespace Cims.WorkflowLib.Models.Business.Monetary
 {
     /// <summary>
     /// 
     /// </summary>
-    public class PayRate
+    public class PayRate : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
         /// 

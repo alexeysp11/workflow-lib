@@ -3,28 +3,8 @@ namespace Cims.WorkflowLib.Models.Business.Products
     /// <summary>
     /// Product.
     /// </summary>
-    public class Product
+    public class Product : BusinessEntityWF, IBusinessEntityWF
     {
-        /// <summary>
-        /// ID of the product.
-        /// </summary>
-        public long Id { get; set; }
-
-        /// <summary>
-        /// UID of the product.
-        /// </summary>
-        public string Uid { get; set; }
-
-        /// <summary>
-        /// Name of the product.
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Description of the product.
-        /// </summary>
-        public string Description { get; set; }
-
         /// <summary>
         /// Price of the product.
         /// </summary>

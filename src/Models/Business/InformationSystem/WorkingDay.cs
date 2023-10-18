@@ -1,3 +1,4 @@
+using Cims.WorkflowLib.Models.Business;
 using Cims.WorkflowLib.Models.Business.InformationSystem;
 using Cims.WorkflowLib.Models.Business.Products;
 
@@ -6,7 +7,7 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
     /// <summary>
     /// 
     /// </summary>
-    public class WorkingDay
+    public class WorkingDay : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
         /// 

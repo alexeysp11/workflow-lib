@@ -3,28 +3,8 @@ namespace Cims.WorkflowLib.Models.Business
     /// <summary>
     /// 
     /// </summary>
-    public class DeliveryMethod
+    public class DeliveryMethod : BusinessEntityWF, IBusinessEntityWF
     {
-        /// <summary>
-        /// ID of the delivery method.
-        /// </summary>
-        public long Id { get; set; }
-
-        /// <summary>
-        /// UID of the delivery method.
-        /// </summary>
-        public string Uid { get; set; }
-
-        /// <summary>
-        /// Name of the delivery method.
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Description of the delivery method.
-        /// </summary>
-        public string Description { get; set; }
-
         /// <summary>
         /// Type of the delivery method.
         /// </summary>

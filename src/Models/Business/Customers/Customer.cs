@@ -6,18 +6,8 @@ namespace Cims.WorkflowLib.Models.Business.Customers
     /// <summary>
     /// 
     /// </summary>
-    public class Customer
+    public class Customer : BusinessEntityWF, IBusinessEntityWF
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public long Id { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Uid { get; set; }
-
         /// <summary>
         /// 
         /// </summary>

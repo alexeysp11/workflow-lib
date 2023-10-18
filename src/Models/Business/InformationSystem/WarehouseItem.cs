@@ -1,32 +1,13 @@
+using Cims.WorkflowLib.Models.Business;
 using Cims.WorkflowLib.Models.Business.Products;
 
 namespace Cims.WorkflowLib.Models.Business.InformationSystem
 {
     /// <summary>
-    /// 
+    /// Warehouse item.
     /// </summary>
-    public class WarehouseItem
+    public class WarehouseItem : BusinessEntityWF, IBusinessEntityWF
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public long Id { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Uid { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Description { get; set; }
-
         /// <summary>
         /// 
         /// </summary>

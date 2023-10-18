@@ -8,23 +8,8 @@ namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
     /// <summary>
     /// Delivery order.
     /// </summary>
-    public class DeliveryOrder
+    public class DeliveryOrder : BusinessEntityWF, IBusinessEntityWF
     {
-        /// <summary>
-        /// ID of the delivery order.
-        /// </summary>
-        public long Id { get; set; }
-
-        /// <summary>
-        /// UID of the delivery order.
-        /// </summary>
-        public string Uid { get; set; }
-        
-        /// <summary>
-        /// Name of the delivery order.
-        /// </summary>
-        public string Name { get; set; }
-        
         /// <summary>
         /// Name of the delivery order.
         /// </summary>

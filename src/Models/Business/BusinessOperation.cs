@@ -6,18 +6,8 @@ namespace Cims.WorkflowLib.Models.Business
     /// <summary>
     /// 
     /// </summary>
-    public class BusinessOperation
+    public class BusinessOperation : BusinessEntityWF, IBusinessEntityWF
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Description { get; set; }
-
         /// <summary>
         /// 
         /// </summary>

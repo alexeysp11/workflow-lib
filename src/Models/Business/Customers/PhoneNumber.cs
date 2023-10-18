@@ -9,6 +9,7 @@ namespace Cims.WorkflowLib.Models.Business.Customers
         /// 
         /// </summary>
         public string Number { get; set; }
+        
         /// <summary>
         /// 
         /// </summary>

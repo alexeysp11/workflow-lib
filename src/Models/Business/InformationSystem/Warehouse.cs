@@ -1,22 +1,13 @@
 using System.Collections.Generic;
+using Cims.WorkflowLib.Models.Business;
 
 namespace Cims.WorkflowLib.Models.Business.InformationSystem
 {
     /// <summary>
     /// 
     /// </summary>
-    public class Warehouse
+    public class Warehouse : BusinessEntityWF, IBusinessEntityWF
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public long Id { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Uid { get; set; }
-
         /// <summary>
         /// 
         /// </summary>

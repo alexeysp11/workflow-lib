@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Cims.WorkflowLib.Models.Business;
 using Cims.WorkflowLib.Models.Business.InformationSystem;
 
 namespace Cims.WorkflowLib.Models.Business.Customers
@@ -6,7 +7,7 @@ namespace Cims.WorkflowLib.Models.Business.Customers
     /// <summary>
     /// 
     /// </summary>
-    public class MessageToCustomer
+    public class MessageToCustomer : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
         /// 

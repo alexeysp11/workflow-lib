@@ -5,7 +5,7 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
     /// <summary>
     /// 
     /// </summary>
-    public class MessageToUser
+    public class MessageToUser : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
         /// 

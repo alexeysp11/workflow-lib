@@ -1,17 +1,9 @@
+using Cims.WorkflowLib.Models.Business;
+
 namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
 {
-    public class Order
+    public class Order : BusinessEntityWF, IBusinessEntityWF
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public long Id { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Uid { get; set; }
-        
         /// <summary>
         /// 
         /// </summary>

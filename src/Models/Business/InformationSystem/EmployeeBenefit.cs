@@ -1,27 +1,9 @@
+using Cims.WorkflowLib.Models.Business;
+
 namespace Cims.WorkflowLib.Models.Business.InformationSystem
 {
-    public class EmployeeBenefit
+    public class EmployeeBenefit : BusinessEntityWF, IBusinessEntityWF
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public long Id { get; set; }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Uid { get; set; }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Description { get; set; }
-
         /// <summary>
         /// 
         /// </summary>

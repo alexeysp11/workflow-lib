@@ -2,6 +2,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Cims.WorkflowLib.Models.Business.InformationSystem
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public enum WorkingDayOption
     {
         [Display(Name = "At Work")]

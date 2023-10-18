@@ -5,7 +5,7 @@ namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
     /// <summary>
     /// 
     /// </summary>
-    public class Offer
+    public class Offer : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
         /// 

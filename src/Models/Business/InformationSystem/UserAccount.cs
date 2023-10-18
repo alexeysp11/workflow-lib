@@ -1,25 +1,12 @@
+using Cims.WorkflowLib.Models.Business;
+
 namespace Cims.WorkflowLib.Models.Business.InformationSystem
 {
     /// <summary>
     /// 
     /// </summary>
-    public class UserAccount
+    public class UserAccount : BusinessEntityWF, IBusinessEntityWF
     {
-        /// <summary>
-        /// ID of the user.
-        /// </summary>
-        public long Id { get; set; }
-        
-        /// <summary>
-        /// UID of the user.
-        /// </summary>
-        public string Uid { get; set; }
-        
-        /// <summary>
-        /// Description of the user.
-        /// </summary>
-        public string Description { get; set; }
-
         /// <summary>
         /// Login of the user.
         /// </summary>

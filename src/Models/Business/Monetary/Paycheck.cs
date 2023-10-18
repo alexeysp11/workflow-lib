@@ -6,7 +6,7 @@ namespace Cims.WorkflowLib.Models.Business.Monetary
     /// <summary>
     /// 
     /// </summary>
-    public class Paycheck 
+    public class Paycheck : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
         /// 
