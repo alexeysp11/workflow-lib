@@ -26,8 +26,6 @@ public string ServerAddress { get; set; }
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
-Network address of the server application.
-
 ### ClientAddress
 
 Network address of the client application.
@@ -39,8 +37,6 @@ public string ClientAddress { get; set; }
 #### Property Value
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
-
-Network address of the client application.
 
 ### Environment
 
@@ -54,8 +50,6 @@ public string Environment { get; set; }
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
-String representation of the environment.
-
 ### HttpPaths
 
 HTTP paths.
@@ -67,8 +61,6 @@ public string[] HttpPaths { get; set; }
 #### Property Value
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)[]
-
-HTTP paths.
 
 ### HttpPathsDbg
 
@@ -82,8 +74,6 @@ public string[] HttpPathsDbg { get; set; }
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)[]
 
-HTTP paths used for testing and debugging the server.
-
 ### PrintWebPaths
 
 Allows to print web paths which API server uses to listen to requests.
@@ -96,8 +86,6 @@ public bool PrintWebPaths { get; set; }
 
 [Boolean](https://learn.microsoft.com/en-us/dotnet/api/system.boolean)
 
-Allows to print web paths which API server uses to listen to requests.
-
 ### PrintHttpRequestProcInfo
 
 Allows to print debug information about processing HTTP requests.
@@ -109,6 +97,3 @@ public bool PrintHttpRequestProcInfo { get; set; }
 #### Property Value
 
 [Boolean](https://learn.microsoft.com/en-us/dotnet/api/system.boolean)
-
-Allows to print debug information about processing HTTP requests.
-

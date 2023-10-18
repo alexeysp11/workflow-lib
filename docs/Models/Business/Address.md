@@ -32,8 +32,6 @@ public string AdditionalInfo { get; set; }
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
-Additional info for an address.
-
 ### StreetNumber
 
 Street number (aka [house numbering](https://en.wikipedia.org/wiki/House_numbering)).
@@ -45,8 +43,6 @@ public string StreetNumber { get; set; }
 #### Property Value
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
-
-Street number (aka [house numbering](https://en.wikipedia.org/wiki/House_numbering)).
 
 ### StreetName
 
@@ -60,8 +56,6 @@ public string StreetName { get; set; }
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
-[Street name](https://en.wikipedia.org/wiki/Street_name).
-
 ### PostalCode
 
 [Postal code](https://en.wikipedia.org/wiki/Postal_code).
@@ -73,8 +67,6 @@ public string PostalCode { get; set; }
 #### Property Value
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
-
-[Postal code](https://en.wikipedia.org/wiki/Postal_code).
 
 ### City
 
@@ -88,8 +80,6 @@ public string City { get; set; }
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
-City.
-
 ### CountryProvince
 
 Country province.
@@ -102,8 +92,6 @@ public string CountryProvince { get; set; }
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
-Country province.
-
 ### Country
 
 Country.
@@ -115,5 +103,3 @@ public string Country { get; set; }
 #### Property Value
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
-
-Country.

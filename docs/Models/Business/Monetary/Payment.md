@@ -10,34 +10,6 @@ Payment.
 
 ## Properties 
 
-### Id
-
-ID of the payment.
-
-```C#
-public long Id { get; set; }
-```
-
-#### Property Value
-
-[Int64](https://learn.microsoft.com/en-us/dotnet/api/system.int64)
-
-ID of the payment.
-
-### Uid
-
-UID of the payment.
-
-```C#
-public string Uid { get; set; }
-```
-
-#### Property Value
-
-[String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
-
-UID of the payment.
-
 ### Type
 
 Type of the payment (card, cash).
@@ -49,8 +21,6 @@ public string Type { get; set; }
 #### Property Value
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
-
-Type of the payment (card, cash).
 
 ### Method
 
@@ -64,8 +34,6 @@ public string Method { get; set; }
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
-Method of the payment (credit/debit card, PayPal).
-
 ### CardNumber
 
 Card number.
@@ -77,8 +45,6 @@ public string CardNumber { get; set; }
 #### Property Value
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
-
-Card number.
 
 ### Amount
 
@@ -92,8 +58,6 @@ public decimal Amount { get; set; }
 
 [Decimal](https://learn.microsoft.com/en-us/dotnet/api/system.decimal)
 
-Amount of the payment.
-
 ### Payer
 
 Payer of the payment.
@@ -105,8 +69,6 @@ public string Payer { get; set; }
 #### Property Value
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
-
-Payer of the payment.
 
 ### Receiver
 
@@ -120,8 +82,6 @@ public string Receiver { get; set; }
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
-Receiver of the payment.
-
 ### Status
 
 Status of the payment.
@@ -133,5 +93,3 @@ public string Status { get; set; }
 #### Property Value
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
-
-Status of the payment.

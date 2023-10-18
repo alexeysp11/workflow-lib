@@ -20,48 +20,6 @@ public DeliveryOrder();
 
 ## Properties 
 
-### Id
-
-ID of the delivery order.
-
-```C#
-public long Id { get; set; }
-```
-
-#### Property Value
-
-[Int64](https://learn.microsoft.com/en-us/dotnet/api/system.int64)
-
-ID of the delivery order.
-
-### Uid
-
-UID of the delivery order.
-
-```C#
-public string Uid { get; set; }
-```
-
-#### Property Value
-
-[String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
-
-UID of the delivery order.
-
-### Name
-
-Name of the delivery order.
-
-```C#
-public string Name { get; set; }
-```
-
-#### Property Value
-
-[String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
-
-Name of the delivery order.
-
 ### Number
 
 Number of the delivery order.
@@ -73,8 +31,6 @@ public string Number { get; set; }
 #### Property Value
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
-
-Number of the delivery order.
 
 ### OpenOrderDt
 
@@ -88,8 +44,6 @@ public DateTime OpenOrderDt { get; set; }
 
 [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime)
 
-Timestamp when the delivery order was created.
-
 ### CloseOrderDt
 
 Timestamp when the delivery order was closed.
@@ -101,8 +55,6 @@ public DateTime CloseOrderDt { get; set; }
 #### Property Value
 
 [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime)
-
-Timestamp when the delivery order was closed.
 
 ### CustomerUid
 
@@ -116,8 +68,6 @@ public string CustomerUid { get; set; }
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
-Customer UID of the delivery order.
-
 ### CustomerName
 
 Customer name of the delivery order.
@@ -129,8 +79,6 @@ public string CustomerName { get; set; }
 #### Property Value
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
-
-Customer name of the delivery order.
 
 ### CompanyUid
 
@@ -144,8 +92,6 @@ public string CompanyUid { get; set; }
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
-Company UID of the delivery order.
-
 ### CompanyName
 
 Company name of the delivery order.
@@ -157,8 +103,6 @@ public string CompanyName { get; set; }
 #### Property Value
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
-
-Company name of the delivery order.
 
 ### DeliveryMethod
 
@@ -172,8 +116,6 @@ public DeliveryMethod DeliveryMethod { get; set; }
 
 [DeliveryMethod](../DeliveryMethod.md)
 
-Delivery method.
-
 ### PreparingOperations
 
 Preparing operations for the delivery order.
@@ -185,8 +127,6 @@ public ICollection<BusinessOperation> PreparingOperations { get; set; }
 #### Property Value
 
 [ICollection](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.icollection-1)<[BusinessOperation](../BusinessOperation.md)>
-
-Preparing operations for the delivery order.
 
 ### DeliveryOperation
 
@@ -200,8 +140,6 @@ public BusinessOperation DeliveryOperation { get; set; }
 
 [BusinessOperation](../BusinessOperation.md)
 
-Delivery operation.
-
 ### Products
 
 Products associated with the delivery order.
@@ -213,8 +151,6 @@ public ICollection<Product> Products { get; set; }
 #### Property Value
 
 [ICollection](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.icollection-1)<[Product](Product.md)>
-
-Products associated with the delivery order.
 
 ### ProductsPrice
 
@@ -228,8 +164,6 @@ public decimal ProductsPrice { get; set; }
 
 [Decimal](https://learn.microsoft.com/en-us/dotnet/api/system.decimal)
 
-Price of the products.
-
 ### AdditonalPrice
 
 Additonal price of the delivery order.
@@ -241,8 +175,6 @@ public decimal AdditonalPrice { get; set; }
 #### Property Value
 
 [Decimal](https://learn.microsoft.com/en-us/dotnet/api/system.decimal)
-
-Additonal price of the delivery order.
 
 ### DeliveryPrice
 
@@ -256,8 +188,6 @@ public decimal DeliveryPrice { get; set; }
 
 [Decimal](https://learn.microsoft.com/en-us/dotnet/api/system.decimal)
 
-Price for the delivery.
-
 ### TaxPrice
 
 Taxes of the delivery order.
@@ -269,8 +199,6 @@ public decimal TaxPrice { get; set; }
 #### Property Value
 
 [Decimal](https://learn.microsoft.com/en-us/dotnet/api/system.decimal)
-
-Taxes of the delivery order.
 
 ### TotalPrice
 
@@ -284,8 +212,6 @@ public decimal TotalPrice { get; set; }
 
 [Decimal](https://learn.microsoft.com/en-us/dotnet/api/system.decimal)
 
-Total price of the delivery order.
-
 ### Origin
 
 Initial address of the delivery.
@@ -297,8 +223,6 @@ public Address Origin { get; set; }
 #### Property Value
 
 [Address](../Address.md)
-
-Initial address of the delivery.
 
 ### Destination
 
@@ -312,8 +236,6 @@ public Address Destination { get; set; }
 
 [Address](../Address.md)
 
-Final address of the delivery (destination).
-
 ### Payments
 
 Payments made within the delivery order.
@@ -326,8 +248,6 @@ public ICollection<Product> Payments { get; set; }
 
 [ICollection](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.icollection-1)<[Product](Product.md)>
 
-Payments made within the delivery order.
-
 ### Status
 
 Status of the delivery order.
@@ -339,5 +259,3 @@ public string Status { get; set; }
 #### Property Value
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
-
-Status of the delivery order.

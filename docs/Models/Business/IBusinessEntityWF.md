@@ -18,8 +18,6 @@ public long Id { get; set; }
 
 [Int64](https://learn.microsoft.com/en-us/dotnet/api/system.int64)
 
-ID of the business entity.
-
 ### Uid
 
 UID of the business entity.
@@ -31,8 +29,6 @@ public string Uid { get; set; }
 #### Property Value
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
-
-UID of the business entity.
 
 ### Name
 
@@ -46,8 +42,6 @@ public string Name { get; set; }
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
-Name of the business entity.
-
 ### Description
 
 Description of the business entity.
@@ -59,6 +53,3 @@ public string Description { get; set; }
 #### Property Value
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
-
-Description of the business entity.
-

@@ -26,8 +26,6 @@ public string Content { get; set; }
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
-Content of an element of text document.
-
 ### FontSize
 
 Font size of an element of text document.
@@ -40,8 +38,6 @@ public int FontSize { get; set; }
 
 [Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32)
 
-Font size of an element of text document.
-
 ### TextAlignment
 
 Text alignment of an element of text document.
@@ -53,5 +49,3 @@ public TextAlignment TextAlignment { get; set; }
 #### Property Value
 
 [TextAlignment](Enums/TextAlignment.md)
-
-Text alignment of an element of text document.

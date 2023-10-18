@@ -28,8 +28,6 @@ public string Message { get; set; }
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
-Message of the exception.
-
 ### StackTrace
 
 Stack trace of the exception.
@@ -42,8 +40,6 @@ public string StackTrace { get; set; }
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
-Stack trace of the exception.
-
 ### FullMessage
 
 Full message of the exception.
@@ -55,5 +51,3 @@ public string FullMessage { get; set; }
 #### Property Value
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
-
-Full message of the exception.

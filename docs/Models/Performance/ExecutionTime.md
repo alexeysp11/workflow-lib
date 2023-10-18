@@ -28,8 +28,6 @@ public System.DateTime DateTimeBegin { get; set; }
 
 [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime)
 
-Timestamp when the operation started.
-
 ### DateTimeEnd
 
 Timestamp when the operation ended.
@@ -42,8 +40,6 @@ public System.DateTime DateTimeEnd { get; set; }
 
 [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime)
 
-Timestamp when the operation ended.
-
 ### TimeDifference
 
 Represents a time interval between the moment when the operation started and the moment when it ended.
@@ -55,5 +51,3 @@ public System.TimeSpan TimeDifference { get; }
 #### Property Value
 
 [TimeSpan](https://learn.microsoft.com/en-us/dotnet/api/system.timespan)
-
-Time interval.

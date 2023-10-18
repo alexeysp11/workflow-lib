@@ -20,48 +20,6 @@ public MessageWF();
 
 ## Properties 
 
-### Id
-
-ID of a message.
-
-```C#
-public long Id { get; set; }
-```
-
-#### Property Value
-
-[Int64](https://learn.microsoft.com/en-us/dotnet/api/system.int64)
-
-ID of a message.
-
-### Uid
-
-UID of a message.
-
-```C#
-public string Uid { get; set; }
-```
-
-#### Property Value
-
-[String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
-
-UID of a message.
-
-### Description
-
-Description of a message.
-
-```C#
-public string Description { get; set; }
-```
-
-#### Property Value
-
-[String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
-
-Description of a message.
-
 ### MessageCategory
 
 Category of a message.
@@ -73,8 +31,6 @@ public MessageCategory MessageCategory { get; set; }
 #### Property Value
 
 [MessageCategory](../InformationSystem/MessageCategory.md)
-
-Category of a message.
 
 ### Subject
 
@@ -88,8 +44,6 @@ public string Subject { get; set; }
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
-Subject of a message.
-
 ### Body
 
 Body of a message.
@@ -101,8 +55,6 @@ public string Body { get; set; }
 #### Property Value
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
-
-Body of a message.
 
 ### ChannelId
 
@@ -116,8 +68,6 @@ public string ChannelId { get; set; }
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
-Channel ID.
-
 ### Channel
 
 Instance of a channel (in chat app).
@@ -129,8 +79,6 @@ public Channel Channel { get; set; }
 #### Property Value
 
 [Channel](Channel.md)
-
-Instance of a channel.
 
 ### SenderId
 
@@ -144,8 +92,6 @@ public long SenderId { get; set; }
 
 [Int64](https://learn.microsoft.com/en-us/dotnet/api/system.int64)
 
-Sender ID.
-
 ### Sender
 
 Instance of a user, that has sent the message.
@@ -157,8 +103,6 @@ public UserAccount Sender { get; set; }
 #### Property Value
 
 [UserAccount](../InformationSystem/UserAccount.md)
-
-Instance of a user, that has sent the message.
 
 ### RecipientIds
 
@@ -172,8 +116,6 @@ public ICollection<long> RecipientIds { get; set; }
 
 [ICollection](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.icollection-1)<[Int64](https://learn.microsoft.com/en-us/dotnet/api/system.int64)>
 
-Collection of recipient IDs.
-
 ### UserRecipients
 
 Collection of instances of a user, that has sent the message.
@@ -185,8 +127,6 @@ public ICollection<UserAccount> UserRecipients { get; set; }
 #### Property Value
 
 [ICollection](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.icollection-1)<[UserAccount](../InformationSystem/UserAccount.md)>
-
-Collection of instances of a user, that has sent the message.
 
 ### To
 
@@ -200,8 +140,6 @@ public ICollection<MailboxAddress> To { get; set; }
 
 [ICollection](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.icollection-1)<[MailboxAddress](https://github.com/jstedfast/MimeKit/blob/master/MimeKit/MailboxAddress.cs)>
 
-Collection of mailbox addresses of recipients.
-
 ### Attachments
 
 Collection of attachments of the message.
@@ -213,8 +151,6 @@ public ICollection<Attachment> Attachments { get; set; }
 #### Property Value
 
 [ICollection](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.icollection-1)<[Attachment](../../Documents/Attachment.md)>
-
-Collection of attachments of the message.
 
 ### AttachmentsHttpRequest
 
@@ -228,8 +164,6 @@ public IFormFileCollection AttachmentsHttpRequest { get; set; }
 
 [IFormFileCollection](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.iformfilecollection)
 
-Represents the collection of files sent with the HttpRequest.
-
 ### SentAt
 
 Timestamp when the message was sent.
@@ -241,8 +175,6 @@ public DateTime SentAt { get; set; }
 #### Property Value
 
 [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime)
-
-Timestamp when the message was sent.
 
 ### ReceivedAt
 
@@ -256,8 +188,6 @@ public DateTime ReceivedAt { get; set; }
 
 [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime)
 
-Timestamp when the message was received.
-
 ### IsNew
 
 Boolean variable to indicate if the message is new.
@@ -269,8 +199,6 @@ public bool IsNew { get; set; }
 #### Property Value
 
 [Boolean](https://learn.microsoft.com/en-us/dotnet/api/system.boolean)
-
-Boolean variable.
 
 ### IsDeleted
 
@@ -284,8 +212,6 @@ public bool IsDeleted { get; set; }
 
 [Boolean](https://learn.microsoft.com/en-us/dotnet/api/system.boolean)
 
-Boolean variable.
-
 ### IsReceived
 
 Boolean variable to indicate if the message is received.
@@ -297,5 +223,3 @@ public bool IsReceived { get; set; }
 #### Property Value
 
 [Boolean](https://learn.microsoft.com/en-us/dotnet/api/system.boolean)
-
-Boolean variable.

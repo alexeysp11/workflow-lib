@@ -32,8 +32,6 @@ public DeliveryMethodType Type { get; set; }
 
 [DeliveryMethodType](DeliveryMethodType.md)
 
-Type of the delivery method.
-
 ### Price
 
 Price of the delivery method.
@@ -45,5 +43,3 @@ public decimal Price { get; set; }
 #### Property Value
 
 [Decimal](https://learn.microsoft.com/en-us/dotnet/api/system.decimal)
-
-Price of the delivery method.
