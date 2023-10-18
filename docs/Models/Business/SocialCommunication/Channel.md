@@ -2,6 +2,10 @@
 
 *Namespace*: [Cims.WorkflowLib.Models.Business.SocialCommunication](Cims.WorkflowLib.Models.Business.SocialCommunication.md)
 
+*Implements*: [IBusinessEntityWF](../IBusinessEntityWF.md)
+
+*Inherits*: [BusinessEntityWF](../BusinessEntityWF.md)
+
 Channel in a chat app.
 
 ## Constructors

@@ -2,6 +2,10 @@
 
 *Namespace*: [Cims.WorkflowLib.Models.Business](Cims.WorkflowLib.Models.Business.md)
 
+*Implements*: [IBusinessEntityWF](IBusinessEntityWF.md)
+
+*Inherits*: [BusinessEntityWF](BusinessEntityWF.md)
+
 Address.
 
 ## Constructors 
@@ -15,34 +19,6 @@ public Address();
 ```
 
 ## Properties 
-
-### Name
-
-Name of an address.
-
-```C#
-public string Name { get; set; }
-```
-
-#### Property Value
-
-[String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
-
-Name of an address.
-
-### Description
-
-Description of an address.
-
-```C#
-public string Description { get; set; }
-```
-
-#### Property Value
-
-[String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
-
-Description of an address.
 
 ### AdditionalInfo
 

@@ -2,6 +2,10 @@
 
 *Namespace*: [Cims.WorkflowLib.Models.Business.BusinessDocuments](Cims.WorkflowLib.Models.Business.BusinessDocuments.md)
 
+*Implements*: [IBusinessEntityWF](../IBusinessEntityWF.md)
+
+*Inherits*: [BusinessEntityWF](../BusinessEntityWF.md)
+
 Bill.
 
 ## Constructors

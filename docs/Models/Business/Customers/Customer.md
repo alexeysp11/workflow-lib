@@ -2,6 +2,10 @@
 
 *Namespace*: [Cims.WorkflowLib.Models.Business.Customers](Cims.WorkflowLib.Models.Business.Customers.md)
 
+*Implements*: [IBusinessEntityWF](../IBusinessEntityWF.md)
+
+*Inherits*: [BusinessEntityWF](../BusinessEntityWF.md)
+
 Customer. 
 
 ## Constructors

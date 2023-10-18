@@ -2,6 +2,10 @@
 
 *Namespace*: [Cims.WorkflowLib.Models.Business.InformationSystem](Cims.WorkflowLib.Models.Business.InformationSystem.md)
 
+*Implements*: [IBusinessEntityWF](../IBusinessEntityWF.md)
+
+*Inherits*: [BusinessEntityWF](../BusinessEntityWF.md)
+
 Replacement.
 
 ## Properties

@@ -1,5 +1,11 @@
 # Project Class 
 
+*Namespace*: [Cims.WorkflowLib.Models.Business.Products](Cims.WorkflowLib.Models.Business.Products.md)
+
+*Implements*: [IBusinessEntityWF](../IBusinessEntityWF.md)
+
+*Inherits*: [BusinessEntityWF](../BusinessEntityWF.md)
+
 The Projects module keeps organized all the company projects. To each Project is assigned Employee who is Project manager and is responsible for all the Project activities. The Project manager also is approving Bills which are created for the completed work on the Project. After the Bill is approved then it is send to the customer for acceptance. Once the Bill is accepted, all the sold materials and services are stored in the project Storehouse and for the accepted Bill can be created Invoice
 
 ## Properties

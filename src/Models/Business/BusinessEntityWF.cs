@@ -1,5 +1,8 @@
 namespace Cims.WorkflowLib.Models.Business
 {
+    /// <summary>
+    /// Business entity in the workflow-lib.
+    /// </summary>
     public abstract class BusinessEntityWF : IBusinessEntityWF
     {
         /// <summary>

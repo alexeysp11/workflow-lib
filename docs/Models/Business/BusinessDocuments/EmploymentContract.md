@@ -1,8 +1,12 @@
 # EmploymentContract Class 
 
-[Employment contract](https://en.wikipedia.org/wiki/Employment_contract)
+*Namespace*: [Cims.WorkflowLib.Models.Business.BusinessDocuments](Cims.WorkflowLib.Models.Business.BusinessDocuments.md)
 
-Employment contract.
+*Implements*: [IBusinessEntityWF](../IBusinessEntityWF.md)
+
+*Inherits*: [BusinessEntityWF](../BusinessEntityWF.md)
+
+Instance of [employment contract](https://en.wikipedia.org/wiki/Employment_contract).
 
 ## Constructors
 

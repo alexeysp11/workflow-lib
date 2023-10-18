@@ -1,7 +1,7 @@
 namespace Cims.WorkflowLib.Models.Business
 {
     /// <summary>
-    /// 
+    /// Interface that represents a business entity.
     /// </summary>
     public interface IBusinessEntityWF
     {

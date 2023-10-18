@@ -1,10 +1,8 @@
-# BusinessEntityWF Class 
+# IBusinessEntityWF Interface 
 
 *Namespace*: [Cims.WorkflowLib.Models.Business](Cims.WorkflowLib.Models.Business.md)
 
-*Implements*: [IBusinessEntityWF](IBusinessEntityWF.md)
-
-Business entity in the workflow-lib.
+Interface that represents a business entity.
 
 ## Properties
 
@@ -63,3 +61,4 @@ public string Description { get; set; }
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
 Description of the business entity.
+
