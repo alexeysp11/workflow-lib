@@ -55,7 +55,7 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// 
         /// </summary>
-        public ICollection<string> RecipientIds { get; set; }
+        public ICollection<string> RecipientIDs { get; set; }
 
         /// <summary>
         /// 

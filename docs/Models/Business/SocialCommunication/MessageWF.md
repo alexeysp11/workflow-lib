@@ -80,6 +80,30 @@ public Channel Channel { get; set; }
 
 [Channel](Channel.md)
 
+### ChatroomId
+
+Chatroom ID.
+
+```C#
+public string ChatroomId { get; set; }
+```
+
+#### Property Value
+
+[String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
+
+### Chatroom
+
+Instance of a channel (in chat app).
+
+```C#
+public Chatroom Chatroom { get; set; }
+```
+
+#### Property Value
+
+[Chatroom](Chatroom.md)
+
 ### SenderId
 
 Sender ID.
@@ -104,12 +128,12 @@ public UserAccount Sender { get; set; }
 
 [UserAccount](../InformationSystem/UserAccount.md)
 
-### RecipientIds
+### RecipientIDs
 
 Collection of recipient IDs.
 
 ```C#
-public ICollection<long> RecipientIds { get; set; }
+public ICollection<long> RecipientIDs { get; set; }
 ```
 
 #### Property Value
@@ -169,7 +193,7 @@ public IFormFileCollection AttachmentsHttpRequest { get; set; }
 Timestamp when the message was sent.
 
 ```C#
-public DateTime SentAt { get; set; }
+public System.DateTime SentAt { get; set; }
 ```
 
 #### Property Value
@@ -181,7 +205,7 @@ public DateTime SentAt { get; set; }
 Timestamp when the message was received.
 
 ```C#
-public DateTime ReceivedAt { get; set; }
+public System.DateTime ReceivedAt { get; set; }
 ```
 
 #### Property Value

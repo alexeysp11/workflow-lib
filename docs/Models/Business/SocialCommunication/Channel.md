@@ -37,7 +37,7 @@ public string Title { get; set; }
 Timestamp when a message was created.
 
 ```C#
-public DateTime DateCreated { get; set; }
+public System.DateTime DateCreated { get; set; }
 ```
 
 #### Property Value

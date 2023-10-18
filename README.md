@@ -26,6 +26,7 @@ Read this in other languages: [English](README.md), [Russian/Русский](REA
     - Monetary: [paycheck](docs/Models/Business/Monetary/Paycheck.md), [payment](docs/Models/Business/Monetary/Payment.md), [pay rate](docs/Models/Business/Monetary/PayRate.md), etc.
     - Products: [product](docs/Models/Business/Products/Product.md), [product category](docs/Models/Business/Products/ProductCategory.md), [project](docs/Models/Business/Products/Project.md).
     - Responsibilities: [employee responsibility](docs/Models/Business/Responsibilities/EmployeeResponsibility.md), [employer responsibility](docs/Models/Business/Responsibilities/EmployerResponsibility.md).
+    Social communication: [message](docs/Models/Business/SocialCommunication/MessageWF.md).
 <!--
 - Data visualization: Line chart, Bar chart, Histogram, Scatter plot, Box plot, Pareto chart, Pie chart, Area chart, Tree map, Bubble chart, Stripe graphic, Control chart, Run chart, Stem-and-leaf display, Cartogram, Small multiple, Sparkline, Table, Marimekko chart. 
 -->

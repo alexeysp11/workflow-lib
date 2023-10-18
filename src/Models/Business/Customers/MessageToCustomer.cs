@@ -57,7 +57,7 @@ namespace Cims.WorkflowLib.Models.Business.Customers
         /// <summary>
         /// Collection of recipient IDs.
         /// </summary>
-        public ICollection<string> RecipientIds { get; set; }
+        public ICollection<string> RecipientIDs { get; set; }
 
         /// <summary>
         /// User account of the sender.

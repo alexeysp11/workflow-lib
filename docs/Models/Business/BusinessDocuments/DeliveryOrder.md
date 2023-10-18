@@ -37,7 +37,7 @@ public string Number { get; set; }
 Timestamp when the delivery order was created.
 
 ```C#
-public DateTime OpenOrderDt { get; set; }
+public System.DateTime OpenOrderDt { get; set; }
 ```
 
 #### Property Value
@@ -49,7 +49,7 @@ public DateTime OpenOrderDt { get; set; }
 Timestamp when the delivery order was closed.
 
 ```C#
-public DateTime CloseOrderDt { get; set; }
+public System.DateTime CloseOrderDt { get; set; }
 ```
 
 #### Property Value

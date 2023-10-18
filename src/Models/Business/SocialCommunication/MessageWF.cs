@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using MimeKit;
+using Cims.WorkflowLib.Models.Business;
 using Cims.WorkflowLib.Models.Business.InformationSystem;
 using Cims.WorkflowLib.Models.Documents;
 
@@ -9,23 +10,8 @@ namespace Cims.WorkflowLib.Models.Business.SocialCommunication
     /// <summary>
     /// Respresents a message that is specific for the workflow-lib.
     /// </summary>
-    public class MessageWF
+    public class MessageWF : BusinessEntityWF, IBusinessEntityWF
     {
-        /// <summary>
-        /// ID of a message.
-        /// </summary>
-        public long Id { get; set; }
-
-        /// <summary>
-        /// UID of a message.
-        /// </summary>
-        public string Uid { get; set; }
-
-        /// <summary>
-        /// Description of a message.
-        /// </summary>
-        public string Description { get; set; }
-
         /// <summary>
         /// Category of a message.
         /// </summary>
@@ -47,9 +33,19 @@ namespace Cims.WorkflowLib.Models.Business.SocialCommunication
         public long ChannelId { get; set; }
 
         /// <summary>
-        /// Instance of a channel (in chat app).
+        /// Instance of a channel.
         /// </summary>
         public Channel Channel { get; set; }
+
+        /// <summary>
+        /// Chatroom ID.
+        /// </summary>
+        public long ChatroomId { get; set; }
+
+        /// <summary>
+        /// Instance of a chatroom.
+        /// </summary>
+        public Chatroom Chatroom { get; set; }
 
         /// <summary>
         /// Sender ID.
@@ -64,7 +60,7 @@ namespace Cims.WorkflowLib.Models.Business.SocialCommunication
         /// <summary>
         /// Collection of recipient IDs.
         /// </summary>
-        public ICollection<long> RecipientIds { get; set; }
+        public ICollection<long> RecipientIDs { get; set; }
 
         /// <summary>
         /// Collection of instances of a user, that has sent the message.
@@ -94,7 +90,7 @@ namespace Cims.WorkflowLib.Models.Business.SocialCommunication
         /// <summary>
         /// Timestamp when the message was received.
         /// </summary>
-        public System.DateTime? ReceivedAt { get; set; }
+        public System.DateTime ReceivedAt { get; set; }
         
         /// <summary>
         /// Boolean variable to indicate if the message is new.
