@@ -1,6 +1,6 @@
 # BusinessOperation Class
 
-Namespace: [Cims.WorkflowLib.Models.Business](Cims.WorkflowLib.Models.Business.md)
+*Namespace*: [Cims.WorkflowLib.Models.Business](Cims.WorkflowLib.Models.Business.md)
 
 Representation of a business operation.
 

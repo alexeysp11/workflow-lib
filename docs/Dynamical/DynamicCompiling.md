@@ -1,6 +1,6 @@
 # DynamicCompiling Class
 
-Namespace: [Cims.WorkflowLib.Dynamical](Cims.WorkflowLib.Dynamical.md)
+*Namespace*: [Cims.WorkflowLib.Dynamical](Cims.WorkflowLib.Dynamical.md)
 
 `DynamicCompiling` is class for **dynamically compiling** a string containing a C# code.
 

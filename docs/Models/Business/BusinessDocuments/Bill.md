@@ -1,6 +1,6 @@
 # Bill Class 
 
-Namespace: [Cims.WorkflowLib.Models.Business.BusinessDocuments](Cims.WorkflowLib.Models.Business.BusinessDocuments.md)
+*Namespace*: [Cims.WorkflowLib.Models.Business.BusinessDocuments](Cims.WorkflowLib.Models.Business.BusinessDocuments.md)
 
 Bill.
 

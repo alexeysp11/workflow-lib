@@ -1,6 +1,6 @@
 # ApiOperation Class
 
-Namespace: [Cims.WorkflowLib.Models.Network](Cims.WorkflowLib.Models.Network.md)
+*Namespace*: [Cims.WorkflowLib.Models.Network](Cims.WorkflowLib.Models.Network.md)
 
 Represents any attempt to communcate with API server as an operation.
 

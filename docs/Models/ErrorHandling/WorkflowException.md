@@ -1,6 +1,6 @@
 # WorkflowException Class
 
-Namespace: [Cims.WorkflowLib.Models.ErrorHandling](Cims.WorkflowLib.Models.ErrorHandling.md)
+*Namespace*: [Cims.WorkflowLib.Models.ErrorHandling](Cims.WorkflowLib.Models.ErrorHandling.md)
 
 Exception that is occurred during execution of the API operation.
 

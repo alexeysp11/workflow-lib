@@ -1,6 +1,6 @@
 # Replacement Class 
 
-Namespace: [Cims.WorkflowLib.Models.Business.InformationSystem](Cims.WorkflowLib.Models.Business.InformationSystem.md)
+*Namespace*: [Cims.WorkflowLib.Models.Business.InformationSystem](Cims.WorkflowLib.Models.Business.InformationSystem.md)
 
 Replacement.
 

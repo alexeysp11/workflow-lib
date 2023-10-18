@@ -1,6 +1,6 @@
 # Channel Class 
 
-Namespace: [Cims.WorkflowLib.Models.Business.SocialCommunication](Cims.WorkflowLib.Models.Business.SocialCommunication.md)
+*Namespace*: [Cims.WorkflowLib.Models.Business.SocialCommunication](Cims.WorkflowLib.Models.Business.SocialCommunication.md)
 
 Channel in a chat app.
 

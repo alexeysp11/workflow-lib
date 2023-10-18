@@ -1,6 +1,6 @@
 # MessageWF Class 
 
-Namespace: [Cims.WorkflowLib.Models.Business.SocialCommunication](Cims.WorkflowLib.Models.Business.SocialCommunication.md)
+*Namespace*: [Cims.WorkflowLib.Models.Business.SocialCommunication](Cims.WorkflowLib.Models.Business.SocialCommunication.md)
 
 Respresents a message that is specific for the workflow-lib.
 

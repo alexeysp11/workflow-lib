@@ -1,6 +1,6 @@
 namespace Cims.WorkflowLib.Models.Business
 {
-    public class BusinessEntityWF : IBusinessEntityWF
+    public abstract class BusinessEntityWF : IBusinessEntityWF
     {
         /// <summary>
         /// ID of the business entity.

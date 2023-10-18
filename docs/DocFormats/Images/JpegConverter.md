@@ -1,6 +1,6 @@
 # JpegConverter Class
 
-Namespace: [Cims.WorkflowLib.DocFormats.Images](Cims.WorkflowLib.DocFormats.Images.md)
+*Namespace*: [Cims.WorkflowLib.DocFormats.Images](Cims.WorkflowLib.DocFormats.Images.md)
 
 `JpegConverter` is a class for converting text into a **JPEG** image. 
 

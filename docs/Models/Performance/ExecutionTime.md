@@ -1,6 +1,6 @@
 # ExecutionTime Class
 
-Namespace: [Cims.WorkflowLib.Models.Performance](Cims.WorkflowLib.Models.Performance.md)
+*Namespace*: [Cims.WorkflowLib.Models.Performance](Cims.WorkflowLib.Models.Performance.md)
 
 Represents the execution time of the operation (could be used for measuring performance).
 

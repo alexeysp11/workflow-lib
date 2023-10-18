@@ -1,6 +1,6 @@
 # SqliteDbConnection Class
 
-Namespace: [Cims.WorkflowLib.DbConnections](Cims.WorkflowLib.DbConnections.md)
+*Namespace*: [Cims.WorkflowLib.DbConnections](Cims.WorkflowLib.DbConnections.md)
 
 `SqliteDbConnection` is a class for using SQLite database.
 

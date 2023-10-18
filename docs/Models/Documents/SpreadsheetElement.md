@@ -1,6 +1,6 @@
 # SpreadsheetElement Class
 
-Namespace: [Cims.WorkflowLib.Models.Documents](Cims.WorkflowLib.Models.Documents.md)
+*Namespace*: [Cims.WorkflowLib.Models.Documents](Cims.WorkflowLib.Models.Documents.md)
 
 Class for representing an element of spreadsheet document.
 

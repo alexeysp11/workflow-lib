@@ -1,6 +1,6 @@
 # BmpConverter Class
 
-Namespace: [Cims.WorkflowLib.DocFormats.Images](Cims.WorkflowLib.DocFormats.Images.md)
+*Namespace*: [Cims.WorkflowLib.DocFormats.Images](Cims.WorkflowLib.DocFormats.Images.md)
 
 `BmpConverter` is a class for converting text into a **BMP** image. 
 

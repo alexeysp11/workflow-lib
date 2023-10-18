@@ -1,6 +1,6 @@
 # PngConverter Class
 
-Namespace: [Cims.WorkflowLib.DocFormats.Images](Cims.WorkflowLib.DocFormats.Images.md)
+*Namespace*: [Cims.WorkflowLib.DocFormats.Images](Cims.WorkflowLib.DocFormats.Images.md)
 
 `PngConverter` is a class for converting text into a **PNG** image. 
 

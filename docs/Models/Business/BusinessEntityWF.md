@@ -1,24 +1,12 @@
-# Attachment Class 
+# BusinessEntityWF Class 
 
-*Namespace*: [Cims.WorkflowLib.Models.Documents](Cims.WorkflowLib.Models.Documents.md)
-
-Attachment to the message.
-
-## Constructors
-
-### Attachment()
-
-Default constructor.
-
-```C#
-public Attachment();
-```
+*Namespace*: [Cims.WorkflowLib.Models.Business](Cims.WorkflowLib.Models.Business.md)
 
 ## Properties
 
 ### Id
 
-ID of the attachment.
+ID of the business enrirty.
 
 ```C#
 public long Id { get; set; }
@@ -28,11 +16,11 @@ public long Id { get; set; }
 
 [Int64](https://learn.microsoft.com/en-us/dotnet/api/system.int64)
 
-ID of the attachment.
+ID of the business enrirty.
 
 ### Uid
 
-UID of the attachment.
+UID of the business enrirty.
 
 ```C#
 public string Uid { get; set; }
@@ -42,11 +30,11 @@ public string Uid { get; set; }
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
-UID of the attachment.
+UID of the business enrirty.
 
 ### Name
 
-Name of the attachment.
+Name of the business enrirty.
 
 ```C#
 public string Name { get; set; }
@@ -56,11 +44,11 @@ public string Name { get; set; }
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
-Name of the attachment.
+Name of the business enrirty.
 
 ### Description
 
-Description of the attachment.
+Description of the business enrirty.
 
 ```C#
 public string Description { get; set; }
@@ -70,4 +58,5 @@ public string Description { get; set; }
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
-Description of the attachment.
+Description of the business enrirty.
+

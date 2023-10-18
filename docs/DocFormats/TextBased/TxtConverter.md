@@ -1,6 +1,6 @@
 # TxtConverter Class
 
-Namespace: [Cims.WorkflowLib.DocFormats.TextBased](Cims.WorkflowLib.DocFormats.TextBased.md)
+*Namespace*: [Cims.WorkflowLib.DocFormats.TextBased](Cims.WorkflowLib.DocFormats.TextBased.md)
 
 `TxtConverter` is a class for using **TXT** documents .
 

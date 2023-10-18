@@ -1,6 +1,6 @@
 # BinaryConverter Class
 
-Namespace: [Cims.WorkflowLib.DocFormats](Cims.WorkflowLib.DocFormats.md)
+*Namespace*: [Cims.WorkflowLib.DocFormats](Cims.WorkflowLib.DocFormats.md)
 
 `BinaryConverter` is a class for using **binaries** (**binary converter**).
 

@@ -1,6 +1,6 @@
 # Company Class
 
-Namespace: [Cims.WorkflowLib.Models.Business.Customers](Cims.WorkflowLib.Models.Business.Customers.md)
+*Namespace*: [Cims.WorkflowLib.Models.Business.Customers](Cims.WorkflowLib.Models.Business.Customers.md)
 
 Company. 
 

@@ -1,6 +1,6 @@
 # PdfConverter Class
 
-Namespace: [Cims.WorkflowLib.DocFormats](Cims.WorkflowLib.DocFormats.md)
+*Namespace*: [Cims.WorkflowLib.DocFormats](Cims.WorkflowLib.DocFormats.md)
 
 `PdfConverter` is a class for using **PDF** (**PDF converter**).
 

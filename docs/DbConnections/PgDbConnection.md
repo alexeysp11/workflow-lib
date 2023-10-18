@@ -1,6 +1,6 @@
 # PgDbConnection Class
 
-Namespace: [Cims.WorkflowLib.DbConnections](Cims.WorkflowLib.DbConnections.md)
+*Namespace*: [Cims.WorkflowLib.DbConnections](Cims.WorkflowLib.DbConnections.md)
 
 `PgDbConnection` is a class for using PostgreSQL database.
 

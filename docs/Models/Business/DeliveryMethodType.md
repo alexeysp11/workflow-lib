@@ -1,6 +1,6 @@
 # DeliveryMethodType Enumeration 
 
-Namespace: [Cims.WorkflowLib.Models.Business](Cims.WorkflowLib.Models.Business.md)
+*Namespace*: [Cims.WorkflowLib.Models.Business](Cims.WorkflowLib.Models.Business.md)
 
 ## Fields 
 

@@ -1,6 +1,6 @@
 # NetworkAppSettings
 
-Namespace: [Cims.WorkflowLib.Models.AppSettings](Cims.WorkflowLib.Models.AppSettings.md)
+*Namespace*: [Cims.WorkflowLib.Models.AppSettings](Cims.WorkflowLib.Models.AppSettings.md)
 
 Class for storing confidurations related to the core server.
 

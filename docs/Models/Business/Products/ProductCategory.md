@@ -1,6 +1,6 @@
 # ProductCategory Class 
 
-Namespace: [Cims.WorkflowLib.Models.Business.Products](Cims.WorkflowLib.Models.Business.Products.md)
+*Namespace*: [Cims.WorkflowLib.Models.Business.Products](Cims.WorkflowLib.Models.Business.Products.md)
 
 Product category.
 

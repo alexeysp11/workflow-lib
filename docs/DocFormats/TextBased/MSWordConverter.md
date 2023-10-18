@@ -1,6 +1,6 @@
 # MSWordConverter Class
 
-Namespace: [Cims.WorkflowLib.DocFormats.TextBased](Cims.WorkflowLib.DocFormats.TextBased.md)
+*Namespace*: [Cims.WorkflowLib.DocFormats.TextBased](Cims.WorkflowLib.DocFormats.TextBased.md)
 
 `MSWordConverter` is a class for using **MS Word** (**MS Word converter**).
 

@@ -1,6 +1,6 @@
 # MSExcelConverter Class
 
-Namespace: [Cims.WorkflowLib.DocFormats.Spreadsheets](Cims.WorkflowLib.DocFormats.Spreadsheets.md)
+*Namespace*: [Cims.WorkflowLib.DocFormats.Spreadsheets](Cims.WorkflowLib.DocFormats.Spreadsheets.md)
 
 `MSExcelConverter` is a class for using **MS Excel** (**MS Excel converter**).
 
