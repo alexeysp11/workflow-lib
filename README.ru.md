@@ -6,7 +6,7 @@
 - [Динамической компиляции кода на C#](docs/Dynamical/DynamicCompiling.md);
 - Базы данных: [SQLite](docs/DbConnections/SqliteDbConnection.md), [PostgreSQL](docs/DbConnections/PgDbConnection.md), [MySQL](docs/DbConnections/MysqlDbConnection.md), [MS SQL](docs/DbConnections/MssqlDbConnection.md), [Oracle](docs/DbConnections/OracleDbConnection.md);
 - Сетевое взаимодействие и APIs: 
-    - [HTTP](docs/NetworkApis/HttpSender.md), 
+    - HTTP: [sender](docs/NetworkApis/HttpSender.md), 
     - TCP: [client](docs/NetworkApis/TcpClientWF.md), [listener](docs/NetworkApis/TcpListenerWF.md), 
     - Email sender: [MimeKit based](docs/NetworkApis/EmailSenderMimeKit.md);
 - Документы и операции с документами (запись, чтение, конвертация): 

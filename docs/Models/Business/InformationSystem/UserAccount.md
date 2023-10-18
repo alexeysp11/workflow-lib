@@ -1,5 +1,9 @@
 # UserAccount Class 
 
+Namespace: [Cims.WorkflowLib.Models.Business.InformationSystem](Cims.WorkflowLib.Models.Business.InformationSystem.md)
+
+User account.
+
 ## Properties 
 
 ### Id
@@ -29,7 +33,6 @@ public string Uid { get; set; }
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
 UID of the user.
-
 
 ### Login
 
@@ -92,11 +95,25 @@ Password of the user.
 Photo of the user.
 
 ```C#
-public string Photo { get; set; }
+public byte Photo { get; set; }
+```
+
+#### Property Value
+
+[Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte)[]
+
+Photo of the user.
+
+### PhotoUrl
+
+Photo URL of the user.
+
+```C#
+public string PhotoUrl { get; set; }
 ```
 
 #### Property Value
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
 
-Photo of the user.
+Photo URL of the user.

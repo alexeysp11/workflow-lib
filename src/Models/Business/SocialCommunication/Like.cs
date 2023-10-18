@@ -55,7 +55,7 @@ namespace Cims.WorkflowLib.Models.Business.SocialCommunication
         /// <summary>
         /// 
         /// </summary>
-        public Message Message { get; set; }
+        public MessageWF MessageWF { get; set; }
 
         /// <summary>
         /// 

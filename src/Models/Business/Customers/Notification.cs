@@ -8,7 +8,7 @@ namespace Cims.WorkflowLib.Models.Business.Customers
         /// <summary>
         /// 
         /// </summary>
-        public string SenderId { get; set; } 
+        public long SenderId { get; set; } 
         /// <summary>
         /// 
         /// </summary>

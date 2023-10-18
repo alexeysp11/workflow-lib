@@ -2,8 +2,8 @@
 
 Namespace: [Cims.WorkflowLib.Models.Business](Cims.WorkflowLib.Models.Business.md)
 
-## Values 
+## Fields 
 
-- On Foot
-- Electric Scooter
-- Car
+- `OnFoot`
+- `ElectricScooter`
+- `Car`

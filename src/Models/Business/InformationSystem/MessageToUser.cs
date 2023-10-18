@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Cims.WorkflowLib.Models.Business.InformationSystem
 {
     /// <summary>
@@ -48,12 +50,12 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// 
         /// </summary>
-        public string SenderId { get; private set; }
+        public long SenderId { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string RecipientId { get; private set; }
+        public ICollection<string> RecipientIds { get; private set; }
 
         /// <summary>
         /// 

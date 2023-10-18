@@ -6,5 +6,6 @@
 
 ## Classes 
 
+- [Attachment](Attachment.md);
 - [SpreadsheetElement](SpreadsheetElement.md);
 - [TextDocElement](TextDocElement.md).

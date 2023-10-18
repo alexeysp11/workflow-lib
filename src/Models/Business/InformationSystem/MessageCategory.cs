@@ -1,7 +1,7 @@
 namespace Cims.WorkflowLib.Models.Business.InformationSystem
 {
     /// <summary>
-    /// 
+    /// Category of a message.
     /// </summary>
     public enum MessageCategory
     {

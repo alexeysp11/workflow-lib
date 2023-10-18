@@ -4,9 +4,9 @@ Namespace: [Cims.WorkflowLib.Models.Documents.Enums](Cims.WorkflowLib.Models.Doc
 
 Text alignment enumeration.
 
-## Values
+## Fields
 
-- LEFT
-- CENTER
-- RIGHT
-- JUSTIFIED
+- `LEFT`
+- `CENTER`
+- `RIGHT`
+- `JUSTIFIED`

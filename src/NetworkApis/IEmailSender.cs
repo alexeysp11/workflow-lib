@@ -8,7 +8,7 @@ namespace Cims.WorkflowLib.NetworkApis
     /// </summary>
     public interface IEmailSender
     {
-        void SendEmail(Message message);
-        Task SendEmailAsync(Message message);
+        void SendEmail(MessageWF message);
+        Task SendEmailAsync(MessageWF message);
     }
 }

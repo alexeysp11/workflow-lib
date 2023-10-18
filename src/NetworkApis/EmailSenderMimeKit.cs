@@ -43,7 +43,7 @@ namespace Cims.WorkflowLib.NetworkApis
         /// <summary>
         /// 
         /// </summary>
-        public void SendEmail(Message message)
+        public void SendEmail(MessageWF message)
         {
             var emailMessage = CreateEmailMessage(message);
 
@@ -53,7 +53,7 @@ namespace Cims.WorkflowLib.NetworkApis
         /// <summary>
         /// 
         /// </summary>
-        public async Task SendEmailAsync(Message message)
+        public async Task SendEmailAsync(MessageWF message)
         {
             var mailMessage = CreateEmailMessage(message);
 
@@ -63,7 +63,7 @@ namespace Cims.WorkflowLib.NetworkApis
         /// <summary>
         /// 
         /// </summary>
-        private MimeMessage CreateEmailMessage(Message message)
+        private MimeMessage CreateEmailMessage(MessageWF message)
         {
             var emailMessage = new MimeMessage();
             //emailMessage.From.Add(new MailboxAddress(_emailConfig.From));

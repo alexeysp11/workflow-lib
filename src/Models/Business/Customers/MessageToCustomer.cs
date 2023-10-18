@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Cims.WorkflowLib.Models.Business.InformationSystem;
 
 namespace Cims.WorkflowLib.Models.Business.Customers
@@ -50,12 +51,12 @@ namespace Cims.WorkflowLib.Models.Business.Customers
         /// <summary>
         /// 
         /// </summary>
-        public string SenderId { get; private set; }
+        public long SenderId { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string RecipientId { get; private set; }
+        public ICollection<string> RecipientIds { get; private set; }
 
         /// <summary>
         /// 
