@@ -8,6 +8,9 @@ using System.Text;
 
 namespace Cims.WorkflowLib.Translation.Digits
 {
+    /// <summary>
+    /// Digits translation (German).
+    /// </summary>
     public class DigitsTranslation_de_DE
     {
         private static string[] OneThroughNineteen = {

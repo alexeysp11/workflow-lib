@@ -6,7 +6,7 @@ using System.Net.Sockets;
 namespace Cims.WorkflowLib.NetworkApis
 {
     /// <summary>
-    /// 
+    /// TCP listener.
     /// </summary>
     public class TcpListenerWF
     {
@@ -24,12 +24,14 @@ namespace Cims.WorkflowLib.NetworkApis
         /// 
         /// </summary>
         public IPAddress Ip { get; }
+
         /// <summary>
-        /// 
+        /// Server name.
         /// </summary>
         public string ServerName { get; private set; }
+
         /// <summary>
-        /// 
+        /// Port.
         /// </summary>
         private int Port { get; }
         
@@ -37,6 +39,7 @@ namespace Cims.WorkflowLib.NetworkApis
         /// 
         /// </summary>
         private byte[] ReceivedBytes;
+        
         /// <summary>
         /// 
         /// </summary>

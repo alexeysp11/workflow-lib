@@ -3,6 +3,9 @@ using Npgsql;
 
 namespace Cims.WorkflowLib.DbConnections
 {
+    /// <summary>
+    /// PostgreSQL database connection.
+    /// </summary>
     public class PgDbConnection : BaseDbConnection, ICommonDbConnection
     {
         private string DataSource { get; set; }

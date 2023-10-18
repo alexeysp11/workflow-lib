@@ -2,6 +2,9 @@ using System.Net.Sockets;
 
 namespace Cims.WorkflowLib.NetworkApis 
 {
+    /// <summary>
+    /// TCP client.
+    /// </summary>
     public class TcpClientWF
     {
         #region Configuration properties

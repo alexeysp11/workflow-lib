@@ -3,20 +3,20 @@ using Cims.WorkflowLib.Models.Business.Monetary.Enums;
 namespace Cims.WorkflowLib.Models.Business.Monetary
 {
     /// <summary>
-    /// 
+    /// Money.
     /// </summary>
     public class Money
     {
         /// <summary>
-        /// 
+        /// Integer.
         /// </summary>
         public int Integer { get; private set; }
         /// <summary>
-        /// 
+        /// Fraction.
         /// </summary>
         public int Fraction { get; private set; }
         /// <summary>
-        /// 
+        /// Currency.
         /// </summary>
         public Currency Currency { get; private set; }
 

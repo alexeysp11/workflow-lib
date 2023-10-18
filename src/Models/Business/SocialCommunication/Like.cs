@@ -1,64 +1,55 @@
+using Cims.WorkflowLib.Models.Business;
 using Cims.WorkflowLib.Models.Business.InformationSystem;
 
 namespace Cims.WorkflowLib.Models.Business.SocialCommunication
 {
     /// <summary>
-    /// 
+    /// Like.
     /// </summary>
-    public class Like
+    public class Like : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
-        /// 
-        /// </summary>
-        public long Id { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Uid { get; set; }
-        
-        /// <summary>
-        /// 
+        /// Like type.
         /// </summary>
         public LikeType LikeType { get; set; }
         
         /// <summary>
-        /// 
+        /// Liker ID.
         /// </summary>
-        public int LikerId { get; set; }
+        public long LikerId { get; set; }
         
         /// <summary>
-        /// 
+        /// Likee ID.
         /// </summary>
-        public int LikeeId { get; set; }
+        public long LikeeId { get; set; }
 
         /// <summary>
-        /// 
+        /// Message ID.
         /// </summary>
-        public int MessageId { get; set; }
+        public long MessageId { get; set; }
 
         /// <summary>
-        /// 
+        /// Post ID.
         /// </summary>
-        public int PostId { get; set; }
+        public long PostId { get; set; }
         
         /// <summary>
-        /// 
+        /// Liker.
         /// </summary>
         public UserAccount Liker { get; set; }
         
         /// <summary>
-        /// 
+        /// Likee.
         /// </summary>
         public UserAccount Likee { get; set; }
 
         /// <summary>
-        /// 
+        /// Message.
         /// </summary>
         public MessageWF MessageWF { get; set; }
 
         /// <summary>
-        /// 
+        /// Post.
         /// </summary>
         public Post Post { get; set; }
     }

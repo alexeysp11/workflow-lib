@@ -1,7 +1,7 @@
 namespace Cims.WorkflowLib.Models.Business
 {
     /// <summary>
-    /// 
+    /// Risk severity
     /// </summary>
     public enum RiskSeverity
     {

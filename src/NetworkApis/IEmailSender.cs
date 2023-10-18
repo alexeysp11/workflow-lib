@@ -4,7 +4,7 @@ using Cims.WorkflowLib.Models.Business.SocialCommunication;
 namespace Cims.WorkflowLib.NetworkApis
 {
     /// <summary>
-    /// 
+    /// Email sender interface.
     /// </summary>
     public interface IEmailSender
     {

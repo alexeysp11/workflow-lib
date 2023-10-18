@@ -3,6 +3,9 @@ using Oracle.ManagedDataAccess.Client;
 
 namespace Cims.WorkflowLib.DbConnections
 {
+    /// <summary>
+    /// Oracle database connection.
+    /// </summary>
     public class OracleDbConnection : BaseDbConnection, ICommonDbConnection
     {
         private string DataSource { get; set; }

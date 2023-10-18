@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Cims.WorkflowLib.Models.Business.Responsibilities
 {
     /// <summary>
-    /// 
+    /// Employer responsibility type.
     /// </summary>
     public enum EmployerResponsibilityType
     {

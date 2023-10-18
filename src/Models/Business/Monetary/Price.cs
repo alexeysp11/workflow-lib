@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace Cims.WorkflowLib.Models.Business.Monetary
 {
     /// <summary>
-    /// 
+    /// Price
     /// </summary>
     public class Price
     {
@@ -11,6 +11,7 @@ namespace Cims.WorkflowLib.Models.Business.Monetary
         /// 
         /// </summary>
         public Price() {}
+
         /// <summary>
         /// 
         /// </summary>
@@ -23,14 +24,17 @@ namespace Cims.WorkflowLib.Models.Business.Monetary
         /// 
         /// </summary>
         public decimal ListPrice { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
         public List<Tax> Taxes { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
         public decimal Discount { get; set; }
+        
         /// <summary>
         /// 
         /// </summary>

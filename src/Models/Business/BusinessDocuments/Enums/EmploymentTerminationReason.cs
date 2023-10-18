@@ -2,6 +2,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
 {
+    /// <summary>
+    /// Employment termination.
+    /// </summary>
     public enum EmploymentTerminationReason
     {
         [Display(Name = "Poor Quality Of Work")]

@@ -1,7 +1,7 @@
 namespace Cims.WorkflowLib.Models.Database 
 {
     /// <summary>
-    /// 
+    /// DB settings.
     /// </summary>
     public class DbSettings 
     {

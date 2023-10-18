@@ -4,6 +4,9 @@ using MySql.Data.MySqlClient;
 
 namespace Cims.WorkflowLib.DbConnections
 {
+    /// <summary>
+    /// MySQL database connection.
+    /// </summary>
     public class MysqlDbConnection : BaseDbConnection, ICommonDbConnection
     {
         private string DataSource { get; set; }

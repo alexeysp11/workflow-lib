@@ -5,6 +5,9 @@ using System.Reflection;
 
 namespace Cims.WorkflowLib.Extensions
 {
+    /// <summary>
+    /// Enum extensions.
+    /// </summary>
     public static class EnumExtensions
     {
         public static string GetDisplayName(this Enum enumValue)

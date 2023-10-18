@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
 {
     /// <summary>
-    /// 
+    /// Contract type.
     /// </summary>
     public enum ContractType
     {

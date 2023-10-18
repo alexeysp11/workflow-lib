@@ -8,6 +8,9 @@ using System.Text;
 
 namespace Cims.WorkflowLib.Translation.Digits
 {
+    /// <summary>
+    /// Digits translation (Chinese).
+    /// </summary>
     public class DigitsTranslation_zh_CN
     {
         public static string GetListItemText(string languageCultureName, int levelNumber, string numFmt)

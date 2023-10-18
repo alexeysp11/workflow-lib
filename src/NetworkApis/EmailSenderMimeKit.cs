@@ -10,17 +10,17 @@ using Cims.WorkflowLib.Models.Business.SocialCommunication;
 namespace Cims.WorkflowLib.NetworkApis
 {
     /// <summary>
-    /// 
+    /// Email sender that uses MimeKit.
     /// </summary>
     public class EmailSenderMimeKit : IEmailSender
     {
         /// <summary>
-        /// 
+        /// Email configuration.
         /// </summary>
         private readonly EmailConfiguration _emailConfig;
 
         /// <summary>
-        /// 
+        /// Constructor.
         /// </summary>
         public EmailSenderMimeKit(EmailConfiguration emailConfig)
         {
@@ -41,7 +41,7 @@ namespace Cims.WorkflowLib.NetworkApis
         }
 
         /// <summary>
-        /// 
+        /// Send email.
         /// </summary>
         public void SendEmail(MessageWF message)
         {
@@ -51,7 +51,7 @@ namespace Cims.WorkflowLib.NetworkApis
         }
 
         /// <summary>
-        /// 
+        /// Send email asynchronously.
         /// </summary>
         public async Task SendEmailAsync(MessageWF message)
         {
@@ -61,7 +61,7 @@ namespace Cims.WorkflowLib.NetworkApis
         }
 
         /// <summary>
-        /// 
+        /// Create email message.
         /// </summary>
         private MimeMessage CreateEmailMessage(MessageWF message)
         {
@@ -91,7 +91,7 @@ namespace Cims.WorkflowLib.NetworkApis
         }
 
         /// <summary>
-        /// 
+        /// Send the message.
         /// </summary>
         private void Send(MimeMessage mailMessage)
         {
@@ -119,7 +119,7 @@ namespace Cims.WorkflowLib.NetworkApis
         }
 
         /// <summary>
-        /// 
+        /// Send the message asynchronously.
         /// </summary>
         private async Task SendAsync(MimeMessage mailMessage)
         {

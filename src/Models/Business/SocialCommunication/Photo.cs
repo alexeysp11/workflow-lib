@@ -1,29 +1,15 @@
+using Cims.WorkflowLib.Models.Business;
 using Cims.WorkflowLib.Models.Business.InformationSystem;
 
 namespace Cims.WorkflowLib.Models.Business.SocialCommunication
 {
     /// <summary>
-    /// 
+    /// Photo.
     /// </summary>
-    public class Photo
+    public class Photo : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
-        /// 
-        /// </summary>
-        public int id { get; set; }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Url { get; set; }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Description { get; set; }
-        
-        /// <summary>
-        /// 
+        /// Date added.
         /// </summary>
         public System.DateTime DateAdded { get; set; }
         
@@ -38,13 +24,13 @@ namespace Cims.WorkflowLib.Models.Business.SocialCommunication
         public string PublicId { get; set; }
         
         /// <summary>
-        /// 
+        /// User account.
         /// </summary>
         public UserAccount User { get; set; }
         
         /// <summary>
-        /// 
+        /// User ID.
         /// </summary>
-        public int UserId { get; set; }
+        public long UserId { get; set; }
     }
 }

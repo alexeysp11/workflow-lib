@@ -1,5 +1,8 @@
 namespace Cims.WorkflowLib.Models.Business.Monetary
 {
+    /// <summary>
+    /// Sub total payments.
+    /// </summary>
     public class SubTotalPayments
     {
         public decimal PayForHours { get; private set; }

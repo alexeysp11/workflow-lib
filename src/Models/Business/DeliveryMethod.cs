@@ -1,7 +1,7 @@
 namespace Cims.WorkflowLib.Models.Business
 {
     /// <summary>
-    /// 
+    /// Delivery method
     /// </summary>
     public class DeliveryMethod : BusinessEntityWF, IBusinessEntityWF
     {

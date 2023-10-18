@@ -6,17 +6,17 @@ using Cims.WorkflowLib.Models.Business.InformationSystem;
 namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
 {
     /// <summary>
-    /// 
+    /// Contract.
     /// </summary>
     public class Contract : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
-        /// 
+        /// Contract type.
         /// </summary>
         public ContractType ContractType { get; set; }
 
         /// <summary>
-        /// 
+        /// Customers.
         /// </summary>
         public ICollection<Customer> Customers { get; private set; }
 
@@ -26,7 +26,7 @@ namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
         public ICollection<Employee> Employees { get; private set; }
 
         /// <summary>
-        /// 
+        /// Companies (related to customer).
         /// </summary>
         public ICollection<Company> Companies { get; private set; }
 

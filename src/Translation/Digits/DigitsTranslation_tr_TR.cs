@@ -8,6 +8,9 @@ using System.Text;
 
 namespace Cims.WorkflowLib.Translation.Digits
 {
+    /// <summary>
+    /// Digits translation (Turkish).
+    /// </summary>
     public class DigitsTranslation_tr_TR
     {
         private static string[] RomanOnes =

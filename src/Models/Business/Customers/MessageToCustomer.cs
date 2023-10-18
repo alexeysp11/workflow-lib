@@ -5,68 +5,68 @@ using Cims.WorkflowLib.Models.Business.InformationSystem;
 namespace Cims.WorkflowLib.Models.Business.Customers
 {
     /// <summary>
-    /// 
+    /// Message to the customer.
     /// </summary>
     public class MessageToCustomer : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
-        /// 
+        /// Subject of the message.
         /// </summary>
-        public string Subject { get; private set; }
+        public string Subject { get; set; }
 
         /// <summary>
-        /// 
+        /// Body of the message.
         /// </summary>
-        public MessageCategory MessageCategory { get; private set; }
+        public string Body { get; set; }
 
         /// <summary>
-        /// 
+        /// Category of the message.
         /// </summary>
-        public string Body { get; private set; }
+        public MessageCategory MessageCategory { get; set; }
 
         /// <summary>
-        /// 
+        /// Timestamp when the message was sent.
         /// </summary>
-        public System.DateTime SentAt { get; private set; }
+        public System.DateTime SentAt { get; set; }
 
         /// <summary>
-        /// 
+        /// Timestamp when the message was received.
         /// </summary>
-        public System.DateTime? ReceivedAt { get; private set; }
+        public System.DateTime? ReceivedAt { get; set; }
 
         /// <summary>
-        /// 
+        /// Is the message new.
         /// </summary>
-        public bool IsNew { get; private set; }
+        public bool IsNew { get; set; }
 
         /// <summary>
-        /// 
+        /// Is the message deleted.
         /// </summary>
-        public bool IsDeleted { get; private set; }
+        public bool IsDeleted { get; set; }
 
         /// <summary>
-        /// 
+        /// Is the message received.
         /// </summary>
-        public bool IsReceived { get; private set; }
+        public bool IsReceived { get; set; }
 
         /// <summary>
-        /// 
+        /// Sende ID.
         /// </summary>
-        public long SenderId { get; private set; }
+        public long SenderId { get; set; }
 
         /// <summary>
-        /// 
+        /// Collection of recipient IDs.
         /// </summary>
-        public ICollection<string> RecipientIds { get; private set; }
+        public ICollection<string> RecipientIds { get; set; }
 
         /// <summary>
-        /// 
+        /// User account of the sender.
         /// </summary>
-        public virtual UserAccount Sender { get; private set; }
+        public virtual UserAccount Sender { get; set; }
 
         /// <summary>
-        /// 
+        /// Collection of recipients.
         /// </summary>
-        public virtual Customer Recipient { get; private set; }
+        public virtual ICollection<Customer> Recipients { get; set; }
     }
 }

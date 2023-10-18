@@ -1,40 +1,43 @@
 namespace Cims.WorkflowLib.Models.Business.Customers
 {
     /// <summary>
-    /// 
+    /// Notification.
     /// </summary>
     public class Notification
     {
         /// <summary>
-        /// 
+        /// Sender ID.
         /// </summary>
-        public long SenderId { get; set; } 
-        /// <summary>
-        /// 
-        /// </summary>
-        public string ReceiverId { get; set; } 
+        public long SenderId { get; set; }
 
         /// <summary>
-        /// 
+        /// Receiver ID.
         /// </summary>
-        public string TitleText { get; set; } 
-        /// <summary>
-        /// 
-        /// </summary>
-        public string BodyText { get; set; } 
+        public string ReceiverId { get; set; }
 
         /// <summary>
-        /// 
+        /// Title text.
         /// </summary>
-        public System.DateTime SentDateTime { get; set; } 
-        /// <summary>
-        /// 
-        /// </summary>
-        public System.DateTime ReceivedDateTime { get; set; } 
+        public string TitleText { get; set; }
 
         /// <summary>
-        /// 
+        /// Body text.
         /// </summary>
-        public string Notes { get; set; } 
+        public string BodyText { get; set; }
+
+        /// <summary>
+        /// Timestamp when the notification was sent.
+        /// </summary>
+        public System.DateTime SentDateTime { get; set; }
+        
+        /// <summary>
+        /// Timestamp when the notification was received.
+        /// </summary>
+        public System.DateTime ReceivedDateTime { get; set; }
+
+        /// <summary>
+        /// Notes.
+        /// </summary>
+        public string Notes { get; set; }
     }
 }

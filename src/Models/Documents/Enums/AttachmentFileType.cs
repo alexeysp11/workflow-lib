@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Cims.WorkflowLib.Models.Documents.Enums
 {
     /// <summary>
-    /// 
+    /// Attachment file type.
     /// </summary>
     public enum AttachmentFileType
     {

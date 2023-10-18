@@ -2,6 +2,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Cims.WorkflowLib.Models.Business.InformationSystem
 {
+    /// <summary>
+    /// Employee benifit type.
+    /// </summary>
     public enum EmployeeBenefitType
     {
         [Display(Name = "Child Care")]

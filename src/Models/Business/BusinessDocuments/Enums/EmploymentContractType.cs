@@ -2,6 +2,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
 {
+    /// <summary>
+    /// Type of the employment contract.
+    /// </summary>
     public enum EmploymentContractType
     {
         [Display(Name = "Full Time Contract")]

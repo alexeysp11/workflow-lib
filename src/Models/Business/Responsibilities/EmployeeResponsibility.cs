@@ -5,15 +5,18 @@ using Cims.WorkflowLib.Models.Business.InformationSystem;
 
 namespace Cims.WorkflowLib.Models.Business.Responsibilities
 {
+    /// <summary>
+    /// Employee responsibility.
+    /// </summary>
     public class EmployeeResponsibility : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
-        /// 
+        /// Project.
         /// </summary>
         public Project Project { get; set; }
 
         /// <summary>
-        /// 
+        /// Skills required for the project/responsibility.
         /// </summary>
         public ICollection<Skill> Skills { get; set; }
     }

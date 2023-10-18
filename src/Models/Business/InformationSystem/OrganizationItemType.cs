@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Cims.WorkflowLib.Models.Business.InformationSystem
 {
     /// <summary>
-    /// 
+    /// Type of the organization item.
     /// </summary>
     public enum OrganizationItemType
     {

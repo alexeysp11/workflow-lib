@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Cims.WorkflowLib.Models.Business.InformationSystem
 {
     /// <summary>
-    /// 
+    /// Working day option.
     /// </summary>
     public enum WorkingDayOption
     {

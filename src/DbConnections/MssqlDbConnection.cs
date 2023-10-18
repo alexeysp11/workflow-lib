@@ -3,6 +3,9 @@ using Microsoft.Data.SqlClient;
 
 namespace Cims.WorkflowLib.DbConnections
 {
+    /// <summary>
+    /// MS SQL database connection.
+    /// </summary>
     public class MssqlDbConnection : BaseDbConnection, ICommonDbConnection
     {
         private string DataSource { get; set; }

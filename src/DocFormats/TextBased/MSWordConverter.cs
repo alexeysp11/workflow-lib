@@ -165,7 +165,7 @@ namespace Cims.WorkflowLib.DocFormats.TextBased
 
         #region Convert to HTML 
         /// <summary>
-        /// 
+        /// Convert to HTML.
         /// </summary>
         public void ConvertToHtml(string foldername, string wordFilename, string htmlFilename)
         {
@@ -181,7 +181,7 @@ namespace Cims.WorkflowLib.DocFormats.TextBased
         }
 
         /// <summary>
-        /// 
+        /// Convert MS to HTML.
         /// </summary>
         public void ConvertToHtml(string wordFilename, string htmlFilename)
         {

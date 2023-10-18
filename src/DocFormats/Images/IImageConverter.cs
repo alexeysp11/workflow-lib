@@ -1,7 +1,7 @@
 namespace Cims.WorkflowLib.DocFormats.Images
 {
     /// <summary>
-    /// 
+    /// Interface for image converter.
     /// </summary>
     public interface IImageConverter
     {

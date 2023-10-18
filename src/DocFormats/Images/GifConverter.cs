@@ -5,7 +5,7 @@ using System.Linq;
 namespace Cims.WorkflowLib.DocFormats.Images
 {
     /// <summary>
-    /// 
+    /// GIF converter.
     /// </summary>
     public class GifConverter : BaseImageConverter, IImageConverter
     {

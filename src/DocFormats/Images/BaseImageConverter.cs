@@ -2,6 +2,9 @@ using System.Linq;
 
 namespace Cims.WorkflowLib.DocFormats.Images 
 {
+    /// <summary>
+    /// Base image converter.
+    /// </summary>
     public abstract class BaseImageConverter
     {
         protected void CheckText(string text)

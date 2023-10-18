@@ -2,6 +2,9 @@ using System.Data;
 
 namespace Cims.WorkflowLib.DbConnections
 {
+    /// <summary>
+    /// MariaDB database connection.
+    /// </summary>
     public class MariadbDbConnection : BaseDbConnection, ICommonDbConnection
     {
         private string ConnString { get; set; }

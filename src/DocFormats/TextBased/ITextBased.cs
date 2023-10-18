@@ -4,7 +4,7 @@ using Cims.WorkflowLib.Models.Documents;
 namespace Cims.WorkflowLib.DocFormats.TextBased
 {
     /// <summary>
-    /// 
+    /// Interface for using text based documents.
     /// </summary>
     public interface ITextBased 
     {

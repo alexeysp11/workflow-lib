@@ -8,6 +8,9 @@ using RabbitMQ.Client.Events;
 
 namespace Cims.WorkflowLib.Models.MessageQueues
 {
+    /// <summary>
+    /// RabbitMQ consumer.
+    /// </summary>
     public class RabbitMQConsumer<TArg1, TRes>
     {
         private readonly IConnection _connection; 

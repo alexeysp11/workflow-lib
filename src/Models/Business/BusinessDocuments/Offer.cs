@@ -3,7 +3,7 @@ using Cims.WorkflowLib.Models.Business.InformationSystem;
 namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
 {
     /// <summary>
-    /// 
+    /// Offer.
     /// </summary>
     public class Offer : BusinessEntityWF, IBusinessEntityWF
     {

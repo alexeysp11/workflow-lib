@@ -3,7 +3,7 @@ using Cims.WorkflowLib.Models.Business;
 namespace Cims.WorkflowLib.Models.Business.InformationSystem
 {
     /// <summary>
-    /// 
+    /// User account.
     /// </summary>
     public class UserAccount : BusinessEntityWF, IBusinessEntityWF
     {

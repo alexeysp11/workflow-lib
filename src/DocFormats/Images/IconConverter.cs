@@ -5,7 +5,7 @@ using System.Linq;
 namespace Cims.WorkflowLib.DocFormats.Images
 {
     /// <summary>
-    /// 
+    /// Icon converter.
     /// </summary>
     public class IconConverter : BaseImageConverter, IImageConverter
     {

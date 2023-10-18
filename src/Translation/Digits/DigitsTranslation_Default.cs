@@ -8,6 +8,9 @@ using System.Text;
 
 namespace Cims.WorkflowLib.Translation.Digits
 {
+    /// <summary>
+    /// Digits translation (Default/English).
+    /// </summary>
     public class DigitsTranslation_Default
     {
         private static string[] RomanOnes =

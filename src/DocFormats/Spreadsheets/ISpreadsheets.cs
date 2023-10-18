@@ -3,7 +3,7 @@ using Cims.WorkflowLib.Models.Documents;
 namespace Cims.WorkflowLib.DocFormats.Spreadsheets
 {
     /// <summary>
-    /// 
+    /// Interface for using spreadsheets.
     /// </summary>
     public interface ISpreadsheets 
     {

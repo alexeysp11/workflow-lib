@@ -3,68 +3,68 @@ using System.Collections.Generic;
 namespace Cims.WorkflowLib.Models.Business.InformationSystem
 {
     /// <summary>
-    /// 
+    /// Message to user.
     /// </summary>
     public class MessageToUser : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
-        /// 
+        /// Subect.
         /// </summary>
-        public string Subject { get; private set; }
+        public string Subject { get; set; }
+
+        /// <summary>
+        /// Body.
+        /// </summary>
+        public string Body { get; set; }
+        
+        /// <summary>
+        /// Message category.
+        /// </summary>
+        public MessageCategory MessageCategory { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public MessageCategory MessageCategory { get; private set; }
+        public System.DateTime SentAt { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string Body { get; private set; }
+        public System.DateTime? ReceivedAt { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public System.DateTime SentAt { get; private set; }
+        public bool IsNew { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public System.DateTime? ReceivedAt { get; private set; }
+        public bool IsDeleted { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public bool IsNew { get; private set; }
+        public bool IsReceived { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public bool IsDeleted { get; private set; }
+        public long SenderId { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public bool IsReceived { get; private set; }
+        public ICollection<string> RecipientIds { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public long SenderId { get; private set; }
+        public virtual UserAccount Sender { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public ICollection<string> RecipientIds { get; private set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public virtual UserAccount Sender { get; private set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public virtual UserAccount Recipient { get; private set; }
+        public virtual ICollection<UserAccount> Recipients { get; set; }
     }
 }
