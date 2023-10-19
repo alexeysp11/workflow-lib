@@ -1,4 +1,5 @@
 using Cims.WorkflowLib.Models.Business.SocialCommunication;
+using Cims.WorkflowLib.Models.ErrorHandling;
 
 namespace Cims.WorkflowLib.Models.Business.SocialCommunication.DTOs
 {
@@ -16,5 +17,10 @@ namespace Cims.WorkflowLib.Models.Business.SocialCommunication.DTOs
         /// Status of the sending the message.
         /// </summary>
         public SendMsgStatus Status { get; set; }
+
+        /// <summary>
+        /// Thrown exception.
+        /// </summary>
+        public WorkflowException WorkflowException { get; set; }
     }
 }
