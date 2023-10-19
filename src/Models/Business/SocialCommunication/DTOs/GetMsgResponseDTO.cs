@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Cims.WorkflowLib.Models.Business.SocialCommunication;
 using Cims.WorkflowLib.Models.ErrorHandling;
 
