@@ -41,5 +41,10 @@ namespace Cims.WorkflowLib.Models.Business.Monetary
         /// Status of the payment.
         /// </summary>
         public string Status { get; set; }
+        
+        /// <summary>
+        /// Date.
+        /// </summary>
+        public System.DateTime Date { get; private set; }
     }
 }

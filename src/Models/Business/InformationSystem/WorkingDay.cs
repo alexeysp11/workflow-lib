@@ -15,7 +15,7 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         public System.DateTime Date { get; set; }
 
         /// <summary>
-        /// 
+        /// Working day option.
         /// </summary>
         public WorkingDayOption WorkingDayOption { get; set; }
 

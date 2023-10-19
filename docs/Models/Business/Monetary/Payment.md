@@ -93,3 +93,15 @@ public string Status { get; set; }
 #### Property Value
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
+
+### Date
+
+Date of the payment.
+
+```C#
+public System.DateTime Date { get; set; }
+```
+
+#### Property Value
+
+[DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime)

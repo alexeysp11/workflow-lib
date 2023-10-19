@@ -10,7 +10,7 @@ namespace Cims.WorkflowLib.Models.Business.SocialCommunication.DTOs
     public class GetMsgResponseDTO
     {
         /// <summary>
-        /// 
+        /// Messages.
         /// </summary>
         public ICollection<MessageWF> Messages { get; set; }
 

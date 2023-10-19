@@ -18,6 +18,16 @@ namespace Cims.WorkflowLib.Models.Business.SocialCommunication
         public ChatroomType Type { get; set; }
         
         /// <summary>
+        /// Photo of the user.
+        /// </summary>
+        public byte[] Photo { get; set; }
+
+        /// <summary>
+        /// Photo URL of the user.
+        /// </summary>
+        public string PhotoUrl { get; set; }
+        
+        /// <summary>
         /// Timestamp when a chatroom was created.
         /// </summary>
         public System.DateTime DateCreated { get; set; }

@@ -1,7 +1,7 @@
 using Cims.WorkflowLib.Models.Business;
 using Cims.WorkflowLib.Models.Business.InformationSystem;
 
-namespace Cims.WorkflowLib.Models.Business
+namespace Cims.WorkflowLib.Models.Business.SocialCommunication
 {
     /// <summary>
     /// Comment.

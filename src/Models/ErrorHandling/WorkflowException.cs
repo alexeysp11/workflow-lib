@@ -9,10 +9,12 @@ namespace Cims.WorkflowLib.Models.ErrorHandling
         /// Message of the exception.
         /// </summary>
         public string Message { get; set; }
+
         /// <summary>
         /// Stack trace of the exception.
         /// </summary>
         public string StackTrace { get; set; }
+        
         /// <summary>
         /// Full message of the exception.
         /// </summary>

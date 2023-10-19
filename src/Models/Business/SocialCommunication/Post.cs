@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Cims.WorkflowLib.Models.Business;
 
 namespace Cims.WorkflowLib.Models.Business.SocialCommunication
@@ -11,5 +12,10 @@ namespace Cims.WorkflowLib.Models.Business.SocialCommunication
         /// Content text.
         /// </summary>
         public string ContentText { get; set; }
+
+        /// <summary>
+        /// Comments.
+        /// </summary>
+        public ICollection<Comment> Comments { get; set; }
     }
 }

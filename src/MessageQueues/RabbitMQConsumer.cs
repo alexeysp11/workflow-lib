@@ -20,6 +20,9 @@ namespace Cims.WorkflowLib.Models.MessageQueues
         
         private readonly string _queueName; 
 
+        /// <summary>
+        /// 
+        /// </summary>
         public RabbitMQConsumer(string hostName, string queueName, System.TimeSpan timeInterval, System.Func<TArg1, TRes> func)
         {
             _queueName = queueName; 
@@ -35,11 +38,17 @@ namespace Cims.WorkflowLib.Models.MessageQueues
             _func = func; 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public Task StartAsync(CancellationToken cancellationToken)
         {
             return Task.CompletedTask; 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public Task StopAsync(CancellationToken cancellationToken)
         {
             _timer.Dispose(); 
@@ -48,6 +57,9 @@ namespace Cims.WorkflowLib.Models.MessageQueues
             return Task.CompletedTask; 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void OnTimerElapsed(object state)
         {
             try
