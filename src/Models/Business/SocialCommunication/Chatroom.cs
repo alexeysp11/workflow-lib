@@ -21,5 +21,10 @@ namespace Cims.WorkflowLib.Models.Business.SocialCommunication
         /// Timestamp when a chatroom was created.
         /// </summary>
         public System.DateTime DateCreated { get; set; }
+        
+        /// <summary>
+        /// Timestamp when a chatroom was deleted.
+        /// </summary>
+        public System.DateTime DateDeleted { get; set; }
     }
 }

@@ -55,3 +55,15 @@ public string Description { get; set; }
 #### Property Value
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
+
+### BusinessEntityStatus
+
+Status of the business entity.
+
+```C#
+public BusinessEntityStatus BusinessEntityStatus { get; set; }
+```
+
+#### Property Value
+
+[BusinessEntityStatus](BusinessEntityStatus.md)

@@ -24,5 +24,10 @@ namespace Cims.WorkflowLib.Models.Business
         /// Description of the business entity.
         /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Business entity status.
+        /// </summary>
+        BusinessEntityStatus BusinessEntityStatus { get; set; }
     }
 }

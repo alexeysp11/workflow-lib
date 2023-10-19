@@ -9,5 +9,6 @@ namespace Cims.WorkflowLib.Models.Business
         string Uid { get; set; }
         string Name { get; set; }
         string Description { get; set; }
+        BusinessEntityStatus BusinessEntityStatus { get; set; }
     }
 }
