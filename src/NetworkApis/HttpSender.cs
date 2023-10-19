@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Models.Performance;
 
-namespace Cims.WorkflowLib.NetworkApis
+namespace Cims.WorkflowLib.NetworkAPIs
 {
     /// <summary>
     /// Class for sending objects via HTTP

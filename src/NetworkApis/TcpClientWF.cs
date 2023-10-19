@@ -1,6 +1,6 @@
 using System.Net.Sockets;
 
-namespace Cims.WorkflowLib.NetworkApis 
+namespace Cims.WorkflowLib.NetworkAPIs 
 {
     /// <summary>
     /// TCP client.

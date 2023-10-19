@@ -1,4 +1,4 @@
-namespace Cims.WorkflowLib.NetworkApis
+namespace Cims.WorkflowLib.NetworkAPIs
 {
     /// <summary>
     /// Interface for listeners 

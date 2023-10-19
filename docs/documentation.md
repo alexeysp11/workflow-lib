@@ -11,4 +11,4 @@
 - [Cims.WorkflowLib.Models.ErrorHandling](Models/ErrorHandling/Cims.WorkflowLib.Models.ErrorHandling.md);
 - [Cims.WorkflowLib.Models.Network](Models/Network/Cims.WorkflowLib.Models.Network.md);
 - [Cims.WorkflowLib.Models.Performance](Models/Performance/Cims.WorkflowLib.Models.Performance.md);
-- [Cims.WorkflowLib.NetworkApis](NetworkApis/Cims.WorkflowLib.NetworkApis.md).
+- [Cims.WorkflowLib.NetworkAPIs](NetworkAPIs/Cims.WorkflowLib.NetworkAPIs.md).

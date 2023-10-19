@@ -7,7 +7,7 @@ using MimeKit;
 using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Models.Business.SocialCommunication;
 
-namespace Cims.WorkflowLib.NetworkApis
+namespace Cims.WorkflowLib.NetworkAPIs
 {
     /// <summary>
     /// Email sender that uses MimeKit.

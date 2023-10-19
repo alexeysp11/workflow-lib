@@ -1,3 +1,5 @@
+using Cims.WorkflowLib.Models.Business.SocialCommunication;
+
 namespace Cims.WorkflowLib.Models.Business.SocialCommunication.DTOs
 {
     /// <summary>
@@ -13,6 +15,6 @@ namespace Cims.WorkflowLib.Models.Business.SocialCommunication.DTOs
         /// <summary>
         /// Status of the sending the message.
         /// </summary>
-        public SendMsgStatusDTO Status { get; set; }
+        public SendMsgStatus Status { get; set; }
     }
 }

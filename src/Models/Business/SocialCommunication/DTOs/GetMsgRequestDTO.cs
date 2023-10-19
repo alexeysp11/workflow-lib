@@ -1,4 +1,5 @@
 using Cims.WorkflowLib.Models.Business;
+using Cims.WorkflowLib.Models.Business.SocialCommunication;
 
 namespace Cims.WorkflowLib.Models.Business.SocialCommunication.DTOs
 {
@@ -20,7 +21,7 @@ namespace Cims.WorkflowLib.Models.Business.SocialCommunication.DTOs
         /// <summary>
         /// Type.
         /// </summary>
-        public GetMsgTypeDTO Type { get; set; }
+        public GetMsgType Type { get; set; }
 
         /// <summary>
         /// Period.

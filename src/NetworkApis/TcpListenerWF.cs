@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net; 
 using System.Net.Sockets; 
 
-namespace Cims.WorkflowLib.NetworkApis
+namespace Cims.WorkflowLib.NetworkAPIs
 {
     /// <summary>
     /// TCP listener.

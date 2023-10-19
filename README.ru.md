@@ -6,9 +6,9 @@
 - [Динамической компиляции кода на C#](docs/Dynamical/DynamicCompiling.md);
 - Базы данных: [SQLite](docs/DbConnections/SqliteDbConnection.md), [PostgreSQL](docs/DbConnections/PgDbConnection.md), [MySQL](docs/DbConnections/MysqlDbConnection.md), [MS SQL](docs/DbConnections/MssqlDbConnection.md), [Oracle](docs/DbConnections/OracleDbConnection.md);
 - Сетевое взаимодействие и APIs: 
-    - HTTP: [sender](docs/NetworkApis/HttpSender.md), 
-    - TCP: [client](docs/NetworkApis/TcpClientWF.md), [listener](docs/NetworkApis/TcpListenerWF.md), 
-    - Email sender: [MimeKit based](docs/NetworkApis/EmailSenderMimeKit.md);
+    - HTTP: [sender](docs/NetworkAPIs/HttpSender.md), 
+    - TCP: [client](docs/NetworkAPIs/TcpClientWF.md), [listener](docs/NetworkAPIs/TcpListenerWF.md), 
+    - Email sender: [MimeKit based](docs/NetworkAPIs/EmailSenderMimeKit.md);
 - Документы и операции с документами (запись, чтение, конвертация): 
     - Общие: [вложение](docs/Models/Documents/Attachment.md), [spreadsheet-элемент](docs/Models/Documents/SpreadsheetElement.md), [элемент текстового документа](docs/Models/Documents/TextDocElement.md).
     - Текстовые: [MS Word](docs/DocFormats/TextBased/MSWordConverter.md) (DOC, DOT, DOCX, DOTX, DOCM, DOTM), OpenDocument (ODT, FODT, OTT), [TXT](docs/DocFormats/TextBased/TxtConverter.md);

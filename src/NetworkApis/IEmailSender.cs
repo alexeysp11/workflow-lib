@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Cims.WorkflowLib.Models.Business.SocialCommunication;
 
-namespace Cims.WorkflowLib.NetworkApis
+namespace Cims.WorkflowLib.NetworkAPIs
 {
     /// <summary>
     /// Email sender interface.
