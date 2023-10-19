@@ -15,6 +15,11 @@ namespace Cims.WorkflowLib.Models.Business.SocialCommunication.DTOs
         public ICollection<MessageWF> Messages { get; set; }
 
         /// <summary>
+        /// Spevifies if the oldest message is included.
+        /// </summary>
+        public bool IsOldestMsgIncluded { get; set; }
+
+        /// <summary>
         /// Thrown exception.
         /// </summary>
         public WorkflowException WorkflowException { get; set; }

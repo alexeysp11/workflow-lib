@@ -9,9 +9,9 @@ namespace Cims.WorkflowLib.Models.Business.SocialCommunication.DTOs
     public class GetMsgRequestDTO
     {
         /// <summary>
-        /// Recipient UID.
+        /// User UID.
         /// </summary>
-        public string RecipientUid { get; set; }
+        public string UserUid { get; set; }
 
         /// <summary>
         /// Chatroom UID.
@@ -27,5 +27,10 @@ namespace Cims.WorkflowLib.Models.Business.SocialCommunication.DTOs
         /// Period.
         /// </summary>
         public Period Period { get; set; }
+
+        /// <summary>
+        /// Maximum amount of messages to get.
+        /// </summary>
+        public int MaxMsgAmount { get; set; }
     }
 }
