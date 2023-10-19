@@ -41,5 +41,10 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// Status of the user.
         /// </summary>
         public UserStatus Status { get; set; }
+
+        /// <summary>
+        /// Timestamp when the user was online the last time.
+        /// </summary>
+        public System.DateTime LastSeenDt { get; set; }
     }
 }

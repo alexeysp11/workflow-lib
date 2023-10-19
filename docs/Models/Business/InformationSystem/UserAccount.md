@@ -63,7 +63,7 @@ public string Password { get; set; }
 Photo of the user.
 
 ```C#
-public byte Photo { get; set; }
+public byte[] Photo { get; set; }
 ```
 
 #### Property Value
@@ -81,3 +81,27 @@ public string PhotoUrl { get; set; }
 #### Property Value
 
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)
+
+### Status
+
+Status of the user.
+
+```C#
+public UserStatus Status { get; set; }
+```
+
+#### Property Value
+
+[UserStatus](UserStatus.md)
+
+### LastSeenDt
+
+Timestamp when the user was online the last time.
+
+```C#
+public System.DateTime LastSeenDt { get; set; }
+```
+
+#### Property Value
+
+[DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime)

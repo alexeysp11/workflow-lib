@@ -93,6 +93,11 @@ namespace Cims.WorkflowLib.Models.Business.SocialCommunication
         public System.DateTime ReceivedAt { get; set; }
         
         /// <summary>
+        /// Message status.
+        /// </summary>
+        public MessageStatus MessageStatus { get; set; }
+        
+        /// <summary>
         /// Boolean variable to indicate if the message is new.
         /// </summary>
         public bool IsNew { get; set; }

@@ -6,6 +6,7 @@ namespace Cims.WorkflowLib.Models.Business.SocialCommunication
     public enum ChatroomType
     {
         Personal,
-        Group
+        Group,
+        Bot
     }
 }
