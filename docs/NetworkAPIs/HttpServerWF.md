@@ -6,7 +6,7 @@ HTTP server.
 
 ## Constructors 
 
-### HttpServerWF(System.Action\<HttpListener\>, System.Action\<HttpListenerContext\>)
+### HttpServerWF(Action\<HttpListener\>, Action\<HttpListenerContext\>)
 
 Default constructor.
 
