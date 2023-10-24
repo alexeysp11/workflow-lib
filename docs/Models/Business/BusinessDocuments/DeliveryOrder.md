@@ -241,12 +241,12 @@ public Address Destination { get; set; }
 Payments made within the delivery order.
 
 ```C#
-public ICollection<Product> Payments { get; set; }
+public ICollection<Payment> Payments { get; set; }
 ```
 
 #### Property Value
 
-[ICollection](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.icollection-1)<[Product](Product.md)>
+[ICollection](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.icollection-1)<[Payment](../Monetary/Payment.md)>
 
 ### Status
 
