@@ -7,7 +7,7 @@ Read this in other languages: [English](README.md), [Russian/Русский](REA
 - Configurations: [JSON](docs/Extensions/JsonConfigExtensions.md), XML;
 - Databases: [SQLite](docs/DbConnections/SqliteDbConnection.md), [PostgreSQL](docs/DbConnections/PgDbConnection.md), [MySQL](docs/DbConnections/MysqlDbConnection.md), [MS SQL](docs/DbConnections/MssqlDbConnection.md), [Oracle](docs/DbConnections/OracleDbConnection.md);
 - Network APIs and operations: 
-    - HTTP: [sender](docs/NetworkAPIs/HttpSender.md), 
+    - HTTP: [sender](docs/NetworkAPIs/HttpSender.md), [server](docs/NetworkAPIs/HttpServerWF.md), 
     - TCP: [client](docs/NetworkAPIs/TcpClientWF.md), [listener](docs/NetworkAPIs/TcpListenerWF.md), 
     - Email sender: [MimeKit based](docs/NetworkAPIs/EmailSenderMimeKit.md);
 - Ethereum: [Nethereum.Web3](docs/NethereumAPI/EthNodeAPIWeb3.md);

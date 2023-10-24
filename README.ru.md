@@ -7,7 +7,7 @@
 - Конфигурация: [JSON](docs/Extensions/JsonConfigExtensions.md), XML;
 - Базы данных: [SQLite](docs/DbConnections/SqliteDbConnection.md), [PostgreSQL](docs/DbConnections/PgDbConnection.md), [MySQL](docs/DbConnections/MysqlDbConnection.md), [MS SQL](docs/DbConnections/MssqlDbConnection.md), [Oracle](docs/DbConnections/OracleDbConnection.md);
 - Сетевое взаимодействие и APIs: 
-    - HTTP: [sender](docs/NetworkAPIs/HttpSender.md), 
+    - HTTP: [sender](docs/NetworkAPIs/HttpSender.md), [server](docs/NetworkAPIs/HttpServerWF.md), 
     - TCP: [client](docs/NetworkAPIs/TcpClientWF.md), [listener](docs/NetworkAPIs/TcpListenerWF.md), 
     - Email sender: [MimeKit based](docs/NetworkAPIs/EmailSenderMimeKit.md);
 - Ethereum: [Nethereum.Web3](docs/NethereumAPI/EthNodeAPIWeb3.md);
