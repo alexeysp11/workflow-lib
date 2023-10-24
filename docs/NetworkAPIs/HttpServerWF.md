@@ -18,11 +18,11 @@ public HttpServerWF(
 
 #### Parameters 
 
-- `addPrefixes`: [System.Action](https://learn.microsoft.com/en-us/dotnet/api/system.action-1)<[HttpListener](https://learn.microsoft.com/en-us/dotnet/api/system.net.httplistener)>
+- `addPrefixes`: [Action](https://learn.microsoft.com/en-us/dotnet/api/system.action-1)<[HttpListener](https://learn.microsoft.com/en-us/dotnet/api/system.net.httplistener)>
 
 Reference to the method that adds Uniform Resource Identifier (URI) prefixes for HttpListener object.
 
-- `processRequest`: [System.Action](https://learn.microsoft.com/en-us/dotnet/api/system.action-1)<[HttpListenerContext](https://learn.microsoft.com/en-us/dotnet/api/system.net.httplistenercontext)>
+- `processRequest`: [Action](https://learn.microsoft.com/en-us/dotnet/api/system.action-1)<[HttpListenerContext](https://learn.microsoft.com/en-us/dotnet/api/system.net.httplistenercontext)>
 
 Reference to the method that handles HTTP request.
 
