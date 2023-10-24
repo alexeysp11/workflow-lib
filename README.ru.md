@@ -50,13 +50,10 @@
 
 Данную библитеку возможно использовать напрямую из C# кода: 
 
-1. Склонировать репозиторий (предполагается, что `csproj` файл таргет-проекта расположен по адресу `C:\PathToProj\your-project`): 
+1. Склонировать репозиторий: 
 ```
-cd C:\PathToProj\your-project
-cd ..
 git clone https://github.com/alexeysp11/Open-Xml-PowerTools.git 
 git clone https://github.com/alexeysp11/workflow-lib.git
-cd your-project
 ```
 
 2. В `csproj` файле таргет-проекта добавить ссылку на данный репозиторий: 
