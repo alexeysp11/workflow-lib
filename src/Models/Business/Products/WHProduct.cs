@@ -4,18 +4,18 @@ using Cims.WorkflowLib.Models.Business;
 namespace Cims.WorkflowLib.Models.Business.Products
 {
     /// <summary>
-    /// Project plan item.
+    /// Warehouse product.
     /// </summary>
-    public class ProjectPlanItem : BusinessEntityWF, IBusinessEntityWF
+    public class WHProduct : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
-        /// Priority.
+        /// Product.
         /// </summary>
-        public TaskPriority Priority { get; set; }
+        public Product Product { get; set; }
 
         /// <summary>
-        /// Items.
+        /// Quantity of the product.
         /// </summary>
-        public ICollection<ProjectPlanItem> Items { get; set; }
+        public int Quantity { get; set; }
     }
 }
