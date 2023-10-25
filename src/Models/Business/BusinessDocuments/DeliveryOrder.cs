@@ -106,6 +106,11 @@ namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
         public ICollection<Payment> Payments { get; set; }
         
         /// <summary>
+        /// Shows if the delivery order could be cancelled.
+        /// </summary>
+        public bool CouldBeCancelled { get; set; }
+        
+        /// <summary>
         /// Status of the delivery order.
         /// </summary>
         public string Status { get; set; }

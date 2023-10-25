@@ -248,6 +248,18 @@ public ICollection<Payment> Payments { get; set; }
 
 [ICollection](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.icollection-1)<[Payment](../Monetary/Payment.md)>
 
+### CouldBeCancelled
+
+Shows if the delivery order could be cancelled.
+
+```C#
+public bool CouldBeCancelled { get; set; }
+```
+
+#### Property Value
+
+[Boolean](https://learn.microsoft.com/en-us/dotnet/api/system.boolean)
+
 ### Status
 
 Status of the delivery order.
