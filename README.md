@@ -1,6 +1,6 @@
 # workflow-lib 
 
-Read this in other languages: [English](README.md), [Russian/Русский](README.ru.md). 
+[English](README.md) | [Русский](README.ru.md)
 
 ## Overall description 
 
