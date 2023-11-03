@@ -2,6 +2,8 @@
 
 Доступно на других языках: [English/Английский](README.md), [Russian/Русский](README.ru.md). 
 
+## Общее описание
+
 `workflow-lib` - это библиотека на C#, состоящая из:
 - [Динамической компиляции кода на C#](docs/Dynamical/DynamicCompiling.md);
 - Конфигурация: [JSON](docs/Extensions/JsonConfigExtensions.md), XML;
@@ -18,6 +20,7 @@
     - [PDF](docs/DocFormats/PdfConverter.md);
     - Изображения: [PNG](docs/DocFormats/Images/PngConverter.md), [BMP](docs/DocFormats/Images/BmpConverter.md), [JPEG](docs/DocFormats/Images/JpegConverter.md), SVG, GIF, ICO;
     - XML, JSON, OOXML, CSV;
+    - HTML, markdown;
     - [Binary](docs/DocFormats/BinaryConverter.md);
 - Классы для бизнеса:
     - Общее: [адрес](docs/Models/Business/Address.md), [бизнес-операция](docs/Models/Business/BusinessOperation.md), [период](docs/Models/Business/Period.md), [риск](docs/Models/Business/Risk.md), etc.
@@ -27,11 +30,30 @@
     - Деньги: [зарплата/чек оплаты](docs/Models/Business/Monetary/Paycheck.md), [оплата](docs/Models/Business/Monetary/Payment.md), [ставка оплаты](docs/Models/Business/Monetary/PayRate.md), etc.
     - Продукты: [продукт](docs/Models/Business/Products/Product.md), [категория продукта](docs/Models/Business/Products/ProductCategory.md), [проект](docs/Models/Business/Products/Project.md).
     - Обязанности: [обязанности работника](docs/Models/Business/Responsibilities/EmployeeResponsibility.md), [обязанности работодателя](docs/Models/Business/Responsibilities/EmployerResponsibility.md).
+    - Социальное общение: [сообщение](docs/Models/Business/SocialCommunication/MessageWF.md).
 <!--
 - Визуализация данных: Line chart, Bar chart, Histogram, Scatter plot, Box plot, Pareto chart, Pie chart, Area chart, Tree map, Bubble chart, Stripe graphic, Control chart, Run chart, Stem-and-leaf display, Cartogram, Small multiple, Sparkline, Table, Marimekko chart. 
 -->
 
 Документация по неймспейсам и типам данных, используемых в библиотеке, представлена по [данной ссылке](docs/documentation.md).
+
+### Цель
+
+Цели проекта — предоставить библиотеку функциональных возможностей для разработчиков, работающих над приложениями, требующими динамической компиляции, операций с базами данных, связи с Ethereum и обработки документов.
+Модели данных, представленные в библиотеке, также предназначены для поддержки бизнес-функциональности.
+
+### Объем
+
+Объем проекта ориентирован на предоставление библиотеки функций и моделей данных для использования в других приложениях, а не в отдельном приложении.
+
+### Кто может использовать эту библиотеку
+
+Разработчики, работающие над приложениями, которым требуются функции, предоставляемые библиотекой, могут использовать это приложение.
+Компании в таких отраслях, как логистика, финансы и управление документами, потенциально могут получить выгоду от использования приложений, включающих эту библиотеку.
+
+### В каких проектах можно использовать эту библиотеку
+
+Эту библиотеку можно использовать в различных проектах, требующих динамической компиляции, операций с базами данных, связи с Ethereum и обработки документов. Примеры могут включать приложения для управления логистикой, финансовой торговли и совместной работы с документами.
 
 ## Технологии 
 

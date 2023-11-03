@@ -2,6 +2,8 @@
 
 Read this in other languages: [English](README.md), [Russian/Русский](README.ru.md). 
 
+## Overall description 
+
 `workflow-lib` is a C# library that consists of:
 - [Dynamic compilation for C# code](docs/Dynamical/DynamicCompiling.md);
 - Configurations: [JSON](docs/Extensions/JsonConfigExtensions.md), XML;
@@ -28,12 +30,30 @@ Read this in other languages: [English](README.md), [Russian/Русский](REA
     - Monetary: [paycheck](docs/Models/Business/Monetary/Paycheck.md), [payment](docs/Models/Business/Monetary/Payment.md), [pay rate](docs/Models/Business/Monetary/PayRate.md), etc.
     - Products: [product](docs/Models/Business/Products/Product.md), [product category](docs/Models/Business/Products/ProductCategory.md), [project](docs/Models/Business/Products/Project.md).
     - Responsibilities: [employee responsibility](docs/Models/Business/Responsibilities/EmployeeResponsibility.md), [employer responsibility](docs/Models/Business/Responsibilities/EmployerResponsibility.md).
-    Social communication: [message](docs/Models/Business/SocialCommunication/MessageWF.md).
+    - Social communication: [message](docs/Models/Business/SocialCommunication/MessageWF.md).
 <!--
 - Data visualization: Line chart, Bar chart, Histogram, Scatter plot, Box plot, Pareto chart, Pie chart, Area chart, Tree map, Bubble chart, Stripe graphic, Control chart, Run chart, Stem-and-leaf display, Cartogram, Small multiple, Sparkline, Table, Marimekko chart. 
 -->
 
 Documentation about namespaces and data types, used in the library, is presented at [this link](docs/documentation.md).
+
+### Goal
+
+The goals of the project are to provide a library of functionalities for developers working on applications that require dynamic compilation, database operations, communication with Ethereum, and document handling. 
+The data models provided in the library are also intended to support business-related functionality.
+
+### Scope 
+
+The scope of the project is focused on providing a library of functionalities and data models for use in other applications, rather than a standalone application.
+
+### Who can use this library
+
+Developers working on applications that require the functionalities provided by the library could use this application. 
+Companies in industries such as logistics, finance, and document management could potentially benefit from using applications that incorporate this library.
+
+### What projects this library could be used in  
+
+This library could be used in a variety of projects that require dynamic compilation, database operations, communication with Ethereum, and document handling. Examples could include applications for logistics management, financial trading, and document collaboration.
 
 ## Technologies 
 
