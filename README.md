@@ -39,8 +39,10 @@ Documentation about namespaces and data types, used in the library, is presented
 
 ### Goal
 
-The goals of the project are to provide a library of functionalities for developers working on applications that require dynamic compilation, database operations, communication with Ethereum, and document handling. 
+The goals of this library are to provide functionalities for dynamic compilation of C# code, operations with databases (SQLite, PostgreSQL, MySQL, MS SQL, Oracle), communication with Ethereum using Nethereum.Web3 library, and operations with documents (MS Word, MS Excel, PDF, images, binary). 
+
 The data models provided in the library are also intended to support business-related functionality.
+It includes data models for business-related entities such as common entities, business documents, customers, information system, monetary entities, products, responsibilities, and social communication.
 
 ### Scope 
 
