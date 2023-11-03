@@ -2,6 +2,11 @@
 
 [English](README.md) | [Русский](README.ru.md)
 
+This project is a comprehensive library that provides a wide range of functionalities for ERP systems. 
+
+Overall, this library is a powerful tool that can be used in ERP systems to streamline and automate various business processes. 
+It offers a wide range of functionalities and data models that can be customized to meet the specific needs of any organization.
+
 ## Overall description 
 
 `workflow-lib` is a C# library that consists of:
@@ -39,10 +44,16 @@ Documentation about namespaces and data types, used in the library, is presented
 
 ### Goal
 
-The goals of this library are to provide functionalities for dynamic compilation of C# code, operations with databases (SQLite, PostgreSQL, MySQL, MS SQL, Oracle), communication with Ethereum using Nethereum.Web3 library, and operations with documents (MS Word, MS Excel, PDF, images, binary). 
+The goal of this library is to provide a collection of pre-written code that you can use to perform tasks that are specific for your project. 
 
-The data models provided in the library are also intended to support business-related functionality.
-It includes data models for business-related entities such as common entities, business documents, customers, information system, monetary entities, products, responsibilities, and social communication.
+This library includes dynamic compilation for C# code, allowing for flexibility and customization in system development. 
+The library also offers operations with databases such as SQLite, PostgreSQL, MySQL, MS SQL, Oracle, making it easy to retrieve and insert data from various sources.
+
+In addition, the library enables communication with Ethereum using Nethereum.Web3 library, providing access to blockchain technology. The library also offers operations with documents, supporting multiple formats such as MS word (doc, docx), MS Excel (XLS, XLSX), PDF, images (PNG, BMP, JPEG), and binary files.
+
+The library includes several classes for business, such as common data models like address, business operation, period, risk, etc. 
+It also includes classes for business documents like bill, delivery order, employment contract, customers like customer, company, contact, information system like employee, user account, working day, monetary models like paycheck, payment, pay rate and products like product, product category, project. 
+Additionally, the library provides classes for responsibilities like employee responsibility, employer responsibility and social communication like message.
 
 ### Scope 
 
