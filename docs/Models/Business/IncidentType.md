@@ -1,0 +1,1 @@
+# IncidentType Enumeration

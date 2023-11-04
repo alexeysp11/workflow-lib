@@ -13,7 +13,7 @@ namespace Cims.WorkflowLib.Models.Business.Customers
         /// <summary>
         /// Receiver ID.
         /// </summary>
-        public string ReceiverId { get; set; }
+        public long ReceiverId { get; set; }
 
         /// <summary>
         /// Title text.

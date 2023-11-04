@@ -27,6 +27,11 @@ namespace Cims.WorkflowLib.Models.Business.Customers
         /// Full name of the customer.
         /// </summary>
         public string FullName { get; set; }
+
+        /// <summary>
+        /// CRM role type.
+        /// </summary>
+        public CRMRoleType CRMRoleType { get; set; }
         
         /// <summary>
         /// Contact of the customer.

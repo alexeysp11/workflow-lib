@@ -1,0 +1,2 @@
+# CRMRoleType Enumeration 
+

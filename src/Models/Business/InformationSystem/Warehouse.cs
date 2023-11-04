@@ -16,6 +16,11 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// Warehouse items that are stored or related to the warehouse.
         /// </summary>
-        public virtual ICollection<WarehouseItem> WarehouseItems { get; set; }
+        public ICollection<WarehouseItem> WarehouseItems { get; set; }
+
+        /// <summary>
+        /// Location of the warehouse.
+        /// </summary>
+        public Address Location { get; set; }
     }
 }

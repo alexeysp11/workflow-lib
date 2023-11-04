@@ -18,6 +18,11 @@ namespace Cims.WorkflowLib.Models.Business.Customers
         /// VAT number of the company.
         /// </summary>
         public string VatNumber { get; set; }
+        
+        /// <summary>
+        /// CRM role type.
+        /// </summary>
+        public CRMRoleType CRMRoleType { get; set; }
 
         /// <summary>
         /// Contact of the company.
