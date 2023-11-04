@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations;
 namespace Cims.WorkflowLib.Models.Business.SocialCommunication
 {
     /// <summary>
-    /// 
+    /// Deleted message status.
     /// </summary>
-    public enum SetMsgStatus
+    public enum DeletedMessageStatus
     {
-        [Display(Name = "Read")]
-        Read,
+        [Display(Name = "None")]
+        None,
 
         [Display(Name = "Delete For Sender")]
         DeleteForSender,

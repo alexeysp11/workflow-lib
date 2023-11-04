@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Cims.WorkflowLib.Models.Business.Monetary.Enums
+namespace Cims.WorkflowLib.Models.Business.Monetary
 {
     /// <summary>
     /// Currency

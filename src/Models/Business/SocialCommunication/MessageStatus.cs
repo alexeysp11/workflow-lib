@@ -7,9 +7,6 @@ namespace Cims.WorkflowLib.Models.Business.SocialCommunication
     {
         Pending, 
         Sent, 
-        Read, 
-        SentAndDeletedForSender,
-        ReadAndDeletedForSender,
-        DeletedForEverybody
+        Read
     }
 }

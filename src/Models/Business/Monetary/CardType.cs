@@ -1,4 +1,4 @@
-namespace Cims.WorkflowLib.Models.Business.Monetary.Enums
+namespace Cims.WorkflowLib.Models.Business.Monetary
 {
     /// <summary>
     /// Card type.

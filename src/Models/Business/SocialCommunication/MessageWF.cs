@@ -98,6 +98,11 @@ namespace Cims.WorkflowLib.Models.Business.SocialCommunication
         public MessageStatus MessageStatus { get; set; }
         
         /// <summary>
+        /// Deleted message status.
+        /// </summary>
+        public DeletedMessageStatus DeletedMessageStatus { get; set; }
+        
+        /// <summary>
         /// Boolean variable to indicate if the message is new.
         /// </summary>
         public bool IsNew { get; set; }
