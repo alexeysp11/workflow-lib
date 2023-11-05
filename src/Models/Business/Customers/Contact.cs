@@ -1,9 +1,11 @@
+using Cims.WorkflowLib.Models.Business;
+
 namespace Cims.WorkflowLib.Models.Business.Customers
 {
     /// <summary>
     /// Contact.
     /// </summary>
-    public class Contact
+    public class Contact : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
         /// Mobile phone.

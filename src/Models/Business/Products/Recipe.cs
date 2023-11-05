@@ -19,7 +19,7 @@ namespace Cims.WorkflowLib.Models.Business.Products
         public ICollection<Ingredient> Ingredients { get; set; }
 
         /// <summary>
-        /// 
+        /// Instruction how to cook.
         /// </summary>
         public string Instruction { get; set; }
     }
