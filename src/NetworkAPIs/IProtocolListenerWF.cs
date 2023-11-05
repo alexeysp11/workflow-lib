@@ -1,7 +1,7 @@
 namespace Cims.WorkflowLib.NetworkAPIs
 {
     /// <summary>
-    /// Interface for listeners 
+    /// Interface for listeners.
     /// </summary>
     public interface IProtocolListener
     {

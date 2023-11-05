@@ -63,7 +63,7 @@ namespace Cims.WorkflowLib.DocFormats.Images
         }
 
         /// <summary>
-        /// Method for converting binary to image 
+        /// Method for converting binary to image.
         /// </summary>
         public void BinaryToImg(byte[] bytes, string foldername, string filename)
         {
