@@ -1,4 +1,5 @@
-using System.Data; 
+using System.Data;
+using Cims.WorkflowLib.Models.Database;
 
 namespace Cims.WorkflowLib.DbConnections
 {
@@ -10,7 +11,7 @@ namespace Cims.WorkflowLib.DbConnections
         /// <summary>
         /// Execute SQL command.
         /// </summary>
-        DataTable ExecuteSqlCommand(string sqlRequest); 
+        SqlResultWF ExecuteSqlCommand(string sqlRequest); 
         
         /// <summary>
         /// Gets SQL definition of the DataTable object.

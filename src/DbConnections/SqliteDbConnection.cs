@@ -1,5 +1,6 @@
 using System.Data; 
 using Microsoft.Data.Sqlite;
+using Cims.WorkflowLib.Models.Database;
 
 namespace Cims.WorkflowLib.DbConnections
 {
@@ -44,8 +45,9 @@ namespace Cims.WorkflowLib.DbConnections
         /// <summary>
         /// Executes SQL string and returns DataTable
         /// </summary>
-        public DataTable ExecuteSqlCommand(string sqlRequest)
+        public SqlResultWF ExecuteSqlCommand(string sqlRequest)
         {
+            SqlResultWF result = new SqlResultWF();
             DataTable table = new DataTable(); 
             var connectionStringBuilder = new SqliteConnectionStringBuilder();
             connectionStringBuilder.DataSource = AbsolutePathToDb;
@@ -59,6 +61,7 @@ namespace Cims.WorkflowLib.DbConnections
                     using (var reader = selectCmd.ExecuteReader())
                     {
                         table.Load(reader);
+                        result.DataTableResult = table;
                     }
                 }
                 catch (System.Exception)
@@ -66,7 +69,7 @@ namespace Cims.WorkflowLib.DbConnections
                     throw; 
                 }
             }
-            return table; 
+            return result; 
         }
 
         public new string GetSqlFromDataTable(DataTable dt, string tableName)

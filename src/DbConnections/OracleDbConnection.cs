@@ -1,5 +1,6 @@
 using System.Data; 
 using Oracle.ManagedDataAccess.Client;
+using Cims.WorkflowLib.Models.Database;
 
 namespace Cims.WorkflowLib.DbConnections
 {
@@ -24,8 +25,9 @@ namespace Cims.WorkflowLib.DbConnections
             return this; 
         }
 
-        public DataTable ExecuteSqlCommand(string sqlRequest)
+        public SqlResultWF ExecuteSqlCommand(string sqlRequest)
         {
+            SqlResultWF result = new SqlResultWF();
             DataTable table = new DataTable();
             using (OracleConnection con = new OracleConnection(string.IsNullOrEmpty(DataSource) ? ConnString : DataSource))
             {
@@ -35,10 +37,11 @@ namespace Cims.WorkflowLib.DbConnections
                     using (OracleDataReader dr = cmd.ExecuteReader())
                     {
                         table.Load(dr);
+                        result.DataTableResult = table;
                     }
                 }
             }
-            return table;
+            return result;
         }
 
         public new string GetSqlFromDataTable(DataTable dt, string tableName)

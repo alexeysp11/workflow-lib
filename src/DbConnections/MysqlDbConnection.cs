@@ -1,6 +1,7 @@
 using System.Data; 
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using Cims.WorkflowLib.Models.Database;
 
 namespace Cims.WorkflowLib.DbConnections
 {
@@ -25,8 +26,9 @@ namespace Cims.WorkflowLib.DbConnections
             return this; 
         }
 
-        public DataTable ExecuteSqlCommand(string sqlRequest)
+        public SqlResultWF ExecuteSqlCommand(string sqlRequest)
         {
+            SqlResultWF result = new SqlResultWF();
             DataTable table = new DataTable(); 
             MySqlConnection connection = null; 
             try
@@ -35,6 +37,7 @@ namespace Cims.WorkflowLib.DbConnections
                 connection.Open();
                 var reader = (new MySqlCommand(sqlRequest, connection)).ExecuteReader();
                 table = GetDataTable(reader); 
+                result.DataTableResult = table;
             }
             catch (System.Exception)
             {
@@ -44,7 +47,7 @@ namespace Cims.WorkflowLib.DbConnections
             {
                 if (connection != null) connection.Close();
             }
-            return table; 
+            return result; 
         }
 
         public new string GetSqlFromDataTable(DataTable dt, string tableName)

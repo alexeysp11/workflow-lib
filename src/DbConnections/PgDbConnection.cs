@@ -1,5 +1,6 @@
 using System.Data; 
 using Npgsql;
+using Cims.WorkflowLib.Models.Database;
 
 namespace Cims.WorkflowLib.DbConnections
 {
@@ -24,8 +25,9 @@ namespace Cims.WorkflowLib.DbConnections
             return this; 
         }
 
-        public DataTable ExecuteSqlCommand(string sqlRequest)
+        public SqlResultWF ExecuteSqlCommand(string sqlRequest)
         {
+            SqlResultWF result = new SqlResultWF();
             DataTable table = new DataTable(); 
             using (var conn = new NpgsqlConnection(string.IsNullOrEmpty(DataSource) ? ConnString : DataSource))
             {
@@ -35,9 +37,10 @@ namespace Cims.WorkflowLib.DbConnections
                     var reader = command.ExecuteReader();
                     table = GetDataTable(reader); 
                     reader.Close();
+                    result.DataTableResult = table;
                 }
             }
-            return table; 
+            return result; 
         }
 
         public new string GetSqlFromDataTable(DataTable dt, string tableName)
