@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Cims.WorkflowLib.Models.Business;
 using Cims.WorkflowLib.Models.Business.Monetary;
+using Cims.WorkflowLib.Models.Business.Processes;
 using Cims.WorkflowLib.Models.Business.Products;
 
 namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
@@ -18,12 +19,12 @@ namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// Preparing operations for the delivery order.
         /// </summary>
-        public ICollection<BusinessOperation> PreparingOperations { get; set; }
+        public ICollection<BusinessTask> PreparingOperations { get; set; }
         
         /// <summary>
         /// Delivery operation.
         /// </summary>
-        public BusinessOperation DeliveryOperation { get; set; }
+        public BusinessTask DeliveryOperation { get; set; }
         
         /// <summary>
         /// Price for the delivery.

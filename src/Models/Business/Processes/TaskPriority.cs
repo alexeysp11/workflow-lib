@@ -1,4 +1,4 @@
-namespace Cims.WorkflowLib.Models.Business.Products
+namespace Cims.WorkflowLib.Models.Business.Processes
 {
     /// <summary>
     /// Task priority.

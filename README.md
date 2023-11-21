@@ -28,7 +28,7 @@ It offers a wide range of functionalities and data models that can be customized
     - HTML, markdown;
     - [Binary](docs/DocFormats/BinaryConverter.md);
 - Classes for business:
-    - Common: [address](docs/Models/Business/Address.md), [business operation](docs/Models/Business/BusinessOperation.md), [period](docs/Models/Business/Period.md), [risk](docs/Models/Business/Risk.md), etc.
+    - Common: [address](docs/Models/Business/Address.md), [business task](docs/Models/Business/BusinessTask.md), [period](docs/Models/Business/Period.md), [risk](docs/Models/Business/Risk.md), etc.
     - Business documents: [bill](docs/Models/Business/BusinessDocuments/Bill.md), [delivery order](docs/Models/Business/BusinessDocuments/DeliveryOrder.md), [employment contract](docs/Models/Business/BusinessDocuments/EmploymentContract.md), etc.
     - Customers: [customer](docs/Models/Business/Customers/Customer.md), [company](docs/Models/Business/Customers/Company.md), [contact](docs/Models/Business/Customers/Contact.md), etc.
     - Information system: [employee](docs/Models/Business/InformationSystem/Employee.md), [user account](docs/Models/Business/InformationSystem/UserAccount.md), [working day](docs/Models/Business/InformationSystem/WorkingDay.md), etc.
@@ -51,7 +51,7 @@ The library also offers operations with databases such as SQLite, PostgreSQL, My
 
 In addition, the library enables communication with Ethereum using Nethereum.Web3 library, providing access to blockchain technology. The library also offers operations with documents, supporting multiple formats such as MS word (doc, docx), MS Excel (XLS, XLSX), PDF, images (PNG, BMP, JPEG), and binary files.
 
-The library includes several classes for business, such as common data models like address, business operation, period, risk, etc. 
+The library includes several classes for business, such as common data models like address, business task, period, risk, etc. 
 It also includes classes for business documents like bill, delivery order, employment contract, customers like customer, company, contact, information system like employee, user account, working day, monetary models like paycheck, payment, pay rate and products like product, product category, project. 
 Additionally, the library provides classes for responsibilities like employee responsibility, employer responsibility and social communication like message.
 

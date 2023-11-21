@@ -121,24 +121,24 @@ public DeliveryMethod DeliveryMethod { get; set; }
 Preparing operations for the delivery order.
 
 ```C#
-public ICollection<BusinessOperation> PreparingOperations { get; set; }
+public ICollection<BusinessTask> PreparingOperations { get; set; }
 ```
 
 #### Property Value
 
-[ICollection](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.icollection-1)<[BusinessOperation](../BusinessOperation.md)>
+[ICollection](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.icollection-1)<[BusinessTask](../BusinessTask.md)>
 
 ### DeliveryOperation
 
 Delivery operation.
 
 ```C#
-public BusinessOperation DeliveryOperation { get; set; }
+public BusinessTask DeliveryOperation { get; set; }
 ```
 
 #### Property Value
 
-[BusinessOperation](../BusinessOperation.md)
+[BusinessTask](../BusinessTask.md)
 
 ### Products
 

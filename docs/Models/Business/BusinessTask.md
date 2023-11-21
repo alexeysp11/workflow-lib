@@ -1,4 +1,4 @@
-# BusinessOperation Class
+# BusinessTask Class
 
 *Namespace*: [Cims.WorkflowLib.Models.Business](Cims.WorkflowLib.Models.Business.md)
 
@@ -6,23 +6,23 @@
 
 *Inherits*: [BusinessEntityWF](BusinessEntityWF.md)
 
-Representation of a business operation.
+Representation of a business task.
 
 ## Constructors
 
-### BusinessOperation()
+### BusinessTask()
 
 Default constructor.
 
 ```C#
-public BusinessOperation();
+public BusinessTask();
 ```
 
 ## Properties
 
 ### ActualExecutionTime
 
-Actual execution time of the business operation.
+Actual execution time of the business task.
 
 ```C#
 public ExecutionTime ActualExecutionTime { get; set; }
@@ -34,7 +34,7 @@ public ExecutionTime ActualExecutionTime { get; set; }
 
 ### EstimatedExecutionTime
 
-Estimated execution time of the business operation.
+Estimated execution time of the business task.
 
 ```C#
 public ExecutionTime EstimatedExecutionTime { get; set; }
@@ -46,7 +46,7 @@ public ExecutionTime EstimatedExecutionTime { get; set; }
 
 ### Status
 
-Status of the business operation.
+Status of the business task.
 
 ```C#
 public string Status { get; set; }

@@ -28,7 +28,7 @@
     - HTML, markdown;
     - [Binary](docs/DocFormats/BinaryConverter.md);
 - Классы для бизнеса:
-    - Общее: [адрес](docs/Models/Business/Address.md), [бизнес-операция](docs/Models/Business/BusinessOperation.md), [период](docs/Models/Business/Period.md), [риск](docs/Models/Business/Risk.md), etc.
+    - Общее: [адрес](docs/Models/Business/Address.md), [бизнес-задача](docs/Models/Business/BusinessTask.md), [период](docs/Models/Business/Period.md), [риск](docs/Models/Business/Risk.md), etc.
     - Бизнес-документы: [счёт](docs/Models/Business/BusinessDocuments/Bill.md), [заказ на доставку](docs/Models/Business/BusinessDocuments/DeliveryOrder.md), [трудовой договор](docs/Models/Business/BusinessDocuments/EmploymentContract.md), etc.
     - Потербители: [потребитель](docs/Models/Business/Customers/Customer.md), [компания](docs/Models/Business/Customers/Company.md), [contact](docs/Models/Business/Customers/Contact.md), etc.
     - Информационная система: [работник](docs/Models/Business/InformationSystem/Employee.md), [аккаунт пользователя](docs/Models/Business/InformationSystem/UserAccount.md), [рабочий день](docs/Models/Business/InformationSystem/WorkingDay.md), etc.

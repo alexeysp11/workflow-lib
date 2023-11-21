@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Cims.WorkflowLib.Models.Business;
+using Cims.WorkflowLib.Models.Business.Processes;
 
 namespace Cims.WorkflowLib.Models.Business.Products
 {
