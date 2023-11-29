@@ -45,6 +45,16 @@ namespace Cims.WorkflowLib.Models.Network
         public string Response { get; set; }
 
         /// <summary>
+        /// Object that is sent as a request to the server.
+        /// </summary>
+        public object RequestObject { get; set; }
+
+        /// <summary>
+        /// Object that is received as a response from the server.
+        /// </summary>
+        public object ResponseObject { get; set; }
+
+        /// <summary>
         /// Boolean variable that is set by a server to indicate if the request is executed properly.
         /// </summary>
         public bool IsExecuted { get; set; }
