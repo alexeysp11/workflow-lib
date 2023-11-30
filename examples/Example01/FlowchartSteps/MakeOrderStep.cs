@@ -3,7 +3,7 @@ using Cims.WorkflowLib.Example01.Models;
 
 namespace Cims.WorkflowLib.Example01.FlowchartSteps
 {
-    public class MakeOrderStep
+    public class MakeOrderStep : IFlowchartStep
     {
         private CustomerClientRequestController _customerClient { get; set; }
         private CustomerBackendRequestController _customerBackend { get; set; }

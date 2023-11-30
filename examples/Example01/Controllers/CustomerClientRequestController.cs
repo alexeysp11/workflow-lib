@@ -1,10 +1,11 @@
 using System.Threading.Tasks;
 using Cims.WorkflowLib.Models.Business.Monetary;
 using Cims.WorkflowLib.Example01.Models;
+using Cims.WorkflowLib.Example01.Interfaces;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
-    public class CustomerClientRequestController
+    public class CustomerClientRequestController : ICustomerClient
     {
         private CustomerBackendRequestController _backendController { get; set; }
         
@@ -48,12 +49,14 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return "";
         }
         
-        public string MakePayment(Payment model)
+        public string MakePayment(object input)
         {
             string response = "";
             System.Console.WriteLine("CustomerClient.MakePayment: begin");
             try
             {
+                Payment model = input as Payment;
+
                 // Update DB.
                 System.Console.WriteLine("CustomerClient.MakePayment: cache");
 

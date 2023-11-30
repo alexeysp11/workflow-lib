@@ -3,11 +3,19 @@ using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Processes;
 using Cims.WorkflowLib.Models.Business.Products;
 using Cims.WorkflowLib.Example01.Contexts;
-using Cims.WorkflowLib.Example01.Models;
 using Cims.WorkflowLib.Example01.FlowchartSteps;
+using Cims.WorkflowLib.Example01.Interfaces;
+using Cims.WorkflowLib.Example01.Models;
 
-var step1 = new MakeOrderStep();
+// Step 1: make order.
+System.Console.WriteLine("\nStep 1: make order.");
+IFlowchartStep step1 = new MakeOrderStep();
 step1.Start();
+
+// Step 2: make payment.
+System.Console.WriteLine("\nStep 2: make payment.");
+IFlowchartStep step2 = new MakePaymentStep();
+step2.Start();
 
 // Creating a business process 
 // var makeOrderProcess = new BusinessProcess

@@ -1,11 +1,12 @@
-using Cims.WorkflowLib.Example01.BL;
-using Cims.WorkflowLib.Example01.Models;
 using Cims.WorkflowLib.Models.Business.Customers;
 using Cims.WorkflowLib.Models.Business.Monetary;
+using Cims.WorkflowLib.Example01.BL;
+using Cims.WorkflowLib.Example01.Interfaces;
+using Cims.WorkflowLib.Example01.Models;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
-    public class CustomerBackendRequestController
+    public class CustomerBackendRequestController : ICustomerBackend
     {
         private FileServiceController _fileServiceController { get; set; }
         // private WarehouseBackendRequestController _warehouseBackend { get; set; }
@@ -34,7 +35,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("CustomerBackend.MakeOrder: cache");
 
                 // Invoke makepayment.
-                return MakePayment(model);
+                response = MakePayment(model);
             }
             catch (System.Exception ex)
             {
@@ -44,12 +45,14 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
-        public string MakePayment(PlaceOrderModel model)
+        public string MakePayment(object input)
         {
             string response = "";
             System.Console.WriteLine("CustomerBackend.MakePayment: begin");
             try
             {
+                PlaceOrderModel model = input as PlaceOrderModel;
+                
                 // Validation.
                 System.Console.WriteLine("CustomerBackend.MakePayment: validation");
 
