@@ -4,12 +4,12 @@ using Cims.WorkflowLib.Example01.Interfaces;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
-    public class CustomerClientResponseController : ICustomerClient
+    public class CustomerClientReceiverController : ICustomerClient
     {
-        private CustomerBackendResponseController _backendController { get; set; }
+        private CustomerBackendReceiverController _backendController { get; set; }
 
-        public CustomerClientResponseController(
-                CustomerBackendResponseController backendController)
+        public CustomerClientReceiverController(
+                CustomerBackendReceiverController backendController)
         {
             _backendController = backendController;
         }

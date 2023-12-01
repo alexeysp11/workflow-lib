@@ -4,21 +4,21 @@ using Cims.WorkflowLib.Example01.Interfaces;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
-    public class WarehouseBackendRequestController
+    public class WarehouseBackendSenderController
     {
         private CourierBackendController _courierBackend { get; set; }
-        private NotificationsBackendRequestController _notificationsBackend { get; set; }
+        private NotificationsBackendSenderController _notificationsBackend { get; set; }
 
         #region Constructors
-        public WarehouseBackendRequestController(
-                NotificationsBackendRequestController notificationsBackend)
+        public WarehouseBackendSenderController(
+                NotificationsBackendSenderController notificationsBackend)
             : this(null, notificationsBackend)
         {
         }
 
-        public WarehouseBackendRequestController(
+        public WarehouseBackendSenderController(
                 CourierBackendController courierBackend,
-                NotificationsBackendRequestController notificationsBackend)
+                NotificationsBackendSenderController notificationsBackend)
         {
             _courierBackend = courierBackend;
             _notificationsBackend = notificationsBackend;
@@ -89,7 +89,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 });
 
                 // Update cache in the client-side app.
-                string paymentRequest = new WarehouseClientRequestController(this).Store2Wh(model);
+                string paymentRequest = new WarehouseClientSenderController(this).Store2Wh(model);
 
                 // 
                 response = "success";
@@ -123,7 +123,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 });
 
                 // Update cache in the client-side app.
-                string paymentRequest = new WarehouseClientRequestController(this).Wh2Kitchen(model);
+                string paymentRequest = new WarehouseClientSenderController(this).Wh2Kitchen(model);
 
                 // 
                 response = "success";

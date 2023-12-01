@@ -5,17 +5,17 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
 {
     public class MakePaymentStep : IFlowchartStep
     {
-        private CustomerClientResponseController _customerClient { get; set; }
-        private CustomerBackendResponseController _customerBackend { get; set; }
-        private WarehouseBackendRequestController _warehouseBackend { get; set; }
-        private NotificationsBackendRequestController _notificationsBackend { get; set; }
+        private CustomerClientReceiverController _customerClient { get; set; }
+        private CustomerBackendReceiverController _customerBackend { get; set; }
+        private WarehouseBackendSenderController _warehouseBackend { get; set; }
+        private NotificationsBackendSenderController _notificationsBackend { get; set; }
 
         public MakePaymentStep()
         {
-            _notificationsBackend = new NotificationsBackendRequestController();
-            _warehouseBackend = new WarehouseBackendRequestController(_notificationsBackend);
-            _customerBackend = new CustomerBackendResponseController(_warehouseBackend);
-            _customerClient = new CustomerClientResponseController(_customerBackend);
+            _notificationsBackend = new NotificationsBackendSenderController();
+            _warehouseBackend = new WarehouseBackendSenderController(_notificationsBackend);
+            _customerBackend = new CustomerBackendReceiverController(_warehouseBackend);
+            _customerClient = new CustomerClientReceiverController(_customerBackend);
         }
 
         public void Start()

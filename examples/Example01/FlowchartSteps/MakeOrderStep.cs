@@ -5,17 +5,17 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
 {
     public class MakeOrderStep : IFlowchartStep
     {
-        private CustomerClientRequestController _customerClient { get; set; }
-        private CustomerBackendRequestController _customerBackend { get; set; }
+        private CustomerClientSenderController _customerClient { get; set; }
+        private CustomerBackendSenderController _customerBackend { get; set; }
         private FileServiceController _fileService { get; set; }
-        private NotificationsBackendRequestController _notificationsBackend { get; set; }
+        private NotificationsBackendSenderController _notificationsBackend { get; set; }
 
         public MakeOrderStep()
         {
             _fileService = new FileServiceController();
-            _notificationsBackend = new NotificationsBackendRequestController();
-            _customerBackend = new CustomerBackendRequestController(_fileService, _notificationsBackend);
-            _customerClient = new CustomerClientRequestController(_customerBackend);
+            _notificationsBackend = new NotificationsBackendSenderController();
+            _customerBackend = new CustomerBackendSenderController(_fileService, _notificationsBackend);
+            _customerClient = new CustomerClientSenderController(_customerBackend);
         }
 
         public void Start()

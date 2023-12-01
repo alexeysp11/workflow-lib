@@ -4,20 +4,20 @@ using Cims.WorkflowLib.Example01.Models;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
-    public class CustomerBackendResponseController : ICustomerBackend
+    public class CustomerBackendReceiverController : ICustomerBackend
     {
-        private WarehouseBackendRequestController _warehouseBackend { get; set; }
-        private NotificationsBackendRequestController _notificationsBackend { get; set; }
+        private WarehouseBackendSenderController _warehouseBackend { get; set; }
+        private NotificationsBackendSenderController _notificationsBackend { get; set; }
 
-        public CustomerBackendResponseController(
-                WarehouseBackendRequestController warehouseBackend)
-            : this(warehouseBackend, new NotificationsBackendRequestController())
+        public CustomerBackendReceiverController(
+                WarehouseBackendSenderController warehouseBackend)
+            : this(warehouseBackend, new NotificationsBackendSenderController())
         {
         }
         
-        public CustomerBackendResponseController(
-                WarehouseBackendRequestController warehouseBackend,
-                NotificationsBackendRequestController notificationsBackend)
+        public CustomerBackendReceiverController(
+                WarehouseBackendSenderController warehouseBackend,
+                NotificationsBackendSenderController notificationsBackend)
         {
             _warehouseBackend = warehouseBackend;
             _notificationsBackend = notificationsBackend;

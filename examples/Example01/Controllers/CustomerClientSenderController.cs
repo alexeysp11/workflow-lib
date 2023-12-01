@@ -5,11 +5,11 @@ using Cims.WorkflowLib.Example01.Interfaces;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
-    public class CustomerClientRequestController : ICustomerClient
+    public class CustomerClientSenderController : ICustomerClient
     {
-        private CustomerBackendRequestController _backendController { get; set; }
+        private CustomerBackendSenderController _backendController { get; set; }
         
-        public CustomerClientRequestController(CustomerBackendRequestController backendController)
+        public CustomerClientSenderController(CustomerBackendSenderController backendController)
         {
             _backendController = backendController;
         }

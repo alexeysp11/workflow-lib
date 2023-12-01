@@ -19,3 +19,9 @@
 ## MS Excel converter 
 
 - Add new worksheet using OpenXML. 
+
+## Network communication 
+
+- Potentially, [Enterprise service bus](https://en.wikipedia.org/wiki/Enterprise_service_bus) could be implemented using this library.
+
+![ESB-components](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/ESB_Component_Hive.png/330px-ESB_Component_Hive.png)

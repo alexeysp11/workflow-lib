@@ -6,16 +6,16 @@ using Cims.WorkflowLib.Example01.Models;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
-    public class CustomerBackendRequestController : ICustomerBackend
+    public class CustomerBackendSenderController : ICustomerBackend
     {
         private FileServiceController _fileServiceController { get; set; }
-        // private WarehouseBackendRequestController _warehouseBackend { get; set; }
-        private NotificationsBackendRequestController _notificationsBackend { get; set; }
+        // private WarehouseBackendSenderController _warehouseBackend { get; set; }
+        private NotificationsBackendSenderController _notificationsBackend { get; set; }
 
-        public CustomerBackendRequestController(
+        public CustomerBackendSenderController(
             FileServiceController fileServiceController,
-            // WarehouseBackendRequestController warehouseBackend,
-            NotificationsBackendRequestController notificationsBackend)
+            // WarehouseBackendSenderController warehouseBackend,
+            NotificationsBackendSenderController notificationsBackend)
         {
             _fileServiceController = fileServiceController;
             // _warehouseBackend = warehouseBackend;
@@ -95,7 +95,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 }
 
                 // Send request to the customer client.
-                string paymentRequest = new CustomerClientRequestController(this).MakePayment(new Payment()
+                string paymentRequest = new CustomerClientSenderController(this).MakePayment(new Payment()
                 {
                     PaymentType = model.PaymentType,
                     PaymentMethod = model.PaymentMethod,

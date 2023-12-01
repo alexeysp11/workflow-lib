@@ -3,15 +3,18 @@ using Cims.WorkflowLib.Example01.Interfaces;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
-    public class WarehouseClientRequestController
+    public class WarehouseClientSenderController
     {
-        private WarehouseBackendRequestController _backendController { get; set; }
+        private WarehouseBackendSenderController _backendController { get; set; }
 
-        public WarehouseClientRequestController(WarehouseBackendRequestController backendController)
+        public WarehouseClientSenderController(WarehouseBackendSenderController backendController)
         {
             _backendController = backendController;
         }
 
+        /// <summary>
+        /// Storing request for filling a form for deliving from the store to warehouse.
+        /// </summary>
         public string Store2Wh(PlaceOrderModel model)
         {
             string response = "";
@@ -32,6 +35,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        /// <summary>
+        /// Storing the request for warhouse employee to deliver from warehouse to kitchen. 
+        /// </summary>
         public string Wh2Kitchen(PlaceOrderModel model)
         {
             string response = "";
