@@ -5,7 +5,7 @@ using Cims.WorkflowLib.Models.Business.Customers;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
-    public class NotificationsBackendSenderController : INotificationsBackend
+    public class NotificationsBackendController : INotificationsBackend
     {
         public string SendNotifications(IEnumerable<Notification> notifications)
         {

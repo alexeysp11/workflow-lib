@@ -18,6 +18,11 @@ namespace Cims.WorkflowLib.Models.Network
         /// Server application UID.
         /// </summary>
         public string ServerAppUid { get; set; }
+
+        /// <summary>
+        /// Application UID, to which the request will be redirected.
+        /// </summary>
+        public string RedirectToAppUid { get; set; }
         #endregion  // Validating endpoint applications
         
         #region Method names

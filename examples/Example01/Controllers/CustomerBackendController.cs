@@ -1,51 +1,37 @@
 using Cims.WorkflowLib.Models.Business.Customers;
 using Cims.WorkflowLib.Models.Business.Monetary;
-using Cims.WorkflowLib.Example01.BL;
 using Cims.WorkflowLib.Example01.Interfaces;
 using Cims.WorkflowLib.Example01.Models;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
-    public class CustomerBackendSenderController : ICustomerBackend
+    public class CustomerBackendController
     {
-        private FileServiceController _fileServiceController { get; set; }
-        // private WarehouseBackendSenderController _warehouseBackend { get; set; }
-        private NotificationsBackendSenderController _notificationsBackend { get; set; }
-
-        public CustomerBackendSenderController(
-            FileServiceController fileServiceController,
-            // WarehouseBackendSenderController warehouseBackend,
-            NotificationsBackendSenderController notificationsBackend)
-        {
-            _fileServiceController = fileServiceController;
-            // _warehouseBackend = warehouseBackend;
-            _notificationsBackend = notificationsBackend;
-        }
-
-        public string MakeOrder(PlaceOrderModel model)
+        
+        public string MakeOrderRequest(PlaceOrderModel model)
         {
             string response = "";
-            System.Console.WriteLine("CustomerBackend.MakeOrder: begin");
+            System.Console.WriteLine("CustomerBackend.MakeOrderRequest: begin");
             try
             {
                 // Validation.
-                System.Console.WriteLine("CustomerBackend.MakeOrder: validation");
+                System.Console.WriteLine("CustomerBackend.MakeOrderRequest: validation");
 
                 // Update DB.
-                System.Console.WriteLine("CustomerBackend.MakeOrder: cache");
+                System.Console.WriteLine("CustomerBackend.MakeOrderRequest: cache");
 
                 // Invoke makepayment.
-                response = MakePayment(model);
+                response = MakePaymentStart(model);
             }
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
             }
-            System.Console.WriteLine("CustomerBackend.MakeOrder: end");
+            System.Console.WriteLine("CustomerBackend.MakeOrderRequest: end");
             return response;
         }
 
-        public string MakePayment(object input)
+        public string MakePaymentStart(object input)
         {
             string response = "";
             System.Console.WriteLine("CustomerBackend.MakePayment: begin");
@@ -68,7 +54,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 else if (model.PaymentType == "qr")
                 {
                     // Generate QR code.
-                    string qrResult = _fileServiceController.GenerateQrCode(model);
+                    string qrResult = new FileServiceController().GenerateQrCode(model);
 
                     // Envelope QR code.
                     System.Console.WriteLine("CustomerBackend.MakePayment: envelope qr");
@@ -79,7 +65,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     System.Console.WriteLine("CustomerBackend.MakePayment: cache");
 
                     // Send request to the notifications backend.
-                    string errorNotificationsRequest = _notificationsBackend.SendNotifications(new List<Notification>
+                    string errorNotificationsRequest = new NotificationsBackendController().SendNotifications(new List<Notification>
                     {
                         new Notification
                         {
@@ -95,7 +81,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 }
 
                 // Send request to the customer client.
-                string paymentRequest = new CustomerClientSenderController(this).MakePayment(new Payment()
+                string paymentRequest = new CustomerClientController().MakePaymentSave(new Payment()
                 {
                     PaymentType = model.PaymentType,
                     PaymentMethod = model.PaymentMethod,
@@ -105,7 +91,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 });
 
                 // Send request to the notifications backend.
-                string notificationsRequest = _notificationsBackend.SendNotifications(new List<Notification>
+                string notificationsRequest = new NotificationsBackendController().SendNotifications(new List<Notification>
                 {
                     new Notification
                     {
@@ -127,12 +113,12 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
-        public string PreprocessOrder(PlaceOrderModel model)
+        public string PreprocessOrderStart(PlaceOrderModel model)
         {
             // Get recipes.
 
             // Send HTTP request to warehouse backend.
-            // var dt = _warehouseBackend.PreprocessOrder(model);
+            // var dt = new WarehouseBackendController().PreprocessOrder(model);
 
             // // Calculate delivery time.
             // var deliveryDuration = new System.TimeSpan(0, 30, 0);
@@ -140,6 +126,80 @@ namespace Cims.WorkflowLib.Example01.Controllers
 
             // 
             return "";
+        }
+
+        public string MakeOrderSave(PlaceOrderModel model)
+        {
+            string response = "";
+            System.Console.WriteLine("CustomerBackend.MakeOrder: begin");
+            try
+            {
+                // Validation.
+                System.Console.WriteLine("CustomerBackend.MakeOrder: validation");
+
+                // Update DB.
+                System.Console.WriteLine("CustomerBackend.MakeOrder: cache");
+
+                response = "success";
+            }
+            catch (System.Exception ex)
+            {
+                response = "error: " + ex.Message;
+            }
+            System.Console.WriteLine("CustomerBackend.MakeOrder: end");
+            return response;
+        }
+
+        public string MakePaymentRespond(object input)
+        {
+            string response = "";
+            System.Console.WriteLine("CustomerBackend.MakePayment: begin");
+            try
+            {
+                Payment model = input as Payment;
+
+                // Validation.
+                System.Console.WriteLine("CustomerBackend.MakePayment: validation");
+
+                // Update DB.
+                System.Console.WriteLine("CustomerBackend.MakePayment: cache");
+
+                // Calculate delivery time.
+                string preprocessResponse = PreprocessOrderRedirect(new PlaceOrderModel());
+
+                response = "success";
+            }
+            catch (System.Exception ex)
+            {
+                response = "error: " + ex.Message;
+            }
+            System.Console.WriteLine("CustomerBackend.MakePayment: end");
+            return response;
+        }
+
+        public string PreprocessOrderRedirect(PlaceOrderModel model)
+        {
+            string response = "";
+            System.Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: begin");
+            try
+            {
+                // Validation.
+                System.Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: validation");
+
+                // Update DB.
+                System.Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: cache");
+
+                // Calculate delivery time.
+                var preprocessResponse = new WarehouseBackendController().PreprocessOrderRedirect(model);
+
+                response = "success";
+            }
+            catch (System.Exception ex)
+            {
+                response = "error: " + ex.Message;
+            }
+            System.Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: end");
+            return response;
         }
     }
 }

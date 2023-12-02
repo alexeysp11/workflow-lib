@@ -1,6 +1,6 @@
 namespace Cims.WorkflowLib.Example01.Controllers
 {
-    public class KitchenBackendReceiverController
+    public class KitchenBackendController
     {
         // 
     }

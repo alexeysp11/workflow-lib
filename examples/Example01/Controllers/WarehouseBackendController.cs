@@ -4,31 +4,12 @@ using Cims.WorkflowLib.Example01.Interfaces;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
-    public class WarehouseBackendSenderController
+    public class WarehouseBackendController
     {
-        private CourierBackendController _courierBackend { get; set; }
-        private NotificationsBackendSenderController _notificationsBackend { get; set; }
-
-        #region Constructors
-        public WarehouseBackendSenderController(
-                NotificationsBackendSenderController notificationsBackend)
-            : this(null, notificationsBackend)
-        {
-        }
-
-        public WarehouseBackendSenderController(
-                CourierBackendController courierBackend,
-                NotificationsBackendSenderController notificationsBackend)
-        {
-            _courierBackend = courierBackend;
-            _notificationsBackend = notificationsBackend;
-        }
-        #endregion  // Constructors
-
-        public string PreprocessOrder(PlaceOrderModel model)
+        public string PreprocessOrderRedirect(PlaceOrderModel model)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseBackend.PreprocessOrder: begin");
+            System.Console.WriteLine("WarehouseBackend.PreprocessOrderRedirect: begin");
             try
             {
                 // Get ingredients amount from DB.
@@ -50,7 +31,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 if (isSufficient)
                 {
                     // Invoke wh2kitchen.
-                    response = Wh2Kitchen(model);
+                    response = Wh2KitchenStart(model);
                 }
                 else
                 {
@@ -58,27 +39,27 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     result += store2whDuration;
 
                     // Invoke store2wh.
-                    response = Store2Wh(model);
+                    response = Store2WhStart(model);
                 }
             }
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
             }
-            System.Console.WriteLine("WarehouseBackend.PreprocessOrder: end");
+            System.Console.WriteLine("WarehouseBackend.PreprocessOrderRedirect: end");
             return response;
         }
 
-        public string Store2Wh(PlaceOrderModel model)
+        public string Store2WhStart(PlaceOrderModel model)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseBackend.Store2Wh: begin");
+            System.Console.WriteLine("WarehouseBackend.Store2WhStart: begin");
             try
             {
                 // Update DB.
 
                 // Notify warehouse employee.
-                _notificationsBackend.SendNotifications(new List<Notification>
+                new NotificationsBackendController().SendNotifications(new List<Notification>
                 {
                     new Notification
                     {
@@ -89,7 +70,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 });
 
                 // Update cache in the client-side app.
-                string paymentRequest = new WarehouseClientSenderController(this).Store2Wh(model);
+                string paymentRequest = new WarehouseClientController().Store2WhSave(model);
 
                 // 
                 response = "success";
@@ -98,21 +79,21 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 response = "error: " + ex.Message;
             }
-            System.Console.WriteLine("WarehouseBackend.Store2Wh: end");
+            System.Console.WriteLine("WarehouseBackend.Store2WhStart: end");
             return response;
         }
 
-        public string Wh2Kitchen(PlaceOrderModel model)
+        public string Wh2KitchenStart(PlaceOrderModel model)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseBackend.Wh2Kitchen: begin");
+            System.Console.WriteLine("WarehouseBackend.Wh2KitchenStart: begin");
             try
             {
                 // Update DB.
-                System.Console.WriteLine("WarehouseBackend.Wh2Kitchen: cache");
+                System.Console.WriteLine("WarehouseBackend.Wh2KitchenStart: cache");
                 
                 // Notify warehouse employee.
-                _notificationsBackend.SendNotifications(new List<Notification>
+                new NotificationsBackendController().SendNotifications(new List<Notification>
                 {
                     new Notification
                     {
@@ -123,7 +104,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 });
 
                 // Update cache in the client-side app.
-                string paymentRequest = new WarehouseClientSenderController(this).Wh2Kitchen(model);
+                string paymentRequest = new WarehouseClientController().Wh2KitchenSave(model);
 
                 // 
                 response = "success";
@@ -132,17 +113,11 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 response = "error: " + ex.Message;
             }
-            System.Console.WriteLine("WarehouseBackend.Wh2Kitchen: end");
+            System.Console.WriteLine("WarehouseBackend.Wh2KitchenStart: end");
             return response;
         }
 
-        public string Wh2KitchenNotifyManager(PlaceOrderModel model)
-        {
-            // 
-            return "";
-        }
-
-        public string Kitchen2Wh(PlaceOrderModel model)
+        public string Kitchen2WhStart(PlaceOrderModel model)
         {
             // 
             return "";

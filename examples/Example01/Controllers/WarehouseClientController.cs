@@ -3,26 +3,19 @@ using Cims.WorkflowLib.Example01.Interfaces;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
-    public class WarehouseClientSenderController
+    public class WarehouseClientController
     {
-        private WarehouseBackendSenderController _backendController { get; set; }
-
-        public WarehouseClientSenderController(WarehouseBackendSenderController backendController)
-        {
-            _backendController = backendController;
-        }
-
         /// <summary>
         /// Storing request for filling a form for deliving from the store to warehouse.
         /// </summary>
-        public string Store2Wh(PlaceOrderModel model)
+        public string Store2WhSave(PlaceOrderModel model)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseClient.Store2Wh: begin");
+            System.Console.WriteLine("WarehouseClient.Store2WhSave: begin");
             try
             {
                 // Update DB.
-                System.Console.WriteLine("WarehouseClient.Store2Wh: cache");
+                System.Console.WriteLine("WarehouseClient.Store2WhSave: cache");
 
                 // 
                 response = "success";
@@ -31,21 +24,21 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 response = "error: " + ex.Message;
             }
-            System.Console.WriteLine("WarehouseClient.Store2Wh: end");
+            System.Console.WriteLine("WarehouseClient.Store2WhSave: end");
             return response;
         }
 
         /// <summary>
         /// Storing the request for warhouse employee to deliver from warehouse to kitchen. 
         /// </summary>
-        public string Wh2Kitchen(PlaceOrderModel model)
+        public string Wh2KitchenSave(PlaceOrderModel model)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseClient.Wh2Kitchen: begin");
+            System.Console.WriteLine("WarehouseClient.Wh2KitchenSave: begin");
             try
             {
                 // Update DB.
-                System.Console.WriteLine("WarehouseClient.Wh2Kitchen: cache");
+                System.Console.WriteLine("WarehouseClient.Wh2KitchenSave: cache");
 
                 // 
                 response = "success";
@@ -54,7 +47,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 response = "error: " + ex.Message;
             }
-            System.Console.WriteLine("WarehouseClient.Wh2Kitchen: end");
+            System.Console.WriteLine("WarehouseClient.Wh2KitchenSave: end");
             return response;
         }
     }
