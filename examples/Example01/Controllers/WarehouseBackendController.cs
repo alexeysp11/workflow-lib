@@ -138,5 +138,32 @@ namespace Cims.WorkflowLib.Example01.Controllers
             // 
             return "";
         }
+
+        public string Wh2KitchenRespond(ApiOperation apiOperation)
+        {
+            string response = "";
+            System.Console.WriteLine("WarehouseBackend.Wh2KitchenRespond: begin");
+            try
+            {
+                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                // Update DB.
+                System.Console.WriteLine("WarehouseBackend.Wh2KitchenRespond: cache");
+
+                // Send HTTP request.
+                string backendResponse = new KitchenBackendController().PrepareMealStart(new ApiOperation
+                {
+                    RequestObject = model
+                });
+
+                // 
+                response = "success";
+            }
+            catch (System.Exception ex)
+            {
+                response = "error: " + ex.Message;
+            }
+            System.Console.WriteLine("WarehouseBackend.Wh2KitchenRespond: end");
+            return response;
+        }
     }
 }

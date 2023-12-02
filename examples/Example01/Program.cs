@@ -17,6 +17,11 @@ System.Console.WriteLine("\nStep 2: make payment.");
 IFlowchartStep step2 = new MakePaymentStep();
 step2.Start();
 
+// Step 3: finish delivering from warehouse to kitchen.
+System.Console.WriteLine("\nStep 3: finish delivering from warehouse to kitchen.");
+IFlowchartStep step3 = new FinishWh2KitchenStep();
+step3.Start();
+
 // Creating a business process 
 // var makeOrderProcess = new BusinessProcess
 // {

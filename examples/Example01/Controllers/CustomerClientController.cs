@@ -62,7 +62,10 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("CustomerClient.MakeOrderRequest: cache");
 
                 // Send HTTP request.
-                string backendResponse = new CustomerBackendController().MakeOrderRequest(apiOperation);
+                string backendResponse = new CustomerBackendController().MakeOrderRequest(new ApiOperation
+                {
+                    RequestObject = model
+                });
                 
                 // Insert into cache.
                 System.Console.WriteLine("CustomerClient.MakeOrderRequest: cache");

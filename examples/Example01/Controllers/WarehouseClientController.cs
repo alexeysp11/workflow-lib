@@ -53,5 +53,32 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("WarehouseClient.Wh2KitchenSave: end");
             return response;
         }
+
+        public string Wh2KitchenRespond(ApiOperation apiOperation)
+        {
+            string response = "";
+            System.Console.WriteLine("WarehouseClient.Wh2KitchenRespond: begin");
+            try
+            {
+                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                // Update DB.
+                System.Console.WriteLine("WarehouseClient.Wh2KitchenRespond: cache");
+
+                // Send HTTP request.
+                string backendResponse = new WarehouseBackendController().Wh2KitchenRespond(new ApiOperation
+                {
+                    RequestObject = model
+                });
+
+                // 
+                response = "success";
+            }
+            catch (System.Exception ex)
+            {
+                response = "error: " + ex.Message;
+            }
+            System.Console.WriteLine("WarehouseClient.Wh2KitchenRespond: end");
+            return response;
+        }
     }
 }
