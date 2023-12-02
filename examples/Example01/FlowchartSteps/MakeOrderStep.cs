@@ -1,3 +1,4 @@
+using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Controllers;
 using Cims.WorkflowLib.Example01.Models;
 
@@ -18,7 +19,10 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
                 ProductIds = new List<int>() { 1, 2, 3 },
                 PaymentType = "card"
             };
-            string response = new CustomerClientController().MakeOrderRequest(model);
+            string response = new CustomerClientController().MakeOrderRequest(new ApiOperation
+            {
+                RequestObject = model
+            });
             System.Console.WriteLine("MakeOrderStep.Start: end");
         }
     }

@@ -1,5 +1,6 @@
 using Cims.WorkflowLib.Models.Business.Customers;
 using Cims.WorkflowLib.Models.Business.Monetary;
+using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Interfaces;
 using Cims.WorkflowLib.Example01.Models;
 
@@ -7,13 +8,13 @@ namespace Cims.WorkflowLib.Example01.Controllers
 {
     public class CustomerBackendController
     {
-        
-        public string MakeOrderRequest(PlaceOrderModel model)
+        public string MakeOrderRequest(ApiOperation apiOperation)
         {
             string response = "";
             System.Console.WriteLine("CustomerBackend.MakeOrderRequest: begin");
             try
             {
+                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
                 // Validation.
                 System.Console.WriteLine("CustomerBackend.MakeOrderRequest: validation");
 
@@ -21,7 +22,10 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("CustomerBackend.MakeOrderRequest: cache");
 
                 // Invoke makepayment.
-                response = MakePaymentStart(model);
+                response = MakePaymentStart(new ApiOperation()
+                {
+                    RequestObject = model
+                });
             }
             catch (System.Exception ex)
             {
@@ -31,13 +35,13 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
-        public string MakePaymentStart(object input)
+        public string MakePaymentStart(ApiOperation apiOperation)
         {
             string response = "";
             System.Console.WriteLine("CustomerBackend.MakePayment: begin");
             try
             {
-                PlaceOrderModel model = input as PlaceOrderModel;
+                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
                 
                 // Validation.
                 System.Console.WriteLine("CustomerBackend.MakePayment: validation");
@@ -54,7 +58,10 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 else if (model.PaymentType == "qr")
                 {
                     // Generate QR code.
-                    string qrResult = new FileServiceController().GenerateQrCode(model);
+                    string qrResult = new FileServiceController().GenerateQrCode(new ApiOperation()
+                    {
+                        RequestObject = model
+                    });
 
                     // Envelope QR code.
                     System.Console.WriteLine("CustomerBackend.MakePayment: envelope qr");
@@ -81,13 +88,16 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 }
 
                 // Send request to the customer client.
-                string paymentRequest = new CustomerClientController().MakePaymentSave(new Payment()
+                string paymentRequest = new CustomerClientController().MakePaymentSave(new ApiOperation
                 {
-                    PaymentType = model.PaymentType,
-                    PaymentMethod = model.PaymentMethod,
-                    Payer = "Customer",
-                    Receiver = "Our company",
-                    Status = "Requested"
+                    RequestObject = new Payment
+                    {
+                        PaymentType = model.PaymentType,
+                        PaymentMethod = model.PaymentMethod,
+                        Payer = "Customer",
+                        Receiver = "Our company",
+                        Status = "Requested"
+                    }
                 });
 
                 // Send request to the notifications backend.
@@ -113,7 +123,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
-        public string PreprocessOrderStart(PlaceOrderModel model)
+        public string PreprocessOrderStart(ApiOperation apiOperation)
         {
             // Get recipes.
 
@@ -128,12 +138,13 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return "";
         }
 
-        public string MakeOrderSave(PlaceOrderModel model)
+        public string MakeOrderSave(ApiOperation apiOperation)
         {
             string response = "";
             System.Console.WriteLine("CustomerBackend.MakeOrder: begin");
             try
             {
+                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
                 // Validation.
                 System.Console.WriteLine("CustomerBackend.MakeOrder: validation");
 
@@ -150,13 +161,13 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
-        public string MakePaymentRespond(object input)
+        public string MakePaymentRespond(ApiOperation apiOperation)
         {
             string response = "";
             System.Console.WriteLine("CustomerBackend.MakePayment: begin");
             try
             {
-                Payment model = input as Payment;
+                Payment model = apiOperation.RequestObject as Payment;
 
                 // Validation.
                 System.Console.WriteLine("CustomerBackend.MakePayment: validation");
@@ -165,7 +176,10 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("CustomerBackend.MakePayment: cache");
 
                 // Calculate delivery time.
-                string preprocessResponse = PreprocessOrderRedirect(new PlaceOrderModel());
+                string preprocessResponse = PreprocessOrderRedirect(new ApiOperation()
+                {
+                    RequestObject = new PlaceOrderModel()
+                });
 
                 response = "success";
             }
@@ -177,12 +191,13 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
-        public string PreprocessOrderRedirect(PlaceOrderModel model)
+        public string PreprocessOrderRedirect(ApiOperation apiOperation)
         {
             string response = "";
             System.Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: begin");
             try
             {
+                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
                 // Validation.
                 System.Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: validation");
 
@@ -190,7 +205,10 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: cache");
 
                 // Calculate delivery time.
-                var preprocessResponse = new WarehouseBackendController().PreprocessOrderRedirect(model);
+                var preprocessResponse = new WarehouseBackendController().PreprocessOrderRedirect(new ApiOperation()
+                {
+                    RequestObject = model
+                });
 
                 response = "success";
             }

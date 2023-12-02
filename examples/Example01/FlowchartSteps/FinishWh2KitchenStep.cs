@@ -11,7 +11,10 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             {
                 // 
             };
-            //new WarehouseClientController().Wh2Kitchen(model);
+            // new WarehouseClientController().Wh2Kitchen(new ApiOperation
+            // {
+            //     RequestObject = model
+            // });
         }
     }
 }

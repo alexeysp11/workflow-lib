@@ -1,4 +1,5 @@
 using Cims.WorkflowLib.Models.Business.Customers;
+using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Models;
 using Cims.WorkflowLib.Example01.Interfaces;
 
@@ -6,12 +7,13 @@ namespace Cims.WorkflowLib.Example01.Controllers
 {
     public class WarehouseBackendController
     {
-        public string PreprocessOrderRedirect(PlaceOrderModel model)
+        public string PreprocessOrderRedirect(ApiOperation apiOperation)
         {
             string response = "";
             System.Console.WriteLine("WarehouseBackend.PreprocessOrderRedirect: begin");
             try
             {
+                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
                 // Get ingredients amount from DB.
                 int ingredientsAmount = 0;
 
@@ -31,7 +33,10 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 if (isSufficient)
                 {
                     // Invoke wh2kitchen.
-                    response = Wh2KitchenStart(model);
+                    response = Wh2KitchenStart(new ApiOperation()
+                    {
+                        RequestObject = model
+                    });
                 }
                 else
                 {
@@ -39,7 +44,10 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     result += store2whDuration;
 
                     // Invoke store2wh.
-                    response = Store2WhStart(model);
+                    response = Store2WhStart(new ApiOperation()
+                    {
+                        RequestObject = model
+                    });
                 }
             }
             catch (System.Exception ex)
@@ -50,12 +58,13 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
-        public string Store2WhStart(PlaceOrderModel model)
+        public string Store2WhStart(ApiOperation apiOperation)
         {
             string response = "";
             System.Console.WriteLine("WarehouseBackend.Store2WhStart: begin");
             try
             {
+                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
                 // Update DB.
 
                 // Notify warehouse employee.
@@ -70,7 +79,10 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 });
 
                 // Update cache in the client-side app.
-                string paymentRequest = new WarehouseClientController().Store2WhSave(model);
+                string paymentRequest = new WarehouseClientController().Store2WhSave(new ApiOperation()
+                {
+                    RequestObject = model
+                });
 
                 // 
                 response = "success";
@@ -83,12 +95,13 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
-        public string Wh2KitchenStart(PlaceOrderModel model)
+        public string Wh2KitchenStart(ApiOperation apiOperation)
         {
             string response = "";
             System.Console.WriteLine("WarehouseBackend.Wh2KitchenStart: begin");
             try
             {
+                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
                 // Update DB.
                 System.Console.WriteLine("WarehouseBackend.Wh2KitchenStart: cache");
                 
@@ -104,7 +117,10 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 });
 
                 // Update cache in the client-side app.
-                string paymentRequest = new WarehouseClientController().Wh2KitchenSave(model);
+                string paymentRequest = new WarehouseClientController().Wh2KitchenSave(new ApiOperation()
+                {
+                    RequestObject = model
+                });
 
                 // 
                 response = "success";
@@ -117,7 +133,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
-        public string Kitchen2WhStart(PlaceOrderModel model)
+        public string Kitchen2WhStart(ApiOperation apiOperation)
         {
             // 
             return "";

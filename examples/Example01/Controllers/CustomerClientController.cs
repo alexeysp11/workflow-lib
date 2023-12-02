@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Cims.WorkflowLib.Models.Business.Monetary;
+using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Models;
 using Cims.WorkflowLib.Example01.Interfaces;
 
@@ -7,19 +8,19 @@ namespace Cims.WorkflowLib.Example01.Controllers
 {
     public class CustomerClientController
     {
-        public string MakeOrder(PlaceOrderModel model)
+        public string MakeOrder(ApiOperation apiOperation)
         {
             // 
             return "";
         }
 
-        public string MakePaymentRespond(object input)
+        public string MakePaymentRespond(ApiOperation apiOperation)
         {
             string response = "";
             System.Console.WriteLine("CustomerClient.MakePaymentRespond: begin");
             try
             {
-                Payment model = input as Payment;
+                Payment model = apiOperation.RequestObject as Payment;
 
                 // Validation.
                 System.Console.WriteLine("CustomerClient.MakePaymentRespond: validation");
@@ -28,7 +29,10 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("CustomerClient.MakePaymentRespond: cache");
 
                 // Send HTTP request.
-                string backendResponse = new CustomerBackendController().MakePaymentRespond(model);
+                string backendResponse = new CustomerBackendController().MakePaymentRespond(new ApiOperation()
+                {
+                    RequestObject = model
+                });
                 
                 // Insert into cache.
                 System.Console.WriteLine("CustomerClient.MakePaymentRespond: cache");
@@ -44,12 +48,13 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
-        public string MakeOrderRequest(PlaceOrderModel model)
+        public string MakeOrderRequest(ApiOperation apiOperation)
         {
             string response = "";
             System.Console.WriteLine("CustomerClient.MakeOrderRequest: begin");
             try
             {
+                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
                 // Validation.
                 System.Console.WriteLine("CustomerClient.MakeOrderRequest: validation");
                 
@@ -57,7 +62,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("CustomerClient.MakeOrderRequest: cache");
 
                 // Send HTTP request.
-                string backendResponse = new CustomerBackendController().MakeOrderRequest(model);
+                string backendResponse = new CustomerBackendController().MakeOrderRequest(apiOperation);
                 
                 // Insert into cache.
                 System.Console.WriteLine("CustomerClient.MakeOrderRequest: cache");
@@ -73,19 +78,19 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
-        public async Task<string> MakeOrderAsync(PlaceOrderModel model)
+        public async Task<string> MakeOrderAsync(ApiOperation apiOperation)
         {
             await Task.Delay(500);
             return "";
         }
         
-        public string MakePaymentSave(object input)
+        public string MakePaymentSave(ApiOperation apiOperation)
         {
             string response = "";
             System.Console.WriteLine("CustomerClient.MakePaymentSave: begin");
             try
             {
-                Payment model = input as Payment;
+                Payment model = apiOperation.RequestObject as Payment;
 
                 // Update DB.
                 System.Console.WriteLine("CustomerClient.MakePaymentSave: cache");

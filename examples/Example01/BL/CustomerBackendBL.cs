@@ -25,7 +25,7 @@ namespace Cims.WorkflowLib.Example01.BL
             else if (model.PaymentType == "qr")
             {
                 // Generate QR code.
-                string qrResult = _fileServiceController.GenerateQrCode(model);
+                // string qrResult = _fileServiceController.GenerateQrCode(model);
 
                 // Envelope QR code.
             }

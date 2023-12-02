@@ -1,4 +1,5 @@
 using Cims.WorkflowLib.Models.Business.Monetary;
+using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Controllers;
 
 namespace Cims.WorkflowLib.Example01.FlowchartSteps
@@ -12,7 +13,10 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             {
                 // 
             };
-            string response = new CustomerClientController().MakePaymentRespond(model);
+            string response = new CustomerClientController().MakePaymentRespond(new ApiOperation
+            {
+                RequestObject = model
+            });
             System.Console.WriteLine("MakePaymentStep.Start: end");
         }
     }
