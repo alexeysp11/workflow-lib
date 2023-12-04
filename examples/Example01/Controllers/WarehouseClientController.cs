@@ -54,6 +54,63 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        /// <summary>
+        /// Requesting delivering from store to warehouse.
+        /// </summary>
+        public string Store2WhRequest(ApiOperation apiOperation)
+        {
+            string response = "";
+            System.Console.WriteLine("WarehouseClient.Store2WhRequest: begin");
+            try
+            {
+                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                // Update DB.
+                System.Console.WriteLine("WarehouseClient.Store2WhRequest: cache");
+
+                // Send HTTP request.
+                string backendResponse = new WarehouseBackendController().Store2WhRequest(new ApiOperation
+                {
+                    RequestObject = model
+                });
+
+                // 
+                response = "success";
+            }
+            catch (System.Exception ex)
+            {
+                response = "error: " + ex.Message;
+            }
+            System.Console.WriteLine("WarehouseClient.Store2WhRequest: end");
+            return response;
+        }
+
+        public string Store2WhConfirm(ApiOperation apiOperation)
+        {
+            string response = "";
+            System.Console.WriteLine("WarehouseClient.Store2WhConfirm: begin");
+            try
+            {
+                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                // Update DB.
+                System.Console.WriteLine("WarehouseClient.Store2WhConfirm: cache");
+
+                // Send HTTP request.
+                string backendResponse = new WarehouseBackendController().Store2WhConfirm(new ApiOperation
+                {
+                    RequestObject = model
+                });
+
+                // 
+                response = "success";
+            }
+            catch (System.Exception ex)
+            {
+                response = "error: " + ex.Message;
+            }
+            System.Console.WriteLine("WarehouseClient.Store2WhConfirm: end");
+            return response;
+        }
+
         public string Wh2KitchenRespond(ApiOperation apiOperation)
         {
             string response = "";

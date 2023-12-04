@@ -139,6 +139,92 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return "";
         }
 
+        public string Store2WhRequest(ApiOperation apiOperation)
+        {
+            string response = "";
+            System.Console.WriteLine("WarehouseBackend.Store2WhRequest: begin");
+            try
+            {
+                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                // Update DB.
+                System.Console.WriteLine("WarehouseBackend.Store2WhRequest: cache");
+
+                // Send HTTP request.
+                string backendResponse = new CourierBackendController().Store2WhSave(new ApiOperation
+                {
+                    RequestObject = model
+                });
+
+                // 
+                response = "success";
+            }
+            catch (System.Exception ex)
+            {
+                response = "error: " + ex.Message;
+            }
+            System.Console.WriteLine("WarehouseBackend.Store2WhRequest: end");
+            return response;
+        }
+        
+        public string Store2WhSave(ApiOperation apiOperation)
+        {
+            string response = "";
+            System.Console.WriteLine("WarehouseBackend.Store2WhSave: begin");
+            try
+            {
+                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                // Update DB.
+                System.Console.WriteLine("WarehouseBackend.Store2WhSave: cache");
+
+                // Notify warehouse employee.
+                new NotificationsBackendController().SendNotifications(new List<Notification>
+                {
+                    new Notification
+                    {
+                        SenderId = 1,
+                        ReceiverId = 2,
+                        TitleText = "Confirm the delivery from warehouse to kitchen",
+                    }
+                });
+
+                // Send HTTP request.
+                string backendResponse = new WarehouseClientController().Store2WhSave(new ApiOperation
+                {
+                    RequestObject = model
+                });
+
+                // 
+                response = "success";
+            }
+            catch (System.Exception ex)
+            {
+                response = "error: " + ex.Message;
+            }
+            System.Console.WriteLine("WarehouseBackend.Store2WhSave: end");
+            return response;
+        }
+
+        public string Store2WhConfirm(ApiOperation apiOperation)
+        {
+            string response = "";
+            System.Console.WriteLine("WarehouseBackend.Store2WhConfirm: begin");
+            try
+            {
+                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                // Update DB.
+                System.Console.WriteLine("WarehouseBackend.Store2WhConfirm: cache");
+
+                // 
+                response = "success";
+            }
+            catch (System.Exception ex)
+            {
+                response = "error: " + ex.Message;
+            }
+            System.Console.WriteLine("WarehouseBackend.Store2WhConfirm: end");
+            return response;
+        }
+
         public string Wh2KitchenRespond(ApiOperation apiOperation)
         {
             string response = "";

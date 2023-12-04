@@ -22,6 +22,21 @@ System.Console.WriteLine("\nStep 3: finish delivering from warehouse to kitchen.
 IFlowchartStep step3 = new FinishWh2KitchenStep();
 step3.Start();
 
+// Step 4: request for delivering from store to warehouse.
+System.Console.WriteLine("\nStep 4: request for delivering from store to warehouse.");
+IFlowchartStep step4 = new RequestStore2WhStep();
+step4.Start();
+
+// Step 5: deliver from store to warehouse.
+System.Console.WriteLine("\nStep 5: deliver from store to warehouse.");
+IFlowchartStep step5 = new FinishStore2WhStep();
+step5.Start();
+
+// Step 6: confirm delivering from store to warehouse.
+System.Console.WriteLine("\nStep 6: confirm delivering from store to warehouse.");
+IFlowchartStep step6 = new ConfirmStore2WhStep();
+step6.Start();
+
 // Creating a business process 
 // var makeOrderProcess = new BusinessProcess
 // {
