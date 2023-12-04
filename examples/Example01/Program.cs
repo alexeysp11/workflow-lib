@@ -42,6 +42,11 @@ System.Console.WriteLine("\nStep 7: prepare meal.");
 IFlowchartStep step7 = new PrepareMealStep();
 step7.Start();
 
+// Step 8: deliver from kitchen to warehouse.
+System.Console.WriteLine("\nStep 8: deliver from kitchen to warehouse.");
+IFlowchartStep step8 = new Kitchen2WhStep();
+step8.Start();
+
 // Creating a business process 
 // var makeOrderProcess = new BusinessProcess
 // {

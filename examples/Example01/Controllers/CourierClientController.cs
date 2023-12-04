@@ -52,5 +52,26 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CourierClient.Store2WhExecute: end");
             return response;
         }
+
+        public string ScanQrOnOrderStart(ApiOperation apiOperation)
+        {
+            string response = "";
+            System.Console.WriteLine("CourierClient.ScanQrOnOrderStart: begin");
+            try
+            {
+                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                // Update DB.
+                System.Console.WriteLine("CourierClient.ScanQrOnOrderStart: cache");
+
+                // 
+                response = "success";
+            }
+            catch (System.Exception ex)
+            {
+                response = "error: " + ex.Message;
+            }
+            System.Console.WriteLine("CourierClient.ScanQrOnOrderStart: end");
+            return response;
+        }
     }
 }

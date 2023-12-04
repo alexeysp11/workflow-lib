@@ -71,9 +71,58 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
-        public string DeliverOrder(ApiOperation apiOperation)
+        public string DeliverOrderStart(ApiOperation apiOperation)
         {
-            return "";
+            string response = "";
+            System.Console.WriteLine("CourierBackend.DeliverOrderStart: begin");
+            try
+            {
+                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                // Update DB.
+                System.Console.WriteLine("CourierBackend.DeliverOrderStart: cache");
+
+                // Send HTTP request.
+                string backendResponse = ScanQrOnOrderStart(new ApiOperation
+                {
+                    RequestObject = model
+                });
+
+                // 
+                response = "success";
+            }
+            catch (System.Exception ex)
+            {
+                response = "error: " + ex.Message;
+            }
+            System.Console.WriteLine("CourierBackend.DeliverOrderStart: end");
+            return response;
+        }
+
+        public string ScanQrOnOrderStart(ApiOperation apiOperation)
+        {
+            string response = "";
+            System.Console.WriteLine("CourierBackend.ScanQrOnOrderStart: begin");
+            try
+            {
+                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                // Update DB.
+                System.Console.WriteLine("CourierBackend.ScanQrOnOrderStart: cache");
+
+                // Send HTTP request.
+                string backendResponse = new CourierClientController().ScanQrOnOrderStart(new ApiOperation
+                {
+                    RequestObject = model
+                });
+
+                // 
+                response = "success";
+            }
+            catch (System.Exception ex)
+            {
+                response = "error: " + ex.Message;
+            }
+            System.Console.WriteLine("CourierBackend.ScanQrOnOrderStart: end");
+            return response;
         }
     }
 }
