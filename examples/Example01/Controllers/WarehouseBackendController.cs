@@ -133,12 +133,6 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
-        public string Kitchen2WhStart(ApiOperation apiOperation)
-        {
-            // 
-            return "";
-        }
-
         public string Store2WhRequest(ApiOperation apiOperation)
         {
             string response = "";
@@ -249,6 +243,44 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 response = "error: " + ex.Message;
             }
             System.Console.WriteLine("WarehouseBackend.Wh2KitchenRespond: end");
+            return response;
+        }
+
+        public string Kitchen2WhStart(ApiOperation apiOperation)
+        {
+            string response = "";
+            System.Console.WriteLine("WarehouseBackend.Kitchen2WhStart: begin");
+            try
+            {
+                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                // Update DB.
+                System.Console.WriteLine("WarehouseBackend.Kitchen2WhStart: cache");
+
+                // Send HTTP request.
+                string backendResponse = new WarehouseClientController().Kitchen2WhStart(new ApiOperation
+                {
+                    RequestObject = model
+                });
+
+                // Notify warehouse employee.
+                new NotificationsBackendController().SendNotifications(new List<Notification>
+                {
+                    new Notification
+                    {
+                        SenderId = 1,
+                        ReceiverId = 2,
+                        TitleText = "Confirm the delivery from warehouse to kitchen",
+                    }
+                });
+
+                // 
+                response = "success";
+            }
+            catch (System.Exception ex)
+            {
+                response = "error: " + ex.Message;
+            }
+            System.Console.WriteLine("WarehouseBackend.Kitchen2WhStart: end");
             return response;
         }
     }

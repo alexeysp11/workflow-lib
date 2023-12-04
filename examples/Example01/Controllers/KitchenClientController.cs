@@ -29,5 +29,38 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("KitchenClient.PrepareMealSave: end");
             return response;
         }
+
+        public string PrepareMealExecute(ApiOperation apiOperation)
+        {
+            string response = "";
+            System.Console.WriteLine("KitchenClient.PrepareMealExecute: begin");
+            try
+            {
+                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                // Validation.
+                System.Console.WriteLine("KitchenClient.PrepareMealExecute: validation");
+                
+                // Insert into cache.
+                System.Console.WriteLine("KitchenClient.PrepareMealExecute: cache");
+
+                // Send HTTP request.
+                string backendResponse = new KitchenBackendController().PrepareMealExecute(new ApiOperation
+                {
+                    RequestObject = model
+                });
+                
+                // Insert into cache.
+                System.Console.WriteLine("KitchenClient.PrepareMealExecute: cache");
+
+                // 
+                response = "success";
+            }
+            catch (System.Exception ex)
+            {
+                response = "error: " + ex.Message;
+            }
+            System.Console.WriteLine("KitchenClient.PrepareMealExecute: end");
+            return response;
+        }
     }
 }
