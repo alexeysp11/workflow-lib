@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
+using Cims.WorkflowLib.Models.Business;
 
-namespace Cims.WorkflowLib.Models.Business
+namespace Cims.WorkflowLib.Models.Business.Delivery
 {
     /// <summary>
     /// Delivery method type.
