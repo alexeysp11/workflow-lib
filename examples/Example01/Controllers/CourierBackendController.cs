@@ -71,33 +71,6 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
-        public string DeliverOrderStart(ApiOperation apiOperation)
-        {
-            string response = "";
-            System.Console.WriteLine("CourierBackend.DeliverOrderStart: begin");
-            try
-            {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
-                // Update DB.
-                System.Console.WriteLine("CourierBackend.DeliverOrderStart: cache");
-
-                // Send HTTP request.
-                string backendResponse = ScanQrOnOrderStart(new ApiOperation
-                {
-                    RequestObject = model
-                });
-
-                // 
-                response = "success";
-            }
-            catch (System.Exception ex)
-            {
-                response = "error: " + ex.Message;
-            }
-            System.Console.WriteLine("CourierBackend.DeliverOrderStart: end");
-            return response;
-        }
-
         public string ScanQrOnOrderStart(ApiOperation apiOperation)
         {
             string response = "";
@@ -122,6 +95,146 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 response = "error: " + ex.Message;
             }
             System.Console.WriteLine("CourierBackend.ScanQrOnOrderStart: end");
+            return response;
+        }
+
+        public string ScanQrOnOrderExecute(ApiOperation apiOperation)
+        {
+            string response = "";
+            System.Console.WriteLine("CourierBackend.ScanQrOnOrderExecute: begin");
+            try
+            {
+                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                // Update DB.
+                System.Console.WriteLine("CourierBackend.ScanQrOnOrderExecute: cache");
+
+                // Send HTTP request.
+                string backendResponse = ScanBackpackStart(new ApiOperation
+                {
+                    RequestObject = model
+                });
+
+                // 
+                response = "success";
+            }
+            catch (System.Exception ex)
+            {
+                response = "error: " + ex.Message;
+            }
+            System.Console.WriteLine("CourierBackend.ScanQrOnOrderExecute: end");
+            return response;
+        }
+
+        public string ScanBackpackStart(ApiOperation apiOperation)
+        {
+            string response = "";
+            System.Console.WriteLine("CourierBackend.ScanBackpackStart: begin");
+            try
+            {
+                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                // Update DB.
+                System.Console.WriteLine("CourierBackend.ScanBackpackStart: cache");
+
+                // Send HTTP request.
+                string backendResponse = new CourierClientController().ScanBackpackStart(new ApiOperation
+                {
+                    RequestObject = model
+                });
+
+                // 
+                response = "success";
+            }
+            catch (System.Exception ex)
+            {
+                response = "error: " + ex.Message;
+            }
+            System.Console.WriteLine("CourierBackend.ScanBackpackStart: end");
+            return response;
+        }
+
+        public string ScanBackpackExecute(ApiOperation apiOperation)
+        {
+            string response = "";
+            System.Console.WriteLine("CourierBackend.ScanBackpackExecute: begin");
+            try
+            {
+                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                // Update DB.
+                System.Console.WriteLine("CourierBackend.ScanBackpackExecute: cache");
+
+                // Send HTTP request.
+                string backendResponse = DeliverOrderStart(new ApiOperation
+                {
+                    RequestObject = model
+                });
+
+                // 
+                response = "success";
+            }
+            catch (System.Exception ex)
+            {
+                response = "error: " + ex.Message;
+            }
+            System.Console.WriteLine("CourierBackend.ScanBackpackExecute: end");
+            return response;
+        }
+
+        public string DeliverOrderStart(ApiOperation apiOperation)
+        {
+            string response = "";
+            System.Console.WriteLine("CourierBackend.DeliverOrderStart: begin");
+            try
+            {
+                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                // Update DB.
+                System.Console.WriteLine("CourierBackend.DeliverOrderStart: cache");
+
+                // Send HTTP request.
+                string backendResponse = new CourierClientController().DeliverOrderStart(new ApiOperation
+                {
+                    RequestObject = model
+                });
+
+                // Notify the customer.
+                new NotificationsBackendController().SendNotifications(new List<Notification>
+                {
+                    new Notification
+                    {
+                        SenderId = 1,
+                        ReceiverId = 2,
+                        TitleText = "Your order is on deliver"
+                    }
+                });
+
+                // 
+                response = "success";
+            }
+            catch (System.Exception ex)
+            {
+                response = "error: " + ex.Message;
+            }
+            System.Console.WriteLine("CourierBackend.DeliverOrderStart: end");
+            return response;
+        }
+
+        public string DeliverOrderExecute(ApiOperation apiOperation)
+        {
+            string response = "";
+            System.Console.WriteLine("CourierBackend.DeliverOrderExecute: begin");
+            try
+            {
+                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                // Update DB.
+                System.Console.WriteLine("CourierBackend.DeliverOrderExecute: cache");
+
+                // 
+                response = "success";
+            }
+            catch (System.Exception ex)
+            {
+                response = "error: " + ex.Message;
+            }
+            System.Console.WriteLine("CourierBackend.DeliverOrderExecute: end");
             return response;
         }
     }

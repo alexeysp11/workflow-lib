@@ -295,7 +295,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("WarehouseBackend.Kitchen2WhExecute: cache");
 
                 // Send HTTP request.
-                string backendResponse = new CourierBackendController().DeliverOrderStart(new ApiOperation
+                string backendResponse = new CourierBackendController().ScanQrOnOrderStart(new ApiOperation
                 {
                     RequestObject = model
                 });
