@@ -12,7 +12,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("KitchenClient.PrepareMealSave: begin");
             try
             {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Validation.
                 System.Console.WriteLine("KitchenClient.PrepareMealSave: validation");
                 
@@ -36,7 +36,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("KitchenClient.PrepareMealExecute: begin");
             try
             {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Validation.
                 System.Console.WriteLine("KitchenClient.PrepareMealExecute: validation");
                 

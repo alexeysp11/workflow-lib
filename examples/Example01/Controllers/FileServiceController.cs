@@ -11,7 +11,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("FileServiceController.GenerateQrCode: begin");
             try
             {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("FileServiceController.GenerateQrCode: cache");
 

@@ -5,7 +5,7 @@ namespace Cims.WorkflowLib.Example01.Interfaces
 {
     public interface ICustomerClient
     {
-        string MakeOrder(PlaceOrderModel model);
+        string MakeOrder(InitialOrder model);
         string MakePayment(object input);
     }
 }

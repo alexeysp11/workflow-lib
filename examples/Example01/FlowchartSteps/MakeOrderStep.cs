@@ -9,7 +9,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
         public void Start()
         {
             System.Console.WriteLine("MakeOrderStep.Start: begin");
-            var model = new PlaceOrderModel()
+            var model = new InitialOrder()
             {
                 UserUid = "UserUid",
                 Login = "Login",

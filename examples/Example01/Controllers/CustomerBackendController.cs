@@ -1,3 +1,4 @@
+using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Customers;
 using Cims.WorkflowLib.Models.Business.Monetary;
 using Cims.WorkflowLib.Models.Network;
@@ -14,7 +15,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CustomerBackend.MakeOrderRequest: begin");
             try
             {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Validation.
                 System.Console.WriteLine("CustomerBackend.MakeOrderRequest: validation");
 
@@ -41,7 +42,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CustomerBackend.MakePayment: begin");
             try
             {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 
                 // Validation.
                 System.Console.WriteLine("CustomerBackend.MakePayment: validation");
@@ -90,13 +91,19 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 // Send request to the customer client.
                 string paymentRequest = new CustomerClientController().MakePaymentSave(new ApiOperation
                 {
-                    RequestObject = new Payment
+                    RequestObject = new DeliveryOrder
                     {
-                        PaymentType = model.PaymentType,
-                        PaymentMethod = model.PaymentMethod,
-                        Payer = "Customer",
-                        Receiver = "Our company",
-                        Status = "Requested"
+                        Payments = new List<Payment>
+                        {
+                            new Payment
+                            {
+                                PaymentType = model.PaymentType,
+                                PaymentMethod = model.PaymentMethod,
+                                Payer = "Customer",
+                                Receiver = "Our company",
+                                Status = "Requested"
+                            }
+                        }
                     }
                 });
 
@@ -144,7 +151,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CustomerBackend.MakeOrder: begin");
             try
             {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Validation.
                 System.Console.WriteLine("CustomerBackend.MakeOrder: validation");
 
@@ -167,7 +174,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CustomerBackend.MakePayment: begin");
             try
             {
-                Payment model = apiOperation.RequestObject as Payment;
+                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
 
                 // Validation.
                 System.Console.WriteLine("CustomerBackend.MakePayment: validation");
@@ -178,7 +185,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 // Calculate delivery time.
                 string preprocessResponse = PreprocessOrderRedirect(new ApiOperation()
                 {
-                    RequestObject = new PlaceOrderModel()
+                    RequestObject = model
                 });
 
                 response = "success";
@@ -197,7 +204,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: begin");
             try
             {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
                 // Validation.
                 System.Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: validation");
 

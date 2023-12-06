@@ -12,7 +12,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CourierBackend.Store2WhSave: begin");
             try
             {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("CourierBackend.Store2WhSave: cache");
                 
@@ -50,7 +50,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CourierBackend.Store2WhExecute: begin");
             try
             {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("CourierBackend.Store2WhExecute: cache");
 
@@ -77,7 +77,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CourierBackend.ScanQrOnOrderStart: begin");
             try
             {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("CourierBackend.ScanQrOnOrderStart: cache");
 
@@ -104,7 +104,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CourierBackend.ScanQrOnOrderExecute: begin");
             try
             {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("CourierBackend.ScanQrOnOrderExecute: cache");
 
@@ -131,7 +131,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CourierBackend.ScanBackpackStart: begin");
             try
             {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("CourierBackend.ScanBackpackStart: cache");
 
@@ -158,7 +158,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CourierBackend.ScanBackpackExecute: begin");
             try
             {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("CourierBackend.ScanBackpackExecute: cache");
 
@@ -185,7 +185,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CourierBackend.DeliverOrderStart: begin");
             try
             {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("CourierBackend.DeliverOrderStart: cache");
 
@@ -223,7 +223,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CourierBackend.DeliverOrderExecute: begin");
             try
             {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("CourierBackend.DeliverOrderExecute: cache");
 

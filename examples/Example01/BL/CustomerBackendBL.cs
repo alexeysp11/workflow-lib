@@ -13,7 +13,7 @@ namespace Cims.WorkflowLib.Example01.BL
             _fileServiceController = fileServiceController;
         }
 
-        public string AskForPayment(PlaceOrderModel model)
+        public string AskForPayment(InitialOrder model)
         {
             string result = "";
 

@@ -71,7 +71,7 @@ step11.Start();
 // // Create context 
 // WorkflowInstanceContext context = new MakeOrderContext()
 // {
-//     PlaceOrderModel = new PlaceOrderModel
+//     InitialOrder = new InitialOrder
 //     {
 //         UserUid = System.Guid.NewGuid().ToString(),
 //         Login = "user01",
@@ -106,6 +106,6 @@ step11.Start();
 // };
 
 // System.Console.WriteLine($"BusinessProcess: {wfInstance.BusinessProcess.Name}");
-// System.Console.WriteLine($"Address: {parsedContext.PlaceOrderModel.Address}");
+// System.Console.WriteLine($"Address: {parsedContext.InitialOrder.Address}");
 // System.Console.WriteLine($"DeliveryPrice: {parsedContext.DeliveryOrder.DeliveryPrice}");
 // System.Console.WriteLine($"Name: {parsedContext.DeliveryOrder.Products.FirstOrDefault().Name}");

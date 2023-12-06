@@ -8,7 +8,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
     {
         public void Start()
         {
-            var model = new PlaceOrderModel()
+            var model = new InitialOrder()
             {
                 // 
             };

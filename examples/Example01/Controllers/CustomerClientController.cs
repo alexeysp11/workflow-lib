@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Monetary;
 using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Models;
@@ -20,7 +21,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CustomerClient.MakePaymentRespond: begin");
             try
             {
-                Payment model = apiOperation.RequestObject as Payment;
+                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
 
                 // Validation.
                 System.Console.WriteLine("CustomerClient.MakePaymentRespond: validation");
@@ -54,7 +55,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CustomerClient.MakeOrderRequest: begin");
             try
             {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Validation.
                 System.Console.WriteLine("CustomerClient.MakeOrderRequest: validation");
                 
@@ -93,7 +94,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CustomerClient.MakePaymentSave: begin");
             try
             {
-                Payment model = apiOperation.RequestObject as Payment;
+                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
 
                 // Update DB.
                 System.Console.WriteLine("CustomerClient.MakePaymentSave: cache");

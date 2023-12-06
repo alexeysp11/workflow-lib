@@ -1,3 +1,4 @@
+using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Customers;
 using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Models;
@@ -13,12 +14,12 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("WarehouseBackend.PreprocessOrderRedirect: begin");
             try
             {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
                 // Get ingredients amount from DB.
                 int ingredientsAmount = 0;
 
                 // 
-                bool isSufficient = ingredientsAmount >= model.ProductIds.Count;
+                bool isSufficient = ingredientsAmount >= model.Products.Count;
 
                 // Calculte delivery time.
                 var wh2kitchenDuration = new System.TimeSpan(0, 5, 0);
@@ -64,7 +65,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("WarehouseBackend.Store2WhStart: begin");
             try
             {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
 
                 // Notify warehouse employee.
@@ -101,7 +102,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("WarehouseBackend.Wh2KitchenStart: begin");
             try
             {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
                 // Update DB.
                 System.Console.WriteLine("WarehouseBackend.Wh2KitchenStart: cache");
                 
@@ -117,9 +118,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 });
 
                 // Update cache in the client-side app.
-                string paymentRequest = new WarehouseClientController().Wh2KitchenSave(new ApiOperation()
+                string whRequest = new WarehouseClientController().Wh2KitchenSave(new ApiOperation()
                 {
-                    RequestObject = model
+                    RequestObject = new DeliveryWh2Kitchen()
                 });
 
                 // 
@@ -139,7 +140,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("WarehouseBackend.Store2WhRequest: begin");
             try
             {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("WarehouseBackend.Store2WhRequest: cache");
 
@@ -166,7 +167,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("WarehouseBackend.Store2WhSave: begin");
             try
             {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("WarehouseBackend.Store2WhSave: cache");
 
@@ -204,7 +205,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("WarehouseBackend.Store2WhConfirm: begin");
             try
             {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("WarehouseBackend.Store2WhConfirm: cache");
 
@@ -225,7 +226,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("WarehouseBackend.Wh2KitchenRespond: begin");
             try
             {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("WarehouseBackend.Wh2KitchenRespond: cache");
 
@@ -252,7 +253,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("WarehouseBackend.Kitchen2WhStart: begin");
             try
             {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("WarehouseBackend.Kitchen2WhStart: cache");
 
@@ -290,7 +291,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("WarehouseBackend.Kitchen2WhExecute: begin");
             try
             {
-                PlaceOrderModel model = apiOperation.RequestObject as PlaceOrderModel;
+                InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("WarehouseBackend.Kitchen2WhExecute: cache");
 

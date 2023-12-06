@@ -7,6 +7,6 @@ namespace Cims.WorkflowLib.Example01.Contexts
     public class MakeOrderContext : WorkflowInstanceContext
     {
         public DeliveryOrder DeliveryOrder { get; set; }
-        public PlaceOrderModel PlaceOrderModel { get; set; }
+        public InitialOrder InitialOrder { get; set; }
     }
 }
