@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using Cims.WorkflowLib.Models.Business;
 using Cims.WorkflowLib.Models.Business.Products;
 
 namespace Cims.WorkflowLib.Example01.Models;
@@ -6,7 +8,7 @@ namespace Cims.WorkflowLib.Example01.Models;
 /// <summary>
 /// Model for placing order, that is used to send request from frontend to the controller.
 /// </summary>
-public class InitialOrder
+public class InitialOrder : BusinessEntityWF, IBusinessEntityWF
 {
     /// <summary>
     /// User GUID.
@@ -36,6 +38,7 @@ public class InitialOrder
     /// <summary>
     /// List of the product IDs, that user has placed into the order.
     /// </summary>
+    [NotMapped]
     public List<int> ProductIds { get; set; }
     
     /// <summary>
@@ -46,10 +49,10 @@ public class InitialOrder
     /// <summary>
     /// Payment type.
     /// </summary>
-    public string PaymentType { get; set; }
+    public string? PaymentType { get; set; }
     
     /// <summary>
     /// Payment method.
     /// </summary>
-    public string PaymentMethod { get; set; }
+    public string? PaymentMethod { get; set; }
 }

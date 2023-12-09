@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Cims.WorkflowLib.Models.Business;
 using Cims.WorkflowLib.Models.Business.Delivery;
 using Cims.WorkflowLib.Models.Business.Products;
 
@@ -7,7 +8,7 @@ namespace Cims.WorkflowLib.Example01.Models;
 /// <summary>
 /// Model for transferring a finished order from the kitchen to the warehouse (shipping point, destination, start time, end time, products, order number, generated order QR code)
 /// </summary>
-public class DeliveryKitchen2Wh : DeliveryOperation
+public class DeliveryKitchen2Wh : DeliveryOperation, IBusinessEntityWF
 {
     /// <summary>
     /// 
