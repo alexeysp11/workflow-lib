@@ -1,7 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Customers;
 using Cims.WorkflowLib.Models.Business.Monetary;
 using Cims.WorkflowLib.Models.Network;
+using Cims.WorkflowLib.Example01.Data;
 using Cims.WorkflowLib.Example01.Interfaces;
 using Cims.WorkflowLib.Example01.Models;
 
@@ -9,13 +12,26 @@ namespace Cims.WorkflowLib.Example01.Controllers
 {
     public class CustomerBackendController
     {
+        private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
+        private CustomerClientController _customerClientController { get; set; }
+
+        public CustomerBackendController(
+            DbContextOptions<DeliveringContext> contextOptions) 
+        {
+            _contextOptions = contextOptions;
+            _customerClientController = new CustomerClientController(contextOptions, this);
+        }
+
         public string MakeOrderRequest(ApiOperation apiOperation)
         {
             string response = "";
             System.Console.WriteLine("CustomerBackend.MakeOrderRequest: begin");
             try
             {
+                // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                using var context = new DeliveringContext(_contextOptions);
+
                 // Validation.
                 System.Console.WriteLine("CustomerBackend.MakeOrderRequest: validation");
 
@@ -31,6 +47,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("CustomerBackend.MakeOrderRequest: end");
             return response;
@@ -42,7 +59,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CustomerBackend.MakePayment: begin");
             try
             {
+                // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                using var context = new DeliveringContext(_contextOptions);
                 
                 // Validation.
                 System.Console.WriteLine("CustomerBackend.MakePayment: validation");
@@ -69,46 +88,37 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 }
                 else
                 {
-                    // Update DB.
-                    System.Console.WriteLine("CustomerBackend.MakePayment: cache");
-
-                    // Send request to the notifications backend.
-                    string errorNotificationsRequest = new NotificationsBackendController().SendNotifications(new List<Notification>
-                    {
-                        new Notification
-                        {
-                            SenderId = 1,
-                            ReceiverId = 2,
-                            TitleText = "Error while creating request for payment",
-                            BodyText = "Hello, we've just received the request for getting delivery order. Please, be informed that the error while creating request for payment has occured."
-                        }
-                    });
-
-                    // 
-                    return "error";
+                    throw new System.Exception("Incorrect parameter: PaymentType");
                 }
 
                 // Send request to the customer client.
-                string paymentRequest = new CustomerClientController().MakePaymentSave(new ApiOperation
+                DeliveryOrder deliveryOrder = new DeliveryOrder
                 {
-                    RequestObject = new DeliveryOrder
+                    Id = 1,
+                    Uid = System.Guid.NewGuid().ToString(),
+                    Payments = new List<Payment>
                     {
-                        Payments = new List<Payment>
+                        new Payment
                         {
-                            new Payment
-                            {
-                                PaymentType = model.PaymentType,
-                                PaymentMethod = model.PaymentMethod,
-                                Payer = "Customer",
-                                Receiver = "Our company",
-                                Status = "Requested"
-                            }
+                            Uid = System.Guid.NewGuid().ToString(),
+                            PaymentType = model.PaymentType,
+                            PaymentMethod = model.PaymentMethod,
+                            Payer = "Customer",
+                            Receiver = "Our company",
+                            Status = "Requested"
                         }
                     }
+                };
+                context.DeliveryOrders.Add(deliveryOrder);
+                context.Payments.AddRange(deliveryOrder.Payments);
+                context.SaveChanges();
+                string paymentRequest = _customerClientController.MakePaymentSave(new ApiOperation
+                {
+                    RequestObject = deliveryOrder
                 });
 
                 // Send request to the notifications backend.
-                string notificationsRequest = new NotificationsBackendController().SendNotifications(new List<Notification>
+                var notifications = new List<Notification>
                 {
                     new Notification
                     {
@@ -117,7 +127,10 @@ namespace Cims.WorkflowLib.Example01.Controllers
                         TitleText = "Please, enter your card details to complete the payment for the delivery order",
                         BodyText = "Hello, we've just received the request for getting delivery order. Please, provide us with your card details to complete the payment."
                     }
-                });
+                };
+                context.Notifications.AddRange(notifications);
+                context.SaveChanges();
+                string notificationsRequest = new NotificationsBackendController().SendNotifications(notifications);
 
                 // Update DB.
                 System.Console.WriteLine("CustomerBackend.MakePayment: cache");
@@ -125,6 +138,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("CustomerBackend.MakePayment: end");
             return response;
@@ -151,7 +165,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CustomerBackend.MakeOrder: begin");
             try
             {
+                // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                
                 // Validation.
                 System.Console.WriteLine("CustomerBackend.MakeOrder: validation");
 
@@ -163,6 +179,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("CustomerBackend.MakeOrder: end");
             return response;
@@ -174,6 +191,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CustomerBackend.MakePayment: begin");
             try
             {
+                // Initializing.
                 DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
 
                 // Validation.
@@ -193,6 +211,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("CustomerBackend.MakePayment: end");
             return response;
@@ -204,7 +223,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: begin");
             try
             {
+                // Initializing.
                 DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                
                 // Validation.
                 System.Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: validation");
 
@@ -222,6 +243,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: end");
             return response;

@@ -8,26 +8,6 @@ namespace Cims.WorkflowLib.Models.Business.Monetary
     public class Payment : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
-        /// Payment type.
-        /// </summary>
-        public string PaymentType { get; set; }
-        
-        /// <summary>
-        /// Payment method.
-        /// </summary>
-        public string PaymentMethod { get; set; }
-        
-        /// <summary>
-        /// Card number.
-        /// </summary>
-        public string CardNumber { get; set; }
-        
-        /// <summary>
-        /// Amount of the payment.
-        /// </summary>
-        public decimal Amount { get; set; }
-        
-        /// <summary>
         /// Payer.
         /// </summary>
         public string Payer { get; set; }
@@ -36,15 +16,35 @@ namespace Cims.WorkflowLib.Models.Business.Monetary
         /// Receiver.
         /// </summary>
         public string Receiver { get; set; }
+
+        /// <summary>
+        /// Card number.
+        /// </summary>
+        public string? CardNumber { get; set; }
+        
+        /// <summary>
+        /// Amount of the payment.
+        /// </summary>
+        public decimal Amount { get; set; }
+        
+        /// <summary>
+        /// Date of the payment.
+        /// </summary>
+        public System.DateTime Date { get; private set; }
+
+        /// <summary>
+        /// Payment type.
+        /// </summary>
+        public string PaymentType { get; set; }
+        
+        /// <summary>
+        /// Payment method.
+        /// </summary>
+        public string? PaymentMethod { get; set; }
         
         /// <summary>
         /// Status of the payment.
         /// </summary>
-        public string Status { get; set; }
-        
-        /// <summary>
-        /// Date.
-        /// </summary>
-        public System.DateTime Date { get; private set; }
+        public string? Status { get; set; }
     }
 }

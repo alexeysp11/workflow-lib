@@ -3,18 +3,18 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Cims.WorkflowLib.Example01;
 using Cims.WorkflowLib.Example01.Data;
+using Cims.WorkflowLib.Example01.Controllers;
 using Cims.WorkflowLib.Example01.FlowchartSteps;
 
 IHost _host = Host.CreateDefaultBuilder().ConfigureServices(
     services => {
+        // Instance of application.
         services.AddSingleton<IExampleInstance, ExampleInstance>();
-        // services.AddDbContext<DeliveringContext>(
-        //     optionsAction: (optionsBuilder) => optionsBuilder.UseInMemoryDatabase(databaseName: "mydatabase"),
-        //     contextLifetime: ServiceLifetime.Singleton,
-        //     optionsLifetime: ServiceLifetime.Singleton);
+        // DbContext.
         services.AddSingleton((_) => {
             return new DbContextOptionsBuilder<DeliveringContext>().UseInMemoryDatabase(databaseName: "mydatabase").Options;
         });
+        // Flowchart steps.
         services.AddSingleton<MakeOrderStep>();
         services.AddSingleton<MakePaymentStep>();
         services.AddSingleton<FinishWh2KitchenStep>();
@@ -26,6 +26,9 @@ IHost _host = Host.CreateDefaultBuilder().ConfigureServices(
         services.AddSingleton<ScanQrOnOrderStep>();
         services.AddSingleton<ScanBackpackStep>();
         services.AddSingleton<DeliverOrderStep>();
+        // Controllers.
+        services.AddSingleton<CustomerClientController>();
+        services.AddSingleton<CustomerBackendController>();
     }).Build();
 
 var app = _host.Services.GetRequiredService<IExampleInstance>();

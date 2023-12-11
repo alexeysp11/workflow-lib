@@ -1,7 +1,10 @@
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Monetary;
 using Cims.WorkflowLib.Models.Network;
+using Cims.WorkflowLib.Example01.Data;
 using Cims.WorkflowLib.Example01.Models;
 using Cims.WorkflowLib.Example01.Interfaces;
 
@@ -9,44 +12,21 @@ namespace Cims.WorkflowLib.Example01.Controllers
 {
     public class CustomerClientController
     {
+        private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
+        private CustomerBackendController _customerBackendController { get; set; }
+
+        public CustomerClientController(
+            DbContextOptions<DeliveringContext> contextOptions,
+            CustomerBackendController customerBackendController)
+        {
+            _contextOptions = contextOptions;
+            _customerBackendController = customerBackendController;
+        }
+
         public string MakeOrder(ApiOperation apiOperation)
         {
             // 
             return "";
-        }
-
-        public string MakePaymentRespond(ApiOperation apiOperation)
-        {
-            string response = "";
-            System.Console.WriteLine("CustomerClient.MakePaymentRespond: begin");
-            try
-            {
-                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
-
-                // Validation.
-                System.Console.WriteLine("CustomerClient.MakePaymentRespond: validation");
-                
-                // Insert into cache.
-                System.Console.WriteLine("CustomerClient.MakePaymentRespond: cache");
-
-                // Send HTTP request.
-                string backendResponse = new CustomerBackendController().MakePaymentRespond(new ApiOperation()
-                {
-                    RequestObject = model
-                });
-                
-                // Insert into cache.
-                System.Console.WriteLine("CustomerClient.MakePaymentRespond: cache");
-
-                // 
-                response = "success";
-            }
-            catch (System.Exception ex)
-            {
-                response = "error: " + ex.Message;
-            }
-            System.Console.WriteLine("CustomerClient.MakePaymentRespond: end");
-            return response;
         }
 
         public string MakeOrderRequest(ApiOperation apiOperation)
@@ -55,15 +35,20 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CustomerClient.MakeOrderRequest: begin");
             try
             {
+                // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                using var context = new DeliveringContext(_contextOptions);
+                
                 // Validation.
                 System.Console.WriteLine("CustomerClient.MakeOrderRequest: validation");
-                
+
                 // Insert into cache.
                 System.Console.WriteLine("CustomerClient.MakeOrderRequest: cache");
+                context.InitialOrders.Add(model);
+                context.SaveChanges();
 
                 // Send HTTP request.
-                string backendResponse = new CustomerBackendController().MakeOrderRequest(new ApiOperation
+                string backendResponse = _customerBackendController.MakeOrderRequest(new ApiOperation
                 {
                     RequestObject = model
                 });
@@ -77,6 +62,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("CustomerClient.MakeOrderRequest: end");
             return response;
@@ -94,6 +80,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CustomerClient.MakePaymentSave: begin");
             try
             {
+                // Initializing.
                 DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
 
                 // Update DB.
@@ -105,8 +92,65 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("CustomerClient.MakePaymentSave: end");
+            return response;
+        }
+
+        public string MakePaymentRespond(ApiOperation apiOperation)
+        {
+            string response = "";
+            System.Console.WriteLine("CustomerClient.MakePaymentRespond: begin");
+            try
+            {
+                // Initializing.
+                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                if (model == null)
+                    throw new System.ArgumentNullException("apiOperation.RequestObject");
+                using var context = new DeliveringContext(_contextOptions);
+
+                // Validation.
+                System.Console.WriteLine("CustomerClient.MakePaymentRespond: validation");
+                
+                // Insert into cache.
+                System.Console.WriteLine("CustomerClient.MakePaymentRespond: cache");
+                var deliveryOrder = context.DeliveryOrders.FirstOrDefault();
+                if (deliveryOrder.Payments == null)
+                    deliveryOrder.Payments = new List<Payment>();
+                foreach (var p in model.Payments)
+                {
+                    var pf = deliveryOrder.Payments.Where(x => x.Uid == p.Uid).FirstOrDefault();
+                    if (pf == null)
+                    {
+                        deliveryOrder.Payments.Add(p);
+                    }
+                    else
+                    {
+                        pf.CardNumber = p.CardNumber;
+                        pf.Status = p.Status;
+                    }
+                }
+                context.SaveChanges();
+
+                // Send HTTP request.
+                string backendResponse = _customerBackendController.MakePaymentRespond(new ApiOperation()
+                {
+                    RequestObject = model
+                });
+                
+                // Insert into cache.
+                System.Console.WriteLine("CustomerClient.MakePaymentRespond: cache");
+
+                // 
+                response = "success";
+            }
+            catch (System.Exception ex)
+            {
+                response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
+            }
+            System.Console.WriteLine("CustomerClient.MakePaymentRespond: end");
             return response;
         }
     }

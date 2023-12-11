@@ -12,6 +12,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("KitchenClient.PrepareMealSave: begin");
             try
             {
+                // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Validation.
                 System.Console.WriteLine("KitchenClient.PrepareMealSave: validation");
@@ -25,6 +26,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("KitchenClient.PrepareMealSave: end");
             return response;
@@ -36,6 +38,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("KitchenClient.PrepareMealExecute: begin");
             try
             {
+                // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Validation.
                 System.Console.WriteLine("KitchenClient.PrepareMealExecute: validation");
@@ -58,6 +61,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("KitchenClient.PrepareMealExecute: end");
             return response;

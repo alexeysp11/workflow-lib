@@ -25,7 +25,7 @@ namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// Delivery operation.
         /// </summary>
-        public DeliveryOperation DeliveryOperation { get; set; }
+        public DeliveryOperation? DeliveryOperation { get; set; }
         
         /// <summary>
         /// Price for the delivery.

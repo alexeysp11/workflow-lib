@@ -1,7 +1,5 @@
 using System.Linq;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Processes;
 using Cims.WorkflowLib.Models.Business.Products;
@@ -18,8 +16,6 @@ namespace Cims.WorkflowLib.Example01
     /// </summary>
     public class ExampleInstance : IExampleInstance
     {
-        private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
-
         private MakeOrderStep _step01 { get; set; }
         private MakePaymentStep _step02 { get; set; }
         private FinishWh2KitchenStep _step03 { get; set; }
@@ -36,7 +32,6 @@ namespace Cims.WorkflowLib.Example01
         /// 
         /// </summary>
         public ExampleInstance(
-            DbContextOptions<DeliveringContext> contextOptions,
             MakeOrderStep step01, 
             MakePaymentStep step02, 
             FinishWh2KitchenStep step03, 
@@ -49,7 +44,6 @@ namespace Cims.WorkflowLib.Example01
             ScanBackpackStep step10,
             DeliverOrderStep step11)
         {
-            _contextOptions = contextOptions;
             _step01 = step01;
             _step02 = step02;
             _step03 = step03;
@@ -68,25 +62,6 @@ namespace Cims.WorkflowLib.Example01
         /// </summary>
         public void Run()
         {
-            // Using DbContext.
-            using var context = new DeliveringContext(_contextOptions);
-            var model = new InitialOrder()
-            {
-                UserUid = "UserUid",
-                Login = "Login",
-                PhoneNumber = "PhoneNumber",
-                City = "City",
-                Address = "Address",
-                ProductIds = new List<int>() { 1, 2, 3 },
-                PaymentType = "card"
-            };
-            context.InitialOrders.Add(model);
-            context.SaveChanges();
-            var initialOrder = context.InitialOrders.FirstOrDefault();
-            System.Console.WriteLine("initial order: " + initialOrder.UserUid + " " 
-                + initialOrder.Login + " " + initialOrder.PhoneNumber + " " 
-                + initialOrder.City + " " + initialOrder.Address);
-
             // Step 01: make order.
             System.Console.WriteLine("\nStep 01: make order.");
             _step01.Start();

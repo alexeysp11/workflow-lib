@@ -1,9 +1,11 @@
+using Cims.WorkflowLib.Models.Business;
+
 namespace Cims.WorkflowLib.Models.Business.Customers
 {
     /// <summary>
     /// Notification.
     /// </summary>
-    public class Notification
+    public class Notification : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
         /// Sender ID.
@@ -28,16 +30,16 @@ namespace Cims.WorkflowLib.Models.Business.Customers
         /// <summary>
         /// Timestamp when the notification was sent.
         /// </summary>
-        public System.DateTime SentDateTime { get; set; }
+        public System.DateTime? SentDateTime { get; set; }
         
         /// <summary>
         /// Timestamp when the notification was received.
         /// </summary>
-        public System.DateTime ReceivedDateTime { get; set; }
+        public System.DateTime? ReceivedDateTime { get; set; }
 
         /// <summary>
         /// Notes.
         /// </summary>
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
     }
 }

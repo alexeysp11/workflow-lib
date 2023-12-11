@@ -13,6 +13,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("KitchenBackend.PrepareMealStart: begin");
             try
             {
+                // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Validation.
                 System.Console.WriteLine("KitchenBackend.PrepareMealStart: validation");
@@ -33,7 +34,8 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     {
                         SenderId = 1,
                         ReceiverId = 2,
-                        TitleText = "Please, be informed that one request for cooking awaits you"
+                        TitleText = "Please, be informed that one request for cooking awaits you",
+                        BodyText = ""
                     }
                 });
                 
@@ -45,6 +47,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("KitchenBackend.PrepareMealStart: end");
             return response;
@@ -56,6 +59,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("KitchenBackend.PrepareMealExecute: begin");
             try
             {
+                // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Validation.
                 System.Console.WriteLine("KitchenBackend.PrepareMealExecute: validation");
@@ -78,6 +82,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("KitchenBackend.PrepareMealExecute: end");
             return response;

@@ -24,11 +24,6 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         public bool HardDelete { get; set; }
         
         /// <summary>
-        /// Organization of the organization item.
-        /// </summary>
-        public Organization Organization { get; set; }
-        
-        /// <summary>
         /// Parent organization item.
         /// </summary>
         public OrganizationItem ParentItem { get; set; }

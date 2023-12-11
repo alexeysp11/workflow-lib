@@ -11,7 +11,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("FileServiceController.GenerateQrCode: begin");
             try
             {
+                // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                
                 // Update DB.
                 System.Console.WriteLine("FileServiceController.GenerateQrCode: cache");
 
@@ -27,6 +29,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("FileServiceController.GenerateQrCode: end");
             return response;

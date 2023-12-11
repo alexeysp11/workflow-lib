@@ -16,6 +16,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("WarehouseClient.Store2WhSave: begin");
             try
             {
+                // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("WarehouseClient.Store2WhSave: cache");
@@ -26,6 +27,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("WarehouseClient.Store2WhSave: end");
             return response;
@@ -50,6 +52,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("WarehouseClient.Wh2KitchenSave: end");
             return response;
@@ -64,6 +67,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("WarehouseClient.Store2WhRequest: begin");
             try
             {
+                // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("WarehouseClient.Store2WhRequest: cache");
@@ -80,6 +84,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("WarehouseClient.Store2WhRequest: end");
             return response;
@@ -91,6 +96,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("WarehouseClient.Store2WhConfirm: begin");
             try
             {
+                // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("WarehouseClient.Store2WhConfirm: cache");
@@ -107,6 +113,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("WarehouseClient.Store2WhConfirm: end");
             return response;
@@ -118,6 +125,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("WarehouseClient.Wh2KitchenRespond: begin");
             try
             {
+                // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("WarehouseClient.Wh2KitchenRespond: cache");
@@ -134,6 +142,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("WarehouseClient.Wh2KitchenRespond: end");
             return response;
@@ -145,6 +154,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("WarehouseClient.Kitchen2WhStart: begin");
             try
             {
+                // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("WarehouseClient.Kitchen2WhStart: cache");
@@ -155,6 +165,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("WarehouseClient.Kitchen2WhStart: end");
             return response;
@@ -166,6 +177,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("WarehouseClient.Kitchen2WhExecute: begin");
             try
             {
+                // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("WarehouseClient.Kitchen2WhExecute: cache");
@@ -182,6 +194,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("WarehouseClient.Kitchen2WhExecute: end");
             return response;

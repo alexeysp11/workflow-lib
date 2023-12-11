@@ -1,9 +1,11 @@
+using Cims.WorkflowLib.Models.Business;
+
 namespace Cims.WorkflowLib.Models.Performance
 {
     /// <summary>
     /// Represents the execution time of the operation (could be used for measuring performance).
     /// </summary>
-    public class ExecutionTime
+    public class ExecutionTime : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
         /// Timestamp when the operation started.

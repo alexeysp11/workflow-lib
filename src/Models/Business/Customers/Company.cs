@@ -8,7 +8,7 @@ namespace Cims.WorkflowLib.Models.Business.Customers
     /// <summary>
     /// Company (usually related to the customer).
     /// </summary>
-    public class Company
+    public class Company : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
         /// Registration number of the company.

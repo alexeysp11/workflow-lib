@@ -11,6 +11,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CourierClient.Store2WhSave: begin");
             try
             {
+                // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("CourierClient.Store2WhSave: cache");
@@ -21,6 +22,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("CourierClient.Store2WhSave: end");
             return response;
@@ -32,6 +34,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CourierClient.Store2WhExecute: begin");
             try
             {
+                // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("CourierClient.Store2WhExecute: cache");
@@ -48,6 +51,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("CourierClient.Store2WhExecute: end");
             return response;
@@ -59,6 +63,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CourierClient.ScanQrOnOrderStart: begin");
             try
             {
+                // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("CourierClient.ScanQrOnOrderStart: cache");
@@ -69,6 +74,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("CourierClient.ScanQrOnOrderStart: end");
             return response;
@@ -80,6 +86,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CourierClient.ScanQrOnOrderExecute: begin");
             try
             {
+                // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("CourierClient.ScanQrOnOrderExecute: cache");
@@ -96,6 +103,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("CourierClient.ScanQrOnOrderExecute: end");
             return response;
@@ -107,6 +115,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CourierClient.ScanBackpackStart: begin");
             try
             {
+                // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("CourierClient.ScanBackpackStart: cache");
@@ -117,6 +126,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("CourierClient.ScanBackpackStart: end");
             return response;
@@ -128,6 +138,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CourierClient.ScanBackpackExecute: begin");
             try
             {
+                // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("CourierClient.ScanBackpackExecute: cache");
@@ -144,6 +155,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("CourierClient.ScanBackpackExecute: end");
             return response;
@@ -155,6 +167,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CourierClient.DeliverOrderStart: begin");
             try
             {
+                // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("CourierClient.DeliverOrderStart: cache");
@@ -165,6 +178,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("CourierClient.DeliverOrderStart: end");
             return response;
@@ -176,6 +190,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CourierClient.DeliverOrderExecute: begin");
             try
             {
+                // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 // Update DB.
                 System.Console.WriteLine("CourierClient.DeliverOrderExecute: cache");
@@ -192,6 +207,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             catch (System.Exception ex)
             {
                 response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("CourierClient.DeliverOrderExecute: end");
             return response;

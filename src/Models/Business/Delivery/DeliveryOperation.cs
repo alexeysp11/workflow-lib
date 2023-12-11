@@ -14,16 +14,6 @@ namespace Cims.WorkflowLib.Models.Business.Delivery
         /// Number of the order.
         /// </summary>
         public string OrderNumber { get; set; }
-
-        /// <summary>
-        /// Previous delivery operation.
-        /// </summary>
-        public DeliveryOperation Previous { get; set; }
-
-        /// <summary>
-        /// Next delivery operation.
-        /// </summary>
-        public DeliveryOperation Next { get; set; }
         
         /// <summary>
         /// Delivery method.
@@ -43,7 +33,7 @@ namespace Cims.WorkflowLib.Models.Business.Delivery
         /// <summary>
         /// Customer name of the order.
         /// </summary>
-        public string CustomerName { get; set; }
+        public string? CustomerName { get; set; }
 
         /// <summary>
         /// Customer name of the order.
