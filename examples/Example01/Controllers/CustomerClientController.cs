@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Monetary;
+using Cims.WorkflowLib.Models.Business.Products;
 using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Data;
 using Cims.WorkflowLib.Example01.Models;
@@ -44,6 +45,20 @@ namespace Cims.WorkflowLib.Example01.Controllers
 
                 // Insert into cache.
                 System.Console.WriteLine("CustomerClient.MakeOrderRequest: cache");
+                if (model.Products == null)
+                    model.Products = new List<Product>();
+                foreach (var pid in model.ProductIds)
+                {
+                    if (model.Products.Where(x => x.Id == pid).Count() > 0)
+                        continue;
+                    var wp = context.WHProducts.Where(x => x.Product != null && x.Product.Id == pid).FirstOrDefault();
+                    if (wp == null)
+                        throw new System.Exception("Database consistency is violated: product with such ID does not exist in the DB: " + pid);
+                    int qty = model.ProductIds.Where(x => x == pid).Count();
+                    var p = context.Products.Where(x => x.Id == pid).FirstOrDefault().Clone();
+                    p.Quantity = qty;
+                    model.Products.Add(p);
+                }
                 context.InitialOrders.Add(model);
                 context.SaveChanges();
 

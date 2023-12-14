@@ -1,3 +1,4 @@
+using System;
 using Cims.WorkflowLib.Models.Business;
 
 namespace Cims.WorkflowLib.Models.Business.Products
@@ -5,7 +6,7 @@ namespace Cims.WorkflowLib.Models.Business.Products
     /// <summary>
     /// Product.
     /// </summary>
-    public class Product : BusinessEntityWF, IBusinessEntityWF
+    public class Product : BusinessEntityWF, IBusinessEntityWF, ICloneable
     {
         /// <summary>
         /// Price of the product.
@@ -25,11 +26,14 @@ namespace Cims.WorkflowLib.Models.Business.Products
         /// <summary>
         /// Picture URL of the product.
         /// </summary>
-        public string PictureUrl { get; set; }
+        public string? PictureUrl { get; set; }
 
         /// <summary>
         /// Picture description of the product.
         /// </summary>
-        public string PictureDescription { get; set; }
+        public string? PictureDescription { get; set; }
+
+        public Product Clone() { return (Product)this.MemberwiseClone(); }
+        object ICloneable.Clone() { return Clone(); }
     }
 }

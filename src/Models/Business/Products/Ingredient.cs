@@ -9,9 +9,15 @@ namespace Cims.WorkflowLib.Models.Business.Products
     public class Ingredient : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
-        /// Product (main ingredient).
+        /// Product that represents the ingredient itself.
         /// </summary>
-        public Product Product { get; set; }
+        /// <remarks>There could be a situation where flour is both an ingredient and product at the same time.</remarks>
+        public Product IngredientProduct { get; set; }
+
+        /// <summary>
+        /// Final product that is associated with the ingredient.
+        /// </summary>
+        public Product FinalProduct { get; set; }
 
         /// <summary>
         /// Substitute ingredients.

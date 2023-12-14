@@ -19,7 +19,12 @@ namespace Cims.WorkflowLib.Example01.Controllers
 
                 // Get ingredients amount from DB.
                 int ingredientsAmount = 0;
-                bool isSufficient = ingredientsAmount >= (model.Products == null ? 0 : model.Products.Count);
+                bool isSufficient = true;
+                // bool isSufficient = ingredientsAmount >= (model.Products == null ? 0 : model.Products.Count);
+
+                // Понять, хватает ли на складе ингридиентов. И если не хватает, то каких конкретно. 
+                // Поэлементно вычесть количество для соответствующего объекта WHProduct, если в коллекции DeliveryOrder.Products 
+                // есть элемент с таким же ИД.
 
                 // Calculte delivery time.
                 var wh2kitchenDuration = new System.TimeSpan(0, 5, 0);
@@ -34,6 +39,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 if (isSufficient)
                 {
                     // Invoke wh2kitchen.
+                    DeliveryWh2Kitchen wh2kitchenModel = new DeliveryWh2Kitchen();
                     response = Wh2KitchenStart(new ApiOperation()
                     {
                         RequestObject = model

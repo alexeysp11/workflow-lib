@@ -94,7 +94,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 // Send request to the customer client.
                 DeliveryOrder deliveryOrder = new DeliveryOrder
                 {
-                    Id = 1,
+                    Id = context.Payments.Count() + 1,
                     Uid = System.Guid.NewGuid().ToString(),
                     Payments = new List<Payment>
                     {

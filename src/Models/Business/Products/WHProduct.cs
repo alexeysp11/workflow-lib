@@ -17,5 +17,15 @@ namespace Cims.WorkflowLib.Models.Business.Products
         /// Quantity of the product.
         /// </summary>
         public int Quantity { get; set; }
+
+        /// <summary>
+        /// Minimal allowed quantity of the product.
+        /// </summary>
+        public int MinQuantity { get; set; }
+
+        /// <summary>
+        /// Maximal allowed quantity of the product.
+        /// </summary>
+        public int MaxQuantity { get; set; }
     }
 }

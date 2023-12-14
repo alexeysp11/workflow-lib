@@ -12,7 +12,8 @@ IHost _host = Host.CreateDefaultBuilder().ConfigureServices(
         services.AddSingleton<IExampleInstance, ExampleInstance>();
         // DbContext.
         services.AddSingleton((_) => {
-            return new DbContextOptionsBuilder<DeliveringContext>().UseInMemoryDatabase(databaseName: "mydatabase").Options;
+            string dbpath = System.IO.Path.Join("delivering.db");
+            return new DbContextOptionsBuilder<DeliveringContext>().UseSqlite($"Data Source={dbpath}").Options;
         });
         // Flowchart steps.
         services.AddSingleton<MakeOrderStep>();

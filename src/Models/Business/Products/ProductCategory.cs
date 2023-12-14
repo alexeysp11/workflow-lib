@@ -16,11 +16,11 @@ namespace Cims.WorkflowLib.Models.Business.Products
         /// <summary>
         /// Picture URL.
         /// </summary>
-        public string PictureUrl { get; set; }
+        public string? PictureUrl { get; set; }
         
         /// <summary>
         /// Picture description.
         /// </summary>
-        public string PictureDescription { get; set; }
+        public string? PictureDescription { get; set; }
     }
 }

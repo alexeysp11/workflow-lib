@@ -28,27 +28,27 @@ namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// Customer UID of the order.
         /// </summary>
-        public string CustomerUid { get; set; }
+        public string? CustomerUid { get; set; }
 
         /// <summary>
         /// Customer name of the order.
         /// </summary>
-        public string CustomerName { get; set; }
+        public string? CustomerName { get; set; }
         
         /// <summary>
         /// Company UID of the order.
         /// </summary>
-        public string CompanyUid { get; set; }
+        public string? CompanyUid { get; set; }
         
         /// <summary>
         /// Company name of the order.
         /// </summary>
-        public string CompanyName { get; set; }
+        public string? CompanyName { get; set; }
 
-        /// <summary>
-        /// Products associated with the order.
-        /// </summary>
-        public ICollection<Product> Products { get; set; }
+        // /// <summary>
+        // /// Products associated with the order.
+        // /// </summary>
+        // public ICollection<Product> Products { get; set; }
         
         /// <summary>
         /// Price of the products.
@@ -83,6 +83,6 @@ namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// Status of the order.
         /// </summary>
-        public string Status { get; set; }
+        public string? Status { get; set; }
     }
 }

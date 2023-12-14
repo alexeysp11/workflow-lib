@@ -1,4 +1,6 @@
 using System.Linq;
+using System.Text;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Processes;
@@ -16,6 +18,8 @@ namespace Cims.WorkflowLib.Example01
     /// </summary>
     public class ExampleInstance : IExampleInstance
     {
+        private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
+
         private MakeOrderStep _step01 { get; set; }
         private MakePaymentStep _step02 { get; set; }
         private FinishWh2KitchenStep _step03 { get; set; }
@@ -32,6 +36,7 @@ namespace Cims.WorkflowLib.Example01
         /// 
         /// </summary>
         public ExampleInstance(
+            DbContextOptions<DeliveringContext> contextOptions,
             MakeOrderStep step01, 
             MakePaymentStep step02, 
             FinishWh2KitchenStep step03, 
@@ -44,6 +49,7 @@ namespace Cims.WorkflowLib.Example01
             ScanBackpackStep step10,
             DeliverOrderStep step11)
         {
+            _contextOptions = contextOptions;
             _step01 = step01;
             _step02 = step02;
             _step03 = step03;
@@ -62,6 +68,9 @@ namespace Cims.WorkflowLib.Example01
         /// </summary>
         public void Run()
         {
+            // Provide configurations for DbContext.
+            ConfigureDbContext();
+
             // Step 01: make order.
             System.Console.WriteLine("\nStep 01: make order.");
             _step01.Start();
@@ -75,36 +84,199 @@ namespace Cims.WorkflowLib.Example01
             _step03.Start();
 
             // Step 04: request for delivering from store to warehouse.
-            System.Console.WriteLine("\nStep 04: request for delivering from store to warehouse.");
-            _step04.Start();
+            // System.Console.WriteLine("\nStep 04: request for delivering from store to warehouse.");
+            // _step04.Start();
 
-            // Step 05: deliver from store to warehouse.
-            System.Console.WriteLine("\nStep 05: deliver from store to warehouse.");
-            _step05.Start();
+            // // Step 05: deliver from store to warehouse.
+            // System.Console.WriteLine("\nStep 05: deliver from store to warehouse.");
+            // _step05.Start();
 
-            // Step 06: confirm delivering from store to warehouse.
-            System.Console.WriteLine("\nStep 06: confirm delivering from store to warehouse.");
-            _step06.Start();
+            // // Step 06: confirm delivering from store to warehouse.
+            // System.Console.WriteLine("\nStep 06: confirm delivering from store to warehouse.");
+            // _step06.Start();
 
-            // Step 07: prepare meal.
-            System.Console.WriteLine("\nStep 07: prepare meal.");
-            _step07.Start();
+            // // Step 07: prepare meal.
+            // System.Console.WriteLine("\nStep 07: prepare meal.");
+            // _step07.Start();
 
-            // Step 08: deliver from kitchen to warehouse.
-            System.Console.WriteLine("\nStep 08: deliver from kitchen to warehouse.");
-            _step08.Start();
+            // // Step 08: deliver from kitchen to warehouse.
+            // System.Console.WriteLine("\nStep 08: deliver from kitchen to warehouse.");
+            // _step08.Start();
 
-            // Step 09: scan QR code on the delivery order.
-            System.Console.WriteLine("\nStep 09: scan QR code on the delivery order.");
-            _step09.Start();
+            // // Step 09: scan QR code on the delivery order.
+            // System.Console.WriteLine("\nStep 09: scan QR code on the delivery order.");
+            // _step09.Start();
 
-            // Step 10: scan backpack.
-            System.Console.WriteLine("\nStep 10: scan backpack.");
-            _step10.Start();
+            // // Step 10: scan backpack.
+            // System.Console.WriteLine("\nStep 10: scan backpack.");
+            // _step10.Start();
 
-            // Step 11: deliver order.
-            System.Console.WriteLine("\nStep 11: deliver order.");
-            _step11.Start();
+            // // Step 11: deliver order.
+            // System.Console.WriteLine("\nStep 11: deliver order.");
+            // _step11.Start();
+        }
+
+        private void ConfigureDbContext()
+        {
+            ClearTables();
+            AddWHProduct();
+            AddIngredients();
+            AddRecipes();
+        }
+
+        private void ClearTables()
+        {
+            using var context = new DeliveringContext(_contextOptions);
+            context.Recipes.RemoveRange(context.Recipes.ToList());
+            context.Ingredients.RemoveRange(context.Ingredients.ToList());
+            context.WHProducts.RemoveRange(context.WHProducts.ToList());
+            context.Products.RemoveRange(context.Products.ToList());
+            context.ProductCategories.RemoveRange(context.ProductCategories.ToList());
+            context.SaveChanges();
+        }
+
+        private void AddWHProduct()
+        {
+            using var context = new DeliveringContext(_contextOptions);
+            var rand = new System.Random();
+
+            var pcid = context.ProductCategories.Count() + 1;
+            var productCategory = new ProductCategory
+            {
+                Id = pcid,
+                Uid = System.Guid.NewGuid().ToString(),
+                Name = "Product category " + pcid
+            };
+            context.ProductCategories.Add(productCategory);
+            for (int i = 0; i < 3; i++)
+                AddSingleWHProduct(context, rand, productCategory);
+            context.SaveChanges();
+        }
+
+        private void AddSingleWHProduct(
+            DeliveringContext context, 
+            System.Random rand, 
+            ProductCategory productCategory)
+        {
+            var pid = context.Products.Count() + 1;
+            var whpid = context.WHProducts.Count() + 1;
+            var product = new Product
+            {
+                Id = pid,
+                Uid = System.Guid.NewGuid().ToString(),
+                Name = "Product " + pid,
+                Price = rand.Next(12, 31),
+                Quantity = 0,
+                ProductCategory = productCategory
+            };
+            var whproduct = new WHProduct
+            {
+                Id = whpid,
+                Uid = System.Guid.NewGuid().ToString(),
+                Name = "WHProduct " + whpid,
+                Product = product,
+                Quantity = rand.Next(2, 7),
+                MinQuantity = rand.Next(3, 5),
+                MaxQuantity = rand.Next(20, 46)
+            };
+            context.Products.Add(product);
+            context.WHProducts.Add(whproduct);
+            context.SaveChanges();
+        }
+
+        private void AddIngredients()
+        {
+            using var context = new DeliveringContext(_contextOptions);
+            var rand = new System.Random();
+
+            var pcid = context.ProductCategories.Count() + 1;
+            var productCategory = new ProductCategory
+            {
+                Id = pcid,
+                Uid = System.Guid.NewGuid().ToString(),
+                Name = "Product category " + pcid,
+                Description = "Ingredients"
+            };
+            context.ProductCategories.Add(productCategory);
+            var finalProduct1 = context.Products.FirstOrDefault(x => x.Id == 1);
+            var finalProduct2 = context.Products.FirstOrDefault(x => x.Id == 2);
+            var finalProduct3 = context.Products.FirstOrDefault(x => x.Id == 3);
+            AddSingleIngredient(context, rand, productCategory, finalProduct1);
+            AddSingleIngredient(context, rand, productCategory, finalProduct1);
+            AddSingleIngredient(context, rand, productCategory, finalProduct2);
+            AddSingleIngredient(context, rand, productCategory, finalProduct2);
+            AddSingleIngredient(context, rand, productCategory, finalProduct2);
+            AddSingleIngredient(context, rand, productCategory, finalProduct3);
+            context.SaveChanges();
+        }
+
+        private void AddSingleIngredient(
+            DeliveringContext context, 
+            System.Random rand, 
+            ProductCategory productCategory, 
+            Product finalProduct)
+        {
+            var pid = context.Products.Count() + 1;
+            var whpid = context.WHProducts.Count() + 1;
+            var product = new Product
+            {
+                Id = pid,
+                Uid = System.Guid.NewGuid().ToString(),
+                Name = "Product " + pid,
+                Price = rand.Next(2, 7),
+                Quantity = 0,
+                ProductCategory = productCategory
+            };
+            var ingredient = new Ingredient
+            {
+                Id = context.Ingredients.Count() + 1,
+                Uid = System.Guid.NewGuid().ToString(),
+                Name = product.Name,
+                FinalProduct = finalProduct,
+                IngredientProduct = product
+            };
+            var whproduct = new WHProduct
+            {
+                Id = whpid,
+                Uid = System.Guid.NewGuid().ToString(),
+                Name = "WHProduct " + whpid,
+                Product = product,
+                Quantity = rand.Next(1, 16),
+                MinQuantity = rand.Next(3, 5),
+                MaxQuantity = rand.Next(20, 46)
+            };
+            context.Ingredients.Add(ingredient);
+            context.WHProducts.Add(whproduct);
+            context.SaveChanges();
+        }
+
+        private void AddRecipes()
+        {
+            using var context = new DeliveringContext(_contextOptions);
+
+            int recipeId = 1;
+            var sbRecipeName = new StringBuilder();
+            var sbInstruction = new StringBuilder();
+            var ingredientIds = (from ingredient in context.Ingredients select ingredient.IngredientProduct.Id).ToList(); 
+            foreach (var p in context.Products.Where(x => !ingredientIds.Any(i => i == x.Id)))
+            {
+                sbInstruction.Append("Instruction #").Append(recipeId.ToString());
+                sbRecipeName.Append("Recipe of the product #").Append(p.Id.ToString()).Append(" ").Append(p.Name);
+                var recipe = new Recipe
+                {
+                    Id = recipeId,
+                    Uid = System.Guid.NewGuid().ToString(),
+                    Name = sbRecipeName.ToString(),
+                    Product = p,
+                    Ingredients = context.Ingredients.Where(x => x.FinalProduct != null && x.FinalProduct.Uid == p.Uid).ToList(),
+                    Instruction = sbInstruction.ToString()
+                };
+                context.Recipes.Add(recipe);
+                sbInstruction.Clear();
+                sbRecipeName.Clear();
+                recipeId += 1;
+            }
+            context.SaveChanges();
         }
     }
 }
