@@ -158,11 +158,11 @@ namespace Cims.WorkflowLib.Example01
         private void AddUserAccounts()
         {
             using var context = new DeliveringContext(_contextOptions);
+
             for (int i = 1; i <= 10; i++)
             {
                 context.UserAccounts.Add(new UserAccount
                 {
-                    Id = i,
                     Uid = System.Guid.NewGuid().ToString(),
                     Login = "login" + i,
                     Email = "user" + i + "@example.com",
@@ -170,14 +170,15 @@ namespace Cims.WorkflowLib.Example01
                     Password = "pswd" + i
                 });
             }
-            var admin = context.UserAccounts.FirstOrDefault(x => x.Id == 1);
+            context.SaveChanges();
+
+            var admin = context.UserAccounts.FirstOrDefault();
             var dtnow = System.DateTime.Now;
             for (int i = 1; i <= 5; i++)
             {
                 var users = context.UserAccounts.Where(x => x.Id % 5 == i - 1).ToList();
                 context.UserGroups.Add(new UserGroup
                 {
-                    Id = i,
                     Uid = System.Guid.NewGuid().ToString(),
                     Name = "usergroup" + i,
                     Users = users,
@@ -221,7 +222,6 @@ namespace Cims.WorkflowLib.Example01
             var pcid = context.ProductCategories.Count() + 1;
             var productCategory = new ProductCategory
             {
-                Id = pcid,
                 Uid = System.Guid.NewGuid().ToString(),
                 Name = "Product category " + pcid
             };
@@ -240,7 +240,6 @@ namespace Cims.WorkflowLib.Example01
             var whpid = context.WHProducts.Count() + 1;
             var product = new Product
             {
-                Id = pid,
                 Uid = System.Guid.NewGuid().ToString(),
                 Name = "Product " + pid,
                 Price = rand.Next(12, 31),
@@ -249,7 +248,6 @@ namespace Cims.WorkflowLib.Example01
             };
             var whproduct = new WHProduct
             {
-                Id = whpid,
                 Uid = System.Guid.NewGuid().ToString(),
                 Name = "WHProduct " + whpid,
                 Product = product,
@@ -270,7 +268,6 @@ namespace Cims.WorkflowLib.Example01
             var pcid = context.ProductCategories.Count() + 1;
             var productCategory = new ProductCategory
             {
-                Id = pcid,
                 Uid = System.Guid.NewGuid().ToString(),
                 Name = "Product category " + pcid,
                 Description = "Ingredients"
@@ -298,7 +295,6 @@ namespace Cims.WorkflowLib.Example01
             var whpid = context.WHProducts.Count() + 1;
             var product = new Product
             {
-                Id = pid,
                 Uid = System.Guid.NewGuid().ToString(),
                 Name = "Product " + pid,
                 Price = rand.Next(2, 7),
@@ -307,7 +303,6 @@ namespace Cims.WorkflowLib.Example01
             };
             var ingredient = new Ingredient
             {
-                Id = context.Ingredients.Count() + 1,
                 Uid = System.Guid.NewGuid().ToString(),
                 Name = product.Name,
                 FinalProduct = finalProduct,
@@ -315,7 +310,6 @@ namespace Cims.WorkflowLib.Example01
             };
             var whproduct = new WHProduct
             {
-                Id = whpid,
                 Uid = System.Guid.NewGuid().ToString(),
                 Name = "WHProduct " + whpid,
                 Product = product,
@@ -342,7 +336,6 @@ namespace Cims.WorkflowLib.Example01
                 sbRecipeName.Append("Recipe of the product #").Append(p.Id.ToString()).Append(" ").Append(p.Name);
                 var recipe = new Recipe
                 {
-                    Id = recipeId,
                     Uid = System.Guid.NewGuid().ToString(),
                     Name = sbRecipeName.ToString(),
                     Product = p,

@@ -45,7 +45,6 @@ namespace Cims.WorkflowLib.Example01.Controllers
 
                 // Insert into cache.
                 System.Console.WriteLine("CustomerClient.MakeOrderRequest: cache");
-                int ipid = context.InitialOrderProducts.Count() + 1;
                 var products = new List<InitialOrderProduct>();
                 foreach (var pid in model.ProductIds)
                 {
@@ -58,16 +57,13 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     var p = context.Products.Where(x => x.Id == pid).FirstOrDefault();
                     products.Add(new InitialOrderProduct
                     {
-                        Id = ipid,
                         Uid = System.Guid.NewGuid().ToString(),
                         Name = p.Name,
                         Product = p,
                         InitialOrder = model,
                         Quantity = qty
                     });
-                    ipid += 1;
                 }
-                model.Id = context.InitialOrders.Count() + 1;
                 model.Uid = System.Guid.NewGuid().ToString();
                 context.InitialOrderProducts.AddRange(products);
                 context.InitialOrders.Add(model);

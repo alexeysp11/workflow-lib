@@ -39,7 +39,7 @@ public class InitialOrder : BusinessEntityWF, IBusinessEntityWF
     /// List of the product IDs, that user has placed into the order.
     /// </summary>
     [NotMapped]
-    public List<int> ProductIds { get; set; }
+    public List<long> ProductIds { get; set; }
 
     /// <summary>
     /// Payment type.
