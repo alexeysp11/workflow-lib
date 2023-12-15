@@ -3,6 +3,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
+using Cims.WorkflowLib.Models.Business.InformationSystem;
 using Cims.WorkflowLib.Models.Business.Processes;
 using Cims.WorkflowLib.Models.Business.Products;
 using Cims.WorkflowLib.Example01.Contexts;
@@ -79,9 +80,9 @@ namespace Cims.WorkflowLib.Example01
             System.Console.WriteLine("\nStep 02: make payment.");
             _step02.Start();
 
-            // Step 03: finish delivering from warehouse to kitchen.
-            System.Console.WriteLine("\nStep 03: finish delivering from warehouse to kitchen.");
-            _step03.Start();
+            // // Step 03: finish delivering from warehouse to kitchen.
+            // System.Console.WriteLine("\nStep 03: finish delivering from warehouse to kitchen.");
+            // _step03.Start();
 
             // Step 04: request for delivering from store to warehouse.
             // System.Console.WriteLine("\nStep 04: request for delivering from store to warehouse.");
@@ -119,6 +120,11 @@ namespace Cims.WorkflowLib.Example01
         private void ConfigureDbContext()
         {
             ClearTables();
+            AddUserAccounts();
+            AddCustomers();
+            AddCompanies();
+            AddEmployees();
+            AddContacts();
             AddWHProduct();
             AddIngredients();
             AddRecipes();
@@ -127,12 +133,84 @@ namespace Cims.WorkflowLib.Example01
         private void ClearTables()
         {
             using var context = new DeliveringContext(_contextOptions);
-            context.Recipes.RemoveRange(context.Recipes.ToList());
-            context.Ingredients.RemoveRange(context.Ingredients.ToList());
-            context.WHProducts.RemoveRange(context.WHProducts.ToList());
-            context.Products.RemoveRange(context.Products.ToList());
+            
+            context.UserAccounts.RemoveRange(context.UserAccounts.ToList());
+            context.UserGroups.RemoveRange(context.UserGroups.ToList());
+
+            context.InitialOrders.RemoveRange(context.InitialOrders.ToList());
+            context.InitialOrderProducts.RemoveRange(context.InitialOrderProducts.ToList());
+            context.DeliveryOrders.RemoveRange(context.DeliveryOrders.ToList());
+            context.DeliveryOrderProducts.RemoveRange(context.DeliveryOrderProducts.ToList());
+            context.Payments.RemoveRange(context.Payments.ToList());
+
             context.ProductCategories.RemoveRange(context.ProductCategories.ToList());
+            context.Products.RemoveRange(context.Products.ToList());
+            context.WHProducts.RemoveRange(context.WHProducts.ToList());
+            context.Ingredients.RemoveRange(context.Ingredients.ToList());
+            context.Recipes.RemoveRange(context.Recipes.ToList());
+
+            context.Notifications.RemoveRange(context.Notifications.ToList());
+            context.DeliveryOperations.RemoveRange(context.DeliveryOperations.ToList());
+
             context.SaveChanges();
+        }
+
+        private void AddUserAccounts()
+        {
+            using var context = new DeliveringContext(_contextOptions);
+            for (int i = 1; i <= 10; i++)
+            {
+                context.UserAccounts.Add(new UserAccount
+                {
+                    Id = i,
+                    Uid = System.Guid.NewGuid().ToString(),
+                    Login = "login" + i,
+                    Email = "user" + i + "@example.com",
+                    PhoneNumber = "PhoneNumber" + i,
+                    Password = "pswd" + i
+                });
+            }
+            var admin = context.UserAccounts.FirstOrDefault(x => x.Id == 1);
+            var dtnow = System.DateTime.Now;
+            for (int i = 1; i <= 5; i++)
+            {
+                var users = context.UserAccounts.Where(x => x.Id % 5 == i - 1).ToList();
+                context.UserGroups.Add(new UserGroup
+                {
+                    Id = i,
+                    Uid = System.Guid.NewGuid().ToString(),
+                    Name = "usergroup" + i,
+                    Users = users,
+                    CreationAuthor = admin,
+                    CreationDate = dtnow,
+                    ChangeAuthor = admin,
+                    ChangeDate = dtnow
+                });
+            }
+            context.SaveChanges();
+        }
+
+        private void AddCustomers()
+        {
+            // потребители, 
+        }
+
+        private void AddCompanies()
+        {
+            // компании, 
+            // организации, 
+            // элементы организации, 
+        }
+
+        private void AddEmployees()
+        {
+            // сотрудники, 
+        }
+
+        private void AddContacts()
+        {
+            // контакты, 
+            // адреса
         }
 
         private void AddWHProduct()

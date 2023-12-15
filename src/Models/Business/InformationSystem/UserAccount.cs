@@ -15,12 +15,12 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// Email of the user.
         /// </summary>
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         /// <summary>
         /// Phone number of the user.
         /// </summary>
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
 
         /// <summary>
         /// Password of the user.
@@ -30,12 +30,12 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// Photo of the user.
         /// </summary>
-        public byte[] Photo { get; set; }
+        public byte[]? Photo { get; set; }
 
         /// <summary>
         /// Photo URL of the user.
         /// </summary>
-        public string PhotoUrl { get; set; }
+        public string? PhotoUrl { get; set; }
 
         /// <summary>
         /// Status of the user.

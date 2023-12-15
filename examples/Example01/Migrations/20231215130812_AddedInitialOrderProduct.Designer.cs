@@ -3,6 +3,7 @@ using System;
 using Cims.WorkflowLib.Example01.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace WorkflowLib.Example01.Migrations
 {
     [DbContext(typeof(DeliveringContext))]
-    partial class DeliveringContextModelSnapshot : ModelSnapshot
+    [Migration("20231215130812_AddedInitialOrderProduct")]
+    partial class AddedInitialOrderProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.1");
@@ -59,42 +61,6 @@ namespace WorkflowLib.Example01.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("InitialOrders");
-                });
-
-            modelBuilder.Entity("Cims.WorkflowLib.Example01.Models.InitialOrderProduct", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("BusinessEntityStatus")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("TEXT");
-
-                    b.Property<long>("InitialOrderId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.Property<long>("ProductId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Uid")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("InitialOrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("InitialOrderProducts");
                 });
 
             modelBuilder.Entity("Cims.WorkflowLib.Models.Business.Address", b =>
@@ -739,7 +705,7 @@ namespace WorkflowLib.Example01.Migrations
 
                     b.HasIndex("UserGroupId");
 
-                    b.ToTable("UserAccounts");
+                    b.ToTable("UserAccount");
                 });
 
             modelBuilder.Entity("Cims.WorkflowLib.Models.Business.InformationSystem.UserGroup", b =>
@@ -789,7 +755,7 @@ namespace WorkflowLib.Example01.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("UserGroups");
+                    b.ToTable("UserGroup");
                 });
 
             modelBuilder.Entity("Cims.WorkflowLib.Models.Business.Monetary.Payment", b =>
@@ -1014,6 +980,9 @@ namespace WorkflowLib.Example01.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
+                    b.Property<long?>("InitialOrderId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
@@ -1036,6 +1005,8 @@ namespace WorkflowLib.Example01.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("InitialOrderId");
 
                     b.HasIndex("ProductCategoryId");
 
@@ -1451,25 +1422,6 @@ namespace WorkflowLib.Example01.Migrations
                     b.HasDiscriminator().HasValue("DeliveryOperation");
                 });
 
-            modelBuilder.Entity("Cims.WorkflowLib.Example01.Models.InitialOrderProduct", b =>
-                {
-                    b.HasOne("Cims.WorkflowLib.Example01.Models.InitialOrder", "InitialOrder")
-                        .WithMany()
-                        .HasForeignKey("InitialOrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Cims.WorkflowLib.Models.Business.Products.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("InitialOrder");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("Cims.WorkflowLib.Models.Business.BusinessDocuments.DeliveryOrder", b =>
                 {
                     b.HasOne("Cims.WorkflowLib.Models.Business.Delivery.DeliveryMethod", "DeliveryMethod")
@@ -1737,6 +1689,10 @@ namespace WorkflowLib.Example01.Migrations
 
             modelBuilder.Entity("Cims.WorkflowLib.Models.Business.Products.Product", b =>
                 {
+                    b.HasOne("Cims.WorkflowLib.Example01.Models.InitialOrder", null)
+                        .WithMany("Products")
+                        .HasForeignKey("InitialOrderId");
+
                     b.HasOne("Cims.WorkflowLib.Models.Business.Products.ProductCategory", "ProductCategory")
                         .WithMany("Products")
                         .HasForeignKey("ProductCategoryId");
@@ -1901,6 +1857,11 @@ namespace WorkflowLib.Example01.Migrations
                     b.Navigation("Destination");
 
                     b.Navigation("Origin");
+                });
+
+            modelBuilder.Entity("Cims.WorkflowLib.Example01.Models.InitialOrder", b =>
+                {
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("Cims.WorkflowLib.Models.Business.BusinessDocuments.Contract", b =>
