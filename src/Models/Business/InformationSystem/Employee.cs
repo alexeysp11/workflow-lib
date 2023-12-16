@@ -32,22 +32,22 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// Mobile phone of the employee.
         /// </summary>
-        public string MobilePhone { get; set; }
+        public string? MobilePhone { get; set; }
 
         /// <summary>
         /// Work phone of the employee.
         /// </summary>
-        public string WorkPhone { get; set; }
+        public string? WorkPhone { get; set; }
 
         /// <summary>
         /// Skype username of the employee.
         /// </summary>
-        public string Skype { get; set; }
+        public string? Skype { get; set; }
 
         /// <summary>
         /// ICQ of the employee.
         /// </summary>
-        public string ICQ { get; set; }
+        public string? ICQ { get; set; }
 
         /// <summary>
         /// Bith date of the employee.
@@ -92,7 +92,7 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// Locale.
         /// </summary>
-        public string Locale { get; set; }
+        public string? Locale { get; set; }
         
         /// <summary>
         /// Skills of the employee.

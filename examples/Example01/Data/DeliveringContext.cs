@@ -1,10 +1,13 @@
 using Microsoft.EntityFrameworkCore;
+using Cims.WorkflowLib.Models.Business;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Customers;
 using Cims.WorkflowLib.Models.Business.Delivery;
 using Cims.WorkflowLib.Models.Business.InformationSystem;
 using Cims.WorkflowLib.Models.Business.Monetary;
 using Cims.WorkflowLib.Models.Business.Products;
+using Cims.WorkflowLib.Models.Business.Processes;
+using Cims.WorkflowLib.Models.Business.SocialCommunication;
 using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Models;
 
@@ -20,10 +23,23 @@ namespace Cims.WorkflowLib.Example01.Data
         public DbSet<UserAccount> UserAccounts { get; set; }
         public DbSet<UserGroup> UserGroups { get; set; }
 
+        public DbSet<Customer> Customers { get; set; }
+
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Organization> Organizations { get; set; }
+        public DbSet<OrganizationItem> OrganizationItems { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+
+        public DbSet<BusinessTask> BusinessTasks { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+
         public DbSet<InitialOrder> InitialOrders { get; set; }
         public DbSet<InitialOrderProduct> InitialOrderProducts { get; set; }
         public DbSet<DeliveryOrder> DeliveryOrders { get; set; }
         public DbSet<DeliveryOrderProduct> DeliveryOrderProducts { get; set; }
+        public DbSet<DeliveryMethod> DeliveryMethods { get; set; }
         public DbSet<Payment> Payments { get; set; }
         
         public DbSet<ProductCategory> ProductCategories { get; set; }

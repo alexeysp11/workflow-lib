@@ -2,7 +2,9 @@ using System.Linq;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using Cims.WorkflowLib.Models.Business;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
+using Cims.WorkflowLib.Models.Business.Customers;
 using Cims.WorkflowLib.Models.Business.InformationSystem;
 using Cims.WorkflowLib.Models.Business.Processes;
 using Cims.WorkflowLib.Models.Business.Products;
@@ -133,10 +135,11 @@ namespace Cims.WorkflowLib.Example01
         private void ClearTables()
         {
             using var context = new DeliveringContext(_contextOptions);
-            
-            context.UserAccounts.RemoveRange(context.UserAccounts.ToList());
-            context.UserGroups.RemoveRange(context.UserGroups.ToList());
 
+            // Do not clear the tables that are associated with UserAccounts here in code (e.g. Customers, Employees, UserGroups),
+            // because it could lead to the circular dependency exception.
+            // It is better to clear such tables directly using SQL queries.
+            
             context.InitialOrders.RemoveRange(context.InitialOrders.ToList());
             context.InitialOrderProducts.RemoveRange(context.InitialOrderProducts.ToList());
             context.DeliveryOrders.RemoveRange(context.DeliveryOrders.ToList());
@@ -158,7 +161,9 @@ namespace Cims.WorkflowLib.Example01
         private void AddUserAccounts()
         {
             using var context = new DeliveringContext(_contextOptions);
-
+            if (context.UserAccounts.Count() != 0 || context.UserGroups.Count() != 0)
+                return;
+            
             for (int i = 1; i <= 10; i++)
             {
                 context.UserAccounts.Add(new UserAccount
@@ -174,13 +179,22 @@ namespace Cims.WorkflowLib.Example01
 
             var admin = context.UserAccounts.FirstOrDefault();
             var dtnow = System.DateTime.Now;
-            for (int i = 1; i <= 5; i++)
+            var userGroupNames = new List<string>
             {
-                var users = context.UserAccounts.Where(x => x.Id % 5 == i - 1).ToList();
+                "tech support", 
+                "customer", 
+                "manager", 
+                "courier",
+                "kitchen employee"
+            };
+            var ugqty = userGroupNames.Count();
+            for (int i = 0; i < ugqty; i++)
+            {
+                var users = context.UserAccounts.Where(x => x.Id % ugqty == i - 1).ToList();
                 context.UserGroups.Add(new UserGroup
                 {
                     Uid = System.Guid.NewGuid().ToString(),
-                    Name = "usergroup" + i,
+                    Name = userGroupNames[i],
                     Users = users,
                     CreationAuthor = admin,
                     CreationDate = dtnow,
@@ -193,25 +207,204 @@ namespace Cims.WorkflowLib.Example01
 
         private void AddCustomers()
         {
-            // потребители, 
+            using var context = new DeliveringContext(_contextOptions);
+            if (context.Customers.Count() != 0)
+                return;
+            var usergroup = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "customer");
+            foreach (var user in usergroup.Users)
+            {
+                var firstName = "FirstName" + user.Id;
+                var middleName = "MiddleName" + user.Id;
+                var lastName = "LastName" + user.Id;
+                var fullName = $"{lastName}, {firstName} {middleName}";
+                var customer = new Customer
+                {
+                    Uid = System.Guid.NewGuid().ToString(),
+                    FirstName = firstName,
+                    MiddleName = middleName,
+                    LastName = lastName,
+                    FullName = fullName,
+                    CRMRoleType = CRMRoleType.Client,
+                    UserAccount = user
+                };
+                context.Customers.Add(customer);
+            }
+            context.SaveChanges();
         }
 
         private void AddCompanies()
         {
-            // компании, 
-            // организации, 
-            // элементы организации, 
+            using var context = new DeliveringContext(_contextOptions);
+            if (context.Companies.Count() != 0 || context.Organizations.Count() != 0 || context.OrganizationItems.Count() != 0)
+                return;
+            
+            // Companies.
+            var address = new Address
+            {
+                Uid = System.Guid.NewGuid().ToString(),
+                Name = "Address 1",
+                Country = "Country1",
+                CountryProvince = "CountryProvince1",
+                City = "City1",
+                PostalCode = "PostalCode1",
+                StreetName = "StreetName1",
+                StreetNumber = "StreetNumber1",
+            };
+            var company = new Company
+            {
+                Uid = System.Guid.NewGuid().ToString(),
+                Name = "Our Company",
+                RegistrationNumber = "RegistrationNumber",
+                HasVatRegistration = true,
+                VatNumber = "VatNumber", 
+                CRMRoleType = CRMRoleType.Supplier,
+                Address = address,
+                ShippingAddress = address
+            };
+            context.Companies.Add(company);
+
+            // Organization items.
+            // Structure:
+            // Level 1: head (job position)
+            // Level 2: manager (job position)
+            // Level 3: departments: couriers, tech support, kitchen employees (department)
+            var managers = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "manager").Users;
+            var lvl01 = new OrganizationItem
+            {
+                Uid = System.Guid.NewGuid().ToString(),
+                Name = $"Head of '{company.Name}'",
+                ItemType = OrganizationItemType.JobPosition,
+                User = managers.First()
+            };
+            context.OrganizationItems.Add(lvl01);
+            var lvl02 = new OrganizationItem
+            {
+                Uid = System.Guid.NewGuid().ToString(),
+                Name = $"Manager of '{company.Name}'",
+                ItemType = OrganizationItemType.JobPosition,
+                User = managers.Last()
+            };
+            context.OrganizationItems.Add(lvl02);
+            var lvl03Couriers = new OrganizationItem
+            {
+                Uid = System.Guid.NewGuid().ToString(),
+                Name = $"Couriers",
+                ItemType = OrganizationItemType.Department,
+                Users = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "courier").Users
+            };
+            context.OrganizationItems.Add(lvl03Couriers);
+            var lvl03TechSupport = new OrganizationItem
+            {
+                Uid = System.Guid.NewGuid().ToString(),
+                Name = $"Tech support",
+                ItemType = OrganizationItemType.Department,
+                Users = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "tech support").Users
+            };
+            context.OrganizationItems.Add(lvl03TechSupport);
+            var lvl03Kitchen = new OrganizationItem
+            {
+                Uid = System.Guid.NewGuid().ToString(),
+                Name = $"Kitchen employees",
+                ItemType = OrganizationItemType.Department,
+                Users = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "kitchen employee").Users
+            };
+            context.OrganizationItems.Add(lvl03Kitchen);
+
+            // Organizations.
+            var organization = new Organization
+            {
+                Uid = System.Guid.NewGuid().ToString(),
+                Name = $"Organization '{company.Name}'",
+                Company = company,
+                HeadItem = lvl01
+            };
+            context.Organizations.Add(organization);
+
+            context.SaveChanges();
         }
 
         private void AddEmployees()
         {
-            // сотрудники, 
+            using var context = new DeliveringContext(_contextOptions);
+            if (context.Employees.Count() != 0)
+                return;
+            var rand = new System.Random();
+            // Get all user groups that can be associated with a company.
+            var usergroups = new List<UserGroup>();
+            usergroups.Add(context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "manager"));
+            usergroups.Add(context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "courier"));
+            usergroups.Add(context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "tech support"));
+            usergroups.Add(context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "kitchen employee"));
+            // In a loop for each user group, enumerate users.
+            foreach (var ug in usergroups)
+            {
+                foreach (var user in ug.Users)
+                {
+                    // For each user initialize a company employee. 
+                    var firstName = "FirstName #" + user.Id;
+                    var middleName = "MiddleName #" + user.Id;
+                    var lastName = "LastName #" + user.Id;
+                    var fullName = $"{firstName} {middleName} {lastName}";
+                    var userOIList = new List<OrganizationItem>();
+                    userOIList.AddRange(context.OrganizationItems
+                        .Where(x => (x.User != null && x.User.Id == user.Id) 
+                            || (x.Users != null && x.Users.Any(u => u.Id == user.Id)))
+                        .ToList());
+                    var employee = new Employee
+                    {
+                        Uid = System.Guid.NewGuid().ToString(),
+                        FirstName = firstName,
+                        MiddleName = middleName,
+                        LastName = lastName,
+                        FullName = fullName,
+                        MobilePhone = "MobilePhone" + user.Id,
+                        WorkPhone = "WorkPhone" + user.Id,
+                        BirthDate = new System.DateTime(rand.Next(1980, 2004), rand.Next(1, 13), rand.Next(1, 28)),
+                        EmployDate = new System.DateTime(rand.Next(2018, 2023), rand.Next(1, 13), rand.Next(1, 28)),
+                        UserGroups = new List<UserGroup> { ug },
+                        OrganizationItems = userOIList
+                    };
+                    context.Employees.Add(employee);
+                }
+            }
+            context.SaveChanges();
         }
 
         private void AddContacts()
         {
-            // контакты, 
-            // адреса
+            using var context = new DeliveringContext(_contextOptions);
+            if (context.Contacts.Count() != 0)
+                return;
+            
+            // Addresses would not be added now, because at this point we assume that they are associated only with companies.
+            // All the necessary addresses are already added during initialization of organizations and companies.
+
+            // Contacts.
+            var customers = context.Customers.ToList();
+            foreach (var customer in customers)
+            {
+                var contact = new Contact
+                {
+                    Uid = System.Guid.NewGuid().ToString(),
+                    MobilePhone = "MobilePhoneCustomer #" + customer.Id
+                };
+                customer.Contact = contact;
+                context.Contacts.Add(contact);
+            }
+            var companies = context.Companies.ToList();
+            foreach (var company in companies)
+            {
+                var contact = new Contact
+                {
+                    Uid = System.Guid.NewGuid().ToString(),
+                    WorkPhone = "WorkPhoneCompany #" + company.Id,
+                    OfficePhone = "OfficePhoneCompany #" + company.Id,
+                    Email = "EmailCompany #" + company.Id
+                };
+                company.Contact = contact;
+                context.Contacts.Add(contact);
+            }
+            context.SaveChanges();
         }
 
         private void AddWHProduct()
