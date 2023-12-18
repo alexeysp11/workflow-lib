@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace WorkflowLib.Example01.Migrations
 {
     [DbContext(typeof(DeliveringContext))]
-    [Migration("20231216172014_NameForContacts")]
-    partial class NameForContacts
+    [Migration("20231218164635_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -278,9 +278,6 @@ namespace WorkflowLib.Example01.Migrations
                     b.Property<long?>("ContactId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long?>("ContractId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
@@ -307,8 +304,6 @@ namespace WorkflowLib.Example01.Migrations
                     b.HasIndex("AddressId");
 
                     b.HasIndex("ContactId");
-
-                    b.HasIndex("ContractId");
 
                     b.HasIndex("ShippingAddressId");
 
@@ -374,9 +369,6 @@ namespace WorkflowLib.Example01.Migrations
                     b.Property<long?>("ContactId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long?>("ContractId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
@@ -406,8 +398,6 @@ namespace WorkflowLib.Example01.Migrations
                     b.HasIndex("CompanyId");
 
                     b.HasIndex("ContactId");
-
-                    b.HasIndex("ContractId");
 
                     b.HasIndex("UserAccountId");
 
@@ -502,9 +492,6 @@ namespace WorkflowLib.Example01.Migrations
                     b.Property<int>("BusinessEntityStatus")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long?>("ContractId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
@@ -535,9 +522,6 @@ namespace WorkflowLib.Example01.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<long?>("ProjectId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("ReplacementMode")
                         .HasColumnType("INTEGER");
 
@@ -552,10 +536,6 @@ namespace WorkflowLib.Example01.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ContractId");
-
-                    b.HasIndex("ProjectId");
-
                     b.ToTable("Employees");
                 });
 
@@ -569,9 +549,6 @@ namespace WorkflowLib.Example01.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<long?>("CompanyId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long?>("ContractId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
@@ -589,8 +566,6 @@ namespace WorkflowLib.Example01.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
-
-                    b.HasIndex("ContractId");
 
                     b.HasIndex("HeadItemId");
 
@@ -612,9 +587,6 @@ namespace WorkflowLib.Example01.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<long?>("EmployeeId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<bool>("HardDelete")
                         .HasColumnType("INTEGER");
 
@@ -633,9 +605,6 @@ namespace WorkflowLib.Example01.Migrations
                     b.Property<string>("Uid")
                         .HasColumnType("TEXT");
 
-                    b.Property<long?>("UserGroupId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<long?>("UserId")
                         .HasColumnType("INTEGER");
 
@@ -643,11 +612,7 @@ namespace WorkflowLib.Example01.Migrations
 
                     b.HasIndex("AddressId");
 
-                    b.HasIndex("EmployeeId");
-
                     b.HasIndex("ParentItemId");
-
-                    b.HasIndex("UserGroupId");
 
                     b.HasIndex("UserId");
 
@@ -768,9 +733,6 @@ namespace WorkflowLib.Example01.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<long?>("EmployeeId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<bool>("IsGroupByDefault")
                         .HasColumnType("INTEGER");
 
@@ -788,8 +750,6 @@ namespace WorkflowLib.Example01.Migrations
                     b.HasIndex("ChangeAuthorId");
 
                     b.HasIndex("CreationAuthorId");
-
-                    b.HasIndex("EmployeeId");
 
                     b.ToTable("UserGroups");
                 });
@@ -1405,6 +1365,21 @@ namespace WorkflowLib.Example01.Migrations
                     b.ToTable("ExecutionTime");
                 });
 
+            modelBuilder.Entity("CompanyContract", b =>
+                {
+                    b.Property<long>("ContractsId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("CustomerCompaniesId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ContractsId", "CustomerCompaniesId");
+
+                    b.HasIndex("CustomerCompaniesId");
+
+                    b.ToTable("CompanyContract");
+                });
+
             modelBuilder.Entity("CompanyEmployee", b =>
                 {
                     b.Property<long>("CompaniesId")
@@ -1418,6 +1393,51 @@ namespace WorkflowLib.Example01.Migrations
                     b.HasIndex("EmployeesId");
 
                     b.ToTable("CompanyEmployee");
+                });
+
+            modelBuilder.Entity("ContractCustomer", b =>
+                {
+                    b.Property<long>("ContractsId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("CustomersId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ContractsId", "CustomersId");
+
+                    b.HasIndex("CustomersId");
+
+                    b.ToTable("ContractCustomer");
+                });
+
+            modelBuilder.Entity("ContractEmployee", b =>
+                {
+                    b.Property<long>("ContractsId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("OurEmployeesId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ContractsId", "OurEmployeesId");
+
+                    b.HasIndex("OurEmployeesId");
+
+                    b.ToTable("ContractEmployee");
+                });
+
+            modelBuilder.Entity("ContractOrganization", b =>
+                {
+                    b.Property<long>("ContractsId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("OurOrganizationsId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ContractsId", "OurOrganizationsId");
+
+                    b.HasIndex("OurOrganizationsId");
+
+                    b.ToTable("ContractOrganization");
                 });
 
             modelBuilder.Entity("Cims.WorkflowLib.Models.Business.Delivery.DeliveryOperation", b =>
@@ -1509,10 +1529,6 @@ namespace WorkflowLib.Example01.Migrations
                         .WithMany()
                         .HasForeignKey("ContactId");
 
-                    b.HasOne("Cims.WorkflowLib.Models.Business.BusinessDocuments.Contract", null)
-                        .WithMany("Companies")
-                        .HasForeignKey("ContractId");
-
                     b.HasOne("Cims.WorkflowLib.Models.Business.Address", "ShippingAddress")
                         .WithMany()
                         .HasForeignKey("ShippingAddressId");
@@ -1534,10 +1550,6 @@ namespace WorkflowLib.Example01.Migrations
                         .WithMany()
                         .HasForeignKey("ContactId");
 
-                    b.HasOne("Cims.WorkflowLib.Models.Business.BusinessDocuments.Contract", null)
-                        .WithMany("Customers")
-                        .HasForeignKey("ContractId");
-
                     b.HasOne("Cims.WorkflowLib.Models.Business.InformationSystem.UserAccount", "UserAccount")
                         .WithMany()
                         .HasForeignKey("UserAccountId");
@@ -1549,26 +1561,11 @@ namespace WorkflowLib.Example01.Migrations
                     b.Navigation("UserAccount");
                 });
 
-            modelBuilder.Entity("Cims.WorkflowLib.Models.Business.InformationSystem.Employee", b =>
-                {
-                    b.HasOne("Cims.WorkflowLib.Models.Business.BusinessDocuments.Contract", null)
-                        .WithMany("Employees")
-                        .HasForeignKey("ContractId");
-
-                    b.HasOne("Cims.WorkflowLib.Models.Business.Products.Project", null)
-                        .WithMany("Employees")
-                        .HasForeignKey("ProjectId");
-                });
-
             modelBuilder.Entity("Cims.WorkflowLib.Models.Business.InformationSystem.Organization", b =>
                 {
                     b.HasOne("Cims.WorkflowLib.Models.Business.Customers.Company", "Company")
                         .WithMany()
                         .HasForeignKey("CompanyId");
-
-                    b.HasOne("Cims.WorkflowLib.Models.Business.BusinessDocuments.Contract", null)
-                        .WithMany("Organizations")
-                        .HasForeignKey("ContractId");
 
                     b.HasOne("Cims.WorkflowLib.Models.Business.InformationSystem.OrganizationItem", "HeadItem")
                         .WithMany()
@@ -1585,17 +1582,9 @@ namespace WorkflowLib.Example01.Migrations
                         .WithMany()
                         .HasForeignKey("AddressId");
 
-                    b.HasOne("Cims.WorkflowLib.Models.Business.InformationSystem.Employee", null)
-                        .WithMany("OrganizationItems")
-                        .HasForeignKey("EmployeeId");
-
                     b.HasOne("Cims.WorkflowLib.Models.Business.InformationSystem.OrganizationItem", "ParentItem")
                         .WithMany("SubItems")
                         .HasForeignKey("ParentItemId");
-
-                    b.HasOne("Cims.WorkflowLib.Models.Business.InformationSystem.UserGroup", null)
-                        .WithMany("OrganizationItems")
-                        .HasForeignKey("UserGroupId");
 
                     b.HasOne("Cims.WorkflowLib.Models.Business.InformationSystem.UserAccount", "User")
                         .WithMany()
@@ -1639,10 +1628,6 @@ namespace WorkflowLib.Example01.Migrations
                     b.HasOne("Cims.WorkflowLib.Models.Business.InformationSystem.UserAccount", "CreationAuthor")
                         .WithMany()
                         .HasForeignKey("CreationAuthorId");
-
-                    b.HasOne("Cims.WorkflowLib.Models.Business.InformationSystem.Employee", null)
-                        .WithMany("UserGroups")
-                        .HasForeignKey("EmployeeId");
 
                     b.Navigation("ChangeAuthor");
 
@@ -1863,6 +1848,21 @@ namespace WorkflowLib.Example01.Migrations
                     b.Navigation("CreationAuthor");
                 });
 
+            modelBuilder.Entity("CompanyContract", b =>
+                {
+                    b.HasOne("Cims.WorkflowLib.Models.Business.BusinessDocuments.Contract", null)
+                        .WithMany()
+                        .HasForeignKey("ContractsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Cims.WorkflowLib.Models.Business.Customers.Company", null)
+                        .WithMany()
+                        .HasForeignKey("CustomerCompaniesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("CompanyEmployee", b =>
                 {
                     b.HasOne("Cims.WorkflowLib.Models.Business.Customers.Company", null)
@@ -1874,6 +1874,51 @@ namespace WorkflowLib.Example01.Migrations
                     b.HasOne("Cims.WorkflowLib.Models.Business.InformationSystem.Employee", null)
                         .WithMany()
                         .HasForeignKey("EmployeesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ContractCustomer", b =>
+                {
+                    b.HasOne("Cims.WorkflowLib.Models.Business.BusinessDocuments.Contract", null)
+                        .WithMany()
+                        .HasForeignKey("ContractsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Cims.WorkflowLib.Models.Business.Customers.Customer", null)
+                        .WithMany()
+                        .HasForeignKey("CustomersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ContractEmployee", b =>
+                {
+                    b.HasOne("Cims.WorkflowLib.Models.Business.BusinessDocuments.Contract", null)
+                        .WithMany()
+                        .HasForeignKey("ContractsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Cims.WorkflowLib.Models.Business.InformationSystem.Employee", null)
+                        .WithMany()
+                        .HasForeignKey("OurEmployeesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ContractOrganization", b =>
+                {
+                    b.HasOne("Cims.WorkflowLib.Models.Business.BusinessDocuments.Contract", null)
+                        .WithMany()
+                        .HasForeignKey("ContractsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Cims.WorkflowLib.Models.Business.InformationSystem.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("OurOrganizationsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -1905,17 +1950,6 @@ namespace WorkflowLib.Example01.Migrations
                     b.Navigation("Origin");
                 });
 
-            modelBuilder.Entity("Cims.WorkflowLib.Models.Business.BusinessDocuments.Contract", b =>
-                {
-                    b.Navigation("Companies");
-
-                    b.Navigation("Customers");
-
-                    b.Navigation("Employees");
-
-                    b.Navigation("Organizations");
-                });
-
             modelBuilder.Entity("Cims.WorkflowLib.Models.Business.BusinessDocuments.DeliveryOrder", b =>
                 {
                     b.Navigation("Payments");
@@ -1930,13 +1964,9 @@ namespace WorkflowLib.Example01.Migrations
 
             modelBuilder.Entity("Cims.WorkflowLib.Models.Business.InformationSystem.Employee", b =>
                 {
-                    b.Navigation("OrganizationItems");
-
                     b.Navigation("Skills");
 
                     b.Navigation("UserAccounts");
-
-                    b.Navigation("UserGroups");
                 });
 
             modelBuilder.Entity("Cims.WorkflowLib.Models.Business.InformationSystem.OrganizationItem", b =>
@@ -1948,8 +1978,6 @@ namespace WorkflowLib.Example01.Migrations
 
             modelBuilder.Entity("Cims.WorkflowLib.Models.Business.InformationSystem.UserGroup", b =>
                 {
-                    b.Navigation("OrganizationItems");
-
                     b.Navigation("Users");
                 });
 
@@ -1974,8 +2002,6 @@ namespace WorkflowLib.Example01.Migrations
 
             modelBuilder.Entity("Cims.WorkflowLib.Models.Business.Products.Project", b =>
                 {
-                    b.Navigation("Employees");
-
                     b.Navigation("ProjectPhases");
 
                     b.Navigation("Risks");

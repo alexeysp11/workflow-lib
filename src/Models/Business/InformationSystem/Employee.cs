@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Cims.WorkflowLib.Models.Business;
+using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Customers;
+using Cims.WorkflowLib.Models.Business.Products;
 
 namespace Cims.WorkflowLib.Models.Business.InformationSystem
 {
@@ -65,19 +67,9 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         public ICollection<UserAccount> UserAccounts { get; set; }
 
         /// <summary>
-        /// User groups related to the employee.
-        /// </summary>
-        public ICollection<UserGroup> UserGroups { get; set; }
-
-        /// <summary>
         /// Companies related to the employee.
         /// </summary>
         public ICollection<Company> Companies { get; set; }
-
-        /// <summary>
-        /// Organization items related to the employee.
-        /// </summary>
-        public ICollection<OrganizationItem> OrganizationItems { get; set; }
 
         /// <summary>
         /// Replacement mode.
@@ -98,5 +90,10 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// Skills of the employee.
         /// </summary>
         public ICollection<Skill> Skills { get; set; }
+                
+        /// <summary>
+        /// Contracts.
+        /// </summary>
+        public ICollection<Contract> Contracts { get; private set; }
     }
 }

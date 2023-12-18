@@ -177,6 +177,9 @@ namespace Cims.WorkflowLib.Example01
             }
             context.SaveChanges();
 
+            // Establish associations between user accounts and user groups.
+            // In order to evenly distribute the users across the groups, iteration through the names of user groups will be needed.
+            // In the loop, get all the users that would be associated with the user group (pseudo randomly by indeces).
             var admin = context.UserAccounts.FirstOrDefault();
             var dtnow = System.DateTime.Now;
             var userGroupNames = new List<string>
@@ -187,11 +190,11 @@ namespace Cims.WorkflowLib.Example01
                 "courier",
                 "kitchen employee"
             };
-            var ugqty = userGroupNames.Count();
-            for (int i = 0; i < ugqty; i++)
+            var userGroupQty = userGroupNames.Count();
+            for (int i = 0; i < userGroupQty; i++)
             {
-                var users = context.UserAccounts.Where(x => x.Id % ugqty == i - 1).ToList();
-                context.UserGroups.Add(new UserGroup
+                var users = context.UserAccounts.Where(x => x.Id % userGroupQty == i - 1).ToList();
+                var userGroup = new UserGroup
                 {
                     Uid = System.Guid.NewGuid().ToString(),
                     Name = userGroupNames[i],
@@ -200,7 +203,8 @@ namespace Cims.WorkflowLib.Example01
                     CreationDate = dtnow,
                     ChangeAuthor = admin,
                     ChangeDate = dtnow
-                });
+                };
+                context.UserGroups.Add(userGroup);
             }
             context.SaveChanges();
         }
@@ -274,7 +278,8 @@ namespace Cims.WorkflowLib.Example01
                 Uid = System.Guid.NewGuid().ToString(),
                 Name = $"Head of '{company.Name}'",
                 ItemType = OrganizationItemType.JobPosition,
-                User = managers.First()
+                User = managers.First(),
+                Address = company.Address
             };
             context.OrganizationItems.Add(lvl01);
             var lvl02 = new OrganizationItem
@@ -282,7 +287,9 @@ namespace Cims.WorkflowLib.Example01
                 Uid = System.Guid.NewGuid().ToString(),
                 Name = $"Manager of '{company.Name}'",
                 ItemType = OrganizationItemType.JobPosition,
-                User = managers.Last()
+                User = managers.Last(),
+                Address = company.Address,
+                ParentItem = lvl01
             };
             context.OrganizationItems.Add(lvl02);
             var lvl03Couriers = new OrganizationItem
@@ -290,7 +297,9 @@ namespace Cims.WorkflowLib.Example01
                 Uid = System.Guid.NewGuid().ToString(),
                 Name = $"Couriers",
                 ItemType = OrganizationItemType.Department,
-                Users = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "courier").Users
+                Users = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "courier").Users,
+                Address = company.Address,
+                ParentItem = lvl02
             };
             context.OrganizationItems.Add(lvl03Couriers);
             var lvl03TechSupport = new OrganizationItem
@@ -298,7 +307,9 @@ namespace Cims.WorkflowLib.Example01
                 Uid = System.Guid.NewGuid().ToString(),
                 Name = $"Tech support",
                 ItemType = OrganizationItemType.Department,
-                Users = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "tech support").Users
+                Users = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "tech support").Users,
+                Address = company.Address,
+                ParentItem = lvl02
             };
             context.OrganizationItems.Add(lvl03TechSupport);
             var lvl03Kitchen = new OrganizationItem
@@ -306,7 +317,9 @@ namespace Cims.WorkflowLib.Example01
                 Uid = System.Guid.NewGuid().ToString(),
                 Name = $"Kitchen employees",
                 ItemType = OrganizationItemType.Department,
-                Users = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "kitchen employee").Users
+                Users = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "kitchen employee").Users,
+                Address = company.Address,
+                ParentItem = lvl02
             };
             context.OrganizationItems.Add(lvl03Kitchen);
 
@@ -336,6 +349,8 @@ namespace Cims.WorkflowLib.Example01
             usergroups.Add(context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "tech support"));
             usergroups.Add(context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "kitchen employee"));
             // In a loop for each user group, enumerate users.
+            var company = context.Companies.FirstOrDefault();
+            company.Employees = new List<Employee>();
             foreach (var ug in usergroups)
             {
                 foreach (var user in ug.Users)
@@ -345,11 +360,6 @@ namespace Cims.WorkflowLib.Example01
                     var middleName = "MiddleName #" + user.Id;
                     var lastName = "LastName #" + user.Id;
                     var fullName = $"{firstName} {middleName} {lastName}";
-                    var userOIList = new List<OrganizationItem>();
-                    userOIList.AddRange(context.OrganizationItems
-                        .Where(x => (x.User != null && x.User.Id == user.Id) 
-                            || (x.Users != null && x.Users.Any(u => u.Id == user.Id)))
-                        .ToList());
                     var employee = new Employee
                     {
                         Uid = System.Guid.NewGuid().ToString(),
@@ -361,8 +371,8 @@ namespace Cims.WorkflowLib.Example01
                         WorkPhone = "WorkPhone" + user.Id,
                         BirthDate = new System.DateTime(rand.Next(1980, 2004), rand.Next(1, 13), rand.Next(1, 28)),
                         EmployDate = new System.DateTime(rand.Next(2018, 2023), rand.Next(1, 13), rand.Next(1, 28)),
-                        UserGroups = new List<UserGroup> { ug },
-                        OrganizationItems = userOIList
+                        UserAccounts = new List<UserAccount> { user },
+                        Companies = new List<Company> { company },
                     };
                     context.Employees.Add(employee);
                 }

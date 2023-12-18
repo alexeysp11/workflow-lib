@@ -10,7 +10,7 @@ namespace WorkflowLib.Example01.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Address",
+                name: "Addresses",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
@@ -31,11 +31,11 @@ namespace WorkflowLib.Example01.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Address", x => x.Id);
+                    table.PrimaryKey("PK_Addresses", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Contact",
+                name: "Contacts",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
@@ -53,7 +53,7 @@ namespace WorkflowLib.Example01.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Contact", x => x.Id);
+                    table.PrimaryKey("PK_Contacts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -74,7 +74,7 @@ namespace WorkflowLib.Example01.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DeliveryMethod",
+                name: "DeliveryMethods",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
@@ -88,7 +88,36 @@ namespace WorkflowLib.Example01.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DeliveryMethod", x => x.Id);
+                    table.PrimaryKey("PK_DeliveryMethods", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Employees",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    FirstName = table.Column<string>(type: "TEXT", nullable: true),
+                    MiddleName = table.Column<string>(type: "TEXT", nullable: true),
+                    LastName = table.Column<string>(type: "TEXT", nullable: true),
+                    FullName = table.Column<string>(type: "TEXT", nullable: true),
+                    MobilePhone = table.Column<string>(type: "TEXT", nullable: true),
+                    WorkPhone = table.Column<string>(type: "TEXT", nullable: true),
+                    Skype = table.Column<string>(type: "TEXT", nullable: true),
+                    ICQ = table.Column<string>(type: "TEXT", nullable: true),
+                    BirthDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    EmployDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ReplacementMode = table.Column<int>(type: "INTEGER", nullable: false),
+                    AuthProviderType = table.Column<int>(type: "INTEGER", nullable: false),
+                    Locale = table.Column<string>(type: "TEXT", nullable: true),
+                    Uid = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    BusinessEntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Employees", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -197,7 +226,7 @@ namespace WorkflowLib.Example01.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Company",
+                name: "Companies",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
@@ -209,7 +238,6 @@ namespace WorkflowLib.Example01.Migrations
                     AddressId = table.Column<long>(type: "INTEGER", nullable: true),
                     ShippingAddressId = table.Column<long>(type: "INTEGER", nullable: true),
                     HasVatRegistration = table.Column<bool>(type: "INTEGER", nullable: false),
-                    ContractId = table.Column<long>(type: "INTEGER", nullable: true),
                     Uid = table.Column<string>(type: "TEXT", nullable: true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
@@ -217,26 +245,67 @@ namespace WorkflowLib.Example01.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Company", x => x.Id);
+                    table.PrimaryKey("PK_Companies", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Company_Address_AddressId",
+                        name: "FK_Companies_Addresses_AddressId",
                         column: x => x.AddressId,
-                        principalTable: "Address",
+                        principalTable: "Addresses",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Company_Address_ShippingAddressId",
+                        name: "FK_Companies_Addresses_ShippingAddressId",
                         column: x => x.ShippingAddressId,
-                        principalTable: "Address",
+                        principalTable: "Addresses",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Company_Contact_ContactId",
+                        name: "FK_Companies_Contacts_ContactId",
                         column: x => x.ContactId,
-                        principalTable: "Contact",
+                        principalTable: "Contacts",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ContractEmployee",
+                columns: table => new
+                {
+                    ContractsId = table.Column<long>(type: "INTEGER", nullable: false),
+                    OurEmployeesId = table.Column<long>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ContractEmployee", x => new { x.ContractsId, x.OurEmployeesId });
                     table.ForeignKey(
-                        name: "FK_Company_Contract_ContractId",
-                        column: x => x.ContractId,
+                        name: "FK_ContractEmployee_Contract_ContractsId",
+                        column: x => x.ContractsId,
                         principalTable: "Contract",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ContractEmployee_Employees_OurEmployeesId",
+                        column: x => x.OurEmployeesId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Skill",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    EmployeeId = table.Column<long>(type: "INTEGER", nullable: true),
+                    Uid = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    BusinessEntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Skill", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Skill_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
                         principalColumn: "Id");
                 });
 
@@ -251,7 +320,6 @@ namespace WorkflowLib.Example01.Migrations
                     ProductCategoryId = table.Column<long>(type: "INTEGER", nullable: true),
                     PictureUrl = table.Column<string>(type: "TEXT", nullable: true),
                     PictureDescription = table.Column<string>(type: "TEXT", nullable: true),
-                    InitialOrderId = table.Column<long>(type: "INTEGER", nullable: true),
                     Uid = table.Column<string>(type: "TEXT", nullable: true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
@@ -261,15 +329,89 @@ namespace WorkflowLib.Example01.Migrations
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Products_InitialOrders_InitialOrderId",
-                        column: x => x.InitialOrderId,
-                        principalTable: "InitialOrders",
-                        principalColumn: "Id");
-                    table.ForeignKey(
                         name: "FK_Products_ProductCategories_ProductCategoryId",
                         column: x => x.ProductCategoryId,
                         principalTable: "ProductCategories",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CompanyContract",
+                columns: table => new
+                {
+                    ContractsId = table.Column<long>(type: "INTEGER", nullable: false),
+                    CustomerCompaniesId = table.Column<long>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CompanyContract", x => new { x.ContractsId, x.CustomerCompaniesId });
+                    table.ForeignKey(
+                        name: "FK_CompanyContract_Companies_CustomerCompaniesId",
+                        column: x => x.CustomerCompaniesId,
+                        principalTable: "Companies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CompanyContract_Contract_ContractsId",
+                        column: x => x.ContractsId,
+                        principalTable: "Contract",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CompanyEmployee",
+                columns: table => new
+                {
+                    CompaniesId = table.Column<long>(type: "INTEGER", nullable: false),
+                    EmployeesId = table.Column<long>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CompanyEmployee", x => new { x.CompaniesId, x.EmployeesId });
+                    table.ForeignKey(
+                        name: "FK_CompanyEmployee_Companies_CompaniesId",
+                        column: x => x.CompaniesId,
+                        principalTable: "Companies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CompanyEmployee_Employees_EmployeesId",
+                        column: x => x.EmployeesId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "InitialOrderProducts",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ProductId = table.Column<long>(type: "INTEGER", nullable: false),
+                    InitialOrderId = table.Column<long>(type: "INTEGER", nullable: false),
+                    Quantity = table.Column<int>(type: "INTEGER", nullable: false),
+                    Uid = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    BusinessEntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_InitialOrderProducts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_InitialOrderProducts_InitialOrders_InitialOrderId",
+                        column: x => x.InitialOrderId,
+                        principalTable: "InitialOrders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_InitialOrderProducts_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -361,25 +503,43 @@ namespace WorkflowLib.Example01.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CompanyEmployee",
+                name: "ContractCustomer",
                 columns: table => new
                 {
-                    CompaniesId = table.Column<long>(type: "INTEGER", nullable: false),
-                    EmployeesId = table.Column<long>(type: "INTEGER", nullable: false)
+                    ContractsId = table.Column<long>(type: "INTEGER", nullable: false),
+                    CustomersId = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CompanyEmployee", x => new { x.CompaniesId, x.EmployeesId });
+                    table.PrimaryKey("PK_ContractCustomer", x => new { x.ContractsId, x.CustomersId });
                     table.ForeignKey(
-                        name: "FK_CompanyEmployee_Company_CompaniesId",
-                        column: x => x.CompaniesId,
-                        principalTable: "Company",
+                        name: "FK_ContractCustomer_Contract_ContractsId",
+                        column: x => x.ContractsId,
+                        principalTable: "Contract",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Customer",
+                name: "ContractOrganization",
+                columns: table => new
+                {
+                    ContractsId = table.Column<long>(type: "INTEGER", nullable: false),
+                    OurOrganizationsId = table.Column<long>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ContractOrganization", x => new { x.ContractsId, x.OurOrganizationsId });
+                    table.ForeignKey(
+                        name: "FK_ContractOrganization_Contract_ContractsId",
+                        column: x => x.ContractsId,
+                        principalTable: "Contract",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Customers",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
@@ -392,7 +552,6 @@ namespace WorkflowLib.Example01.Migrations
                     ContactId = table.Column<long>(type: "INTEGER", nullable: true),
                     UserAccountId = table.Column<long>(type: "INTEGER", nullable: true),
                     CompanyId = table.Column<long>(type: "INTEGER", nullable: true),
-                    ContractId = table.Column<long>(type: "INTEGER", nullable: true),
                     Uid = table.Column<string>(type: "TEXT", nullable: true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
@@ -400,21 +559,97 @@ namespace WorkflowLib.Example01.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Customer", x => x.Id);
+                    table.PrimaryKey("PK_Customers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Customer_Company_CompanyId",
+                        name: "FK_Customers_Companies_CompanyId",
                         column: x => x.CompanyId,
-                        principalTable: "Company",
+                        principalTable: "Companies",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Customer_Contact_ContactId",
+                        name: "FK_Customers_Contacts_ContactId",
                         column: x => x.ContactId,
-                        principalTable: "Contact",
+                        principalTable: "Contacts",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Project",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ContractId = table.Column<long>(type: "INTEGER", nullable: false),
+                    LocationId = table.Column<long>(type: "INTEGER", nullable: true),
+                    CompanyId = table.Column<long>(type: "INTEGER", nullable: true),
+                    CustomerId = table.Column<long>(type: "INTEGER", nullable: true),
+                    StartDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ActualEndDate = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    GuaranteePeriodInMonths = table.Column<int>(type: "INTEGER", nullable: false),
+                    ManagerId = table.Column<long>(type: "INTEGER", nullable: true),
+                    CompletePercent = table.Column<int>(type: "INTEGER", nullable: false),
+                    Uid = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    BusinessEntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Project", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Project_Addresses_LocationId",
+                        column: x => x.LocationId,
+                        principalTable: "Addresses",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Customer_Contract_ContractId",
+                        name: "FK_Project_Companies_CompanyId",
+                        column: x => x.CompanyId,
+                        principalTable: "Companies",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Project_Contract_ContractId",
                         column: x => x.ContractId,
                         principalTable: "Contract",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Project_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Project_Employees_ManagerId",
+                        column: x => x.ManagerId,
+                        principalTable: "Employees",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProjectPhase",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ProjectId = table.Column<long>(type: "INTEGER", nullable: true),
+                    ProjectPlanItemId = table.Column<long>(type: "INTEGER", nullable: true),
+                    Uid = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    BusinessEntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProjectPhase", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProjectPhase_Project_ProjectId",
+                        column: x => x.ProjectId,
+                        principalTable: "Project",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_ProjectPhase_ProjectPlanItem_ProjectPlanItemId",
+                        column: x => x.ProjectPlanItemId,
+                        principalTable: "ProjectPlanItem",
                         principalColumn: "Id");
                 });
 
@@ -475,19 +710,19 @@ namespace WorkflowLib.Example01.Migrations
                 {
                     table.PrimaryKey("PK_DeliveryOrders", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DeliveryOrders_Address_DestinationId",
+                        name: "FK_DeliveryOrders_Addresses_DestinationId",
                         column: x => x.DestinationId,
-                        principalTable: "Address",
+                        principalTable: "Addresses",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_DeliveryOrders_Address_OriginId",
+                        name: "FK_DeliveryOrders_Addresses_OriginId",
                         column: x => x.OriginId,
-                        principalTable: "Address",
+                        principalTable: "Addresses",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_DeliveryOrders_DeliveryMethod_DeliveryMethodId",
+                        name: "FK_DeliveryOrders_DeliveryMethods_DeliveryMethodId",
                         column: x => x.DeliveryMethodId,
-                        principalTable: "DeliveryMethod",
+                        principalTable: "DeliveryMethods",
                         principalColumn: "Id");
                 });
 
@@ -522,7 +757,7 @@ namespace WorkflowLib.Example01.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BusinessTask",
+                name: "BusinessTasks",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
@@ -553,210 +788,46 @@ namespace WorkflowLib.Example01.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BusinessTask", x => x.Id);
+                    table.PrimaryKey("PK_BusinessTasks", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BusinessTask_Address_DestinationId",
+                        name: "FK_BusinessTasks_Addresses_DestinationId",
                         column: x => x.DestinationId,
-                        principalTable: "Address",
+                        principalTable: "Addresses",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_BusinessTask_Address_OriginId",
+                        name: "FK_BusinessTasks_Addresses_OriginId",
                         column: x => x.OriginId,
-                        principalTable: "Address",
+                        principalTable: "Addresses",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_BusinessTask_BusinessTask_ParentTaskId",
+                        name: "FK_BusinessTasks_BusinessTasks_ParentTaskId",
                         column: x => x.ParentTaskId,
-                        principalTable: "BusinessTask",
+                        principalTable: "BusinessTasks",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_BusinessTask_Contact_ContactId",
+                        name: "FK_BusinessTasks_Contacts_ContactId",
                         column: x => x.ContactId,
-                        principalTable: "Contact",
+                        principalTable: "Contacts",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_BusinessTask_DeliveryMethod_DeliveryMethodId",
+                        name: "FK_BusinessTasks_DeliveryMethods_DeliveryMethodId",
                         column: x => x.DeliveryMethodId,
-                        principalTable: "DeliveryMethod",
+                        principalTable: "DeliveryMethods",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_BusinessTask_DeliveryOrders_DeliveryOrderId",
+                        name: "FK_BusinessTasks_DeliveryOrders_DeliveryOrderId",
                         column: x => x.DeliveryOrderId,
                         principalTable: "DeliveryOrders",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_BusinessTask_ExecutionTime_ActualExecutionTimeId",
+                        name: "FK_BusinessTasks_ExecutionTime_ActualExecutionTimeId",
                         column: x => x.ActualExecutionTimeId,
                         principalTable: "ExecutionTime",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_BusinessTask_ExecutionTime_EstimatedExecutionTimeId",
+                        name: "FK_BusinessTasks_ExecutionTime_EstimatedExecutionTimeId",
                         column: x => x.EstimatedExecutionTimeId,
                         principalTable: "ExecutionTime",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Comment",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Text = table.Column<string>(type: "TEXT", nullable: true),
-                    CreationDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    CreationAuthorId = table.Column<long>(type: "INTEGER", nullable: true),
-                    BusinessTaskId = table.Column<long>(type: "INTEGER", nullable: true),
-                    Uid = table.Column<string>(type: "TEXT", nullable: true),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
-                    Description = table.Column<string>(type: "TEXT", nullable: true),
-                    BusinessEntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Comment", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Comment_BusinessTask_BusinessTaskId",
-                        column: x => x.BusinessTaskId,
-                        principalTable: "BusinessTask",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Employee",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    FirstName = table.Column<string>(type: "TEXT", nullable: true),
-                    MiddleName = table.Column<string>(type: "TEXT", nullable: true),
-                    LastName = table.Column<string>(type: "TEXT", nullable: true),
-                    FullName = table.Column<string>(type: "TEXT", nullable: true),
-                    MobilePhone = table.Column<string>(type: "TEXT", nullable: true),
-                    WorkPhone = table.Column<string>(type: "TEXT", nullable: true),
-                    Skype = table.Column<string>(type: "TEXT", nullable: true),
-                    ICQ = table.Column<string>(type: "TEXT", nullable: true),
-                    BirthDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    EmployDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ReplacementMode = table.Column<int>(type: "INTEGER", nullable: false),
-                    AuthProviderType = table.Column<int>(type: "INTEGER", nullable: false),
-                    Locale = table.Column<string>(type: "TEXT", nullable: true),
-                    ContractId = table.Column<long>(type: "INTEGER", nullable: true),
-                    ProjectId = table.Column<long>(type: "INTEGER", nullable: true),
-                    Uid = table.Column<string>(type: "TEXT", nullable: true),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
-                    Description = table.Column<string>(type: "TEXT", nullable: true),
-                    BusinessEntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Employee", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Employee_Contract_ContractId",
-                        column: x => x.ContractId,
-                        principalTable: "Contract",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Project",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
-                    ContractId = table.Column<long>(type: "INTEGER", nullable: false),
-                    LocationId = table.Column<long>(type: "INTEGER", nullable: true),
-                    CompanyId = table.Column<long>(type: "INTEGER", nullable: true),
-                    CustomerId = table.Column<long>(type: "INTEGER", nullable: true),
-                    StartDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ActualEndDate = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    GuaranteePeriodInMonths = table.Column<int>(type: "INTEGER", nullable: false),
-                    ManagerId = table.Column<long>(type: "INTEGER", nullable: true),
-                    CompletePercent = table.Column<int>(type: "INTEGER", nullable: false),
-                    Uid = table.Column<string>(type: "TEXT", nullable: true),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
-                    Description = table.Column<string>(type: "TEXT", nullable: true),
-                    BusinessEntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Project", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Project_Address_LocationId",
-                        column: x => x.LocationId,
-                        principalTable: "Address",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Project_Company_CompanyId",
-                        column: x => x.CompanyId,
-                        principalTable: "Company",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Project_Contract_ContractId",
-                        column: x => x.ContractId,
-                        principalTable: "Contract",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Project_Customer_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Customer",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Project_Employee_ManagerId",
-                        column: x => x.ManagerId,
-                        principalTable: "Employee",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Skill",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    EmployeeId = table.Column<long>(type: "INTEGER", nullable: true),
-                    Uid = table.Column<string>(type: "TEXT", nullable: true),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
-                    Description = table.Column<string>(type: "TEXT", nullable: true),
-                    BusinessEntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Skill", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Skill_Employee_EmployeeId",
-                        column: x => x.EmployeeId,
-                        principalTable: "Employee",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ProjectPhase",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    ProjectId = table.Column<long>(type: "INTEGER", nullable: true),
-                    ProjectPlanItemId = table.Column<long>(type: "INTEGER", nullable: true),
-                    Uid = table.Column<string>(type: "TEXT", nullable: true),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
-                    Description = table.Column<string>(type: "TEXT", nullable: true),
-                    BusinessEntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProjectPhase", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ProjectPhase_Project_ProjectId",
-                        column: x => x.ProjectId,
-                        principalTable: "Project",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_ProjectPhase_ProjectPlanItem_ProjectPlanItemId",
-                        column: x => x.ProjectPlanItemId,
-                        principalTable: "ProjectPlanItem",
                         principalColumn: "Id");
                 });
 
@@ -786,24 +857,24 @@ namespace WorkflowLib.Example01.Migrations
                 {
                     table.PrimaryKey("PK_Risk", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Risk_BusinessTask_BusinessTaskId",
+                        name: "FK_Risk_BusinessTasks_BusinessTaskId",
                         column: x => x.BusinessTaskId,
-                        principalTable: "BusinessTask",
+                        principalTable: "BusinessTasks",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Risk_Employee_ChangeAuthorId",
+                        name: "FK_Risk_Employees_ChangeAuthorId",
                         column: x => x.ChangeAuthorId,
-                        principalTable: "Employee",
+                        principalTable: "Employees",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Risk_Employee_CreationAuthorId",
+                        name: "FK_Risk_Employees_CreationAuthorId",
                         column: x => x.CreationAuthorId,
-                        principalTable: "Employee",
+                        principalTable: "Employees",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Risk_Employee_ResolvingAuthorId",
+                        name: "FK_Risk_Employees_ResolvingAuthorId",
                         column: x => x.ResolvingAuthorId,
-                        principalTable: "Employee",
+                        principalTable: "Employees",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Risk_Project_ProjectId",
@@ -813,47 +884,15 @@ namespace WorkflowLib.Example01.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Organization",
+                name: "Comments",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    CompanyId = table.Column<long>(type: "INTEGER", nullable: true),
-                    HeadItemId = table.Column<long>(type: "INTEGER", nullable: true),
-                    ContractId = table.Column<long>(type: "INTEGER", nullable: true),
-                    Uid = table.Column<string>(type: "TEXT", nullable: true),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
-                    Description = table.Column<string>(type: "TEXT", nullable: true),
-                    BusinessEntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Organization", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Organization_Company_CompanyId",
-                        column: x => x.CompanyId,
-                        principalTable: "Company",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Organization_Contract_ContractId",
-                        column: x => x.ContractId,
-                        principalTable: "Contract",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserGroup",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    IsGroupByDefault = table.Column<bool>(type: "INTEGER", nullable: false),
-                    IsSystem = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreationAuthorId = table.Column<long>(type: "INTEGER", nullable: true),
+                    Text = table.Column<string>(type: "TEXT", nullable: true),
                     CreationDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ChangeAuthorId = table.Column<long>(type: "INTEGER", nullable: true),
-                    ChangeDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    EmployeeId = table.Column<long>(type: "INTEGER", nullable: true),
+                    CreationAuthorId = table.Column<long>(type: "INTEGER", nullable: true),
+                    BusinessTaskId = table.Column<long>(type: "INTEGER", nullable: true),
                     Uid = table.Column<string>(type: "TEXT", nullable: true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
@@ -861,16 +900,16 @@ namespace WorkflowLib.Example01.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserGroup", x => x.Id);
+                    table.PrimaryKey("PK_Comments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserGroup_Employee_EmployeeId",
-                        column: x => x.EmployeeId,
-                        principalTable: "Employee",
+                        name: "FK_Comments_BusinessTasks_BusinessTaskId",
+                        column: x => x.BusinessTaskId,
+                        principalTable: "BusinessTasks",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "OrganizationItem",
+                name: "OrganizationItems",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
@@ -881,8 +920,6 @@ namespace WorkflowLib.Example01.Migrations
                     ParentItemId = table.Column<long>(type: "INTEGER", nullable: true),
                     UserId = table.Column<long>(type: "INTEGER", nullable: true),
                     AddressId = table.Column<long>(type: "INTEGER", nullable: true),
-                    EmployeeId = table.Column<long>(type: "INTEGER", nullable: true),
-                    UserGroupId = table.Column<long>(type: "INTEGER", nullable: true),
                     Uid = table.Column<string>(type: "TEXT", nullable: true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
@@ -890,31 +927,49 @@ namespace WorkflowLib.Example01.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrganizationItem", x => x.Id);
+                    table.PrimaryKey("PK_OrganizationItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrganizationItem_Address_AddressId",
+                        name: "FK_OrganizationItems_Addresses_AddressId",
                         column: x => x.AddressId,
-                        principalTable: "Address",
+                        principalTable: "Addresses",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_OrganizationItem_Employee_EmployeeId",
-                        column: x => x.EmployeeId,
-                        principalTable: "Employee",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_OrganizationItem_OrganizationItem_ParentItemId",
+                        name: "FK_OrganizationItems_OrganizationItems_ParentItemId",
                         column: x => x.ParentItemId,
-                        principalTable: "OrganizationItem",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_OrganizationItem_UserGroup_UserGroupId",
-                        column: x => x.UserGroupId,
-                        principalTable: "UserGroup",
+                        principalTable: "OrganizationItems",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserAccount",
+                name: "Organizations",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CompanyId = table.Column<long>(type: "INTEGER", nullable: true),
+                    HeadItemId = table.Column<long>(type: "INTEGER", nullable: true),
+                    Uid = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    BusinessEntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Organizations", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Organizations_Companies_CompanyId",
+                        column: x => x.CompanyId,
+                        principalTable: "Companies",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Organizations_OrganizationItems_HeadItemId",
+                        column: x => x.HeadItemId,
+                        principalTable: "OrganizationItems",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserAccounts",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
@@ -937,108 +992,135 @@ namespace WorkflowLib.Example01.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserAccount", x => x.Id);
+                    table.PrimaryKey("PK_UserAccounts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserAccount_Employee_EmployeeId",
+                        name: "FK_UserAccounts_Employees_EmployeeId",
                         column: x => x.EmployeeId,
-                        principalTable: "Employee",
+                        principalTable: "Employees",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_UserAccount_OrganizationItem_OrganizationItemId",
+                        name: "FK_UserAccounts_OrganizationItems_OrganizationItemId",
                         column: x => x.OrganizationItemId,
-                        principalTable: "OrganizationItem",
+                        principalTable: "OrganizationItems",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserGroups",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    IsGroupByDefault = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsSystem = table.Column<bool>(type: "INTEGER", nullable: false),
+                    CreationAuthorId = table.Column<long>(type: "INTEGER", nullable: true),
+                    CreationDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ChangeAuthorId = table.Column<long>(type: "INTEGER", nullable: true),
+                    ChangeDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Uid = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    BusinessEntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserGroups", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserGroups_UserAccounts_ChangeAuthorId",
+                        column: x => x.ChangeAuthorId,
+                        principalTable: "UserAccounts",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_UserAccount_UserGroup_UserGroupId",
-                        column: x => x.UserGroupId,
-                        principalTable: "UserGroup",
+                        name: "FK_UserGroups_UserAccounts_CreationAuthorId",
+                        column: x => x.CreationAuthorId,
+                        principalTable: "UserAccounts",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_BusinessTask_ActualExecutionTimeId",
-                table: "BusinessTask",
+                name: "IX_BusinessTasks_ActualExecutionTimeId",
+                table: "BusinessTasks",
                 column: "ActualExecutionTimeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BusinessTask_ContactId",
-                table: "BusinessTask",
+                name: "IX_BusinessTasks_ContactId",
+                table: "BusinessTasks",
                 column: "ContactId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BusinessTask_DeliveryMethodId",
-                table: "BusinessTask",
+                name: "IX_BusinessTasks_DeliveryMethodId",
+                table: "BusinessTasks",
                 column: "DeliveryMethodId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BusinessTask_DeliveryOrderId",
-                table: "BusinessTask",
+                name: "IX_BusinessTasks_DeliveryOrderId",
+                table: "BusinessTasks",
                 column: "DeliveryOrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BusinessTask_DestinationId",
-                table: "BusinessTask",
+                name: "IX_BusinessTasks_DestinationId",
+                table: "BusinessTasks",
                 column: "DestinationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BusinessTask_EstimatedExecutionTimeId",
-                table: "BusinessTask",
+                name: "IX_BusinessTasks_EstimatedExecutionTimeId",
+                table: "BusinessTasks",
                 column: "EstimatedExecutionTimeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BusinessTask_ExecutorId",
-                table: "BusinessTask",
+                name: "IX_BusinessTasks_ExecutorId",
+                table: "BusinessTasks",
                 column: "ExecutorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BusinessTask_ExecutorIsEmulationId",
-                table: "BusinessTask",
+                name: "IX_BusinessTasks_ExecutorIsEmulationId",
+                table: "BusinessTasks",
                 column: "ExecutorIsEmulationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BusinessTask_ExecutorReplacedId",
-                table: "BusinessTask",
+                name: "IX_BusinessTasks_ExecutorReplacedId",
+                table: "BusinessTasks",
                 column: "ExecutorReplacedId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BusinessTask_OriginId",
-                table: "BusinessTask",
+                name: "IX_BusinessTasks_OriginId",
+                table: "BusinessTasks",
                 column: "OriginId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BusinessTask_ParentTaskId",
-                table: "BusinessTask",
+                name: "IX_BusinessTasks_ParentTaskId",
+                table: "BusinessTasks",
                 column: "ParentTaskId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comment_BusinessTaskId",
-                table: "Comment",
+                name: "IX_Comments_BusinessTaskId",
+                table: "Comments",
                 column: "BusinessTaskId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comment_CreationAuthorId",
-                table: "Comment",
+                name: "IX_Comments_CreationAuthorId",
+                table: "Comments",
                 column: "CreationAuthorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Company_AddressId",
-                table: "Company",
+                name: "IX_Companies_AddressId",
+                table: "Companies",
                 column: "AddressId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Company_ContactId",
-                table: "Company",
+                name: "IX_Companies_ContactId",
+                table: "Companies",
                 column: "ContactId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Company_ContractId",
-                table: "Company",
-                column: "ContractId");
+                name: "IX_Companies_ShippingAddressId",
+                table: "Companies",
+                column: "ShippingAddressId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Company_ShippingAddressId",
-                table: "Company",
-                column: "ShippingAddressId");
+                name: "IX_CompanyContract_CustomerCompaniesId",
+                table: "CompanyContract",
+                column: "CustomerCompaniesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CompanyEmployee_EmployeesId",
@@ -1046,23 +1128,33 @@ namespace WorkflowLib.Example01.Migrations
                 column: "EmployeesId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Customer_CompanyId",
-                table: "Customer",
+                name: "IX_ContractCustomer_CustomersId",
+                table: "ContractCustomer",
+                column: "CustomersId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ContractEmployee_OurEmployeesId",
+                table: "ContractEmployee",
+                column: "OurEmployeesId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ContractOrganization_OurOrganizationsId",
+                table: "ContractOrganization",
+                column: "OurOrganizationsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Customers_CompanyId",
+                table: "Customers",
                 column: "CompanyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Customer_ContactId",
-                table: "Customer",
+                name: "IX_Customers_ContactId",
+                table: "Customers",
                 column: "ContactId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Customer_ContractId",
-                table: "Customer",
-                column: "ContractId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Customer_UserAccountId",
-                table: "Customer",
+                name: "IX_Customers_UserAccountId",
+                table: "Customers",
                 column: "UserAccountId");
 
             migrationBuilder.CreateIndex(
@@ -1096,16 +1188,6 @@ namespace WorkflowLib.Example01.Migrations
                 column: "OriginId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employee_ContractId",
-                table: "Employee",
-                column: "ContractId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Employee_ProjectId",
-                table: "Employee",
-                column: "ProjectId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Ingredients_FinalProductId",
                 table: "Ingredients",
                 column: "FinalProductId");
@@ -1126,54 +1208,44 @@ namespace WorkflowLib.Example01.Migrations
                 column: "RecipeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Organization_CompanyId",
-                table: "Organization",
-                column: "CompanyId");
+                name: "IX_InitialOrderProducts_InitialOrderId",
+                table: "InitialOrderProducts",
+                column: "InitialOrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Organization_ContractId",
-                table: "Organization",
-                column: "ContractId");
+                name: "IX_InitialOrderProducts_ProductId",
+                table: "InitialOrderProducts",
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Organization_HeadItemId",
-                table: "Organization",
-                column: "HeadItemId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OrganizationItem_AddressId",
-                table: "OrganizationItem",
+                name: "IX_OrganizationItems_AddressId",
+                table: "OrganizationItems",
                 column: "AddressId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrganizationItem_EmployeeId",
-                table: "OrganizationItem",
-                column: "EmployeeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OrganizationItem_ParentItemId",
-                table: "OrganizationItem",
+                name: "IX_OrganizationItems_ParentItemId",
+                table: "OrganizationItems",
                 column: "ParentItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrganizationItem_UserGroupId",
-                table: "OrganizationItem",
-                column: "UserGroupId");
+                name: "IX_OrganizationItems_UserId",
+                table: "OrganizationItems",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrganizationItem_UserId",
-                table: "OrganizationItem",
-                column: "UserId");
+                name: "IX_Organizations_CompanyId",
+                table: "Organizations",
+                column: "CompanyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Organizations_HeadItemId",
+                table: "Organizations",
+                column: "HeadItemId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Payments_DeliveryOrderId",
                 table: "Payments",
                 column: "DeliveryOrderId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Products_InitialOrderId",
-                table: "Products",
-                column: "InitialOrderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_ProductCategoryId",
@@ -1256,34 +1328,29 @@ namespace WorkflowLib.Example01.Migrations
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserAccount_EmployeeId",
-                table: "UserAccount",
+                name: "IX_UserAccounts_EmployeeId",
+                table: "UserAccounts",
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserAccount_OrganizationItemId",
-                table: "UserAccount",
+                name: "IX_UserAccounts_OrganizationItemId",
+                table: "UserAccounts",
                 column: "OrganizationItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserAccount_UserGroupId",
-                table: "UserAccount",
+                name: "IX_UserAccounts_UserGroupId",
+                table: "UserAccounts",
                 column: "UserGroupId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserGroup_ChangeAuthorId",
-                table: "UserGroup",
+                name: "IX_UserGroups_ChangeAuthorId",
+                table: "UserGroups",
                 column: "ChangeAuthorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserGroup_CreationAuthorId",
-                table: "UserGroup",
+                name: "IX_UserGroups_CreationAuthorId",
+                table: "UserGroups",
                 column: "CreationAuthorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserGroup_EmployeeId",
-                table: "UserGroup",
-                column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_WHProducts_ProductId",
@@ -1291,18 +1358,26 @@ namespace WorkflowLib.Example01.Migrations
                 column: "ProductId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_CompanyEmployee_Employee_EmployeesId",
-                table: "CompanyEmployee",
-                column: "EmployeesId",
-                principalTable: "Employee",
+                name: "FK_ContractCustomer_Customers_CustomersId",
+                table: "ContractCustomer",
+                column: "CustomersId",
+                principalTable: "Customers",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Customer_UserAccount_UserAccountId",
-                table: "Customer",
+                name: "FK_ContractOrganization_Organizations_OurOrganizationsId",
+                table: "ContractOrganization",
+                column: "OurOrganizationsId",
+                principalTable: "Organizations",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Customers_UserAccounts_UserAccountId",
+                table: "Customers",
                 column: "UserAccountId",
-                principalTable: "UserAccount",
+                principalTable: "UserAccounts",
                 principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
@@ -1313,111 +1388,102 @@ namespace WorkflowLib.Example01.Migrations
                 principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_DeliveryOrders_BusinessTask_DeliveryOperationId",
+                name: "FK_DeliveryOrders_BusinessTasks_DeliveryOperationId",
                 table: "DeliveryOrders",
                 column: "DeliveryOperationId",
-                principalTable: "BusinessTask",
+                principalTable: "BusinessTasks",
                 principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_BusinessTask_UserAccount_ExecutorId",
-                table: "BusinessTask",
+                name: "FK_BusinessTasks_UserAccounts_ExecutorId",
+                table: "BusinessTasks",
                 column: "ExecutorId",
-                principalTable: "UserAccount",
+                principalTable: "UserAccounts",
                 principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_BusinessTask_UserAccount_ExecutorIsEmulationId",
-                table: "BusinessTask",
+                name: "FK_BusinessTasks_UserAccounts_ExecutorIsEmulationId",
+                table: "BusinessTasks",
                 column: "ExecutorIsEmulationId",
-                principalTable: "UserAccount",
+                principalTable: "UserAccounts",
                 principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_BusinessTask_UserAccount_ExecutorReplacedId",
-                table: "BusinessTask",
+                name: "FK_BusinessTasks_UserAccounts_ExecutorReplacedId",
+                table: "BusinessTasks",
                 column: "ExecutorReplacedId",
-                principalTable: "UserAccount",
+                principalTable: "UserAccounts",
                 principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Comment_UserAccount_CreationAuthorId",
-                table: "Comment",
+                name: "FK_Comments_UserAccounts_CreationAuthorId",
+                table: "Comments",
                 column: "CreationAuthorId",
-                principalTable: "UserAccount",
+                principalTable: "UserAccounts",
                 principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Employee_Project_ProjectId",
-                table: "Employee",
-                column: "ProjectId",
-                principalTable: "Project",
-                principalColumn: "Id");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Organization_OrganizationItem_HeadItemId",
-                table: "Organization",
-                column: "HeadItemId",
-                principalTable: "OrganizationItem",
-                principalColumn: "Id");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_UserGroup_UserAccount_ChangeAuthorId",
-                table: "UserGroup",
-                column: "ChangeAuthorId",
-                principalTable: "UserAccount",
-                principalColumn: "Id");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_UserGroup_UserAccount_CreationAuthorId",
-                table: "UserGroup",
-                column: "CreationAuthorId",
-                principalTable: "UserAccount",
-                principalColumn: "Id");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_OrganizationItem_UserAccount_UserId",
-                table: "OrganizationItem",
+                name: "FK_OrganizationItems_UserAccounts_UserId",
+                table: "OrganizationItems",
                 column: "UserId",
-                principalTable: "UserAccount",
+                principalTable: "UserAccounts",
+                principalColumn: "Id");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_UserAccounts_UserGroups_UserGroupId",
+                table: "UserAccounts",
+                column: "UserGroupId",
+                principalTable: "UserGroups",
                 principalColumn: "Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_BusinessTask_DeliveryOrders_DeliveryOrderId",
-                table: "BusinessTask");
+                name: "FK_BusinessTasks_Contacts_ContactId",
+                table: "BusinessTasks");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Employee_Project_ProjectId",
-                table: "Employee");
+                name: "FK_BusinessTasks_DeliveryOrders_DeliveryOrderId",
+                table: "BusinessTasks");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_OrganizationItem_Address_AddressId",
-                table: "OrganizationItem");
+                name: "FK_OrganizationItems_Addresses_AddressId",
+                table: "OrganizationItems");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Employee_Contract_ContractId",
-                table: "Employee");
+                name: "FK_UserAccounts_Employees_EmployeeId",
+                table: "UserAccounts");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_UserAccount_OrganizationItem_OrganizationItemId",
-                table: "UserAccount");
+                name: "FK_UserAccounts_OrganizationItems_OrganizationItemId",
+                table: "UserAccounts");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_UserGroup_UserAccount_ChangeAuthorId",
-                table: "UserGroup");
+                name: "FK_UserGroups_UserAccounts_ChangeAuthorId",
+                table: "UserGroups");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_UserGroup_UserAccount_CreationAuthorId",
-                table: "UserGroup");
+                name: "FK_UserGroups_UserAccounts_CreationAuthorId",
+                table: "UserGroups");
 
             migrationBuilder.DropTable(
-                name: "Comment");
+                name: "Comments");
+
+            migrationBuilder.DropTable(
+                name: "CompanyContract");
 
             migrationBuilder.DropTable(
                 name: "CompanyEmployee");
+
+            migrationBuilder.DropTable(
+                name: "ContractCustomer");
+
+            migrationBuilder.DropTable(
+                name: "ContractEmployee");
+
+            migrationBuilder.DropTable(
+                name: "ContractOrganization");
 
             migrationBuilder.DropTable(
                 name: "DeliveryOrderProducts");
@@ -1426,10 +1492,10 @@ namespace WorkflowLib.Example01.Migrations
                 name: "Ingredients");
 
             migrationBuilder.DropTable(
-                name: "Notifications");
+                name: "InitialOrderProducts");
 
             migrationBuilder.DropTable(
-                name: "Organization");
+                name: "Notifications");
 
             migrationBuilder.DropTable(
                 name: "Payments");
@@ -1447,61 +1513,64 @@ namespace WorkflowLib.Example01.Migrations
                 name: "WHProducts");
 
             migrationBuilder.DropTable(
+                name: "Organizations");
+
+            migrationBuilder.DropTable(
                 name: "Recipes");
-
-            migrationBuilder.DropTable(
-                name: "ProjectPlanItem");
-
-            migrationBuilder.DropTable(
-                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "InitialOrders");
 
             migrationBuilder.DropTable(
-                name: "ProductCategories");
-
-            migrationBuilder.DropTable(
-                name: "DeliveryOrders");
-
-            migrationBuilder.DropTable(
-                name: "BusinessTask");
-
-            migrationBuilder.DropTable(
-                name: "DeliveryMethod");
-
-            migrationBuilder.DropTable(
-                name: "ExecutionTime");
+                name: "ProjectPlanItem");
 
             migrationBuilder.DropTable(
                 name: "Project");
 
             migrationBuilder.DropTable(
-                name: "Customer");
-
-            migrationBuilder.DropTable(
-                name: "Company");
-
-            migrationBuilder.DropTable(
-                name: "Contact");
-
-            migrationBuilder.DropTable(
-                name: "Address");
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Contract");
 
             migrationBuilder.DropTable(
-                name: "OrganizationItem");
+                name: "Customers");
 
             migrationBuilder.DropTable(
-                name: "UserAccount");
+                name: "ProductCategories");
 
             migrationBuilder.DropTable(
-                name: "UserGroup");
+                name: "Companies");
 
             migrationBuilder.DropTable(
-                name: "Employee");
+                name: "Contacts");
+
+            migrationBuilder.DropTable(
+                name: "DeliveryOrders");
+
+            migrationBuilder.DropTable(
+                name: "BusinessTasks");
+
+            migrationBuilder.DropTable(
+                name: "DeliveryMethods");
+
+            migrationBuilder.DropTable(
+                name: "ExecutionTime");
+
+            migrationBuilder.DropTable(
+                name: "Addresses");
+
+            migrationBuilder.DropTable(
+                name: "Employees");
+
+            migrationBuilder.DropTable(
+                name: "OrganizationItems");
+
+            migrationBuilder.DropTable(
+                name: "UserAccounts");
+
+            migrationBuilder.DropTable(
+                name: "UserGroups");
         }
     }
 }

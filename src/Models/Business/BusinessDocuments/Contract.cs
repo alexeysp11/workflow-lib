@@ -23,16 +23,16 @@ namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// Our employees.
         /// </summary>
-        public ICollection<Employee> Employees { get; private set; }
+        public ICollection<Employee> OurEmployees { get; private set; }
 
         /// <summary>
-        /// Companies (related to customer).
+        /// Companies that could be considered as customers.
         /// </summary>
-        public ICollection<Company> Companies { get; private set; }
+        public ICollection<Company> CustomerCompanies { get; private set; }
 
         /// <summary>
-        /// Our organization.
+        /// Our organizations.
         /// </summary>
-        public ICollection<Organization> Organizations { get; private set; }
+        public ICollection<Organization> OurOrganizations { get; private set; }
     }
 }

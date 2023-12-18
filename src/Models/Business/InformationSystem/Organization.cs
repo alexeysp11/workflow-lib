@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Customers;
 
 namespace Cims.WorkflowLib.Models.Business.InformationSystem
@@ -16,5 +18,10 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         /// Head organization item.
         /// </summary>
         public OrganizationItem HeadItem { get; set; }
+        
+        /// <summary>
+        /// Contracts.
+        /// </summary>
+        public ICollection<Contract> Contracts { get; private set; }
     }
 }

@@ -24,11 +24,6 @@ namespace Cims.WorkflowLib.Models.Business.InformationSystem
         public ICollection<UserAccount> Users { get; set; }
         
         /// <summary>
-        /// Orgranization items of the user group.
-        /// </summary>
-        public ICollection<OrganizationItem> OrganizationItems { get; set; }
-        
-        /// <summary>
         /// User that created the user group.
         /// </summary>
         public UserAccount CreationAuthor { get; set; }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Cims.WorkflowLib.Models.Business;
+using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Products;
 using Cims.WorkflowLib.Models.Business.InformationSystem;
 
@@ -54,5 +55,10 @@ namespace Cims.WorkflowLib.Models.Business.Customers
         /// Collection of the projects related to the company.
         /// </summary>
         public ICollection<Project> Projects { get; set; }
+        
+        /// <summary>
+        /// Contracts.
+        /// </summary>
+        public ICollection<Contract> Contracts { get; private set; }
     }
 }

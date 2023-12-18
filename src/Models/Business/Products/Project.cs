@@ -65,11 +65,6 @@ namespace Cims.WorkflowLib.Models.Business.Products
         /// Project manager.
         /// </summary>
         public Employee Manager { get; set; }
-
-        /// <summary>
-        /// Employees.
-        /// </summary>
-        public ICollection<Employee> Employees { get; set; }
         
         /// <summary>
         /// Risks of the project.
