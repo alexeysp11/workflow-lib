@@ -1,11 +1,21 @@
+using Microsoft.EntityFrameworkCore;
 using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Controllers;
+using Cims.WorkflowLib.Example01.Data;
 using Cims.WorkflowLib.Example01.Models;
 
 namespace Cims.WorkflowLib.Example01.FlowchartSteps
 {
     public class ScanBackpackStep : IFlowchartStep
     {
+        private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
+
+        public ScanBackpackStep(
+            DbContextOptions<DeliveringContext> contextOptions) 
+        {
+            _contextOptions = contextOptions;
+        }
+
         public void Start()
         {
             System.Console.WriteLine("ScanBackpackStep.Start: begin");
@@ -13,7 +23,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             {
                 // 
             };
-            string response = new CourierClientController().ScanBackpackExecute(new ApiOperation
+            string response = new CourierClientController(_contextOptions).ScanBackpackExecute(new ApiOperation
             {
                 RequestObject = model
             });

@@ -1,5 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Customers;
+using Cims.WorkflowLib.Example01.Data;
 using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Models;
 using Cims.WorkflowLib.Example01.Interfaces;
@@ -8,6 +10,14 @@ namespace Cims.WorkflowLib.Example01.Controllers
 {
     public class WarehouseBackendController
     {
+        private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
+
+        public WarehouseBackendController(
+            DbContextOptions<DeliveringContext> contextOptions) 
+        {
+            _contextOptions = contextOptions;
+        }
+
         public string PreprocessOrderRedirect(ApiOperation apiOperation)
         {
             string response = "";
@@ -78,7 +88,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 // Update DB.
 
                 // Notify warehouse employee.
-                new NotificationsBackendController().SendNotifications(new List<Notification>
+                new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
                 {
                     new Notification
                     {
@@ -90,7 +100,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 });
 
                 // Update cache in the client-side app.
-                string paymentRequest = new WarehouseClientController().Store2WhSave(new ApiOperation()
+                string paymentRequest = new WarehouseClientController(_contextOptions).Store2WhSave(new ApiOperation()
                 {
                     RequestObject = model
                 });
@@ -120,7 +130,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("WarehouseBackend.Wh2KitchenStart: cache");
                 
                 // Notify warehouse employee.
-                new NotificationsBackendController().SendNotifications(new List<Notification>
+                new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
                 {
                     new Notification
                     {
@@ -132,7 +142,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 });
 
                 // Update cache in the client-side app.
-                string whRequest = new WarehouseClientController().Wh2KitchenSave(new ApiOperation()
+                string whRequest = new WarehouseClientController(_contextOptions).Wh2KitchenSave(new ApiOperation()
                 {
                     RequestObject = new DeliveryWh2Kitchen()
                 });
@@ -162,7 +172,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("WarehouseBackend.Store2WhRequest: cache");
 
                 // Send HTTP request.
-                string backendResponse = new CourierBackendController().Store2WhSave(new ApiOperation
+                string backendResponse = new CourierBackendController(_contextOptions).Store2WhSave(new ApiOperation
                 {
                     RequestObject = model
                 });
@@ -192,7 +202,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("WarehouseBackend.Store2WhSave: cache");
 
                 // Notify warehouse employee.
-                new NotificationsBackendController().SendNotifications(new List<Notification>
+                new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
                 {
                     new Notification
                     {
@@ -204,7 +214,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 });
 
                 // Send HTTP request.
-                string backendResponse = new WarehouseClientController().Store2WhSave(new ApiOperation
+                string backendResponse = new WarehouseClientController(_contextOptions).Store2WhSave(new ApiOperation
                 {
                     RequestObject = model
                 });
@@ -258,7 +268,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("WarehouseBackend.Wh2KitchenRespond: cache");
 
                 // Send HTTP request.
-                string backendResponse = new KitchenBackendController().PrepareMealStart(new ApiOperation
+                string backendResponse = new KitchenBackendController(_contextOptions).PrepareMealStart(new ApiOperation
                 {
                     RequestObject = model
                 });
@@ -288,13 +298,13 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("WarehouseBackend.Kitchen2WhStart: cache");
 
                 // Send HTTP request.
-                string backendResponse = new WarehouseClientController().Kitchen2WhStart(new ApiOperation
+                string backendResponse = new WarehouseClientController(_contextOptions).Kitchen2WhStart(new ApiOperation
                 {
                     RequestObject = model
                 });
 
                 // Notify warehouse employee.
-                new NotificationsBackendController().SendNotifications(new List<Notification>
+                new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
                 {
                     new Notification
                     {
@@ -329,7 +339,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("WarehouseBackend.Kitchen2WhExecute: cache");
 
                 // Send HTTP request.
-                string backendResponse = new CourierBackendController().ScanQrOnOrderStart(new ApiOperation
+                string backendResponse = new CourierBackendController(_contextOptions).ScanQrOnOrderStart(new ApiOperation
                 {
                     RequestObject = model
                 });

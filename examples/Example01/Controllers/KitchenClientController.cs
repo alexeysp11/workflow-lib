@@ -1,11 +1,21 @@
+using Microsoft.EntityFrameworkCore;
 using Cims.WorkflowLib.Models.Business.Customers;
 using Cims.WorkflowLib.Models.Network;
+using Cims.WorkflowLib.Example01.Data;
 using Cims.WorkflowLib.Example01.Models;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
     public class KitchenClientController
     {
+        private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
+
+        public KitchenClientController(
+            DbContextOptions<DeliveringContext> contextOptions) 
+        {
+            _contextOptions = contextOptions;
+        }
+
         public string PrepareMealSave(ApiOperation apiOperation)
         {
             string response = "";
@@ -47,7 +57,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("KitchenClient.PrepareMealExecute: cache");
 
                 // Send HTTP request.
-                string backendResponse = new KitchenBackendController().PrepareMealExecute(new ApiOperation
+                string backendResponse = new KitchenBackendController(_contextOptions).PrepareMealExecute(new ApiOperation
                 {
                     RequestObject = model
                 });

@@ -1,12 +1,21 @@
+using Microsoft.EntityFrameworkCore;
 using Cims.WorkflowLib.Models.Business.Customers;
 using Cims.WorkflowLib.Models.Network;
+using Cims.WorkflowLib.Example01.Data;
 using Cims.WorkflowLib.Example01.Models;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
     public class KitchenBackendController
     {
-        // 
+        private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
+
+        public KitchenBackendController(
+            DbContextOptions<DeliveringContext> contextOptions) 
+        {
+            _contextOptions = contextOptions;
+        }
+
         public string PrepareMealStart(ApiOperation apiOperation)
         {
             string response = "";
@@ -22,13 +31,13 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("KitchenBackend.PrepareMealStart: cache");
 
                 // Send HTTP request.
-                string backendResponse = new KitchenClientController().PrepareMealSave(new ApiOperation
+                string backendResponse = new KitchenClientController(_contextOptions).PrepareMealSave(new ApiOperation
                 {
                     RequestObject = model
                 });
 
                 // Send request to the notifications backend.
-                string notificationsRequest = new NotificationsBackendController().SendNotifications(new List<Notification>
+                string notificationsRequest = new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
                 {
                     new Notification
                     {
@@ -68,7 +77,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("KitchenBackend.PrepareMealExecute: cache");
 
                 // Send HTTP request.
-                string backendResponse = new WarehouseBackendController().Kitchen2WhStart(new ApiOperation
+                string backendResponse = new WarehouseBackendController(_contextOptions).Kitchen2WhStart(new ApiOperation
                 {
                     RequestObject = model
                 });

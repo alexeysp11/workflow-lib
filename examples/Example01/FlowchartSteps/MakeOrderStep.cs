@@ -24,13 +24,17 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
         {
             System.Console.WriteLine("MakeOrderStep.Start: begin");
             using var context = new DeliveringContext(_contextOptions);
-            var user = context.UserAccounts.FirstOrDefault();
+            var customer = context.Customers.Include(x => x.UserAccount).FirstOrDefault(x => x.UserAccount != null);
+            if (customer == null)
+                throw new System.Exception("Specified customer does not exist in the database");
+            if (customer.UserAccount == null)
+                throw new System.Exception("Specified user account does not exist in the database");
             var productIds = context.Products.Take(3).Select(x => x.Id).ToList();
             var model = new InitialOrder()
             {
-                UserUid = System.Guid.NewGuid().ToString(),
-                Login = user.Login,
-                PhoneNumber = user.PhoneNumber,
+                UserUid = customer.UserAccount.Uid,
+                Login = customer.UserAccount.Login,
+                PhoneNumber = customer.UserAccount.PhoneNumber,
                 City = "City1",
                 Address = "Address1",
                 ProductIds = productIds,

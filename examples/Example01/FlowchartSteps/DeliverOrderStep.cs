@@ -1,11 +1,21 @@
+using Microsoft.EntityFrameworkCore;
 using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Controllers;
+using Cims.WorkflowLib.Example01.Data;
 using Cims.WorkflowLib.Example01.Models;
 
 namespace Cims.WorkflowLib.Example01.FlowchartSteps
 {
     public class DeliverOrderStep : IFlowchartStep
     {
+        private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
+
+        public DeliverOrderStep(
+            DbContextOptions<DeliveringContext> contextOptions) 
+        {
+            _contextOptions = contextOptions;
+        }
+
         public void Start()
         {
             System.Console.WriteLine("DeliverOrderStep.Start: begin");
@@ -13,7 +23,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             {
                 // 
             };
-            string response = new CourierClientController().DeliverOrderExecute(new ApiOperation
+            string response = new CourierClientController(_contextOptions).DeliverOrderExecute(new ApiOperation
             {
                 RequestObject = model
             });

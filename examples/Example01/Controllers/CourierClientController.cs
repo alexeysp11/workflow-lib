@@ -1,10 +1,26 @@
+using Microsoft.EntityFrameworkCore;
 using Cims.WorkflowLib.Models.Network;
+using Cims.WorkflowLib.Example01.Data;
 using Cims.WorkflowLib.Example01.Models;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CourierClientController
     {
+        private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public CourierClientController(
+            DbContextOptions<DeliveringContext> contextOptions) 
+        {
+            _contextOptions = contextOptions;
+        }
+
         public string Store2WhSave(ApiOperation apiOperation)
         {
             string response = "";
@@ -40,7 +56,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("CourierClient.Store2WhExecute: cache");
 
                 // Send HTTP request.
-                string backendResponse = new CourierBackendController().Store2WhExecute(new ApiOperation
+                string backendResponse = new CourierBackendController(_contextOptions).Store2WhExecute(new ApiOperation
                 {
                     RequestObject = model
                 });
@@ -92,7 +108,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("CourierClient.ScanQrOnOrderExecute: cache");
 
                 // Send HTTP request.
-                string backendResponse = new CourierBackendController().ScanQrOnOrderExecute(new ApiOperation
+                string backendResponse = new CourierBackendController(_contextOptions).ScanQrOnOrderExecute(new ApiOperation
                 {
                     RequestObject = model
                 });
@@ -144,7 +160,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("CourierClient.ScanBackpackExecute: cache");
 
                 // Send HTTP request.
-                string backendResponse = new CourierBackendController().ScanBackpackExecute(new ApiOperation
+                string backendResponse = new CourierBackendController(_contextOptions).ScanBackpackExecute(new ApiOperation
                 {
                     RequestObject = model
                 });
@@ -196,7 +212,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("CourierClient.DeliverOrderExecute: cache");
 
                 // Send HTTP request.
-                string backendResponse = new CourierBackendController().DeliverOrderExecute(new ApiOperation
+                string backendResponse = new CourierBackendController(_contextOptions).DeliverOrderExecute(new ApiOperation
                 {
                     RequestObject = model
                 });

@@ -50,4 +50,9 @@ public class InitialOrder : BusinessEntityWF, IBusinessEntityWF
     /// Payment method.
     /// </summary>
     public string? PaymentMethod { get; set; }
+    
+    /// <summary>
+    /// Amount of payment.
+    /// </summary>
+    public decimal PaymentAmount { get; set; }
 }

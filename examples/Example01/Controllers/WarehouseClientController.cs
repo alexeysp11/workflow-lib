@@ -1,5 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Network;
+using Cims.WorkflowLib.Example01.Data;
 using Cims.WorkflowLib.Example01.Models;
 using Cims.WorkflowLib.Example01.Interfaces;
 
@@ -7,6 +9,14 @@ namespace Cims.WorkflowLib.Example01.Controllers
 {
     public class WarehouseClientController
     {
+        private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
+
+        public WarehouseClientController(
+            DbContextOptions<DeliveringContext> contextOptions) 
+        {
+            _contextOptions = contextOptions;
+        }
+
         /// <summary>
         /// Storing request for filling a form for deliving from the store to warehouse.
         /// </summary>
@@ -73,7 +83,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("WarehouseClient.Store2WhRequest: cache");
 
                 // Send HTTP request.
-                string backendResponse = new WarehouseBackendController().Store2WhRequest(new ApiOperation
+                string backendResponse = new WarehouseBackendController(_contextOptions).Store2WhRequest(new ApiOperation
                 {
                     RequestObject = model
                 });
@@ -102,7 +112,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("WarehouseClient.Store2WhConfirm: cache");
 
                 // Send HTTP request.
-                string backendResponse = new WarehouseBackendController().Store2WhConfirm(new ApiOperation
+                string backendResponse = new WarehouseBackendController(_contextOptions).Store2WhConfirm(new ApiOperation
                 {
                     RequestObject = model
                 });
@@ -131,7 +141,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("WarehouseClient.Wh2KitchenRespond: cache");
 
                 // Send HTTP request.
-                string backendResponse = new WarehouseBackendController().Wh2KitchenRespond(new ApiOperation
+                string backendResponse = new WarehouseBackendController(_contextOptions).Wh2KitchenRespond(new ApiOperation
                 {
                     RequestObject = model
                 });
@@ -183,7 +193,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("WarehouseClient.Kitchen2WhExecute: cache");
 
                 // Send HTTP request.
-                string backendResponse = new WarehouseBackendController().Kitchen2WhExecute(new ApiOperation
+                string backendResponse = new WarehouseBackendController(_contextOptions).Kitchen2WhExecute(new ApiOperation
                 {
                     RequestObject = model
                 });

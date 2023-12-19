@@ -25,25 +25,12 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
         {
             System.Console.WriteLine("MakePaymentStep.Start: begin");
             
-            // Getting the payment object.
             using var context = new DeliveringContext(_contextOptions);
+
+            // Check integrity of data.
             var payment = context.Payments.FirstOrDefault();
             if (payment == null)
-            {
-                var initialOrder = context.InitialOrders.FirstOrDefault();
-                if (initialOrder == null)
-                    throw new System.ArgumentNullException("context.InitialOrder");
-                payment = new Payment()
-                {
-                    PaymentType = initialOrder.PaymentType,
-                    PaymentMethod = initialOrder.PaymentMethod,
-                    Payer = "Customer",
-                    Receiver = "Our company",
-                    Status = "Requested"
-                };
-            }
-            
-            // Check integrity of data.
+                throw new System.Exception("Payment could not be found in the database");
             var deliveryOrder = context.DeliveryOrders.FirstOrDefault();
             if (deliveryOrder == null 
                 || (deliveryOrder != null && deliveryOrder.Payments == null) 

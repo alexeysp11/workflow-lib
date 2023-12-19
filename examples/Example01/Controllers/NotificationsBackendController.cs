@@ -1,12 +1,22 @@
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using Cims.WorkflowLib.Models.Business.Customers;
+using Cims.WorkflowLib.Example01.Data;
 using Cims.WorkflowLib.Example01.Interfaces;
 using Cims.WorkflowLib.Example01.Models;
-using Cims.WorkflowLib.Models.Business.Customers;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
     public class NotificationsBackendController : INotificationsBackend
     {
+        private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
+
+        public NotificationsBackendController(
+            DbContextOptions<DeliveringContext> contextOptions) 
+        {
+            _contextOptions = contextOptions;
+        }
+
         public string SendNotifications(IEnumerable<Notification> notifications)
         {
             string response = "";
@@ -15,11 +25,13 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Validation.
                 System.Console.WriteLine("NotificationsBackend.SendNotifications: validation");
+                using var context = new DeliveringContext(_contextOptions);
 
                 foreach (var notification in notifications)
                 {
                     // Update DB.
                     System.Console.WriteLine("NotificationsBackend.SendNotifications: cache");
+                    context.Notifications.Add(notification);
 
                     // Send email.
                     // SendEmail();
@@ -33,6 +45,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     // Update DB.
                     System.Console.WriteLine("NotificationsBackend.SendNotifications: cache");
                 }
+                context.SaveChanges();
             }
             catch (System.Exception ex)
             {

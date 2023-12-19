@@ -63,6 +63,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                         InitialOrder = model,
                         Quantity = qty
                     });
+                    model.PaymentAmount += qty * p.Price;
                 }
                 model.Uid = System.Guid.NewGuid().ToString();
                 context.InitialOrderProducts.AddRange(products);

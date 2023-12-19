@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Customers;
 using Cims.WorkflowLib.Models.Business.Monetary;
+using Cims.WorkflowLib.Models.Business.Products;
 using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Data;
 using Cims.WorkflowLib.Example01.Interfaces;
@@ -10,11 +11,17 @@ using Cims.WorkflowLib.Example01.Models;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CustomerBackendController
     {
         private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
         private CustomerClientController _customerClientController { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public CustomerBackendController(
             DbContextOptions<DeliveringContext> contextOptions) 
         {
@@ -91,10 +98,15 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     throw new System.Exception("Incorrect parameter: PaymentType");
                 }
 
-                // Send request to the customer client.
+                // Save data into DB.
+                var organization = context.Organizations.Include(x => x.Company).FirstOrDefault();
+                if (organization == null || organization.Company == null)
+                    throw new System.Exception("Organization or company is not defined");
+                var customer = context.Customers.FirstOrDefault(x => x.UserAccount != null && x.UserAccount.Uid == model.UserUid);
+                if (customer == null)
+                    throw new System.Exception("Specified customer does not exist in the database");
                 DeliveryOrder deliveryOrder = new DeliveryOrder
                 {
-                    Id = context.Payments.Count() + 1,
                     Uid = System.Guid.NewGuid().ToString(),
                     Payments = new List<Payment>
                     {
@@ -103,15 +115,36 @@ namespace Cims.WorkflowLib.Example01.Controllers
                             Uid = System.Guid.NewGuid().ToString(),
                             PaymentType = model.PaymentType,
                             PaymentMethod = model.PaymentMethod,
-                            Payer = "Customer",
-                            Receiver = "Our company",
+                            Amount = model.PaymentAmount,
+                            Payer = customer.FullName,
+                            Receiver = string.IsNullOrEmpty(organization.Company.Name) ? "Our company" : organization.Company.Name,
                             Status = "Requested"
                         }
-                    }
+                    },
+                    CustomerUid = customer.Uid
                 };
                 context.DeliveryOrders.Add(deliveryOrder);
                 context.Payments.AddRange(deliveryOrder.Payments);
+                var initialOrderProducts = context.InitialOrderProducts
+                    .Include(x => x.Product)
+                    .Where(x => x.InitialOrder != null && x.InitialOrder.Id == model.Id)
+                    .ToList();
+                foreach (var iop in initialOrderProducts)
+                {
+                    var deliveryOrderProduct = new DeliveryOrderProduct
+                    {
+                        Uid = System.Guid.NewGuid().ToString(),
+                        Product = iop.Product,
+                        DeliveryOrder = deliveryOrder,
+                        Quantity = iop.Quantity
+                    };
+                    context.DeliveryOrderProducts.Add(deliveryOrderProduct);
+                }
+                deliveryOrder.ProductsPrice = model.PaymentAmount;
+                deliveryOrder.TotalPrice = model.PaymentAmount;
                 context.SaveChanges();
+
+                // Send request to the customer client.
                 string paymentRequest = _customerClientController.MakePaymentSave(new ApiOperation
                 {
                     RequestObject = deliveryOrder
@@ -128,9 +161,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                         BodyText = "Hello, we've just received the request for getting delivery order. Please, provide us with your card details to complete the payment."
                     }
                 };
-                context.Notifications.AddRange(notifications);
-                context.SaveChanges();
-                string notificationsRequest = new NotificationsBackendController().SendNotifications(notifications);
+                string notificationsRequest = new NotificationsBackendController(_contextOptions).SendNotifications(notifications);
 
                 // Update DB.
                 System.Console.WriteLine("CustomerBackend.MakePayment: cache");
@@ -149,7 +180,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             // Get recipes.
 
             // Send HTTP request to warehouse backend.
-            // var dt = new WarehouseBackendController().PreprocessOrder(model);
+            // var dt = new WarehouseBackendController(_contextOptions).PreprocessOrder(model);
 
             // // Calculate delivery time.
             // var deliveryDuration = new System.TimeSpan(0, 30, 0);
@@ -233,7 +264,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: cache");
 
                 // Calculate delivery time.
-                var preprocessResponse = new WarehouseBackendController().PreprocessOrderRedirect(new ApiOperation()
+                var preprocessResponse = new WarehouseBackendController(_contextOptions).PreprocessOrderRedirect(new ApiOperation()
                 {
                     RequestObject = model
                 });

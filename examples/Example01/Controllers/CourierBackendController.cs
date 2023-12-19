@@ -1,11 +1,21 @@
+using Microsoft.EntityFrameworkCore;
 using Cims.WorkflowLib.Models.Business.Customers;
 using Cims.WorkflowLib.Models.Network;
+using Cims.WorkflowLib.Example01.Data;
 using Cims.WorkflowLib.Example01.Models;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
     public class CourierBackendController
     {
+        private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
+
+        public CourierBackendController(
+            DbContextOptions<DeliveringContext> contextOptions) 
+        {
+            _contextOptions = contextOptions;
+        }
+
         public string Store2WhSave(ApiOperation apiOperation)
         {
             string response = "";
@@ -18,7 +28,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("CourierBackend.Store2WhSave: cache");
                 
                 // Notify courier employee.
-                new NotificationsBackendController().SendNotifications(new List<Notification>
+                new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
                 {
                     new Notification
                     {
@@ -30,7 +40,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 });
 
                 // Update cache in the client-side app.
-                string deliveryRequest = new CourierClientController().Store2WhSave(new ApiOperation()
+                string deliveryRequest = new CourierClientController(_contextOptions).Store2WhSave(new ApiOperation()
                 {
                     RequestObject = model
                 });
@@ -59,7 +69,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("CourierBackend.Store2WhExecute: cache");
 
                 // Update cache in the client-side app.
-                string deliveryRequest = new WarehouseBackendController().Store2WhSave(new ApiOperation()
+                string deliveryRequest = new WarehouseBackendController(_contextOptions).Store2WhSave(new ApiOperation()
                 {
                     RequestObject = model
                 });
@@ -88,7 +98,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("CourierBackend.ScanQrOnOrderStart: cache");
 
                 // Send HTTP request.
-                string backendResponse = new CourierClientController().ScanQrOnOrderStart(new ApiOperation
+                string backendResponse = new CourierClientController(_contextOptions).ScanQrOnOrderStart(new ApiOperation
                 {
                     RequestObject = model
                 });
@@ -146,7 +156,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("CourierBackend.ScanBackpackStart: cache");
 
                 // Send HTTP request.
-                string backendResponse = new CourierClientController().ScanBackpackStart(new ApiOperation
+                string backendResponse = new CourierClientController(_contextOptions).ScanBackpackStart(new ApiOperation
                 {
                     RequestObject = model
                 });
@@ -204,13 +214,13 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("CourierBackend.DeliverOrderStart: cache");
 
                 // Send HTTP request.
-                string backendResponse = new CourierClientController().DeliverOrderStart(new ApiOperation
+                string backendResponse = new CourierClientController(_contextOptions).DeliverOrderStart(new ApiOperation
                 {
                     RequestObject = model
                 });
 
                 // Notify the customer.
-                new NotificationsBackendController().SendNotifications(new List<Notification>
+                new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
                 {
                     new Notification
                     {
