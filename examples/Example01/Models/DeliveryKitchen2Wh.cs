@@ -13,15 +13,15 @@ public class DeliveryKitchen2Wh : DeliveryOperation, IBusinessEntityWF
     /// <summary>
     /// 
     /// </summary>
-    public string OrderNumber { get; set; }
+    public string? OrderNumber { get; set; }
 
     /// <summary>
     /// 
     /// </summary>
-    public string GeneratedOrderQrCode { get; set; }
+    public string? GeneratedOrderQrCode { get; set; }
 
     /// <summary>
     /// 
     /// </summary>
-    public ICollection<Product> Products { get; set; }
+    public ICollection<InitialOrderProduct> InitialOrderProducts { get; set; }
 }

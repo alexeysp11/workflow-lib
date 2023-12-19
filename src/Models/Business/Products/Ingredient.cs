@@ -19,9 +19,9 @@ namespace Cims.WorkflowLib.Models.Business.Products
         /// </summary>
         public Product FinalProduct { get; set; }
 
-        /// <summary>
-        /// Substitute ingredients.
-        /// </summary>
-        public ICollection<Ingredient> SubstituteIngredients { get; set; }
+        // /// <summary>
+        // /// Substitute ingredients.
+        // /// </summary>
+        // public ICollection<Ingredient> SubstituteIngredients { get; set; }
     }
 }

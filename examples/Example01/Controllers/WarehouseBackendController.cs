@@ -142,9 +142,13 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 });
 
                 // Update cache in the client-side app.
+                var deliveryModel = new DeliveryWh2Kitchen
+                {
+                    // 
+                };
                 string whRequest = new WarehouseClientController(_contextOptions).Wh2KitchenSave(new ApiOperation()
                 {
-                    RequestObject = new DeliveryWh2Kitchen()
+                    RequestObject = deliveryModel
                 });
 
                 // 
@@ -262,7 +266,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             try
             {
                 // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                DeliveryWh2Kitchen model = apiOperation.RequestObject as DeliveryWh2Kitchen;
                 
                 // Update DB.
                 System.Console.WriteLine("WarehouseBackend.Wh2KitchenRespond: cache");

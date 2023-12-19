@@ -136,7 +136,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             try
             {
                 // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                DeliveryWh2Kitchen model = apiOperation.RequestObject as DeliveryWh2Kitchen;
                 // Update DB.
                 System.Console.WriteLine("WarehouseClient.Wh2KitchenRespond: cache");
 

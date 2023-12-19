@@ -83,8 +83,8 @@ namespace Cims.WorkflowLib.Example01
             _step02.Start();
 
             // // Step 03: finish delivering from warehouse to kitchen.
-            // System.Console.WriteLine("\nStep 03: finish delivering from warehouse to kitchen.");
-            // _step03.Start();
+            System.Console.WriteLine("\nStep 03: finish delivering from warehouse to kitchen.");
+            _step03.Start();
 
             // Step 04: request for delivering from store to warehouse.
             // System.Console.WriteLine("\nStep 04: request for delivering from store to warehouse.");
@@ -476,9 +476,12 @@ namespace Cims.WorkflowLib.Example01
                 Description = "Ingredients"
             };
             context.ProductCategories.Add(productCategory);
-            var finalProduct1 = context.Products.FirstOrDefault(x => x.Id == 1);
-            var finalProduct2 = context.Products.FirstOrDefault(x => x.Id == 2);
-            var finalProduct3 = context.Products.FirstOrDefault(x => x.Id == 3);
+            var products = context.Products.Take(3).ToList();
+            var finalProduct1 = products[0];
+            var finalProduct2 = products[1];
+            var finalProduct3 = products[2];
+            if (finalProduct1 == null || finalProduct2 == null || finalProduct3 == null)
+                throw new System.Exception("Final products is not initialized");
             AddSingleIngredient(context, rand, productCategory, finalProduct1);
             AddSingleIngredient(context, rand, productCategory, finalProduct1);
             AddSingleIngredient(context, rand, productCategory, finalProduct2);

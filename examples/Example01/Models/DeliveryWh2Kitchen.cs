@@ -13,10 +13,10 @@ public class DeliveryWh2Kitchen : DeliveryOperation, IBusinessEntityWF
     /// <summary>
     /// 
     /// </summary>
-    public ICollection<Product> Products { get; set; }
+    public ICollection<InitialOrderProduct> InitialOrderProducts { get; set; }
 
     /// <summary>
     /// 
     /// </summary>
-    public ICollection<Ingredient> Ingredients { get; set; }
+    public ICollection<InitialOrderIngredient> InitialOrderIngredients { get; set; }
 }

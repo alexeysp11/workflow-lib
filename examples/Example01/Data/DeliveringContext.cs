@@ -49,6 +49,9 @@ namespace Cims.WorkflowLib.Example01.Data
         public DbSet<Recipe> Recipes { get; set; }
 
         public DbSet<Notification> Notifications { get; set; }
+
+        public DbSet<DeliveryWh2Kitchen> DeliveriesWh2Kitchen { get; set; }
+        public DbSet<DeliveryKitchen2Wh> DeliveriesKitchen2Wh { get; set; }
         public DbSet<DeliveryOperation> DeliveryOperations { get; set; }
     }
 }
