@@ -4,7 +4,7 @@ using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 namespace Cims.WorkflowLib.Models.Business.Products
 {
     /// <summary>
-    /// DeliveryOrderProduct.
+    /// Delivery order product.
     /// </summary>
     public class DeliveryOrderProduct : BusinessEntityWF, IBusinessEntityWF
     {
@@ -14,7 +14,7 @@ namespace Cims.WorkflowLib.Models.Business.Products
         public Product Product { get; set; }
         
         /// <summary>
-        /// DeliveryOrder.
+        /// Delivery order.
         /// </summary>
         public DeliveryOrder DeliveryOrder { get; set; }
         

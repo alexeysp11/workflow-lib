@@ -4,7 +4,7 @@ using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 namespace Cims.WorkflowLib.Models.Business.Products
 {
     /// <summary>
-    /// OrderProduct.
+    /// Order product.
     /// </summary>
     public class OrderProduct : BusinessEntityWF, IBusinessEntityWF
     {
