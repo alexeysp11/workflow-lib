@@ -32,9 +32,10 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 bool isSufficient = true;
                 // bool isSufficient = ingredientsAmount >= (model.Products == null ? 0 : model.Products.Count);
 
-                // Понять, хватает ли на складе ингридиентов. И если не хватает, то каких конкретно. 
-                // Поэлементно вычесть количество для соответствующего объекта WHProduct, если в коллекции DeliveryOrder.Products 
-                // есть элемент с таким же ИД.
+                // Understand whether there are enough ingredients in the warehouse. 
+                // And if there are not enough, then which ones specifically.
+                // Subtract the quantity element by element for the corresponding WHProduct object if in the DeliveryOrder.Products 
+                // collection there is an element with the same ID.
 
                 // Calculte delivery time.
                 var wh2kitchenDuration = new System.TimeSpan(0, 5, 0);
@@ -100,6 +101,10 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 });
 
                 // Update cache in the client-side app.
+                var deliveryOrder = new DeliveryOrder
+                {
+                    //
+                };
                 string paymentRequest = new WarehouseClientController(_contextOptions).Store2WhSave(new ApiOperation()
                 {
                     RequestObject = model
@@ -142,13 +147,13 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 });
 
                 // Update cache in the client-side app.
-                var deliveryModel = new DeliveryWh2Kitchen
+                var deliveryWh2Kitchen = new DeliveryWh2Kitchen
                 {
                     // 
                 };
                 string whRequest = new WarehouseClientController(_contextOptions).Wh2KitchenSave(new ApiOperation()
                 {
-                    RequestObject = deliveryModel
+                    RequestObject = deliveryWh2Kitchen
                 });
 
                 // 

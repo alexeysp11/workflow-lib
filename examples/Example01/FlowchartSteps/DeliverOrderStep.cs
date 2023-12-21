@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Controllers;
 using Cims.WorkflowLib.Example01.Data;
-using Cims.WorkflowLib.Example01.Models;
+using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 
 namespace Cims.WorkflowLib.Example01.FlowchartSteps
 {

@@ -12,7 +12,7 @@ using Cims.WorkflowLib.Example01.Contexts;
 using Cims.WorkflowLib.Example01.Data;
 using Cims.WorkflowLib.Example01.FlowchartSteps;
 using Cims.WorkflowLib.Example01.Interfaces;
-using Cims.WorkflowLib.Example01.Models;
+using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 
 namespace Cims.WorkflowLib.Example01
 {

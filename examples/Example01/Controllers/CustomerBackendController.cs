@@ -123,6 +123,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     },
                     CustomerUid = customer.Uid
                 };
+                model.DeliveryOrder = deliveryOrder;
                 context.DeliveryOrders.Add(deliveryOrder);
                 context.Payments.AddRange(deliveryOrder.Payments);
                 var initialOrderProducts = context.InitialOrderProducts

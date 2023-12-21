@@ -17,140 +17,6 @@ namespace WorkflowLib.Example01.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.1");
 
-            modelBuilder.Entity("Cims.WorkflowLib.Example01.Models.InitialOrder", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Address")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("BusinessEntityStatus")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("City")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Login")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.Property<decimal>("PaymentAmount")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PaymentMethod")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PaymentType")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Uid")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("UserUid")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("InitialOrders");
-                });
-
-            modelBuilder.Entity("Cims.WorkflowLib.Example01.Models.InitialOrderIngredient", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("BusinessEntityStatus")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long?>("DeliveryWh2KitchenId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("TEXT");
-
-                    b.Property<long>("IngredientId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long>("InitialOrderId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Uid")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DeliveryWh2KitchenId");
-
-                    b.HasIndex("IngredientId");
-
-                    b.HasIndex("InitialOrderId");
-
-                    b.ToTable("InitialOrderIngredient");
-                });
-
-            modelBuilder.Entity("Cims.WorkflowLib.Example01.Models.InitialOrderProduct", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("BusinessEntityStatus")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long?>("DeliveryKitchen2WhId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long?>("DeliveryWh2KitchenId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("TEXT");
-
-                    b.Property<long>("InitialOrderId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.Property<long>("ProductId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Uid")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DeliveryKitchen2WhId");
-
-                    b.HasIndex("DeliveryWh2KitchenId");
-
-                    b.HasIndex("InitialOrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("InitialOrderProducts");
-                });
-
             modelBuilder.Entity("Cims.WorkflowLib.Models.Business.Address", b =>
                 {
                     b.Property<long>("Id")
@@ -310,6 +176,58 @@ namespace WorkflowLib.Example01.Migrations
                     b.HasIndex("OriginId");
 
                     b.ToTable("DeliveryOrders");
+                });
+
+            modelBuilder.Entity("Cims.WorkflowLib.Models.Business.BusinessDocuments.InitialOrder", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("BusinessEntityStatus")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("City")
+                        .HasColumnType("TEXT");
+
+                    b.Property<long?>("DeliveryOrderId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Login")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("PaymentAmount")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PaymentMethod")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PaymentType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Uid")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserUid")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DeliveryOrderId");
+
+                    b.ToTable("InitialOrders");
                 });
 
             modelBuilder.Entity("Cims.WorkflowLib.Models.Business.Customers.Company", b =>
@@ -1011,6 +929,93 @@ namespace WorkflowLib.Example01.Migrations
                     b.ToTable("Ingredients");
                 });
 
+            modelBuilder.Entity("Cims.WorkflowLib.Models.Business.Products.InitialOrderIngredient", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BusinessEntityStatus")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long?>("DeliveryWh2KitchenId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<long?>("IngredientId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long?>("InitialOrderId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Uid")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DeliveryWh2KitchenId");
+
+                    b.HasIndex("IngredientId");
+
+                    b.HasIndex("InitialOrderId");
+
+                    b.ToTable("InitialOrderIngredient");
+                });
+
+            modelBuilder.Entity("Cims.WorkflowLib.Models.Business.Products.InitialOrderProduct", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BusinessEntityStatus")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long?>("DeliveryKitchen2WhId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long?>("DeliveryWh2KitchenId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<long?>("InitialOrderId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<long?>("ProductId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Uid")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DeliveryKitchen2WhId");
+
+                    b.HasIndex("DeliveryWh2KitchenId");
+
+                    b.HasIndex("InitialOrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("InitialOrderProducts");
+                });
+
             modelBuilder.Entity("Cims.WorkflowLib.Models.Business.Products.Product", b =>
                 {
                     b.Property<long>("Id")
@@ -1525,7 +1530,6 @@ namespace WorkflowLib.Example01.Migrations
                     b.HasBaseType("Cims.WorkflowLib.Models.Business.Delivery.DeliveryOperation");
 
                     b.Property<string>("GeneratedOrderQrCode")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasDiscriminator().HasValue("DeliveryKitchen2Wh");
@@ -1536,56 +1540,6 @@ namespace WorkflowLib.Example01.Migrations
                     b.HasBaseType("Cims.WorkflowLib.Models.Business.Delivery.DeliveryOperation");
 
                     b.HasDiscriminator().HasValue("DeliveryWh2Kitchen");
-                });
-
-            modelBuilder.Entity("Cims.WorkflowLib.Example01.Models.InitialOrderIngredient", b =>
-                {
-                    b.HasOne("Cims.WorkflowLib.Example01.Models.DeliveryWh2Kitchen", null)
-                        .WithMany("InitialOrderIngredients")
-                        .HasForeignKey("DeliveryWh2KitchenId");
-
-                    b.HasOne("Cims.WorkflowLib.Models.Business.Products.Ingredient", "Ingredient")
-                        .WithMany()
-                        .HasForeignKey("IngredientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Cims.WorkflowLib.Example01.Models.InitialOrder", "InitialOrder")
-                        .WithMany()
-                        .HasForeignKey("InitialOrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Ingredient");
-
-                    b.Navigation("InitialOrder");
-                });
-
-            modelBuilder.Entity("Cims.WorkflowLib.Example01.Models.InitialOrderProduct", b =>
-                {
-                    b.HasOne("Cims.WorkflowLib.Example01.Models.DeliveryKitchen2Wh", null)
-                        .WithMany("InitialOrderProducts")
-                        .HasForeignKey("DeliveryKitchen2WhId");
-
-                    b.HasOne("Cims.WorkflowLib.Example01.Models.DeliveryWh2Kitchen", null)
-                        .WithMany("InitialOrderProducts")
-                        .HasForeignKey("DeliveryWh2KitchenId");
-
-                    b.HasOne("Cims.WorkflowLib.Example01.Models.InitialOrder", "InitialOrder")
-                        .WithMany()
-                        .HasForeignKey("InitialOrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Cims.WorkflowLib.Models.Business.Products.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("InitialOrder");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Cims.WorkflowLib.Models.Business.BusinessDocuments.DeliveryOrder", b =>
@@ -1613,6 +1567,15 @@ namespace WorkflowLib.Example01.Migrations
                     b.Navigation("Destination");
 
                     b.Navigation("Origin");
+                });
+
+            modelBuilder.Entity("Cims.WorkflowLib.Models.Business.BusinessDocuments.InitialOrder", b =>
+                {
+                    b.HasOne("Cims.WorkflowLib.Models.Business.BusinessDocuments.DeliveryOrder", "DeliveryOrder")
+                        .WithMany()
+                        .HasForeignKey("DeliveryOrderId");
+
+                    b.Navigation("DeliveryOrder");
                 });
 
             modelBuilder.Entity("Cims.WorkflowLib.Models.Business.Customers.Company", b =>
@@ -1812,6 +1775,48 @@ namespace WorkflowLib.Example01.Migrations
                     b.Navigation("FinalProduct");
 
                     b.Navigation("IngredientProduct");
+                });
+
+            modelBuilder.Entity("Cims.WorkflowLib.Models.Business.Products.InitialOrderIngredient", b =>
+                {
+                    b.HasOne("Cims.WorkflowLib.Example01.Models.DeliveryWh2Kitchen", null)
+                        .WithMany("InitialOrderIngredients")
+                        .HasForeignKey("DeliveryWh2KitchenId");
+
+                    b.HasOne("Cims.WorkflowLib.Models.Business.Products.Ingredient", "Ingredient")
+                        .WithMany()
+                        .HasForeignKey("IngredientId");
+
+                    b.HasOne("Cims.WorkflowLib.Models.Business.BusinessDocuments.InitialOrder", "InitialOrder")
+                        .WithMany()
+                        .HasForeignKey("InitialOrderId");
+
+                    b.Navigation("Ingredient");
+
+                    b.Navigation("InitialOrder");
+                });
+
+            modelBuilder.Entity("Cims.WorkflowLib.Models.Business.Products.InitialOrderProduct", b =>
+                {
+                    b.HasOne("Cims.WorkflowLib.Example01.Models.DeliveryKitchen2Wh", null)
+                        .WithMany("InitialOrderProducts")
+                        .HasForeignKey("DeliveryKitchen2WhId");
+
+                    b.HasOne("Cims.WorkflowLib.Example01.Models.DeliveryWh2Kitchen", null)
+                        .WithMany("InitialOrderProducts")
+                        .HasForeignKey("DeliveryWh2KitchenId");
+
+                    b.HasOne("Cims.WorkflowLib.Models.Business.BusinessDocuments.InitialOrder", "InitialOrder")
+                        .WithMany()
+                        .HasForeignKey("InitialOrderId");
+
+                    b.HasOne("Cims.WorkflowLib.Models.Business.Products.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
+
+                    b.Navigation("InitialOrder");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Cims.WorkflowLib.Models.Business.Products.Product", b =>

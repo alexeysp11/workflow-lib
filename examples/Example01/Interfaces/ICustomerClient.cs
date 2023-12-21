@@ -1,5 +1,5 @@
 using Cims.WorkflowLib.Models.Business.Monetary;
-using Cims.WorkflowLib.Example01.Models;
+using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 
 namespace Cims.WorkflowLib.Example01.Interfaces
 {

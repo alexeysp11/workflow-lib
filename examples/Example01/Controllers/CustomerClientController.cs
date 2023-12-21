@@ -137,24 +137,10 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("CustomerClient.MakePaymentRespond: validation");
                 
                 // Insert into cache.
+                // Attention: in this particular example, it is unnecessary to save data, that is in the model object, 
+                // because it has already been inserted on the MakePaymentStep.
+                // However in a real world app you might need to save data in the method.
                 System.Console.WriteLine("CustomerClient.MakePaymentRespond: cache");
-                var deliveryOrder = context.DeliveryOrders.FirstOrDefault();
-                if (deliveryOrder.Payments == null)
-                    deliveryOrder.Payments = new List<Payment>();
-                foreach (var p in model.Payments)
-                {
-                    var pf = deliveryOrder.Payments.Where(x => x.Uid == p.Uid).FirstOrDefault();
-                    if (pf == null)
-                    {
-                        deliveryOrder.Payments.Add(p);
-                    }
-                    else
-                    {
-                        pf.CardNumber = p.CardNumber;
-                        pf.Status = p.Status;
-                    }
-                }
-                context.SaveChanges();
 
                 // Send HTTP request.
                 string backendResponse = _customerBackendController.MakePaymentRespond(new ApiOperation()
