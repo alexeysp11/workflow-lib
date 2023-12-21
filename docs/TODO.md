@@ -25,3 +25,7 @@
 - Potentially, [Enterprise service bus](https://en.wikipedia.org/wiki/Enterprise_service_bus) could be implemented using this library.
 
 ![ESB-components](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/ESB_Component_Hive.png/330px-ESB_Component_Hive.png)
+
+## Models
+
+- In the recipe object, you need to set a status that would show the relevance of the recipe - actually, there is already a status of the entity, which can be equal to “deleted” or “active”, but in a real situation it may be important to set deadlines for relevance.

@@ -453,10 +453,7 @@ namespace Cims.WorkflowLib.Example01
             {
                 Uid = System.Guid.NewGuid().ToString(),
                 Name = "WHProduct " + whpid,
-                Product = product,
-                Quantity = rand.Next(2, 7),
-                MinQuantity = rand.Next(3, 5),
-                MaxQuantity = rand.Next(20, 46)
+                Product = product
             };
             context.Products.Add(product);
             context.WHProducts.Add(whproduct);
