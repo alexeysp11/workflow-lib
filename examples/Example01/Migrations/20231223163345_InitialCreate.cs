@@ -416,6 +416,7 @@ namespace WorkflowLib.Example01.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     IngredientProductId = table.Column<long>(type: "INTEGER", nullable: true),
                     FinalProductId = table.Column<long>(type: "INTEGER", nullable: true),
+                    Quantity = table.Column<double>(type: "REAL", nullable: false),
                     RecipeId = table.Column<long>(type: "INTEGER", nullable: true),
                     Uid = table.Column<string>(type: "TEXT", nullable: true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
@@ -618,55 +619,6 @@ namespace WorkflowLib.Example01.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DeliveryOrders",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    DeliveryMethodId = table.Column<long>(type: "INTEGER", nullable: true),
-                    DeliveryOperationId = table.Column<long>(type: "INTEGER", nullable: true),
-                    DeliveryPrice = table.Column<decimal>(type: "TEXT", nullable: false),
-                    OriginId = table.Column<long>(type: "INTEGER", nullable: true),
-                    DestinationId = table.Column<long>(type: "INTEGER", nullable: true),
-                    Uid = table.Column<string>(type: "TEXT", nullable: true),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
-                    Description = table.Column<string>(type: "TEXT", nullable: true),
-                    BusinessEntityStatus = table.Column<int>(type: "INTEGER", nullable: false),
-                    Number = table.Column<string>(type: "TEXT", nullable: true),
-                    OpenOrderDt = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    CloseOrderDt = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    CustomerUid = table.Column<string>(type: "TEXT", nullable: true),
-                    CustomerName = table.Column<string>(type: "TEXT", nullable: true),
-                    CompanyUid = table.Column<string>(type: "TEXT", nullable: true),
-                    CompanyName = table.Column<string>(type: "TEXT", nullable: true),
-                    ProductsPrice = table.Column<decimal>(type: "TEXT", nullable: false),
-                    AdditonalPrice = table.Column<decimal>(type: "TEXT", nullable: false),
-                    TaxPrice = table.Column<decimal>(type: "TEXT", nullable: false),
-                    TotalPrice = table.Column<decimal>(type: "TEXT", nullable: false),
-                    CouldBeCancelled = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Status = table.Column<string>(type: "TEXT", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DeliveryOrders", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DeliveryOrders_Addresses_DestinationId",
-                        column: x => x.DestinationId,
-                        principalTable: "Addresses",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_DeliveryOrders_Addresses_OriginId",
-                        column: x => x.OriginId,
-                        principalTable: "Addresses",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_DeliveryOrders_DeliveryMethods_DeliveryMethodId",
-                        column: x => x.DeliveryMethodId,
-                        principalTable: "DeliveryMethods",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "InitialOrders",
                 columns: table => new
                 {
@@ -689,10 +641,140 @@ namespace WorkflowLib.Example01.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_InitialOrders", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "InitialOrderIngredient",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    IngredientId = table.Column<long>(type: "INTEGER", nullable: true),
+                    InitialOrderId = table.Column<long>(type: "INTEGER", nullable: true),
+                    Quantity = table.Column<int>(type: "INTEGER", nullable: false),
+                    DeliveryWh2KitchenId = table.Column<long>(type: "INTEGER", nullable: true),
+                    Uid = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    BusinessEntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_InitialOrderIngredient", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_InitialOrders_DeliveryOrders_DeliveryOrderId",
-                        column: x => x.DeliveryOrderId,
-                        principalTable: "DeliveryOrders",
+                        name: "FK_InitialOrderIngredient_Ingredients_IngredientId",
+                        column: x => x.IngredientId,
+                        principalTable: "Ingredients",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_InitialOrderIngredient_InitialOrders_InitialOrderId",
+                        column: x => x.InitialOrderId,
+                        principalTable: "InitialOrders",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "InitialOrderProducts",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ProductId = table.Column<long>(type: "INTEGER", nullable: true),
+                    InitialOrderId = table.Column<long>(type: "INTEGER", nullable: true),
+                    Quantity = table.Column<int>(type: "INTEGER", nullable: false),
+                    DeliveryKitchen2WhId = table.Column<long>(type: "INTEGER", nullable: true),
+                    DeliveryWh2KitchenId = table.Column<long>(type: "INTEGER", nullable: true),
+                    Uid = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    BusinessEntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_InitialOrderProducts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_InitialOrderProducts_InitialOrders_InitialOrderId",
+                        column: x => x.InitialOrderId,
+                        principalTable: "InitialOrders",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_InitialOrderProducts_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrderProducts",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ProductId = table.Column<long>(type: "INTEGER", nullable: true),
+                    OrderId = table.Column<long>(type: "INTEGER", nullable: true),
+                    Quantity = table.Column<int>(type: "INTEGER", nullable: false),
+                    Uid = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    BusinessEntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderProducts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrderProducts_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Number = table.Column<string>(type: "TEXT", nullable: true),
+                    OpenOrderDt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CloseOrderDt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CustomerUid = table.Column<string>(type: "TEXT", nullable: true),
+                    CustomerName = table.Column<string>(type: "TEXT", nullable: true),
+                    CompanyUid = table.Column<string>(type: "TEXT", nullable: true),
+                    CompanyName = table.Column<string>(type: "TEXT", nullable: true),
+                    ProductsPrice = table.Column<decimal>(type: "TEXT", nullable: false),
+                    AdditonalPrice = table.Column<decimal>(type: "TEXT", nullable: false),
+                    TaxPrice = table.Column<decimal>(type: "TEXT", nullable: false),
+                    TotalPrice = table.Column<decimal>(type: "TEXT", nullable: false),
+                    CouldBeCancelled = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Status = table.Column<string>(type: "TEXT", nullable: true),
+                    Discriminator = table.Column<string>(type: "TEXT", nullable: false),
+                    DeliveryMethodId = table.Column<long>(type: "INTEGER", nullable: true),
+                    DeliveryOperationId = table.Column<long>(type: "INTEGER", nullable: true),
+                    DeliveryPrice = table.Column<decimal>(type: "TEXT", nullable: true),
+                    OriginId = table.Column<long>(type: "INTEGER", nullable: true),
+                    DestinationId = table.Column<long>(type: "INTEGER", nullable: true),
+                    Uid = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    BusinessEntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_Addresses_DestinationId",
+                        column: x => x.DestinationId,
+                        principalTable: "Addresses",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Orders_Addresses_OriginId",
+                        column: x => x.OriginId,
+                        principalTable: "Addresses",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Orders_DeliveryMethods_DeliveryMethodId",
+                        column: x => x.DeliveryMethodId,
+                        principalTable: "DeliveryMethods",
                         principalColumn: "Id");
                 });
 
@@ -710,7 +792,7 @@ namespace WorkflowLib.Example01.Migrations
                     PaymentType = table.Column<string>(type: "TEXT", nullable: true),
                     PaymentMethod = table.Column<string>(type: "TEXT", nullable: true),
                     Status = table.Column<string>(type: "TEXT", nullable: true),
-                    DeliveryOrderId = table.Column<long>(type: "INTEGER", nullable: true),
+                    OrderId = table.Column<long>(type: "INTEGER", nullable: true),
                     Uid = table.Column<string>(type: "TEXT", nullable: true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
@@ -720,9 +802,68 @@ namespace WorkflowLib.Example01.Migrations
                 {
                     table.PrimaryKey("PK_Payments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Payments_DeliveryOrders_DeliveryOrderId",
+                        name: "FK_Payments_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductTransfers",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    WHProductId = table.Column<long>(type: "INTEGER", nullable: true),
+                    OrderProductId = table.Column<long>(type: "INTEGER", nullable: true),
+                    OrderId = table.Column<long>(type: "INTEGER", nullable: true),
+                    DeliveryOrderProductId = table.Column<long>(type: "INTEGER", nullable: true),
+                    DeliveryOrderId = table.Column<long>(type: "INTEGER", nullable: true),
+                    ParentId = table.Column<long>(type: "INTEGER", nullable: true),
+                    BusinessOperationId = table.Column<long>(type: "INTEGER", nullable: true),
+                    Date = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    OldQuantity = table.Column<double>(type: "REAL", nullable: true),
+                    NewQuantity = table.Column<double>(type: "REAL", nullable: false),
+                    QuantityDelta = table.Column<double>(type: "REAL", nullable: false),
+                    OldStatus = table.Column<string>(type: "TEXT", nullable: true),
+                    NewStatus = table.Column<string>(type: "TEXT", nullable: true),
+                    Uid = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    BusinessEntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductTransfers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProductTransfers_DeliveryOrderProducts_DeliveryOrderProductId",
+                        column: x => x.DeliveryOrderProductId,
+                        principalTable: "DeliveryOrderProducts",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_ProductTransfers_OrderProducts_OrderProductId",
+                        column: x => x.OrderProductId,
+                        principalTable: "OrderProducts",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_ProductTransfers_Orders_DeliveryOrderId",
                         column: x => x.DeliveryOrderId,
-                        principalTable: "DeliveryOrders",
+                        principalTable: "Orders",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_ProductTransfers_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_ProductTransfers_ProductTransfers_ParentId",
+                        column: x => x.ParentId,
+                        principalTable: "ProductTransfers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_ProductTransfers_WHProducts_WHProductId",
+                        column: x => x.WHProductId,
+                        principalTable: "WHProducts",
                         principalColumn: "Id");
                 });
 
@@ -786,11 +927,6 @@ namespace WorkflowLib.Example01.Migrations
                         principalTable: "DeliveryMethods",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_BusinessTasks_DeliveryOrders_DeliveryOrderId",
-                        column: x => x.DeliveryOrderId,
-                        principalTable: "DeliveryOrders",
-                        principalColumn: "Id");
-                    table.ForeignKey(
                         name: "FK_BusinessTasks_ExecutionTime_ActualExecutionTimeId",
                         column: x => x.ActualExecutionTimeId,
                         principalTable: "ExecutionTime",
@@ -800,81 +936,10 @@ namespace WorkflowLib.Example01.Migrations
                         column: x => x.EstimatedExecutionTimeId,
                         principalTable: "ExecutionTime",
                         principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "InitialOrderIngredient",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    IngredientId = table.Column<long>(type: "INTEGER", nullable: true),
-                    InitialOrderId = table.Column<long>(type: "INTEGER", nullable: true),
-                    Quantity = table.Column<int>(type: "INTEGER", nullable: false),
-                    DeliveryWh2KitchenId = table.Column<long>(type: "INTEGER", nullable: true),
-                    Uid = table.Column<string>(type: "TEXT", nullable: true),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
-                    Description = table.Column<string>(type: "TEXT", nullable: true),
-                    BusinessEntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_InitialOrderIngredient", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_InitialOrderIngredient_BusinessTasks_DeliveryWh2KitchenId",
-                        column: x => x.DeliveryWh2KitchenId,
-                        principalTable: "BusinessTasks",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_InitialOrderIngredient_Ingredients_IngredientId",
-                        column: x => x.IngredientId,
-                        principalTable: "Ingredients",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_InitialOrderIngredient_InitialOrders_InitialOrderId",
-                        column: x => x.InitialOrderId,
-                        principalTable: "InitialOrders",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "InitialOrderProducts",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    ProductId = table.Column<long>(type: "INTEGER", nullable: true),
-                    InitialOrderId = table.Column<long>(type: "INTEGER", nullable: true),
-                    Quantity = table.Column<int>(type: "INTEGER", nullable: false),
-                    DeliveryKitchen2WhId = table.Column<long>(type: "INTEGER", nullable: true),
-                    DeliveryWh2KitchenId = table.Column<long>(type: "INTEGER", nullable: true),
-                    Uid = table.Column<string>(type: "TEXT", nullable: true),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
-                    Description = table.Column<string>(type: "TEXT", nullable: true),
-                    BusinessEntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_InitialOrderProducts", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_InitialOrderProducts_BusinessTasks_DeliveryKitchen2WhId",
-                        column: x => x.DeliveryKitchen2WhId,
-                        principalTable: "BusinessTasks",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_InitialOrderProducts_BusinessTasks_DeliveryWh2KitchenId",
-                        column: x => x.DeliveryWh2KitchenId,
-                        principalTable: "BusinessTasks",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_InitialOrderProducts_InitialOrders_InitialOrderId",
-                        column: x => x.InitialOrderId,
-                        principalTable: "InitialOrders",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_InitialOrderProducts_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
+                        name: "FK_BusinessTasks_Orders_DeliveryOrderId",
+                        column: x => x.DeliveryOrderId,
+                        principalTable: "Orders",
                         principalColumn: "Id");
                 });
 
@@ -1215,26 +1280,6 @@ namespace WorkflowLib.Example01.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DeliveryOrders_DeliveryMethodId",
-                table: "DeliveryOrders",
-                column: "DeliveryMethodId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DeliveryOrders_DeliveryOperationId",
-                table: "DeliveryOrders",
-                column: "DeliveryOperationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DeliveryOrders_DestinationId",
-                table: "DeliveryOrders",
-                column: "DestinationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DeliveryOrders_OriginId",
-                table: "DeliveryOrders",
-                column: "OriginId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Ingredients_FinalProductId",
                 table: "Ingredients",
                 column: "FinalProductId");
@@ -1290,6 +1335,36 @@ namespace WorkflowLib.Example01.Migrations
                 column: "DeliveryOrderId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrderProducts_OrderId",
+                table: "OrderProducts",
+                column: "OrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderProducts_ProductId",
+                table: "OrderProducts",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_DeliveryMethodId",
+                table: "Orders",
+                column: "DeliveryMethodId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_DeliveryOperationId",
+                table: "Orders",
+                column: "DeliveryOperationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_DestinationId",
+                table: "Orders",
+                column: "DestinationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_OriginId",
+                table: "Orders",
+                column: "OriginId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OrganizationItems_AddressId",
                 table: "OrganizationItems",
                 column: "AddressId");
@@ -1315,14 +1390,44 @@ namespace WorkflowLib.Example01.Migrations
                 column: "HeadItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payments_DeliveryOrderId",
+                name: "IX_Payments_OrderId",
                 table: "Payments",
-                column: "DeliveryOrderId");
+                column: "OrderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_ProductCategoryId",
                 table: "Products",
                 column: "ProductCategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductTransfers_DeliveryOrderId",
+                table: "ProductTransfers",
+                column: "DeliveryOrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductTransfers_DeliveryOrderProductId",
+                table: "ProductTransfers",
+                column: "DeliveryOrderProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductTransfers_OrderId",
+                table: "ProductTransfers",
+                column: "OrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductTransfers_OrderProductId",
+                table: "ProductTransfers",
+                column: "OrderProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductTransfers_ParentId",
+                table: "ProductTransfers",
+                column: "ParentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductTransfers_WHProductId",
+                table: "ProductTransfers",
+                column: "WHProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Project_CompanyId",
@@ -1453,15 +1558,50 @@ namespace WorkflowLib.Example01.Migrations
                 principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_DeliveryOrderProducts_DeliveryOrders_DeliveryOrderId",
+                name: "FK_DeliveryOrderProducts_Orders_DeliveryOrderId",
                 table: "DeliveryOrderProducts",
                 column: "DeliveryOrderId",
-                principalTable: "DeliveryOrders",
+                principalTable: "Orders",
                 principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_DeliveryOrders_BusinessTasks_DeliveryOperationId",
-                table: "DeliveryOrders",
+                name: "FK_InitialOrders_Orders_DeliveryOrderId",
+                table: "InitialOrders",
+                column: "DeliveryOrderId",
+                principalTable: "Orders",
+                principalColumn: "Id");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_InitialOrderIngredient_BusinessTasks_DeliveryWh2KitchenId",
+                table: "InitialOrderIngredient",
+                column: "DeliveryWh2KitchenId",
+                principalTable: "BusinessTasks",
+                principalColumn: "Id");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_InitialOrderProducts_BusinessTasks_DeliveryKitchen2WhId",
+                table: "InitialOrderProducts",
+                column: "DeliveryKitchen2WhId",
+                principalTable: "BusinessTasks",
+                principalColumn: "Id");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_InitialOrderProducts_BusinessTasks_DeliveryWh2KitchenId",
+                table: "InitialOrderProducts",
+                column: "DeliveryWh2KitchenId",
+                principalTable: "BusinessTasks",
+                principalColumn: "Id");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_OrderProducts_Orders_OrderId",
+                table: "OrderProducts",
+                column: "OrderId",
+                principalTable: "Orders",
+                principalColumn: "Id");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Orders_BusinessTasks_DeliveryOperationId",
+                table: "Orders",
                 column: "DeliveryOperationId",
                 principalTable: "BusinessTasks",
                 principalColumn: "Id");
@@ -1516,7 +1656,15 @@ namespace WorkflowLib.Example01.Migrations
                 table: "BusinessTasks");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_BusinessTasks_DeliveryOrders_DeliveryOrderId",
+                name: "FK_BusinessTasks_ExecutionTime_ActualExecutionTimeId",
+                table: "BusinessTasks");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_BusinessTasks_ExecutionTime_EstimatedExecutionTimeId",
+                table: "BusinessTasks");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_BusinessTasks_Orders_DeliveryOrderId",
                 table: "BusinessTasks");
 
             migrationBuilder.DropForeignKey(
@@ -1558,9 +1706,6 @@ namespace WorkflowLib.Example01.Migrations
                 name: "ContractOrganization");
 
             migrationBuilder.DropTable(
-                name: "DeliveryOrderProducts");
-
-            migrationBuilder.DropTable(
                 name: "InitialOrderIngredient");
 
             migrationBuilder.DropTable(
@@ -1573,6 +1718,9 @@ namespace WorkflowLib.Example01.Migrations
                 name: "Payments");
 
             migrationBuilder.DropTable(
+                name: "ProductTransfers");
+
+            migrationBuilder.DropTable(
                 name: "ProjectPhase");
 
             migrationBuilder.DropTable(
@@ -1582,9 +1730,6 @@ namespace WorkflowLib.Example01.Migrations
                 name: "Skill");
 
             migrationBuilder.DropTable(
-                name: "WHProducts");
-
-            migrationBuilder.DropTable(
                 name: "Organizations");
 
             migrationBuilder.DropTable(
@@ -1592,6 +1737,15 @@ namespace WorkflowLib.Example01.Migrations
 
             migrationBuilder.DropTable(
                 name: "InitialOrders");
+
+            migrationBuilder.DropTable(
+                name: "DeliveryOrderProducts");
+
+            migrationBuilder.DropTable(
+                name: "OrderProducts");
+
+            migrationBuilder.DropTable(
+                name: "WHProducts");
 
             migrationBuilder.DropTable(
                 name: "ProjectPlanItem");
@@ -1621,16 +1775,16 @@ namespace WorkflowLib.Example01.Migrations
                 name: "Contacts");
 
             migrationBuilder.DropTable(
-                name: "DeliveryOrders");
+                name: "ExecutionTime");
+
+            migrationBuilder.DropTable(
+                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "BusinessTasks");
 
             migrationBuilder.DropTable(
                 name: "DeliveryMethods");
-
-            migrationBuilder.DropTable(
-                name: "ExecutionTime");
 
             migrationBuilder.DropTable(
                 name: "Addresses");

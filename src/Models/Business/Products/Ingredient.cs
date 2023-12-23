@@ -19,6 +19,11 @@ namespace Cims.WorkflowLib.Models.Business.Products
         /// </summary>
         public Product FinalProduct { get; set; }
 
+        /// <summary>
+        /// Quantity of ingredients that are necessary for cooking the final product.
+        /// </summary>
+        public double Quantity { get; set; }
+
         // /// <summary>
         // /// Substitute ingredients.
         // /// </summary>

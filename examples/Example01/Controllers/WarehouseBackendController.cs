@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Customers;
+using Cims.WorkflowLib.Models.Business.Products;
 using Cims.WorkflowLib.Example01.Data;
 using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Models;
@@ -18,6 +19,11 @@ namespace Cims.WorkflowLib.Example01.Controllers
             _contextOptions = contextOptions;
         }
 
+        /// <summary>
+        /// Method for determining the first action of personnel to process an order: for example, 1) transfer ingredients 
+        /// from the warehouse to the kitchen or 2) create an order for the delivery of missing ingredients from the store 
+        /// to the warehouse.
+        /// </summary>
         public string PreprocessOrderRedirect(ApiOperation apiOperation)
         {
             string response = "";
@@ -26,25 +32,109 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                using var context = new DeliveringContext(_contextOptions);
 
                 // Get ingredients amount from DB.
                 int ingredientsAmount = 0;
                 bool isSufficient = true;
-                // bool isSufficient = ingredientsAmount >= (model.Products == null ? 0 : model.Products.Count);
 
-                // Understand whether there are enough ingredients in the warehouse. 
-                // And if there are not enough, then which ones specifically.
-                // Subtract the quantity element by element for the corresponding WHProduct object if in the DeliveryOrder.Products 
-                // collection there is an element with the same ID.
+                // Find corresponding records in the DeliveryOrderProduct table by order ID (a table of associations between the Product,
+                // DeliveryOrder and Quantity).
+                var deliveryOrderProducts = context.DeliveryOrderProducts
+                    .Include(x => x.Product)
+                    .Include(x => x.DeliveryOrder)
+                    .Where(x => x.DeliveryOrder.Id == model.Id);
+                var productIds = (from product in deliveryOrderProducts select product.Product.Id).ToList();
+
+                // Using product IDs from the order, find the corresponding products in the WHProduct warehouse. It will be more 
+                // relevant for those products that need to be stored in a warehouse in finished form (for example, drinks, snacks).
+                // var whproducts = context.WHProducts.Where(x => productIds.Any(pid => pid == x.Product.Id));
+
+                // Using the product IDs from the Product order, find the corresponding records in the Ingredients table (look at the link 
+                // to the object FinalProduct). This will allow you to find:
+                //     1) corresponding records in the Recipes table (if it is necessary to check the relevance of the recipe by the 
+                // BusinessEntityStatus value);
+                //     2) products that correspond to the ingredient (look at the link to the IngredientProduct object).
+                var ingredients = context.Ingredients
+                    .Include(x => x.IngredientProduct)
+                    .Include(x => x.FinalProduct)
+                    .Where(x => productIds.Any(pid => pid == x.FinalProduct.Id));
+                var ingredientProductIds = (from ingredient in ingredients select ingredient.IngredientProduct.Id).ToList();
+
+                // Based on product IDs and corresponding ingredients, you can:
+                //     1) find the corresponding products in the WHProduct warehouse;
+                //     2) create a product transfer ProductTransfer, specifying the quantity DeliveryOrderProduct.Quantity as QuantityDelta 
+                // (all other fields must also be filled in);
+                //     3) subtract the quantity DeliveryOrderProduct.Quantity from the quantity of products in the warehouse WHProduct.Quantity;
+                //     4) compare the number of products that are currently in stock with the minimum quantity WHProduct.MinQuantity:
+                //             - if WHProduct.Quantity is greater than or equal to WHProduct.MinQuantity, then deliver from the warehouse 
+                // to the kitchen;
+                //             - if WHProduct.Quantity is less than WHProduct.MinQuantity, then create DeliveryOrder and DeliveryOrderProduct 
+                // objects in order to order delivery from the store (the quantity of each product in the order is equal to the delta between 
+                // the actual current value of WHProduct.Quantity and the average of WHProduct.MinQuantity and WHProduct.MaxQuantity).
+                // Attention: Point 4 (see the general description of working with data structures) does not take into account a situation 
+                // that can slow down the business process of order processing if WHProduct.Quantity is less than WHProduct.MinQuantity 
+                // and greater than zero.
+                // In this case, it is necessary to both start the delivery process from the warehouse to the kitchen and order delivery 
+                // from the store.
+                var whingredients = context.WHProducts
+                    .Include(x => x.Product)
+                    .Where(x => ingredientProductIds.Any(pid => pid == x.Product.Id));
+                var deliveryOrderStore2Wh = new DeliveryOrder
+                {
+                    Uid = System.Guid.NewGuid().ToString()
+                    // Add more info.
+                };
+                var deliveryOrderProductsStore2Wh = new List<DeliveryOrderProduct>();
+                foreach (var whingredient in whingredients)
+                {
+                    var ingredient = ingredients.FirstOrDefault(x => x.IngredientProduct.Id == whingredient.Product.Id);
+                    if (ingredient == null)
+                        throw new System.Exception("Specified ingredient does not exist in the collection");
+                    var deliveryOrderProduct = deliveryOrderProducts.FirstOrDefault(x => x.Product.Id == ingredient.FinalProduct.Id);
+                    if (deliveryOrderProduct == null)
+                        throw new System.Exception("Specified IngredientProduct does not exist in the DeliveryOrderProducts collection");
+                    var productTransfer = new ProductTransfer
+                    {
+                        Uid = System.Guid.NewGuid().ToString(),
+                        WHProduct = whingredient,
+                        DeliveryOrderProduct = deliveryOrderProduct,
+                        DeliveryOrder = deliveryOrderProduct.DeliveryOrder,
+                        Date = System.DateTime.Now,
+                        OldQuantity = whingredient.Quantity,
+                        NewQuantity = whingredient.Quantity - deliveryOrderProduct.Quantity,
+                        QuantityDelta = deliveryOrderProduct.Quantity
+                    };
+                    whingredient.Quantity = (int)productTransfer.NewQuantity;
+                    if (whingredient.Quantity < whingredient.MinQuantity)
+                    {
+                        isSufficient = false;
+                        var whingredientLimits = new List<int> { whingredient.MinQuantity, whingredient.MaxQuantity };
+                        var deliveryOrderProductStore2Wh = new DeliveryOrderProduct
+                        {
+                            Uid = System.Guid.NewGuid().ToString(),
+                            Product = whingredient.Product,
+                            DeliveryOrder = deliveryOrderStore2Wh,
+                            Quantity = (int)whingredientLimits.Average() - whingredient.Quantity
+                        };
+                        deliveryOrderProductsStore2Wh.Add(deliveryOrderProductStore2Wh);
+                    }
+                    context.ProductTransfers.Add(productTransfer);
+                }
+                if (!isSufficient)
+                {
+                    context.DeliveryOrders.Add(deliveryOrderStore2Wh);
+                    context.DeliveryOrderProducts.AddRange(deliveryOrderProductsStore2Wh);
+                }
+                System.Console.WriteLine($"isSufficient : {isSufficient}");
+                context.SaveChanges();
 
                 // Calculte delivery time.
                 var wh2kitchenDuration = new System.TimeSpan(0, 5, 0);
                 var kitchen2whDuration = new System.TimeSpan(0, 5, 0);
                 var store2whDuration = new System.TimeSpan(0, 15, 0);
                 var preparemealDuration = new System.TimeSpan(0, 15, 0);
-
-                // Overall deilivery time (best-case scenario).
-                System.TimeSpan result = wh2kitchenDuration + kitchen2whDuration + preparemealDuration;
+                var resultDuration = wh2kitchenDuration + kitchen2whDuration + preparemealDuration;
 
                 // 
                 if (isSufficient)
@@ -58,8 +148,8 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 }
                 else
                 {
-                    // Overall deilivery time (taking into account that delivery from store to warehouse is necessary).
-                    result += store2whDuration;
+                    // Overall delivery time (taking into account that delivery from store to warehouse is necessary).
+                    resultDuration += store2whDuration;
 
                     // Invoke store2wh.
                     response = Store2WhStart(new ApiOperation()

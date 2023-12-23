@@ -1,3 +1,5 @@
+using Cims.WorkflowLib.Models.Business.BusinessDocuments;
+
 namespace Cims.WorkflowLib.Models.Business.Products
 {
     /// <summary>
@@ -13,12 +15,22 @@ namespace Cims.WorkflowLib.Models.Business.Products
         /// <summary>
         /// Order product ID.
         /// </summary>
-        public long? OrderProductId { get; set; }
+        public OrderProduct OrderProduct { get; set; }
 
         /// <summary>
         /// Order ID.
         /// </summary>
-        public long? OrderId { get; set; }
+        public Order Order { get; set; }
+
+        /// <summary>
+        /// Delivery order product ID.
+        /// </summary>
+        public DeliveryOrderProduct DeliveryOrderProduct { get; set; }
+
+        /// <summary>
+        /// Delivery order ID.
+        /// </summary>
+        public DeliveryOrder DeliveryOrder { get; set; }
 
         /// <summary>
         /// Parent element.
@@ -44,6 +56,11 @@ namespace Cims.WorkflowLib.Models.Business.Products
         /// New quantity.
         /// </summary>
         public double NewQuantity { get; set; }
+        
+        /// <summary>
+        /// Quantity delta.
+        /// </summary>
+        public double QuantityDelta { get; set; }
         
         /// <summary>
         /// Old status.

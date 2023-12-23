@@ -35,6 +35,8 @@ namespace Cims.WorkflowLib.Example01.Data
         public DbSet<BusinessTask> BusinessTasks { get; set; }
         public DbSet<Comment> Comments { get; set; }
 
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderProduct> OrderProducts { get; set; }
         public DbSet<InitialOrder> InitialOrders { get; set; }
         public DbSet<InitialOrderProduct> InitialOrderProducts { get; set; }
         public DbSet<DeliveryOrder> DeliveryOrders { get; set; }

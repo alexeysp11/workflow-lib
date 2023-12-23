@@ -83,8 +83,8 @@ namespace Cims.WorkflowLib.Example01
             _step02.Start();
 
             // // Step 03: finish delivering from warehouse to kitchen.
-            System.Console.WriteLine("\nStep 03: finish delivering from warehouse to kitchen.");
-            _step03.Start();
+            // System.Console.WriteLine("\nStep 03: finish delivering from warehouse to kitchen.");
+            // _step03.Start();
 
             // Step 04: request for delivering from store to warehouse.
             // System.Console.WriteLine("\nStep 04: request for delivering from store to warehouse.");
@@ -140,6 +140,9 @@ namespace Cims.WorkflowLib.Example01
             // because it could lead to the circular dependency exception.
             // It is better to clear such tables directly using SQL queries.
             
+            context.BusinessTasks.RemoveRange(context.BusinessTasks.ToList());
+            context.Comments.RemoveRange(context.Comments.ToList());
+            
             context.InitialOrders.RemoveRange(context.InitialOrders.ToList());
             context.InitialOrderProducts.RemoveRange(context.InitialOrderProducts.ToList());
             context.DeliveryOrders.RemoveRange(context.DeliveryOrders.ToList());
@@ -151,8 +154,12 @@ namespace Cims.WorkflowLib.Example01
             context.WHProducts.RemoveRange(context.WHProducts.ToList());
             context.Ingredients.RemoveRange(context.Ingredients.ToList());
             context.Recipes.RemoveRange(context.Recipes.ToList());
+            context.ProductTransfers.RemoveRange(context.ProductTransfers.ToList());
 
             context.Notifications.RemoveRange(context.Notifications.ToList());
+            
+            context.DeliveriesWh2Kitchen.RemoveRange(context.DeliveriesWh2Kitchen.ToList());
+            context.DeliveriesKitchen2Wh.RemoveRange(context.DeliveriesKitchen2Wh.ToList());
             context.DeliveryOperations.RemoveRange(context.DeliveryOperations.ToList());
 
             context.SaveChanges();
