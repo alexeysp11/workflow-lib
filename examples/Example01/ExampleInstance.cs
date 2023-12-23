@@ -171,7 +171,7 @@ namespace Cims.WorkflowLib.Example01
             if (context.UserAccounts.Count() != 0 || context.UserGroups.Count() != 0)
                 return;
             
-            for (int i = 1; i <= 10; i++)
+            for (int i = 1; i <= 30; i++)
             {
                 context.UserAccounts.Add(new UserAccount
                 {
@@ -195,6 +195,7 @@ namespace Cims.WorkflowLib.Example01
                 "customer", 
                 "manager", 
                 "courier",
+                "warehouse employee",
                 "kitchen employee"
             };
             var userGroupQty = userGroupNames.Count();
@@ -302,7 +303,7 @@ namespace Cims.WorkflowLib.Example01
             var lvl03Couriers = new OrganizationItem
             {
                 Uid = System.Guid.NewGuid().ToString(),
-                Name = $"Couriers",
+                Name = "Couriers",
                 ItemType = OrganizationItemType.Department,
                 Users = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "courier").Users,
                 Address = company.Address,
@@ -312,17 +313,27 @@ namespace Cims.WorkflowLib.Example01
             var lvl03TechSupport = new OrganizationItem
             {
                 Uid = System.Guid.NewGuid().ToString(),
-                Name = $"Tech support",
+                Name = "Tech support",
                 ItemType = OrganizationItemType.Department,
                 Users = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "tech support").Users,
                 Address = company.Address,
                 ParentItem = lvl02
             };
             context.OrganizationItems.Add(lvl03TechSupport);
+            var lvl03Warehouse = new OrganizationItem
+            {
+                Uid = System.Guid.NewGuid().ToString(),
+                Name = "Warehouse employees",
+                ItemType = OrganizationItemType.Department,
+                Users = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "warehouse employee").Users,
+                Address = company.Address,
+                ParentItem = lvl02
+            };
+            context.OrganizationItems.Add(lvl03Warehouse);
             var lvl03Kitchen = new OrganizationItem
             {
                 Uid = System.Guid.NewGuid().ToString(),
-                Name = $"Kitchen employees",
+                Name = "Kitchen employees",
                 ItemType = OrganizationItemType.Department,
                 Users = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "kitchen employee").Users,
                 Address = company.Address,
@@ -354,6 +365,7 @@ namespace Cims.WorkflowLib.Example01
             usergroups.Add(context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "manager"));
             usergroups.Add(context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "courier"));
             usergroups.Add(context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "tech support"));
+            usergroups.Add(context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "warehouse employee"));
             usergroups.Add(context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "kitchen employee"));
             // In a loop for each user group, enumerate users.
             var company = context.Companies.FirstOrDefault();
@@ -363,9 +375,9 @@ namespace Cims.WorkflowLib.Example01
                 foreach (var user in ug.Users)
                 {
                     // For each user initialize a company employee. 
-                    var firstName = "FirstName #" + user.Id;
-                    var middleName = "MiddleName #" + user.Id;
-                    var lastName = "LastName #" + user.Id;
+                    var firstName = "FirstName" + user.Id;
+                    var middleName = "MiddleName" + user.Id;
+                    var lastName = "LastName" + user.Id;
                     var fullName = $"{firstName} {middleName} {lastName}";
                     var employee = new Employee
                     {
@@ -516,7 +528,8 @@ namespace Cims.WorkflowLib.Example01
                 Uid = System.Guid.NewGuid().ToString(),
                 Name = product.Name,
                 FinalProduct = finalProduct,
-                IngredientProduct = product
+                IngredientProduct = product,
+                Quantity = rand.Next(1, 4)
             };
             var whproduct = new WHProduct
             {

@@ -44,11 +44,6 @@ namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
         /// Company name of the order.
         /// </summary>
         public string? CompanyName { get; set; }
-
-        // /// <summary>
-        // /// Products associated with the order.
-        // /// </summary>
-        // public ICollection<Product> Products { get; set; }
         
         /// <summary>
         /// Price of the products.

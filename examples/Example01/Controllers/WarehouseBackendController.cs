@@ -94,6 +94,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     var deliveryOrderProduct = deliveryOrderProducts.FirstOrDefault(x => x.Product.Id == ingredient.FinalProduct.Id);
                     if (deliveryOrderProduct == null)
                         throw new System.Exception("Specified IngredientProduct does not exist in the DeliveryOrderProducts collection");
+                    var qtyDelta = deliveryOrderProduct.Quantity * ingredient.Quantity;
                     var productTransfer = new ProductTransfer
                     {
                         Uid = System.Guid.NewGuid().ToString(),
@@ -102,8 +103,8 @@ namespace Cims.WorkflowLib.Example01.Controllers
                         DeliveryOrder = deliveryOrderProduct.DeliveryOrder,
                         Date = System.DateTime.Now,
                         OldQuantity = whingredient.Quantity,
-                        NewQuantity = whingredient.Quantity - deliveryOrderProduct.Quantity,
-                        QuantityDelta = deliveryOrderProduct.Quantity
+                        NewQuantity = whingredient.Quantity - qtyDelta,
+                        QuantityDelta = qtyDelta
                     };
                     whingredient.Quantity = (int)productTransfer.NewQuantity;
                     if (whingredient.Quantity < whingredient.MinQuantity)
