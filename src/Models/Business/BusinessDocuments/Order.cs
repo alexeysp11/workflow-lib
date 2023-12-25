@@ -36,14 +36,24 @@ namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
         public string? CustomerName { get; set; }
         
         /// <summary>
-        /// Company UID of the order.
+        /// Type of the customer in the order.
         /// </summary>
-        public string? CompanyUid { get; set; }
+        public OrderCustomerType? OrderCustomerType { get; set; }
         
         /// <summary>
-        /// Company name of the order.
+        /// Executor UID of the order.
         /// </summary>
-        public string? CompanyName { get; set; }
+        public string? ExecutorUid { get; set; }
+
+        /// <summary>
+        /// Executor name of the order.
+        /// </summary>
+        public string? ExecutorName { get; set; }
+        
+        /// <summary>
+        /// Type of the executor in the order.
+        /// </summary>
+        public OrderExecutorType? OrderExecutorType { get; set; }
         
         /// <summary>
         /// Price of the products.
