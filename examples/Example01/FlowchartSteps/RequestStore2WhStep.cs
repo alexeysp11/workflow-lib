@@ -18,14 +18,17 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
 
         public void Start()
         {
-            var model = new InitialOrder()
-            {
-                // 
-            };
+            System.Console.WriteLine("RequestStore2WhStep.Start: begin");
+            
+            using var context = new DeliveringContext(_contextOptions);
+
+            var model = context.DeliveryOrders.FirstOrDefault(x => x.ParentDeliveryOrder != null);
             new WarehouseClientController(_contextOptions).Store2WhRequest(new ApiOperation
             {
                 RequestObject = model
             });
+            
+            System.Console.WriteLine("RequestStore2WhStep.Start: end");
         }
     }
 }

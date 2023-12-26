@@ -23,7 +23,8 @@ namespace Cims.WorkflowLib.Example01.Controllers
             try
             {
                 // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+
                 // Update DB.
                 System.Console.WriteLine("CourierBackend.Store2WhSave: cache");
                 
@@ -64,7 +65,8 @@ namespace Cims.WorkflowLib.Example01.Controllers
             try
             {
                 // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                
                 // Update DB.
                 System.Console.WriteLine("CourierBackend.Store2WhExecute: cache");
 

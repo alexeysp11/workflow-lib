@@ -129,9 +129,11 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     var ingredient = ingredients.FirstOrDefault(x => x.IngredientProduct.Id == whingredient.Product.Id);
                     if (ingredient == null)
                         throw new System.Exception("Specified ingredient does not exist in the collection");
+                    
                     var deliveryOrderProduct = deliveryOrderProducts.FirstOrDefault(x => x.Product.Id == ingredient.FinalProduct.Id);
                     if (deliveryOrderProduct == null)
                         throw new System.Exception("Specified IngredientProduct does not exist in the DeliveryOrderProducts collection");
+                    
                     var qtyDelta = deliveryOrderProduct.Quantity * ingredient.Quantity;
                     var productTransfer = new ProductTransfer
                     {
@@ -211,7 +213,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             try
             {
                 // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
                 
                 // Update DB.
 
@@ -249,52 +251,6 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
-        public string Wh2KitchenStart(ApiOperation apiOperation)
-        {
-            string response = "";
-            System.Console.WriteLine("WarehouseBackend.Wh2KitchenStart: begin");
-            try
-            {
-                // Initializing.
-                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
-                
-                // Update DB.
-                System.Console.WriteLine("WarehouseBackend.Wh2KitchenStart: cache");
-                
-                // Notify warehouse employee.
-                new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
-                {
-                    new Notification
-                    {
-                        SenderId = 1,
-                        ReceiverId = 2,
-                        TitleText = "Create request for delivering from warehouse to kitchen",
-                        BodyText = ""
-                    }
-                });
-
-                // Update cache in the client-side app.
-                var deliveryWh2Kitchen = new DeliveryWh2Kitchen
-                {
-                    // 
-                };
-                string whRequest = new WarehouseClientController(_contextOptions).Wh2KitchenSave(new ApiOperation()
-                {
-                    RequestObject = deliveryWh2Kitchen
-                });
-
-                // 
-                response = "success";
-            }
-            catch (System.Exception ex)
-            {
-                response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
-            }
-            System.Console.WriteLine("WarehouseBackend.Wh2KitchenStart: end");
-            return response;
-        }
-
         public string Store2WhRequest(ApiOperation apiOperation)
         {
             string response = "";
@@ -302,7 +258,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             try
             {
                 // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
                 
                 // Update DB.
                 System.Console.WriteLine("WarehouseBackend.Store2WhRequest: cache");
@@ -388,6 +344,52 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("WarehouseBackend.Store2WhConfirm: end");
+            return response;
+        }
+        
+        public string Wh2KitchenStart(ApiOperation apiOperation)
+        {
+            string response = "";
+            System.Console.WriteLine("WarehouseBackend.Wh2KitchenStart: begin");
+            try
+            {
+                // Initializing.
+                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                
+                // Update DB.
+                System.Console.WriteLine("WarehouseBackend.Wh2KitchenStart: cache");
+                
+                // Notify warehouse employee.
+                new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
+                {
+                    new Notification
+                    {
+                        SenderId = 1,
+                        ReceiverId = 2,
+                        TitleText = "Create request for delivering from warehouse to kitchen",
+                        BodyText = ""
+                    }
+                });
+
+                // Update cache in the client-side app.
+                var deliveryWh2Kitchen = new DeliveryWh2Kitchen
+                {
+                    // 
+                };
+                string whRequest = new WarehouseClientController(_contextOptions).Wh2KitchenSave(new ApiOperation()
+                {
+                    RequestObject = deliveryWh2Kitchen
+                });
+
+                // 
+                response = "success";
+            }
+            catch (System.Exception ex)
+            {
+                response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
+            }
+            System.Console.WriteLine("WarehouseBackend.Wh2KitchenStart: end");
             return response;
         }
 

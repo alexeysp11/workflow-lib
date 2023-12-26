@@ -27,7 +27,8 @@ namespace Cims.WorkflowLib.Example01.Controllers
             try
             {
                 // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+
                 // Update DB.
                 System.Console.WriteLine("WarehouseClient.Store2WhSave: cache");
 
@@ -44,31 +45,6 @@ namespace Cims.WorkflowLib.Example01.Controllers
         }
 
         /// <summary>
-        /// Storing the request for warhouse employee to deliver from warehouse to kitchen. 
-        /// </summary>
-        public string Wh2KitchenSave(ApiOperation apiOperation)
-        {
-            string response = "";
-            System.Console.WriteLine("WarehouseClient.Wh2KitchenSave: begin");
-            try
-            {
-                DeliveryWh2Kitchen model = apiOperation.RequestObject as DeliveryWh2Kitchen;
-                // Update DB.
-                System.Console.WriteLine("WarehouseClient.Wh2KitchenSave: cache");
-
-                // 
-                response = "success";
-            }
-            catch (System.Exception ex)
-            {
-                response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
-            }
-            System.Console.WriteLine("WarehouseClient.Wh2KitchenSave: end");
-            return response;
-        }
-
-        /// <summary>
         /// Requesting delivering from store to warehouse.
         /// </summary>
         public string Store2WhRequest(ApiOperation apiOperation)
@@ -78,7 +54,8 @@ namespace Cims.WorkflowLib.Example01.Controllers
             try
             {
                 // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+
                 // Update DB.
                 System.Console.WriteLine("WarehouseClient.Store2WhRequest: cache");
 
@@ -107,7 +84,8 @@ namespace Cims.WorkflowLib.Example01.Controllers
             try
             {
                 // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+
                 // Update DB.
                 System.Console.WriteLine("WarehouseClient.Store2WhConfirm: cache");
 
@@ -126,6 +104,32 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("ERROR : " + ex.ToString());
             }
             System.Console.WriteLine("WarehouseClient.Store2WhConfirm: end");
+            return response;
+        }
+        
+        /// <summary>
+        /// Storing the request for warhouse employee to deliver from warehouse to kitchen. 
+        /// </summary>
+        public string Wh2KitchenSave(ApiOperation apiOperation)
+        {
+            string response = "";
+            System.Console.WriteLine("WarehouseClient.Wh2KitchenSave: begin");
+            try
+            {
+                DeliveryWh2Kitchen model = apiOperation.RequestObject as DeliveryWh2Kitchen;
+
+                // Update DB.
+                System.Console.WriteLine("WarehouseClient.Wh2KitchenSave: cache");
+
+                // 
+                response = "success";
+            }
+            catch (System.Exception ex)
+            {
+                response = "error: " + ex.Message;
+                System.Console.WriteLine("ERROR : " + ex.ToString());
+            }
+            System.Console.WriteLine("WarehouseClient.Wh2KitchenSave: end");
             return response;
         }
 

@@ -25,10 +25,10 @@ namespace Cims.WorkflowLib.Example01
 
         private MakeOrderStep _step01 { get; set; }
         private MakePaymentStep _step02 { get; set; }
-        private FinishWh2KitchenStep _step03 { get; set; }
-        private RequestStore2WhStep _step04 { get; set; }
-        private FinishStore2WhStep _step05 { get; set; }
-        private ConfirmStore2WhStep _step06 { get; set; }
+        private RequestStore2WhStep _step03 { get; set; }
+        private FinishStore2WhStep _step04 { get; set; }
+        private ConfirmStore2WhStep _step05 { get; set; }
+        private FinishWh2KitchenStep _step06 { get; set; }
         private PrepareMealStep _step07 { get; set; }
         private Kitchen2WhStep _step08 { get; set; }
         private ScanQrOnOrderStep _step09 { get; set; }
@@ -42,10 +42,10 @@ namespace Cims.WorkflowLib.Example01
             DbContextOptions<DeliveringContext> contextOptions,
             MakeOrderStep step01, 
             MakePaymentStep step02, 
-            FinishWh2KitchenStep step03, 
-            RequestStore2WhStep step04, 
-            FinishStore2WhStep step05, 
-            ConfirmStore2WhStep step06, 
+            RequestStore2WhStep step03, 
+            FinishStore2WhStep step04, 
+            ConfirmStore2WhStep step05, 
+            FinishWh2KitchenStep step06, 
             PrepareMealStep step07, 
             Kitchen2WhStep step08, 
             ScanQrOnOrderStep step09, 
@@ -82,20 +82,20 @@ namespace Cims.WorkflowLib.Example01
             System.Console.WriteLine("\nStep 02: make payment.");
             _step02.Start();
 
-            // // Step 03: finish delivering from warehouse to kitchen.
-            // System.Console.WriteLine("\nStep 03: finish delivering from warehouse to kitchen.");
-            // _step03.Start();
+            // Step 03: request for delivering from store to warehouse.
+            System.Console.WriteLine("\nStep 03: request for delivering from store to warehouse.");
+            _step03.Start();
 
-            // Step 04: request for delivering from store to warehouse.
-            // System.Console.WriteLine("\nStep 04: request for delivering from store to warehouse.");
+            // // Step 04: deliver from store to warehouse.
+            // System.Console.WriteLine("\nStep 04: deliver from store to warehouse.");
             // _step04.Start();
 
-            // // Step 05: deliver from store to warehouse.
-            // System.Console.WriteLine("\nStep 05: deliver from store to warehouse.");
+            // // Step 05: confirm delivering from store to warehouse.
+            // System.Console.WriteLine("\nStep 05: confirm delivering from store to warehouse.");
             // _step05.Start();
 
-            // // Step 06: confirm delivering from store to warehouse.
-            // System.Console.WriteLine("\nStep 06: confirm delivering from store to warehouse.");
+            // // Step 06: finish delivering from warehouse to kitchen.
+            // System.Console.WriteLine("\nStep 06: finish delivering from warehouse to kitchen.");
             // _step06.Start();
 
             // // Step 07: prepare meal.
