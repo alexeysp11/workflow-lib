@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Customers;
+using Cims.WorkflowLib.Models.Business.InformationSystem;
 using Cims.WorkflowLib.Models.Business.Products;
 using Cims.WorkflowLib.Example01.Data;
 using Cims.WorkflowLib.Models.Network;
@@ -61,6 +62,33 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     .Where(x => productIds.Any(pid => pid == x.FinalProduct.Id));
                 var ingredientProductIds = (from ingredient in ingredients select ingredient.IngredientProduct.Id).ToList();
 
+                // Pseudo-randomly select executors from the warehouse and courier delivery departments.
+                var rand = new System.Random();
+                var responsibleEmployees = new Dictionary<string, Employee>();
+                var userGroupNames = new List<string>() { "warehouse employee", "courier" };
+                foreach (var userGroupName in userGroupNames)
+                {
+                    var userGroup = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == userGroupName);
+                    if (userGroup == null)
+                        throw new System.Exception("Specified user group is not defined");
+
+                    var userAccountIds = (from userAccount in userGroup.Users select userAccount.Id).ToList();
+                    var potentialExecutors = 
+                        (from employee in context.Employees 
+                        where employee.UserAccounts != null && employee.UserAccounts.Any(ua => userAccountIds.Contains(ua.Id))
+                        select employee).ToList();
+                    if (potentialExecutors == null || !potentialExecutors.Any())
+                        throw new System.Exception("The list of potential executors is null or empty");
+                    
+                    var selectedEmployee = potentialExecutors[rand.Next(potentialExecutors.Count)];
+                    if (selectedEmployee == null)
+                        throw new System.Exception("Randomly selected employee is null");
+                    
+                    responsibleEmployees.Add(userGroupName, selectedEmployee);
+                }
+                var whEmployee = responsibleEmployees[userGroupNames[0]];
+                var courierEmployee = responsibleEmployees[userGroupNames[1]];
+
                 // Based on product IDs and corresponding ingredients, you can:
                 //     1) find the corresponding products in the WHProduct warehouse;
                 //     2) create a product transfer ProductTransfer, specifying the quantity DeliveryOrderProduct.Quantity as 
@@ -84,8 +112,16 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     .Where(x => ingredientProductIds.Any(pid => pid == x.Product.Id));
                 var deliveryOrderStore2Wh = new DeliveryOrder
                 {
-                    Uid = System.Guid.NewGuid().ToString()
-                    // Add more info.
+                    Uid = System.Guid.NewGuid().ToString(),
+                    ParentDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id),
+                    CustomerUid = whEmployee.Uid,
+                    CustomerName = whEmployee.FullName,
+                    OrderCustomerType = OrderCustomerType.Employee,
+                    ExecutorUid = courierEmployee.Uid,
+                    ExecutorName = whEmployee.FullName,
+                    OrderExecutorType = OrderExecutorType.Employee,
+                    Destination = model.Origin,
+                    OpenOrderDt = System.DateTime.Now
                 };
                 var deliveryOrderProductsStore2Wh = new List<DeliveryOrderProduct>();
                 foreach (var whingredient in whingredients)

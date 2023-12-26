@@ -26,6 +26,11 @@ namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
         public System.DateTime CloseOrderDt { get; set; }
         
         /// <summary>
+        /// Parent order.
+        /// </summary>
+        public Order ParentOrder { get; set; }
+        
+        /// <summary>
         /// Customer UID of the order.
         /// </summary>
         public string? CustomerUid { get; set; }

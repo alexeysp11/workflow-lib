@@ -36,7 +36,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
                 Login = customer.UserAccount.Login,
                 PhoneNumber = customer.UserAccount.PhoneNumber,
                 City = "City1",
-                Address = "Address1",
+                Address = "123, Customer Address",
                 ProductIds = productIds,
                 PaymentType = "card"
             };

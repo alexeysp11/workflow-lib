@@ -13,6 +13,11 @@ namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
     public class DeliveryOrder : Order, IBusinessEntityWF
     {
         /// <summary>
+        /// Parent delivery order.
+        /// </summary>
+        public DeliveryOrder ParentDeliveryOrder { get; set; }
+
+        /// <summary>
         /// Delivery method.
         /// </summary>
         public DeliveryMethod DeliveryMethod { get; set; }
