@@ -87,12 +87,12 @@ namespace Cims.WorkflowLib.Example01
             _step03.Start();
 
             // // Step 04: deliver from store to warehouse.
-            // System.Console.WriteLine("\nStep 04: deliver from store to warehouse.");
-            // _step04.Start();
+            System.Console.WriteLine("\nStep 04: deliver from store to warehouse.");
+            _step04.Start();
 
             // // Step 05: confirm delivering from store to warehouse.
-            // System.Console.WriteLine("\nStep 05: confirm delivering from store to warehouse.");
-            // _step05.Start();
+            System.Console.WriteLine("\nStep 05: confirm delivering from store to warehouse.");
+            _step05.Start();
 
             // // Step 06: finish delivering from warehouse to kitchen.
             // System.Console.WriteLine("\nStep 06: finish delivering from warehouse to kitchen.");
