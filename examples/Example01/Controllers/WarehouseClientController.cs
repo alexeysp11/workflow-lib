@@ -141,10 +141,12 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 DeliveryWh2Kitchen model = apiOperation.RequestObject as DeliveryWh2Kitchen;
+
                 // Update DB.
                 System.Console.WriteLine("WarehouseClient.Wh2KitchenRespond: cache");
 
                 // Send HTTP request.
+                // think about what type of input parameter the kitchen controller will accept to prepare an order.
                 string backendResponse = new WarehouseBackendController(_contextOptions).Wh2KitchenRespond(new ApiOperation
                 {
                     RequestObject = model

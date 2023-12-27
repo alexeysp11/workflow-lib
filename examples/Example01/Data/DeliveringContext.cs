@@ -39,6 +39,7 @@ namespace Cims.WorkflowLib.Example01.Data
         public DbSet<OrderProduct> OrderProducts { get; set; }
         public DbSet<InitialOrder> InitialOrders { get; set; }
         public DbSet<InitialOrderProduct> InitialOrderProducts { get; set; }
+        public DbSet<InitialOrderIngredient> InitialOrderIngredients { get; set; }
         public DbSet<DeliveryOrder> DeliveryOrders { get; set; }
         public DbSet<DeliveryOrderProduct> DeliveryOrderProducts { get; set; }
         public DbSet<DeliveryMethod> DeliveryMethods { get; set; }

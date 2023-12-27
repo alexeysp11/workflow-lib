@@ -24,6 +24,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                
                 // Validation.
                 System.Console.WriteLine("KitchenBackend.PrepareMealStart: validation");
                 
