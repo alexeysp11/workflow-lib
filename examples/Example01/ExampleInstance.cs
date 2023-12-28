@@ -145,6 +145,7 @@ namespace Cims.WorkflowLib.Example01
             
             context.InitialOrders.RemoveRange(context.InitialOrders.ToList());
             context.InitialOrderProducts.RemoveRange(context.InitialOrderProducts.ToList());
+            context.InitialOrderIngredients.RemoveRange(context.InitialOrderIngredients.ToList());
             context.DeliveryOrders.RemoveRange(context.DeliveryOrders.ToList());
             context.DeliveryOrderProducts.RemoveRange(context.DeliveryOrderProducts.ToList());
             context.Payments.RemoveRange(context.Payments.ToList());
