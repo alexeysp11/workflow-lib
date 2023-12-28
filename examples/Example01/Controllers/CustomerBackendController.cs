@@ -122,6 +122,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 var customer = context.Customers.FirstOrDefault(x => x.UserAccount != null && x.UserAccount.Uid == model.UserUid);
                 if (customer == null)
                     throw new System.Exception("Specified customer does not exist in the database");
+                var initialOrder = context.InitialOrders.FirstOrDefault(x => x.Id == model.Id);
+                if (initialOrder == null)
+                    throw new System.Exception("Specified initial order does not exist in the database");
                 DeliveryOrder deliveryOrder = new DeliveryOrder
                 {
                     Uid = System.Guid.NewGuid().ToString(),
@@ -148,7 +151,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     Destination = destination,
                     OpenOrderDt = System.DateTime.Now
                 };
-                model.DeliveryOrder = deliveryOrder;
+                initialOrder.DeliveryOrder = deliveryOrder;
                 context.DeliveryOrders.Add(deliveryOrder);
                 if (!destinationExists)
                     context.Addresses.Add(deliveryOrder.Destination);
