@@ -644,7 +644,7 @@ namespace WorkflowLib.Example01.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "InitialOrderIngredient",
+                name: "InitialOrderIngredients",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
@@ -660,14 +660,14 @@ namespace WorkflowLib.Example01.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InitialOrderIngredient", x => x.Id);
+                    table.PrimaryKey("PK_InitialOrderIngredients", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_InitialOrderIngredient_Ingredients_IngredientId",
+                        name: "FK_InitialOrderIngredients_Ingredients_IngredientId",
                         column: x => x.IngredientId,
                         principalTable: "Ingredients",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_InitialOrderIngredient_InitialOrders_InitialOrderId",
+                        name: "FK_InitialOrderIngredients_InitialOrders_InitialOrderId",
                         column: x => x.InitialOrderId,
                         principalTable: "InitialOrders",
                         principalColumn: "Id");
@@ -737,10 +737,13 @@ namespace WorkflowLib.Example01.Migrations
                     Number = table.Column<string>(type: "TEXT", nullable: true),
                     OpenOrderDt = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CloseOrderDt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ParentOrderId = table.Column<long>(type: "INTEGER", nullable: true),
                     CustomerUid = table.Column<string>(type: "TEXT", nullable: true),
                     CustomerName = table.Column<string>(type: "TEXT", nullable: true),
-                    CompanyUid = table.Column<string>(type: "TEXT", nullable: true),
-                    CompanyName = table.Column<string>(type: "TEXT", nullable: true),
+                    OrderCustomerType = table.Column<int>(type: "INTEGER", nullable: true),
+                    ExecutorUid = table.Column<string>(type: "TEXT", nullable: true),
+                    ExecutorName = table.Column<string>(type: "TEXT", nullable: true),
+                    OrderExecutorType = table.Column<int>(type: "INTEGER", nullable: true),
                     ProductsPrice = table.Column<decimal>(type: "TEXT", nullable: false),
                     AdditonalPrice = table.Column<decimal>(type: "TEXT", nullable: false),
                     TaxPrice = table.Column<decimal>(type: "TEXT", nullable: false),
@@ -748,6 +751,7 @@ namespace WorkflowLib.Example01.Migrations
                     CouldBeCancelled = table.Column<bool>(type: "INTEGER", nullable: false),
                     Status = table.Column<string>(type: "TEXT", nullable: true),
                     Discriminator = table.Column<string>(type: "TEXT", nullable: false),
+                    ParentDeliveryOrderId = table.Column<long>(type: "INTEGER", nullable: true),
                     DeliveryMethodId = table.Column<long>(type: "INTEGER", nullable: true),
                     DeliveryOperationId = table.Column<long>(type: "INTEGER", nullable: true),
                     DeliveryPrice = table.Column<decimal>(type: "TEXT", nullable: true),
@@ -775,6 +779,16 @@ namespace WorkflowLib.Example01.Migrations
                         name: "FK_Orders_DeliveryMethods_DeliveryMethodId",
                         column: x => x.DeliveryMethodId,
                         principalTable: "DeliveryMethods",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Orders_Orders_ParentDeliveryOrderId",
+                        column: x => x.ParentDeliveryOrderId,
+                        principalTable: "Orders",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Orders_Orders_ParentOrderId",
+                        column: x => x.ParentOrderId,
+                        principalTable: "Orders",
                         principalColumn: "Id");
                 });
 
@@ -1295,18 +1309,18 @@ namespace WorkflowLib.Example01.Migrations
                 column: "RecipeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InitialOrderIngredient_DeliveryWh2KitchenId",
-                table: "InitialOrderIngredient",
+                name: "IX_InitialOrderIngredients_DeliveryWh2KitchenId",
+                table: "InitialOrderIngredients",
                 column: "DeliveryWh2KitchenId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InitialOrderIngredient_IngredientId",
-                table: "InitialOrderIngredient",
+                name: "IX_InitialOrderIngredients_IngredientId",
+                table: "InitialOrderIngredients",
                 column: "IngredientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InitialOrderIngredient_InitialOrderId",
-                table: "InitialOrderIngredient",
+                name: "IX_InitialOrderIngredients_InitialOrderId",
+                table: "InitialOrderIngredients",
                 column: "InitialOrderId");
 
             migrationBuilder.CreateIndex(
@@ -1363,6 +1377,16 @@ namespace WorkflowLib.Example01.Migrations
                 name: "IX_Orders_OriginId",
                 table: "Orders",
                 column: "OriginId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_ParentDeliveryOrderId",
+                table: "Orders",
+                column: "ParentDeliveryOrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_ParentOrderId",
+                table: "Orders",
+                column: "ParentOrderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrganizationItems_AddressId",
@@ -1572,8 +1596,8 @@ namespace WorkflowLib.Example01.Migrations
                 principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_InitialOrderIngredient_BusinessTasks_DeliveryWh2KitchenId",
-                table: "InitialOrderIngredient",
+                name: "FK_InitialOrderIngredients_BusinessTasks_DeliveryWh2KitchenId",
+                table: "InitialOrderIngredients",
                 column: "DeliveryWh2KitchenId",
                 principalTable: "BusinessTasks",
                 principalColumn: "Id");
@@ -1706,7 +1730,7 @@ namespace WorkflowLib.Example01.Migrations
                 name: "ContractOrganization");
 
             migrationBuilder.DropTable(
-                name: "InitialOrderIngredient");
+                name: "InitialOrderIngredients");
 
             migrationBuilder.DropTable(
                 name: "InitialOrderProducts");

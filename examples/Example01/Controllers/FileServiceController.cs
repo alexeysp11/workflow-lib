@@ -3,8 +3,14 @@ using Cims.WorkflowLib.Models.Network;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
+    /// <summary>
+    /// A backend service that is responsible for generating and processing files.
+    /// </summary>
     public class FileServiceController
     {
+        /// <summary>
+        /// A method that generates a QR code for payment based on a customer order. 
+        /// </summary>
         public string GenerateQrCode(ApiOperation apiOperation)
         {
             string response = "";

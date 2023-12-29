@@ -6,14 +6,14 @@ using Cims.WorkflowLib.Models.Business.Customers;
 using Cims.WorkflowLib.Models.Business.Monetary;
 using Cims.WorkflowLib.Models.Business.Products;
 using Cims.WorkflowLib.Models.Network;
-using Cims.WorkflowLib.Example01.Data;
+using Cims.WorkflowLib.Example01.Contexts;
 using Cims.WorkflowLib.Example01.Interfaces;
 using Cims.WorkflowLib.Example01.Models;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
     /// <summary>
-    /// 
+    /// A class that represents a backend service controller that processes requests from the customer.
     /// </summary>
     public class CustomerBackendController
     {
@@ -21,7 +21,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
         private CustomerClientController _customerClientController { get; set; }
 
         /// <summary>
-        /// 
+        /// Constructor by default.
         /// </summary>
         public CustomerBackendController(
             DbContextOptions<DeliveringContext> contextOptions) 
@@ -30,6 +30,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             _customerClientController = new CustomerClientController(contextOptions, this);
         }
 
+        /// <summary>
+        /// The method that is responsible for placing an order.
+        /// </summary>
         public string MakeOrderRequest(ApiOperation apiOperation)
         {
             string response = "";
@@ -61,6 +64,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        /// <summary>
+        /// The method that is responsible for starting the electronic payment procedure for an order.
+        /// </summary>
         public string MakePaymentStart(ApiOperation apiOperation)
         {
             string response = "";
@@ -206,6 +212,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string PreprocessOrderStart(ApiOperation apiOperation)
         {
             // Get recipes.
@@ -221,6 +230,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return "";
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string MakeOrderSave(ApiOperation apiOperation)
         {
             string response = "";
@@ -247,6 +259,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        /// <summary>
+        /// The method that is responsible for transmitting information from the client regarding the completed electronic payment.
+        /// </summary>
         public string MakePaymentRespond(ApiOperation apiOperation)
         {
             string response = "";
@@ -279,6 +294,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string PreprocessOrderRedirect(ApiOperation apiOperation)
         {
             string response = "";

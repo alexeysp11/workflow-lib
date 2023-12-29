@@ -2,21 +2,30 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Customers;
-using Cims.WorkflowLib.Example01.Data;
+using Cims.WorkflowLib.Example01.Contexts;
 using Cims.WorkflowLib.Example01.Interfaces;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
+    /// <summary>
+    /// Backend service controller that allows to send notifications to the users of the system.
+    /// </summary>
     public class NotificationsBackendController : INotificationsBackend
     {
         private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
 
+        /// <summary>
+        /// Constructor by default.
+        /// </summary>
         public NotificationsBackendController(
             DbContextOptions<DeliveringContext> contextOptions) 
         {
             _contextOptions = contextOptions;
         }
 
+        /// <summary>
+        /// The method that is responsible for sending notifications to system users.
+        /// </summary>
         public string SendNotifications(IEnumerable<Notification> notifications)
         {
             string response = "";
@@ -56,12 +65,18 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        /// <summary>
+        /// The method that is responsible for sending email notifications.
+        /// </summary>
         public string SendEmail()
         {
             // 
             return "";
         }
 
+        /// <summary>
+        /// A basic method that allows you to send push notifications to the user.
+        /// </summary>
         public string SendPush(Notification notification)
         {
             string response = "";
@@ -92,12 +107,18 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        /// <summary>
+        /// A method that allows you to notify users by sending messages to Telegram.
+        /// </summary>
         public string SendMsgTelegram()
         {
             // 
             return "";
         }
 
+        /// <summary>
+        /// The method that is responsible for receiving notifications via the REST API.
+        /// </summary>
         public string GetNotified()
         {
             // Preprocess.

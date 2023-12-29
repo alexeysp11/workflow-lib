@@ -3,17 +3,23 @@ using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Customers;
 using Cims.WorkflowLib.Models.Business.InformationSystem;
 using Cims.WorkflowLib.Models.Business.Products;
-using Cims.WorkflowLib.Example01.Data;
+using Cims.WorkflowLib.Example01.Contexts;
 using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Models;
 using Cims.WorkflowLib.Example01.Interfaces;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
+    /// <summary>
+    /// Backend service controller that serves requests from the warehouse employees.
+    /// </summary>
     public class WarehouseBackendController
     {
         private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
 
+        /// <summary>
+        /// Constructor by default.
+        /// </summary>
         public WarehouseBackendController(
             DbContextOptions<DeliveringContext> contextOptions) 
         {
@@ -206,6 +212,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        /// <summary>
+        /// A method that allows you to begin the process of delivering products from the store to the warehouse.
+        /// </summary>
         public string Store2WhStart(ApiOperation apiOperation)
         {
             string response = "";
@@ -251,6 +260,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        /// <summary>
+        /// A method that allows you to request the start of the process of delivering products from the store to the warehouse.
+        /// </summary>
         public string Store2WhRequest(ApiOperation apiOperation)
         {
             string response = "";
@@ -281,6 +293,10 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
         
+        /// <summary>
+        /// A method that allows you to save the value of an incoming parameter 
+        /// as part of the process of delivering products from the store to the warehouse. 
+        /// </summary>
         public string Store2WhSave(ApiOperation apiOperation)
         {
             string response = "";
@@ -323,6 +339,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        /// <summary>
+        /// A method that is responsible for confirming the delivery of products from the store to the warehouse.
+        /// </summary>
         public string Store2WhConfirm(ApiOperation apiOperation)
         {
             string response = "";
@@ -347,6 +366,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
         
+        /// <summary>
+        /// A method that allows you to begin the process of delivering products and ingredients from the warehouse to the kitchen.
+        /// </summary>
         public string Wh2KitchenStart(ApiOperation apiOperation)
         {
             string response = "";
@@ -355,6 +377,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                using var context = new DeliveringContext(_contextOptions);
                 
                 // Update DB.
                 System.Console.WriteLine("WarehouseBackend.Wh2KitchenStart: cache");
@@ -371,11 +394,27 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     }
                 });
 
-                // Update cache in the client-side app.
+                // Create input parameter.
+                System.Console.WriteLine("DeliveriesWh2Kitchen : start creating...");
+                var initialOrder = context.InitialOrders.FirstOrDefault(x => x.DeliveryOrder.Id == model.Id);
+                if (initialOrder == null)
+                    throw new System.Exception("Initial order could not be null");
+                var initialOrderProducts = context.InitialOrderProducts.Where(x => x.InitialOrder.Id == initialOrder.Id).ToList();
+                if (initialOrderProducts == null || !initialOrderProducts.Any())
+                    throw new System.Exception("List of products that is related to the initial order could not be null or empty");
+                var initialOrderIngredients = context.InitialOrderIngredients.Where(x => x.InitialOrder.Id == initialOrder.Id).ToList();
+                if (initialOrderIngredients == null || !initialOrderIngredients.Any())
+                    throw new System.Exception("List of ingredients that is related to the initial order could not be null or empty");
                 var deliveryWh2Kitchen = new DeliveryWh2Kitchen
                 {
-                    // 
+                    // InitialOrder = initialOrder,
+                    InitialOrderProducts = initialOrderProducts,
+                    InitialOrderIngredients = initialOrderIngredients
                 };
+                context.DeliveriesWh2Kitchen.Add(deliveryWh2Kitchen);
+                context.SaveChanges();
+
+                // Update cache in the client-side app.
                 string whRequest = new WarehouseClientController(_contextOptions).Wh2KitchenSave(new ApiOperation()
                 {
                     RequestObject = deliveryWh2Kitchen
@@ -393,6 +432,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string Wh2KitchenRespond(ApiOperation apiOperation)
         {
             string response = "";
@@ -423,6 +465,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        /// <summary>
+        /// A method that allows you to begin the process of delivering finished products from the kitchen to the warehouse.
+        /// </summary>
         public string Kitchen2WhStart(ApiOperation apiOperation)
         {
             string response = "";
@@ -465,6 +510,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        /// <summary>
+        /// A method that is responsible for controlling the delivery of finished products from the kitchen to the warehouse.
+        /// </summary>
         public string Kitchen2WhExecute(ApiOperation apiOperation)
         {
             string response = "";

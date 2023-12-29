@@ -3,15 +3,21 @@ using Microsoft.Extensions.Configuration;
 using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Controllers;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
-using Cims.WorkflowLib.Example01.Data;
+using Cims.WorkflowLib.Example01.Contexts;
 
 namespace Cims.WorkflowLib.Example01.FlowchartSteps
 {
+    /// <summary>
+    /// The step that allows the customer to place an order.
+    /// </summary>
     public class MakeOrderStep : IFlowchartStep
     {
         private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
         private CustomerClientController _customerClientController { get; set; }
 
+        /// <summary>
+        /// Constructor by default.
+        /// </summary>
         public MakeOrderStep(
             DbContextOptions<DeliveringContext> contextOptions,
             CustomerClientController customerClientController)
@@ -20,6 +26,9 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             _customerClientController = customerClientController;
         }
 
+        /// <summary>
+        /// A method that begins the procedure for placing and pre-processing an order.
+        /// </summary>
         public void Start()
         {
             System.Console.WriteLine("MakeOrderStep.Start: begin");
@@ -44,6 +53,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             {
                 RequestObject = model
             });
+            System.Console.WriteLine($"response: {response}");
             System.Console.WriteLine("MakeOrderStep.Start: end");
         }
     }

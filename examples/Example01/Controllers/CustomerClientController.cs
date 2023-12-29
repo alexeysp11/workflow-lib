@@ -5,17 +5,23 @@ using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Monetary;
 using Cims.WorkflowLib.Models.Business.Products;
 using Cims.WorkflowLib.Models.Network;
-using Cims.WorkflowLib.Example01.Data;
+using Cims.WorkflowLib.Example01.Contexts;
 using Cims.WorkflowLib.Example01.Models;
 using Cims.WorkflowLib.Example01.Interfaces;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
+    /// <summary>
+    /// A class that represents a client-side app controller that processes requests from the customer.
+    /// </summary>
     public class CustomerClientController
     {
         private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
         private CustomerBackendController _customerBackendController { get; set; }
 
+        /// <summary>
+        /// Constructor by default.
+        /// </summary>
         public CustomerClientController(
             DbContextOptions<DeliveringContext> contextOptions,
             CustomerBackendController customerBackendController)
@@ -24,12 +30,18 @@ namespace Cims.WorkflowLib.Example01.Controllers
             _customerBackendController = customerBackendController;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string MakeOrder(ApiOperation apiOperation)
         {
             // 
             return "";
         }
 
+        /// <summary>
+        /// The method that is responsible for placing an order.
+        /// </summary>
         public string MakeOrderRequest(ApiOperation apiOperation)
         {
             string response = "";
@@ -109,12 +121,18 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<string> MakeOrderAsync(ApiOperation apiOperation)
         {
             await Task.Delay(500);
             return "";
         }
         
+        /// <summary>
+        /// A method that stores the data necessary to carry out electronic payment on the part of the client.
+        /// </summary>
         public string MakePaymentSave(ApiOperation apiOperation)
         {
             string response = "";
@@ -139,6 +157,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        /// <summary>
+        /// The method that is responsible for transmitting information from the client regarding the completed electronic payment.
+        /// </summary>
         public string MakePaymentRespond(ApiOperation apiOperation)
         {
             string response = "";

@@ -3,16 +3,26 @@ using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 
 namespace Cims.WorkflowLib.Example01.BL
 {
+    /// <summary>
+    /// A class that is an element of the Business Logic module and includes fields 
+    /// and methods that are necessary to process requests from the client.
+    /// </summary>
     public class CustomerBackendBL
     {
         private FileServiceController _fileServiceController { get; set; }
 
+        /// <summary>
+        /// Constructor by default.
+        /// </summary>
         public CustomerBackendBL(
             FileServiceController fileServiceController)
         {
             _fileServiceController = fileServiceController;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string AskForPayment(InitialOrder model)
         {
             string result = "";

@@ -11,10 +11,10 @@ using Cims.WorkflowLib.Models.Business.SocialCommunication;
 using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Models;
 
-namespace Cims.WorkflowLib.Example01.Data
+namespace Cims.WorkflowLib.Example01.Contexts
 {
     /// <summary>
-    /// 
+    /// The class (database context) that stores allows you to work with entities from the database and store them as regular collections.
     /// </summary>
     public class DeliveringContext : DbContext
     {

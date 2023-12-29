@@ -1,19 +1,19 @@
 using Microsoft.EntityFrameworkCore;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Network;
-using Cims.WorkflowLib.Example01.Data;
+using Cims.WorkflowLib.Example01.Contexts;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
     /// <summary>
-    /// 
+    /// Client-side app controller that serves requests from the courier.
     /// </summary>
     public class CourierClientController
     {
         private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
 
         /// <summary>
-        /// 
+        /// Constructor by default.
         /// </summary>
         public CourierClientController(
             DbContextOptions<DeliveringContext> contextOptions) 
@@ -21,6 +21,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             _contextOptions = contextOptions;
         }
 
+        /// <summary>
+        /// A method that allows to save a request for the delivery of products from a store to a warehouse.
+        /// </summary>
         public string Store2WhSave(ApiOperation apiOperation)
         {
             string response = "";
@@ -45,6 +48,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        /// <summary>
+        /// A method that controls the process of delivering products from the store to the warehouse.
+        /// </summary>
         public string Store2WhExecute(ApiOperation apiOperation)
         {
             string response = "";
@@ -75,6 +81,10 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        /// <summary>
+        /// The method that is responsible for starting the process of scanning the QR code on the order 
+        /// to begin the delivery procedure.
+        /// </summary>
         public string ScanQrOnOrderStart(ApiOperation apiOperation)
         {
             string response = "";
@@ -98,6 +108,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        /// <summary>
+        /// The method that is responsible for scanning the QR code on the order to begin the delivery procedure.
+        /// </summary>
         public string ScanQrOnOrderExecute(ApiOperation apiOperation)
         {
             string response = "";
@@ -127,6 +140,10 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        /// <summary>
+        /// The method that is responsible for starting the process of scanning the QR code on the backpack 
+        /// to begin the delivery procedure.
+        /// </summary>
         public string ScanBackpackStart(ApiOperation apiOperation)
         {
             string response = "";
@@ -150,6 +167,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
         
+        /// <summary>
+        /// The method that is responsible for scanning the QR code on the backpack to begin the delivery procedure.
+        /// </summary>
         public string ScanBackpackExecute(ApiOperation apiOperation)
         {
             string response = "";
@@ -179,6 +199,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
         
+        /// <summary>
+        /// The method that is responsible for starting the order delivery process.
+        /// </summary>
         public string DeliverOrderStart(ApiOperation apiOperation)
         {
             string response = "";
@@ -202,6 +225,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
         
+        /// <summary>
+        /// The method that is responsible for executing the order delivery process.
+        /// </summary>
         public string DeliverOrderExecute(ApiOperation apiOperation)
         {
             string response = "";

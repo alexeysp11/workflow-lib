@@ -2,20 +2,29 @@ using Microsoft.EntityFrameworkCore;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Customers;
 using Cims.WorkflowLib.Models.Network;
-using Cims.WorkflowLib.Example01.Data;
+using Cims.WorkflowLib.Example01.Contexts;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
+    /// <summary>
+    /// Client-side app controller that serves requests from the kitchen employees.
+    /// </summary>
     public class KitchenClientController
     {
         private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
 
+        /// <summary>
+        /// Constructor by default.
+        /// </summary>
         public KitchenClientController(
             DbContextOptions<DeliveringContext> contextOptions) 
         {
             _contextOptions = contextOptions;
         }
 
+        /// <summary>
+        /// A method that is responsible for storing information necessary for the preparation of an order by kitchen staff.
+        /// </summary>
         public string PrepareMealSave(ApiOperation apiOperation)
         {
             string response = "";
@@ -24,6 +33,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
+
                 // Validation.
                 System.Console.WriteLine("KitchenClient.PrepareMealSave: validation");
                 
@@ -42,6 +52,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        /// <summary>
+        /// The method that the kitchen staff is responsible for preparing the order.
+        /// </summary>
         public string PrepareMealExecute(ApiOperation apiOperation)
         {
             string response = "";
@@ -50,6 +63,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                
                 // Validation.
                 System.Console.WriteLine("KitchenClient.PrepareMealExecute: validation");
                 

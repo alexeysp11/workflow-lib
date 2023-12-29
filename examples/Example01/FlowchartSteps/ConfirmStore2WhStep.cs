@@ -3,22 +3,33 @@ using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Products;
 using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Controllers;
-using Cims.WorkflowLib.Example01.Data;
+using Cims.WorkflowLib.Example01.Contexts;
 
 namespace Cims.WorkflowLib.Example01.FlowchartSteps
 {
+    /// <summary>
+    /// The step that consists of confirming delivery from the store to the warehouse 
+    /// (assuming that confirmation is carried out by a warehouse employee).
+    /// </summary>
     public class ConfirmStore2WhStep : IFlowchartStep
     {
         private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
 
+        /// <summary>
+        /// Constructor by default.
+        /// </summary>
         public ConfirmStore2WhStep(
             DbContextOptions<DeliveringContext> contextOptions) 
         {
             _contextOptions = contextOptions;
         }
 
+        /// <summary>
+        /// A method that begins the delivery confirmation step from the store to the warehouse.
+        /// </summary>
         public void Start()
         {
+            System.Console.WriteLine("ConfirmStore2WhStep.Start: begin");
             using var context = new DeliveringContext(_contextOptions);
             
             // Unload a delivery order that has a parent and is an internal delivery order.
@@ -57,10 +68,12 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             context.SaveChanges();
 
             // 
-            new WarehouseClientController(_contextOptions).Store2WhConfirm(new ApiOperation
+            string response = new WarehouseClientController(_contextOptions).Store2WhConfirm(new ApiOperation
             {
                 RequestObject = model
             });
+            System.Console.WriteLine($"response: {response}");
+            System.Console.WriteLine("ConfirmStore2WhStep.Start: end");
         }
     }
 }

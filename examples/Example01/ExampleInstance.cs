@@ -9,7 +9,6 @@ using Cims.WorkflowLib.Models.Business.InformationSystem;
 using Cims.WorkflowLib.Models.Business.Processes;
 using Cims.WorkflowLib.Models.Business.Products;
 using Cims.WorkflowLib.Example01.Contexts;
-using Cims.WorkflowLib.Example01.Data;
 using Cims.WorkflowLib.Example01.FlowchartSteps;
 using Cims.WorkflowLib.Example01.Interfaces;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
@@ -17,7 +16,7 @@ using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 namespace Cims.WorkflowLib.Example01
 {
     /// <summary>
-    /// 
+    /// The class that is responsible for initializing this example.
     /// </summary>
     public class ExampleInstance : IExampleInstance
     {
@@ -36,7 +35,7 @@ namespace Cims.WorkflowLib.Example01
         private DeliverOrderStep _step11 { get; set; }
 
         /// <summary>
-        /// 
+        /// Construstor by default.
         /// </summary>
         public ExampleInstance(
             DbContextOptions<DeliveringContext> contextOptions,
@@ -67,7 +66,7 @@ namespace Cims.WorkflowLib.Example01
         }
 
         /// <summary>
-        /// 
+        /// A method that starts initializing a given example and sequential executing the steps.
         /// </summary>
         public void Run()
         {

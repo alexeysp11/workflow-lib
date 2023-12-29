@@ -1,16 +1,22 @@
 using Microsoft.EntityFrameworkCore;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Network;
-using Cims.WorkflowLib.Example01.Data;
+using Cims.WorkflowLib.Example01.Contexts;
 using Cims.WorkflowLib.Example01.Models;
 using Cims.WorkflowLib.Example01.Interfaces;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
+    /// <summary>
+    /// Client-side app controller that serves requests from the kitchen employees.
+    /// </summary>
     public class WarehouseClientController
     {
         private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
 
+        /// <summary>
+        /// Constructor by default.
+        /// </summary>
         public WarehouseClientController(
             DbContextOptions<DeliveringContext> contextOptions) 
         {
@@ -77,6 +83,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        /// <summary>
+        /// A method that is responsible for confirming the delivery of products from the store to the warehouse.
+        /// </summary>
         public string Store2WhConfirm(ApiOperation apiOperation)
         {
             string response = "";
@@ -133,6 +142,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string Wh2KitchenRespond(ApiOperation apiOperation)
         {
             string response = "";
@@ -164,6 +176,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        /// <summary>
+        /// A method that allows you to begin the process of delivering finished products from the kitchen to the warehouse.
+        /// </summary>
         public string Kitchen2WhStart(ApiOperation apiOperation)
         {
             string response = "";
@@ -187,6 +202,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        /// <summary>
+        /// A method that is responsible for controlling the delivery of finished products from the kitchen to the warehouse.
+        /// </summary>
         public string Kitchen2WhExecute(ApiOperation apiOperation)
         {
             string response = "";

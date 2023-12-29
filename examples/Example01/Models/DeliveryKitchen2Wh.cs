@@ -11,7 +11,7 @@ namespace Cims.WorkflowLib.Example01.Models;
 public class DeliveryKitchen2Wh : DeliveryOperation, IBusinessEntityWF
 {
     /// <summary>
-    /// 
+    /// Order number.
     /// </summary>
     public string? OrderNumber { get; set; }
 

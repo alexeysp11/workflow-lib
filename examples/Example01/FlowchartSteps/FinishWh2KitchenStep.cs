@@ -2,20 +2,20 @@ using Microsoft.EntityFrameworkCore;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Controllers;
-using Cims.WorkflowLib.Example01.Data;
+using Cims.WorkflowLib.Example01.Contexts;
 using Cims.WorkflowLib.Example01.Models;
 
 namespace Cims.WorkflowLib.Example01.FlowchartSteps
 {
     /// <summary>
-    /// 
+    /// A step that completes the procedure for delivering products from the warehouse to the kitchen.
     /// </summary>
     public class FinishWh2KitchenStep : IFlowchartStep
     {
         private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
 
         /// <summary>
-        /// 
+        /// Constructor by default.
         /// </summary>
         public FinishWh2KitchenStep(
             DbContextOptions<DeliveringContext> contextOptions) 
@@ -24,7 +24,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
         }
 
         /// <summary>
-        /// 
+        /// A method that completes the delivery procedure from the warehouse to the kitchen.
         /// </summary>
         public void Start()
         {
@@ -49,11 +49,12 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             };
 
             // 
-            new WarehouseClientController(_contextOptions).Wh2KitchenRespond(new ApiOperation
+            string response = new WarehouseClientController(_contextOptions).Wh2KitchenRespond(new ApiOperation
             {
                 RequestObject = model
             });
             
+            System.Console.WriteLine($"response: {response}");
             System.Console.WriteLine("FinishWh2KitchenStep.Start: end");
         }
     }
