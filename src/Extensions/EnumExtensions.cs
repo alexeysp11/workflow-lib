@@ -11,7 +11,7 @@ namespace Cims.WorkflowLib.Extensions
     public static class EnumExtensions
     {
         /// <summary>
-        /// Get Display name of an enum 
+        /// Get Display name of an enum.
         /// </summary>
         public static string GetDisplayName(this Enum enumValue)
         {

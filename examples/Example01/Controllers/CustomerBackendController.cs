@@ -5,8 +5,10 @@ using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Customers;
 using Cims.WorkflowLib.Models.Business.Monetary;
 using Cims.WorkflowLib.Models.Business.Products;
+using Cims.WorkflowLib.Extensions;
 using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Contexts;
+using Cims.WorkflowLib.Example01.Enums;
 using Cims.WorkflowLib.Example01.Interfaces;
 using Cims.WorkflowLib.Example01.Models;
 
@@ -144,7 +146,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                             Amount = model.PaymentAmount,
                             Payer = customer.FullName,
                             Receiver = string.IsNullOrEmpty(organization.Company.Name) ? "Our company" : organization.Company.Name,
-                            Status = "Requested"
+                            Status = EnumExtensions.GetDisplayName(PaymentStatus.Requested)
                         }
                     },
                     CustomerUid = customer.Uid,

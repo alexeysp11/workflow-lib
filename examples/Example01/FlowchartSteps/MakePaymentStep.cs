@@ -1,10 +1,12 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Cims.WorkflowLib.Extensions;
 using Cims.WorkflowLib.Models.Business.Monetary;
 using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Controllers;
 using Cims.WorkflowLib.Example01.Contexts;
+using Cims.WorkflowLib.Example01.Enums;
 
 namespace Cims.WorkflowLib.Example01.FlowchartSteps
 {
@@ -50,7 +52,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             
             // Provide card details and save.
             payment.CardNumber = "RANDOM-0000-0000-0000-0000";
-            payment.Status = "In process";
+            payment.Status = EnumExtensions.GetDisplayName(PaymentStatus.InProcess);
             context.SaveChanges();
             
             // Send HTTP request.
