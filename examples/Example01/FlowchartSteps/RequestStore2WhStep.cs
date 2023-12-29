@@ -25,7 +25,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
         /// <summary>
         /// A method that begins processing a request for delivery of products from a store to a warehouse.
         /// </summary>
-        public void Start()
+        public bool Start()
         {
             System.Console.WriteLine("RequestStore2WhStep.Start: begin");
             
@@ -39,6 +39,8 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             
             System.Console.WriteLine($"response: {response}");
             System.Console.WriteLine("RequestStore2WhStep.Start: end");
+            
+            return response == "success";
         }
     }
 }

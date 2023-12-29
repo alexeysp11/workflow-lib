@@ -8,6 +8,6 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
         /// <summary>
         /// A method that allows you to begin a specific step within the order delivery process.
         /// </summary>
-        void Start();
+        bool Start();
     }
 }

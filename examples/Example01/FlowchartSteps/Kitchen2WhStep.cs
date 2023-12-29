@@ -25,7 +25,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
         /// <summary>
         /// A method that starts the procedure for transferring a finished order from the kitchen to the warehouse.
         /// </summary>
-        public void Start()
+        public bool Start()
         {
             System.Console.WriteLine("Kitchen2WhStep.Start: begin");
             var model = new InitialOrder()
@@ -38,6 +38,8 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             });
             System.Console.WriteLine($"response: {response}");
             System.Console.WriteLine("Kitchen2WhStep.Start: end");
+            
+            return response == "success";
         }
     }
 }

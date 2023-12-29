@@ -25,7 +25,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
         /// <summary>
         /// A method that begins the procedure for delivering an order to a customer.
         /// </summary>
-        public void Start()
+        public bool Start()
         {
             System.Console.WriteLine("DeliverOrderStep.Start: begin");
             var model = new InitialOrder()
@@ -38,6 +38,8 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             });
             System.Console.WriteLine($"response: {response}");
             System.Console.WriteLine("DeliverOrderStep.Start: end");
+            
+            return response == "success";
         }
     }
 }

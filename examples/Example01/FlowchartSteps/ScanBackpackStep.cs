@@ -25,7 +25,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
         /// <summary>
         /// A method that begins scanning the backpack to begin delivery.
         /// </summary>
-        public void Start()
+        public bool Start()
         {
             System.Console.WriteLine("ScanBackpackStep.Start: begin");
             var model = new InitialOrder()
@@ -38,6 +38,8 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             });
             System.Console.WriteLine($"response: {response}");
             System.Console.WriteLine("ScanBackpackStep.Start: end");
+            
+            return response == "success";
         }
     }
 }

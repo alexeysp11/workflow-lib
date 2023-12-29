@@ -29,7 +29,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
         /// <summary>
         /// A method that begins the procedure for placing and pre-processing an order.
         /// </summary>
-        public void Start()
+        public bool Start()
         {
             System.Console.WriteLine("MakeOrderStep.Start: begin");
             using var context = new DeliveringContext(_contextOptions);
@@ -55,6 +55,8 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             });
             System.Console.WriteLine($"response: {response}");
             System.Console.WriteLine("MakeOrderStep.Start: end");
+            
+            return response == "success";
         }
     }
 }

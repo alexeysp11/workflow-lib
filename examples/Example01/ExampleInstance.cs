@@ -73,29 +73,38 @@ namespace Cims.WorkflowLib.Example01
             // Provide configurations for DbContext.
             ConfigureDbContext();
 
+            var successfulSteps = 0;
+            var totalSteps = 0;
+
             // Step 01: make order.
             System.Console.WriteLine("\nStep 01: make order.");
-            _step01.Start();
+            totalSteps += 1;
+            successfulSteps += _step01.Start() ? 1 : 0;
 
             // Step 02: make payment.
             System.Console.WriteLine("\nStep 02: make payment.");
-            _step02.Start();
+            totalSteps += 1;
+            successfulSteps += _step02.Start() ? 1 : 0;
 
             // Step 03: request for delivering from store to warehouse.
             System.Console.WriteLine("\nStep 03: request for delivering from store to warehouse.");
-            _step03.Start();
+            totalSteps += 1;
+            successfulSteps += _step03.Start() ? 1 : 0;
 
             // // Step 04: deliver from store to warehouse.
             System.Console.WriteLine("\nStep 04: deliver from store to warehouse.");
-            _step04.Start();
+            totalSteps += 1;
+            successfulSteps += _step04.Start() ? 1 : 0;
 
             // // Step 05: confirm delivering from store to warehouse.
             System.Console.WriteLine("\nStep 05: confirm delivering from store to warehouse.");
-            _step05.Start();
+            totalSteps += 1;
+            successfulSteps += _step05.Start() ? 1 : 0;
 
             // // Step 06: finish delivering from warehouse to kitchen.
             System.Console.WriteLine("\nStep 06: finish delivering from warehouse to kitchen.");
-            _step06.Start();
+            totalSteps += 1;
+            successfulSteps += _step06.Start() ? 1 : 0;
 
             // // Step 07: prepare meal.
             // System.Console.WriteLine("\nStep 07: prepare meal.");
@@ -116,6 +125,8 @@ namespace Cims.WorkflowLib.Example01
             // // Step 11: deliver order.
             // System.Console.WriteLine("\nStep 11: deliver order.");
             // _step11.Start();
+
+            System.Console.WriteLine($"Example is executed: {successfulSteps}/{totalSteps}");
         }
 
         private void ConfigureDbContext()

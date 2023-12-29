@@ -25,7 +25,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
         /// <summary>
         /// A method that completes the delivery procedure from the store to the warehouse.
         /// </summary>
-        public void Start()
+        public bool Start()
         {
             System.Console.WriteLine("FinishStore2WhStep.Start: begin");
             using var context = new DeliveringContext(_contextOptions);
@@ -57,6 +57,8 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             });
             System.Console.WriteLine($"response: {response}");
             System.Console.WriteLine("FinishStore2WhStep.Start: end");
+            
+            return response == "success";
         }
     }
 }

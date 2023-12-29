@@ -25,7 +25,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
         /// <summary>
         /// A method that begins the preparation of food by kitchen staff.
         /// </summary>
-        public void Start()
+        public bool Start()
         {
             System.Console.WriteLine("PrepareMealStep.Start: begin");
             var model = new Payment()
@@ -38,6 +38,8 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             });
             System.Console.WriteLine($"response: {response}");
             System.Console.WriteLine("PrepareMealStep.Start: end");
+            
+            return response == "success";
         }
     }
 }

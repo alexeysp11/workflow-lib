@@ -32,7 +32,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
         /// <summary>
         /// A method that starts the process of electronic payment for an order.
         /// </summary>
-        public void Start()
+        public bool Start()
         {
             System.Console.WriteLine("MakePaymentStep.Start: begin");
             
@@ -64,6 +64,8 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             // 
             System.Console.WriteLine($"response: {response}");
             System.Console.WriteLine("MakePaymentStep.Start: end");
+            
+            return response == "success";
         }
     }
 }

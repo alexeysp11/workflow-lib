@@ -26,7 +26,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
         /// <summary>
         /// A method that completes the delivery procedure from the warehouse to the kitchen.
         /// </summary>
-        public void Start()
+        public bool Start()
         {
             System.Console.WriteLine("FinishWh2KitchenStep.Start: begin");
 
@@ -56,6 +56,8 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             
             System.Console.WriteLine($"response: {response}");
             System.Console.WriteLine("FinishWh2KitchenStep.Start: end");
+            
+            return response == "success";
         }
     }
 }

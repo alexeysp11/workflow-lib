@@ -25,7 +25,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
         /// <summary>
         /// The method that starts scanning the order.
         /// </summary>
-        public void Start()
+        public bool Start()
         {
             System.Console.WriteLine("ScanQrOnOrderStep.Start: begin");
             var model = new InitialOrder()
@@ -38,6 +38,8 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             });
             System.Console.WriteLine($"response: {response}");
             System.Console.WriteLine("ScanQrOnOrderStep.Start: end");
+            
+            return response == "success";
         }
     }
 }
