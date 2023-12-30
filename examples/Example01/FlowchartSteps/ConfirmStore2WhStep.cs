@@ -29,9 +29,18 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
         /// </summary>
         public bool Start()
         {
-            System.Console.WriteLine("ConfirmStore2WhStep.Start: begin");
             using var context = new DeliveringContext(_contextOptions);
             
+            // Check if a delivery has already been made from the warehouse to the kitchen.
+            // Run this step only if delivery has NOT taken place.
+            var deliveryWh2Kitchen = context.DeliveriesWh2Kitchen.FirstOrDefault();
+            if (deliveryWh2Kitchen != null)
+            {
+                return false;
+            }
+            
+            System.Console.WriteLine("ConfirmStore2WhStep.Start: begin");
+
             // Unload a delivery order that has a parent and is an internal delivery order.
             var model = context.DeliveryOrders
                 .FirstOrDefault(x => x.ParentDeliveryOrder != null 

@@ -27,17 +27,24 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
         /// </summary>
         public bool Start()
         {
-            System.Console.WriteLine("RequestStore2WhStep.Start: begin");
-            
             using var context = new DeliveringContext(_contextOptions);
 
+            // Check if a delivery has already been made from the warehouse to the kitchen.
+            // Run this step only if delivery has NOT taken place.
+            var deliveryWh2Kitchen = context.DeliveriesWh2Kitchen.FirstOrDefault();
+            if (deliveryWh2Kitchen != null)
+            {
+                return false;
+            }
+
+            System.Console.WriteLine("RequestStore2WhStep.Start: begin");
             var model = context.DeliveryOrders.FirstOrDefault(x => x.ParentDeliveryOrder != null);
             string response = new WarehouseClientController(_contextOptions).Store2WhRequest(new ApiOperation
             {
                 RequestObject = model
             });
-            
             System.Console.WriteLine($"response: {response}");
+            
             System.Console.WriteLine("RequestStore2WhStep.Start: end");
             
             return response == "success";

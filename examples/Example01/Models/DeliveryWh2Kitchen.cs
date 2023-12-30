@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Cims.WorkflowLib.Models.Business;
+using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Delivery;
 using Cims.WorkflowLib.Models.Business.Products;
 
@@ -10,6 +11,11 @@ namespace Cims.WorkflowLib.Example01.Models;
 /// </summary>
 public class DeliveryWh2Kitchen : DeliveryOperation, IBusinessEntityWF
 {
+    /// <summary>
+    /// Initial orders.
+    /// </summary>
+    public ICollection<InitialOrder> InitialOrders { get; set; }
+
     /// <summary>
     /// 
     /// </summary>

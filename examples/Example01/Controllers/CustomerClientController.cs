@@ -57,37 +57,37 @@ namespace Cims.WorkflowLib.Example01.Controllers
 
                 // Insert into cache.
                 System.Console.WriteLine("CustomerClient.MakeOrderRequest: cache");
-                var products = new List<InitialOrderProduct>();
-                var ingredients = new List<InitialOrderIngredient>();
+                var initialOrderProducts = new List<InitialOrderProduct>();
+                var initialOrderIngredients = new List<InitialOrderIngredient>();
                 foreach (var pid in model.ProductIds)
                 {
-                    if (products.Any(x => x.Product.Id == pid))
+                    if (initialOrderProducts.Any(x => x.Product.Id == pid))
                         continue;
-                    // var wp = context.WHProducts.FirstOrDefault(x => x.Product != null && x.Product.Id == pid);
-                    // if (wp == null)
-                    //     throw new System.Exception("Database consistency is violated: product with such ID does not exist in the DB: " + pid);
+                    
                     int productQty = model.ProductIds.Where(x => x == pid).Count();
                     var product = context.Products.Where(x => x.Id == pid).FirstOrDefault();
-                    products.Add(new InitialOrderProduct
+                    var initialOrderProduct = new InitialOrderProduct
                     {
                         Uid = System.Guid.NewGuid().ToString(),
                         Name = product.Name,
                         Product = product,
                         InitialOrder = model,
                         Quantity = productQty
-                    });
+                    };
+                    initialOrderProducts.Add(initialOrderProduct);
 
                     var ingredientsTmp = context.Ingredients
                         .Include(x => x.IngredientProduct)
                         .Where(x => x.FinalProduct.Id == product.Id);
                     foreach (var ingredient in ingredientsTmp)
                     {
-                        ingredients.Add(new InitialOrderIngredient
+                        initialOrderIngredients.Add(new InitialOrderIngredient
                         {
                             Uid = System.Guid.NewGuid().ToString(),
                             Name = ingredient.Name,
                             Ingredient = ingredient,
                             InitialOrder = model,
+                            InitialOrderProduct = initialOrderProduct,
                             Quantity = productQty * (int)ingredient.Quantity
                         });
                     }
@@ -95,8 +95,8 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     model.PaymentAmount += productQty * product.Price;
                 }
                 model.Uid = System.Guid.NewGuid().ToString();
-                context.InitialOrderProducts.AddRange(products);
-                context.InitialOrderIngredients.AddRange(ingredients);
+                context.InitialOrderProducts.AddRange(initialOrderProducts);
+                context.InitialOrderIngredients.AddRange(initialOrderIngredients);
                 context.InitialOrders.Add(model);
                 context.SaveChanges();
 

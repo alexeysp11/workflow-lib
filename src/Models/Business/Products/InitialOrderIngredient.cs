@@ -15,9 +15,14 @@ namespace Cims.WorkflowLib.Models.Business.Products
         public Ingredient Ingredient { get; set; }
         
         /// <summary>
-        /// InitialOrder.
+        /// Initial order.
         /// </summary>
         public InitialOrder InitialOrder { get; set; }
+        
+        /// <summary>
+        /// Initial order product.
+        /// </summary>
+        public InitialOrderProduct InitialOrderProduct { get; set; }
         
         /// <summary>
         /// Quantity.

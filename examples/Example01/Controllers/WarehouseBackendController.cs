@@ -26,6 +26,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             _contextOptions = contextOptions;
         }
 
+        #region preprocessorder
         /// <summary>
         /// Method for determining the first action of personnel to process an order: for example, 1) transfer ingredients 
         /// from the warehouse to the kitchen or 2) create an order for the delivery of missing ingredients from the store 
@@ -188,7 +189,6 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 // - Otherwise, invoke store2wh.
                 if (isSufficient)
                 {
-                    DeliveryWh2Kitchen wh2kitchenModel = new DeliveryWh2Kitchen();
                     response = Wh2KitchenStart(new ApiOperation()
                     {
                         RequestObject = model
@@ -211,7 +211,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("WarehouseBackend.PreprocessOrderRedirect: end");
             return response;
         }
+        #endregion  // preprocessorder
 
+        #region store2wh
         /// <summary>
         /// A method that allows you to begin the process of delivering products from the store to the warehouse.
         /// </summary>
@@ -239,10 +241,6 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 });
 
                 // Update cache in the client-side app.
-                var deliveryOrder = new DeliveryOrder
-                {
-                    //
-                };
                 string paymentRequest = new WarehouseClientController(_contextOptions).Store2WhSave(new ApiOperation()
                 {
                     RequestObject = model
@@ -350,12 +348,24 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                using var context = new DeliveringContext(_contextOptions);
                 
                 // Update DB.
                 System.Console.WriteLine("WarehouseBackend.Store2WhConfirm: cache");
 
-                // 
-                response = "success";
+                // Get delivery order related to the initial order.
+                var deliveryOrder = context.DeliveryOrders
+                    .Where(x => x.Id == model.Id)
+                    .Select(x => x.ParentDeliveryOrder)
+                    .FirstOrDefault();
+                if (deliveryOrder == null)
+                    throw new System.Exception("Parent delivery order could not be null");
+                
+                // Start the step for delivering from warehouse to kitchen.
+                response = Wh2KitchenStart(new ApiOperation()
+                {
+                    RequestObject = deliveryOrder
+                });
             }
             catch (System.Exception ex)
             {
@@ -365,7 +375,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("WarehouseBackend.Store2WhConfirm: end");
             return response;
         }
+        #endregion  // store2wh
         
+        #region wh2kitchen
         /// <summary>
         /// A method that allows you to begin the process of delivering products and ingredients from the warehouse to the kitchen.
         /// </summary>
@@ -395,7 +407,6 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 });
 
                 // Create input parameter.
-                System.Console.WriteLine("DeliveriesWh2Kitchen : start creating...");
                 var initialOrder = context.InitialOrders.FirstOrDefault(x => x.DeliveryOrder.Id == model.Id);
                 if (initialOrder == null)
                     throw new System.Exception("Initial order could not be null");
@@ -407,7 +418,11 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     throw new System.Exception("List of ingredients that is related to the initial order could not be null or empty");
                 var deliveryWh2Kitchen = new DeliveryWh2Kitchen
                 {
-                    // InitialOrder = initialOrder,
+                    Uid = System.Guid.NewGuid().ToString(),
+                    InitialOrders = new List<InitialOrder>() 
+                    {
+                        initialOrder
+                    },
                     InitialOrderProducts = initialOrderProducts,
                     InitialOrderIngredients = initialOrderIngredients
                 };
@@ -464,7 +479,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("WarehouseBackend.Wh2KitchenRespond: end");
             return response;
         }
+        #endregion  // wh2kitchen
 
+        #region kitchen2wh
         /// <summary>
         /// A method that allows you to begin the process of delivering finished products from the kitchen to the warehouse.
         /// </summary>
@@ -541,5 +558,6 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("WarehouseBackend.Kitchen2WhExecute: end");
             return response;
         }
+        #endregion  // kitchen2wh
     }
 }

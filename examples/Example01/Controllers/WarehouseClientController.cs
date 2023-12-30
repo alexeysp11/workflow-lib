@@ -23,6 +23,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             _contextOptions = contextOptions;
         }
 
+        #region store2wh
         /// <summary>
         /// Storing request for filling a form for deliving from the store to warehouse.
         /// </summary>
@@ -115,6 +116,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("WarehouseClient.Store2WhConfirm: end");
             return response;
         }
+        #endregion  // store2wh
         
         /// <summary>
         /// Storing the request for warhouse employee to deliver from warehouse to kitchen. 

@@ -32,6 +32,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             _customerClientController = new CustomerClientController(contextOptions, this);
         }
 
+        #region makeorder
         /// <summary>
         /// The method that is responsible for placing an order.
         /// </summary>
@@ -66,6 +67,37 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
 
+        // /// <summary>
+        // /// 
+        // /// </summary>
+        // public string MakeOrderSave(ApiOperation apiOperation)
+        // {
+        //     string response = "";
+        //     System.Console.WriteLine("CustomerBackend.MakeOrder: begin");
+        //     try
+        //     {
+        //         // Initializing.
+        //         InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                
+        //         // Validation.
+        //         System.Console.WriteLine("CustomerBackend.MakeOrder: validation");
+
+        //         // Update DB.
+        //         System.Console.WriteLine("CustomerBackend.MakeOrder: cache");
+
+        //         response = "success";
+        //     }
+        //     catch (System.Exception ex)
+        //     {
+        //         response = "error: " + ex.Message;
+        //         System.Console.WriteLine("ERROR : " + ex.ToString());
+        //     }
+        //     System.Console.WriteLine("CustomerBackend.MakeOrder: end");
+        //     return response;
+        // }
+        #endregion  // makeorder
+
+        #region makepayment
         /// <summary>
         /// The method that is responsible for starting the electronic payment procedure for an order.
         /// </summary>
@@ -133,7 +165,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 var initialOrder = context.InitialOrders.FirstOrDefault(x => x.Id == model.Id);
                 if (initialOrder == null)
                     throw new System.Exception("Specified initial order does not exist in the database");
-                DeliveryOrder deliveryOrder = new DeliveryOrder
+                var deliveryOrder = new DeliveryOrder
                 {
                     Uid = System.Guid.NewGuid().ToString(),
                     Payments = new List<Payment>
@@ -213,54 +245,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CustomerBackend.MakePayment: end");
             return response;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string PreprocessOrderStart(ApiOperation apiOperation)
-        {
-            // Get recipes.
-
-            // Send HTTP request to warehouse backend.
-            // var dt = new WarehouseBackendController(_contextOptions).PreprocessOrder(model);
-
-            // // Calculate delivery time.
-            // var deliveryDuration = new System.TimeSpan(0, 30, 0);
-            // deliveryDuration += dt;
-
-            // 
-            return "";
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string MakeOrderSave(ApiOperation apiOperation)
-        {
-            string response = "";
-            System.Console.WriteLine("CustomerBackend.MakeOrder: begin");
-            try
-            {
-                // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
-                
-                // Validation.
-                System.Console.WriteLine("CustomerBackend.MakeOrder: validation");
-
-                // Update DB.
-                System.Console.WriteLine("CustomerBackend.MakeOrder: cache");
-
-                response = "success";
-            }
-            catch (System.Exception ex)
-            {
-                response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
-            }
-            System.Console.WriteLine("CustomerBackend.MakeOrder: end");
-            return response;
-        }
-
+        
         /// <summary>
         /// The method that is responsible for transmitting information from the client regarding the completed electronic payment.
         /// </summary>
@@ -330,5 +315,6 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: end");
             return response;
         }
+        #endregion  // makepayment
     }
 }
