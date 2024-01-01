@@ -21,20 +21,21 @@ namespace Cims.WorkflowLib.Example01.Controllers
             _contextOptions = contextOptions;
         }
 
+        #region store2wh
         /// <summary>
         /// A method that allows to save a request for the delivery of products from a store to a warehouse.
         /// </summary>
-        public string Store2WhSave(ApiOperation apiOperation)
+        public string Store2WhStart(ApiOperation apiOperation)
         {
             string response = "";
-            System.Console.WriteLine("CourierClient.Store2WhSave: begin");
+            System.Console.WriteLine("CourierClient.Store2WhStart: begin");
             try
             {
                 // Initializing.
                 DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
 
                 // Update DB.
-                System.Console.WriteLine("CourierClient.Store2WhSave: cache");
+                System.Console.WriteLine("CourierClient.Store2WhStart: cache");
 
                 // 
                 response = "success";
@@ -44,7 +45,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("CourierClient.Store2WhSave: end");
+            System.Console.WriteLine("CourierClient.Store2WhStart: end");
             return response;
         }
 
@@ -80,7 +81,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CourierClient.Store2WhExecute: end");
             return response;
         }
+        #endregion  // store2wh
 
+        #region scanqronorder
         /// <summary>
         /// The method that is responsible for starting the process of scanning the QR code on the order 
         /// to begin the delivery procedure.
@@ -93,6 +96,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                
                 // Update DB.
                 System.Console.WriteLine("CourierClient.ScanQrOnOrderStart: cache");
 
@@ -119,6 +123,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
+
                 // Update DB.
                 System.Console.WriteLine("CourierClient.ScanQrOnOrderExecute: cache");
 
@@ -139,7 +144,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CourierClient.ScanQrOnOrderExecute: end");
             return response;
         }
+        #endregion  // scanqronorder
 
+        #region scanbackpack
         /// <summary>
         /// The method that is responsible for starting the process of scanning the QR code on the backpack 
         /// to begin the delivery procedure.
@@ -152,6 +159,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                
                 // Update DB.
                 System.Console.WriteLine("CourierClient.ScanBackpackStart: cache");
 
@@ -178,6 +186,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
+
                 // Update DB.
                 System.Console.WriteLine("CourierClient.ScanBackpackExecute: cache");
 
@@ -198,7 +207,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CourierClient.ScanBackpackExecute: end");
             return response;
         }
-        
+        #endregion  // scanbackpack
+
+        #region deliverorder
         /// <summary>
         /// The method that is responsible for starting the order delivery process.
         /// </summary>
@@ -210,6 +221,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
+
                 // Update DB.
                 System.Console.WriteLine("CourierClient.DeliverOrderStart: cache");
 
@@ -236,6 +248,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                
                 // Update DB.
                 System.Console.WriteLine("CourierClient.DeliverOrderExecute: cache");
 
@@ -256,5 +269,6 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CourierClient.DeliverOrderExecute: end");
             return response;
         }
+        #endregion  // deliverorder
     }
 }

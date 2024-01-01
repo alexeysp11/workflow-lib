@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Cims.WorkflowLib.Models.Network;
-using Cims.WorkflowLib.Example01.Controllers;
-using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Example01.Contexts;
+using Cims.WorkflowLib.Example01.Controllers;
+using Cims.WorkflowLib.Extensions;
+using Cims.WorkflowLib.Models.Business.BusinessDocuments;
+using Cims.WorkflowLib.Example01.Enums;
+using Cims.WorkflowLib.Models.Network;
 
 namespace Cims.WorkflowLib.Example01.FlowchartSteps
 {
@@ -50,7 +52,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
                 City = "City1",
                 Address = "123, Customer Address",
                 ProductIds = productIds,
-                PaymentType = "card"
+                PaymentType = EnumExtensions.GetDisplayName(PaymentType.Card)
             };
             
             string response = _customerClientController.MakeOrderRequest(new ApiOperation

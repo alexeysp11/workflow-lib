@@ -25,20 +25,20 @@ namespace Cims.WorkflowLib.Example01.Controllers
         /// <summary>
         /// A method that is responsible for storing information necessary for the preparation of an order by kitchen staff.
         /// </summary>
-        public string PrepareMealSave(ApiOperation apiOperation)
+        public string PrepareMealStart(ApiOperation apiOperation)
         {
             string response = "";
-            System.Console.WriteLine("KitchenClient.PrepareMealSave: begin");
+            System.Console.WriteLine("KitchenClient.PrepareMealStart: begin");
             try
             {
                 // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
 
                 // Validation.
-                System.Console.WriteLine("KitchenClient.PrepareMealSave: validation");
+                System.Console.WriteLine("KitchenClient.PrepareMealStart: validation");
                 
                 // Insert into cache.
-                System.Console.WriteLine("KitchenClient.PrepareMealSave: cache");
+                System.Console.WriteLine("KitchenClient.PrepareMealStart: cache");
 
                 // 
                 response = "success";
@@ -48,7 +48,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("KitchenClient.PrepareMealSave: end");
+            System.Console.WriteLine("KitchenClient.PrepareMealStart: end");
             return response;
         }
 

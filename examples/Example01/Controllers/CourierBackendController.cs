@@ -22,20 +22,21 @@ namespace Cims.WorkflowLib.Example01.Controllers
             _contextOptions = contextOptions;
         }
 
+        #region store2wh
         /// <summary>
         /// A method that allows to save a request for the delivery of products from a store to a warehouse.
         /// </summary>
-        public string Store2WhSave(ApiOperation apiOperation)
+        public string Store2WhStart(ApiOperation apiOperation)
         {
             string response = "";
-            System.Console.WriteLine("CourierBackend.Store2WhSave: begin");
+            System.Console.WriteLine("CourierBackend.Store2WhStart: begin");
             try
             {
                 // Initializing.
                 DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
 
                 // Update DB.
-                System.Console.WriteLine("CourierBackend.Store2WhSave: cache");
+                System.Console.WriteLine("CourierBackend.Store2WhStart: cache");
                 
                 // Notify courier employee.
                 new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
@@ -50,7 +51,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 });
 
                 // Update cache in the client-side app.
-                string deliveryRequest = new CourierClientController(_contextOptions).Store2WhSave(new ApiOperation()
+                string deliveryRequest = new CourierClientController(_contextOptions).Store2WhStart(new ApiOperation()
                 {
                     RequestObject = model
                 });
@@ -63,7 +64,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("CourierBackend.Store2WhSave: end");
+            System.Console.WriteLine("CourierBackend.Store2WhStart: end");
             return response;
         }
 
@@ -99,7 +100,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CourierBackend.Store2WhExecute: end");
             return response;
         }
+        #endregion  // store2wh
 
+        #region scanqronorder
         /// <summary>
         /// The method that is responsible for starting the process of scanning the QR code on the order 
         /// to begin the delivery procedure.
@@ -145,6 +148,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
+
                 // Update DB.
                 System.Console.WriteLine("CourierBackend.ScanQrOnOrderExecute: cache");
 
@@ -165,7 +169,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CourierBackend.ScanQrOnOrderExecute: end");
             return response;
         }
+        #endregion  // scanqronorder
 
+        #region scanbackpack
         /// <summary>
         /// The method that is responsible for starting the process of scanning the QR code on the backpack 
         /// to begin the delivery procedure.
@@ -178,6 +184,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                
                 // Update DB.
                 System.Console.WriteLine("CourierBackend.ScanBackpackStart: cache");
 
@@ -210,6 +217,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
+
                 // Update DB.
                 System.Console.WriteLine("CourierBackend.ScanBackpackExecute: cache");
 
@@ -230,7 +238,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CourierBackend.ScanBackpackExecute: end");
             return response;
         }
+        #endregion  // scanbackpack
 
+        #region deliverorder
         /// <summary>
         /// The method that is responsible for starting the order delivery process.
         /// </summary>
@@ -242,6 +252,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
+
                 // Update DB.
                 System.Console.WriteLine("CourierBackend.DeliverOrderStart: cache");
 
@@ -286,6 +297,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                
                 // Update DB.
                 System.Console.WriteLine("CourierBackend.DeliverOrderExecute: cache");
 
@@ -300,5 +312,6 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CourierBackend.DeliverOrderExecute: end");
             return response;
         }
+        #endregion  // deliverorder
     }
 }

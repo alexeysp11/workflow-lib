@@ -10,14 +10,14 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
     /// <summary>
     /// A step that completes the procedure for delivering products from the warehouse to the kitchen.
     /// </summary>
-    public class FinishWh2KitchenStep : IFlowchartStep
+    public class Wh2KitchenStep : IFlowchartStep
     {
         private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
 
         /// <summary>
         /// Constructor by default.
         /// </summary>
-        public FinishWh2KitchenStep(
+        public Wh2KitchenStep(
             DbContextOptions<DeliveringContext> contextOptions) 
         {
             _contextOptions = contextOptions;
@@ -28,7 +28,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
         /// </summary>
         public bool Start()
         {
-            System.Console.WriteLine("FinishWh2KitchenStep.Start: begin");
+            System.Console.WriteLine("Wh2KitchenStep.Start: begin");
 
             using var context = new DeliveringContext(_contextOptions);
 
@@ -49,13 +49,13 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             };
 
             // 
-            string response = new WarehouseClientController(_contextOptions).Wh2KitchenRespond(new ApiOperation
+            string response = new WarehouseClientController(_contextOptions).Wh2KitchenExecute(new ApiOperation
             {
                 RequestObject = model
             });
             
             System.Console.WriteLine($"response: {response}");
-            System.Console.WriteLine("FinishWh2KitchenStep.Start: end");
+            System.Console.WriteLine("Wh2KitchenStep.Start: end");
             
             return response == "success";
         }

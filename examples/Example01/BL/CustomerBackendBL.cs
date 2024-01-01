@@ -1,4 +1,6 @@
 using Cims.WorkflowLib.Example01.Controllers;
+using Cims.WorkflowLib.Example01.Enums;
+using Cims.WorkflowLib.Extensions;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 
 namespace Cims.WorkflowLib.Example01.BL
@@ -28,11 +30,11 @@ namespace Cims.WorkflowLib.Example01.BL
             string result = "";
 
             // Get payment method.
-            if (model.PaymentType == "card")
+            if (model.PaymentType == EnumExtensions.GetDisplayName(PaymentType.Card))
             {
                 // Create a form for card details.
             }
-            else if (model.PaymentType == "qr")
+            else if (model.PaymentType == EnumExtensions.GetDisplayName(PaymentType.QrCode))
             {
                 // Generate QR code.
                 // string qrResult = _fileServiceController.GenerateQrCode(model);

@@ -25,9 +25,9 @@ namespace Cims.WorkflowLib.Example01
         private MakeOrderStep _step01 { get; set; }
         private MakePaymentStep _step02 { get; set; }
         private RequestStore2WhStep _step03 { get; set; }
-        private FinishStore2WhStep _step04 { get; set; }
+        private Store2WhStep _step04 { get; set; }
         private ConfirmStore2WhStep _step05 { get; set; }
-        private FinishWh2KitchenStep _step06 { get; set; }
+        private Wh2KitchenStep _step06 { get; set; }
         private PrepareMealStep _step07 { get; set; }
         private Kitchen2WhStep _step08 { get; set; }
         private ScanQrOnOrderStep _step09 { get; set; }
@@ -42,9 +42,9 @@ namespace Cims.WorkflowLib.Example01
             MakeOrderStep step01, 
             MakePaymentStep step02, 
             RequestStore2WhStep step03, 
-            FinishStore2WhStep step04, 
+            Store2WhStep step04, 
             ConfirmStore2WhStep step05, 
-            FinishWh2KitchenStep step06, 
+            Wh2KitchenStep step06, 
             PrepareMealStep step07, 
             Kitchen2WhStep step08, 
             ScanQrOnOrderStep step09, 

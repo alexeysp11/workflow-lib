@@ -39,7 +39,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
 
             System.Console.WriteLine("RequestStore2WhStep.Start: begin");
             var model = context.DeliveryOrders.FirstOrDefault(x => x.ParentDeliveryOrder != null);
-            string response = new WarehouseClientController(_contextOptions).Store2WhRequest(new ApiOperation
+            string response = new WarehouseClientController(_contextOptions).RequestStore2WhRespond(new ApiOperation
             {
                 RequestObject = model
             });

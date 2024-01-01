@@ -9,14 +9,14 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
     /// <summary>
     /// A step that completes the procedure for delivering products from the store to the warehouse.
     /// </summary>
-    public class FinishStore2WhStep : IFlowchartStep
+    public class Store2WhStep : IFlowchartStep
     {
         private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
 
         /// <summary>
         /// Constructor by default.
         /// </summary>
-        public FinishStore2WhStep(
+        public Store2WhStep(
             DbContextOptions<DeliveringContext> contextOptions) 
         {
             _contextOptions = contextOptions;
@@ -37,7 +37,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
                 return false;
             }
             
-            System.Console.WriteLine("FinishStore2WhStep.Start: begin");
+            System.Console.WriteLine("Store2WhStep.Start: begin");
 
             // Check whether there were enough ingredients in the order preprocessing step.
 
@@ -65,7 +65,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
                 RequestObject = model
             });
             System.Console.WriteLine($"response: {response}");
-            System.Console.WriteLine("FinishStore2WhStep.Start: end");
+            System.Console.WriteLine("Store2WhStep.Start: end");
             
             return response == "success";
         }

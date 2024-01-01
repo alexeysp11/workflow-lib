@@ -77,7 +77,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             context.SaveChanges();
 
             // 
-            string response = new WarehouseClientController(_contextOptions).Store2WhConfirm(new ApiOperation
+            string response = new WarehouseClientController(_contextOptions).ConfirmStore2WhAccept(new ApiOperation
             {
                 RequestObject = model
             });

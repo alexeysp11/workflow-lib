@@ -18,9 +18,9 @@ IHost _host = Host.CreateDefaultBuilder().ConfigureServices(
         // Flowchart steps.
         services.AddSingleton<MakeOrderStep>();
         services.AddSingleton<MakePaymentStep>();
-        services.AddSingleton<FinishWh2KitchenStep>();
+        services.AddSingleton<Wh2KitchenStep>();
         services.AddSingleton<RequestStore2WhStep>();
-        services.AddSingleton<FinishStore2WhStep>();
+        services.AddSingleton<Store2WhStep>();
         services.AddSingleton<ConfirmStore2WhStep>();
         services.AddSingleton<PrepareMealStep>();
         services.AddSingleton<Kitchen2WhStep>();

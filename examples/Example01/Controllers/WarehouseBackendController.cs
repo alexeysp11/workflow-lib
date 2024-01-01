@@ -197,7 +197,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 else
                 {
                     resultDuration += store2whDuration;
-                    response = Store2WhStart(new ApiOperation()
+                    response = RequestStore2WhStart(new ApiOperation()
                     {
                         RequestObject = model
                     });
@@ -217,18 +217,20 @@ namespace Cims.WorkflowLib.Example01.Controllers
         /// <summary>
         /// A method that allows you to begin the process of delivering products from the store to the warehouse.
         /// </summary>
-        public string Store2WhStart(ApiOperation apiOperation)
+        public string RequestStore2WhStart(ApiOperation apiOperation)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseBackend.Store2WhStart: begin");
+            System.Console.WriteLine("WarehouseBackend.RequestStore2WhStart: begin");
             try
             {
                 // Initializing.
                 DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
                 
                 // Update DB.
+                System.Console.WriteLine("WarehouseBackend.RequestStore2WhStart: update DB");
 
                 // Notify warehouse employee.
+                System.Console.WriteLine("WarehouseBackend.RequestStore2WhStart: notify employee");
                 new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
                 {
                     new Notification
@@ -241,7 +243,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 });
 
                 // Update cache in the client-side app.
-                string paymentRequest = new WarehouseClientController(_contextOptions).Store2WhSave(new ApiOperation()
+                string paymentRequest = new WarehouseClientController(_contextOptions).RequestStore2WhSave(new ApiOperation()
                 {
                     RequestObject = model
                 });
@@ -254,27 +256,27 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("WarehouseBackend.Store2WhStart: end");
+            System.Console.WriteLine("WarehouseBackend.RequestStore2WhStart: end");
             return response;
         }
 
         /// <summary>
         /// A method that allows you to request the start of the process of delivering products from the store to the warehouse.
         /// </summary>
-        public string Store2WhRequest(ApiOperation apiOperation)
+        public string RequestStore2WhRespond(ApiOperation apiOperation)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseBackend.Store2WhRequest: begin");
+            System.Console.WriteLine("WarehouseBackend.RequestStore2WhRespond: begin");
             try
             {
                 // Initializing.
                 DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
                 
                 // Update DB.
-                System.Console.WriteLine("WarehouseBackend.Store2WhRequest: cache");
+                System.Console.WriteLine("WarehouseBackend.RequestStore2WhRespond: cache");
 
                 // Send HTTP request.
-                string backendResponse = new CourierBackendController(_contextOptions).Store2WhSave(new ApiOperation
+                string backendResponse = new CourierBackendController(_contextOptions).Store2WhStart(new ApiOperation
                 {
                     RequestObject = model
                 });
@@ -287,10 +289,12 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("WarehouseBackend.Store2WhRequest: end");
+            System.Console.WriteLine("WarehouseBackend.RequestStore2WhRespond: end");
             return response;
         }
+        #endregion  // requeststore2wh
         
+        #region store2wh
         /// <summary>
         /// A method that allows you to save the value of an incoming parameter 
         /// as part of the process of delivering products from the store to the warehouse. 
@@ -336,14 +340,16 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("WarehouseBackend.Store2WhSave: end");
             return response;
         }
+        #endregion  // store2wh
 
+        #region confirmstore2wh
         /// <summary>
         /// A method that is responsible for confirming the delivery of products from the store to the warehouse.
         /// </summary>
-        public string Store2WhConfirm(ApiOperation apiOperation)
+        public string ConfirmStore2WhAccept(ApiOperation apiOperation)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseBackend.Store2WhConfirm: begin");
+            System.Console.WriteLine("WarehouseBackend.ConfirmStore2WhAccept: begin");
             try
             {
                 // Initializing.
@@ -351,7 +357,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 using var context = new DeliveringContext(_contextOptions);
                 
                 // Update DB.
-                System.Console.WriteLine("WarehouseBackend.Store2WhConfirm: cache");
+                System.Console.WriteLine("WarehouseBackend.ConfirmStore2WhAccept: cache");
 
                 // Get delivery order related to the initial order.
                 var deliveryOrder = context.DeliveryOrders
@@ -372,10 +378,10 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("WarehouseBackend.Store2WhConfirm: end");
+            System.Console.WriteLine("WarehouseBackend.ConfirmStore2WhAccept: end");
             return response;
         }
-        #endregion  // store2wh
+        #endregion  // confirmstore2wh
         
         #region wh2kitchen
         /// <summary>
@@ -430,7 +436,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 context.SaveChanges();
 
                 // Update cache in the client-side app.
-                string whRequest = new WarehouseClientController(_contextOptions).Wh2KitchenSave(new ApiOperation()
+                string whRequest = new WarehouseClientController(_contextOptions).Wh2KitchenStart(new ApiOperation()
                 {
                     RequestObject = deliveryWh2Kitchen
                 });
@@ -450,17 +456,17 @@ namespace Cims.WorkflowLib.Example01.Controllers
         /// <summary>
         /// 
         /// </summary>
-        public string Wh2KitchenRespond(ApiOperation apiOperation)
+        public string Wh2KitchenExecute(ApiOperation apiOperation)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseBackend.Wh2KitchenRespond: begin");
+            System.Console.WriteLine("WarehouseBackend.Wh2KitchenExecute: begin");
             try
             {
                 // Initializing.
                 DeliveryWh2Kitchen model = apiOperation.RequestObject as DeliveryWh2Kitchen;
                 
                 // Update DB.
-                System.Console.WriteLine("WarehouseBackend.Wh2KitchenRespond: cache");
+                System.Console.WriteLine("WarehouseBackend.Wh2KitchenExecute: cache");
 
                 // Send HTTP request.
                 string backendResponse = new KitchenBackendController(_contextOptions).PrepareMealStart(new ApiOperation
@@ -476,7 +482,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("WarehouseBackend.Wh2KitchenRespond: end");
+            System.Console.WriteLine("WarehouseBackend.Wh2KitchenExecute: end");
             return response;
         }
         #endregion  // wh2kitchen
@@ -538,6 +544,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                
                 // Update DB.
                 System.Console.WriteLine("WarehouseBackend.Kitchen2WhExecute: cache");
 

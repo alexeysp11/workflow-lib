@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Cims.WorkflowLib.Extensions;
 using Cims.WorkflowLib.Models.Business;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Customers;
 using Cims.WorkflowLib.Models.Business.Monetary;
 using Cims.WorkflowLib.Models.Business.Products;
-using Cims.WorkflowLib.Extensions;
 using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Contexts;
 using Cims.WorkflowLib.Example01.Enums;
@@ -118,12 +118,12 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("CustomerBackend.MakePayment: cache");
 
                 // Get payment method.
-                if (model.PaymentType == "card")
+                if (model.PaymentType == EnumExtensions.GetDisplayName(PaymentType.Card))
                 {
                     // Create a form for card details.
                     System.Console.WriteLine("CustomerBackend.MakePayment: form for card details");
                 }
-                else if (model.PaymentType == "qr")
+                else if (model.PaymentType == EnumExtensions.GetDisplayName(PaymentType.QrCode))
                 {
                     // Generate QR code.
                     string qrResult = new FileServiceController().GenerateQrCode(new ApiOperation()
