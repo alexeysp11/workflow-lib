@@ -45,6 +45,54 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 using var context = new DeliveringContext(_contextOptions);
+                
+                // Validation.
+                System.Console.WriteLine("CustomerClient.MakeOrderRequest: validation");
+
+                // Insert into cache.
+                System.Console.WriteLine("CustomerClient.MakeOrderRequest: cache");
+                var initialOrderProducts = new List<InitialOrderProduct>();
+                var initialOrderIngredients = new List<InitialOrderIngredient>();
+                foreach (var pid in model.ProductIds)
+                {
+                    if (initialOrderProducts.Any(x => x.Product.Id == pid))
+                        continue;
+                    
+                    int productQty = model.ProductIds.Where(x => x == pid).Count();
+                    var product = context.Products.Where(x => x.Id == pid).FirstOrDefault();
+                    var initialOrderProduct = new InitialOrderProduct
+                    {
+                        Uid = System.Guid.NewGuid().ToString(),
+                        Name = product.Name,
+                        Product = product,
+                        InitialOrder = model,
+                        Quantity = productQty
+                    };
+                    initialOrderProducts.Add(initialOrderProduct);
+
+                    var ingredientsTmp = context.Ingredients
+                        .Include(x => x.IngredientProduct)
+                        .Where(x => x.FinalProduct.Id == product.Id);
+                    foreach (var ingredient in ingredientsTmp)
+                    {
+                        initialOrderIngredients.Add(new InitialOrderIngredient
+                        {
+                            Uid = System.Guid.NewGuid().ToString(),
+                            Name = ingredient.Name,
+                            Ingredient = ingredient,
+                            InitialOrder = model,
+                            InitialOrderProduct = initialOrderProduct,
+                            Quantity = productQty * (int)ingredient.Quantity
+                        });
+                    }
+                    
+                    model.PaymentAmount += productQty * product.Price;
+                }
+                model.Uid = System.Guid.NewGuid().ToString();
+                context.InitialOrderProducts.AddRange(initialOrderProducts);
+                context.InitialOrderIngredients.AddRange(initialOrderIngredients);
+                context.InitialOrders.Add(model);
+                context.SaveChanges();
 
                 // Validation.
                 System.Console.WriteLine("CustomerBackend.MakeOrderRequest: validation");
