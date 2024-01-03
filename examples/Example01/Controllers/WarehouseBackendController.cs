@@ -125,7 +125,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     CustomerName = whEmployee.FullName,
                     OrderCustomerType = OrderCustomerType.Employee,
                     ExecutorUid = courierEmployee.Uid,
-                    ExecutorName = whEmployee.FullName,
+                    ExecutorName = courierEmployee.FullName,
                     OrderExecutorType = OrderExecutorType.Employee,
                     Destination = model.Origin,
                     OpenOrderDt = System.DateTime.Now

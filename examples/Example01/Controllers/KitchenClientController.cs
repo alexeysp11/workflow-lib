@@ -34,6 +34,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
 
+                // This method will take CookingOperation as a parameter.
+                // Recipes can be loaded from InitialOrderIngredients -> Ingredient -> Recipe.
+
                 // Validation.
                 System.Console.WriteLine("KitchenClient.PrepareMealStart: validation");
                 

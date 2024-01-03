@@ -1,3 +1,4 @@
+using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Customers;
@@ -34,19 +35,75 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                if (model == null)
+                    throw new System.Exception("Delivery oder could not be null");
+                if (string.IsNullOrEmpty(model.CustomerUid))
+                    throw new System.Exception($"CustomerUid could not be null or empty in the specified DeliveryOrder (ID: {model.Id})");
+                if (string.IsNullOrEmpty(model.CustomerName))
+                    throw new System.Exception($"CustomerName could not be null or empty in the specified DeliveryOrder (ID: {model.Id})");
+                if (string.IsNullOrEmpty(model.ExecutorUid))
+                    throw new System.Exception($"ExecutorUid could not be null or empty in the specified DeliveryOrder (ID: {model.Id})");
+                if (string.IsNullOrEmpty(model.ExecutorName))
+                    throw new System.Exception($"ExecutorName could not be null or empty in the specified DeliveryOrder (ID: {model.Id})");
+                using var context = new DeliveringContext(_contextOptions);
 
+                // Get sender and receiver of the notification.
+                var adminUser = context.UserAccounts.FirstOrDefault();
+                if (adminUser == null)
+                    throw new System.Exception("Admin user could not be null");
+                var courierEmployee = context.Employees
+                    .Include(x => x.UserAccounts)
+                    .FirstOrDefault(x => x.Uid == model.ExecutorUid);
+                if (courierEmployee == null)
+                    throw new System.Exception("Courier employee could not be null");
+                var courierUser = courierEmployee.UserAccounts.FirstOrDefault();
+                if (courierUser == null)
+                    throw new System.Exception("Courier user could not be null");
+
+                // Getting the products that should be delivered.
+                var deliveryOrderProducts = context.DeliveryOrderProducts
+                    .Include(x => x.Product)
+                    .Where(x => x.DeliveryOrder.Id == model.Id && x.Product != null);
+                if (deliveryOrderProducts.Count() == 0)
+                    throw new System.Exception($"There are no existing products associated with the specified DeliveryOrder (ID: {model.Id})");
+                
                 // Update DB.
                 System.Console.WriteLine("CourierBackend.Store2WhStart: cache");
                 
+                // Title text.
+                var sbMessageText = new StringBuilder();
+                sbMessageText.Append("Store2Wh: deliver order #").Append(model.Id.ToString()).Append(" from the store to the warehouse");
+                string titleText = sbMessageText.ToString();
+                sbMessageText.Clear();
+
+                // Body text.
+                sbMessageText.Append("Please be informed that you are responsible for shipping order #");
+                sbMessageText.Append(model.Id.ToString());
+                sbMessageText.Append(" from the store to the warehouse.\n");
+                sbMessageText.Append("\n");
+                sbMessageText.Append("Ordering information:\n");
+                sbMessageText.Append("UID: ").Append(model.Uid).Append(".\n");
+                sbMessageText.Append("Creation date: ").Append(model.OpenOrderDt.ToString()).Append(".\n");
+                sbMessageText.Append("Order author: ").Append(model.OrderCustomerType.ToString()).Append(" ").Append(model.CustomerName).Append(".\n");
+                sbMessageText.Append("\n");
+                sbMessageText.Append("Products for delivery:\n");
+                foreach (var deliveryOrderProduct in deliveryOrderProducts)
+                {
+                    sbMessageText.Append("- ").Append(deliveryOrderProduct.Product.Name).Append(" ");
+                    sbMessageText.Append("(quantity: ").Append(deliveryOrderProduct.Quantity).Append(").\n");
+                }
+                sbMessageText.Append("\n");
+                sbMessageText.Append("Approximate price for products: $").Append(model.ProductsPrice.ToString()).Append("\n");
+
                 // Notify courier employee.
                 new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
                 {
                     new Notification
                     {
-                        SenderId = 1,
-                        ReceiverId = 2,
-                        TitleText = "Deliver from store to warehouse",
-                        BodyText = ""
+                        SenderId = adminUser.Id,
+                        ReceiverId = courierUser.Id,
+                        TitleText = titleText,
+                        BodyText = sbMessageText.ToString()
                     }
                 });
 
