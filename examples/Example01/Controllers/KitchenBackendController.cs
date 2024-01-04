@@ -1,3 +1,4 @@
+using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Customers;
@@ -33,6 +34,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                using var context = new DeliveringContext(_contextOptions);
                 
                 // Validation.
                 System.Console.WriteLine("KitchenBackend.PrepareMealStart: validation");
@@ -45,21 +47,44 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 {
                     RequestObject = model
                 });
+                
+                // Get sender and receiver of the notification.
+                var adminUser = context.UserAccounts.FirstOrDefault();
+                if (adminUser == null)
+                    throw new System.Exception("Admin user could not be null");
+                
+                // Title text.
+                var sbMessageText = new StringBuilder();
+                sbMessageText.Append("PrepareMeal: preparing order #123");
+                string titleText = sbMessageText.ToString();
+                sbMessageText.Clear();
+
+                // Body text.
+                sbMessageText.Append("Please be informed that you are responsible for preparing order #123.\n");
+                sbMessageText.Append("\n");
+                sbMessageText.Append(@"Products:
+- Product 1 (quantity: 2)
+    - ingredient 1 (quantity: 2)
+    - ingredient 2 (quantity: 3)
+- Product 2 (quantity: 1)
+    - ingredient 3 (quantity: 1)
+    - ingredient 4 (quantity: 2)");
 
                 // Send request to the notifications backend.
                 string notificationsRequest = new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
                 {
                     new Notification
                     {
-                        SenderId = 1,
+                        SenderId = adminUser.Id,
                         ReceiverId = 2,
-                        TitleText = "Please, be informed that one request for cooking awaits you",
-                        BodyText = ""
+                        TitleText = titleText,
+                        BodyText = sbMessageText.ToString()
                     }
                 });
                 
                 // Insert into cache.
                 System.Console.WriteLine("KitchenBackend.PrepareMealStart: cache");
+
                 // 
                 response = "success";
             }

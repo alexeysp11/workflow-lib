@@ -1,3 +1,4 @@
+using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Customers;
@@ -171,6 +172,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 }
                 if (!isSufficient)
                 {
+                    deliveryOrderStore2Wh.ProductsPrice = deliveryOrderProductsStore2Wh.Sum(x => x.Product.Price * x.Quantity);
                     context.DeliveryOrders.Add(deliveryOrderStore2Wh);
                     context.DeliveryOrderProducts.AddRange(deliveryOrderProductsStore2Wh);
                 }
@@ -199,7 +201,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     resultDuration += store2whDuration;
                     response = RequestStore2WhStart(new ApiOperation()
                     {
-                        RequestObject = model
+                        RequestObject = deliveryOrderStore2Wh
                     });
                 }
             }
@@ -225,9 +227,48 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                using var context = new DeliveringContext(_contextOptions);
                 
                 // Update DB.
                 System.Console.WriteLine("WarehouseBackend.RequestStore2WhStart: update DB");
+
+                // Get sender and receiver of the notification.
+                var adminUser = context.UserAccounts.FirstOrDefault();
+                if (adminUser == null)
+                    throw new System.Exception("Admin user could not be null");
+                
+                // Getting the products that should be delivered.
+                var deliveryOrderProducts = context.DeliveryOrderProducts
+                    .Include(x => x.Product)
+                    .Where(x => x.DeliveryOrder.Id == model.Id && x.Product != null);
+                if (deliveryOrderProducts.Count() == 0)
+                    throw new System.Exception($"There are no existing products associated with the specified DeliveryOrder (ID: {model.Id})");
+                
+                // Update cache in the client-side app.
+                string store2whRequest = new WarehouseClientController(_contextOptions).RequestStore2WhSave(new ApiOperation()
+                {
+                    RequestObject = model
+                });
+
+                // Title text.
+                var sbMessageText = new StringBuilder();
+                sbMessageText.Append("RequestStore2Wh: request delivery of order #").Append(model.Id.ToString()).Append(" from the store to the warehouse");
+                string titleText = sbMessageText.ToString();
+                sbMessageText.Clear();
+
+                // Body text.
+                sbMessageText.Append("Please be informed that you are responsible for requesting delivery of order #");
+                sbMessageText.Append(model.Id.ToString());
+                sbMessageText.Append(" from the store to the warehouse.\n");
+                sbMessageText.Append("\n");
+                sbMessageText.Append("The system automatically determined that the warehouse is short of the following products:\n");
+                foreach (var deliveryOrderProduct in deliveryOrderProducts)
+                {
+                    sbMessageText.Append("- ").Append(deliveryOrderProduct.Product.Name).Append(" ");
+                    sbMessageText.Append("(quantity: ").Append(deliveryOrderProduct.Quantity).Append(").\n");
+                }
+                sbMessageText.Append("\n");
+                sbMessageText.Append("Please check that the list of products required for delivery is correct and confirm your request.\n");
 
                 // Notify warehouse employee.
                 System.Console.WriteLine("WarehouseBackend.RequestStore2WhStart: notify employee");
@@ -235,17 +276,11 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 {
                     new Notification
                     {
-                        SenderId = 1,
+                        SenderId = adminUser.Id,
                         ReceiverId = 2,
-                        TitleText = "Create request for delivering from store to warehouse",
-                        BodyText = ""
+                        TitleText = titleText,
+                        BodyText = sbMessageText.ToString()
                     }
-                });
-
-                // Update cache in the client-side app.
-                string paymentRequest = new WarehouseClientController(_contextOptions).RequestStore2WhSave(new ApiOperation()
-                {
-                    RequestObject = model
                 });
 
                 // 
@@ -307,26 +342,57 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                using var context = new DeliveringContext(_contextOptions);
                 
                 // Update DB.
                 System.Console.WriteLine("WarehouseBackend.Store2WhSave: cache");
+
+                // Send HTTP request.
+                string backendResponse = new WarehouseClientController(_contextOptions).Store2WhSave(new ApiOperation
+                {
+                    RequestObject = model
+                });
+                
+                // Get sender and receiver of the notification.
+                var adminUser = context.UserAccounts.FirstOrDefault();
+                if (adminUser == null)
+                    throw new System.Exception("Admin user could not be null");
+                
+                // Getting the products that should be delivered.
+                var deliveryOrderProducts = context.DeliveryOrderProducts
+                    .Include(x => x.Product)
+                    .Where(x => x.DeliveryOrder.Id == model.Id && x.Product != null);
+                if (deliveryOrderProducts.Count() == 0)
+                    throw new System.Exception($"There are no existing products associated with the specified DeliveryOrder (ID: {model.Id})");
+                
+                // Title text.
+                var sbMessageText = new StringBuilder();
+                sbMessageText.Append("Store2Wh: confirm delivery of order #").Append(model.Id.ToString()).Append(" from the store to the warehouse");
+                string titleText = sbMessageText.ToString();
+                sbMessageText.Clear();
+
+                // Body text.
+                sbMessageText.Append("Please be informed that you are responsible for confirming delivery of order #");
+                sbMessageText.Append(model.Id.ToString());
+                sbMessageText.Append(" from the store to the warehouse.\n");
+                sbMessageText.Append("\n");
+                sbMessageText.Append("Products for delivery:\n");
+                foreach (var deliveryOrderProduct in deliveryOrderProducts)
+                {
+                    sbMessageText.Append("- ").Append(deliveryOrderProduct.Product.Name).Append(" ");
+                    sbMessageText.Append("(quantity: ").Append(deliveryOrderProduct.Quantity).Append(").\n");
+                }
 
                 // Notify warehouse employee.
                 new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
                 {
                     new Notification
                     {
-                        SenderId = 1,
+                        SenderId = adminUser.Id,
                         ReceiverId = 2,
-                        TitleText = "Confirm the delivery from warehouse to kitchen",
-                        BodyText = ""
+                        TitleText = titleText,
+                        BodyText = sbMessageText.ToString()
                     }
-                });
-
-                // Send HTTP request.
-                string backendResponse = new WarehouseClientController(_contextOptions).Store2WhSave(new ApiOperation
-                {
-                    RequestObject = model
                 });
 
                 // 
@@ -400,18 +466,11 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 // Update DB.
                 System.Console.WriteLine("WarehouseBackend.Wh2KitchenStart: cache");
                 
-                // Notify warehouse employee.
-                new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
-                {
-                    new Notification
-                    {
-                        SenderId = 1,
-                        ReceiverId = 2,
-                        TitleText = "Create request for delivering from warehouse to kitchen",
-                        BodyText = ""
-                    }
-                });
-
+                // Get sender and receiver of the notification.
+                var adminUser = context.UserAccounts.FirstOrDefault();
+                if (adminUser == null)
+                    throw new System.Exception("Admin user could not be null");
+                
                 // Create input parameter.
                 var initialOrder = context.InitialOrders.FirstOrDefault(x => x.DeliveryOrder.Id == model.Id);
                 if (initialOrder == null)
@@ -439,6 +498,43 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 string whRequest = new WarehouseClientController(_contextOptions).Wh2KitchenStart(new ApiOperation()
                 {
                     RequestObject = deliveryWh2Kitchen
+                });
+                
+                // Getting the products that should be delivered.
+                var deliveryOrderProducts = context.DeliveryOrderProducts
+                    .Include(x => x.Product)
+                    .Where(x => x.DeliveryOrder.Id == model.Id && x.Product != null);
+                if (deliveryOrderProducts.Count() == 0)
+                    throw new System.Exception($"There are no existing products associated with the specified DeliveryOrder (ID: {model.Id})");
+                
+                // Title text.
+                var sbMessageText = new StringBuilder();
+                sbMessageText.Append("Wh2Kitchen: deliver order #").Append(model.Id.ToString()).Append(" from the warehouse to the kitchen");
+                string titleText = sbMessageText.ToString();
+                sbMessageText.Clear();
+                
+                // Body text.
+                sbMessageText.Append("Please be informed that you are responsible for shipping order #");
+                sbMessageText.Append(model.Id.ToString());
+                sbMessageText.Append(" from the warehouse to the kitchen.\n");
+                sbMessageText.Append("\n");
+                sbMessageText.Append("Products for delivery:\n");
+                foreach (var deliveryOrderProduct in deliveryOrderProducts)
+                {
+                    sbMessageText.Append("- ").Append(deliveryOrderProduct.Product.Name).Append(" ");
+                    sbMessageText.Append("(quantity: ").Append(deliveryOrderProduct.Quantity).Append(").\n");
+                }
+                
+                // Notify warehouse employee.
+                new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
+                {
+                    new Notification
+                    {
+                        SenderId = adminUser.Id,
+                        ReceiverId = 2,
+                        TitleText = titleText,
+                        BodyText = sbMessageText.ToString()
+                    }
                 });
 
                 // 

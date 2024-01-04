@@ -1,3 +1,4 @@
+using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Cims.WorkflowLib.Extensions;
@@ -207,7 +208,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     throw new System.Exception("Organization or company is not defined");
                 if (organization.Company.Address == null)
                     throw new System.Exception("Address of the company is not specified");
-                var customer = context.Customers.FirstOrDefault(x => x.UserAccount != null && x.UserAccount.Uid == model.UserUid);
+                var customer = context.Customers
+                    .Include(x => x.UserAccount)
+                    .FirstOrDefault(x => x.UserAccount != null && x.UserAccount.Uid == model.UserUid);
                 if (customer == null)
                     throw new System.Exception("Specified customer does not exist in the database");
                 var initialOrder = context.InitialOrders.FirstOrDefault(x => x.Id == model.Id);
@@ -269,15 +272,34 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     RequestObject = deliveryOrder
                 });
 
+                // Title text.
+                var sbMessageText = new StringBuilder();
+                sbMessageText.Append("Please, provide your card details to pay for the order #").Append(deliveryOrder.Id.ToString());
+                string titleText = sbMessageText.ToString();
+                sbMessageText.Clear();
+
+                // Body text.
+                sbMessageText.Append("Hello,\n");
+                sbMessageText.Append("\n");
+                sbMessageText.Append("We have just received a request from you to process the order #").Append(deliveryOrder.Id.ToString()).Append(".\n");
+                sbMessageText.Append("Please provide us with your card details so that we can complete the payment process for your order.\n");
+                sbMessageText.Append("\n");
+                sbMessageText.Append("Your order will be prepared and delivered after payment.\n");
+                sbMessageText.Append("\n");
+                sbMessageText.Append("Thank you for using our services!");
+
                 // Send request to the notifications backend.
+                var adminUser = context.UserAccounts.FirstOrDefault();
+                if (adminUser == null)
+                    throw new System.Exception("Admin user could not be null");
                 var notifications = new List<Notification>
                 {
                     new Notification
                     {
-                        SenderId = 1,
-                        ReceiverId = 2,
-                        TitleText = "Please, enter your card details to complete the payment for the delivery order",
-                        BodyText = "Hello, we've just received the request for getting delivery order. Please, provide us with your card details to complete the payment."
+                        SenderId = adminUser.Id,
+                        ReceiverId = customer.UserAccount.Id,
+                        TitleText = titleText,
+                        BodyText = sbMessageText.ToString()
                     }
                 };
                 string notificationsRequest = new NotificationsBackendController(_contextOptions).SendNotifications(notifications);
