@@ -1,11 +1,15 @@
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using Cims.WorkflowLib.Extensions;
+using Cims.WorkflowLib.Models.Business;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Customers;
 using Cims.WorkflowLib.Models.Business.InformationSystem;
 using Cims.WorkflowLib.Models.Business.Products;
-using Cims.WorkflowLib.Example01.Contexts;
+using Cims.WorkflowLib.Models.Business.Processes;
 using Cims.WorkflowLib.Models.Network;
+using Cims.WorkflowLib.Example01.Contexts;
+using Cims.WorkflowLib.Example01.Enums;
 using Cims.WorkflowLib.Example01.Models;
 using Cims.WorkflowLib.Example01.Interfaces;
 
@@ -188,7 +192,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
 
                 // Start creating tasks for employees as part of order processing, preparation and delivery. 
                 // - If the amount of products/ingredients is sufficient, then invoke wh2kitchen.
-                // - Otherwise, invoke store2wh.
+                // - Otherwise, invoke requeststore2wh.
                 if (isSufficient)
                 {
                     response = Wh2KitchenStart(new ApiOperation()
@@ -227,6 +231,8 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                if (model == null)
+                    throw new System.ArgumentNullException("apiOperation.RequestObject");
                 using var context = new DeliveringContext(_contextOptions);
                 
                 // Update DB.
@@ -238,6 +244,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     throw new System.Exception("Admin user could not be null");
                 
                 // Getting the products that should be delivered.
+                var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
+                if (deliveryOrder == null)
+                    throw new System.ArgumentNullException("deliveryOrder");
                 var deliveryOrderProducts = context.DeliveryOrderProducts
                     .Include(x => x.Product)
                     .Where(x => x.DeliveryOrder.Id == model.Id && x.Product != null);
@@ -272,16 +281,36 @@ namespace Cims.WorkflowLib.Example01.Controllers
 
                 // Notify warehouse employee.
                 System.Console.WriteLine("WarehouseBackend.RequestStore2WhStart: notify employee");
+                var notification = new Notification
+                {
+                    SenderId = adminUser.Id,
+                    ReceiverId = 2,
+                    TitleText = titleText,
+                    BodyText = sbMessageText.ToString()
+                };
                 new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
                 {
-                    new Notification
-                    {
-                        SenderId = adminUser.Id,
-                        ReceiverId = 2,
-                        TitleText = titleText,
-                        BodyText = sbMessageText.ToString()
-                    }
+                    notification
                 });
+
+                // Create a business task for requesting delivery of order from the store to the warehouse.
+                var businessTask = new BusinessTask
+                {
+                    Uid = System.Guid.NewGuid().ToString(),
+                    Name = notification.TitleText,
+                    Subject = notification.TitleText,
+                    Description = notification.BodyText,
+                    Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Open)
+                };
+                var businessTaskDeliveryOrder = new BusinessTaskDeliveryOrder
+                {
+                    BusinessTask = businessTask,
+                    DeliveryOrder = deliveryOrder,
+                    Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.RequestStore2Wh)
+                };
+                context.BusinessTasks.Add(businessTask);
+                context.BusinessTaskDeliveryOrders.Add(businessTaskDeliveryOrder);
+                context.SaveChanges();
 
                 // 
                 response = "success";
@@ -306,14 +335,42 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                if (model == null)
+                    throw new System.ArgumentNullException("apiOperation.RequestObject");
+                using var context = new DeliveringContext(_contextOptions);
                 
                 // Update DB.
                 System.Console.WriteLine("WarehouseBackend.RequestStore2WhRespond: cache");
 
+                // The BusinessTask and DeliveryOrder classes are connected using the BusinessTaskDeliveryOrder class,
+                // so get the collection of business task objects that are related to the delivery order.
+                var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
+                if (deliveryOrder == null)
+                    throw new System.ArgumentNullException("deliveryOrder");
+                var businessTasks = context.BusinessTaskDeliveryOrders
+                    .Where(x => x.BusinessTask != null 
+                        && x.DeliveryOrder != null 
+                        && x.Discriminator == EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.RequestStore2Wh)
+                        && x.DeliveryOrder.Id == model.Id)
+                    .Select(x => x.BusinessTask);
+                if (businessTasks == null || !businessTasks.Any())
+                    throw new System.Exception("The collection of BusinessTask objects could not be null or empty");
+                
+                // Iterate through the entire collection of business tasks and "close" each of them 
+                // by setting Status to Closed.
+                foreach (var businessTask in businessTasks)
+                {
+                    businessTask.Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Closed);
+                }
+
+                // Change the status of the corresponding delivery order.
+                deliveryOrder.Status = EnumExtensions.GetDisplayName(OrderStatus.Finished);
+                context.SaveChanges();
+
                 // Send HTTP request.
                 string backendResponse = new CourierBackendController(_contextOptions).Store2WhStart(new ApiOperation
                 {
-                    RequestObject = model
+                    RequestObject = deliveryOrder
                 });
 
                 // 

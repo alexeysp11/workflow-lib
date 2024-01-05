@@ -39,6 +39,11 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             
             System.Console.WriteLine("Store2WhStep.Start: begin");
 
+            // Since at the stage of generating a delivery request, a warehouse employee cannot merge several DeliveryOrders 
+            // into one task, the courier simply receives several tasks that indicate orders and products for delivery 
+            // (at the UI level, they can be displayed by task, order or product).
+            // The DeliveryOrder object associated with the delivery task is passed to the backend service.
+
             // Check whether there were enough ingredients in the order preprocessing step.
 
             // Unload a delivery order that has a parent and is an internal delivery order.

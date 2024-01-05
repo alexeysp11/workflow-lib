@@ -1,9 +1,12 @@
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using Cims.WorkflowLib.Extensions;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Customers;
+using Cims.WorkflowLib.Models.Business.Delivery;
 using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Contexts;
+using Cims.WorkflowLib.Example01.Enums;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
@@ -13,6 +16,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
     public class CourierBackendController
     {
         private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
+        private Notification Notification { get; set; }
 
         /// <summary>
         /// Constructor by default.
@@ -35,6 +39,14 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                if (model == null)
+                    throw new System.ArgumentNullException("apiOperation.RequestObject");
+                using var context = new DeliveringContext(_contextOptions);
+
+                // Get all the objects related to the specified delivery order.
+                var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
+                if (deliveryOrder == null)
+                    throw new System.ArgumentNullException("deliveryOrder");
 
                 // Update DB.
                 System.Console.WriteLine("CourierBackend.Store2WhStart: cache");
@@ -45,6 +57,22 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     RequestObject = model
                 });
                 NotifyDeliveryOrder(model, "Store2Wh");
+                
+                // Create a DeliveryOperation object and associate it with the delivery order.
+                var deliveryOperation = new DeliveryOperation
+                {
+                    Uid = System.Guid.NewGuid().ToString(),
+                    Name = Notification.TitleText,
+                    Subject = Notification.TitleText,
+                    Description = Notification.BodyText,
+                    CustomerName = deliveryOrder.CustomerName,
+                    Origin = deliveryOrder.Origin,
+                    Destination = deliveryOrder.Destination,
+                    Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Open)
+                };
+                deliveryOrder.DeliveryOperation = deliveryOperation;
+                context.DeliveryOperations.Add(deliveryOperation);
+                context.SaveChanges();
 
                 // 
                 response = "success";
@@ -358,15 +386,16 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 sbMessageText.Append("Approximate price for products: $").Append(model.ProductsPrice.ToString()).Append("\n");
 
                 // Notify the customer.
+                Notification = new Notification
+                {
+                    SenderId = adminUser.Id,
+                    ReceiverId = courierUser.Id,
+                    TitleText = titleText,
+                    BodyText = sbMessageText.ToString()
+                };
                 new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
                 {
-                    new Notification
-                    {
-                        SenderId = adminUser.Id,
-                        ReceiverId = courierUser.Id,
-                        TitleText = titleText,
-                        BodyText = sbMessageText.ToString()
-                    }
+                    Notification
                 });
 
                 // 

@@ -38,6 +38,11 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             }
 
             System.Console.WriteLine("RequestStore2WhStep.Start: begin");
+
+            // When a warehouse employee receives a BusinessTask to request a delivery from the store to the warehouse, 
+            // his active tasks are simply downloaded to them.
+            // When a warehouse employee on the client "closes" the BusinessTask task to request delivery from the store to the warehouse, 
+            // the DeliveryOrder object is passed to the backend.
             var model = context.DeliveryOrders.FirstOrDefault(x => x.ParentDeliveryOrder != null);
             string response = new WarehouseClientController(_contextOptions).RequestStore2WhRespond(new ApiOperation
             {
