@@ -10,6 +10,9 @@ namespace Cims.WorkflowLib.Example01.Enums
         [Display(Name = "RequestStore2Wh")]
         RequestStore2Wh,
 
+        [Display(Name = "ConfirmStore2Wh")]
+        ConfirmStore2Wh,
+
         [Display(Name = "Other")]
         Other
     }

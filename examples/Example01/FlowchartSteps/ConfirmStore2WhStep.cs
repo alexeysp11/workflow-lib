@@ -42,11 +42,11 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             System.Console.WriteLine("ConfirmStore2WhStep.Start: begin");
 
             // Unload a delivery order that has a parent and is an internal delivery order.
-            var model = context.DeliveryOrders
+            var deliveryOrder = context.DeliveryOrders
                 .FirstOrDefault(x => x.ParentDeliveryOrder != null 
                     && x.OrderExecutorType == OrderExecutorType.Employee
                     && x.OrderCustomerType == OrderCustomerType.Employee);
-            if (model == null)
+            if (deliveryOrder == null)
                 throw new System.Exception("Delivery order could not be null");
             
             // At the step of confirming delivery from the store to the warehouse there should 
@@ -54,7 +54,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             var deliveryOrderProducts = context.DeliveryOrderProducts
                 .Include(x => x.Product)
                 .Include(x => x.DeliveryOrder)
-                .Where(x => x.DeliveryOrder.Id == model.Id);
+                .Where(x => x.DeliveryOrder.Id == deliveryOrder.Id);
             foreach (var deliveryOrderProduct in deliveryOrderProducts)
             {
                 var whproduct = context.WHProducts.FirstOrDefault(x => x.Product.Id == deliveryOrderProduct.Product.Id);
@@ -79,7 +79,7 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
             // 
             string response = new WarehouseClientController(_contextOptions).ConfirmStore2WhAccept(new ApiOperation
             {
-                RequestObject = model
+                RequestObject = deliveryOrder
             });
             System.Console.WriteLine($"response: {response}");
             System.Console.WriteLine("ConfirmStore2WhStep.Start: end");

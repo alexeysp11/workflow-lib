@@ -354,7 +354,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                         && x.DeliveryOrder.Id == model.Id)
                     .Select(x => x.BusinessTask);
                 if (businessTasks == null || !businessTasks.Any())
-                    throw new System.Exception("The collection of BusinessTask objects could not be null or empty");
+                    throw new System.Exception($"The collection of BusinessTask objects could not be null or empty (delivery order ID: {model.Id})");
                 
                 // Iterate through the entire collection of business tasks and "close" each of them 
                 // by setting Status to Closed.
@@ -469,7 +469,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 {
                     BusinessTask = businessTask,
                     DeliveryOrder = deliveryOrder,
-                    Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.RequestStore2Wh)
+                    Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.ConfirmStore2Wh)
                 };
                 context.BusinessTasks.Add(businessTask);
                 context.BusinessTaskDeliveryOrders.Add(businessTaskDeliveryOrder);
@@ -500,23 +500,49 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                if (model == null)
+                    throw new System.ArgumentNullException("apiOperation.RequestObject");
                 using var context = new DeliveringContext(_contextOptions);
                 
                 // Update DB.
                 System.Console.WriteLine("WarehouseBackend.ConfirmStore2WhAccept: cache");
 
-                // Get delivery order related to the initial order.
-                var deliveryOrder = context.DeliveryOrders
+                // Close the business task that is related to the delivery order passed as a parameter.
+                var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
+                if (deliveryOrder == null)
+                    throw new System.ArgumentNullException("deliveryOrder");
+                var businessTasks = context.BusinessTaskDeliveryOrders
+                    .Where(x => x.BusinessTask != null 
+                        && x.DeliveryOrder != null 
+                        && x.Discriminator == EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.ConfirmStore2Wh)
+                        && x.DeliveryOrder.Id == model.Id)
+                    .Select(x => x.BusinessTask);
+                if (businessTasks == null || !businessTasks.Any())
+                    throw new System.Exception($"The collection of BusinessTask objects could not be null or empty (delivery order ID: {model.Id})");
+                
+                // Iterate through the entire collection of business tasks and "close" each of them 
+                // by setting Status to Closed.
+                foreach (var businessTask in businessTasks)
+                {
+                    businessTask.Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Closed);
+                }
+
+                // Change the status of the corresponding delivery order.
+                deliveryOrder.Status = EnumExtensions.GetDisplayName(OrderStatus.InProcess);
+                context.SaveChanges();
+
+                // Get the parent delivery order that should be delivered from the warehouse to the kitchen.
+                var parentDeliveryOrder = context.DeliveryOrders
                     .Where(x => x.Id == model.Id)
                     .Select(x => x.ParentDeliveryOrder)
                     .FirstOrDefault();
-                if (deliveryOrder == null)
+                if (parentDeliveryOrder == null)
                     throw new System.Exception("Parent delivery order could not be null");
                 
                 // Start the step for delivering from warehouse to kitchen.
                 response = Wh2KitchenStart(new ApiOperation()
                 {
-                    RequestObject = deliveryOrder
+                    RequestObject = parentDeliveryOrder
                 });
             }
             catch (System.Exception ex)
@@ -551,35 +577,6 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 if (adminUser == null)
                     throw new System.Exception("Admin user could not be null");
                 
-                // Create input parameter.
-                var initialOrder = context.InitialOrders.FirstOrDefault(x => x.DeliveryOrder.Id == model.Id);
-                if (initialOrder == null)
-                    throw new System.Exception("Initial order could not be null");
-                var initialOrderProducts = context.InitialOrderProducts.Where(x => x.InitialOrder.Id == initialOrder.Id).ToList();
-                if (initialOrderProducts == null || !initialOrderProducts.Any())
-                    throw new System.Exception("List of products that is related to the initial order could not be null or empty");
-                var initialOrderIngredients = context.InitialOrderIngredients.Where(x => x.InitialOrder.Id == initialOrder.Id).ToList();
-                if (initialOrderIngredients == null || !initialOrderIngredients.Any())
-                    throw new System.Exception("List of ingredients that is related to the initial order could not be null or empty");
-                var deliveryWh2Kitchen = new DeliveryWh2Kitchen
-                {
-                    Uid = System.Guid.NewGuid().ToString(),
-                    InitialOrders = new List<InitialOrder>() 
-                    {
-                        initialOrder
-                    },
-                    InitialOrderProducts = initialOrderProducts,
-                    InitialOrderIngredients = initialOrderIngredients
-                };
-                context.DeliveriesWh2Kitchen.Add(deliveryWh2Kitchen);
-                context.SaveChanges();
-
-                // Update cache in the client-side app.
-                string whRequest = new WarehouseClientController(_contextOptions).Wh2KitchenStart(new ApiOperation()
-                {
-                    RequestObject = deliveryWh2Kitchen
-                });
-                
                 // Getting the products that should be delivered.
                 var deliveryOrderProducts = context.DeliveryOrderProducts
                     .Include(x => x.Product)
@@ -606,15 +603,49 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 }
                 
                 // Notify warehouse employee.
+                var notification = new Notification
+                {
+                    SenderId = adminUser.Id,
+                    ReceiverId = 2,
+                    TitleText = titleText,
+                    BodyText = sbMessageText.ToString()
+                };
                 new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
                 {
-                    new Notification
+                    notification
+                });
+
+                // Create input parameter.
+                var initialOrder = context.InitialOrders.FirstOrDefault(x => x.DeliveryOrder.Id == model.Id);
+                if (initialOrder == null)
+                    throw new System.Exception("Initial order could not be null");
+                var initialOrderProducts = context.InitialOrderProducts.Where(x => x.InitialOrder.Id == initialOrder.Id).ToList();
+                if (initialOrderProducts == null || !initialOrderProducts.Any())
+                    throw new System.Exception("List of products that is related to the initial order could not be null or empty");
+                var initialOrderIngredients = context.InitialOrderIngredients.Where(x => x.InitialOrder.Id == initialOrder.Id).ToList();
+                if (initialOrderIngredients == null || !initialOrderIngredients.Any())
+                    throw new System.Exception("List of ingredients that is related to the initial order could not be null or empty");
+                var deliveryWh2Kitchen = new DeliveryWh2Kitchen
+                {
+                    Uid = System.Guid.NewGuid().ToString(),
+                    Name = notification.TitleText,
+                    Subject = notification.TitleText,
+                    Description = notification.BodyText,
+                    Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Open),
+                    InitialOrders = new List<InitialOrder>() 
                     {
-                        SenderId = adminUser.Id,
-                        ReceiverId = 2,
-                        TitleText = titleText,
-                        BodyText = sbMessageText.ToString()
-                    }
+                        initialOrder
+                    },
+                    InitialOrderProducts = initialOrderProducts,
+                    InitialOrderIngredients = initialOrderIngredients
+                };
+                context.DeliveriesWh2Kitchen.Add(deliveryWh2Kitchen);
+                context.SaveChanges();
+
+                // Update cache in the client-side app.
+                string whRequest = new WarehouseClientController(_contextOptions).Wh2KitchenStart(new ApiOperation()
+                {
+                    RequestObject = deliveryWh2Kitchen
                 });
 
                 // 
