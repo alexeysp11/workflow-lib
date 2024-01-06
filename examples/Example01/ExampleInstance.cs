@@ -176,6 +176,7 @@ namespace Cims.WorkflowLib.Example01
             context.DeliveriesWh2Kitchen.RemoveRange(context.DeliveriesWh2Kitchen.ToList());
             context.DeliveriesKitchen2Wh.RemoveRange(context.DeliveriesKitchen2Wh.ToList());
             context.DeliveryOperations.RemoveRange(context.DeliveryOperations.ToList());
+            context.CookingOperations.RemoveRange(context.CookingOperations.ToList());
 
             context.SaveChanges();
         }

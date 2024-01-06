@@ -1,9 +1,12 @@
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using Cims.WorkflowLib.Extensions;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
+using Cims.WorkflowLib.Models.Business.Cooking;
 using Cims.WorkflowLib.Models.Business.Customers;
 using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Contexts;
+using Cims.WorkflowLib.Example01.Enums;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
@@ -33,7 +36,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             try
             {
                 // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                if (model == null)
+                    throw new System.ArgumentNullException("apiOperation.RequestObject");
                 using var context = new DeliveringContext(_contextOptions);
                 
                 // Validation.
@@ -71,16 +76,29 @@ namespace Cims.WorkflowLib.Example01.Controllers
     - ingredient 4 (quantity: 2)");
 
                 // Send request to the notifications backend.
+                var notification = new Notification
+                {
+                    SenderId = adminUser.Id,
+                    ReceiverId = 2,
+                    TitleText = titleText,
+                    BodyText = sbMessageText.ToString()
+                };
                 string notificationsRequest = new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
                 {
-                    new Notification
-                    {
-                        SenderId = adminUser.Id,
-                        ReceiverId = 2,
-                        TitleText = titleText,
-                        BodyText = sbMessageText.ToString()
-                    }
+                    notification
                 });
+
+                // Create the cooking operation object.
+                var cookingOperation = new CookingOperation
+                {
+                    Uid = System.Guid.NewGuid().ToString(),
+                    Name = notification.TitleText,
+                    Subject = notification.TitleText,
+                    Description = notification.BodyText,
+                    Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Open)
+                };
+                context.CookingOperations.Add(cookingOperation);
+                context.SaveChanges();
                 
                 // Insert into cache.
                 System.Console.WriteLine("KitchenBackend.PrepareMealStart: cache");

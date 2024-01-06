@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Cims.WorkflowLib.Models.Business;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
+using Cims.WorkflowLib.Models.Business.Cooking;
 using Cims.WorkflowLib.Models.Business.Customers;
 using Cims.WorkflowLib.Models.Business.Delivery;
 using Cims.WorkflowLib.Models.Business.InformationSystem;
@@ -58,5 +59,6 @@ namespace Cims.WorkflowLib.Example01.Contexts
         public DbSet<DeliveryWh2Kitchen> DeliveriesWh2Kitchen { get; set; }
         public DbSet<DeliveryKitchen2Wh> DeliveriesKitchen2Wh { get; set; }
         public DbSet<DeliveryOperation> DeliveryOperations { get; set; }
+        public DbSet<CookingOperation> CookingOperations { get; set; }
     }
 }

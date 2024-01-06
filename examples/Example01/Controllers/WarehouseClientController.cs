@@ -186,7 +186,9 @@ namespace Cims.WorkflowLib.Example01.Controllers
             try
             {
                 // Initializing.
-                DeliveryWh2Kitchen model = apiOperation.RequestObject as DeliveryWh2Kitchen;
+                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                if (model == null)
+                    throw new System.ArgumentNullException("apiOperation.RequestObject");
 
                 // Update DB.
                 System.Console.WriteLine("WarehouseClient.Wh2KitchenExecute: cache");

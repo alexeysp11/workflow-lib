@@ -528,8 +528,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 }
 
                 // Change the status of the corresponding delivery order.
-                deliveryOrder.Status = EnumExtensions.GetDisplayName(OrderStatus.InProcess);
-                context.SaveChanges();
+                deliveryOrder.Status = EnumExtensions.GetDisplayName(OrderStatus.Finished);
 
                 // Get the parent delivery order that should be delivered from the warehouse to the kitchen.
                 var parentDeliveryOrder = context.DeliveryOrders
@@ -538,6 +537,8 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     .FirstOrDefault();
                 if (parentDeliveryOrder == null)
                     throw new System.Exception("Parent delivery order could not be null");
+                parentDeliveryOrder.Status = EnumExtensions.GetDisplayName(OrderStatus.InProcess);
+                context.SaveChanges();
                 
                 // Start the step for delivering from warehouse to kitchen.
                 response = Wh2KitchenStart(new ApiOperation()
@@ -670,10 +671,27 @@ namespace Cims.WorkflowLib.Example01.Controllers
             try
             {
                 // Initializing.
-                DeliveryWh2Kitchen model = apiOperation.RequestObject as DeliveryWh2Kitchen;
+                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                if (model == null)
+                    throw new System.ArgumentNullException("apiOperation.RequestObject");
+                using var context = new DeliveringContext(_contextOptions);
                 
                 // Update DB.
                 System.Console.WriteLine("WarehouseBackend.Wh2KitchenExecute: cache");
+
+                // Close a business task that is associated with a delivery order.
+                var initialOrder = context.InitialOrders
+                    .Where(x => x.DeliveryOrder != null && x.DeliveryOrder.Id == model.Id)
+                    .FirstOrDefault();
+                if (initialOrder == null)
+                    throw new System.Exception($"Could not find the initial order (delivery order ID: {model.Id})");
+                var deliveryWh2Kitchen = context.DeliveriesWh2Kitchen
+                    .Where(x => x.InitialOrders.Any(io => io.Id == initialOrder.Id))
+                    .FirstOrDefault();
+                if (deliveryWh2Kitchen == null)
+                    throw new System.Exception($"Could not find the business task DeliveryWh2Kitchen (delivery order ID: {model.Id})");
+                deliveryWh2Kitchen.Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Closed);
+                context.SaveChanges();
 
                 // Send HTTP request.
                 string backendResponse = new KitchenBackendController(_contextOptions).PrepareMealStart(new ApiOperation
