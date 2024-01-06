@@ -153,11 +153,15 @@ namespace Cims.WorkflowLib.Example01
             context.BusinessTasks.RemoveRange(context.BusinessTasks.ToList());
             context.Comments.RemoveRange(context.Comments.ToList());
             
+            context.Orders.RemoveRange(context.Orders.ToList());
+            context.OrderProducts.RemoveRange(context.OrderProducts.ToList());
             context.InitialOrders.RemoveRange(context.InitialOrders.ToList());
             context.InitialOrderProducts.RemoveRange(context.InitialOrderProducts.ToList());
             context.InitialOrderIngredients.RemoveRange(context.InitialOrderIngredients.ToList());
             context.DeliveryOrders.RemoveRange(context.DeliveryOrders.ToList());
             context.DeliveryOrderProducts.RemoveRange(context.DeliveryOrderProducts.ToList());
+            context.BusinessTaskDeliveryOrders.RemoveRange(context.BusinessTaskDeliveryOrders.ToList());
+            context.DeliveryMethods.RemoveRange(context.DeliveryMethods.ToList());
             context.Payments.RemoveRange(context.Payments.ToList());
 
             context.ProductCategories.RemoveRange(context.ProductCategories.ToList());

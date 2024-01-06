@@ -399,6 +399,8 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                if (model == null)
+                    throw new System.ArgumentNullException("apiOperation.RequestObject");
                 using var context = new DeliveringContext(_contextOptions);
                 
                 // Update DB.
@@ -416,6 +418,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     throw new System.Exception("Admin user could not be null");
                 
                 // Getting the products that should be delivered.
+                var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
                 var deliveryOrderProducts = context.DeliveryOrderProducts
                     .Include(x => x.Product)
                     .Where(x => x.DeliveryOrder.Id == model.Id && x.Product != null);
@@ -424,7 +427,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 
                 // Title text.
                 var sbMessageText = new StringBuilder();
-                sbMessageText.Append("Store2Wh: confirm delivery of order #").Append(model.Id.ToString()).Append(" from the store to the warehouse");
+                sbMessageText.Append("ConfirmStore2Wh: confirm delivery of order #").Append(model.Id.ToString()).Append(" from the store to the warehouse");
                 string titleText = sbMessageText.ToString();
                 sbMessageText.Clear();
 
@@ -441,16 +444,36 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 }
 
                 // Notify warehouse employee.
+                var notification = new Notification
+                {
+                    SenderId = adminUser.Id,
+                    ReceiverId = 2,
+                    TitleText = titleText,
+                    BodyText = sbMessageText.ToString()
+                };
                 new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
                 {
-                    new Notification
-                    {
-                        SenderId = adminUser.Id,
-                        ReceiverId = 2,
-                        TitleText = titleText,
-                        BodyText = sbMessageText.ToString()
-                    }
+                    notification
                 });
+
+                // Create a business task for requesting delivery of order from the store to the warehouse.
+                var businessTask = new BusinessTask
+                {
+                    Uid = System.Guid.NewGuid().ToString(),
+                    Name = notification.TitleText,
+                    Subject = notification.TitleText,
+                    Description = notification.BodyText,
+                    Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Open)
+                };
+                var businessTaskDeliveryOrder = new BusinessTaskDeliveryOrder
+                {
+                    BusinessTask = businessTask,
+                    DeliveryOrder = deliveryOrder,
+                    Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.RequestStore2Wh)
+                };
+                context.BusinessTasks.Add(businessTask);
+                context.BusinessTaskDeliveryOrders.Add(businessTaskDeliveryOrder);
+                context.SaveChanges();
 
                 // 
                 response = "success";

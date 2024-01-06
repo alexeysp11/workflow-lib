@@ -97,9 +97,22 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                if (model == null)
+                    throw new System.ArgumentNullException("apiOperation.RequestObject");
+                using var context = new DeliveringContext(_contextOptions);
                 
                 // Update DB.
                 System.Console.WriteLine("CourierBackend.Store2WhExecute: cache");
+
+                // Close the related business task.
+                var deliveryOperation = context.DeliveryOrders
+                    .Where(x => x.Id == model.Id && x.DeliveryOperation != null)
+                    .Select(x => x.DeliveryOperation)
+                    .FirstOrDefault();
+                if (deliveryOperation == null)
+                    throw new System.Exception("Delivery operation is not defined");
+                deliveryOperation.Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Closed);
+                context.SaveChanges();
 
                 // Update cache in the client-side app.
                 string deliveryRequest = new WarehouseBackendController(_contextOptions).Store2WhSave(new ApiOperation()
