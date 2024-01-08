@@ -821,10 +821,27 @@ namespace Cims.WorkflowLib.Example01.Controllers
             try
             {
                 // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                if (model == null)
+                    throw new System.ArgumentNullException("apiOperation.RequestObject");
+                using var context = new DeliveringContext(_contextOptions);
                 
                 // Update DB.
                 System.Console.WriteLine("WarehouseBackend.Kitchen2WhExecute: cache");
+
+                // Close a business task that is associated with a delivery order.
+                var initialOrder = context.InitialOrders
+                    .Where(x => x.DeliveryOrder != null && x.DeliveryOrder.Id == model.Id)
+                    .FirstOrDefault();
+                if (initialOrder == null)
+                    throw new System.Exception($"Could not find the initial order (delivery order ID: {model.Id})");
+                var deliveryKitchen2Wh = context.DeliveriesKitchen2Wh
+                    .Where(x => x.InitialOrders.Any(io => io.Id == initialOrder.Id))
+                    .FirstOrDefault();
+                if (deliveryKitchen2Wh == null)
+                    throw new System.Exception($"Could not find the business task DeliveryKitchen2Wh (delivery order ID: {model.Id})");
+                deliveryKitchen2Wh.Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Closed);
+                context.SaveChanges();
 
                 // Send HTTP request.
                 string backendResponse = new CourierBackendController(_contextOptions).ScanQrOnOrderStart(new ApiOperation

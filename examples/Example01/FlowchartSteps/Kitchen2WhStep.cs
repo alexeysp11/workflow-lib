@@ -28,10 +28,15 @@ namespace Cims.WorkflowLib.Example01.FlowchartSteps
         public bool Start()
         {
             System.Console.WriteLine("Kitchen2WhStep.Start: begin");
-            var model = new InitialOrder()
-            {
-                // 
-            };
+
+            using var context = new DeliveringContext(_contextOptions);
+            
+            // Unload a delivery order that has a parent and is an internal delivery order.
+            var model = context.DeliveryOrders.FirstOrDefault(x => x.ParentDeliveryOrder == null);
+            if (model == null)
+                throw new System.Exception("Delivery order could not be null");
+            
+            // 
             string response = new WarehouseClientController(_contextOptions).Kitchen2WhExecute(new ApiOperation
             {
                 RequestObject = model

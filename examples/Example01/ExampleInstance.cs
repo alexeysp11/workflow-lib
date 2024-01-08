@@ -112,9 +112,9 @@ namespace Cims.WorkflowLib.Example01
             successfulSteps += _step07.Start() ? 1 : 0;
 
             // Step 08: deliver from kitchen to warehouse.
-            // System.Console.WriteLine("\nStep 08: deliver from kitchen to warehouse.");
-            // totalSteps += 1;
-            // successfulSteps += _step08.Start() ? 1 : 0;
+            System.Console.WriteLine("\nStep 08: deliver from kitchen to warehouse.");
+            totalSteps += 1;
+            successfulSteps += _step08.Start() ? 1 : 0;
 
             // Step 09: scan QR code on the delivery order.
             // System.Console.WriteLine("\nStep 09: scan QR code on the delivery order.");
@@ -131,7 +131,7 @@ namespace Cims.WorkflowLib.Example01
             // totalSteps += 1;
             // successfulSteps += _step11.Start() ? 1 : 0;
 
-            System.Console.WriteLine($"Example is executed: {successfulSteps}/{totalSteps}");
+            System.Console.WriteLine($"\nExample is executed: {successfulSteps}/{totalSteps}");
         }
 
         private void ConfigureDbContext()
