@@ -46,20 +46,19 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 
                 // Insert into cache.
                 System.Console.WriteLine("KitchenBackend.PrepareMealStart: cache");
-
-                // Send HTTP request.
-                string backendResponse = new KitchenClientController(_contextOptions).PrepareMealStart(new ApiOperation
-                {
-                    RequestObject = model
-                });
                 
-                // Get initial order by delivery order ID.
+                // Get initial order, and the products that should be delivered, by delivery order ID.
                 var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
                 if (deliveryOrder == null)
                     throw new System.Exception($"Delivery order could not be null (delivery order ID: {model.Id})");
                 var initialOrder = context.InitialOrders.FirstOrDefault(x => x.DeliveryOrder.Id == deliveryOrder.Id);
                 if (initialOrder == null)
                     throw new System.Exception($"Initial order could not be null (delivery order ID: {model.Id})");
+                var deliveryOrderProducts = context.DeliveryOrderProducts
+                    .Include(x => x.Product)
+                    .Where(x => x.DeliveryOrder.Id == model.Id && x.Product != null);
+                if (deliveryOrderProducts.Count() == 0)
+                    throw new System.Exception($"There are no existing products associated with the specified DeliveryOrder (ID: {model.Id})");
                 
                 // Get sender and receiver of the notification.
                 var adminUser = context.UserAccounts.FirstOrDefault();
@@ -68,20 +67,21 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 
                 // Title text.
                 var sbMessageText = new StringBuilder();
-                sbMessageText.Append("PrepareMeal: preparing order #123");
+                sbMessageText.Append("PrepareMeal: preparing order #").Append(model.Id.ToString());
                 string titleText = sbMessageText.ToString();
                 sbMessageText.Clear();
 
                 // Body text.
-                sbMessageText.Append("Please be informed that you are responsible for preparing order #123.\n");
+                sbMessageText.Append("Please be informed that you are responsible for preparing order #");
+                sbMessageText.Append(model.Id.ToString());
+                sbMessageText.Append(".\n");
                 sbMessageText.Append("\n");
-                sbMessageText.Append(@"Products:
-- Product 1 (quantity: 2)
-    - ingredient 1 (quantity: 2)
-    - ingredient 2 (quantity: 3)
-- Product 2 (quantity: 1)
-    - ingredient 3 (quantity: 1)
-    - ingredient 4 (quantity: 2)");
+                sbMessageText.Append("Products:\n");
+                foreach (var deliveryOrderProduct in deliveryOrderProducts)
+                {
+                    sbMessageText.Append("- ").Append(deliveryOrderProduct.Product.Name).Append(" ");
+                    sbMessageText.Append("(quantity: ").Append(deliveryOrderProduct.Quantity).Append(").\n");
+                }
 
                 // Send request to the notifications backend.
                 var notification = new Notification

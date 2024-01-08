@@ -45,6 +45,8 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                if (model == null)
+                    throw new System.ArgumentNullException("apiOperation.RequestObject");
                 using var context = new DeliveringContext(_contextOptions);
 
                 // Get ingredients amount from DB.
@@ -237,27 +239,21 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 
                 // Update DB.
                 System.Console.WriteLine("WarehouseBackend.RequestStore2WhStart: update DB");
-
-                // Get sender and receiver of the notification.
-                var adminUser = context.UserAccounts.FirstOrDefault();
-                if (adminUser == null)
-                    throw new System.Exception("Admin user could not be null");
                 
                 // Getting the products that should be delivered.
                 var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
                 if (deliveryOrder == null)
-                    throw new System.ArgumentNullException("deliveryOrder");
+                    throw new System.Exception($"Delivery order could not be null (delivery order ID: {model.Id})");
                 var deliveryOrderProducts = context.DeliveryOrderProducts
                     .Include(x => x.Product)
                     .Where(x => x.DeliveryOrder.Id == model.Id && x.Product != null);
                 if (deliveryOrderProducts.Count() == 0)
                     throw new System.Exception($"There are no existing products associated with the specified DeliveryOrder (ID: {model.Id})");
                 
-                // Update cache in the client-side app.
-                string store2whRequest = new WarehouseClientController(_contextOptions).RequestStore2WhSave(new ApiOperation()
-                {
-                    RequestObject = model
-                });
+                // Get sender and receiver of the notification.
+                var adminUser = context.UserAccounts.FirstOrDefault();
+                if (adminUser == null)
+                    throw new System.Exception("Admin user could not be null");
 
                 // Title text.
                 var sbMessageText = new StringBuilder();
@@ -346,7 +342,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 // so get the collection of business task objects that are related to the delivery order.
                 var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
                 if (deliveryOrder == null)
-                    throw new System.ArgumentNullException("deliveryOrder");
+                    throw new System.Exception($"Delivery order could not be null (delivery order ID: {model.Id})");
                 var businessTasks = context.BusinessTaskDeliveryOrders
                     .Where(x => x.BusinessTask != null 
                         && x.DeliveryOrder != null 
@@ -364,7 +360,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 }
 
                 // Change the status of the corresponding delivery order.
-                deliveryOrder.Status = EnumExtensions.GetDisplayName(OrderStatus.Finished);
+                deliveryOrder.Status = EnumExtensions.GetDisplayName(OrderStatus.Requested);
                 context.SaveChanges();
 
                 // Send HTTP request.
@@ -412,11 +408,6 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     RequestObject = model
                 });
                 
-                // Get sender and receiver of the notification.
-                var adminUser = context.UserAccounts.FirstOrDefault();
-                if (adminUser == null)
-                    throw new System.Exception("Admin user could not be null");
-                
                 // Getting the products that should be delivered.
                 var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
                 var deliveryOrderProducts = context.DeliveryOrderProducts
@@ -424,6 +415,11 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     .Where(x => x.DeliveryOrder.Id == model.Id && x.Product != null);
                 if (deliveryOrderProducts.Count() == 0)
                     throw new System.Exception($"There are no existing products associated with the specified DeliveryOrder (ID: {model.Id})");
+                
+                // Get sender and receiver of the notification.
+                var adminUser = context.UserAccounts.FirstOrDefault();
+                if (adminUser == null)
+                    throw new System.Exception("Admin user could not be null");
                 
                 // Title text.
                 var sbMessageText = new StringBuilder();
@@ -510,7 +506,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 // Close the business task that is related to the delivery order passed as a parameter.
                 var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
                 if (deliveryOrder == null)
-                    throw new System.ArgumentNullException("deliveryOrder");
+                    throw new System.Exception($"Delivery order could not be null (delivery order ID: {model.Id})");
                 var businessTasks = context.BusinessTaskDeliveryOrders
                     .Where(x => x.BusinessTask != null 
                         && x.DeliveryOrder != null 
@@ -528,6 +524,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 }
 
                 // Change the status of the corresponding delivery order.
+                deliveryOrder.CloseOrderDt = System.DateTime.Now;
                 deliveryOrder.Status = EnumExtensions.GetDisplayName(OrderStatus.Finished);
 
                 // Get the parent delivery order that should be delivered from the warehouse to the kitchen.
@@ -568,15 +565,12 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                if (model == null)
+                    throw new System.ArgumentNullException("apiOperation.RequestObject");
                 using var context = new DeliveringContext(_contextOptions);
                 
                 // Update DB.
                 System.Console.WriteLine("WarehouseBackend.Wh2KitchenStart: cache");
-                
-                // Get sender and receiver of the notification.
-                var adminUser = context.UserAccounts.FirstOrDefault();
-                if (adminUser == null)
-                    throw new System.Exception("Admin user could not be null");
                 
                 // Getting the products that should be delivered.
                 var deliveryOrderProducts = context.DeliveryOrderProducts
@@ -584,6 +578,11 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     .Where(x => x.DeliveryOrder.Id == model.Id && x.Product != null);
                 if (deliveryOrderProducts.Count() == 0)
                     throw new System.Exception($"There are no existing products associated with the specified DeliveryOrder (ID: {model.Id})");
+                
+                // Get sender and receiver of the notification.
+                var adminUser = context.UserAccounts.FirstOrDefault();
+                if (adminUser == null)
+                    throw new System.Exception("Admin user could not be null");
                 
                 // Title text.
                 var sbMessageText = new StringBuilder();
@@ -642,12 +641,6 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 };
                 context.DeliveriesWh2Kitchen.Add(deliveryWh2Kitchen);
                 context.SaveChanges();
-
-                // Update cache in the client-side app.
-                string whRequest = new WarehouseClientController(_contextOptions).Wh2KitchenStart(new ApiOperation()
-                {
-                    RequestObject = deliveryWh2Kitchen
-                });
 
                 // 
                 response = "success";
@@ -745,12 +738,6 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     .Where(x => x.DeliveryOrder.Id == model.Id && x.Product != null);
                 if (deliveryOrderProducts.Count() == 0)
                     throw new System.Exception($"There are no existing products associated with the specified DeliveryOrder (ID: {model.Id})");
-
-                // Send HTTP request.
-                string backendResponse = new WarehouseClientController(_contextOptions).Kitchen2WhStart(new ApiOperation
-                {
-                    RequestObject = model
-                });
 
                 // Title text.
                 var sbMessageText = new StringBuilder();

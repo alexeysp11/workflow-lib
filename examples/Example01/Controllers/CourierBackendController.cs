@@ -46,16 +46,11 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 // Get all the objects related to the specified delivery order.
                 var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
                 if (deliveryOrder == null)
-                    throw new System.ArgumentNullException("deliveryOrder");
+                    throw new System.Exception($"Delivery order could not be null (delivery order ID: {model.Id})");
 
                 // Update DB.
                 System.Console.WriteLine("CourierBackend.Store2WhStart: cache");
 
-                // Update cache in the client-side app.
-                string deliveryRequest = new CourierClientController(_contextOptions).Store2WhStart(new ApiOperation()
-                {
-                    RequestObject = model
-                });
                 NotifyDeliveryOrder(model, "Store2Wh");
                 
                 // Create a DeliveryOperation object and associate it with the delivery order.
@@ -114,7 +109,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 deliveryOperation.Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Closed);
                 context.SaveChanges();
 
-                // Update cache in the client-side app.
+                // Notify warehouse backend controller.
                 string deliveryRequest = new WarehouseBackendController(_contextOptions).Store2WhSave(new ApiOperation()
                 {
                     RequestObject = model

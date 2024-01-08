@@ -121,7 +121,6 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
                 if (model == null)
                     throw new System.ArgumentNullException("apiOperation.RequestObject");
-                using var context = new DeliveringContext(_contextOptions);
 
                 // Validation.
                 System.Console.WriteLine("CustomerClient.MakePaymentRespond: validation");
