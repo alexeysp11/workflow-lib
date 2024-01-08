@@ -91,40 +91,45 @@ namespace Cims.WorkflowLib.Example01
             totalSteps += 1;
             successfulSteps += _step03.Start() ? 1 : 0;
 
-            // // Step 04: deliver from store to warehouse.
+            // Step 04: deliver from store to warehouse.
             System.Console.WriteLine("\nStep 04: deliver from store to warehouse.");
             totalSteps += 1;
             successfulSteps += _step04.Start() ? 1 : 0;
 
-            // // Step 05: confirm delivering from store to warehouse.
+            // Step 05: confirm delivering from store to warehouse.
             System.Console.WriteLine("\nStep 05: confirm delivering from store to warehouse.");
             totalSteps += 1;
             successfulSteps += _step05.Start() ? 1 : 0;
 
-            // // Step 06: finish delivering from warehouse to kitchen.
+            // Step 06: finish delivering from warehouse to kitchen.
             System.Console.WriteLine("\nStep 06: finish delivering from warehouse to kitchen.");
             totalSteps += 1;
             successfulSteps += _step06.Start() ? 1 : 0;
 
-            // // Step 07: prepare meal.
-            // System.Console.WriteLine("\nStep 07: prepare meal.");
-            // _step07.Start();
+            // Step 07: prepare meal.
+            System.Console.WriteLine("\nStep 07: prepare meal.");
+            totalSteps += 1;
+            successfulSteps += _step07.Start() ? 1 : 0;
 
-            // // Step 08: deliver from kitchen to warehouse.
+            // Step 08: deliver from kitchen to warehouse.
             // System.Console.WriteLine("\nStep 08: deliver from kitchen to warehouse.");
-            // _step08.Start();
+            // totalSteps += 1;
+            // successfulSteps += _step08.Start() ? 1 : 0;
 
-            // // Step 09: scan QR code on the delivery order.
+            // Step 09: scan QR code on the delivery order.
             // System.Console.WriteLine("\nStep 09: scan QR code on the delivery order.");
-            // _step09.Start();
+            // totalSteps += 1;
+            // successfulSteps += _step09.Start() ? 1 : 0;
 
-            // // Step 10: scan backpack.
+            // Step 10: scan backpack.
             // System.Console.WriteLine("\nStep 10: scan backpack.");
-            // _step10.Start();
+            // totalSteps += 1;
+            // successfulSteps += _step10.Start() ? 1 : 0;
 
-            // // Step 11: deliver order.
+            // Step 11: deliver order.
             // System.Console.WriteLine("\nStep 11: deliver order.");
-            // _step11.Start();
+            // totalSteps += 1;
+            // successfulSteps += _step11.Start() ? 1 : 0;
 
             System.Console.WriteLine($"Example is executed: {successfulSteps}/{totalSteps}");
         }

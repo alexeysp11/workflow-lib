@@ -723,10 +723,28 @@ namespace Cims.WorkflowLib.Example01.Controllers
             try
             {
                 // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                if (model == null)
+                    throw new System.ArgumentNullException("apiOperation.RequestObject");
+                using var context = new DeliveringContext(_contextOptions);
                 
                 // Update DB.
                 System.Console.WriteLine("WarehouseBackend.Kitchen2WhStart: cache");
+
+                // Get initial order by delivery order ID.
+                var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
+                if (deliveryOrder == null)
+                    throw new System.Exception($"Delivery order could not be null (delivery order ID: {model.Id})");
+                var initialOrder = context.InitialOrders.FirstOrDefault(x => x.DeliveryOrder.Id == deliveryOrder.Id);
+                if (initialOrder == null)
+                    throw new System.Exception($"Initial order could not be null (delivery order ID: {model.Id})");
+
+                // Getting the products that should be delivered.
+                var deliveryOrderProducts = context.DeliveryOrderProducts
+                    .Include(x => x.Product)
+                    .Where(x => x.DeliveryOrder.Id == model.Id && x.Product != null);
+                if (deliveryOrderProducts.Count() == 0)
+                    throw new System.Exception($"There are no existing products associated with the specified DeliveryOrder (ID: {model.Id})");
 
                 // Send HTTP request.
                 string backendResponse = new WarehouseClientController(_contextOptions).Kitchen2WhStart(new ApiOperation
@@ -734,17 +752,52 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     RequestObject = model
                 });
 
+                // Title text.
+                var sbMessageText = new StringBuilder();
+                sbMessageText.Append("Kitchen2Wh: deliver order #").Append(model.Id.ToString()).Append(" from the kitchen to the warehouse");
+                string titleText = sbMessageText.ToString();
+                sbMessageText.Clear();
+                
+                // Body text.
+                sbMessageText.Append("Please be informed that you are responsible for shipping order #");
+                sbMessageText.Append(model.Id.ToString());
+                sbMessageText.Append(" from the kitchen to the warehouse.\n");
+                sbMessageText.Append("\n");
+                sbMessageText.Append("Products for delivery:\n");
+                foreach (var deliveryOrderProduct in deliveryOrderProducts)
+                {
+                    sbMessageText.Append("- ").Append(deliveryOrderProduct.Product.Name).Append(" ");
+                    sbMessageText.Append("(quantity: ").Append(deliveryOrderProduct.Quantity).Append(").\n");
+                }
+
                 // Notify warehouse employee.
+                var notification = new Notification
+                {
+                    SenderId = 1,
+                    ReceiverId = 2,
+                    TitleText = titleText,
+                    BodyText = sbMessageText.ToString()
+                }; 
                 new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
                 {
-                    new Notification
-                    {
-                        SenderId = 1,
-                        ReceiverId = 2,
-                        TitleText = "Confirm the delivery from warehouse to kitchen",
-                        BodyText = ""
-                    }
+                    notification
                 });
+                
+                // Create DeliveryKitchen2Wh object.
+                var deliveryKitchen2Wh = new DeliveryKitchen2Wh
+                {
+                    Uid = System.Guid.NewGuid().ToString(),
+                    Name = notification.TitleText,
+                    Subject = notification.TitleText,
+                    Description = notification.BodyText,
+                    InitialOrders = new List<InitialOrder>
+                    {
+                        initialOrder
+                    },
+                    Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Open)
+                };
+                context.DeliveriesKitchen2Wh.Add(deliveryKitchen2Wh);
+                context.SaveChanges();
 
                 // 
                 response = "success";

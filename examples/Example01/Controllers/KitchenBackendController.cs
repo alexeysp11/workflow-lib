@@ -53,6 +53,14 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     RequestObject = model
                 });
                 
+                // Get initial order by delivery order ID.
+                var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
+                if (deliveryOrder == null)
+                    throw new System.Exception($"Delivery order could not be null (delivery order ID: {model.Id})");
+                var initialOrder = context.InitialOrders.FirstOrDefault(x => x.DeliveryOrder.Id == deliveryOrder.Id);
+                if (initialOrder == null)
+                    throw new System.Exception($"Initial order could not be null (delivery order ID: {model.Id})");
+                
                 // Get sender and receiver of the notification.
                 var adminUser = context.UserAccounts.FirstOrDefault();
                 if (adminUser == null)
@@ -95,6 +103,10 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     Name = notification.TitleText,
                     Subject = notification.TitleText,
                     Description = notification.BodyText,
+                    InitialOrders = new List<InitialOrder>
+                    {
+                        initialOrder
+                    },
                     Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Open)
                 };
                 context.CookingOperations.Add(cookingOperation);
@@ -125,13 +137,31 @@ namespace Cims.WorkflowLib.Example01.Controllers
             try
             {
                 // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                if (model == null)
+                    throw new System.ArgumentNullException("apiOperation.RequestObject");
+                using var context = new DeliveringContext(_contextOptions);
                 
                 // Validation.
                 System.Console.WriteLine("KitchenBackend.PrepareMealExecute: validation");
                 
                 // Insert into cache.
                 System.Console.WriteLine("KitchenBackend.PrepareMealExecute: cache");
+
+                // Close a business task that is associated with a delivery order.
+                var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
+                if (deliveryOrder == null)
+                    throw new System.Exception($"Delivery order could not be null (delivery order ID: {model.Id})");
+                var initialOrder = context.InitialOrders.FirstOrDefault(x => x.DeliveryOrder.Id == deliveryOrder.Id);
+                if (initialOrder == null)
+                    throw new System.Exception($"Initial order could not be null (delivery order ID: {model.Id})");
+                var cookingOperation = context.CookingOperations
+                    .Where(x => x.InitialOrders.Any(io => io.Id == initialOrder.Id))
+                    .FirstOrDefault();
+                if (cookingOperation == null)
+                    throw new System.Exception($"Could not find the business task CookingOperation (delivery order ID: {model.Id})");
+                cookingOperation.Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Closed);
+                context.SaveChanges();
 
                 // Send HTTP request.
                 string backendResponse = new WarehouseBackendController(_contextOptions).Kitchen2WhStart(new ApiOperation

@@ -65,7 +65,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             try
             {
                 // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
                 
                 // Validation.
                 System.Console.WriteLine("KitchenClient.PrepareMealExecute: validation");
