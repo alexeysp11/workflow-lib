@@ -266,12 +266,6 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 deliveryOrder.TotalPrice = model.PaymentAmount;
                 context.SaveChanges();
 
-                // Send request to the customer client.
-                string paymentRequest = _customerClientController.MakePaymentSave(new ApiOperation
-                {
-                    RequestObject = deliveryOrder
-                });
-
                 // Title text.
                 var sbMessageText = new StringBuilder();
                 sbMessageText.Append("Please, provide your card details to pay for the order #").Append(deliveryOrder.Id.ToString());
