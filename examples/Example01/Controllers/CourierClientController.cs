@@ -83,132 +83,6 @@ namespace Cims.WorkflowLib.Example01.Controllers
         }
         #endregion  // store2wh
 
-        #region scanqronorder
-        /// <summary>
-        /// The method that is responsible for starting the process of scanning the QR code on the order 
-        /// to begin the delivery procedure.
-        /// </summary>
-        public string ScanQrOnOrderStart(ApiOperation apiOperation)
-        {
-            string response = "";
-            System.Console.WriteLine("CourierClient.ScanQrOnOrderStart: begin");
-            try
-            {
-                // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
-                
-                // Update DB.
-                System.Console.WriteLine("CourierClient.ScanQrOnOrderStart: cache");
-
-                // 
-                response = "success";
-            }
-            catch (System.Exception ex)
-            {
-                response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
-            }
-            System.Console.WriteLine("CourierClient.ScanQrOnOrderStart: end");
-            return response;
-        }
-
-        /// <summary>
-        /// The method that is responsible for scanning the QR code on the order to begin the delivery procedure.
-        /// </summary>
-        public string ScanQrOnOrderExecute(ApiOperation apiOperation)
-        {
-            string response = "";
-            System.Console.WriteLine("CourierClient.ScanQrOnOrderExecute: begin");
-            try
-            {
-                // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
-
-                // Update DB.
-                System.Console.WriteLine("CourierClient.ScanQrOnOrderExecute: cache");
-
-                // Send HTTP request.
-                string backendResponse = new CourierBackendController(_contextOptions).ScanQrOnOrderExecute(new ApiOperation
-                {
-                    RequestObject = model
-                });
-
-                // 
-                response = "success";
-            }
-            catch (System.Exception ex)
-            {
-                response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
-            }
-            System.Console.WriteLine("CourierClient.ScanQrOnOrderExecute: end");
-            return response;
-        }
-        #endregion  // scanqronorder
-
-        #region scanbackpack
-        /// <summary>
-        /// The method that is responsible for starting the process of scanning the QR code on the backpack 
-        /// to begin the delivery procedure.
-        /// </summary>
-        public string ScanBackpackStart(ApiOperation apiOperation)
-        {
-            string response = "";
-            System.Console.WriteLine("CourierClient.ScanBackpackStart: begin");
-            try
-            {
-                // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
-                
-                // Update DB.
-                System.Console.WriteLine("CourierClient.ScanBackpackStart: cache");
-
-                // 
-                response = "success";
-            }
-            catch (System.Exception ex)
-            {
-                response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
-            }
-            System.Console.WriteLine("CourierClient.ScanBackpackStart: end");
-            return response;
-        }
-        
-        /// <summary>
-        /// The method that is responsible for scanning the QR code on the backpack to begin the delivery procedure.
-        /// </summary>
-        public string ScanBackpackExecute(ApiOperation apiOperation)
-        {
-            string response = "";
-            System.Console.WriteLine("CourierClient.ScanBackpackExecute: begin");
-            try
-            {
-                // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
-
-                // Update DB.
-                System.Console.WriteLine("CourierClient.ScanBackpackExecute: cache");
-
-                // Send HTTP request.
-                string backendResponse = new CourierBackendController(_contextOptions).ScanBackpackExecute(new ApiOperation
-                {
-                    RequestObject = model
-                });
-
-                // 
-                response = "success";
-            }
-            catch (System.Exception ex)
-            {
-                response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
-            }
-            System.Console.WriteLine("CourierClient.ScanBackpackExecute: end");
-            return response;
-        }
-        #endregion  // scanbackpack
-
         #region deliverorder
         /// <summary>
         /// The method that is responsible for starting the order delivery process.
@@ -247,7 +121,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             try
             {
                 // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
                 
                 // Update DB.
                 System.Console.WriteLine("CourierClient.DeliverOrderExecute: cache");

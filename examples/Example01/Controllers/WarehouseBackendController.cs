@@ -300,6 +300,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 };
                 var businessTaskDeliveryOrder = new BusinessTaskDeliveryOrder
                 {
+                    Uid = System.Guid.NewGuid().ToString(),
                     BusinessTask = businessTask,
                     DeliveryOrder = deliveryOrder,
                     Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.RequestStore2Wh)
@@ -463,6 +464,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 };
                 var businessTaskDeliveryOrder = new BusinessTaskDeliveryOrder
                 {
+                    Uid = System.Guid.NewGuid().ToString(),
                     BusinessTask = businessTask,
                     DeliveryOrder = deliveryOrder,
                     Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.ConfirmStore2Wh)
@@ -831,7 +833,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 context.SaveChanges();
 
                 // Send HTTP request.
-                string backendResponse = new CourierBackendController(_contextOptions).ScanQrOnOrderStart(new ApiOperation
+                string backendResponse = new CourierBackendController(_contextOptions).DeliverOrderStart(new ApiOperation
                 {
                     RequestObject = model
                 });

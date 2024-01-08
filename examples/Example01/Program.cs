@@ -10,11 +10,13 @@ IHost _host = Host.CreateDefaultBuilder().ConfigureServices(
     services => {
         // Instance of application.
         services.AddSingleton<IExampleInstance, ExampleInstance>();
+
         // DbContext.
         services.AddSingleton((_) => {
             string dbpath = System.IO.Path.Join("delivering.db");
             return new DbContextOptionsBuilder<DeliveringContext>().UseSqlite($"Data Source={dbpath}").Options;
         });
+
         // Flowchart steps.
         services.AddSingleton<MakeOrderStep>();
         services.AddSingleton<MakePaymentStep>();
@@ -24,9 +26,8 @@ IHost _host = Host.CreateDefaultBuilder().ConfigureServices(
         services.AddSingleton<ConfirmStore2WhStep>();
         services.AddSingleton<PrepareMealStep>();
         services.AddSingleton<Kitchen2WhStep>();
-        services.AddSingleton<ScanQrOnOrderStep>();
-        services.AddSingleton<ScanBackpackStep>();
         services.AddSingleton<DeliverOrderStep>();
+        
         // Controllers.
         services.AddSingleton<CustomerClientController>();
         services.AddSingleton<CustomerBackendController>();

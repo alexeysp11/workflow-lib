@@ -43,17 +43,16 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     throw new System.ArgumentNullException("apiOperation.RequestObject");
                 using var context = new DeliveringContext(_contextOptions);
 
-                // Get all the objects related to the specified delivery order.
+                // Get the object related to the specified delivery order.
                 var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
                 if (deliveryOrder == null)
                     throw new System.Exception($"Delivery order could not be null (delivery order ID: {model.Id})");
 
                 // Update DB.
                 System.Console.WriteLine("CourierBackend.Store2WhStart: cache");
-
-                NotifyDeliveryOrder(model, "Store2Wh");
                 
                 // Create a DeliveryOperation object and associate it with the delivery order.
+                NotifyDeliverOrder(model, "Store2Wh");
                 var deliveryOperation = new DeliveryOperation
                 {
                     Uid = System.Guid.NewGuid().ToString(),
@@ -128,144 +127,6 @@ namespace Cims.WorkflowLib.Example01.Controllers
         }
         #endregion  // store2wh
 
-        #region scanqronorder
-        /// <summary>
-        /// The method that is responsible for starting the process of scanning the QR code on the order 
-        /// to begin the delivery procedure.
-        /// </summary>
-        public string ScanQrOnOrderStart(ApiOperation apiOperation)
-        {
-            string response = "";
-            System.Console.WriteLine("CourierBackend.ScanQrOnOrderStart: begin");
-            try
-            {
-                // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
-                
-                // Update DB.
-                System.Console.WriteLine("CourierBackend.ScanQrOnOrderStart: cache");
-
-                // Send HTTP request.
-                string backendResponse = new CourierClientController(_contextOptions).ScanQrOnOrderStart(new ApiOperation
-                {
-                    RequestObject = model
-                });
-
-                // 
-                response = "success";
-            }
-            catch (System.Exception ex)
-            {
-                response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
-            }
-            System.Console.WriteLine("CourierBackend.ScanQrOnOrderStart: end");
-            return response;
-        }
-
-        /// <summary>
-        /// The method that is responsible for scanning the QR code on the order to begin the delivery procedure.
-        /// </summary>
-        public string ScanQrOnOrderExecute(ApiOperation apiOperation)
-        {
-            string response = "";
-            System.Console.WriteLine("CourierBackend.ScanQrOnOrderExecute: begin");
-            try
-            {
-                // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
-
-                // Update DB.
-                System.Console.WriteLine("CourierBackend.ScanQrOnOrderExecute: cache");
-
-                // Send HTTP request.
-                string backendResponse = ScanBackpackStart(new ApiOperation
-                {
-                    RequestObject = model
-                });
-
-                // 
-                response = "success";
-            }
-            catch (System.Exception ex)
-            {
-                response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
-            }
-            System.Console.WriteLine("CourierBackend.ScanQrOnOrderExecute: end");
-            return response;
-        }
-        #endregion  // scanqronorder
-
-        #region scanbackpack
-        /// <summary>
-        /// The method that is responsible for starting the process of scanning the QR code on the backpack 
-        /// to begin the delivery procedure.
-        /// </summary>
-        public string ScanBackpackStart(ApiOperation apiOperation)
-        {
-            string response = "";
-            System.Console.WriteLine("CourierBackend.ScanBackpackStart: begin");
-            try
-            {
-                // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
-                
-                // Update DB.
-                System.Console.WriteLine("CourierBackend.ScanBackpackStart: cache");
-
-                // Send HTTP request.
-                string backendResponse = new CourierClientController(_contextOptions).ScanBackpackStart(new ApiOperation
-                {
-                    RequestObject = model
-                });
-
-                // 
-                response = "success";
-            }
-            catch (System.Exception ex)
-            {
-                response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
-            }
-            System.Console.WriteLine("CourierBackend.ScanBackpackStart: end");
-            return response;
-        }
-
-        /// <summary>
-        /// The method that is responsible for scanning the QR code on the backpack to begin the delivery procedure.
-        /// </summary>
-        public string ScanBackpackExecute(ApiOperation apiOperation)
-        {
-            string response = "";
-            System.Console.WriteLine("CourierBackend.ScanBackpackExecute: begin");
-            try
-            {
-                // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
-
-                // Update DB.
-                System.Console.WriteLine("CourierBackend.ScanBackpackExecute: cache");
-
-                // Send HTTP request.
-                string backendResponse = DeliverOrderStart(new ApiOperation
-                {
-                    RequestObject = model
-                });
-
-                // 
-                response = "success";
-            }
-            catch (System.Exception ex)
-            {
-                response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
-            }
-            System.Console.WriteLine("CourierBackend.ScanBackpackExecute: end");
-            return response;
-        }
-        #endregion  // scanbackpack
-
         #region deliverorder
         /// <summary>
         /// The method that is responsible for starting the order delivery process.
@@ -278,16 +139,34 @@ namespace Cims.WorkflowLib.Example01.Controllers
             {
                 // Initializing.
                 DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                if (model == null)
+                    throw new System.ArgumentNullException("apiOperation.RequestObject");
+                using var context = new DeliveringContext(_contextOptions);
                 
                 // Update DB.
                 System.Console.WriteLine("CourierBackend.DeliverOrderStart: cache");
+                
+                // Get the object related to the specified delivery order.
+                var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
+                if (deliveryOrder == null)
+                    throw new System.Exception($"Delivery order could not be null (delivery order ID: {model.Id})");
 
-                // Send HTTP request.
-                string backendResponse = new CourierClientController(_contextOptions).DeliverOrderStart(new ApiOperation
+                // Create a DeliveryOperation object and associate it with the delivery order.
+                NotifyDeliverOrder(model, "DeliverOrder");
+                var deliveryOperation = new DeliveryOperation
                 {
-                    RequestObject = model
-                });
-                NotifyDeliveryOrder(model, "DeliverOrder");
+                    Uid = System.Guid.NewGuid().ToString(),
+                    Name = Notification.TitleText,
+                    Subject = Notification.TitleText,
+                    Description = Notification.BodyText,
+                    CustomerName = deliveryOrder.CustomerName,
+                    Origin = deliveryOrder.Origin,
+                    Destination = deliveryOrder.Destination,
+                    Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Open)
+                };
+                deliveryOrder.DeliveryOperation = deliveryOperation;
+                context.DeliveryOperations.Add(deliveryOperation);
+                context.SaveChanges();
 
                 // 
                 response = "success";
@@ -311,10 +190,23 @@ namespace Cims.WorkflowLib.Example01.Controllers
             try
             {
                 // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
+                if (model == null)
+                    throw new System.ArgumentNullException("apiOperation.RequestObject");
+                using var context = new DeliveringContext(_contextOptions);
                 
                 // Update DB.
                 System.Console.WriteLine("CourierBackend.DeliverOrderExecute: cache");
+                
+                // Close the related business task.
+                var deliveryOperation = context.DeliveryOrders
+                    .Where(x => x.Id == model.Id && x.DeliveryOperation != null)
+                    .Select(x => x.DeliveryOperation)
+                    .FirstOrDefault();
+                if (deliveryOperation == null)
+                    throw new System.Exception("Delivery operation is not defined");
+                deliveryOperation.Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Closed);
+                context.SaveChanges();
 
                 // 
                 response = "success";
@@ -329,7 +221,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
         }
         #endregion  // deliverorder
 
-        private string NotifyDeliveryOrder(DeliveryOrder model, string stageName)
+        private string NotifyDeliverOrder(DeliveryOrder model, string stageName)
         {
             string response = "";
             System.Console.WriteLine("CourierBackend.NotifyDeliveryOrder: begin");

@@ -30,8 +30,6 @@ namespace Cims.WorkflowLib.Example01
         private Wh2KitchenStep _step06 { get; set; }
         private PrepareMealStep _step07 { get; set; }
         private Kitchen2WhStep _step08 { get; set; }
-        private ScanQrOnOrderStep _step09 { get; set; }
-        private ScanBackpackStep _step10 { get; set; }
         private DeliverOrderStep _step11 { get; set; }
 
         /// <summary>
@@ -47,8 +45,6 @@ namespace Cims.WorkflowLib.Example01
             Wh2KitchenStep step06, 
             PrepareMealStep step07, 
             Kitchen2WhStep step08, 
-            ScanQrOnOrderStep step09, 
-            ScanBackpackStep step10,
             DeliverOrderStep step11)
         {
             _contextOptions = contextOptions;
@@ -60,8 +56,6 @@ namespace Cims.WorkflowLib.Example01
             _step06 = step06;
             _step07 = step07;
             _step08 = step08;
-            _step09 = step09;
-            _step10 = step10;
             _step11 = step11;
         }
 
@@ -112,19 +106,9 @@ namespace Cims.WorkflowLib.Example01
             successfulSteps += _step07.Start() ? 1 : 0;
 
             // Step 08: deliver from kitchen to warehouse.
-            System.Console.WriteLine("\nStep 08: deliver from kitchen to warehouse.");
-            totalSteps += 1;
-            successfulSteps += _step08.Start() ? 1 : 0;
-
-            // Step 09: scan QR code on the delivery order.
-            // System.Console.WriteLine("\nStep 09: scan QR code on the delivery order.");
+            // System.Console.WriteLine("\nStep 08: deliver from kitchen to warehouse.");
             // totalSteps += 1;
-            // successfulSteps += _step09.Start() ? 1 : 0;
-
-            // Step 10: scan backpack.
-            // System.Console.WriteLine("\nStep 10: scan backpack.");
-            // totalSteps += 1;
-            // successfulSteps += _step10.Start() ? 1 : 0;
+            // successfulSteps += _step08.Start() ? 1 : 0;
 
             // Step 11: deliver order.
             // System.Console.WriteLine("\nStep 11: deliver order.");
