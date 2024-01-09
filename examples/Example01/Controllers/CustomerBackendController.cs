@@ -115,35 +115,6 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("CustomerBackend.MakeOrderRequest: end");
             return response;
         }
-
-        // /// <summary>
-        // /// 
-        // /// </summary>
-        // public string MakeOrderSave(ApiOperation apiOperation)
-        // {
-        //     string response = "";
-        //     System.Console.WriteLine("CustomerBackend.MakeOrder: begin");
-        //     try
-        //     {
-        //         // Initializing.
-        //         InitialOrder model = apiOperation.RequestObject as InitialOrder;
-                
-        //         // Validation.
-        //         System.Console.WriteLine("CustomerBackend.MakeOrder: validation");
-
-        //         // Update DB.
-        //         System.Console.WriteLine("CustomerBackend.MakeOrder: cache");
-
-        //         response = "success";
-        //     }
-        //     catch (System.Exception ex)
-        //     {
-        //         response = "error: " + ex.Message;
-        //         System.Console.WriteLine("ERROR : " + ex.ToString());
-        //     }
-        //     System.Console.WriteLine("CustomerBackend.MakeOrder: end");
-        //     return response;
-        // }
         #endregion  // makeorder
 
         #region makepayment

@@ -31,15 +31,6 @@ namespace Cims.WorkflowLib.Example01.Controllers
         }
 
         /// <summary>
-        /// 
-        /// </summary>
-        public string MakeOrder(ApiOperation apiOperation)
-        {
-            // 
-            return "";
-        }
-
-        /// <summary>
         /// The method that is responsible for placing an order.
         /// </summary>
         public string MakeOrderRequest(ApiOperation apiOperation)
@@ -70,15 +61,6 @@ namespace Cims.WorkflowLib.Example01.Controllers
             }
             System.Console.WriteLine("CustomerClient.MakeOrderRequest: end");
             return response;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public async Task<string> MakeOrderAsync(ApiOperation apiOperation)
-        {
-            await Task.Delay(500);
-            return "";
         }
         
         /// <summary>
