@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Cims.WorkflowLib.Example01.Enums
+namespace Cims.WorkflowLib.Models.Business.Processes
 {
     /// <summary>
     /// Business task status.

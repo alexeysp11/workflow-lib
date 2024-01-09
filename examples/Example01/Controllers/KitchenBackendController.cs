@@ -5,8 +5,8 @@ using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Cooking;
 using Cims.WorkflowLib.Models.Business.Customers;
 using Cims.WorkflowLib.Models.Network;
+using Cims.WorkflowLib.Models.Business.Processes;
 using Cims.WorkflowLib.Example01.Contexts;
-using Cims.WorkflowLib.Example01.Enums;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {

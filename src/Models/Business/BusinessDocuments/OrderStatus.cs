@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Cims.WorkflowLib.Example01.Enums
+namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
 {
     /// <summary>
-    /// 
+    /// Order status.
     /// </summary>
     public enum OrderStatus
     {

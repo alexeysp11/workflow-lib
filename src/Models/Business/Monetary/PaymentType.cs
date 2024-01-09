@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Cims.WorkflowLib.Example01.Enums
+namespace Cims.WorkflowLib.Models.Business.Monetary
 {
     /// <summary>
-    /// 
+    /// Payment type.
     /// </summary>
     public enum PaymentType
     {

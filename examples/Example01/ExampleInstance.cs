@@ -72,46 +72,55 @@ namespace Cims.WorkflowLib.Example01
 
             // Step 01: make order.
             System.Console.WriteLine("\nStep 01: make order.");
+            System.Console.ReadLine();
             totalSteps += 1;
             successfulSteps += _step01.Start() ? 1 : 0;
 
             // Step 02: make payment.
             System.Console.WriteLine("\nStep 02: make payment.");
+            System.Console.ReadLine();
             totalSteps += 1;
             successfulSteps += _step02.Start() ? 1 : 0;
 
             // Step 03: request for delivering from store to warehouse.
             System.Console.WriteLine("\nStep 03: request for delivering from store to warehouse.");
+            System.Console.ReadLine();
             totalSteps += 1;
             successfulSteps += _step03.Start() ? 1 : 0;
 
             // Step 04: deliver from store to warehouse.
             System.Console.WriteLine("\nStep 04: deliver from store to warehouse.");
+            System.Console.ReadLine();
             totalSteps += 1;
             successfulSteps += _step04.Start() ? 1 : 0;
 
             // Step 05: confirm delivering from store to warehouse.
             System.Console.WriteLine("\nStep 05: confirm delivering from store to warehouse.");
+            System.Console.ReadLine();
             totalSteps += 1;
             successfulSteps += _step05.Start() ? 1 : 0;
 
             // Step 06: finish delivering from warehouse to kitchen.
             System.Console.WriteLine("\nStep 06: finish delivering from warehouse to kitchen.");
+            System.Console.ReadLine();
             totalSteps += 1;
             successfulSteps += _step06.Start() ? 1 : 0;
 
             // Step 07: prepare meal.
             System.Console.WriteLine("\nStep 07: prepare meal.");
+            System.Console.ReadLine();
             totalSteps += 1;
             successfulSteps += _step07.Start() ? 1 : 0;
 
             // Step 08: deliver from kitchen to warehouse.
             System.Console.WriteLine("\nStep 08: deliver from kitchen to warehouse.");
+            System.Console.ReadLine();
             totalSteps += 1;
             successfulSteps += _step08.Start() ? 1 : 0;
 
             // Step 09: deliver order.
             System.Console.WriteLine("\nStep 09: deliver order.");
+            System.Console.ReadLine();
             totalSteps += 1;
             successfulSteps += _step09.Start() ? 1 : 0;
 

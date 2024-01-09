@@ -1,4 +1,4 @@
-namespace Cims.WorkflowLib.Example01.Enums
+namespace Cims.WorkflowLib.Models.Business.InformationSystem
 {
     /// <summary>
     /// 
