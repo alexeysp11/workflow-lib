@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Cims.WorkflowLib.Extensions;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Customers;
+using Cims.WorkflowLib.Models.Business.InformationSystem;
 using Cims.WorkflowLib.Models.Business.Delivery;
 using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Contexts;
@@ -199,13 +200,20 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 System.Console.WriteLine("CourierBackend.DeliverOrderExecute: cache");
                 
                 // Close the related business task.
-                var deliveryOperation = context.DeliveryOrders
+                var deliveryOrder = context.DeliveryOrders
                     .Where(x => x.Id == model.Id && x.DeliveryOperation != null)
-                    .Select(x => x.DeliveryOperation)
+                    .Include(x => x.DeliveryOperation)
                     .FirstOrDefault();
+                if (deliveryOrder == null)
+                    throw new System.Exception($"Delivery order is not defined (delivery order ID: {model.Id})");
+                var deliveryOperation = deliveryOrder.DeliveryOperation;
                 if (deliveryOperation == null)
-                    throw new System.Exception("Delivery operation is not defined");
+                    throw new System.Exception($"Delivery operation is not defined (delivery order ID: {model.Id})");
                 deliveryOperation.Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Closed);
+
+                // Change the status of the corresponding delivery order.
+                deliveryOrder.CloseOrderDt = System.DateTime.Now;
+                deliveryOrder.Status = EnumExtensions.GetDisplayName(OrderStatus.Finished);
                 context.SaveChanges();
 
                 // 
@@ -243,15 +251,39 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 // Get sender and receiver of the notification.
                 var adminUser = context.UserAccounts.FirstOrDefault();
                 if (adminUser == null)
-                    throw new System.Exception("Admin user could not be null");
-                var courierEmployee = context.Employees
-                    .Include(x => x.UserAccounts)
-                    .FirstOrDefault(x => x.Uid == model.ExecutorUid);
+                    throw new System.Exception($"Admin user could not be null (delivery order ID: {model.Id})");
+                Employee courierEmployee = null;
+                if (model.OrderExecutorType == OrderExecutorType.Employee)
+                {
+                    courierEmployee = context.Employees
+                        .Include(x => x.UserAccounts)
+                        .FirstOrDefault(x => x.Uid == model.ExecutorUid);
+                }
+                else
+                {
+                    var rand = new System.Random();
+
+                    var userGroup = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "courier");
+                    if (userGroup == null)
+                        throw new System.Exception($"Specified user group is not defined (delivery order ID: {model.Id})");
+
+                    var userAccountIds = (from userAccount in userGroup.Users select userAccount.Id).ToList();
+                    var potentialExecutors = 
+                        (from employee in context.Employees 
+                        where employee.UserAccounts != null && employee.UserAccounts.Any(ua => userAccountIds.Contains(ua.Id))
+                        select employee).ToList();
+                    if (potentialExecutors == null || !potentialExecutors.Any())
+                        throw new System.Exception($"The list of potential executors is null or empty (delivery order ID: {model.Id})");
+                    
+                    courierEmployee = potentialExecutors[rand.Next(potentialExecutors.Count)];
+                    if (courierEmployee == null)
+                        throw new System.Exception($"Randomly selected employee is null (delivery order ID: {model.Id})");
+                }
                 if (courierEmployee == null)
-                    throw new System.Exception("Courier employee could not be null");
+                    throw new System.Exception($"Courier employee could not be null (delivery order ID: {model.Id})");
                 var courierUser = courierEmployee.UserAccounts.FirstOrDefault();
                 if (courierUser == null)
-                    throw new System.Exception("Courier user could not be null");
+                    throw new System.Exception($"Courier user could not be null (delivery order ID: {model.Id})");
 
                 // Getting the products that should be delivered.
                 var deliveryOrderProducts = context.DeliveryOrderProducts

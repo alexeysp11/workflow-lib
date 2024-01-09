@@ -30,7 +30,7 @@ namespace Cims.WorkflowLib.Example01
         private Wh2KitchenStep _step06 { get; set; }
         private PrepareMealStep _step07 { get; set; }
         private Kitchen2WhStep _step08 { get; set; }
-        private DeliverOrderStep _step11 { get; set; }
+        private DeliverOrderStep _step09 { get; set; }
 
         /// <summary>
         /// Construstor by default.
@@ -56,7 +56,7 @@ namespace Cims.WorkflowLib.Example01
             _step06 = step06;
             _step07 = step07;
             _step08 = step08;
-            _step11 = step11;
+            _step09 = step11;
         }
 
         /// <summary>
@@ -106,14 +106,14 @@ namespace Cims.WorkflowLib.Example01
             successfulSteps += _step07.Start() ? 1 : 0;
 
             // Step 08: deliver from kitchen to warehouse.
-            // System.Console.WriteLine("\nStep 08: deliver from kitchen to warehouse.");
-            // totalSteps += 1;
-            // successfulSteps += _step08.Start() ? 1 : 0;
+            System.Console.WriteLine("\nStep 08: deliver from kitchen to warehouse.");
+            totalSteps += 1;
+            successfulSteps += _step08.Start() ? 1 : 0;
 
-            // Step 11: deliver order.
-            // System.Console.WriteLine("\nStep 11: deliver order.");
-            // totalSteps += 1;
-            // successfulSteps += _step11.Start() ? 1 : 0;
+            // Step 09: deliver order.
+            System.Console.WriteLine("\nStep 09: deliver order.");
+            totalSteps += 1;
+            successfulSteps += _step09.Start() ? 1 : 0;
 
             System.Console.WriteLine($"\nExample is executed: {successfulSteps}/{totalSteps}");
         }
