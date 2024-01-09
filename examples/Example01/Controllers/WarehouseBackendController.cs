@@ -253,6 +253,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 var adminUser = context.UserAccounts.FirstOrDefault();
                 if (adminUser == null)
                     throw new System.Exception("Admin user could not be null");
+                var warehouseEmployee = GetWarehouseEmployeeRandomly();
 
                 // Title text.
                 var sbMessageText = new StringBuilder();
@@ -279,7 +280,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 var notification = new Notification
                 {
                     SenderId = adminUser.Id,
-                    ReceiverId = 2,
+                    ReceiverId = warehouseEmployee.Id,
                     TitleText = titleText,
                     BodyText = sbMessageText.ToString()
                 };
@@ -420,6 +421,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 var adminUser = context.UserAccounts.FirstOrDefault();
                 if (adminUser == null)
                     throw new System.Exception("Admin user could not be null");
+                var warehouseEmployee = GetWarehouseEmployeeRandomly();
                 
                 // Title text.
                 var sbMessageText = new StringBuilder();
@@ -443,7 +445,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 var notification = new Notification
                 {
                     SenderId = adminUser.Id,
-                    ReceiverId = 2,
+                    ReceiverId = warehouseEmployee.Id,
                     TitleText = titleText,
                     BodyText = sbMessageText.ToString()
                 };
@@ -584,6 +586,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 var adminUser = context.UserAccounts.FirstOrDefault();
                 if (adminUser == null)
                     throw new System.Exception("Admin user could not be null");
+                var warehouseEmployee = GetWarehouseEmployeeRandomly();
                 
                 // Title text.
                 var sbMessageText = new StringBuilder();
@@ -607,7 +610,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 var notification = new Notification
                 {
                     SenderId = adminUser.Id,
-                    ReceiverId = 2,
+                    ReceiverId = warehouseEmployee.Id,
                     TitleText = titleText,
                     BodyText = sbMessageText.ToString()
                 };
@@ -724,6 +727,12 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 
                 // Update DB.
                 System.Console.WriteLine("WarehouseBackend.Kitchen2WhStart: cache");
+                
+                // Get sender and receiver of the notification.
+                var adminUser = context.UserAccounts.FirstOrDefault();
+                if (adminUser == null)
+                    throw new System.Exception("Admin user could not be null");
+                var warehouseEmployee = GetWarehouseEmployeeRandomly();
 
                 // Get initial order by delivery order ID.
                 var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
@@ -761,8 +770,8 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 // Notify warehouse employee.
                 var notification = new Notification
                 {
-                    SenderId = 1,
-                    ReceiverId = 2,
+                    SenderId = adminUser.Id,
+                    ReceiverId = warehouseEmployee.Id,
                     TitleText = titleText,
                     BodyText = sbMessageText.ToString()
                 }; 
@@ -849,5 +858,28 @@ namespace Cims.WorkflowLib.Example01.Controllers
             return response;
         }
         #endregion  // kitchen2wh
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private Employee GetWarehouseEmployeeRandomly()
+        {
+            using var context = new DeliveringContext(_contextOptions);
+            var rand = new System.Random();
+            var userGroup = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "warehouse employee");
+            if (userGroup == null)
+                throw new System.Exception($"Specified user group is not defined");
+            var userAccountIds = (from userAccount in userGroup.Users select userAccount.Id).ToList();
+            var potentialExecutors = 
+                (from employee in context.Employees 
+                where employee.UserAccounts != null && employee.UserAccounts.Any(ua => userAccountIds.Contains(ua.Id))
+                select employee).ToList();
+            if (potentialExecutors == null || !potentialExecutors.Any())
+                throw new System.Exception($"The list of potential executors is null or empty");
+            var selectedEmployee = potentialExecutors[rand.Next(potentialExecutors.Count)];
+            if (selectedEmployee == null)
+                throw new System.Exception($"Randomly selected employee is null");
+            return selectedEmployee;
+        }
     }
 }

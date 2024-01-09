@@ -18,12 +18,12 @@ namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// Timestamp when the order was opened.
         /// </summary>
-        public System.DateTime OpenOrderDt { get; set; }
+        public System.DateTime? OpenOrderDt { get; set; }
         
         /// <summary>
         /// Timestamp when the order was closed.
         /// </summary>
-        public System.DateTime CloseOrderDt { get; set; }
+        public System.DateTime? CloseOrderDt { get; set; }
         
         /// <summary>
         /// Parent order.

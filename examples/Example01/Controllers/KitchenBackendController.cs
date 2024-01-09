@@ -61,9 +61,23 @@ namespace Cims.WorkflowLib.Example01.Controllers
                     throw new System.Exception($"There are no existing products associated with the specified DeliveryOrder (ID: {model.Id})");
                 
                 // Get sender and receiver of the notification.
+                var rand = new System.Random();
                 var adminUser = context.UserAccounts.FirstOrDefault();
                 if (adminUser == null)
                     throw new System.Exception("Admin user could not be null");
+                var userGroup = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "kitchen employee");
+                if (userGroup == null)
+                    throw new System.Exception($"Specified user group is not defined (delivery order ID: {model.Id})");
+                var userAccountIds = (from userAccount in userGroup.Users select userAccount.Id).ToList();
+                var potentialExecutors = 
+                    (from employee in context.Employees 
+                    where employee.UserAccounts != null && employee.UserAccounts.Any(ua => userAccountIds.Contains(ua.Id))
+                    select employee).ToList();
+                if (potentialExecutors == null || !potentialExecutors.Any())
+                    throw new System.Exception($"The list of potential executors is null or empty (delivery order ID: {model.Id})");
+                var kitchenEmployee = potentialExecutors[rand.Next(potentialExecutors.Count)];
+                if (kitchenEmployee == null)
+                    throw new System.Exception($"Randomly selected employee is null (delivery order ID: {model.Id})");
                 
                 // Title text.
                 var sbMessageText = new StringBuilder();
@@ -87,7 +101,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
                 var notification = new Notification
                 {
                     SenderId = adminUser.Id,
-                    ReceiverId = 2,
+                    ReceiverId = kitchenEmployee.Id,
                     TitleText = titleText,
                     BodyText = sbMessageText.ToString()
                 };
