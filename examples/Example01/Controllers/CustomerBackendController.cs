@@ -10,7 +10,6 @@ using Cims.WorkflowLib.Models.Business.Products;
 using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Example01.Contexts;
 using Cims.WorkflowLib.Example01.Interfaces;
-using Cims.WorkflowLib.Example01.Models;
 
 namespace Cims.WorkflowLib.Example01.Controllers
 {
