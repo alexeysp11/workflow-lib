@@ -26,6 +26,7 @@ namespace Cims.WorkflowLib.Example01.Controllers
             _contextOptions = contextOptions;
         }
 
+        #region preparemeal
         /// <summary>
         /// A method that is responsible for storing information necessary for the preparation of an order by kitchen staff.
         /// </summary>
@@ -197,5 +198,6 @@ namespace Cims.WorkflowLib.Example01.Controllers
             System.Console.WriteLine("KitchenBackend.PrepareMealExecute: end");
             return response;
         }
+        #endregion  // preparemeal
     }
 }
