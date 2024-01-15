@@ -1,5 +1,6 @@
 using Cims.WorkflowLib.Models.ErrorHandling;
 using Cims.WorkflowLib.Models.Performance;
+using Cims.WorkflowLib.Models.Network.MicroserviceConfigurations;
 
 namespace Cims.WorkflowLib.Models.Network
 {
@@ -79,6 +80,11 @@ namespace Cims.WorkflowLib.Models.Network
         /// Property that could be used to measure performance of the API operation (execution time).
         /// </summary>
         public ExecutionTime ExecutionTime { get; set; }
+
+        /// <summary>
+        /// Configuration of interaction between microservices.
+        /// </summary>
+        public MicroserviceCommunicationConfiguration MicroserviceCommunicationConfiguration { get; set; }
 
         /// <summary>
         /// Exception that is occurred during execution of the API operation.
