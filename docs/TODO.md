@@ -26,6 +26,10 @@
 
 ![ESB-components](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/ESB_Component_Hive.png/330px-ESB_Component_Hive.png)
 
+- Additional fields for internetworking:
+    - Fields for authentication and authorization when interacting between microservices (for example, access token).
+    - Fields for monitoring (for example, response time, number of requests).
+
 ## Models
 
 - In the recipe object, you need to set a status that would show the relevance of the recipe - actually, there is already a status of the entity, which can be equal to “deleted” or “active”, but in a real situation it may be important to set deadlines for relevance.
