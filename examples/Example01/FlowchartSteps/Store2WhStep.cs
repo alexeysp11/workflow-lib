@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Cims.WorkflowLib.Models.Network;
-using Cims.WorkflowLib.Example01.Contexts;
+using Cims.WorkflowLib.Examples.Example01.Contexts;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
-using Cims.WorkflowLib.Example01.Controllers;
+using Cims.WorkflowLib.Examples.Example01.Controllers;
 
-namespace Cims.WorkflowLib.Example01.FlowchartSteps
+namespace Cims.WorkflowLib.Examples.Example01.FlowchartSteps
 {
     /// <summary>
     /// A step that completes the procedure for delivering products from the store to the warehouse.

@@ -8,10 +8,10 @@ using Cims.WorkflowLib.Models.Business.Customers;
 using Cims.WorkflowLib.Models.Business.Monetary;
 using Cims.WorkflowLib.Models.Business.Products;
 using Cims.WorkflowLib.Models.Network;
-using Cims.WorkflowLib.Example01.Contexts;
-using Cims.WorkflowLib.Example01.Interfaces;
+using Cims.WorkflowLib.Examples.Example01.Contexts;
+using Cims.WorkflowLib.Examples.Example01.Interfaces;
 
-namespace Cims.WorkflowLib.Example01.Controllers
+namespace Cims.WorkflowLib.Examples.Example01.Controllers
 {
     /// <summary>
     /// A class that represents a backend service controller that processes requests from the customer.

@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Network;
-using Cims.WorkflowLib.Example01.Contexts;
+using Cims.WorkflowLib.Examples.Example01.Contexts;
 
-namespace Cims.WorkflowLib.Example01.Controllers
+namespace Cims.WorkflowLib.Examples.Example01.Controllers
 {
     /// <summary>
     /// Client-side app controller that serves requests from the courier.

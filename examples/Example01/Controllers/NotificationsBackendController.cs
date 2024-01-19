@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Customers;
-using Cims.WorkflowLib.Example01.Contexts;
-using Cims.WorkflowLib.Example01.Interfaces;
+using Cims.WorkflowLib.Examples.Example01.Contexts;
+using Cims.WorkflowLib.Examples.Example01.Interfaces;
 
-namespace Cims.WorkflowLib.Example01.Controllers
+namespace Cims.WorkflowLib.Examples.Example01.Controllers
 {
     /// <summary>
     /// Backend service controller that allows to send notifications to the users of the system.

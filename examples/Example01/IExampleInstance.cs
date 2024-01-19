@@ -1,4 +1,4 @@
-namespace Cims.WorkflowLib.Example01
+namespace Cims.WorkflowLib.Examples.Example01
 {
     /// <summary>
     /// An interface that allows you to initialize this example and also start executing it.

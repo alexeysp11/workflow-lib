@@ -6,9 +6,9 @@ using Cims.WorkflowLib.Models.Business.Cooking;
 using Cims.WorkflowLib.Models.Business.Customers;
 using Cims.WorkflowLib.Models.Network;
 using Cims.WorkflowLib.Models.Business.Processes;
-using Cims.WorkflowLib.Example01.Contexts;
+using Cims.WorkflowLib.Examples.Example01.Contexts;
 
-namespace Cims.WorkflowLib.Example01.Controllers
+namespace Cims.WorkflowLib.Examples.Example01.Controllers
 {
     /// <summary>
     /// Backend service controller that serves requests from the kitchen employees.

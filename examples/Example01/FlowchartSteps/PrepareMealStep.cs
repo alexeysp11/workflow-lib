@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Cims.WorkflowLib.Models.Business.Monetary;
 using Cims.WorkflowLib.Models.Network;
-using Cims.WorkflowLib.Example01.Controllers;
-using Cims.WorkflowLib.Example01.Contexts;
+using Cims.WorkflowLib.Examples.Example01.Controllers;
+using Cims.WorkflowLib.Examples.Example01.Contexts;
 
-namespace Cims.WorkflowLib.Example01.FlowchartSteps
+namespace Cims.WorkflowLib.Examples.Example01.FlowchartSteps
 {
     /// <summary>
     /// The step that involves preparing food in the kitchen as part of order processing.

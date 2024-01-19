@@ -1,4 +1,4 @@
-namespace Cims.WorkflowLib.Example01.FlowchartSteps
+namespace Cims.WorkflowLib.Examples.Example01.FlowchartSteps
 {
     /// <summary>
     /// Interface for implementing steps within the order delivery process.

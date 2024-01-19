@@ -9,10 +9,10 @@ using Cims.WorkflowLib.Models.Business.InformationSystem;
 using Cims.WorkflowLib.Models.Business.Products;
 using Cims.WorkflowLib.Models.Business.Processes;
 using Cims.WorkflowLib.Models.Network;
-using Cims.WorkflowLib.Example01.Contexts;
-using Cims.WorkflowLib.Example01.Interfaces;
+using Cims.WorkflowLib.Examples.Example01.Contexts;
+using Cims.WorkflowLib.Examples.Example01.Interfaces;
 
-namespace Cims.WorkflowLib.Example01.Controllers
+namespace Cims.WorkflowLib.Examples.Example01.Controllers
 {
     /// <summary>
     /// Backend service controller that serves requests from the warehouse employees.

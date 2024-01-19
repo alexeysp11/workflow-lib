@@ -11,7 +11,7 @@ using Cims.WorkflowLib.Models.Business.Processes;
 using Cims.WorkflowLib.Models.Business.SocialCommunication;
 using Cims.WorkflowLib.Models.Network;
 
-namespace Cims.WorkflowLib.Example01.Contexts
+namespace Cims.WorkflowLib.Examples.Example01.Contexts
 {
     /// <summary>
     /// Database context that allows you to work with entities from the database and store them as regular collections.

@@ -4,10 +4,10 @@ using Microsoft.Extensions.Configuration;
 using Cims.WorkflowLib.Extensions;
 using Cims.WorkflowLib.Models.Business.Monetary;
 using Cims.WorkflowLib.Models.Network;
-using Cims.WorkflowLib.Example01.Controllers;
-using Cims.WorkflowLib.Example01.Contexts;
+using Cims.WorkflowLib.Examples.Example01.Controllers;
+using Cims.WorkflowLib.Examples.Example01.Contexts;
 
-namespace Cims.WorkflowLib.Example01.FlowchartSteps
+namespace Cims.WorkflowLib.Examples.Example01.FlowchartSteps
 {
     /// <summary>
     /// A step that allows you to make electronic payment on the site.

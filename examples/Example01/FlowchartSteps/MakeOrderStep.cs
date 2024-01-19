@@ -4,10 +4,10 @@ using Cims.WorkflowLib.Extensions;
 using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 using Cims.WorkflowLib.Models.Business.Monetary;
 using Cims.WorkflowLib.Models.Network;
-using Cims.WorkflowLib.Example01.Contexts;
-using Cims.WorkflowLib.Example01.Controllers;
+using Cims.WorkflowLib.Examples.Example01.Contexts;
+using Cims.WorkflowLib.Examples.Example01.Controllers;
 
-namespace Cims.WorkflowLib.Example01.FlowchartSteps
+namespace Cims.WorkflowLib.Examples.Example01.FlowchartSteps
 {
     /// <summary>
     /// The step that allows the customer to place an order.
