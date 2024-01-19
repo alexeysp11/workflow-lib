@@ -1,4 +1,4 @@
-namespace WorkflowLib.Example02;
+namespace WorkflowLib.Examples.Example02;
 
 public class WeatherForecast
 {

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Cims.WorkflowLib.Models.Network;
 
-namespace WorkflowLib.Example02.Controllers;
+namespace WorkflowLib.Examples.Example02.Controllers;
 
 [ApiController]
 [Route("[controller]")]
