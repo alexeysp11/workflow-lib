@@ -11,7 +11,6 @@ using Cims.WorkflowLib.Models.Business.Products;
 using Cims.WorkflowLib.Examples.Example01.Contexts;
 using Cims.WorkflowLib.Examples.Example01.FlowchartSteps;
 using Cims.WorkflowLib.Examples.Example01.Interfaces;
-using Cims.WorkflowLib.Models.Business.BusinessDocuments;
 
 namespace Cims.WorkflowLib.Examples.Example01
 {

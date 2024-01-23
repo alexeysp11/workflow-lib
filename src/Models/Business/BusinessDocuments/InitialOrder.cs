@@ -39,7 +39,7 @@ namespace Cims.WorkflowLib.Models.Business.BusinessDocuments
         /// List of the product IDs, that user has placed into the order.
         /// </summary>
         [NotMapped]
-        public List<long> ProductIds { get; set; }
+        public IList<long> ProductIds { get; set; }
 
         /// <summary>
         /// Payment type.
