@@ -22,5 +22,10 @@ namespace Cims.WorkflowLib.Models.Business.Products
         /// Picture description.
         /// </summary>
         public string? PictureDescription { get; set; }
+        
+        /// <summary>
+        /// Product category type.
+        /// </summary>
+        public ProductCategoryType? ProductCategoryType { get; set; }
     }
 }
