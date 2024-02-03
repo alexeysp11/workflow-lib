@@ -11,6 +11,11 @@ namespace Cims.WorkflowLib.Models.Network.MicroserviceConfigurations
         public int Id { get; set; }
         
         /// <summary>
+        /// Name of the endpoint.
+        /// </summary>
+        public string Name { get; set; }
+        
+        /// <summary>
         /// IP address of the endpoint
         /// </summary>
         public string IpAddress { get; set; }
