@@ -11,19 +11,19 @@ namespace Cims.WorkflowLib.Models.Network.MicroserviceConfigurations
         public int Id { get; set; }
 
         /// <summary>
-        /// Endpoint ID which is going to start the communication.
+        /// Endpoint which is going to start the communication.
         /// </summary>
-        public int CallingEndpointId { get; set; }
+        public Endpoint EndpointFrom { get; set; }
 
         /// <summary>
-        /// Endpoint ID that is going to be called.
+        /// Endpoint that is going to be called.
         /// </summary>
-        public int CalledEndpointId { get; set; }
+        public Endpoint EndpointTo { get; set; }
 
         /// <summary>
-        /// ID of the record that stores information about the network interaction.
+        /// Record that stores information about the network interaction.
         /// </summary>
-        public int NetworkInteractionId { get; set; }
+        public NetworkInteractionDetails NetworkInteractionDetails { get; set; }
         
         /// <summary>
         /// Timout limit.

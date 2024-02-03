@@ -3,7 +3,7 @@ namespace Cims.WorkflowLib.Models.Network.MicroserviceConfigurations
     /// <summary>
     /// Record that stores information about the network interaction.
     /// </summary>
-    public class NetworkInteraction
+    public class NetworkInteractionDetails
     {
         /// <summary>
         /// ID of the network interaction.
