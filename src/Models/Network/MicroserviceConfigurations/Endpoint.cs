@@ -29,5 +29,10 @@ namespace Cims.WorkflowLib.Models.Network.MicroserviceConfigurations
         /// Network address of the endpoint.
         /// </summary>
         public string NetworkAddress { get; set; }
+
+        /// <summary>
+        /// Endpoint status.
+        /// </summary>
+        public EndpointStatus Status { get; set; }
     }
 }
