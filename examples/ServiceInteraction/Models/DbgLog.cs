@@ -3,7 +3,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Models;
 /// <summary>
 /// Debug logs.
 /// </summary>
-public class DbgLogs
+public class DbgLog
 {
     /// <summary>
     /// ID of the log.
