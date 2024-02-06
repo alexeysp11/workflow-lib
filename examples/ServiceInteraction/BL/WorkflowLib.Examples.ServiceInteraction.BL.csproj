@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Models\WorkflowLib.Examples.ServiceInteraction.Models.csproj" />
+    <ProjectReference Include="..\Core\WorkflowLib.Examples.ServiceInteraction.Core.csproj" />
+  </ItemGroup>
+
 </Project>
