@@ -8,7 +8,7 @@ public class EndpointCall
     /// <summary>
     /// ID of endpoint call.
     /// </summary>
-    public int Id { get; set; }
+    public long Id { get; set; }
 
     /// <summary>
     /// Endpoint which is going to start the communication.

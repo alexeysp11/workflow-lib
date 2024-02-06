@@ -8,7 +8,7 @@ public class Endpoint
     /// <summary>
     /// ID of the endpoint.
     /// </summary>
-    public int Id { get; set; }
+    public long Id { get; set; }
     
     /// <summary>
     /// Name of the endpoint.
