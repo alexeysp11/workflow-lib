@@ -27,5 +27,10 @@ namespace Cims.WorkflowLib.Models.Business.Processes
         /// 
         /// </summary>
         public string VersionNumber { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public System.DateTime DateCreated { get; set; }
     }
 }
