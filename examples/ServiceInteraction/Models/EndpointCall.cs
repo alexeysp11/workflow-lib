@@ -26,6 +26,11 @@ public class EndpointCall
     public EndpointCallType EndpointCallType { get; set; }
 
     /// <summary>
+    /// Business process state.
+    /// </summary>
+    public BusinessProcessState BusinessProcessState { get; set; }
+
+    /// <summary>
     /// API method name.
     /// </summary>
     public string? ApiMethodName { get; set; }
