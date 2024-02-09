@@ -10,4 +10,8 @@ public class ServiceInteractionContext : DbContext
     public DbSet<DbgLog> DbgLogs { get; set; }
     public DbSet<Endpoint> Endpoints { get; set; }
     public DbSet<EndpointCall> EndpointCalls { get; set; }
+
+    public DbSet<BusinessProcess> BusinessProcesses { get; set; }
+    public DbSet<BusinessProcessState> BusinessProcessStates { get; set; }
+    public DbSet<BusinessProcessStateTransition> BusinessProcessStateTransitions { get; set; }
 }
