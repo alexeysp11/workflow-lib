@@ -19,6 +19,16 @@ public class EndpointCall
     /// Endpoint that is going to be called.
     /// </summary>
     public Endpoint? EndpointTo { get; set; }
+
+    /// <summary>
+    /// Endpoint type which is going to start the communication.
+    /// </summary>
+    public EndpointType? EndpointTypeFrom { get; set; }
+
+    /// <summary>
+    /// Endpoint type that is going to be called.
+    /// </summary>
+    public EndpointType? EndpointTypeTo { get; set; }
     
     /// <summary>
     /// Type of the network interaction details.
