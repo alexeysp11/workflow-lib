@@ -36,6 +36,11 @@ public class Endpoint
     public EndpointStatus? Status { get; set; }
 
     /// <summary>
+    /// Endpoint type.
+    /// </summary>
+    public EndpointType EndpointType { get; set; }
+
+    /// <summary>
     /// Endpoint deployment type.
     /// </summary>
     public EndpointDeploymentType? EndpointDeploymentType { get; set; }

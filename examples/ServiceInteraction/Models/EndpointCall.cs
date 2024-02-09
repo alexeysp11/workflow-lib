@@ -26,7 +26,7 @@ public class EndpointCall
     public EndpointCallType EndpointCallType { get; set; }
 
     /// <summary>
-    /// Business process state.
+    /// Current business process state.
     /// </summary>
     public BusinessProcessState BusinessProcessState { get; set; }
 

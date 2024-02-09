@@ -14,5 +14,10 @@ namespace WorkflowLib.Examples.ServiceInteraction.Models
         /// 
         /// </summary>
         public System.DateTime DateCreated { get; set; }
+        
+        /// <summary>
+        /// Endpoint type.
+        /// </summary>
+        public EndpointType EndpointType { get; set; }
     }
 }
