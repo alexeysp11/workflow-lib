@@ -1,3 +1,4 @@
+using System.Text;
 using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Examples.ServiceInteraction.Core.Contexts;
 using WorkflowLib.Examples.ServiceInteraction.Models;
@@ -134,9 +135,46 @@ public class ConfigResolver
             }
         };
 
+        // Endpoint types.
+        var stringBuilder = new StringBuilder();
+        var endpointCallTypes = new List<string>
+        {
+            "HTTP",
+            "gRPC",
+            "monolith"
+        };
+        var endpointShortNames = new List<string>
+        {
+            "Customer backend",
+            "Warehouse backend",
+            "Courier backend",
+            "Kitchen backend",
+            "File service"
+        };
+        var endpointTypes = new List<EndpointType>();
+        foreach (var endpointShortName in endpointShortNames)
+        {
+            foreach (var endpointCallType in endpointCallTypes)
+            {
+                stringBuilder.Clear();
+                stringBuilder.Append(endpointShortName).Append(" ").Append(endpointCallType);
+                endpointTypes.Add(new EndpointType
+                {
+                    Name = stringBuilder.ToString()
+                });
+            }
+        }
+
+        // Endpoint calls.
+        var endpointCalls = new List<EndpointCall>
+        {
+            // 
+        };
+
         context.BusinessProcesses.Add(process);
         context.BusinessProcessStates.AddRange(states);
         context.BusinessProcessStateTransitions.AddRange(transitions);
+        context.EndpointTypes.AddRange(endpointTypes);
 
         context.SaveChanges();
     }
