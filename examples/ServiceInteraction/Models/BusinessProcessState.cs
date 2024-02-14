@@ -8,16 +8,11 @@ namespace WorkflowLib.Examples.ServiceInteraction.Models
         /// <summary>
         /// 
         /// </summary>
-        public BusinessProcess BusinessProcess { get; set; }
+        public BusinessProcess? BusinessProcess { get; set; }
         
         /// <summary>
         /// 
         /// </summary>
-        public System.DateTime DateCreated { get; set; }
-        
-        /// <summary>
-        /// Endpoint type.
-        /// </summary>
-        public EndpointType EndpointType { get; set; }
+        public System.DateTime? DateCreated { get; set; }
     }
 }

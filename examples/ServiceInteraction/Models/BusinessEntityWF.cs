@@ -13,21 +13,21 @@ namespace WorkflowLib.Examples.ServiceInteraction.Models
         /// <summary>
         /// UID of the business entity.
         /// </summary>
-        public string Uid { get; set; }
+        public string? Uid { get; set; }
         
         /// <summary>
         /// Name of the business entity.
         /// </summary>
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         /// <summary>
         /// Description of the business entity.
         /// </summary>
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         /// <summary>
         /// Business entity status.
         /// </summary>
-        public BusinessEntityStatus BusinessEntityStatus { get; set; }
+        public BusinessEntityStatus? BusinessEntityStatus { get; set; }
     }
 }

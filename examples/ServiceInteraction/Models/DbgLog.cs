@@ -28,10 +28,10 @@ public class DbgLog
     /// <summary>
     /// Date of creation.
     /// </summary>
-    public System.DateTime CreateDate { get; set; }
+    public System.DateTime? CreateDate { get; set; }
     
     /// <summary>
     /// Date of change.
     /// </summary>
-    public System.DateTime ChangeDate { get; set; }
+    public System.DateTime? ChangeDate { get; set; }
 }

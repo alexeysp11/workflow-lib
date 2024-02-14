@@ -33,12 +33,17 @@ public class EndpointCall
     /// <summary>
     /// Type of the network interaction details.
     /// </summary>
-    public EndpointCallType EndpointCallType { get; set; }
+    public EndpointCallType? EndpointCallType { get; set; }
 
     /// <summary>
     /// Current business process state.
     /// </summary>
-    public BusinessProcessState BusinessProcessState { get; set; }
+    public BusinessProcessState? BusinessProcessState { get; set; }
+
+    /// <summary>
+    /// Current business process state transition.
+    /// </summary>
+    public BusinessProcessStateTransition? BusinessProcessStateTransition { get; set; }
 
     /// <summary>
     /// API method name.

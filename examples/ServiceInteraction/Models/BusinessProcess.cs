@@ -9,7 +9,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Models
         /// <summary>
         /// 
         /// </summary>
-        public BusinessProcess Parent { get; set; }
+        public BusinessProcess? Parent { get; set; }
 
         /// <summary>
         /// 
@@ -19,11 +19,11 @@ namespace WorkflowLib.Examples.ServiceInteraction.Models
         /// <summary>
         /// 
         /// </summary>
-        public string VersionNumber { get; set; }
+        public string? VersionNumber { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public System.DateTime DateCreated { get; set; }
+        public System.DateTime? DateCreated { get; set; }
     }
 }

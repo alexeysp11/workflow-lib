@@ -38,7 +38,7 @@ public class Endpoint
     /// <summary>
     /// Endpoint type.
     /// </summary>
-    public EndpointType EndpointType { get; set; }
+    public EndpointType? EndpointType { get; set; }
 
     /// <summary>
     /// Endpoint deployment type.
