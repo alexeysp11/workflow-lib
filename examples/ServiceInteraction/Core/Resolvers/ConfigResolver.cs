@@ -39,11 +39,6 @@ public class ConfigResolver
         context.SaveChanges();
     }
 
-    public void CallNext()
-    {
-        // 
-    }
-
     /// <summary>
     /// 
     /// </summary>
