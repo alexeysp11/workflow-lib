@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WorkflowLib.Examples.ServiceInteraction.Core.Contexts;
@@ -11,9 +12,10 @@ using WorkflowLib.Examples.ServiceInteraction.Core.Contexts;
 namespace WorkflowLib.Examples.ServiceInteraction.Core.Migrations
 {
     [DbContext(typeof(ServiceInteractionContext))]
-    partial class ServiceInteractionContextModelSnapshot : ModelSnapshot
+    [Migration("20240217162344_AddedEndpointClassName")]
+    partial class AddedEndpointClassName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
