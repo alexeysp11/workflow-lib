@@ -16,6 +16,11 @@ public class Endpoint
     public string? Name { get; set; }
     
     /// <summary>
+    /// Name of the class that represents the endpoint in the monolith.
+    /// </summary>
+    public string? ClassName { get; set; }
+    
+    /// <summary>
     /// IP address of the endpoint
     /// </summary>
     public string? IpAddress { get; set; }
