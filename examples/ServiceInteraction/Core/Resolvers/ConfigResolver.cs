@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Examples.ServiceInteraction.Core.Contexts;
+using WorkflowLib.Examples.ServiceInteraction.Core.Constants;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Core.Resolvers;
@@ -50,27 +52,15 @@ public class ConfigResolver
         var dtNow = System.DateTime.UtcNow;
 
         // Backend service names.
-        var customerBackendName = "Customer backend";
-        var whBackendName = "Warehouse backend";
-        var courierBackendName = "Courier backend";
-        var kitchenBackendName = "Kitchen backend";
-        var fileserviceBackendName = "File service";
-        var backendServiceNames = new List<string>
-        {
-            customerBackendName,
-            whBackendName,
-            courierBackendName,
-            kitchenBackendName,
-            fileserviceBackendName
-        };
+        var customerBackendName = ServiceConfigConstants.CustomerBackendName;
+        var whBackendName = ServiceConfigConstants.WhBackendName;
+        var courierBackendName = ServiceConfigConstants.CourierBackendName;
+        var kitchenBackendName = ServiceConfigConstants.KitchenBackendName;
+        var fileserviceBackendName = ServiceConfigConstants.FileserviceBackendName;
+        var backendServiceNames = ServiceConfigConstants.BackendServiceNames;
 
         // Endpoint call type names.
-        var endpointCallTypes = new List<string>
-        {
-            EndpointCallType.Monolith.ToString(),
-            EndpointCallType.HTTP.ToString(),
-            EndpointCallType.gRPC.ToString()
-        };
+        var endpointCallTypes = ServiceConfigConstants.EndpointCallTypes;
 
         // Process.
         var process = new BusinessProcess
@@ -253,6 +243,46 @@ public class ConfigResolver
         context.BusinessProcessStateTransitions.AddRange(transitions);
         context.EndpointTypes.AddRange(endpointTypes);
         context.EndpointCalls.AddRange(endpointCalls);
+
+        context.SaveChanges();
+    }
+
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public void InitMonolithEndpoints(Dictionary<string, string> classNames)
+    {
+        using var context = new ServiceInteractionContext(_contextOptions);
+
+        // Constants.
+        var customerBackendName = ServiceConfigConstants.CustomerBackendName;
+        var whBackendName = ServiceConfigConstants.WhBackendName;
+        var courierBackendName = ServiceConfigConstants.CourierBackendName;
+        var kitchenBackendName = ServiceConfigConstants.KitchenBackendName;
+        var fileserviceBackendName = ServiceConfigConstants.FileserviceBackendName;
+        var backendServiceNames = ServiceConfigConstants.BackendServiceNames;
+        var endpointTypeMonolith = ServiceConfigConstants.EndpointCallTypeMonolith;
+
+        var endpointTypes = context.EndpointTypes.Where(x => x.Name.Contains(endpointTypeMonolith));
+        if (endpointTypes == null || !endpointTypes.Any())
+            throw new System.Exception("Collection of endpoint types could not be null or empty");
+        
+        var endpoints = new List<Endpoint>();
+        foreach (var endpointType in endpointTypes)
+        {
+            var backendName = backendServiceNames.FirstOrDefault(x => endpointType.Name.Contains(x));
+            if (string.IsNullOrEmpty(backendName))
+                continue;
+            
+            endpoints.Add(new Endpoint
+            {
+                Name = endpointType.Name,
+                EndpointType = endpointType,
+                ClassName = classNames[backendName]
+            });
+        }
+        context.Endpoints.AddRange(endpoints);
 
         context.SaveChanges();
     }
