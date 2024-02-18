@@ -35,12 +35,10 @@ public class ServiceResolver
             throw new System.Exception("Endpoint call type could not be null");
         if (currentState == null || currentState.Id == null) 
             throw new System.Exception("Current state could not be null or undefined");
-        if (stateTransition == null || stateTransition.Id == null) 
-            throw new System.Exception("State transition could not be null or undefined");
         
         return GetEndpoint(x => x.EndpointCallType == endpointCallType
-            || x.BusinessProcessState.Id == currentState.Id
-            || x.BusinessProcessStateTransition.Id == stateTransition.Id);
+            && x.BusinessProcessState.Id == currentState.Id
+            && (stateTransition == null || x.BusinessProcessStateTransition.Id == stateTransition.Id));
     }
 
     /// <summary>
@@ -56,7 +54,7 @@ public class ServiceResolver
             throw new System.Exception("Destination endpoint type could not be null");
 
         return GetEndpoint(x => x.EndpointTypeFrom.Id == endpointTypeFrom.Id
-            || x.EndpointTypeTo.Id == endpointTypeTo.Id);
+            && x.EndpointTypeTo.Id == endpointTypeTo.Id);
     }
 
     /// <summary>
@@ -64,12 +62,23 @@ public class ServiceResolver
     /// </summary>
     private Endpoint GetEndpoint(Expression<System.Func<EndpointCall, bool>> predicate)
     {
+        if (predicate == null)
+            throw new System.ArgumentNullException(nameof(predicate));
+        
         using var context = new ServiceInteractionContext(_contextOptions);
-        var endpoints = context.EndpointCalls
+        
+        var endpointTypeTo = context.EndpointCalls
             .Where(predicate)
-            .Select(x => x.EndpointTo);
+            .Select(x => x.EndpointTypeTo)
+            .FirstOrDefault();
+        if (endpointTypeTo == null)
+            throw new System.Exception("Could not get endpoint type from the database");
+        
+        var endpoints = context.Endpoints.Where(x => x.EndpointType.Id == endpointTypeTo.Id).ToList();
         if (endpoints == null || !endpoints.Any())
             throw new System.Exception("Could not get endpoints from the database");
+        if (endpoints.Any(x => x == null))
+            throw new System.Exception("Collection of endpoints contains null object references");
         
         var endpointIds = endpoints.Select(x => x.Id).ToArray();
         var index = new System.Random().Next(endpointIds.Length);
