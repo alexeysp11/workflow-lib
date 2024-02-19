@@ -17,3 +17,12 @@ There are several types of shells:
 - gRPC.
 
 ![ExplicitImplicitCall](../../docs/img/examples/ExplicitImplicitCall.png)
+
+Algorithms for selecting an endpoint in a distributed system:
+- **Random**: A simple and effective method, but can lead to inefficient use of resources, especially if one of the instances is overloaded.
+- **Round-robin**: Evenly distributes requests between instances, which helps balance the load. However, it does not take into account the current load of instances.
+- **Select the least loaded service**: This method allows you to select the instance with the least load, which can improve performance and resource efficiency.
+- **Least Connections**: Select the service with the least number of active connections.
+- **Weighted Round-robin**: Distribution of requests taking into account the weights of instances (for example, more powerful servers receive more weight).
+- **IP Hashing**: Select a service based on a hash of the client's IP address.
+- **Least Response Time**: Select the service with the shortest response time.
