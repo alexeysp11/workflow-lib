@@ -3,7 +3,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 /// <summary>
 /// Load balancer that uses weighted round-robin to select endpoints based on their weights.
 /// </summary>
-public class WeightedRoundRobinLoadBalancer
+public class WeightedRoundRobinLoadBalancer : IEndpointLoadBalancer
 {
     private List<(string endpoint, int weight)> _weightedEndpoints;
     private int _currentIndex;
@@ -17,7 +17,7 @@ public class WeightedRoundRobinLoadBalancer
     /// <summary>
     /// Get the next endpoint based on weighted round-robin selection.
     /// </summary>
-    public string GetWeightedRoundRobinEndpoint()
+    public string GetNextEndpoint()
     {
         if (_weightedEndpoints.Count == 0)
             throw new InvalidOperationException("No endpoints available");

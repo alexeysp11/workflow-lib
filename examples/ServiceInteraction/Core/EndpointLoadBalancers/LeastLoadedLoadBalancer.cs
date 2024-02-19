@@ -5,7 +5,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 /// <summary>
 /// 
 /// </summary>
-public class LeastLoadedLoadBalancer
+public class LeastLoadedLoadBalancer : IEndpointLoadBalancer
 {
     private Dictionary<string, int> _loadMap;
 
@@ -14,7 +14,7 @@ public class LeastLoadedLoadBalancer
         _loadMap = initialLoadMap;
     }
 
-    public string GetLeastLoadedEndpoint()
+    public string GetNextEndpoint()
     {
         if (_loadMap.Count == 0)
             throw new InvalidOperationException("No endpoints available");

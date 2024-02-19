@@ -5,7 +5,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 /// <summary>
 /// 
 /// </summary>
-public class RoundRobinLoadBalancer
+public class RoundRobinLoadBalancer : IEndpointLoadBalancer
 {
     private List<string> _endpoints;
     private int _currentIndex;

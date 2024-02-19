@@ -5,7 +5,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 /// <summary>
 /// Load balancer that selects the endpoint with the least number of active connections.
 /// </summary>
-public class LeastConnectionsLoadBalancer
+public class LeastConnectionsLoadBalancer : IEndpointLoadBalancer
 {
     private Dictionary<string, int> _connectionsMap;
 
@@ -17,7 +17,7 @@ public class LeastConnectionsLoadBalancer
     /// <summary>
     /// Get the endpoint with the least number of active connections.
     /// </summary>
-    public string GetLeastConnectionsEndpoint()
+    public string GetNextEndpoint()
     {
         if (_connectionsMap.Count == 0)
             throw new InvalidOperationException("No endpoints available");
