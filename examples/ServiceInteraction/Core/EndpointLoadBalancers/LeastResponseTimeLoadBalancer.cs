@@ -1,0 +1,37 @@
+namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
+
+/// <summary>
+/// Load balancer that selects the endpoint with the least response time.
+/// </summary>
+public class LeastResponseTimeLoadBalancer
+{
+    private Dictionary<string, TimeSpan> _responseTimesMap;
+
+    public LeastResponseTimeLoadBalancer(Dictionary<string, TimeSpan> initialResponseTimesMap)
+    {
+        _responseTimesMap = initialResponseTimesMap;
+    }
+
+    /// <summary>
+    /// Get the endpoint with the least response time.
+    /// </summary>
+    public string GetLeastResponseTimeEndpoint()
+    {
+        if (_responseTimesMap.Count == 0)
+            throw new InvalidOperationException("No endpoints available");
+
+        string leastResponseTimeEndpoint = _responseTimesMap.OrderBy(x => x.Value).First().Key;
+        return leastResponseTimeEndpoint;
+    }
+
+    /// <summary>
+    /// Update the response time for a specific endpoint.
+    /// </summary>
+    public void UpdateResponseTime(string endpoint, TimeSpan responseTime)
+    {
+        if (_responseTimesMap.ContainsKey(endpoint))
+            _responseTimesMap[endpoint] = responseTime;
+        else
+            _responseTimesMap.Add(endpoint, responseTime);
+    }
+}
