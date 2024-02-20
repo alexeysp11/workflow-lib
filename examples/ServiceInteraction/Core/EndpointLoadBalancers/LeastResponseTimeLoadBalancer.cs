@@ -7,6 +7,9 @@ public class LeastResponseTimeLoadBalancer : IEndpointLoadBalancer
 {
     private Dictionary<string, TimeSpan> _responseTimesMap;
 
+    /// <summary>
+    /// Initializes a new instance of the LeastResponseTimeLoadBalancer class with the specified initial endpoint map.
+    /// </summary>
     public LeastResponseTimeLoadBalancer(Dictionary<string, TimeSpan> initialResponseTimesMap)
     {
         _responseTimesMap = initialResponseTimesMap;
@@ -20,18 +23,28 @@ public class LeastResponseTimeLoadBalancer : IEndpointLoadBalancer
         if (_responseTimesMap.Count == 0)
             throw new InvalidOperationException("No endpoints available");
 
-        string leastResponseTimeEndpoint = _responseTimesMap.OrderBy(x => x.Value).First().Key;
-        return leastResponseTimeEndpoint;
+        return _responseTimesMap.OrderBy(x => x.Value).First().Key;
     }
 
     /// <summary>
     /// Update the response time for a specific endpoint.
     /// </summary>
-    public void UpdateResponseTime(string endpoint, TimeSpan responseTime)
+    public void UpdateEndpoints(string endpoint, TimeSpan responseTime)
     {
         if (_responseTimesMap.ContainsKey(endpoint))
             _responseTimesMap[endpoint] = responseTime;
         else
             _responseTimesMap.Add(endpoint, responseTime);
+    }
+
+    /// <summary>
+    /// Remove an endpoint from the load balancer.
+    /// </summary>
+    public void RemoveEndpoint(string endpoint)
+    {
+        if (_responseTimesMap.ContainsKey(endpoint))
+            _responseTimesMap.Remove(endpoint);
+        else
+            throw new KeyNotFoundException($"Endpoint {endpoint} not found");
     }
 }
