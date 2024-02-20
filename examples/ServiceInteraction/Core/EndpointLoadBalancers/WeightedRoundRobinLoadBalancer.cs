@@ -31,6 +31,26 @@ public class WeightedRoundRobinLoadBalancer : IEndpointLoadBalancer
     }
 
     /// <summary>
+    /// Update the weight of an existing endpoint or add a new endpoint with its weight to the list of weighted endpoints.
+    /// </summary>
+    public void UpdateEndpoints(string endpoint, int weight)
+    {
+        var existingEndpoint = _weightedEndpoints.FirstOrDefault(e => e.endpoint == endpoint);
+        
+        if (existingEndpoint != default)
+        {
+            // Update the weight of an existing endpoint
+            _weightedEndpoints.Remove(existingEndpoint);
+            _weightedEndpoints.Add((endpoint, weight));
+        }
+        else
+        {
+            // Add a new endpoint with its weight
+            _weightedEndpoints.Add((endpoint, weight));
+        }
+    }
+
+    /// <summary>
     /// Remove the specified endpoint from the list of weighted endpoints.
     /// </summary>
     public void RemoveEndpoint(string endpoint)

@@ -33,6 +33,15 @@ public class RoundRobinLoadBalancer : IEndpointLoadBalancer
     }
 
     /// <summary>
+    /// Update a specific endpoint in the list of endpoints.
+    /// </summary>
+    public void UpdateEndpoints(string endpoint)
+    {
+        if (!_endpoints.Contains(endpoint))
+            _endpoints.Add(endpoint);
+    }
+
+    /// <summary>
     /// Remove the specified endpoint from the list of endpoints.
     /// </summary>
     public void RemoveEndpoint(string endpoint)
