@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 
+namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointMemoryManagement;
+
 /// <summary>
 /// Class for managing a pool of endpoints.
 /// </summary>
