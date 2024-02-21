@@ -11,9 +11,9 @@ public class EndpointCollectionParameter
     public long Id { get; set; }
 
     /// <summary>
-    /// Name of endpoint collection parameter.
+    /// Endpoint.
     /// </summary>
-    public string Name { get; set; }
+    public Endpoint Endpoint { get; set; }
 
     /// <summary>
     /// Amount of active connection.
