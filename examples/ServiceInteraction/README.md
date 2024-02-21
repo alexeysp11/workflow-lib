@@ -25,3 +25,9 @@ Algorithms for selecting an endpoint in a distributed system:
 - **Least Connections**: Select the service with the least number of active connections.
 - **Weighted Round-robin**: Distribution of requests taking into account the weights of instances (for example, more powerful servers receive more weight).
 - **Least Response Time**: Select the service with the shortest response time.
+
+## EndpointPool
+
+There is a collection that stores objects of type `EndpointCollectionParameter` (i.e. information about active endpoints). But it happens that an endpoint becomes temporarily unavailable; accordingly, such an endpoint will need to be removed from the collection. However, this object will remain on the heap until it is removed by the garbage collector. The problem is that when the connection to the endpoint is restored, you will need to create exactly the same endpoint in memory (thus, there will be two endpoints in the managed heap, which is not very correct from the point of view of memory use).
+
+To solve this problem, it is proposed to use the `EndpointPool` class, which will manage the allocation/deallocation of endpoints in memory, implementing the [object pool pattern](https://en.wikipedia.org/wiki/Object_pool_pattern).
