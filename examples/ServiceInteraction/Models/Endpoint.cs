@@ -1,10 +1,14 @@
-﻿namespace WorkflowLib.Examples.ServiceInteraction.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace WorkflowLib.Examples.ServiceInteraction.Models;
 
 /// <summary>
 /// Endpoint.
 /// </summary>
 public class Endpoint
 {
+    private EndpointStatus? m_status;
+
     /// <summary>
     /// ID of the endpoint.
     /// </summary>
@@ -36,11 +40,6 @@ public class Endpoint
     public string? NetworkAddress { get; set; }
 
     /// <summary>
-    /// Endpoint status.
-    /// </summary>
-    public EndpointStatus? Status { get; set; }
-
-    /// <summary>
     /// Endpoint type.
     /// </summary>
     public EndpointType? EndpointType { get; set; }
@@ -49,4 +48,23 @@ public class Endpoint
     /// Endpoint deployment type.
     /// </summary>
     public EndpointDeploymentType? EndpointDeploymentType { get; set; }
+    
+    /// <summary>
+    /// Endpoint status.
+    /// </summary>
+    public EndpointStatus? Status 
+    { 
+        get => m_status;
+        private set
+        {
+            m_status = value;
+            LastStatusChange = System.DateTime.Now;
+        }
+    }
+    
+    /// <summary>
+    /// Time of last endpoint status change.
+    /// </summary>
+    [NotMapped]
+    public System.DateTime? LastStatusChange { get; private set; }
 }

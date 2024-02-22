@@ -14,4 +14,9 @@ public class EndpointSelectionParameter
     /// Represents the types of endpoint selection algorithms that can be used in a load balancer.
     /// </summary>
     public EndpointSelectionType EndpointSelectionType { get; set; }
+
+    /// <summary>
+    /// Lifetime of an endpoint in memory in inactive status.
+    /// </summary>
+    public System.TimeSpan? InactiveTimeSpan { get; set; }
 }
