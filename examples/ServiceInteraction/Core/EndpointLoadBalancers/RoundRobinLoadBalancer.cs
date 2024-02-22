@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using WorkflowLib.Examples.ServiceInteraction.Core.EndpointMemoryManagement;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 
@@ -9,14 +10,18 @@ public class RoundRobinLoadBalancer : IEndpointLoadBalancer
 {
     private List<string> _endpoints;
     private int _currentIndex;
+    private EndpointPool _endpointPool;
 
     /// <summary>
     /// Initializes a new instance of the RoundRobinLoadBalancer class with the specified list of endpoints.
     /// </summary>
-    public RoundRobinLoadBalancer(List<string> endpoints)
+    public RoundRobinLoadBalancer(
+        List<string> endpoints,
+        EndpointPool endpointPool)
     {
         _endpoints = endpoints;
         _currentIndex = 0;
+        _endpointPool = endpointPool;
     }
 
     /// <summary>

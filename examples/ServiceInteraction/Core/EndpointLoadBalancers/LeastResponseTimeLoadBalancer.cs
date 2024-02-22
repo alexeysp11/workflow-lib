@@ -1,3 +1,5 @@
+using WorkflowLib.Examples.ServiceInteraction.Core.EndpointMemoryManagement;
+
 namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 
 /// <summary>
@@ -6,13 +8,17 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 public class LeastResponseTimeLoadBalancer : IEndpointLoadBalancer
 {
     private Dictionary<string, TimeSpan> _responseTimesMap;
+    private EndpointPool _endpointPool;
 
     /// <summary>
     /// Initializes a new instance of the LeastResponseTimeLoadBalancer class with the specified initial endpoint map.
     /// </summary>
-    public LeastResponseTimeLoadBalancer(Dictionary<string, TimeSpan> initialResponseTimesMap)
+    public LeastResponseTimeLoadBalancer(
+        Dictionary<string, TimeSpan> initialResponseTimesMap,
+        EndpointPool endpointPool)
     {
         _responseTimesMap = initialResponseTimesMap;
+        _endpointPool = endpointPool;
     }
 
     /// <summary>

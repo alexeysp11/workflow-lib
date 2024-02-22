@@ -1,3 +1,5 @@
+using WorkflowLib.Examples.ServiceInteraction.Core.EndpointMemoryManagement;
+
 namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 
 /// <summary>
@@ -7,14 +9,18 @@ public class WeightedRoundRobinLoadBalancer : IEndpointLoadBalancer
 {
     private List<(string endpoint, int weight)> _weightedEndpoints;
     private int _currentIndex;
+    private EndpointPool _endpointPool;
 
     /// <summary>
     /// Initializes a new instance of the WeightedRoundRobinLoadBalancer class with the specified list of endpoints and weights.
     /// </summary>
-    public WeightedRoundRobinLoadBalancer(List<(string, int)> endpointsWithWeights)
+    public WeightedRoundRobinLoadBalancer(
+        List<(string, int)> endpointsWithWeights,
+        EndpointPool endpointPool)
     {
         _weightedEndpoints = endpointsWithWeights;
         _currentIndex = 0;
+        _endpointPool = endpointPool;
     }
 
     /// <summary>

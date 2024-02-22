@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using WorkflowLib.Examples.ServiceInteraction.Core.EndpointMemoryManagement;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 
@@ -8,13 +9,17 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 public class LeastConnectionsLoadBalancer : IEndpointLoadBalancer
 {
     private Dictionary<string, int> _connectionsMap;
+    private EndpointPool _endpointPool;
 
     /// <summary>
     /// Initializes a new instance of the LeastConnectionsLoadBalancer class with the specified initial connection map.
     /// </summary>
-    public LeastConnectionsLoadBalancer(Dictionary<string, int> initialConnectionsMap)
+    public LeastConnectionsLoadBalancer(
+        Dictionary<string, int> initialConnectionsMap, 
+        EndpointPool endpointPool)
     {
         _connectionsMap = initialConnectionsMap;
+        _endpointPool = endpointPool;
     }
 
     /// <summary>
