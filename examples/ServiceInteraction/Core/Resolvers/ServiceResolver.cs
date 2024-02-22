@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Examples.ServiceInteraction.Core.Contexts;
+using WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Core.Resolvers;
@@ -13,14 +14,20 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Resolvers;
 public class ServiceResolver
 {
     private DbContextOptions<ServiceInteractionContext> _contextOptions { get; set; }
+    private EndpointSelectionParameter _endpointSelectionParameter { get; set; }
+    private IEndpointLoadBalancer _loadBalancer { get; set; }
 
     /// <summary>
     /// Constructor by default.
     /// </summary>
     public ServiceResolver(
-        DbContextOptions<ServiceInteractionContext> contextOptions) 
+        DbContextOptions<ServiceInteractionContext> contextOptions, 
+        EndpointSelectionParameter endpointSelectionParameter, 
+        IEndpointLoadBalancer loadBalancer)
     {
         _contextOptions = contextOptions;
+        _endpointSelectionParameter = endpointSelectionParameter;
+        _loadBalancer = loadBalancer;
     }
 
     /// <summary>
