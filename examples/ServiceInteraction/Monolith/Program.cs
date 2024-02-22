@@ -1,8 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WorkflowLib.Examples.ServiceInteraction.Core.Resolvers;
 using WorkflowLib.Examples.ServiceInteraction.Core.Contexts;
+using WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
+using WorkflowLib.Examples.ServiceInteraction.Core.EndpointMemoryManagement;
+using WorkflowLib.Examples.ServiceInteraction.Core.Resolvers;
+using WorkflowLib.Examples.ServiceInteraction.Models;
 using WorkflowLib.Examples.ServiceInteraction.Monolith;
 
 IHost _host = Host.CreateDefaultBuilder().ConfigureServices(
@@ -18,7 +21,16 @@ IHost _host = Host.CreateDefaultBuilder().ConfigureServices(
                 .Options;
         });
         
-        // 
+        // Services.
+        var endpointSelectionParameter = new EndpointSelectionParameter
+        {
+            RetrieveFromDb = false,
+            EndpointSelectionType = EndpointSelectionType.Random,
+            InactiveTimeSpan = new System.TimeSpan(1, 0, 0)
+        };
+        services.AddSingleton<EndpointSelectionParameter>(endpointSelectionParameter);
+        services.AddSingleton<EndpointPool>();
+        services.AddSingleton<IEndpointLoadBalancer, RandomLoadBalancer>();
         services.AddSingleton<ConfigResolver>();
     }).Build();
 
