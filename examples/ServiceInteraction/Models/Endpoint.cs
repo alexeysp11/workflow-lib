@@ -67,4 +67,31 @@ public class Endpoint
     /// </summary>
     [NotMapped]
     public System.DateTime? LastStatusChange { get; private set; }
+
+    /// <summary>
+    /// Gets the hash code for the object.
+    /// </summary>
+    public override int GetHashCode()
+    {
+        return Id.GetHashCode();
+    }
+
+    /// <summary>
+    /// Determines whether the specified object is equal to the current object.
+    /// </summary>
+    public override bool Equals(object obj)
+    {
+        if (obj == null || !(obj is Endpoint))
+        {
+            return false;
+        }
+
+        var other = (Endpoint)obj;
+        return Id == other.Id
+            && Name == other.Name
+            && ClassName == other.ClassName
+            && NetworkAddress == other.NetworkAddress
+            && EndpointType == other.EndpointType
+            && EndpointDeploymentType == other.EndpointDeploymentType;
+    }
 }

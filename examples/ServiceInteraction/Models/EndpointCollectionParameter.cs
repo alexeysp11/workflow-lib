@@ -54,4 +54,26 @@ public class EndpointCollectionParameter
     /// Weight of the endpoint.
     /// </summary>
     public int EndpointWeight { get; set; }
+
+    /// <summary>
+    /// Gets the hash code for the object.
+    /// </summary>
+    public override int GetHashCode()
+    {
+        return Id.GetHashCode();
+    }
+
+    /// <summary>
+    /// Determines whether the specified object is equal to the current object.
+    /// </summary>
+    public override bool Equals(object obj)
+    {
+        if (obj == null || !(obj is EndpointCollectionParameter))
+        {
+            return false;
+        }
+        
+        var other = (EndpointCollectionParameter)obj;
+        return Id == other.Id && Endpoint.Equals(other.Endpoint);
+    }
 }
