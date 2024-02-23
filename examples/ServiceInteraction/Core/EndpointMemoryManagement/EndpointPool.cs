@@ -9,28 +9,14 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointMemoryManagement;
 /// </summary>
 public class EndpointPool
 {
-    private static EndpointPool instance;
     private Dictionary<long, EndpointCollectionParameter> endpointPool;
 
     /// <summary>
-    /// Private constructor for the EndpointPool class.
+    /// Public constructor for the EndpointPool class.
     /// </summary>
-    private EndpointPool()
+    public EndpointPool()
     {
         endpointPool = new Dictionary<long, EndpointCollectionParameter>();
-    }
-
-    /// <summary>
-    /// Get a single instance of the EndpointPool class.
-    /// </summary>
-    /// <returns>An instance of the EndpointPool class.</returns>
-    public static EndpointPool GetInstance()
-    {
-        if (instance == null)
-        {
-            instance = new EndpointPool();
-        }
-        return instance;
     }
 
     /// <summary>
