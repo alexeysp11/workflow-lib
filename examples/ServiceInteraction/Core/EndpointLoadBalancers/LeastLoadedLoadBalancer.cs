@@ -15,10 +15,9 @@ public class LeastLoadedLoadBalancer : IEndpointLoadBalancer
     /// Initializes a new instance of the LeastLoadedLoadBalancer class with the specified initial load map.
     /// </summary>
     public LeastLoadedLoadBalancer(
-        Dictionary<string, int> initialLoadMap,
         EndpointPool endpointPool)
     {
-        _loadMap = initialLoadMap;
+        _loadMap = new Dictionary<string, int>();
         _endpointPool = endpointPool;
     }
 

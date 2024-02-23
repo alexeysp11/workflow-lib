@@ -16,10 +16,9 @@ public class RoundRobinLoadBalancer : IEndpointLoadBalancer
     /// Initializes a new instance of the RoundRobinLoadBalancer class with the specified list of endpoints.
     /// </summary>
     public RoundRobinLoadBalancer(
-        List<string> endpoints,
         EndpointPool endpointPool)
     {
-        _endpoints = endpoints;
+        _endpoints = new List<string>();
         _currentIndex = 0;
         _endpointPool = endpointPool;
     }

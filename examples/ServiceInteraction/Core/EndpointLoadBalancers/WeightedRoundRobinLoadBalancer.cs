@@ -15,10 +15,9 @@ public class WeightedRoundRobinLoadBalancer : IEndpointLoadBalancer
     /// Initializes a new instance of the WeightedRoundRobinLoadBalancer class with the specified list of endpoints and weights.
     /// </summary>
     public WeightedRoundRobinLoadBalancer(
-        List<(string, int)> endpointsWithWeights,
         EndpointPool endpointPool)
     {
-        _weightedEndpoints = endpointsWithWeights;
+        _weightedEndpoints = new List<(string, int)>();
         _currentIndex = 0;
         _endpointPool = endpointPool;
     }

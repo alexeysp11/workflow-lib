@@ -16,11 +16,10 @@ public class RandomLoadBalancer : IEndpointLoadBalancer
     /// Initializes a new instance of the RandomLoadBalancer class with the specified endpoints.
     /// </summary>
     public RandomLoadBalancer(
-        List<string> endpoints,
         EndpointPool endpointPool)
     {
         _random = new System.Random();
-        _endpoints = endpoints;
+        _endpoints = new List<string>();
     }
 
     /// <summary>

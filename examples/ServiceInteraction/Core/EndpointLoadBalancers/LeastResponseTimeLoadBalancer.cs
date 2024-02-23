@@ -14,10 +14,9 @@ public class LeastResponseTimeLoadBalancer : IEndpointLoadBalancer
     /// Initializes a new instance of the LeastResponseTimeLoadBalancer class with the specified initial endpoint map.
     /// </summary>
     public LeastResponseTimeLoadBalancer(
-        Dictionary<string, TimeSpan> initialResponseTimesMap,
         EndpointPool endpointPool)
     {
-        _responseTimesMap = initialResponseTimesMap;
+        _responseTimesMap = new Dictionary<string, TimeSpan>();
         _endpointPool = endpointPool;
     }
 

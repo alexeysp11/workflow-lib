@@ -15,10 +15,9 @@ public class LeastConnectionsLoadBalancer : IEndpointLoadBalancer
     /// Initializes a new instance of the LeastConnectionsLoadBalancer class with the specified initial connection map.
     /// </summary>
     public LeastConnectionsLoadBalancer(
-        Dictionary<string, int> initialConnectionsMap, 
         EndpointPool endpointPool)
     {
-        _connectionsMap = initialConnectionsMap;
+        _connectionsMap = new Dictionary<string, int>();
         _endpointPool = endpointPool;
     }
 
