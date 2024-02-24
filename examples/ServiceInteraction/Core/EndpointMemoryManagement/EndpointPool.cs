@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
@@ -9,14 +10,30 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointMemoryManagement;
 /// </summary>
 public class EndpointPool
 {
-    private Dictionary<long, EndpointCollectionParameter> endpointPool;
+    private ConcurrentDictionary<long, EndpointCollectionParameter> m_endpointParameters;
+    private IReadOnlyDictionary<long, EndpointCollectionParameter> m_cachedEndpointParameters;
+
+    /// <summary>
+    /// Collection of endpoint parameters.
+    /// </summary>
+    public IReadOnlyDictionary<long, EndpointCollectionParameter> EndpointParameters
+    {
+        get
+        {
+            if (m_cachedEndpointParameters == null)
+            {
+                m_cachedEndpointParameters = new Dictionary<long, EndpointCollectionParameter>(m_endpointParameters);
+            }
+            return m_cachedEndpointParameters;
+        }
+    }
 
     /// <summary>
     /// Public constructor for the EndpointPool class.
     /// </summary>
     public EndpointPool()
     {
-        endpointPool = new Dictionary<long, EndpointCollectionParameter>();
+        m_endpointParameters = new ConcurrentDictionary<long, EndpointCollectionParameter>();
     }
 
     /// <summary>
@@ -25,9 +42,10 @@ public class EndpointPool
     /// <param name="endpoint">Endpoint to add to the pool.</param>
     public void AddEndpointToPool(EndpointCollectionParameter endpoint)
     {
-        if (!endpointPool.ContainsKey(endpoint.Id))
+        if (!m_endpointParameters.ContainsKey(endpoint.Id))
         {
-            endpointPool.Add(endpoint.Id, endpoint);
+            m_endpointParameters.TryAdd(endpoint.Id, endpoint);
+            m_cachedEndpointParameters = null;
         }
     }
 
@@ -38,9 +56,10 @@ public class EndpointPool
     /// <returns>Endpoint from the pool or null if not found.</returns>
     public EndpointCollectionParameter GetEndpointFromPool(long endpointId)
     {
-        if (endpointPool.ContainsKey(endpointId))
+        if (m_endpointParameters.ContainsKey(endpointId))
         {
-            return endpointPool[endpointId];
+            m_endpointParameters.TryGetValue(endpointId, out EndpointCollectionParameter endpointParameter);
+            return endpointParameter;
         }
         return null;
     }
@@ -51,9 +70,10 @@ public class EndpointPool
     /// <param name="endpointId">Identifier of the endpoint to delete.</param>
     public void RemoveEndpointFromPool(long endpointId)
     {
-        if (endpointPool.ContainsKey(endpointId))
+        if (m_endpointParameters.ContainsKey(endpointId))
         {
-            endpointPool.Remove(endpointId);
+            m_endpointParameters.TryRemove(endpointId, out _);
+            m_cachedEndpointParameters = null;
         }
     }
 }
