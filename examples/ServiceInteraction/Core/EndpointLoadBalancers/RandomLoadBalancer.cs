@@ -8,9 +8,8 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 /// </summary>
 public class RandomLoadBalancer : IEndpointLoadBalancer
 {
-    private readonly System.Random _random;
-    private readonly List<string> _endpoints;
-    private EndpointPool _endpointPool;
+    private readonly System.Random m_random;
+    private EndpointPool m_endpointPool;
 
     /// <summary>
     /// Initializes a new instance of the RandomLoadBalancer class with the specified endpoints.
@@ -18,8 +17,8 @@ public class RandomLoadBalancer : IEndpointLoadBalancer
     public RandomLoadBalancer(
         EndpointPool endpointPool)
     {
-        _random = new System.Random();
-        _endpoints = new List<string>();
+        m_random = new System.Random();
+        m_endpointPool = endpointPool;
     }
 
     /// <summary>
@@ -27,13 +26,15 @@ public class RandomLoadBalancer : IEndpointLoadBalancer
     /// </summary>
     public string GetNextEndpoint()
     {
-        if (_endpoints.Count == 0)
+        var endpointParameters = m_endpointPool.EndpointParameters;
+
+        if (endpointParameters.Count == 0)
         {
             throw new System.InvalidOperationException("No endpoints available.");
         }
 
-        int index = _random.Next(_endpoints.Count);
-        return _endpoints[index];
+        int index = m_random.Next(endpointParameters.Count);
+        return endpointParameters.ElementAt(index).Value.Endpoint.Name;
     }
 
     /// <summary>
@@ -41,6 +42,14 @@ public class RandomLoadBalancer : IEndpointLoadBalancer
     /// </summary>
     public void RemoveEndpoint(string endpoint)
     {
-        _endpoints.Remove(endpoint);
+        var endpointParameters = m_endpointPool.EndpointParameters;
+        foreach (var endpointParameter in endpointParameters)
+        {
+            if (endpointParameter.Value.Endpoint.Name == endpoint)
+            {
+                m_endpointPool.RemoveEndpointFromPool(endpointParameter.Key);
+                break;
+            }
+        }
     }
 }
