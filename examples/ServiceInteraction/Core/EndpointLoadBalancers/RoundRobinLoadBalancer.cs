@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using WorkflowLib.Examples.ServiceInteraction.Core.EndpointMemoryManagement;
+using WorkflowLib.Examples.ServiceInteraction.Models;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 
@@ -8,9 +9,9 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 /// </summary>
 public class RoundRobinLoadBalancer : IEndpointLoadBalancer
 {
-    private List<string> _endpoints;
-    private int _currentIndex;
-    private EndpointPool _endpointPool;
+    private readonly object m_lock = new object();
+    private int m_currentIndex;
+    private EndpointPool m_endpointPool;
 
     /// <summary>
     /// Initializes a new instance of the RoundRobinLoadBalancer class with the specified list of endpoints.
@@ -18,9 +19,8 @@ public class RoundRobinLoadBalancer : IEndpointLoadBalancer
     public RoundRobinLoadBalancer(
         EndpointPool endpointPool)
     {
-        _endpoints = new List<string>();
-        _currentIndex = 0;
-        _endpointPool = endpointPool;
+        m_currentIndex = 0;
+        m_endpointPool = endpointPool;
     }
 
     /// <summary>
@@ -28,12 +28,17 @@ public class RoundRobinLoadBalancer : IEndpointLoadBalancer
     /// </summary>
     public string GetNextEndpoint()
     {
-        if (_endpoints.Count == 0)
+        if (m_endpointPool.EndpointParameters.Count == 0)
             throw new System.InvalidOperationException("No endpoints available");
 
-        string endpoint = _endpoints[_currentIndex];
-        _currentIndex = (_currentIndex + 1) % _endpoints.Count;
-        return endpoint;
+        EndpointCollectionParameter endpointParameter;
+        lock (m_lock)
+        {
+            var endpointParameters = m_endpointPool.EndpointParameters.Values.ToList();
+            m_currentIndex = (m_currentIndex + 1) % endpointParameters.Count;
+            endpointParameter = endpointParameters[m_currentIndex];
+        }
+        return endpointParameter == null || endpointParameter.Endpoint == null ? string.Empty : endpointParameter.Endpoint.Name;
     }
 
     /// <summary>
@@ -41,8 +46,14 @@ public class RoundRobinLoadBalancer : IEndpointLoadBalancer
     /// </summary>
     public void UpdateEndpoints(string endpoint)
     {
-        if (!_endpoints.Contains(endpoint))
-            _endpoints.Add(endpoint);
+        var endpointParameters = m_endpointPool.EndpointParameters;
+        foreach (var endpointParameter in endpointParameters)
+        {
+            if (endpointParameter.Value.Endpoint.Name == endpoint)
+            {
+                // You can add endpoint update logic if needed.
+            }
+        }
     }
 
     /// <summary>
@@ -50,9 +61,14 @@ public class RoundRobinLoadBalancer : IEndpointLoadBalancer
     /// </summary>
     public void RemoveEndpoint(string endpoint)
     {
-        if (_endpoints.Contains(endpoint))
-            _endpoints.Remove(endpoint);
-        else
-            throw new ArgumentException($"Endpoint {endpoint} not found in the list");
+        var endpointParameters = m_endpointPool.EndpointParameters;
+        foreach (var endpointParameter in endpointParameters)
+        {
+            if (endpointParameter.Value.Endpoint.Name == endpoint)
+            {
+                m_endpointPool.RemoveEndpointFromPool(endpointParameter.Key);
+                break;
+            }
+        }
     }
 }
