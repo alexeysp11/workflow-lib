@@ -7,11 +7,9 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 /// <summary>
 /// Load balancer that selects endpoints in a round-robin manner.
 /// </summary>
-public class RoundRobinLoadBalancer : IEndpointLoadBalancer
+public class RoundRobinLoadBalancer : BaseEndpointLoadBalancer, IEndpointLoadBalancer
 {
-    private readonly object m_lock = new object();
     private int m_currentIndex;
-    private EndpointPool m_endpointPool;
 
     /// <summary>
     /// Initializes a new instance of the RoundRobinLoadBalancer class with the specified list of endpoints.
@@ -28,21 +26,16 @@ public class RoundRobinLoadBalancer : IEndpointLoadBalancer
     /// </summary>
     public string GetNextEndpoint()
     {
-        if (m_endpointPool.EndpointParameters.Count == 0)
-            throw new System.InvalidOperationException("No endpoints available");
+        CheckNullReferences();
 
-        EndpointCollectionParameter endpointParameter;
-        lock (m_lock)
+        var endpointParameters = m_endpointPool.EndpointParameters.Values.ToList();
+        if (m_currentIndex >= endpointParameters.Count)
         {
-            var endpointParameters = m_endpointPool.EndpointParameters.Values.ToList();
-            if (m_currentIndex >= endpointParameters.Count)
-            {
-                // Reset to 0 if currentIndex is out of bounds.
-                m_currentIndex = 0;
-            }
-            endpointParameter = endpointParameters[m_currentIndex];
-            m_currentIndex = (m_currentIndex + 1) % endpointParameters.Count;
+            // Reset to 0 if currentIndex is out of bounds.
+            m_currentIndex = 0;
         }
+        var endpointParameter = endpointParameters[m_currentIndex];
+        m_currentIndex = (m_currentIndex + 1) % endpointParameters.Count;
         return endpointParameter == null || endpointParameter.Endpoint == null ? string.Empty : endpointParameter.Endpoint.Name;
     }
 
@@ -51,28 +44,14 @@ public class RoundRobinLoadBalancer : IEndpointLoadBalancer
     /// </summary>
     public void UpdateEndpoints(string endpoint)
     {
+        CheckNullReferences();
+
         var endpointParameters = m_endpointPool.EndpointParameters;
         foreach (var endpointParameter in endpointParameters)
         {
             if (endpointParameter.Value.Endpoint.Name == endpoint)
             {
                 // You can add endpoint update logic if needed.
-            }
-        }
-    }
-
-    /// <summary>
-    /// Remove the specified endpoint from the list of endpoints.
-    /// </summary>
-    public void RemoveEndpoint(string endpoint)
-    {
-        var endpointParameters = m_endpointPool.EndpointParameters;
-        foreach (var endpointParameter in endpointParameters)
-        {
-            if (endpointParameter.Value.Endpoint.Name == endpoint)
-            {
-                m_endpointPool.RemoveEndpointFromPool(endpointParameter.Key);
-                break;
             }
         }
     }
