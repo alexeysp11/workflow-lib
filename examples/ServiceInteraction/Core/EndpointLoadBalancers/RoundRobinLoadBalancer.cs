@@ -35,8 +35,13 @@ public class RoundRobinLoadBalancer : IEndpointLoadBalancer
         lock (m_lock)
         {
             var endpointParameters = m_endpointPool.EndpointParameters.Values.ToList();
-            m_currentIndex = (m_currentIndex + 1) % endpointParameters.Count;
+            if (m_currentIndex >= endpointParameters.Count)
+            {
+                // Reset to 0 if currentIndex is out of bounds.
+                m_currentIndex = 0;
+            }
             endpointParameter = endpointParameters[m_currentIndex];
+            m_currentIndex = (m_currentIndex + 1) % endpointParameters.Count;
         }
         return endpointParameter == null || endpointParameter.Endpoint == null ? string.Empty : endpointParameter.Endpoint.Name;
     }
