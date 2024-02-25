@@ -46,13 +46,18 @@ public class RoundRobinLoadBalancer : BaseEndpointLoadBalancer, IEndpointLoadBal
     {
         CheckNullReferences();
 
-        var endpointParameters = m_endpointPool.EndpointParameters;
-        foreach (var endpointParameter in endpointParameters)
+        var existingEndpoint = m_endpointPool.EndpointParameters.FirstOrDefault(p => p.Value.Endpoint.Name == endpoint).Value;
+        if (existingEndpoint == null)
         {
-            if (endpointParameter.Value.Endpoint.Name == endpoint)
+            // Add a new endpoint.
+            var newEndpoint = new EndpointCollectionParameter
             {
-                // You can add endpoint update logic if needed.
-            }
+                Endpoint = new Endpoint
+                {
+                    Name = endpoint
+                }
+            };
+            m_endpointPool.AddEndpointToPool(newEndpoint);
         }
     }
 }
