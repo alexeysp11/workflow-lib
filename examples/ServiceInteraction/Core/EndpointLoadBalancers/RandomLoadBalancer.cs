@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using WorkflowLib.Examples.ServiceInteraction.Core.EndpointMemoryManagement;
+using WorkflowLib.Examples.ServiceInteraction.Models;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 
