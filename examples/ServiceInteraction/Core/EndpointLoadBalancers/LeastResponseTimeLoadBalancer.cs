@@ -1,23 +1,21 @@
+using System.Collections.Generic;
 using WorkflowLib.Examples.ServiceInteraction.Core.EndpointMemoryManagement;
+using WorkflowLib.Examples.ServiceInteraction.Models;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 
 /// <summary>
 /// Load balancer that selects the endpoint with the least response time.
 /// </summary>
-public class LeastResponseTimeLoadBalancer : IEndpointLoadBalancer
+public class LeastResponseTimeLoadBalancer : BaseEndpointLoadBalancer, IEndpointLoadBalancer
 {
-    private Dictionary<string, TimeSpan> _responseTimesMap;
-    private EndpointPool _endpointPool;
-
     /// <summary>
     /// Initializes a new instance of the LeastResponseTimeLoadBalancer class with the specified initial endpoint map.
     /// </summary>
     public LeastResponseTimeLoadBalancer(
         EndpointPool endpointPool)
     {
-        _responseTimesMap = new Dictionary<string, TimeSpan>();
-        _endpointPool = endpointPool;
+        m_endpointPool = endpointPool;
     }
 
     /// <summary>
@@ -25,10 +23,13 @@ public class LeastResponseTimeLoadBalancer : IEndpointLoadBalancer
     /// </summary>
     public string GetNextEndpoint()
     {
-        if (_responseTimesMap.Count == 0)
-            throw new InvalidOperationException("No endpoints available");
+        CheckNullReferences();
 
-        return _responseTimesMap.OrderBy(x => x.Value).First().Key;
+        var selectedEndpoint = m_endpointPool.EndpointParameters
+            .Where(p => p.Value != null && p.Value.Endpoint != null)
+            .OrderBy(p => p.Value.ResponseTime)
+            .FirstOrDefault();
+        return selectedEndpoint.Value.Endpoint.Name;
     }
 
     /// <summary>
@@ -36,20 +37,25 @@ public class LeastResponseTimeLoadBalancer : IEndpointLoadBalancer
     /// </summary>
     public void UpdateEndpoints(string endpoint, TimeSpan responseTime)
     {
-        if (_responseTimesMap.ContainsKey(endpoint))
-            _responseTimesMap[endpoint] = responseTime;
-        else
-            _responseTimesMap.Add(endpoint, responseTime);
-    }
+        CheckNullReferences();
 
-    /// <summary>
-    /// Remove an endpoint from the load balancer.
-    /// </summary>
-    public void RemoveEndpoint(string endpoint)
-    {
-        if (_responseTimesMap.ContainsKey(endpoint))
-            _responseTimesMap.Remove(endpoint);
+        var existingEndpoint = m_endpointPool.EndpointParameters.FirstOrDefault(p => p.Value.Endpoint.Name == endpoint).Value;
+        if (existingEndpoint != null)
+        {
+            existingEndpoint.ResponseTime = responseTime;
+        }
         else
-            throw new KeyNotFoundException($"Endpoint {endpoint} not found");
+        {
+            // Add a new endpoint with its response time.
+            var newEndpoint = new EndpointCollectionParameter
+            {
+                Endpoint = new Endpoint
+                {
+                    Name = endpoint
+                },
+                ResponseTime = responseTime
+            };
+            m_endpointPool.AddEndpointToPool(newEndpoint);
+        }
     }
 }
