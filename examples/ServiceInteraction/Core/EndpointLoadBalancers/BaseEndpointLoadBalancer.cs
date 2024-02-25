@@ -3,7 +3,7 @@ using WorkflowLib.Examples.ServiceInteraction.Core.EndpointMemoryManagement;
 namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 
 /// <summary>
-/// 
+/// A base abstract class that implements a load balancer.
 /// </summary>
 public abstract class BaseEndpointLoadBalancer
 {
