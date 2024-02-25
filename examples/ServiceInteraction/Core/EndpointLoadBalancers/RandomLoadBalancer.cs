@@ -6,10 +6,9 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 /// <summary>
 /// Represents a load balancer that randomly selects endpoints from a collection.
 /// </summary>
-public class RandomLoadBalancer : IEndpointLoadBalancer
+public class RandomLoadBalancer : BaseEndpointLoadBalancer, IEndpointLoadBalancer
 {
     private readonly System.Random m_random;
-    private EndpointPool m_endpointPool;
 
     /// <summary>
     /// Initializes a new instance of the RandomLoadBalancer class with the specified endpoints.
@@ -26,30 +25,11 @@ public class RandomLoadBalancer : IEndpointLoadBalancer
     /// </summary>
     public string GetNextEndpoint()
     {
+        CheckNullReferences();
+
         var endpointParameters = m_endpointPool.EndpointParameters;
-
-        if (endpointParameters.Count == 0)
-        {
-            throw new System.InvalidOperationException("No endpoints available.");
-        }
-
         int index = m_random.Next(endpointParameters.Count);
-        return endpointParameters.ElementAt(index).Value.Endpoint.Name;
-    }
-
-    /// <summary>
-    /// Removes a specific endpoint from the load balancer.
-    /// </summary>
-    public void RemoveEndpoint(string endpoint)
-    {
-        var endpointParameters = m_endpointPool.EndpointParameters;
-        foreach (var endpointParameter in endpointParameters)
-        {
-            if (endpointParameter.Value.Endpoint.Name == endpoint)
-            {
-                m_endpointPool.RemoveEndpointFromPool(endpointParameter.Key);
-                break;
-            }
-        }
+        var value = endpointParameters.ElementAt(index).Value;
+        return value == null || value.Endpoint == null ? string.Empty : value.Endpoint.Name;
     }
 }
