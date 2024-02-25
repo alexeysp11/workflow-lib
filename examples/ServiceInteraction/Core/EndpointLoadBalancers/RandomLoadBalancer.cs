@@ -32,4 +32,26 @@ public class RandomLoadBalancer : BaseEndpointLoadBalancer, IEndpointLoadBalance
         var value = endpointParameters.ElementAt(index).Value;
         return value == null || value.Endpoint == null ? string.Empty : value.Endpoint.Name;
     }
+
+    /// <summary>
+    /// Update a specific endpoint in the list of endpoints.
+    /// </summary>
+    public void UpdateEndpoints(string endpoint)
+    {
+        CheckNullReferences();
+
+        var existingEndpoint = m_endpointPool.EndpointParameters.FirstOrDefault(p => p.Value.Endpoint.Name == endpoint).Value;
+        if (existingEndpoint == null)
+        {
+            // Add a new endpoint.
+            var newEndpoint = new EndpointCollectionParameter
+            {
+                Endpoint = new Endpoint
+                {
+                    Name = endpoint
+                }
+            };
+            m_endpointPool.AddEndpointToPool(newEndpoint);
+        }
+    }
 }
