@@ -1,24 +1,21 @@
 using System.Collections.Generic;
 using WorkflowLib.Examples.ServiceInteraction.Core.EndpointMemoryManagement;
+using WorkflowLib.Examples.ServiceInteraction.Models;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 
 /// <summary>
 /// Load balancer that selects the endpoint with the least number of active connections.
 /// </summary>
-public class LeastConnectionsLoadBalancer : IEndpointLoadBalancer
+public class LeastConnectionsLoadBalancer : BaseEndpointLoadBalancer, IEndpointLoadBalancer
 {
-    private Dictionary<string, int> _connectionsMap;
-    private EndpointPool _endpointPool;
-
     /// <summary>
     /// Initializes a new instance of the LeastConnectionsLoadBalancer class with the specified initial connection map.
     /// </summary>
     public LeastConnectionsLoadBalancer(
         EndpointPool endpointPool)
     {
-        _connectionsMap = new Dictionary<string, int>();
-        _endpointPool = endpointPool;
+        m_endpointPool = endpointPool;
     }
 
     /// <summary>
@@ -26,10 +23,13 @@ public class LeastConnectionsLoadBalancer : IEndpointLoadBalancer
     /// </summary>
     public string GetNextEndpoint()
     {
-        if (_connectionsMap.Count == 0)
-            throw new InvalidOperationException("No endpoints available");
+        CheckNullReferences();
 
-        return _connectionsMap.OrderBy(x => x.Value).First().Key;
+        var selectedEndpoint = m_endpointPool.EndpointParameters
+            .Where(p => p.Value != null && p.Value.Endpoint != null)
+            .OrderBy(p => p.Value.ActiveConnectionCount)
+            .FirstOrDefault();
+        return selectedEndpoint.Value.Endpoint.Name;
     }
 
     /// <summary>
@@ -37,20 +37,25 @@ public class LeastConnectionsLoadBalancer : IEndpointLoadBalancer
     /// </summary>
     public void UpdateEndpoints(string endpoint, int connections)
     {
-        if (_connectionsMap.ContainsKey(endpoint))
-            _connectionsMap[endpoint] = connections;
+        CheckNullReferences();
+
+        var existingEndpoint = m_endpointPool.EndpointParameters.FirstOrDefault(p => p.Value.Endpoint.Name == endpoint).Value;
+        if (existingEndpoint != null)
+        {
+            existingEndpoint.ActiveConnectionCount = connections;
+        }
         else
-            _connectionsMap.Add(endpoint, connections);
-    }
-    
-    /// <summary>
-    /// Remove an endpoint from the load balancer.
-    /// </summary>
-    public void RemoveEndpoint(string endpoint)
-    {
-        if (_connectionsMap.ContainsKey(endpoint))
-            _connectionsMap.Remove(endpoint);
-        else
-            throw new KeyNotFoundException($"Endpoint {endpoint} not found");
+        {
+            // Add a new endpoint with its connections.
+            var newEndpoint = new EndpointCollectionParameter
+            {
+                Endpoint = new Endpoint
+                {
+                    Name = endpoint
+                },
+                ActiveConnectionCount = connections
+            };
+            m_endpointPool.AddEndpointToPool(newEndpoint);
+        }
     }
 }
