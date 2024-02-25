@@ -1,15 +1,15 @@
 using WorkflowLib.Examples.ServiceInteraction.Core.EndpointMemoryManagement;
+using WorkflowLib.Examples.ServiceInteraction.Models;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 
 /// <summary>
 /// Load balancer that uses weighted round-robin to select endpoints based on their weights.
 /// </summary>
-public class WeightedRoundRobinLoadBalancer : IEndpointLoadBalancer
+public class WeightedRoundRobinLoadBalancer : BaseEndpointLoadBalancer, IEndpointLoadBalancer
 {
-    private List<(string endpoint, int weight)> _weightedEndpoints;
-    private int _currentIndex;
-    private EndpointPool _endpointPool;
+    private readonly System.Random m_random;
+    private int m_currentIndex;
 
     /// <summary>
     /// Initializes a new instance of the WeightedRoundRobinLoadBalancer class with the specified list of endpoints and weights.
@@ -17,9 +17,9 @@ public class WeightedRoundRobinLoadBalancer : IEndpointLoadBalancer
     public WeightedRoundRobinLoadBalancer(
         EndpointPool endpointPool)
     {
-        _weightedEndpoints = new List<(string, int)>();
-        _currentIndex = 0;
-        _endpointPool = endpointPool;
+        m_random = new System.Random();
+        m_currentIndex = 0;
+        m_endpointPool = endpointPool;
     }
 
     /// <summary>
@@ -27,12 +27,15 @@ public class WeightedRoundRobinLoadBalancer : IEndpointLoadBalancer
     /// </summary>
     public string GetNextEndpoint()
     {
-        if (_weightedEndpoints.Count == 0)
-            throw new InvalidOperationException("No endpoints available");
+        CheckNullReferences();
 
-        var selectedEndpoint = _weightedEndpoints[_currentIndex].endpoint;
-        _currentIndex = (_currentIndex + 1) % _weightedEndpoints.Count;
-        return selectedEndpoint;
+        var endpointParameters = m_endpointPool.EndpointParameters.Values.ToList();
+        if (endpointParameters == null || !endpointParameters.Any())
+            throw new System.Exception("Collection of endpoint parameters is null or empty");
+        
+        var totalWeight = endpointParameters.Sum(p => p.EndpointWeight);
+        var endpointParameter = SelectWeightedEndpoint(endpointParameters, totalWeight);
+        return endpointParameter == null || endpointParameter.Endpoint == null ? string.Empty : endpointParameter.Endpoint.Name;
     }
 
     /// <summary>
@@ -40,30 +43,47 @@ public class WeightedRoundRobinLoadBalancer : IEndpointLoadBalancer
     /// </summary>
     public void UpdateEndpoints(string endpoint, int weight)
     {
-        var existingEndpoint = _weightedEndpoints.FirstOrDefault(e => e.endpoint == endpoint);
-        
-        if (existingEndpoint != default)
+        CheckNullReferences();
+
+        var existingEndpoint = m_endpointPool.EndpointParameters.FirstOrDefault(p => p.Value.Endpoint.Name == endpoint).Value;
+        if (existingEndpoint != null)
         {
-            // Update the weight of an existing endpoint
-            _weightedEndpoints.Remove(existingEndpoint);
-            _weightedEndpoints.Add((endpoint, weight));
+            existingEndpoint.EndpointWeight = weight;
         }
         else
         {
-            // Add a new endpoint with its weight
-            _weightedEndpoints.Add((endpoint, weight));
+            // Add a new endpoint with its weight.
+            var newEndpoint = new EndpointCollectionParameter
+            {
+                Endpoint = new Endpoint
+                {
+                    Name = endpoint
+                },
+                EndpointWeight = weight
+            };
+            m_endpointPool.AddEndpointToPool(newEndpoint);
         }
     }
 
     /// <summary>
-    /// Remove the specified endpoint from the list of weighted endpoints.
+    /// Selects an endpoint according to its weight.
     /// </summary>
-    public void RemoveEndpoint(string endpoint)
+    private EndpointCollectionParameter SelectWeightedEndpoint(
+        List<EndpointCollectionParameter> endpointParameters, 
+        int totalWeight)
     {
-        var endpointToRemove = _weightedEndpoints.FirstOrDefault(e => e.endpoint == endpoint);
-        if (endpointToRemove != default)
-            _weightedEndpoints.Remove(endpointToRemove);
-        else
-            throw new ArgumentException($"Endpoint {endpoint} not found in the list");
+        if (endpointParameters.Any(x => x == null))
+            throw new System.Exception("Collection of endpoint parameters could not contain null objects");
+        
+        var randomNumber = m_random.Next(1, totalWeight + 1);
+        foreach (var parameter in endpointParameters)
+        {
+            randomNumber -= parameter.EndpointWeight;
+            if (randomNumber <= 0)
+            {
+                return parameter;
+            }
+        }
+        return endpointParameters.Last();
     }
 }
