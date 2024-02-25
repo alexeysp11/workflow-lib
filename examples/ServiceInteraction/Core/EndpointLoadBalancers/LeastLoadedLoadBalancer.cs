@@ -1,24 +1,21 @@
 using System.Collections.Generic;
 using WorkflowLib.Examples.ServiceInteraction.Core.EndpointMemoryManagement;
+using WorkflowLib.Examples.ServiceInteraction.Models;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 
 /// <summary>
 /// Load balancer that selects the least loaded endpoint based on the current load.
 /// </summary>
-public class LeastLoadedLoadBalancer : IEndpointLoadBalancer
+public class LeastLoadedLoadBalancer : BaseEndpointLoadBalancer, IEndpointLoadBalancer
 {
-    private Dictionary<string, int> _loadMap;
-    private EndpointPool _endpointPool;
-
     /// <summary>
     /// Initializes a new instance of the LeastLoadedLoadBalancer class with the specified initial load map.
     /// </summary>
     public LeastLoadedLoadBalancer(
         EndpointPool endpointPool)
     {
-        _loadMap = new Dictionary<string, int>();
-        _endpointPool = endpointPool;
+        m_endpointPool = endpointPool;
     }
 
     /// <summary>
@@ -26,10 +23,13 @@ public class LeastLoadedLoadBalancer : IEndpointLoadBalancer
     /// </summary>
     public string GetNextEndpoint()
     {
-        if (_loadMap.Count == 0)
-            throw new InvalidOperationException("No endpoints available");
+        CheckNullReferences();
 
-        return _loadMap.OrderBy(x => x.Value).First().Key;
+        var selectedEndpoint = m_endpointPool.EndpointParameters
+            .Where(p => p.Value != null && p.Value.Endpoint != null)
+            .OrderBy(p => p.Value.SystemLoad)
+            .FirstOrDefault();
+        return selectedEndpoint.Value.Endpoint.Name;
     }
 
     /// <summary>
@@ -37,20 +37,25 @@ public class LeastLoadedLoadBalancer : IEndpointLoadBalancer
     /// </summary>
     public void UpdateEndpoints(string endpoint, int load)
     {
-        if (_loadMap.ContainsKey(endpoint))
-            _loadMap[endpoint] = load;
-        else
-            _loadMap.Add(endpoint, load);
-    }
+        CheckNullReferences();
 
-    /// <summary>
-    /// Remove an endpoint from the load balancer.
-    /// </summary>
-    public void RemoveEndpoint(string endpoint)
-    {
-        if (_loadMap.ContainsKey(endpoint))
-            _loadMap.Remove(endpoint);
+        var existingEndpoint = m_endpointPool.EndpointParameters.FirstOrDefault(p => p.Value.Endpoint.Name == endpoint).Value;
+        if (existingEndpoint != null)
+        {
+            existingEndpoint.SystemLoad = load;
+        }
         else
-            throw new KeyNotFoundException($"Endpoint {endpoint} not found");
+        {
+            // Add a new endpoint with its load.
+            var newEndpoint = new EndpointCollectionParameter
+            {
+                Endpoint = new Endpoint
+                {
+                    Name = endpoint
+                },
+                SystemLoad = load
+            };
+            m_endpointPool.AddEndpointToPool(newEndpoint);
+        }
     }
 }
