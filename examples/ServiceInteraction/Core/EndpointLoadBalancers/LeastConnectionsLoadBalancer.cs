@@ -26,7 +26,7 @@ public class LeastConnectionsLoadBalancer : BaseEndpointLoadBalancer, IEndpointL
         CheckNullReferences();
 
         var selectedEndpoint = m_endpointPool.EndpointParameters
-            .Where(p => p.Value != null && p.Value.Endpoint != null)
+            .Where(p => p.Value != null && p.Value.Endpoint != null && p.Value.Endpoint.Status == EndpointStatus.Active)
             .OrderBy(p => p.Value.ActiveConnectionCount)
             .FirstOrDefault();
         return selectedEndpoint.Value.Endpoint.Name;

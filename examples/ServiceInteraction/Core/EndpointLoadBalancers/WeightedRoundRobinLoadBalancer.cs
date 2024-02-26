@@ -29,12 +29,14 @@ public class WeightedRoundRobinLoadBalancer : BaseEndpointLoadBalancer, IEndpoin
     {
         CheckNullReferences();
 
-        var endpointParameters = m_endpointPool.EndpointParameters.Values.ToList();
-        if (endpointParameters == null || !endpointParameters.Any())
+        var endpointParameters = m_endpointPool.EndpointParameters.Values
+            .Where(p => p != null && p.Endpoint != null && p.Endpoint.Status == EndpointStatus.Active)
+            .ToArray();
+        if (endpointParameters == null || endpointParameters.Length == 0)
             throw new System.Exception("Collection of endpoint parameters is null or empty");
         
         var totalWeight = endpointParameters.Sum(p => p.EndpointWeight);
-        var endpointParameter = SelectWeightedEndpoint(endpointParameters, totalWeight);
+        var endpointParameter = SelectWeightedEndpoint(ref endpointParameters, totalWeight);
         return endpointParameter == null || endpointParameter.Endpoint == null ? string.Empty : endpointParameter.Endpoint.Name;
     }
 
@@ -69,7 +71,7 @@ public class WeightedRoundRobinLoadBalancer : BaseEndpointLoadBalancer, IEndpoin
     /// Selects an endpoint according to its weight.
     /// </summary>
     private EndpointCollectionParameter SelectWeightedEndpoint(
-        List<EndpointCollectionParameter> endpointParameters, 
+        ref EndpointCollectionParameter[] endpointParameters, 
         int totalWeight)
     {
         if (endpointParameters.Any(x => x == null))

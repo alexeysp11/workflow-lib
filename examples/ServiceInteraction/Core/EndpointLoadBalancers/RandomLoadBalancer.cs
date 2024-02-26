@@ -28,9 +28,14 @@ public class RandomLoadBalancer : BaseEndpointLoadBalancer, IEndpointLoadBalance
     {
         CheckNullReferences();
 
-        var endpointParameters = m_endpointPool.EndpointParameters;
-        int index = m_random.Next(endpointParameters.Count);
-        var value = endpointParameters.ElementAt(index).Value;
+        var endpointParameters = m_endpointPool.EndpointParameters.Values
+            .Where(p => p != null && p.Endpoint != null && p.Endpoint.Status == EndpointStatus.Active)
+            .ToArray();
+        if (endpointParameters == null || endpointParameters.Length == 0)
+            throw new System.Exception("Collection of endpoint parameters is null or empty");
+        
+        int index = m_random.Next(endpointParameters.Length);
+        var value = endpointParameters[index];
         return value == null || value.Endpoint == null ? string.Empty : value.Endpoint.Name;
     }
 
