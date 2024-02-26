@@ -31,31 +31,4 @@ public class LeastResponseTimeLoadBalancer : BaseEndpointLoadBalancer, IEndpoint
             .FirstOrDefault();
         return selectedEndpoint.Value.Endpoint.Name;
     }
-
-    /// <summary>
-    /// Update the response time for a specific endpoint.
-    /// </summary>
-    public void UpdateEndpoints(string endpoint, TimeSpan responseTime)
-    {
-        CheckNullReferences();
-
-        var existingEndpoint = m_endpointPool.EndpointParameters.FirstOrDefault(p => p.Value.Endpoint.Name == endpoint).Value;
-        if (existingEndpoint != null)
-        {
-            existingEndpoint.ResponseTime = responseTime;
-        }
-        else
-        {
-            // Add a new endpoint with its response time.
-            var newEndpoint = new EndpointCollectionParameter
-            {
-                Endpoint = new Endpoint
-                {
-                    Name = endpoint
-                },
-                ResponseTime = responseTime
-            };
-            m_endpointPool.AddEndpointToPool(newEndpoint);
-        }
-    }
 }

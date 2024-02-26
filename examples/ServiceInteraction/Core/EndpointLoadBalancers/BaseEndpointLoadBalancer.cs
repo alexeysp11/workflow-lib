@@ -1,4 +1,5 @@
 using WorkflowLib.Examples.ServiceInteraction.Core.EndpointMemoryManagement;
+using WorkflowLib.Examples.ServiceInteraction.Models;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 
@@ -8,6 +9,46 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 public abstract class BaseEndpointLoadBalancer
 {
     private protected EndpointPool m_endpointPool;
+
+    /// <summary>
+    /// Update a specific endpoint in the list of endpoints.
+    /// </summary>
+    public void UpdateEndpoints(EndpointCollectionParameter endpointParameter)
+    {
+        if (endpointParameter == null)
+            throw new System.ArgumentNullException(nameof(endpointParameter));
+        if (endpointParameter.Endpoint == null)
+            throw new System.ArgumentNullException(nameof(endpointParameter.Endpoint));
+        
+        CheckNullReferences();
+
+        m_endpointPool.AddEndpointToPool(endpointParameter);
+    }
+
+    /// <summary>
+    /// Get an endpoint from the pool collection.
+    /// </summary>
+    public EndpointCollectionParameter GetEndpointFromPool(string endpoint)
+    {
+        if (string.IsNullOrEmpty(endpoint))
+            throw new System.ArgumentNullException(nameof(endpoint));
+        
+        CheckNullReferences();
+
+        var existingEndpoint = m_endpointPool.EndpointParameters.FirstOrDefault(p => p.Value.Endpoint.Name == endpoint).Value;
+        if (existingEndpoint == null)
+        {
+            // Return a new endpoint.
+            return new EndpointCollectionParameter
+            {
+                Endpoint = new Endpoint
+                {
+                    Name = endpoint
+                }
+            };
+        }
+        return existingEndpoint;
+    }
 
     /// <summary>
     /// Remove the specified endpoint from the collection.

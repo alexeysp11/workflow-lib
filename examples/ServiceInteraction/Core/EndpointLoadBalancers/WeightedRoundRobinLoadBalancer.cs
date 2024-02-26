@@ -41,33 +41,6 @@ public class WeightedRoundRobinLoadBalancer : BaseEndpointLoadBalancer, IEndpoin
     }
 
     /// <summary>
-    /// Update the weight of an existing endpoint or add a new endpoint with its weight to the list of weighted endpoints.
-    /// </summary>
-    public void UpdateEndpoints(string endpoint, int weight)
-    {
-        CheckNullReferences();
-
-        var existingEndpoint = m_endpointPool.EndpointParameters.FirstOrDefault(p => p.Value.Endpoint.Name == endpoint).Value;
-        if (existingEndpoint != null)
-        {
-            existingEndpoint.EndpointWeight = weight;
-        }
-        else
-        {
-            // Add a new endpoint with its weight.
-            var newEndpoint = new EndpointCollectionParameter
-            {
-                Endpoint = new Endpoint
-                {
-                    Name = endpoint
-                },
-                EndpointWeight = weight
-            };
-            m_endpointPool.AddEndpointToPool(newEndpoint);
-        }
-    }
-
-    /// <summary>
     /// Selects an endpoint according to its weight.
     /// </summary>
     private EndpointCollectionParameter SelectWeightedEndpoint(

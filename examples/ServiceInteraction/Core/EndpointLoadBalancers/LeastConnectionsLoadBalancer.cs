@@ -31,31 +31,4 @@ public class LeastConnectionsLoadBalancer : BaseEndpointLoadBalancer, IEndpointL
             .FirstOrDefault();
         return selectedEndpoint.Value.Endpoint.Name;
     }
-
-    /// <summary>
-    /// Update the number of active connections for a specific endpoint.
-    /// </summary>
-    public void UpdateEndpoints(string endpoint, int connections)
-    {
-        CheckNullReferences();
-
-        var existingEndpoint = m_endpointPool.EndpointParameters.FirstOrDefault(p => p.Value.Endpoint.Name == endpoint).Value;
-        if (existingEndpoint != null)
-        {
-            existingEndpoint.ActiveConnectionCount = connections;
-        }
-        else
-        {
-            // Add a new endpoint with its connections.
-            var newEndpoint = new EndpointCollectionParameter
-            {
-                Endpoint = new Endpoint
-                {
-                    Name = endpoint
-                },
-                ActiveConnectionCount = connections
-            };
-            m_endpointPool.AddEndpointToPool(newEndpoint);
-        }
-    }
 }

@@ -31,31 +31,4 @@ public class LeastLoadedLoadBalancer : BaseEndpointLoadBalancer, IEndpointLoadBa
             .FirstOrDefault();
         return selectedEndpoint.Value.Endpoint.Name;
     }
-
-    /// <summary>
-    /// Update the load of a specific endpoint in the load balancer.
-    /// </summary>
-    public void UpdateEndpoints(string endpoint, int load)
-    {
-        CheckNullReferences();
-
-        var existingEndpoint = m_endpointPool.EndpointParameters.FirstOrDefault(p => p.Value.Endpoint.Name == endpoint).Value;
-        if (existingEndpoint != null)
-        {
-            existingEndpoint.SystemLoad = load;
-        }
-        else
-        {
-            // Add a new endpoint with its load.
-            var newEndpoint = new EndpointCollectionParameter
-            {
-                Endpoint = new Endpoint
-                {
-                    Name = endpoint
-                },
-                SystemLoad = load
-            };
-            m_endpointPool.AddEndpointToPool(newEndpoint);
-        }
-    }
 }
