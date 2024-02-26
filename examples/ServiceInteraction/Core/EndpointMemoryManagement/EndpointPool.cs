@@ -12,6 +12,7 @@ public class EndpointPool
 {
     private ConcurrentDictionary<long, EndpointCollectionParameter> m_endpointParameters;
     private IReadOnlyDictionary<long, EndpointCollectionParameter> m_cachedEndpointParameters;
+    private IReadOnlyList<EndpointCollectionParameter> m_activeCachedEndpointParameters;
 
     /// <summary>
     /// Collection of endpoint parameters.
@@ -25,6 +26,23 @@ public class EndpointPool
                 m_cachedEndpointParameters = new Dictionary<long, EndpointCollectionParameter>(m_endpointParameters);
             }
             return m_cachedEndpointParameters;
+        }
+    }
+
+    /// <summary>
+    /// Collection of endpoint parameters.
+    /// </summary>
+    public IReadOnlyList<EndpointCollectionParameter> ActiveEndpointParameters
+    {
+        get
+        {
+            if (m_activeCachedEndpointParameters == null)
+            {
+                m_activeCachedEndpointParameters = EndpointParameters.Values
+                    .Where(p => p != null && p.Endpoint != null && p.Endpoint.Status == EndpointStatus.Active)
+                    .ToList();
+            }
+            return m_activeCachedEndpointParameters;
         }
     }
 
@@ -45,7 +63,7 @@ public class EndpointPool
         if (!m_endpointParameters.ContainsKey(endpoint.Id))
         {
             m_endpointParameters.TryAdd(endpoint.Id, endpoint);
-            m_cachedEndpointParameters = null;
+            ClearCacheFields();
         }
     }
 
@@ -73,7 +91,16 @@ public class EndpointPool
         if (m_endpointParameters.ContainsKey(endpointId))
         {
             m_endpointParameters.TryRemove(endpointId, out _);
-            m_cachedEndpointParameters = null;
+            ClearCacheFields();
         }
+    }
+
+    /// <summary>
+    /// Clears fields that contain cached values.
+    /// </summary>
+    private void ClearCacheFields()
+    {
+        m_cachedEndpointParameters = null;
+        m_activeCachedEndpointParameters = null;
     }
 }
