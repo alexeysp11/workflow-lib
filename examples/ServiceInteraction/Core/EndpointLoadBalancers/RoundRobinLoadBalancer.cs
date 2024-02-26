@@ -29,22 +29,20 @@ public class RoundRobinLoadBalancer : BaseEndpointLoadBalancer, IEndpointLoadBal
     {
         CheckNullReferences();
 
-        var endpointParameters = m_endpointPool.EndpointParameters.Values
-            .Where(p => p != null && p.Endpoint != null && p.Endpoint.Status == EndpointStatus.Active)
-            .ToArray();
-        if (endpointParameters == null || endpointParameters.Length == 0)
+        var endpointParameters = m_endpointPool.ActiveEndpointParameters;
+        if (endpointParameters == null || endpointParameters.Count == 0)
             throw new System.Exception("Collection of endpoint parameters is null or empty");
 
         EndpointCollectionParameter endpointParameter;
         lock (m_lock)
         {
-            if (m_currentIndex >= endpointParameters.Length)
+            if (m_currentIndex >= endpointParameters.Count)
             {
                 // Reset to 0 if currentIndex is out of bounds.
                 m_currentIndex = 0;
             }
             endpointParameter = endpointParameters[m_currentIndex];
-            m_currentIndex = (m_currentIndex + 1) % endpointParameters.Length;
+            m_currentIndex = (m_currentIndex + 1) % endpointParameters.Count;
         }
         return endpointParameter == null || endpointParameter.Endpoint == null ? string.Empty : endpointParameter.Endpoint.Name;
     }

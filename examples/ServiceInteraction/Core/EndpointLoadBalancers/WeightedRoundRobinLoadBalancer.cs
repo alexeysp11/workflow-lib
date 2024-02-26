@@ -30,10 +30,8 @@ public class WeightedRoundRobinLoadBalancer : BaseEndpointLoadBalancer, IEndpoin
     {
         CheckNullReferences();
 
-        var endpointParameters = m_endpointPool.EndpointParameters.Values
-            .Where(p => p != null && p.Endpoint != null && p.Endpoint.Status == EndpointStatus.Active)
-            .ToArray();
-        if (endpointParameters == null || endpointParameters.Length == 0)
+        var endpointParameters = m_endpointPool.ActiveEndpointParameters;
+        if (endpointParameters == null || endpointParameters.Count == 0)
             throw new System.Exception("Collection of endpoint parameters is null or empty");
         
         var totalWeight = endpointParameters.Sum(p => p.EndpointWeight);
@@ -42,7 +40,7 @@ public class WeightedRoundRobinLoadBalancer : BaseEndpointLoadBalancer, IEndpoin
         var endpointParameter = endpointParameters.Last();
         lock (m_lock)
         {
-            if (m_currentIndex >= endpointParameters.Length)
+            if (m_currentIndex >= endpointParameters.Count)
             {
                 // Reset to 0 if currentIndex is out of bounds.
                 m_currentIndex = 0;
@@ -54,11 +52,11 @@ public class WeightedRoundRobinLoadBalancer : BaseEndpointLoadBalancer, IEndpoin
                 randomWeight -= endpointParameters[currentIndex].EndpointWeight;
                 if (randomWeight < 0)
                 {
-                    m_currentIndex = (currentIndex + 1) % endpointParameters.Length;
+                    m_currentIndex = (currentIndex + 1) % endpointParameters.Count;
                     endpointParameter = endpointParameters[currentIndex];
                     break;
                 }
-                currentIndex = (currentIndex + 1) % endpointParameters.Length;
+                currentIndex = (currentIndex + 1) % endpointParameters.Count;
             }
         }
 
