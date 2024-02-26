@@ -9,6 +9,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 /// </summary>
 public class RoundRobinLoadBalancer : BaseEndpointLoadBalancer, IEndpointLoadBalancer
 {
+    private readonly object m_lock = new object();
     private int m_currentIndex;
 
     /// <summary>
@@ -34,13 +35,17 @@ public class RoundRobinLoadBalancer : BaseEndpointLoadBalancer, IEndpointLoadBal
         if (endpointParameters == null || endpointParameters.Length == 0)
             throw new System.Exception("Collection of endpoint parameters is null or empty");
 
-        if (m_currentIndex >= endpointParameters.Length)
+        EndpointCollectionParameter endpointParameter;
+        lock (m_lock)
         {
-            // Reset to 0 if currentIndex is out of bounds.
-            m_currentIndex = 0;
+            if (m_currentIndex >= endpointParameters.Length)
+            {
+                // Reset to 0 if currentIndex is out of bounds.
+                m_currentIndex = 0;
+            }
+            endpointParameter = endpointParameters[m_currentIndex];
+            m_currentIndex = (m_currentIndex + 1) % endpointParameters.Length;
         }
-        var endpointParameter = endpointParameters[m_currentIndex];
-        m_currentIndex = (m_currentIndex + 1) % endpointParameters.Length;
         return endpointParameter == null || endpointParameter.Endpoint == null ? string.Empty : endpointParameter.Endpoint.Name;
     }
 }

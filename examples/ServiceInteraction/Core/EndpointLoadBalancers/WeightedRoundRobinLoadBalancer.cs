@@ -8,6 +8,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 /// </summary>
 public class WeightedRoundRobinLoadBalancer : BaseEndpointLoadBalancer, IEndpointLoadBalancer
 {
+    private readonly object m_lock = new object();
     private readonly System.Random m_random;
     private int m_currentIndex;
 
@@ -36,29 +37,31 @@ public class WeightedRoundRobinLoadBalancer : BaseEndpointLoadBalancer, IEndpoin
             throw new System.Exception("Collection of endpoint parameters is null or empty");
         
         var totalWeight = endpointParameters.Sum(p => p.EndpointWeight);
-        var endpointParameter = SelectWeightedEndpoint(ref endpointParameters, totalWeight);
-        return endpointParameter == null || endpointParameter.Endpoint == null ? string.Empty : endpointParameter.Endpoint.Name;
-    }
+        var randomWeight = m_random.Next(totalWeight);
 
-    /// <summary>
-    /// Selects an endpoint according to its weight.
-    /// </summary>
-    private EndpointCollectionParameter SelectWeightedEndpoint(
-        ref EndpointCollectionParameter[] endpointParameters, 
-        int totalWeight)
-    {
-        if (endpointParameters.Any(x => x == null))
-            throw new System.Exception("Collection of endpoint parameters could not contain null objects");
-        
-        var randomNumber = m_random.Next(1, totalWeight + 1);
-        foreach (var parameter in endpointParameters)
+        var endpointParameter = endpointParameters.Last();
+        lock (m_lock)
         {
-            randomNumber -= parameter.EndpointWeight;
-            if (randomNumber <= 0)
+            if (m_currentIndex >= endpointParameters.Length)
             {
-                return parameter;
+                // Reset to 0 if currentIndex is out of bounds.
+                m_currentIndex = 0;
+            }
+
+            int currentIndex = m_currentIndex;
+            while (randomWeight >= 0)
+            {
+                randomWeight -= endpointParameters[currentIndex].EndpointWeight;
+                if (randomWeight < 0)
+                {
+                    m_currentIndex = (currentIndex + 1) % endpointParameters.Length;
+                    endpointParameter = endpointParameters[currentIndex];
+                    break;
+                }
+                currentIndex = (currentIndex + 1) % endpointParameters.Length;
             }
         }
-        return endpointParameters.Last();
+
+        return endpointParameter == null || endpointParameter.Endpoint == null ? string.Empty : endpointParameter.Endpoint.Name;
     }
 }
