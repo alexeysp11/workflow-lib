@@ -25,10 +25,9 @@ public class LeastResponseTimeLoadBalancer : BaseEndpointLoadBalancer, IEndpoint
     {
         CheckNullReferences();
 
-        var selectedEndpoint = m_endpointPool.EndpointParameters
-            .Where(p => p.Value != null && p.Value.Endpoint != null && p.Value.Endpoint.Status == EndpointStatus.Active)
-            .OrderBy(p => p.Value.ResponseTime)
+        var selectedEndpoint = m_endpointPool.ActiveEndpointParameters
+            .OrderBy(p => p.ResponseTime)
             .FirstOrDefault();
-        return selectedEndpoint.Value.Endpoint.Name;
+        return selectedEndpoint.Endpoint.Name;
     }
 }
