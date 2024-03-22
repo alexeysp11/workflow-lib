@@ -5,19 +5,19 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL;
 
 public class ServiceB
 {
-    private ConfigResolver _configResolver { get; set; }
+    private ConfigResolver m_configResolver { get; set; }
 
     public ServiceB(ConfigResolver configResolver)
     {
-        _configResolver = configResolver;
+        m_configResolver = configResolver;
     }
 
     public string ProcessServiceA()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
-        _configResolver.AddDbgLog(sourceName, "started");
+        m_configResolver.AddDbgLog(sourceName, "started");
 
-        _configResolver.AddDbgLog(sourceName, "finished");
+        m_configResolver.AddDbgLog(sourceName, "finished");
 
         return "";
     }
@@ -25,9 +25,9 @@ public class ServiceB
     public string ProcessServiceD()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
-        _configResolver.AddDbgLog(sourceName, "started");
+        m_configResolver.AddDbgLog(sourceName, "started");
 
-        _configResolver.AddDbgLog(sourceName, "finished");
+        m_configResolver.AddDbgLog(sourceName, "finished");
 
         return "";
     }
@@ -35,9 +35,9 @@ public class ServiceB
     public string CallServiceC()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
-        _configResolver.AddDbgLog(sourceName, "started");
+        m_configResolver.AddDbgLog(sourceName, "started");
 
-        _configResolver.AddDbgLog(sourceName, "finished");
+        m_configResolver.AddDbgLog(sourceName, "finished");
 
         return "";
     }
@@ -45,9 +45,9 @@ public class ServiceB
     public string CallServiceD()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
-        _configResolver.AddDbgLog(sourceName, "started");
+        m_configResolver.AddDbgLog(sourceName, "started");
 
-        _configResolver.AddDbgLog(sourceName, "finished");
+        m_configResolver.AddDbgLog(sourceName, "finished");
 
         return "";
     }
@@ -55,9 +55,9 @@ public class ServiceB
     public string CallNextService()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
-        _configResolver.AddDbgLog(sourceName, "started");
+        m_configResolver.AddDbgLog(sourceName, "started");
 
-        _configResolver.AddDbgLog(sourceName, "finished");
+        m_configResolver.AddDbgLog(sourceName, "finished");
 
         return "";
     }

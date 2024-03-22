@@ -11,7 +11,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.InitializeDb
     /// </summary>
     public class ExampleInstance : IExampleInstance
     {
-        private ConfigResolver _configResolver { get; set; }
+        private ConfigResolver m_configResolver { get; set; }
 
         /// <summary>
         /// Construstor by default.
@@ -19,7 +19,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.InitializeDb
         public ExampleInstance(
             ConfigResolver configResolver)
         {
-            _configResolver = configResolver;
+            m_configResolver = configResolver;
         }
 
         public void Run()
@@ -39,8 +39,8 @@ namespace WorkflowLib.Examples.ServiceInteraction.InitializeDb
             classNames.Add(kitchenBackendName, typeof(ServiceD).Name);
             classNames.Add(fileserviceBackendName, typeof(ServiceE).Name);
             
-            // _configResolver.InitCommunicationConfigs();
-            _configResolver.InitMonolithEndpoints(classNames);
+            // m_configResolver.InitCommunicationConfigs();
+            m_configResolver.InitMonolithEndpoints(classNames);
         }
     }
 }

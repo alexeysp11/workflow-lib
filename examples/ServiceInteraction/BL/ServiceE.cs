@@ -5,19 +5,19 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL;
 
 public class ServiceE
 {
-    private ConfigResolver _configResolver { get; set; }
+    private ConfigResolver m_configResolver { get; set; }
 
     public ServiceE(ConfigResolver configResolver)
     {
-        _configResolver = configResolver;
+        m_configResolver = configResolver;
     }
 
     public string ProcessServiceA()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
-        _configResolver.AddDbgLog(sourceName, "started");
+        m_configResolver.AddDbgLog(sourceName, "started");
 
-        _configResolver.AddDbgLog(sourceName, "finished");
+        m_configResolver.AddDbgLog(sourceName, "finished");
 
         return "";
     }

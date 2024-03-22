@@ -8,7 +8,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Monolith
     /// </summary>
     public class ExampleInstance : IExampleInstance
     {
-        private ConfigResolver _configResolver { get; set; }
+        private ConfigResolver m_configResolver { get; set; }
 
         /// <summary>
         /// Construstor by default.
@@ -16,12 +16,12 @@ namespace WorkflowLib.Examples.ServiceInteraction.Monolith
         public ExampleInstance(
             ConfigResolver configResolver)
         {
-            _configResolver = configResolver;
+            m_configResolver = configResolver;
         }
 
         public void Run()
         {
-            _configResolver.InitCommunicationConfigs();
+            m_configResolver.InitCommunicationConfigs();
         }
     }
 }
