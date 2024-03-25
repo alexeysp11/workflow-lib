@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
 using WorkflowLib.Examples.ServiceInteraction.Core.Resolvers;
 
 namespace WorkflowLib.Examples.ServiceInteraction.BL;
@@ -11,13 +12,17 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL;
 public class ServiceA : IImplicitService
 {
     private ConfigResolver m_configResolver { get; set; }
+    private readonly IServiceProvider m_serviceProvider;
 
     /// <summary>
     /// Default constructor.
     /// </summary>
-    public ServiceA(ConfigResolver configResolver)
+    public ServiceA(
+        ConfigResolver configResolver, 
+        IServiceProvider serviceProvider)
     {
         m_configResolver = configResolver;
+        m_serviceProvider = serviceProvider;
     }
 
     /// <summary>
@@ -35,7 +40,7 @@ public class ServiceA : IImplicitService
 
         // Invoke next service using reflection.
         var type = Type.GetType(className);
-        object instance = Activator.CreateInstance(type, m_configResolver);
+        var instance = m_serviceProvider.GetRequiredService(type);
         type.GetMethod("ProcessServiceA").Invoke(instance, null);
 
         m_configResolver.AddDbgLog(sourceName, "finished");
@@ -57,8 +62,8 @@ public class ServiceA : IImplicitService
 
         // Invoke next service using reflection.
         var type = Type.GetType(className);
-        object instance = Activator.CreateInstance(type, m_configResolver);
-        type.GetMethod(methodName).Invoke(instance, null);
+        var instance = m_serviceProvider.GetRequiredService(type);
+        type.GetMethod("ProcessServiceA").Invoke(instance, null);
         
         m_configResolver.AddDbgLog(sourceName, "finished");
 
