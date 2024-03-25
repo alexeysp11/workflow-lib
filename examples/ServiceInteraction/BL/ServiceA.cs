@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using WorkflowLib.Examples.ServiceInteraction.Core.Resolvers;
 
 namespace WorkflowLib.Examples.ServiceInteraction.BL;
@@ -27,8 +28,15 @@ public class ServiceA : IImplicitService
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_configResolver.AddDbgLog(sourceName, "started");
 
-        string responseE = CallServiceE();
-        m_configResolver.AddDbgLog(sourceName, "responseE: " + responseE);
+        // Get data from DB.
+        var nextState = "ServiceB";
+        var className = "WorkflowLib.Examples.ServiceInteraction.BL." + nextState;
+        var methodName = "ProcessServiceA";
+
+        // Invoke next service using reflection.
+        var type = Type.GetType(className);
+        object instance = Activator.CreateInstance(type, m_configResolver);
+        type.GetMethod("ProcessServiceA").Invoke(instance, null);
 
         m_configResolver.AddDbgLog(sourceName, "finished");
 
@@ -42,6 +50,15 @@ public class ServiceA : IImplicitService
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_configResolver.AddDbgLog(sourceName, "started");
+
+        string nextState = "ServiceE";
+        var className = "WorkflowLib.Examples.ServiceInteraction.BL." + nextState;
+        var methodName = "ProcessServiceA";
+
+        // Invoke next service using reflection.
+        var type = Type.GetType(className);
+        object instance = Activator.CreateInstance(type, m_configResolver);
+        type.GetMethod(methodName).Invoke(instance, null);
         
         m_configResolver.AddDbgLog(sourceName, "finished");
 
@@ -56,6 +73,9 @@ public class ServiceA : IImplicitService
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_configResolver.AddDbgLog(sourceName, "started");
 
+        CallServiceE();
+        CallServiceB();
+
         m_configResolver.AddDbgLog(sourceName, "finished");
 
         return "";
@@ -68,6 +88,8 @@ public class ServiceA : IImplicitService
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_configResolver.AddDbgLog(sourceName, "started");
+
+        CallNextService();
 
         m_configResolver.AddDbgLog(sourceName, "finished");
 
