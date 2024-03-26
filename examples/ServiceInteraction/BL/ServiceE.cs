@@ -1,4 +1,5 @@
 using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
 using WorkflowLib.Examples.ServiceInteraction.Core.Resolvers;
 
 namespace WorkflowLib.Examples.ServiceInteraction.BL;
@@ -10,13 +11,17 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL;
 public class ServiceE : IImplicitService
 {
     private ConfigResolver m_configResolver { get; set; }
+    private readonly IServiceProvider m_serviceProvider;
 
     /// <summary>
     /// Default constructor.
     /// </summary>
-    public ServiceE(ConfigResolver configResolver)
+    public ServiceE(
+        ConfigResolver configResolver, 
+        IServiceProvider serviceProvider)
     {
         m_configResolver = configResolver;
+        m_serviceProvider = serviceProvider;
     }
 
     /// <summary>

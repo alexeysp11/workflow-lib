@@ -1,4 +1,5 @@
 using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
 using WorkflowLib.Examples.ServiceInteraction.Core.Resolvers;
 
 namespace WorkflowLib.Examples.ServiceInteraction.BL;
@@ -10,13 +11,17 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL;
 public class ServiceD : IImplicitService
 {
     private ConfigResolver m_configResolver { get; set; }
+    private readonly IServiceProvider m_serviceProvider;
 
     /// <summary>
     /// Default constructor.
     /// </summary>
-    public ServiceD(ConfigResolver configResolver)
+    public ServiceD(
+        ConfigResolver configResolver, 
+        IServiceProvider serviceProvider)
     {
         m_configResolver = configResolver;
+        m_serviceProvider = serviceProvider;
     }
 
     /// <summary>
@@ -26,6 +31,8 @@ public class ServiceD : IImplicitService
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_configResolver.AddDbgLog(sourceName, "started");
+        
+        CallServiceB();
 
         m_configResolver.AddDbgLog(sourceName, "finished");
 
@@ -39,6 +46,16 @@ public class ServiceD : IImplicitService
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_configResolver.AddDbgLog(sourceName, "started");
+        
+        // Get data from DB.
+        var nextState = "ServiceB";
+        var className = "WorkflowLib.Examples.ServiceInteraction.BL." + nextState;
+        var methodName = "ProcessServiceD";
+
+        // Invoke next service using reflection.
+        var type = Type.GetType(className);
+        var instance = m_serviceProvider.GetRequiredService(type);
+        type.GetMethod(methodName).Invoke(instance, null);
 
         m_configResolver.AddDbgLog(sourceName, "finished");
 

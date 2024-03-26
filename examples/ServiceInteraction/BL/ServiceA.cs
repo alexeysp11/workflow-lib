@@ -41,7 +41,7 @@ public class ServiceA : IImplicitService
         // Invoke next service using reflection.
         var type = Type.GetType(className);
         var instance = m_serviceProvider.GetRequiredService(type);
-        type.GetMethod("ProcessServiceA").Invoke(instance, null);
+        type.GetMethod(methodName).Invoke(instance, null);
 
         m_configResolver.AddDbgLog(sourceName, "finished");
 
@@ -63,7 +63,7 @@ public class ServiceA : IImplicitService
         // Invoke next service using reflection.
         var type = Type.GetType(className);
         var instance = m_serviceProvider.GetRequiredService(type);
-        type.GetMethod("ProcessServiceA").Invoke(instance, null);
+        type.GetMethod(methodName).Invoke(instance, null);
         
         m_configResolver.AddDbgLog(sourceName, "finished");
 
