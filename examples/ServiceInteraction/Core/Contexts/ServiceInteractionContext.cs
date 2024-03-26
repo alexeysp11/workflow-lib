@@ -16,4 +16,8 @@ public class ServiceInteractionContext : DbContext
     public DbSet<BusinessProcess> BusinessProcesses { get; set; }
     public DbSet<BusinessProcessState> BusinessProcessStates { get; set; }
     public DbSet<BusinessProcessStateTransition> BusinessProcessStateTransitions { get; set; }
+    
+    public DbSet<BusinessTask> BusinessTasks { get; set; }
+    public DbSet<WorkflowInstance> WorkflowInstances { get; set; }
+    public DbSet<WorkflowTrackingItem> WorkflowTrackingItems { get; set; }
 }

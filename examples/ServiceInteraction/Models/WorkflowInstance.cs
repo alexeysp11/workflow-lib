@@ -21,10 +21,5 @@ namespace WorkflowLib.Examples.ServiceInteraction.Models
         /// 
         /// </summary>
         public BusinessProcess BusinessProcess { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public WorkflowTrackingItem Tracking { get; set; }
     }
 }
