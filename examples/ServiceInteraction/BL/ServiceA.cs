@@ -29,7 +29,7 @@ public class ServiceA : IImplicitService
     /// <summary>
     /// Method to call service B.
     /// </summary>
-    public string CallServiceB()
+    public void CallServiceB()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
@@ -45,14 +45,12 @@ public class ServiceA : IImplicitService
         type.GetMethod(methodName).Invoke(instance, null);
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
-
-        return "";
     }
 
     /// <summary>
     /// Method to call service E.
     /// </summary>
-    public string CallServiceE()
+    public void CallServiceE()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
@@ -67,14 +65,12 @@ public class ServiceA : IImplicitService
         type.GetMethod(methodName).Invoke(instance, null);
         
         m_loggingDAL.AddDbgLog(sourceName, "finished");
-
-        return "";
     }
 
     /// <summary>
     /// Method to call the next service depending on the current state of the process.
     /// </summary>
-    public string CallNextService()
+    public void CallNextService()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
@@ -83,14 +79,12 @@ public class ServiceA : IImplicitService
         CallServiceB();
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
-
-        return "";
     }
 
     /// <summary>
     /// Method for processing the previous service depending on the current state of the process.
     /// </summary>
-    public string ProcessPreviousService()
+    public void ProcessPreviousService()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
@@ -101,7 +95,5 @@ public class ServiceA : IImplicitService
         CallNextService();
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
-
-        return "";
     }
 }

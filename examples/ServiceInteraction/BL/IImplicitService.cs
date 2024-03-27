@@ -8,10 +8,10 @@ public interface IImplicitService
     /// <summary>
     /// Method to call the next service depending on the current state of the process.
     /// </summary>
-    string CallNextService();
+    void CallNextService();
 
     /// <summary>
     /// Method for processing the previous service depending on the current state of the process.
     /// </summary>
-    string ProcessPreviousService();
+    void ProcessPreviousService();
 }

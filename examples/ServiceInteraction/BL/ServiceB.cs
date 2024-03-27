@@ -28,7 +28,7 @@ public class ServiceB : IImplicitService
     /// <summary>
     /// Method to process service A.
     /// </summary>
-    public string ProcessServiceA()
+    public void ProcessServiceA()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
@@ -36,14 +36,12 @@ public class ServiceB : IImplicitService
         CallServiceD();
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
-
-        return "";
     }
 
     /// <summary>
     /// Method to process service D.
     /// </summary>
-    public string ProcessServiceD()
+    public void ProcessServiceD()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
@@ -51,14 +49,12 @@ public class ServiceB : IImplicitService
         CallServiceC();
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
-
-        return "";
     }
 
     /// <summary>
     /// Method to call service C.
     /// </summary>
-    public string CallServiceC()
+    public void CallServiceC()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
@@ -74,14 +70,12 @@ public class ServiceB : IImplicitService
         type.GetMethod(methodName).Invoke(instance, null);
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
-
-        return "";
     }
 
     /// <summary>
     /// Method to call service D.
     /// </summary>
-    public string CallServiceD()
+    public void CallServiceD()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
@@ -97,33 +91,27 @@ public class ServiceB : IImplicitService
         type.GetMethod(methodName).Invoke(instance, null);
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
-
-        return "";
     }
 
     /// <summary>
     /// Method to call the next service depending on the current state of the process.
     /// </summary>
-    public string CallNextService()
+    public void CallNextService()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
-
-        return "";
     }
     
     /// <summary>
     /// Method for processing the previous service depending on the current state of the process.
     /// </summary>
-    public string ProcessPreviousService()
+    public void ProcessPreviousService()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
-
-        return "";
     }
 }

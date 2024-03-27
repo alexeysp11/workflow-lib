@@ -28,39 +28,33 @@ public class ServiceE : IImplicitService
     /// <summary>
     /// Method to process service A.
     /// </summary>
-    public string ProcessServiceA()
+    public void ProcessServiceA()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
-
-        return "";
     }
 
     /// <summary>
     /// Method to call the next service depending on the current state of the process.
     /// </summary>
-    public string CallNextService()
+    public void CallNextService()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
-
-        return "";
     }
 
     /// <summary>
     /// Method for processing the previous service depending on the current state of the process.
     /// </summary>
-    public string ProcessPreviousService()
+    public void ProcessPreviousService()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
-
-        return "";
     }
 }
