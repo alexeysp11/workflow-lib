@@ -1,8 +1,4 @@
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Examples.ServiceInteraction.Core.Contexts;
+using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 using WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
@@ -13,7 +9,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Resolvers;
 /// </summary>
 public class ServiceResolver
 {
-    private DbContextOptions<ServiceInteractionContext> m_contextOptions { get; set; }
+    private EndpointDAL m_endpointDAL { get; set; }
     private EndpointSelectionParameter m_endpointSelectionParameter { get; set; }
     private IEndpointLoadBalancer m_loadBalancer { get; set; }
 
@@ -21,11 +17,11 @@ public class ServiceResolver
     /// Constructor by default.
     /// </summary>
     public ServiceResolver(
-        DbContextOptions<ServiceInteractionContext> contextOptions, 
+        EndpointDAL endpointDAL, 
         EndpointSelectionParameter endpointSelectionParameter, 
         IEndpointLoadBalancer loadBalancer)
     {
-        m_contextOptions = contextOptions;
+        m_endpointDAL = endpointDAL;
         m_endpointSelectionParameter = endpointSelectionParameter;
         m_loadBalancer = loadBalancer;
     }
@@ -43,7 +39,7 @@ public class ServiceResolver
         if (currentState == null || currentState.Id == null) 
             throw new System.Exception("Current state could not be null or undefined");
         
-        return GetEndpoint(x => x.EndpointCallType == endpointCallType
+        return m_endpointDAL.GetEndpoint(x => x.EndpointCallType == endpointCallType
             && x.BusinessProcessState.Id == currentState.Id
             && (stateTransition == null || x.BusinessProcessStateTransition.Id == stateTransition.Id));
     }
@@ -60,38 +56,7 @@ public class ServiceResolver
         if (endpointTypeTo == null || endpointTypeTo.Id == null) 
             throw new System.Exception("Destination endpoint type could not be null");
 
-        return GetEndpoint(x => x.EndpointTypeFrom.Id == endpointTypeFrom.Id
+        return m_endpointDAL.GetEndpoint(x => x.EndpointTypeFrom.Id == endpointTypeFrom.Id
             && x.EndpointTypeTo.Id == endpointTypeTo.Id);
-    }
-
-    /// <summary>
-    /// Method for obtaining endpoint data for a given predicate.
-    /// </summary>
-    private Endpoint GetEndpoint(Expression<System.Func<EndpointCall, bool>> predicate)
-    {
-        if (predicate == null)
-            throw new System.ArgumentNullException(nameof(predicate));
-        
-        using var context = new ServiceInteractionContext(m_contextOptions);
-        
-        var endpointTypeTo = context.EndpointCalls
-            .Where(predicate)
-            .Select(x => x.EndpointTypeTo)
-            .FirstOrDefault();
-        if (endpointTypeTo == null)
-            throw new System.Exception("Could not get endpoint type from the database");
-        
-        var endpoints = context.Endpoints.Where(x => x.EndpointType.Id == endpointTypeTo.Id).ToList();
-        if (endpoints == null || !endpoints.Any())
-            throw new System.Exception("Could not get endpoints from the database");
-        if (endpoints.Any(x => x == null))
-            throw new System.Exception("Collection of endpoints contains null object references");
-        
-        var endpointIds = endpoints.Select(x => x.Id).ToArray();
-        var index = new System.Random().Next(endpointIds.Length);
-        var endpoint = endpoints.FirstOrDefault(x => x.Id == endpointIds[index]);
-        if (endpoint == null)
-            throw new System.Exception("Could not select the endpoint");
-        return endpoint;
     }
 }
