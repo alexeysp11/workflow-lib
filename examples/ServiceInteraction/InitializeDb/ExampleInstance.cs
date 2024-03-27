@@ -22,6 +22,9 @@ namespace WorkflowLib.Examples.ServiceInteraction.InitializeDb
             m_configResolver = configResolver;
         }
 
+        /// <summary>
+        /// Responsible for launching the application.
+        /// </summary>
         public void Run()
         {
             // Constants.

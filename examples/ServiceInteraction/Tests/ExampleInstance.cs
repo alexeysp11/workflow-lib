@@ -35,6 +35,9 @@ namespace WorkflowLib.Examples.ServiceInteraction.Tests
             _serviceResolver = serviceResolver;
         }
 
+        /// <summary>
+        /// Responsible for launching the application.
+        /// </summary>
         public void Run()
         {
             TestMonolithEndpoints();

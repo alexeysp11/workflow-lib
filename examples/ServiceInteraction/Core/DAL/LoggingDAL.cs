@@ -5,7 +5,7 @@ using WorkflowLib.Examples.ServiceInteraction.Models;
 namespace WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 
 /// <summary>
-/// 
+/// A class at the DAL level that performs logging-related operations in the database.
 /// </summary>
 public class LoggingDAL
 {

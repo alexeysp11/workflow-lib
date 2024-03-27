@@ -20,6 +20,9 @@ namespace WorkflowLib.Examples.ServiceInteraction.Monolith
             m_serviceA = serviceA;
         }
 
+        /// <summary>
+        /// Responsible for launching the application.
+        /// </summary>
         public void Run()
         {
             m_serviceA.ProcessPreviousService();
