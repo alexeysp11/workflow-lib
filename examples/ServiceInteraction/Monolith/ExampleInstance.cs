@@ -10,7 +10,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Monolith
     public class ExampleInstance : IExampleInstance
     {
         private ConfigResolver m_configResolver { get; set; }
-        private ServiceA m_serviceA { get; set; }
+        private IImplicitService m_serviceA { get; set; }
 
         /// <summary>
         /// Construstor by default.
@@ -26,6 +26,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Monolith
         public void Run()
         {
             // m_configResolver.InitCommunicationConfigs();
+            
             m_serviceA.ProcessPreviousService();
         }
     }

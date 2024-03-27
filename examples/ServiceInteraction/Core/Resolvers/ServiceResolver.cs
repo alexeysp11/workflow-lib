@@ -13,9 +13,9 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Resolvers;
 /// </summary>
 public class ServiceResolver
 {
-    private DbContextOptions<ServiceInteractionContext> _contextOptions { get; set; }
-    private EndpointSelectionParameter _endpointSelectionParameter { get; set; }
-    private IEndpointLoadBalancer _loadBalancer { get; set; }
+    private DbContextOptions<ServiceInteractionContext> m_contextOptions { get; set; }
+    private EndpointSelectionParameter m_endpointSelectionParameter { get; set; }
+    private IEndpointLoadBalancer m_loadBalancer { get; set; }
 
     /// <summary>
     /// Constructor by default.
@@ -25,9 +25,9 @@ public class ServiceResolver
         EndpointSelectionParameter endpointSelectionParameter, 
         IEndpointLoadBalancer loadBalancer)
     {
-        _contextOptions = contextOptions;
-        _endpointSelectionParameter = endpointSelectionParameter;
-        _loadBalancer = loadBalancer;
+        m_contextOptions = contextOptions;
+        m_endpointSelectionParameter = endpointSelectionParameter;
+        m_loadBalancer = loadBalancer;
     }
 
     /// <summary>
@@ -72,7 +72,7 @@ public class ServiceResolver
         if (predicate == null)
             throw new System.ArgumentNullException(nameof(predicate));
         
-        using var context = new ServiceInteractionContext(_contextOptions);
+        using var context = new ServiceInteractionContext(m_contextOptions);
         
         var endpointTypeTo = context.EndpointCalls
             .Where(predicate)

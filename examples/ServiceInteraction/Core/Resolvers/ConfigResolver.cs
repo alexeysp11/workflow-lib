@@ -13,7 +13,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Resolvers;
 /// </summary>
 public class ConfigResolver
 {
-    private DbContextOptions<ServiceInteractionContext> _contextOptions { get; set; }
+    private DbContextOptions<ServiceInteractionContext> m_contextOptions { get; set; }
 
     /// <summary>
     /// Constructor by default.
@@ -21,7 +21,7 @@ public class ConfigResolver
     public ConfigResolver(
         DbContextOptions<ServiceInteractionContext> contextOptions) 
     {
-        _contextOptions = contextOptions;
+        m_contextOptions = contextOptions;
     }
 
     /// <summary>
@@ -29,7 +29,7 @@ public class ConfigResolver
     /// </summary>
     public void AddDbgLog(string sourceName, string sourceDetails)
     {
-        using var context = new ServiceInteractionContext(_contextOptions);
+        using var context = new ServiceInteractionContext(m_contextOptions);
         var dbglog = new DbgLog
         {
             SourceName = sourceName,
@@ -46,7 +46,7 @@ public class ConfigResolver
     /// </summary>
     public void InitCommunicationConfigs()
     {
-        using var context = new ServiceInteractionContext(_contextOptions);
+        using var context = new ServiceInteractionContext(m_contextOptions);
 
         var stringBuilder = new StringBuilder();
         var dtNow = System.DateTime.UtcNow;
@@ -253,7 +253,7 @@ public class ConfigResolver
     /// </summary>
     public void InitMonolithEndpoints(Dictionary<string, string> classNames)
     {
-        using var context = new ServiceInteractionContext(_contextOptions);
+        using var context = new ServiceInteractionContext(m_contextOptions);
 
         // Constants.
         var customerBackendName = ServiceConfigConstants.CustomerBackendName;
