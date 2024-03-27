@@ -32,4 +32,4 @@
 
 ## Models
 
-- In the recipe object, you need to set a status that would show the relevance of the recipe - actually, there is already a status of the entity, which can be equal to “deleted” or “active”, but in a real situation it may be important to set deadlines for relevance.
+- In the recipe object, you need to set a status that would show the relevance of the recipe - actually, there is already a status of the entity, which can be equal to "deleted" or "active", but in a real situation it may be important to set deadlines for relevance.

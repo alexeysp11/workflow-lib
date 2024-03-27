@@ -1,2 +1,0 @@
-# ChatroomUser Class 
-

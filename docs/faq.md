@@ -8,4 +8,4 @@ Because an employee may have several accounts. Accordingly, when it becomes nece
 
 ### Why do we need the Organization class if we already have a Company?
 
-The `Company` class can refer to all companies, while the `Organization` class allows you to “link” an organizational structure to a specific company.
+The `Company` class can refer to all companies, while the `Organization` class allows you to "link" an organizational structure to a specific company.
