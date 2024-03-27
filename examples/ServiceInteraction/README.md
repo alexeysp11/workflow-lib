@@ -16,7 +16,7 @@ There are several types of shells:
 - HTTP;
 - gRPC.
 
-![ExplicitImplicitCall](../../docs/img/examples/ExplicitImplicitCall.png)
+![ServiceDiscoveryArchitecture](../../docs/img/examples/ServiceDiscoveryArchitecture.png)
 
 Algorithms for selecting an endpoint in a distributed system:
 - **Random**: A simple and effective method, but can lead to inefficient use of resources, especially if one of the instances is overloaded.

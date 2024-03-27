@@ -16,7 +16,7 @@
 - HTTP;
 - gRPC.
 
-![ExplicitImplicitCall](../../docs/img/examples/ExplicitImplicitCall.png)
+![ServiceDiscoveryArchitecture](../../docs/img/examples/ServiceDiscoveryArchitecture.png)
 
 Алгоритмы для выбора эндпоинта в распределённой системе:
 - **Случайный выбор**: Простой и эффективный способ, но может привести к неэффективному использованию ресурсов, особенно если один из инстансов перегружен.
