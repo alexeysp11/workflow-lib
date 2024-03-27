@@ -2,6 +2,7 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using WorkflowLib.Examples.ServiceInteraction.Core.Resolvers;
+using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 
 namespace WorkflowLib.Examples.ServiceInteraction.BL;
 
@@ -11,17 +12,17 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL;
 /// <remarks>Initiates communication with the following services: B, E.</remarks>
 public class ServiceA : IImplicitService
 {
-    private ConfigResolver m_configResolver { get; set; }
+    private LoggingDAL m_loggingDAL { get; set; }
     private readonly IServiceProvider m_serviceProvider;
 
     /// <summary>
     /// Default constructor.
     /// </summary>
     public ServiceA(
-        ConfigResolver configResolver, 
+        LoggingDAL loggingDAL, 
         IServiceProvider serviceProvider)
     {
-        m_configResolver = configResolver;
+        m_loggingDAL = loggingDAL;
         m_serviceProvider = serviceProvider;
     }
 
@@ -31,7 +32,7 @@ public class ServiceA : IImplicitService
     public string CallServiceB()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
-        m_configResolver.AddDbgLog(sourceName, "started");
+        m_loggingDAL.AddDbgLog(sourceName, "started");
 
         // Get data from DB.
         var nextState = "ServiceB";
@@ -43,7 +44,7 @@ public class ServiceA : IImplicitService
         var instance = m_serviceProvider.GetRequiredService(type);
         type.GetMethod(methodName).Invoke(instance, null);
 
-        m_configResolver.AddDbgLog(sourceName, "finished");
+        m_loggingDAL.AddDbgLog(sourceName, "finished");
 
         return "";
     }
@@ -54,7 +55,7 @@ public class ServiceA : IImplicitService
     public string CallServiceE()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
-        m_configResolver.AddDbgLog(sourceName, "started");
+        m_loggingDAL.AddDbgLog(sourceName, "started");
 
         string nextState = "ServiceE";
         var className = "WorkflowLib.Examples.ServiceInteraction.BL." + nextState;
@@ -65,7 +66,7 @@ public class ServiceA : IImplicitService
         var instance = m_serviceProvider.GetRequiredService(type);
         type.GetMethod(methodName).Invoke(instance, null);
         
-        m_configResolver.AddDbgLog(sourceName, "finished");
+        m_loggingDAL.AddDbgLog(sourceName, "finished");
 
         return "";
     }
@@ -76,12 +77,12 @@ public class ServiceA : IImplicitService
     public string CallNextService()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
-        m_configResolver.AddDbgLog(sourceName, "started");
+        m_loggingDAL.AddDbgLog(sourceName, "started");
 
         CallServiceE();
         CallServiceB();
 
-        m_configResolver.AddDbgLog(sourceName, "finished");
+        m_loggingDAL.AddDbgLog(sourceName, "finished");
 
         return "";
     }
@@ -92,11 +93,14 @@ public class ServiceA : IImplicitService
     public string ProcessPreviousService()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
-        m_configResolver.AddDbgLog(sourceName, "started");
+        m_loggingDAL.AddDbgLog(sourceName, "started");
+
+        // Start wi, wti, bp, bt.
+        var processName = "Delivering of the order";
 
         CallNextService();
 
-        m_configResolver.AddDbgLog(sourceName, "finished");
+        m_loggingDAL.AddDbgLog(sourceName, "finished");
 
         return "";
     }

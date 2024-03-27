@@ -1,6 +1,7 @@
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Examples.ServiceInteraction.Core.Contexts;
+using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 using WorkflowLib.Examples.ServiceInteraction.Core.Resolvers;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
@@ -65,7 +66,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Tests
 
                 // Call the next element.
                 stringBuilder.Append("\n\t").Append("Next: ");
-                var endpointNext = _serviceResolver.CallNext(
+                var endpointNext = _serviceResolver.GetNextEndpoint(
                     endpointCallType, 
                     endpointCall.BusinessProcessState, 
                     endpointCall.BusinessProcessStateTransition);
@@ -76,7 +77,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Tests
                 
                 // Call the element specified explicitly by endpoint types.
                 stringBuilder.Append("\n\t").Append("Explicit: ");
-                var endpointExplicit = _serviceResolver.CallExplicit(
+                var endpointExplicit = _serviceResolver.GetEndpointExplicit(
                     endpointCall.EndpointTypeFrom, 
                     endpointCall.EndpointTypeTo);
                 if (endpointExplicit == null)

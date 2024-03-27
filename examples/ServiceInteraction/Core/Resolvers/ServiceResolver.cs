@@ -33,7 +33,7 @@ public class ServiceResolver
     /// <summary>
     /// Method for selecting an endpoint as part of an implicit call to the next element of the microservice architecture.
     /// </summary>
-    public Endpoint CallNext(
+    public Endpoint GetNextEndpoint(
         EndpointCallType endpointCallType,
         BusinessProcessState currentState,
         BusinessProcessStateTransition stateTransition)
@@ -51,7 +51,7 @@ public class ServiceResolver
     /// <summary>
     /// Method for selecting an endpoint within an explicit call to an element of a microservice architecture (by endpoint types).
     /// </summary>
-    public Endpoint CallExplicit(
+    public Endpoint GetEndpointExplicit(
         EndpointType endpointTypeFrom, 
         EndpointType endpointTypeTo)
     {

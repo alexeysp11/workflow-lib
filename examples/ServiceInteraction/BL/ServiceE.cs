@@ -1,6 +1,7 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using WorkflowLib.Examples.ServiceInteraction.Core.Resolvers;
+using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 
 namespace WorkflowLib.Examples.ServiceInteraction.BL;
 
@@ -10,17 +11,17 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL;
 /// <remarks>Does not initiate communication with any service.</remarks>
 public class ServiceE : IImplicitService
 {
-    private ConfigResolver m_configResolver { get; set; }
+    private LoggingDAL m_loggingDAL { get; set; }
     private readonly IServiceProvider m_serviceProvider;
 
     /// <summary>
     /// Default constructor.
     /// </summary>
     public ServiceE(
-        ConfigResolver configResolver, 
+        LoggingDAL loggingDAL, 
         IServiceProvider serviceProvider)
     {
-        m_configResolver = configResolver;
+        m_loggingDAL = loggingDAL;
         m_serviceProvider = serviceProvider;
     }
 
@@ -30,9 +31,9 @@ public class ServiceE : IImplicitService
     public string ProcessServiceA()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
-        m_configResolver.AddDbgLog(sourceName, "started");
+        m_loggingDAL.AddDbgLog(sourceName, "started");
 
-        m_configResolver.AddDbgLog(sourceName, "finished");
+        m_loggingDAL.AddDbgLog(sourceName, "finished");
 
         return "";
     }
@@ -43,9 +44,9 @@ public class ServiceE : IImplicitService
     public string CallNextService()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
-        m_configResolver.AddDbgLog(sourceName, "started");
+        m_loggingDAL.AddDbgLog(sourceName, "started");
 
-        m_configResolver.AddDbgLog(sourceName, "finished");
+        m_loggingDAL.AddDbgLog(sourceName, "finished");
 
         return "";
     }
@@ -56,9 +57,9 @@ public class ServiceE : IImplicitService
     public string ProcessPreviousService()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
-        m_configResolver.AddDbgLog(sourceName, "started");
+        m_loggingDAL.AddDbgLog(sourceName, "started");
 
-        m_configResolver.AddDbgLog(sourceName, "finished");
+        m_loggingDAL.AddDbgLog(sourceName, "finished");
 
         return "";
     }

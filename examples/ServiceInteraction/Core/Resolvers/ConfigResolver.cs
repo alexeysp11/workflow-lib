@@ -25,23 +25,6 @@ public class ConfigResolver
     }
 
     /// <summary>
-    /// A method that adds logs to the database.
-    /// </summary>
-    public void AddDbgLog(string sourceName, string sourceDetails)
-    {
-        using var context = new ServiceInteractionContext(m_contextOptions);
-        var dbglog = new DbgLog
-        {
-            SourceName = sourceName,
-            SourceDetails = sourceDetails,
-            CreateDate = System.DateTime.UtcNow,
-            ChangeDate = System.DateTime.UtcNow
-        };
-        context.DbgLogs.Add(dbglog);
-        context.SaveChanges();
-    }
-
-    /// <summary>
     /// 
     /// </summary>
     public void InitCommunicationConfigs()

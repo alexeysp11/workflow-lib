@@ -4,6 +4,7 @@ using Microsoft.Extensions.Hosting;
 using WorkflowLib.Examples.ServiceInteraction.BL;
 using WorkflowLib.Examples.ServiceInteraction.Core;
 using WorkflowLib.Examples.ServiceInteraction.Core.Contexts;
+using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 using WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 using WorkflowLib.Examples.ServiceInteraction.Core.EndpointMemoryManagement;
 using WorkflowLib.Examples.ServiceInteraction.Core.Resolvers;
@@ -49,7 +50,7 @@ public class Program
         // Endpoint selection.
         services.AddSingleton<EndpointPool>();
         services.AddSingleton<IEndpointLoadBalancer, RandomLoadBalancer>();
-        services.AddSingleton<ConfigResolver>();
+        services.AddSingleton<LoggingDAL>();
 
         // Services.
         services.AddSingleton<ServiceA>();
