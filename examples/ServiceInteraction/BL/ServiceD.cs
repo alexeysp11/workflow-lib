@@ -11,14 +11,14 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL;
 /// <remarks>Initiates communication with the following services: B.</remarks>
 public class ServiceD : IImplicitService
 {
-    private LoggingDAL m_loggingDAL { get; set; }
+    private LoggingDAL m_loggingDAL;
     private readonly IServiceProvider m_serviceProvider;
 
     /// <summary>
     /// Default constructor.
     /// </summary>
     public ServiceD(
-        LoggingDAL loggingDAL, 
+        LoggingDAL loggingDAL,
         IServiceProvider serviceProvider)
     {
         m_loggingDAL = loggingDAL;

@@ -10,7 +10,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Models
         /// <summary>
         /// Parent task.
         /// </summary>
-        public BusinessTask ParentTask { get; set; }
+        public BusinessTask? ParentTask { get; set; }
 
         /// <summary>
         /// Child tasks.

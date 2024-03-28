@@ -9,7 +9,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Monolith
     /// </summary>
     public class ExampleInstance : IExampleInstance
     {
-        private IImplicitService m_serviceA { get; set; }
+        private IImplicitService m_service { get; set; }
 
         /// <summary>
         /// Construstor by default.
@@ -17,7 +17,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Monolith
         public ExampleInstance(
             ServiceA serviceA)
         {
-            m_serviceA = serviceA;
+            m_service = serviceA;
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Monolith
         /// </summary>
         public void Run()
         {
-            m_serviceA.ProcessPreviousService();
+            m_service.ProcessPreviousService();
         }
     }
 }

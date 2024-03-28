@@ -12,17 +12,20 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL;
 /// <remarks>Initiates communication with the following services: B, E.</remarks>
 public class ServiceA : IImplicitService
 {
-    private LoggingDAL m_loggingDAL { get; set; }
+    private LoggingDAL m_loggingDAL;
+    private EndpointServiceResolver m_endpointServiceResolver;
     private readonly IServiceProvider m_serviceProvider;
 
     /// <summary>
     /// Default constructor.
     /// </summary>
     public ServiceA(
-        LoggingDAL loggingDAL, 
+        LoggingDAL loggingDAL,
+        EndpointServiceResolver endpointServiceResolver,
         IServiceProvider serviceProvider)
     {
         m_loggingDAL = loggingDAL;
+        m_endpointServiceResolver = endpointServiceResolver;
         m_serviceProvider = serviceProvider;
     }
 
@@ -89,8 +92,16 @@ public class ServiceA : IImplicitService
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
 
-        // Start wi, wti, bp, bt.
-        var processName = "Delivering of the order";
+        try
+        {
+            var processName = "Delivering of the order";
+            var taskName = "Processing. ServiceA";
+            m_endpointServiceResolver.CreateBusinessProcessInstance(processName, taskName);
+        }
+        catch (System.Exception ex)
+        {
+            m_loggingDAL.AddDbgLog(sourceName, ex.ToString());
+        }
 
         CallNextService();
 

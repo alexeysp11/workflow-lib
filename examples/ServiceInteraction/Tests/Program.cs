@@ -49,7 +49,7 @@ public class Program
 
         services.AddSingleton<EndpointPool>();
         services.AddSingleton<IEndpointLoadBalancer, RandomLoadBalancer>();
-        services.AddSingleton<ServiceResolver>();
+        services.AddSingleton<EndpointServiceResolver>();
         services.AddSingleton<EndpointDAL>();
     }
 }

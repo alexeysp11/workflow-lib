@@ -50,7 +50,14 @@ public class Program
         // Endpoint selection.
         services.AddSingleton<EndpointPool>();
         services.AddSingleton<IEndpointLoadBalancer, RandomLoadBalancer>();
+
+        // Resolvers.
+        services.AddSingleton<EndpointServiceResolver>();
+
+        // DAL.
         services.AddSingleton<LoggingDAL>();
+        services.AddSingleton<EndpointDAL>();
+        services.AddSingleton<BusinessProcessDAL>();
 
         // Services.
         services.AddSingleton<ServiceA>();

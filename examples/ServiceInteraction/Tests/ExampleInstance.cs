@@ -22,14 +22,14 @@ namespace WorkflowLib.Examples.ServiceInteraction.Tests
     public class ExampleInstance : IExampleInstance
     {
         private DbContextOptions<ServiceInteractionContext> _contextOptions { get; set; }
-        private ServiceResolver _serviceResolver { get; set; }
+        private EndpointServiceResolver _serviceResolver { get; set; }
 
         /// <summary>
         /// Construstor by default.
         /// </summary>
         public ExampleInstance(
             DbContextOptions<ServiceInteractionContext> contextOptions,
-            ServiceResolver serviceResolver)
+            EndpointServiceResolver serviceResolver)
         {
             _contextOptions = contextOptions;
             _serviceResolver = serviceResolver;
