@@ -47,7 +47,7 @@ public class ServiceA : IImplicitService
         // Invoke next service using reflection.
         var type = Type.GetType(className);
         var instance = m_serviceProvider.GetRequiredService(type);
-        type.GetMethod(methodName).Invoke(instance, new object[]{m_workflowInstance.Id});
+        type.GetMethod(methodName).Invoke(instance, new object[]{m_workflowInstance.Id, 1});
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
     }
@@ -67,7 +67,7 @@ public class ServiceA : IImplicitService
         // Invoke next service using reflection.
         var type = Type.GetType(className);
         var instance = m_serviceProvider.GetRequiredService(type);
-        type.GetMethod(methodName).Invoke(instance, new object[]{m_workflowInstance.Id});
+        type.GetMethod(methodName).Invoke(instance, null);
         
         m_loggingDAL.AddDbgLog(sourceName, "finished");
     }
@@ -82,7 +82,6 @@ public class ServiceA : IImplicitService
 
         try
         {
-            m_endpointServiceResolver.CreateTaskWorkflowInstance(m_workflowInstance, "ServiceA-ServiceE");
             CallServiceE();
 
             m_endpointServiceResolver.CreateTaskWorkflowInstance(m_workflowInstance, "ServiceA-ServiceB");

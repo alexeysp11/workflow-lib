@@ -33,7 +33,7 @@ public class ServiceD : IImplicitService
     /// <summary>
     /// Method to process service B.
     /// </summary>
-    public void ProcessServiceB(long workflowInstanceId)
+    public void ProcessServiceB(long workflowInstanceId, long transitionId)
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
@@ -69,7 +69,7 @@ public class ServiceD : IImplicitService
         // Invoke next service using reflection.
         var type = Type.GetType(className);
         var instance = m_serviceProvider.GetRequiredService(type);
-        type.GetMethod(methodName).Invoke(instance, new object[]{m_workflowInstance.Id});
+        type.GetMethod(methodName).Invoke(instance, new object[]{m_workflowInstance.Id, 5});
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
     }

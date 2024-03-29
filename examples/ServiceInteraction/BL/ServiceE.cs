@@ -28,7 +28,7 @@ public class ServiceE : IImplicitService
     /// <summary>
     /// Method to process service A.
     /// </summary>
-    public void ProcessServiceA(long workflowInstanceId)
+    public void ProcessServiceA()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
