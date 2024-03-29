@@ -11,7 +11,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.InitializeDb
     /// </summary>
     public class ExampleInstance : IExampleInstance
     {
-        private ConfigResolver m_configResolver { get; set; }
+        private ConfigResolver m_configResolver;
 
         /// <summary>
         /// Construstor by default.

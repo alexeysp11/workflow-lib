@@ -9,10 +9,10 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Resolvers;
 /// </summary>
 public class EndpointServiceResolver
 {
-    private EndpointDAL m_endpointDAL { get; set; }
-    private BusinessProcessDAL m_businessProcessDAL { get; set; }
-    private EndpointSelectionParameter m_endpointSelectionParameter { get; set; }
-    private IEndpointLoadBalancer m_loadBalancer { get; set; }
+    private EndpointDAL m_endpointDAL;
+    private BusinessProcessDAL m_businessProcessDAL;
+    private EndpointSelectionParameter m_endpointSelectionParameter;
+    private IEndpointLoadBalancer m_loadBalancer;
 
     /// <summary>
     /// Constructor by default.

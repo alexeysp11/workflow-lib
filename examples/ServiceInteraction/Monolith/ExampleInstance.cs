@@ -9,7 +9,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Monolith
     /// </summary>
     public class ExampleInstance : IExampleInstance
     {
-        private IImplicitService m_service { get; set; }
+        private IImplicitService m_service;
 
         /// <summary>
         /// Construstor by default.

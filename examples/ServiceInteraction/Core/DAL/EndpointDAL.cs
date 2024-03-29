@@ -12,7 +12,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 /// </summary>
 public class EndpointDAL
 {
-    private DbContextOptions<ServiceInteractionContext> m_contextOptions { get; set; }
+    private DbContextOptions<ServiceInteractionContext> m_contextOptions;
 
     /// <summary>
     /// Constructor by default.

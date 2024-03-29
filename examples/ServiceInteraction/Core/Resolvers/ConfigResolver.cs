@@ -13,7 +13,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Resolvers;
 /// </summary>
 public class ConfigResolver
 {
-    private DbContextOptions<ServiceInteractionContext> m_contextOptions { get; set; }
+    private DbContextOptions<ServiceInteractionContext> m_contextOptions;
 
     /// <summary>
     /// Constructor by default.
