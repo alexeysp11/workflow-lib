@@ -36,6 +36,16 @@ public class BusinessProcessDAL
     }
 
     /// <summary>
+    /// Returns a workflow instance by its ID.
+    /// </summary>
+    public WorkflowInstance GetWorkflowInstanceById(long id)
+    {
+        using var context = new ServiceInteractionContext(m_contextOptions);
+        var workflowInstance = context.WorkflowInstances.FirstOrDefault(x => x.Id == id);
+        return workflowInstance;
+    }
+
+    /// <summary>
     /// Creates a workflow instance.
     /// </summary>
     public WorkflowInstance CreateWorkflowInstance(

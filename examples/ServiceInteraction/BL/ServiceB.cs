@@ -2,6 +2,7 @@ using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using WorkflowLib.Examples.ServiceInteraction.Core.Resolvers;
 using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
+using WorkflowLib.Examples.ServiceInteraction.Models;
 
 namespace WorkflowLib.Examples.ServiceInteraction.BL;
 
@@ -12,6 +13,8 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL;
 public class ServiceB : IImplicitService
 {
     private LoggingDAL m_loggingDAL;
+    private EndpointServiceResolver m_endpointServiceResolver;
+    private WorkflowInstance m_workflowInstance;
     private readonly IServiceProvider m_serviceProvider;
 
     /// <summary>
@@ -19,21 +22,33 @@ public class ServiceB : IImplicitService
     /// </summary>
     public ServiceB(
         LoggingDAL loggingDAL,
+        EndpointServiceResolver endpointServiceResolver,
         IServiceProvider serviceProvider)
     {
         m_loggingDAL = loggingDAL;
+        m_endpointServiceResolver = endpointServiceResolver;
         m_serviceProvider = serviceProvider;
     }
 
     /// <summary>
     /// Method to process service A.
     /// </summary>
-    public void ProcessServiceA()
+    public void ProcessServiceA(long workflowInstanceId)
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
 
-        CallServiceD();
+        try
+        {
+            if (m_workflowInstance == null)
+                m_workflowInstance = m_endpointServiceResolver.GetWorkflowInstanceById(workflowInstanceId);
+            m_endpointServiceResolver.CreateTaskWorkflowInstance(m_workflowInstance, "ServiceB-ServiceD");
+            CallServiceD();
+        }
+        catch (System.Exception ex)
+        {
+            m_loggingDAL.AddDbgLog(sourceName, ex.ToString());
+        }
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
     }
@@ -41,12 +56,22 @@ public class ServiceB : IImplicitService
     /// <summary>
     /// Method to process service D.
     /// </summary>
-    public void ProcessServiceD()
+    public void ProcessServiceD(long workflowInstanceId)
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
 
-        CallServiceC();
+        try
+        {
+            if (m_workflowInstance == null)
+                m_workflowInstance = m_endpointServiceResolver.GetWorkflowInstanceById(workflowInstanceId);
+            m_endpointServiceResolver.CreateTaskWorkflowInstance(m_workflowInstance, "ServiceB-ServiceC");
+            CallServiceC();
+        }
+        catch (System.Exception ex)
+        {
+            m_loggingDAL.AddDbgLog(sourceName, ex.ToString());
+        }
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
     }
@@ -67,7 +92,7 @@ public class ServiceB : IImplicitService
         // Invoke next service using reflection.
         var type = Type.GetType(className);
         var instance = m_serviceProvider.GetRequiredService(type);
-        type.GetMethod(methodName).Invoke(instance, null);
+        type.GetMethod(methodName).Invoke(instance, new object[]{m_workflowInstance.Id});
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
     }
@@ -88,7 +113,7 @@ public class ServiceB : IImplicitService
         // Invoke next service using reflection.
         var type = Type.GetType(className);
         var instance = m_serviceProvider.GetRequiredService(type);
-        type.GetMethod(methodName).Invoke(instance, null);
+        type.GetMethod(methodName).Invoke(instance, new object[]{m_workflowInstance.Id});
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
     }

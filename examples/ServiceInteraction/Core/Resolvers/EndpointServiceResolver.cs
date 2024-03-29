@@ -64,14 +64,26 @@ public class EndpointServiceResolver
     }
 
     /// <summary>
+    /// Returns a workflow instance by its ID.
+    /// </summary>
+    public WorkflowInstance GetWorkflowInstanceById(long id)
+    {
+        if (id <= 0)
+            throw new System.ArgumentOutOfRangeException(nameof(id), $"Workflow instance ID should be positive, but '{id}' was passed");
+        
+        var workflowInstance = m_businessProcessDAL.GetWorkflowInstanceById(id);
+        if (workflowInstance == null)
+            throw new System.Exception($"Workflow instance with the specified ID does not exist (id: {id})");
+        return workflowInstance;
+    }
+
+    /// <summary>
     /// Initializes a business process instance.
     /// </summary>
-    public void CreateBusinessProcessInstance(string processName, string taskName)
+    public WorkflowInstance CreateBusinessProcessInstance(string processName, string taskName)
     {
         if (string.IsNullOrEmpty(processName))
             throw new System.ArgumentNullException(nameof(processName));
-        if (string.IsNullOrEmpty(taskName))
-            throw new System.ArgumentNullException(nameof(taskName));
         
         // Get business process.
         var process = m_businessProcessDAL.GetBusinessProcessByName(processName);
@@ -81,17 +93,32 @@ public class EndpointServiceResolver
         // Create workflow instance.
         var workflowInstance = m_businessProcessDAL.CreateWorkflowInstance(process);
         if (workflowInstance == null)
-            throw new System.Exception($"Workflow instance is not created (processName: {processName}, taskName: {taskName})");
+            throw new System.Exception($"Workflow instance is not created (processName: {processName})");
+        
+        CreateTaskWorkflowInstance(workflowInstance, taskName);
+        
+        return workflowInstance;
+    }
+
+    /// <summary>
+    /// Create a task for a workflow instance.
+    /// </summary>
+    public void CreateTaskWorkflowInstance(WorkflowInstance workflowInstance, string taskName)
+    {
+        if (workflowInstance == null)
+            throw new System.ArgumentNullException(nameof(workflowInstance));
+        if (string.IsNullOrEmpty(taskName))
+            throw new System.ArgumentNullException(nameof(taskName));
         
         // Create business task.
         string taskSubject = $"{workflowInstance.Id}. {taskName} ({workflowInstance.Name})";
         var businessTask = m_businessProcessDAL.CreateBusinessTask(taskName, taskSubject);
         if (businessTask == null)
-            throw new System.Exception($"Business task is not created (processName: {processName}, taskName: {taskName}, taskSubject: {taskSubject})");
+            throw new System.Exception($"Business task is not created (processName: workflowInstance.Id: {workflowInstance.Id}, taskName: {taskName})");
 
         // Create workflow tracking item.
         var workflowTrackingItem = m_businessProcessDAL.CreateWorkflowTrackingItem(workflowInstance, businessTask);
         if (workflowTrackingItem == null)
-            throw new System.Exception($"Workflow tracking item is not created (processName: {processName}, taskName: {taskName})");
+            throw new System.Exception($"Workflow tracking item is not created (processName: workflowInstance.Id: {workflowInstance.Id}, taskName: {taskName})");
     }
 }
