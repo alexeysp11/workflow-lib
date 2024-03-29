@@ -8,14 +8,9 @@ namespace WorkflowLib.Examples.ServiceInteraction.Models
     public class BusinessTask : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
-        /// Parent task.
+        /// Subject.
         /// </summary>
-        public BusinessTask? ParentTask { get; set; }
-
-        /// <summary>
-        /// Child tasks.
-        /// </summary>
-        public ICollection<BusinessTask> ChildTasks { get; set; }
+        public string Subject { get; set; }
 
         /// <summary>
         /// Shows if it is necessary to send notifications if the task is expired and not completed.
@@ -28,15 +23,25 @@ namespace WorkflowLib.Examples.ServiceInteraction.Models
         public bool IsEmulation { get; set; }
 
         /// <summary>
+        /// Parent task.
+        /// </summary>
+        public BusinessTask? ParentTask { get; set; }
+
+        /// <summary>
+        /// Child tasks.
+        /// </summary>
+        public ICollection<BusinessTask> ChildTasks { get; set; }
+
+        /// <summary>
         /// Priority.
         /// </summary>
         public TaskPriority Priority { get; set; }
 
         /// <summary>
-        /// Subject.
+        /// Business process state.
         /// </summary>
-        public string Subject { get; set; }
-        
+        public BusinessProcessState? BusinessProcessState { get; set; }
+
         /// <summary>
         /// Status of the business task.
         /// </summary>
