@@ -128,6 +128,10 @@ public class ConfigResolver
             ToState = courierState,
             DateCreated = dtNow
         };
+        customer_wh2kitchen.Previous = null;
+        wh2kitchen_kitchen.Previous = customer_wh2kitchen;
+        kitchen_wh2courier.Previous = wh2kitchen_kitchen;
+        wh2courier_courier.Previous = kitchen_wh2courier;
         var transitions = new List<BusinessProcessStateTransition>
         {
             customer_wh2kitchen,

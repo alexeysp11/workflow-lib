@@ -21,6 +21,11 @@ namespace WorkflowLib.Examples.ServiceInteraction.Models
         public BusinessProcessState? ToState { get; set; }
 
         /// <summary>
+        /// Gets or sets the previous transition.
+        /// </summary>
+        public BusinessProcessStateTransition? Previous { get; set; }
+
+        /// <summary>
         /// Gets or sets the date when the transition was created.
         /// </summary>
         public System.DateTime? DateCreated { get; set; }

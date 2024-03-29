@@ -69,7 +69,7 @@ public class ServiceD : IImplicitService
         // Invoke next service using reflection.
         var type = Type.GetType(className);
         var instance = m_serviceProvider.GetRequiredService(type);
-        type.GetMethod(methodName).Invoke(instance, new object[]{m_workflowInstance.Id, 5});
+        type.GetMethod(methodName).Invoke(instance, new object[]{m_workflowInstance.Id, 3});
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
     }

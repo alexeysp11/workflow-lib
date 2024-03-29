@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WorkflowLib.Examples.ServiceInteraction.Core.Contexts;
@@ -11,9 +12,10 @@ using WorkflowLib.Examples.ServiceInteraction.Core.Contexts;
 namespace WorkflowLib.Examples.ServiceInteraction.Core.Migrations
 {
     [DbContext(typeof(ServiceInteractionContext))]
-    partial class ServiceInteractionContextModelSnapshot : ModelSnapshot
+    [Migration("20240329172901_AddNextBusinessProcessStateTransition")]
+    partial class AddNextBusinessProcessStateTransition
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,7 +119,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
-                    b.Property<long?>("PreviousId")
+                    b.Property<long?>("NextId")
                         .HasColumnType("bigint");
 
                     b.Property<long?>("ToStateId")
@@ -132,7 +134,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Migrations
 
                     b.HasIndex("FromStateId");
 
-                    b.HasIndex("PreviousId");
+                    b.HasIndex("NextId");
 
                     b.HasIndex("ToStateId");
 
@@ -441,9 +443,9 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Migrations
                         .WithMany()
                         .HasForeignKey("FromStateId");
 
-                    b.HasOne("WorkflowLib.Examples.ServiceInteraction.Models.BusinessProcessStateTransition", "Previous")
+                    b.HasOne("WorkflowLib.Examples.ServiceInteraction.Models.BusinessProcessStateTransition", "Next")
                         .WithMany()
-                        .HasForeignKey("PreviousId");
+                        .HasForeignKey("NextId");
 
                     b.HasOne("WorkflowLib.Examples.ServiceInteraction.Models.BusinessProcessState", "ToState")
                         .WithMany()
@@ -453,7 +455,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Migrations
 
                     b.Navigation("FromState");
 
-                    b.Navigation("Previous");
+                    b.Navigation("Next");
 
                     b.Navigation("ToState");
                 });

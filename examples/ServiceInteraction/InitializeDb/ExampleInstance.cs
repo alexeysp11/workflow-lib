@@ -42,7 +42,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.InitializeDb
             classNames.Add(kitchenBackendName, typeof(ServiceD).Name);
             classNames.Add(fileserviceBackendName, typeof(ServiceE).Name);
             
-            // m_configResolver.InitCommunicationConfigs();
+            m_configResolver.InitCommunicationConfigs();
             m_configResolver.InitMonolithEndpoints(classNames);
         }
     }
