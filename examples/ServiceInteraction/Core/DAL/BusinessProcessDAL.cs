@@ -79,6 +79,7 @@ public class BusinessProcessDAL
     public BusinessTask CreateBusinessTask(
         string taskName,
         string taskSubject,
+        BusinessProcessState? processState = null,
         BusinessTask parentTask = null,
         TaskPriority priority = TaskPriority.Low,
         bool isEmulation = false)
@@ -91,6 +92,7 @@ public class BusinessProcessDAL
             Uid = System.Guid.NewGuid().ToString(),
             Name = taskName,
             Subject = taskSubject,
+            BusinessProcessState = processState,
             ParentTask = parentTask,
             Priority = priority,
             IsEmulation = isEmulation
@@ -99,6 +101,8 @@ public class BusinessProcessDAL
         using var context = new ServiceInteractionContext(m_contextOptions);
         if (parentTask != null)
             context.BusinessTasks.Attach(parentTask);
+        if (processState != null)
+            context.BusinessProcessStates.Attach(processState);
         context.BusinessTasks.Add(businessTask);
         context.SaveChanges();
 
@@ -130,5 +134,45 @@ public class BusinessProcessDAL
         context.SaveChanges();
 
         return workflowTrackingItem;
+    }
+    
+    /// <summary>
+    /// Returns the next state of the business process by transaction ID.
+    /// </summary>
+    public BusinessProcessState GetBPStateByTransaction(long transitionId, bool isNextTask = true)
+    {
+        if (transitionId <= 0)
+            throw new System.ArgumentOutOfRangeException(nameof(transitionId), $"State transition ID should be positive, but '{transitionId}' was passed");
+
+        using var context = new ServiceInteractionContext(m_contextOptions);
+        var processState = context.BusinessProcessStateTransitions
+            .Where(x => x.Id == transitionId)
+            .Select(x => isNextTask ? x.ToState : x.FromState)
+            .FirstOrDefault();
+        return processState;
+    }
+    
+    /// <summary>
+    /// Returns a task instance for the given workflow instance ID and state transition ID.
+    /// </summary>
+    public BusinessTask GetNextBusinessTask(long workflowInstanceId, long transitionId)
+    {
+        if (workflowInstanceId <= 0)
+            throw new System.ArgumentOutOfRangeException(nameof(workflowInstanceId), $"Workflow instance ID should be positive, but '{workflowInstanceId}' was passed");
+        if (transitionId <= 0)
+            throw new System.ArgumentOutOfRangeException(nameof(transitionId), $"State transition ID should be positive, but '{transitionId}' was passed");
+
+        using var context = new ServiceInteractionContext(m_contextOptions);
+        var businessTask = 
+            (
+                from bt in context.BusinessTasks
+                join t in context.BusinessProcessStateTransitions
+                    on bt.BusinessProcessState.Id equals t.ToState.Id
+                join wti in context.WorkflowTrackingItems
+                    on bt.Id equals wti.ActiveTask.Id
+                where t.Id == transitionId && wti.WorkflowInstance.Id == workflowInstanceId
+                select bt
+            ).FirstOrDefault();
+        return businessTask;
     }
 }

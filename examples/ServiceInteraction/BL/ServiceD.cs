@@ -42,7 +42,7 @@ public class ServiceD : IImplicitService
         {
             if (m_workflowInstance == null)
                 m_workflowInstance = m_endpointServiceResolver.GetWorkflowInstanceById(workflowInstanceId);
-            m_endpointServiceResolver.CreateTaskWorkflowInstance(m_workflowInstance, "ServiceD-ServiceB");
+            m_endpointServiceResolver.CreateBusinessTaskByWI(m_workflowInstance, "ServiceD-ServiceB", transitionId);
             CallServiceB();
         }
         catch (System.Exception ex)

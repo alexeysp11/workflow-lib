@@ -84,7 +84,7 @@ public class ServiceA : IImplicitService
         {
             CallServiceE();
 
-            m_endpointServiceResolver.CreateTaskWorkflowInstance(m_workflowInstance, "ServiceA-ServiceB");
+            m_endpointServiceResolver.CreateBusinessTaskByWI(m_workflowInstance, "ServiceA-ServiceB", 1, false);
             CallServiceB();
         }
         catch (System.Exception ex)
@@ -105,7 +105,7 @@ public class ServiceA : IImplicitService
 
         try
         {
-            m_workflowInstance = m_endpointServiceResolver.CreateBusinessProcessInstance("Delivering of the order", "ServiceA");           
+            m_workflowInstance = m_endpointServiceResolver.CreateInitialWI("Delivering of the order", "ServiceA");           
             CallNextService();
         }
         catch (System.Exception ex)

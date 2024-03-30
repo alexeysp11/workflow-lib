@@ -80,7 +80,7 @@ public class EndpointServiceResolver
     /// <summary>
     /// Initializes a business process instance.
     /// </summary>
-    public WorkflowInstance CreateBusinessProcessInstance(string processName, string taskName)
+    public WorkflowInstance CreateInitialWI(string processName, string taskName)
     {
         if (string.IsNullOrEmpty(processName))
             throw new System.ArgumentNullException(nameof(processName));
@@ -95,7 +95,7 @@ public class EndpointServiceResolver
         if (workflowInstance == null)
             throw new System.Exception($"Workflow instance is not created (processName: {processName})");
         
-        CreateTaskWorkflowInstance(workflowInstance, taskName);
+        CreateBusinessTaskByWI(workflowInstance, taskName);
         
         return workflowInstance;
     }
@@ -103,22 +103,48 @@ public class EndpointServiceResolver
     /// <summary>
     /// Create a task for a workflow instance.
     /// </summary>
-    public void CreateTaskWorkflowInstance(WorkflowInstance workflowInstance, string taskName)
+    public BusinessTask CreateBusinessTaskByWI(
+        WorkflowInstance workflowInstance, 
+        string taskName, 
+        long? transitionId = null, 
+        bool isNextTask = true)
     {
         if (workflowInstance == null)
             throw new System.ArgumentNullException(nameof(workflowInstance));
         if (string.IsNullOrEmpty(taskName))
             throw new System.ArgumentNullException(nameof(taskName));
         
+        // Get business state by transition ID.
+        BusinessProcessState processState = null;
+        if (transitionId != null)
+        {
+            processState = m_businessProcessDAL.GetBPStateByTransaction(transitionId.Value, isNextTask);
+            if (processState == null)
+                throw new System.Exception($"Process state could not be found with for the specified transition (transitionId: {transitionId.Value}, isNextTask: {isNextTask})");
+        }
+        
         // Create business task.
         string taskSubject = $"{workflowInstance.Id}. {taskName} ({workflowInstance.Name})";
-        var businessTask = m_businessProcessDAL.CreateBusinessTask(taskName, taskSubject);
+        var businessTask = m_businessProcessDAL.CreateBusinessTask(taskName, taskSubject, processState);
         if (businessTask == null)
-            throw new System.Exception($"Business task is not created (processName: workflowInstance.Id: {workflowInstance.Id}, taskName: {taskName})");
+            throw new System.Exception($"Business task is not created (workflowInstance.Id: {workflowInstance.Id}, taskName: {taskName})");
 
         // Create workflow tracking item.
         var workflowTrackingItem = m_businessProcessDAL.CreateWorkflowTrackingItem(workflowInstance, businessTask);
         if (workflowTrackingItem == null)
-            throw new System.Exception($"Workflow tracking item is not created (processName: workflowInstance.Id: {workflowInstance.Id}, taskName: {taskName})");
+            throw new System.Exception($"Workflow tracking item is not created (workflowInstance.Id: {workflowInstance.Id}, taskName: {taskName})");
+
+        return businessTask;
+    }
+
+    /// <summary>
+    /// Returns a next task instance for the given state transition ID.
+    /// </summary>
+    public BusinessTask GetNextBusinessTask(long workflowInstanceId, long transitionId)
+    {
+        var businessTask = m_businessProcessDAL.GetNextBusinessTask(workflowInstanceId, transitionId);
+        if (businessTask == null)
+            throw new System.Exception($"Business task could not be found by the state transition ID (workflowInstanceId: {workflowInstanceId}, transitionId: {transitionId})");
+        return businessTask;
     }
 }

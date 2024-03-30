@@ -42,7 +42,7 @@ public class ServiceB : IImplicitService
         {
             if (m_workflowInstance == null)
                 m_workflowInstance = m_endpointServiceResolver.GetWorkflowInstanceById(workflowInstanceId);
-            m_endpointServiceResolver.CreateTaskWorkflowInstance(m_workflowInstance, "ServiceB-ServiceD");
+            m_endpointServiceResolver.CreateBusinessTaskByWI(m_workflowInstance, "ServiceB-ServiceD", transitionId);
             CallServiceD();
         }
         catch (System.Exception ex)
@@ -65,7 +65,7 @@ public class ServiceB : IImplicitService
         {
             if (m_workflowInstance == null)
                 m_workflowInstance = m_endpointServiceResolver.GetWorkflowInstanceById(workflowInstanceId);
-            m_endpointServiceResolver.CreateTaskWorkflowInstance(m_workflowInstance, "ServiceB-ServiceC");
+            m_endpointServiceResolver.CreateBusinessTaskByWI(m_workflowInstance, "ServiceB-ServiceC", transitionId);
             CallServiceC();
         }
         catch (System.Exception ex)
