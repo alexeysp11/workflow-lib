@@ -26,9 +26,8 @@ namespace WorkflowLib.DbConnections
             return this; 
         }
 
-        public SqlResultWF ExecuteSqlCommand(string sqlRequest)
+        public DataTable ExecuteSqlCommand(string sqlRequest)
         {
-            SqlResultWF result = new SqlResultWF();
             DataTable table = new DataTable(); 
             MySqlConnection connection = null; 
             try
@@ -36,8 +35,7 @@ namespace WorkflowLib.DbConnections
                 connection = new MySqlConnection(string.IsNullOrEmpty(DataSource) ? ConnString : DataSource);
                 connection.Open();
                 var reader = (new MySqlCommand(sqlRequest, connection)).ExecuteReader();
-                table = GetDataTable(reader); 
-                result.DataTableResult = table;
+                table = GetDataTable(reader);
             }
             catch (System.Exception)
             {
@@ -47,7 +45,7 @@ namespace WorkflowLib.DbConnections
             {
                 if (connection != null) connection.Close();
             }
-            return result; 
+            return table;
         }
 
         public new string GetSqlFromDataTable(DataTable dt, string tableName)

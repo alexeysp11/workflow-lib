@@ -25,9 +25,8 @@ namespace WorkflowLib.DbConnections
             return this; 
         }
 
-        public SqlResultWF ExecuteSqlCommand(string sqlRequest)
+        public DataTable ExecuteSqlCommand(string sqlRequest)
         {
-            SqlResultWF result = new SqlResultWF();
             DataTable table = new DataTable(); 
             SqlConnection connection = null; 
             try 
@@ -41,8 +40,7 @@ namespace WorkflowLib.DbConnections
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            table = GetDataTable(reader); 
-                            result.DataTableResult = table;
+                            table = GetDataTable(reader);
                         }
                     }
                 }
@@ -59,7 +57,7 @@ namespace WorkflowLib.DbConnections
             {
                 if (connection != null) connection.Close();
             }
-            return result; 
+            return table; 
         }
 
         public new string GetSqlFromDataTable(DataTable dt, string tableName)

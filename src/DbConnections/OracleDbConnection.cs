@@ -25,9 +25,8 @@ namespace WorkflowLib.DbConnections
             return this; 
         }
 
-        public SqlResultWF ExecuteSqlCommand(string sqlRequest)
+        public DataTable ExecuteSqlCommand(string sqlRequest)
         {
-            SqlResultWF result = new SqlResultWF();
             DataTable table = new DataTable();
             using (OracleConnection con = new OracleConnection(string.IsNullOrEmpty(DataSource) ? ConnString : DataSource))
             {
@@ -37,11 +36,10 @@ namespace WorkflowLib.DbConnections
                     using (OracleDataReader dr = cmd.ExecuteReader())
                     {
                         table.Load(dr);
-                        result.DataTableResult = table;
                     }
                 }
             }
-            return result;
+            return table;
         }
 
         public new string GetSqlFromDataTable(DataTable dt, string tableName)

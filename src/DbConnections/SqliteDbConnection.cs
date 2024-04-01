@@ -45,9 +45,8 @@ namespace WorkflowLib.DbConnections
         /// <summary>
         /// Executes SQL string and returns DataTable
         /// </summary>
-        public SqlResultWF ExecuteSqlCommand(string sqlRequest)
+        public DataTable ExecuteSqlCommand(string sqlRequest)
         {
-            SqlResultWF result = new SqlResultWF();
             DataTable table = new DataTable(); 
             var connectionStringBuilder = new SqliteConnectionStringBuilder();
             connectionStringBuilder.DataSource = AbsolutePathToDb;
@@ -61,7 +60,6 @@ namespace WorkflowLib.DbConnections
                     using (var reader = selectCmd.ExecuteReader())
                     {
                         table.Load(reader);
-                        result.DataTableResult = table;
                     }
                 }
                 catch (System.Exception)
@@ -69,7 +67,7 @@ namespace WorkflowLib.DbConnections
                     throw; 
                 }
             }
-            return result; 
+            return table; 
         }
 
         public new string GetSqlFromDataTable(DataTable dt, string tableName)

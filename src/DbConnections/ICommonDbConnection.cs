@@ -11,7 +11,7 @@ namespace WorkflowLib.DbConnections
         /// <summary>
         /// Execute SQL command.
         /// </summary>
-        SqlResultWF ExecuteSqlCommand(string sqlRequest); 
+        DataTable ExecuteSqlCommand(string sqlRequest); 
         
         /// <summary>
         /// Gets SQL definition of the DataTable object.

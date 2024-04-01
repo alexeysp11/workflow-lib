@@ -25,9 +25,8 @@ namespace WorkflowLib.DbConnections
             return this; 
         }
 
-        public SqlResultWF ExecuteSqlCommand(string sqlRequest)
+        public DataTable ExecuteSqlCommand(string sqlRequest)
         {
-            SqlResultWF result = new SqlResultWF();
             DataTable table = new DataTable(); 
             using (var conn = new NpgsqlConnection(string.IsNullOrEmpty(DataSource) ? ConnString : DataSource))
             {
@@ -37,10 +36,9 @@ namespace WorkflowLib.DbConnections
                     var reader = command.ExecuteReader();
                     table = GetDataTable(reader); 
                     reader.Close();
-                    result.DataTableResult = table;
                 }
             }
-            return result; 
+            return table; 
         }
 
         public new string GetSqlFromDataTable(DataTable dt, string tableName)
