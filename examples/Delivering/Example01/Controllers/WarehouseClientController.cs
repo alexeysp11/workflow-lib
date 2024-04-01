@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using Cims.WorkflowLib.Models.Business.BusinessDocuments;
-using Cims.WorkflowLib.Models.Business.Delivery;
-using Cims.WorkflowLib.Models.Network;
-using Cims.WorkflowLib.Examples.Delivering.Example01.Contexts;
-using Cims.WorkflowLib.Examples.Delivering.Example01.Interfaces;
+using WorkflowLib.Models.Business.BusinessDocuments;
+using WorkflowLib.Models.Business.Delivery;
+using WorkflowLib.Models.Network;
+using WorkflowLib.Examples.Delivering.Example01.Contexts;
+using WorkflowLib.Examples.Delivering.Example01.Interfaces;
 
-namespace Cims.WorkflowLib.Examples.Delivering.Example01.Controllers
+namespace WorkflowLib.Examples.Delivering.Example01.Controllers
 {
     /// <summary>
     /// Client-side app controller that serves requests from the kitchen employees.

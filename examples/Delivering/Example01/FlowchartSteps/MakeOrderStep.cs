@@ -1,13 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Cims.WorkflowLib.Extensions;
-using Cims.WorkflowLib.Models.Business.BusinessDocuments;
-using Cims.WorkflowLib.Models.Business.Monetary;
-using Cims.WorkflowLib.Models.Network;
-using Cims.WorkflowLib.Examples.Delivering.Example01.Contexts;
-using Cims.WorkflowLib.Examples.Delivering.Example01.Controllers;
+using WorkflowLib.Extensions;
+using WorkflowLib.Models.Business.BusinessDocuments;
+using WorkflowLib.Models.Business.Monetary;
+using WorkflowLib.Models.Network;
+using WorkflowLib.Examples.Delivering.Example01.Contexts;
+using WorkflowLib.Examples.Delivering.Example01.Controllers;
 
-namespace Cims.WorkflowLib.Examples.Delivering.Example01.FlowchartSteps
+namespace WorkflowLib.Examples.Delivering.Example01.FlowchartSteps
 {
     /// <summary>
     /// The step that allows the customer to place an order.

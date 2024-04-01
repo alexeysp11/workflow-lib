@@ -1,17 +1,17 @@
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Cims.WorkflowLib.Extensions;
-using Cims.WorkflowLib.Models.Business;
-using Cims.WorkflowLib.Models.Business.BusinessDocuments;
-using Cims.WorkflowLib.Models.Business.Customers;
-using Cims.WorkflowLib.Models.Business.Monetary;
-using Cims.WorkflowLib.Models.Business.Products;
-using Cims.WorkflowLib.Models.Network;
-using Cims.WorkflowLib.Examples.Delivering.Example01.Contexts;
-using Cims.WorkflowLib.Examples.Delivering.Example01.Interfaces;
+using WorkflowLib.Extensions;
+using WorkflowLib.Models.Business;
+using WorkflowLib.Models.Business.BusinessDocuments;
+using WorkflowLib.Models.Business.Customers;
+using WorkflowLib.Models.Business.Monetary;
+using WorkflowLib.Models.Business.Products;
+using WorkflowLib.Models.Network;
+using WorkflowLib.Examples.Delivering.Example01.Contexts;
+using WorkflowLib.Examples.Delivering.Example01.Interfaces;
 
-namespace Cims.WorkflowLib.Examples.Delivering.Example01.Controllers
+namespace WorkflowLib.Examples.Delivering.Example01.Controllers
 {
     /// <summary>
     /// A class that represents a backend service controller that processes requests from the customer.

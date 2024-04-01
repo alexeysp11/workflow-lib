@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using Cims.WorkflowLib.Models.Business.BusinessDocuments;
-using Cims.WorkflowLib.Models.Business.Products;
-using Cims.WorkflowLib.Models.Network;
-using Cims.WorkflowLib.Examples.Delivering.Example01.Controllers;
-using Cims.WorkflowLib.Examples.Delivering.Example01.Contexts;
+using WorkflowLib.Models.Business.BusinessDocuments;
+using WorkflowLib.Models.Business.Products;
+using WorkflowLib.Models.Network;
+using WorkflowLib.Examples.Delivering.Example01.Controllers;
+using WorkflowLib.Examples.Delivering.Example01.Contexts;
 
-namespace Cims.WorkflowLib.Examples.Delivering.Example01.FlowchartSteps
+namespace WorkflowLib.Examples.Delivering.Example01.FlowchartSteps
 {
     /// <summary>
     /// The step that consists of confirming delivery from the store to the warehouse 

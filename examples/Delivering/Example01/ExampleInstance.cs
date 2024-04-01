@@ -2,17 +2,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using Cims.WorkflowLib.Models.Business;
-using Cims.WorkflowLib.Models.Business.BusinessDocuments;
-using Cims.WorkflowLib.Models.Business.Customers;
-using Cims.WorkflowLib.Models.Business.InformationSystem;
-using Cims.WorkflowLib.Models.Business.Processes;
-using Cims.WorkflowLib.Models.Business.Products;
-using Cims.WorkflowLib.Examples.Delivering.Example01.Contexts;
-using Cims.WorkflowLib.Examples.Delivering.Example01.FlowchartSteps;
-using Cims.WorkflowLib.Examples.Delivering.Example01.Interfaces;
+using WorkflowLib.Models.Business;
+using WorkflowLib.Models.Business.BusinessDocuments;
+using WorkflowLib.Models.Business.Customers;
+using WorkflowLib.Models.Business.InformationSystem;
+using WorkflowLib.Models.Business.Processes;
+using WorkflowLib.Models.Business.Products;
+using WorkflowLib.Examples.Delivering.Example01.Contexts;
+using WorkflowLib.Examples.Delivering.Example01.FlowchartSteps;
+using WorkflowLib.Examples.Delivering.Example01.Interfaces;
 
-namespace Cims.WorkflowLib.Examples.Delivering.Example01
+namespace WorkflowLib.Examples.Delivering.Example01
 {
     /// <summary>
     /// The class that is responsible for initializing this example.

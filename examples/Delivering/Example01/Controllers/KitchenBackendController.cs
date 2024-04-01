@@ -1,14 +1,14 @@
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using Cims.WorkflowLib.Extensions;
-using Cims.WorkflowLib.Models.Business.BusinessDocuments;
-using Cims.WorkflowLib.Models.Business.Cooking;
-using Cims.WorkflowLib.Models.Business.Customers;
-using Cims.WorkflowLib.Models.Network;
-using Cims.WorkflowLib.Models.Business.Processes;
-using Cims.WorkflowLib.Examples.Delivering.Example01.Contexts;
+using WorkflowLib.Extensions;
+using WorkflowLib.Models.Business.BusinessDocuments;
+using WorkflowLib.Models.Business.Cooking;
+using WorkflowLib.Models.Business.Customers;
+using WorkflowLib.Models.Network;
+using WorkflowLib.Models.Business.Processes;
+using WorkflowLib.Examples.Delivering.Example01.Contexts;
 
-namespace Cims.WorkflowLib.Examples.Delivering.Example01.Controllers
+namespace WorkflowLib.Examples.Delivering.Example01.Controllers
 {
     /// <summary>
     /// Backend service controller that serves requests from the kitchen employees.

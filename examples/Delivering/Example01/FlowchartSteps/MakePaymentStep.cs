@@ -1,13 +1,13 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Cims.WorkflowLib.Extensions;
-using Cims.WorkflowLib.Models.Business.Monetary;
-using Cims.WorkflowLib.Models.Network;
-using Cims.WorkflowLib.Examples.Delivering.Example01.Controllers;
-using Cims.WorkflowLib.Examples.Delivering.Example01.Contexts;
+using WorkflowLib.Extensions;
+using WorkflowLib.Models.Business.Monetary;
+using WorkflowLib.Models.Network;
+using WorkflowLib.Examples.Delivering.Example01.Controllers;
+using WorkflowLib.Examples.Delivering.Example01.Contexts;
 
-namespace Cims.WorkflowLib.Examples.Delivering.Example01.FlowchartSteps
+namespace WorkflowLib.Examples.Delivering.Example01.FlowchartSteps
 {
     /// <summary>
     /// A step that allows you to make electronic payment on the site.

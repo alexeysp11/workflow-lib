@@ -1,14 +1,14 @@
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Cims.WorkflowLib.Models.Business.BusinessDocuments;
-using Cims.WorkflowLib.Models.Business.Monetary;
-using Cims.WorkflowLib.Models.Business.Products;
-using Cims.WorkflowLib.Models.Network;
-using Cims.WorkflowLib.Examples.Delivering.Example01.Contexts;
-using Cims.WorkflowLib.Examples.Delivering.Example01.Interfaces;
+using WorkflowLib.Models.Business.BusinessDocuments;
+using WorkflowLib.Models.Business.Monetary;
+using WorkflowLib.Models.Business.Products;
+using WorkflowLib.Models.Network;
+using WorkflowLib.Examples.Delivering.Example01.Contexts;
+using WorkflowLib.Examples.Delivering.Example01.Interfaces;
 
-namespace Cims.WorkflowLib.Examples.Delivering.Example01.Controllers
+namespace WorkflowLib.Examples.Delivering.Example01.Controllers
 {
     /// <summary>
     /// A class that represents a client-side app controller that processes requests from the customer.

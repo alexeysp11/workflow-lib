@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-using Cims.WorkflowLib.Models.Network;
-using Cims.WorkflowLib.Examples.Delivering.Example01.Controllers;
-using Cims.WorkflowLib.Examples.Delivering.Example01.Contexts;
-using Cims.WorkflowLib.Models.Business.BusinessDocuments;
+using WorkflowLib.Models.Network;
+using WorkflowLib.Examples.Delivering.Example01.Controllers;
+using WorkflowLib.Examples.Delivering.Example01.Contexts;
+using WorkflowLib.Models.Business.BusinessDocuments;
 
-namespace Cims.WorkflowLib.Examples.Delivering.Example01.FlowchartSteps
+namespace WorkflowLib.Examples.Delivering.Example01.FlowchartSteps
 {
     /// <summary>
     /// A step that allows you to directly deliver the order to the customer.

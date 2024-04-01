@@ -1,7 +1,7 @@
-using Cims.WorkflowLib.Models.Business.Monetary;
-using Cims.WorkflowLib.Models.Business.BusinessDocuments;
+using WorkflowLib.Models.Business.Monetary;
+using WorkflowLib.Models.Business.BusinessDocuments;
 
-namespace Cims.WorkflowLib.Examples.Delivering.Example01.Interfaces
+namespace WorkflowLib.Examples.Delivering.Example01.Interfaces
 {
     public interface ICustomerClient
     {

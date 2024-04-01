@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Cims.WorkflowLib.Examples.Delivering.Example01;
-using Cims.WorkflowLib.Examples.Delivering.Example01.Contexts;
-using Cims.WorkflowLib.Examples.Delivering.Example01.Controllers;
-using Cims.WorkflowLib.Examples.Delivering.Example01.FlowchartSteps;
+using WorkflowLib.Examples.Delivering.Example01;
+using WorkflowLib.Examples.Delivering.Example01.Contexts;
+using WorkflowLib.Examples.Delivering.Example01.Controllers;
+using WorkflowLib.Examples.Delivering.Example01.FlowchartSteps;
 
 IHost _host = Host.CreateDefaultBuilder().ConfigureServices(
     services => {
