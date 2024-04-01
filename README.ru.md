@@ -94,7 +94,7 @@ git clone https://github.com/alexeysp11/workflow-lib.git
 2. В `csproj` файле таргет-проекта добавить ссылку на данный репозиторий: 
 ```XML
   <ItemGroup>
-    <ProjectReference Include="../../workflow-lib/src/Cims.WorkflowLib.csproj" />
+    <ProjectReference Include="../../workflow-lib/src/WorkflowLib.csproj" />
   </ItemGroup>
 ```
 <!--

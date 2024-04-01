@@ -94,7 +94,7 @@ git clone https://github.com/alexeysp11/workflow-lib.git
 2. Add the reference to the repository in the `csproj` file of your target project: 
 ```XML
   <ItemGroup>
-    <ProjectReference Include="../../workflow-lib/src/Cims.WorkflowLib.csproj" />
+    <ProjectReference Include="../../workflow-lib/src/WorkflowLib.csproj" />
   </ItemGroup>
 ```
 
