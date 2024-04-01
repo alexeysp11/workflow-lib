@@ -1,7 +1,6 @@
 using System.Data; 
 using MySql.Data;
 using MySql.Data.MySqlClient;
-using WorkflowLib.Models.Database;
 
 namespace WorkflowLib.DbConnections
 {

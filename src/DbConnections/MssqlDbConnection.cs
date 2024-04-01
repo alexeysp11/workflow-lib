@@ -1,6 +1,5 @@
 using System.Data; 
 using Microsoft.Data.SqlClient;
-using WorkflowLib.Models.Database;
 
 namespace WorkflowLib.DbConnections
 {

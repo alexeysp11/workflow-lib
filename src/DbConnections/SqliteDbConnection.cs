@@ -1,6 +1,5 @@
 using System.Data; 
 using Microsoft.Data.Sqlite;
-using WorkflowLib.Models.Database;
 
 namespace WorkflowLib.DbConnections
 {

@@ -1,6 +1,5 @@
 using System.Data; 
 using Oracle.ManagedDataAccess.Client;
-using WorkflowLib.Models.Database;
 
 namespace WorkflowLib.DbConnections
 {

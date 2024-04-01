@@ -1,6 +1,5 @@
 using System.Data; 
 using Npgsql;
-using WorkflowLib.Models.Database;
 
 namespace WorkflowLib.DbConnections
 {
