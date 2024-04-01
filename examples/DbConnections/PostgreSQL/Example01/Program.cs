@@ -1,7 +1,7 @@
-﻿using Cims.WorkflowLib.Models.Business;
-using Cims.WorkflowLib.Models.Business.Delivery;
-using Cims.WorkflowLib.Models.Business.Products;
-using Cims.WorkflowLib.Examples.DbConnections.PostgreSQL.Example01.Resolvers;
+﻿using WorkflowLib.Models.Business;
+using WorkflowLib.Models.Business.Delivery;
+using WorkflowLib.Models.Business.Products;
+using WorkflowLib.Examples.DbConnections.PostgreSQL.Example01.Resolvers;
 
 IEnumerable<Product> menuItems = new List<Product>();
 IEnumerable<ProductCategory> categories = new List<ProductCategory>();

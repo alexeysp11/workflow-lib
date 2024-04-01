@@ -1,9 +1,9 @@
 using System.Data;
 using System.Linq;
-using Cims.WorkflowLib.DbConnections;
-using Cims.WorkflowLib.Models.Business.Products;
+using WorkflowLib.DbConnections;
+using WorkflowLib.Models.Business.Products;
 
-namespace Cims.WorkflowLib.Examples.DbConnections.PostgreSQL.Example01.Resolvers;
+namespace WorkflowLib.Examples.DbConnections.PostgreSQL.Example01.Resolvers;
 
 /// <summary>
 /// Menu resolver.
@@ -87,7 +87,7 @@ select
     dcc.picture_description
 from delivery_category_cc dcc
 ;";
-        return PgDbConnection.ExecuteSqlCommand(sql).DataTableResult;
+        return PgDbConnection.ExecuteSqlCommand(sql);
     }
 
     /// <summary>
@@ -107,6 +107,6 @@ select
 from delivery_menuitem_cc dmc
 order by dmc.delivery_menuitem_cc_id, dmc.delivery_category_cc_id
 ;";
-        return PgDbConnection.ExecuteSqlCommand(sql).DataTableResult;
+        return PgDbConnection.ExecuteSqlCommand(sql);
     }
 }
