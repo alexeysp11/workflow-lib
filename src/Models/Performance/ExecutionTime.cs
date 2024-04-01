@@ -1,11 +1,9 @@
-using WorkflowLib.Models.Business;
-
 namespace WorkflowLib.Models.Performance
 {
     /// <summary>
     /// Represents the execution time of the operation (could be used for measuring performance).
     /// </summary>
-    public class ExecutionTime : BusinessEntityWF, IBusinessEntityWF
+    public struct ExecutionTime
     {
         /// <summary>
         /// Timestamp when the operation started.
