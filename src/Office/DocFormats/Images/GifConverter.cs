@@ -2,7 +2,7 @@ using System.IO;
 using System.Drawing; 
 using System.Linq; 
 
-namespace WorkflowLib.DocFormats.Images
+namespace WorkflowLib.Office.DocFormats.Images
 {
     /// <summary>
     /// GIF converter.

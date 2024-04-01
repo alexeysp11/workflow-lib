@@ -5,12 +5,12 @@ using iText.Layout;
 using iText.Layout.Element; 
 using WorkflowLib.Models.Documents; 
 
-namespace WorkflowLib.DocFormats
+namespace WorkflowLib.Office.DocFormats
 {
     /// <summary>
     /// Class for using PDF (PDF converter)
     /// </summary>
-    public class PdfConverter : WorkflowLib.DocFormats.TextBased.ITextBased
+    public class PdfConverter : WorkflowLib.Office.DocFormats.TextBased.ITextBased
     {
         /// <summary>
         /// Method for converting a list of TextDocElement into TXT document.

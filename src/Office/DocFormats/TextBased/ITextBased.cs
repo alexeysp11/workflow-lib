@@ -1,7 +1,7 @@
 using System.IO; 
 using WorkflowLib.Models.Documents; 
 
-namespace WorkflowLib.DocFormats.TextBased
+namespace WorkflowLib.Office.DocFormats.TextBased
 {
     /// <summary>
     /// Interface for using text based documents.

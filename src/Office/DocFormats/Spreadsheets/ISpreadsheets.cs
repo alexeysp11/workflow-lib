@@ -1,6 +1,6 @@
 using WorkflowLib.Models.Documents; 
 
-namespace WorkflowLib.DocFormats.Spreadsheets
+namespace WorkflowLib.Office.DocFormats.Spreadsheets
 {
     /// <summary>
     /// Interface for using spreadsheets.

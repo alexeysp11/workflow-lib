@@ -2,7 +2,7 @@ using System.IO;
 using System.Linq; 
 using WorkflowLib.Models.Documents; 
 
-namespace WorkflowLib.DocFormats.TextBased
+namespace WorkflowLib.Office.DocFormats.TextBased
 {
     /// <summary>
     /// Class for using TXT documents 

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WorkflowLib.Translation.Digits
+namespace WorkflowLib.Office.Translation.Digits
 {
     /// <summary>
     /// Digits translation (Russian).

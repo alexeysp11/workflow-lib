@@ -1,4 +1,4 @@
-namespace WorkflowLib.DocFormats.Images
+namespace WorkflowLib.Office.DocFormats.Images
 {
     /// <summary>
     /// Interface for image converter.

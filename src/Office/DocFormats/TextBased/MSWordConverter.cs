@@ -6,7 +6,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 using OpenXmlPowerTools;
 using WorkflowLib.Models.Documents;
 
-namespace WorkflowLib.DocFormats.TextBased
+namespace WorkflowLib.Office.DocFormats.TextBased
 {
     /// <summary>
     /// Class for using MS Word (MS Word converter)

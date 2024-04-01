@@ -7,12 +7,12 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using WorkflowLib.Models.Documents; 
 
-namespace WorkflowLib.DocFormats.Spreadsheets
+namespace WorkflowLib.Office.DocFormats.Spreadsheets
 {
     /// <summary>
     /// Class for using MS Excel (MS Excel converter).
     /// </summary>
-    public class MSExcelConverter : WorkflowLib.DocFormats.Spreadsheets.ISpreadsheets
+    public class MSExcelConverter : WorkflowLib.Office.DocFormats.Spreadsheets.ISpreadsheets
     {
         /// <summary>
         /// Method for converting a list of SpreadsheetElement into Excel document.
