@@ -4,11 +4,11 @@ using System.Linq;
 using System.Reflection;
 using System.Data; 
 using Xunit;
-using WorkflowLib.DocFormats; 
+using WorkflowLib.Office.DocFormats; 
 using WorkflowLib.Models.Documents; 
 using WorkflowLib.Models.Documents.Enums; 
 
-namespace Cims.Tests.WorkflowLib.DocFormats
+namespace Cims.Tests.WorkflowLib.Office.DocFormats
 {
     public class PdfConverterTest
     {

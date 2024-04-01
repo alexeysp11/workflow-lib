@@ -4,11 +4,11 @@ using System.Linq;
 using System.Reflection;
 using System.Data; 
 using Xunit;
-using WorkflowLib.DocFormats.Spreadsheets; 
+using WorkflowLib.Office.DocFormats.Spreadsheets; 
 using WorkflowLib.Models.Documents; 
 using WorkflowLib.Models.Documents.Enums; 
 
-namespace Cims.Tests.WorkflowLib.DocFormats.Spreadsheets
+namespace Cims.Tests.WorkflowLib.Office.DocFormats.Spreadsheets
 {
     public class MSExcelConverterTest
     {

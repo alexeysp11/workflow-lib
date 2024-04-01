@@ -4,9 +4,9 @@ using System.Linq;
 using System.Reflection;
 using System.Data; 
 using Xunit;
-using WorkflowLib.DocFormats.Images; 
+using WorkflowLib.Office.DocFormats.Images; 
 
-namespace Cims.Tests.WorkflowLib.DocFormats.Images
+namespace Cims.Tests.WorkflowLib.Office.DocFormats.Images
 {
     public class JpegConverterTest
     {
