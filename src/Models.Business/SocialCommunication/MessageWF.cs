@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Http;
-using MimeKit;
 using WorkflowLib.Models.Business;
 using WorkflowLib.Models.Business.InformationSystem;
 using WorkflowLib.Models.Documents;
@@ -68,19 +66,9 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         public virtual ICollection<UserAccount> UserRecipients { get; set; }
 
         /// <summary>
-        /// Collection of mailbox addresses of recipients.
-        /// </summary>
-        public List<MailboxAddress> To { get; set; }
-
-        /// <summary>
         /// Collection of attachments of the message.
         /// </summary>
         public ICollection<Attachment> Attachments { get; set; }
-
-        /// <summary>
-        /// Represents the collection of files sent with the HttpRequest.
-        /// </summary>
-        public IFormFileCollection AttachmentsHttpRequest { get; set; }
         
         /// <summary>
         /// Timestamp when the message was sent.
