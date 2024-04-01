@@ -1,7 +1,7 @@
 using System;
 using System.Data; 
 using Xunit;
-using Cims.WorkflowLib.DbConnections; 
+using WorkflowLib.DbConnections; 
 
 namespace Cims.Tests.WorkflowLib.DbConnections
 {

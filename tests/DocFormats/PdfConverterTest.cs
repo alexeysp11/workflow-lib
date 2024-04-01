@@ -4,9 +4,9 @@ using System.Linq;
 using System.Reflection;
 using System.Data; 
 using Xunit;
-using Cims.WorkflowLib.DocFormats; 
-using Cims.WorkflowLib.Models.Documents; 
-using Cims.WorkflowLib.Models.Documents.Enums; 
+using WorkflowLib.DocFormats; 
+using WorkflowLib.Models.Documents; 
+using WorkflowLib.Models.Documents.Enums; 
 
 namespace Cims.Tests.WorkflowLib.DocFormats
 {

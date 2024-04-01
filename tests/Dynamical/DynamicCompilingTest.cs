@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Xunit;
-using Cims.WorkflowLib.Dynamical; 
+using WorkflowLib.Dynamical; 
 
 namespace Cims.Tests.WorkflowLib.Dynamical
 {

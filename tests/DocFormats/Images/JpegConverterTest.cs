@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Data; 
 using Xunit;
-using Cims.WorkflowLib.DocFormats.Images; 
+using WorkflowLib.DocFormats.Images; 
 
 namespace Cims.Tests.WorkflowLib.DocFormats.Images
 {

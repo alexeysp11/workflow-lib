@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../src/Cims.WorkflowLib.csproj" />
+    <ProjectReference Include="../src/WorkflowLib.csproj" />
   </ItemGroup>
 
 </Project>
