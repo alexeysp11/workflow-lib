@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Cims.WorkflowLib.Models.Network;
+using WorkflowLib.Models.Network;
 
 namespace WorkflowLib.Examples.Network.Example01.Controllers;
 
