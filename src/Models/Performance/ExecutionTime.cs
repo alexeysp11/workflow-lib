@@ -1,6 +1,6 @@
-using Cims.WorkflowLib.Models.Business;
+using WorkflowLib.Models.Business;
 
-namespace Cims.WorkflowLib.Models.Performance
+namespace WorkflowLib.Models.Performance
 {
     /// <summary>
     /// Represents the execution time of the operation (could be used for measuring performance).

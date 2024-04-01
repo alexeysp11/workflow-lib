@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Cims.WorkflowLib.Models.Documents.Enums
+namespace WorkflowLib.Models.Documents.Enums
 {
     /// <summary>
     /// Attachment file type.

@@ -1,6 +1,6 @@
 using System.Data; 
 
-namespace Cims.WorkflowLib.DbConnections
+namespace WorkflowLib.DbConnections
 {
     /// <summary>
     /// Base database connection.

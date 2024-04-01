@@ -1,4 +1,4 @@
-namespace Cims.WorkflowLib.Models.Database 
+namespace WorkflowLib.Models.Database 
 {
     /// <summary>
     /// DB settings.

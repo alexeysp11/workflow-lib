@@ -1,8 +1,8 @@
 using System.Data; 
 using Oracle.ManagedDataAccess.Client;
-using Cims.WorkflowLib.Models.Database;
+using WorkflowLib.Models.Database;
 
-namespace Cims.WorkflowLib.DbConnections
+namespace WorkflowLib.DbConnections
 {
     /// <summary>
     /// Oracle database connection.

@@ -1,8 +1,8 @@
 using System.Data; 
 using Npgsql;
-using Cims.WorkflowLib.Models.Database;
+using WorkflowLib.Models.Database;
 
-namespace Cims.WorkflowLib.DbConnections
+namespace WorkflowLib.DbConnections
 {
     /// <summary>
     /// PostgreSQL database connection.

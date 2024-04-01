@@ -1,4 +1,4 @@
-namespace Cims.WorkflowLib.Models.Network.MicroserviceConfigurations
+namespace WorkflowLib.Models.Network.MicroserviceConfigurations
 {
     /// <summary>
     /// Record that stores details about the network interaction.
@@ -8,7 +8,7 @@ namespace Cims.WorkflowLib.Models.Network.MicroserviceConfigurations
         /// <summary>
         /// ID of the network interaction details.
         /// </summary>
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         /// <summary>
         /// Type of the network interaction details.

@@ -1,8 +1,8 @@
 using System.Data; 
 using Microsoft.Data.Sqlite;
-using Cims.WorkflowLib.Models.Database;
+using WorkflowLib.Models.Database;
 
-namespace Cims.WorkflowLib.DbConnections
+namespace WorkflowLib.DbConnections
 {
     /// <summary>
     /// Class for using SQLite database

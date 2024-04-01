@@ -1,8 +1,8 @@
-using Cims.WorkflowLib.Models.ErrorHandling;
-using Cims.WorkflowLib.Models.Performance;
-using Cims.WorkflowLib.Models.Network.MicroserviceConfigurations;
+using WorkflowLib.Models.ErrorHandling;
+using WorkflowLib.Models.Performance;
+using WorkflowLib.Models.Network.MicroserviceConfigurations;
 
-namespace Cims.WorkflowLib.Models.Network
+namespace WorkflowLib.Models.Network
 {
     /// <summary>
     /// Represents any attempt to communcate with API server as an operation.

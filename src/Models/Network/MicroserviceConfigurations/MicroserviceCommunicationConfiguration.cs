@@ -1,4 +1,4 @@
-namespace Cims.WorkflowLib.Models.Network.MicroserviceConfigurations
+namespace WorkflowLib.Models.Network.MicroserviceConfigurations
 {
     /// <summary>
     /// Microservice communication configuration.
@@ -8,7 +8,7 @@ namespace Cims.WorkflowLib.Models.Network.MicroserviceConfigurations
         /// <summary>
         /// ID of microservice communication configuration.
         /// </summary>
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         /// <summary>
         /// Endpoint which is going to start the communication.

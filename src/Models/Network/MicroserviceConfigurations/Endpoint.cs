@@ -1,4 +1,4 @@
-namespace Cims.WorkflowLib.Models.Network.MicroserviceConfigurations
+namespace WorkflowLib.Models.Network.MicroserviceConfigurations
 {
     /// <summary>
     /// Endpoint.
@@ -8,7 +8,7 @@ namespace Cims.WorkflowLib.Models.Network.MicroserviceConfigurations
         /// <summary>
         /// ID of the endpoint.
         /// </summary>
-        public int Id { get; set; }
+        public long Id { get; set; }
         
         /// <summary>
         /// Name of the endpoint.

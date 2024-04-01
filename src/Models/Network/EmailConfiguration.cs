@@ -1,4 +1,4 @@
-namespace Cims.WorkflowLib.Models.Network
+namespace WorkflowLib.Models.Network
 {
     /// <summary>
     /// Email configuration.

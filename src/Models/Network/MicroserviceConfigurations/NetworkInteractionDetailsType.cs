@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Cims.WorkflowLib.Models.Network.MicroserviceConfigurations
+namespace WorkflowLib.Models.Network.MicroserviceConfigurations
 {
     /// <summary>
     /// Type of the network interaction details.

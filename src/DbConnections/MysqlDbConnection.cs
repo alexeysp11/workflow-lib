@@ -1,9 +1,9 @@
 using System.Data; 
 using MySql.Data;
 using MySql.Data.MySqlClient;
-using Cims.WorkflowLib.Models.Database;
+using WorkflowLib.Models.Database;
 
-namespace Cims.WorkflowLib.DbConnections
+namespace WorkflowLib.DbConnections
 {
     /// <summary>
     /// MySQL database connection.

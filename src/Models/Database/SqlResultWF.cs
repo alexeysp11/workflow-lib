@@ -1,7 +1,7 @@
 using System.Data;
-using Cims.WorkflowLib.Models.Performance;
+using WorkflowLib.Models.Performance;
 
-namespace Cims.WorkflowLib.Models.Database 
+namespace WorkflowLib.Models.Database 
 {
     /// <summary>
     /// Result of the SQL query.

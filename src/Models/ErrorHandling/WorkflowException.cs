@@ -1,4 +1,4 @@
-namespace Cims.WorkflowLib.Models.ErrorHandling
+namespace WorkflowLib.Models.ErrorHandling
 {
     /// <summary>
     /// Exception that is occurred during execution of the API operation.

@@ -1,4 +1,4 @@
-namespace Cims.WorkflowLib.Models.Cryptography
+namespace WorkflowLib.Models.Cryptography
 {
     /// <summary>
     /// End to end encryption algorithm type.

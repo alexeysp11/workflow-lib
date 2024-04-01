@@ -1,6 +1,6 @@
-using Cims.WorkflowLib.Models.Documents.Enums; 
+using WorkflowLib.Models.Documents.Enums; 
 
-namespace Cims.WorkflowLib.Models.Documents
+namespace WorkflowLib.Models.Documents
 {
     /// <summary>
     /// Class for representing an element of text document.

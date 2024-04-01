@@ -1,4 +1,4 @@
-namespace Cims.WorkflowLib.Models.AppSettings
+namespace WorkflowLib.Models.AppSettings
 {
     /// <summary>
     /// Class for storing confidurations related to the core server.
