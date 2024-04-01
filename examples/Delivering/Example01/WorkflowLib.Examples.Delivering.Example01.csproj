@@ -8,7 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../../src/WorkflowLib.csproj" />
+    <ProjectReference Include="..\..\..\src\CodeExtensions\WorkflowLib.CodeExtensions.csproj" />
+    <ProjectReference Include="..\..\..\src\Models.Business\WorkflowLib.Models.Business.csproj" />
   </ItemGroup>
 
   <ItemGroup>
