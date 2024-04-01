@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Cims.WorkflowLib.Wpf</RootNamespace>
+    <RootNamespace>WorkflowLib.Wpf</RootNamespace>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
