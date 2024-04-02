@@ -4,7 +4,7 @@
 
 This part of the library provides functionality for network interaction and APIs:
 - Network APIs and operations: 
-    - HTTP: [sender](docs/NetworkAPIs/HttpSender.md), [server](docs/NetworkAPIs/HttpServerWF.md), 
-    - TCP: [client](docs/NetworkAPIs/TcpClientWF.md), [listener](docs/NetworkAPIs/TcpListenerWF.md), 
-- Email sender: [MimeKit based](docs/NetworkAPIs/EmailSenderMimeKit.md);
-- Ethereum: [Nethereum.Web3](docs/NethereumAPI/EthNodeAPIWeb3.md).
+    - HTTP: [sender](NetworkAPIs/HttpSender.cs), [server](NetworkAPIs/HttpServerWF.cs), 
+    - TCP: [client](NetworkAPIs/TcpClientWF.cs), [listener](NetworkAPIs/TcpListenerWF.cs), 
+- Email sender: [MimeKit based](NetworkAPIs/EmailSenderMimeKit.cs);
+- Ethereum: [Nethereum.Web3](NethereumAPI/EthNodeAPIWeb3.cs).

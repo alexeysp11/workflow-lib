@@ -4,7 +4,7 @@
 
 Данная часть библиотеки предоставляет функционал для сетевого взаимодействия и APIs: 
 - Сетевое взаимодействие: 
-    - HTTP: [sender](docs/NetworkAPIs/HttpSender.md), [server](docs/NetworkAPIs/HttpServerWF.md), 
-    - TCP: [client](docs/NetworkAPIs/TcpClientWF.md), [listener](docs/NetworkAPIs/TcpListenerWF.md), 
-- Email sender: [MimeKit based](docs/NetworkAPIs/EmailSenderMimeKit.md);
-- Ethereum: [Nethereum.Web3](docs/NethereumAPI/EthNodeAPIWeb3.md).
+    - HTTP: [sender](NetworkAPIs/HttpSender.md), [server](NetworkAPIs/HttpServerWF.md), 
+    - TCP: [client](NetworkAPIs/TcpClientWF.md), [listener](NetworkAPIs/TcpListenerWF.md), 
+- Email sender: [MimeKit based](NetworkAPIs/EmailSenderMimeKit.md);
+- Ethereum: [Nethereum.Web3](NethereumAPI/EthNodeAPIWeb3.md).
