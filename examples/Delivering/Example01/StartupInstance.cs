@@ -17,7 +17,7 @@ namespace WorkflowLib.Examples.Delivering.Example01
     /// <summary>
     /// The class that is responsible for initializing this example.
     /// </summary>
-    public class ExampleInstance : IExampleInstance
+    public class StartupInstance : IStartupInstance
     {
         private DbContextOptions<DeliveringContext> _contextOptions { get; set; }
 
@@ -34,7 +34,7 @@ namespace WorkflowLib.Examples.Delivering.Example01
         /// <summary>
         /// Construstor by default.
         /// </summary>
-        public ExampleInstance(
+        public StartupInstance(
             DbContextOptions<DeliveringContext> contextOptions,
             MakeOrderStep step01, 
             MakePaymentStep step02, 

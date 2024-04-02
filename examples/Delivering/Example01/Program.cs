@@ -9,7 +9,7 @@ using WorkflowLib.Examples.Delivering.Example01.FlowchartSteps;
 IHost _host = Host.CreateDefaultBuilder().ConfigureServices(
     services => {
         // Instance of application.
-        services.AddSingleton<IExampleInstance, ExampleInstance>();
+        services.AddSingleton<IStartupInstance, StartupInstance>();
 
         // DbContext.
         services.AddSingleton((_) => {
@@ -33,5 +33,5 @@ IHost _host = Host.CreateDefaultBuilder().ConfigureServices(
         services.AddSingleton<CustomerBackendController>();
     }).Build();
 
-var app = _host.Services.GetRequiredService<IExampleInstance>();
+var app = _host.Services.GetRequiredService<IStartupInstance>();
 app.Run();
