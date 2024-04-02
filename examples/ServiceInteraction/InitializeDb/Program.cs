@@ -1,14 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WorkflowLib.Examples.ServiceInteraction.Core.Resolvers;
 using WorkflowLib.Examples.ServiceInteraction.Core.Contexts;
 using WorkflowLib.Examples.ServiceInteraction.InitializeDb;
 
 IHost _host = Host.CreateDefaultBuilder().ConfigureServices(
     services => {
         // Instance of application.
-        services.AddSingleton<IExampleInstance, ExampleInstance>();
+        services.AddSingleton<IStartupInstance, StartupInstance>();
 
         // DbContext.
         services.AddSingleton((_) => {
@@ -22,5 +21,5 @@ IHost _host = Host.CreateDefaultBuilder().ConfigureServices(
         services.AddSingleton<ConfigResolver>();
     }).Build();
 
-var app = _host.Services.GetRequiredService<IExampleInstance>();
+var app = _host.Services.GetRequiredService<IStartupInstance>();
 app.Run();

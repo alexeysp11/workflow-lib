@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using WorkflowLib.Examples.ServiceInteraction.BL;
 using WorkflowLib.Examples.ServiceInteraction.Core.Constants;
-using WorkflowLib.Examples.ServiceInteraction.Core.Resolvers;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
 namespace WorkflowLib.Examples.ServiceInteraction.InitializeDb
@@ -9,14 +8,14 @@ namespace WorkflowLib.Examples.ServiceInteraction.InitializeDb
     /// <summary>
     /// The class that is responsible for initializing this example.
     /// </summary>
-    public class ExampleInstance : IExampleInstance
+    public class StartupInstance : IStartupInstance
     {
         private ConfigResolver m_configResolver;
 
         /// <summary>
         /// Construstor by default.
         /// </summary>
-        public ExampleInstance(
+        public StartupInstance(
             ConfigResolver configResolver)
         {
             m_configResolver = configResolver;
