@@ -16,7 +16,7 @@ public class Program
     public static void Main(string[] args)
     {
         var host = CreateHostBuilder(args).Build();
-        var app = host.Services.GetRequiredService<IExampleInstance>();
+        var app = host.Services.GetRequiredService<IStartupInstance>();
         app.Run();
     }
 
@@ -30,7 +30,7 @@ public class Program
     private static void ConfigureServices(IServiceCollection services)
     {
         // Register application instance.
-        services.AddSingleton<IExampleInstance, ExampleInstance>();
+        services.AddSingleton<IStartupInstance, StartupInstance>();
 
         // Configure DbContext.
         services.AddDbContext<ServiceInteractionContext>((serviceProvider, options) =>
