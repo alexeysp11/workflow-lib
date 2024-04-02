@@ -2,45 +2,12 @@
 
 [English](README.md) | [Русский](README.ru.md)
 
-Этот проект представляет собой комплексную библиотеку, предоставляющую широкий спектр функций для ERP-систем.
+Этот проект представляет собой комплексную библиотеку, предоставляющую широкий спектр функций для ERP/CRM-систем.
 
-В целом, эта библиотека представляет собой мощный инструмент, который можно использовать в ERP-системах для оптимизации и автоматизации различных бизнес-процессов.
+В целом, эта библиотека представляет собой мощный инструмент, который можно использовать в ERP/CRM-системах для оптимизации и автоматизации различных бизнес-процессов.
 Она предлагает широкий спектр функций и моделей данных, которые можно настроить в соответствии с конкретными потребностями любой организации.
 
 ## Общее описание
-
-`workflow-lib` - это библиотека на C#, состоящая из:
-- [Динамической компиляции кода на C#](docs/Dynamical/DynamicCompiling.md);
-- Конфигурация: [JSON](docs/Extensions/JsonConfigExtensions.md), XML;
-- Базы данных: [SQLite](docs/DbConnections/SqliteDbConnection.md), [PostgreSQL](docs/DbConnections/PgDbConnection.md), [MySQL](docs/DbConnections/MysqlDbConnection.md), [MS SQL](docs/DbConnections/MssqlDbConnection.md), [Oracle](docs/DbConnections/OracleDbConnection.md);
-- Сетевое взаимодействие и APIs: 
-    - HTTP: [sender](docs/NetworkAPIs/HttpSender.md), [server](docs/NetworkAPIs/HttpServerWF.md), 
-    - TCP: [client](docs/NetworkAPIs/TcpClientWF.md), [listener](docs/NetworkAPIs/TcpListenerWF.md), 
-    - Email sender: [MimeKit based](docs/NetworkAPIs/EmailSenderMimeKit.md);
-- Ethereum: [Nethereum.Web3](docs/NethereumAPI/EthNodeAPIWeb3.md);
-- Документы и операции с документами (запись, чтение, конвертация): 
-    - Общие: [вложение](docs/Models/Documents/Attachment.md), [spreadsheet-элемент](docs/Models/Documents/SpreadsheetElement.md), [элемент текстового документа](docs/Models/Documents/TextDocElement.md).
-    - Текстовые: [MS Word](docs/DocFormats/TextBased/MSWordConverter.md) (DOC, DOT, DOCX, DOTX, DOCM, DOTM), OpenDocument (ODT, FODT, OTT), [TXT](docs/DocFormats/TextBased/TxtConverter.md);
-    - Spreadsheets-таблицы: [MS Excel](docs/DocFormats/Spreadsheets/MSExcelConverter.md) (XLS, XLT, XLW, XLSX, XLTX, XLSM, XLTM), OpenDocument (ODS, FODS, OTS);
-    - [PDF](docs/DocFormats/PdfConverter.md);
-    - Изображения: [PNG](docs/DocFormats/Images/PngConverter.md), [BMP](docs/DocFormats/Images/BmpConverter.md), [JPEG](docs/DocFormats/Images/JpegConverter.md), SVG, GIF, ICO;
-    - XML, JSON, OOXML, CSV;
-    - HTML, markdown;
-    - [Binary](docs/DocFormats/BinaryConverter.md);
-- Классы для бизнеса:
-    - Общее: [адрес](docs/Models/Business/Address.md), [бизнес-задача](docs/Models/Business/BusinessTask.md), [период](docs/Models/Business/Period.md), [риск](docs/Models/Business/Risk.md), etc.
-    - Бизнес-документы: [счёт](docs/Models/Business/BusinessDocuments/Bill.md), [заказ на доставку](docs/Models/Business/BusinessDocuments/DeliveryOrder.md), [трудовой договор](docs/Models/Business/BusinessDocuments/EmploymentContract.md), etc.
-    - Потербители: [потребитель](docs/Models/Business/Customers/Customer.md), [компания](docs/Models/Business/Customers/Company.md), [contact](docs/Models/Business/Customers/Contact.md), etc.
-    - Информационная система: [работник](docs/Models/Business/InformationSystem/Employee.md), [аккаунт пользователя](docs/Models/Business/InformationSystem/UserAccount.md), [рабочий день](docs/Models/Business/InformationSystem/WorkingDay.md), etc.
-    - Деньги: [зарплата/чек оплаты](docs/Models/Business/Monetary/Paycheck.md), [оплата](docs/Models/Business/Monetary/Payment.md), [ставка оплаты](docs/Models/Business/Monetary/PayRate.md), etc.
-    - Продукты: [продукт](docs/Models/Business/Products/Product.md), [категория продукта](docs/Models/Business/Products/ProductCategory.md), [проект](docs/Models/Business/Products/Project.md).
-    - Обязанности: [обязанности работника](docs/Models/Business/Responsibilities/EmployeeResponsibility.md), [обязанности работодателя](docs/Models/Business/Responsibilities/EmployerResponsibility.md).
-    - Социальное общение: [сообщение](docs/Models/Business/SocialCommunication/MessageWF.md).
-<!--
-- Визуализация данных: Line chart, Bar chart, Histogram, Scatter plot, Box plot, Pareto chart, Pie chart, Area chart, Tree map, Bubble chart, Stripe graphic, Control chart, Run chart, Stem-and-leaf display, Cartogram, Small multiple, Sparkline, Table, Marimekko chart. 
--->
-
-Документация по неймспейсам и типам данных, используемых в библиотеке, представлена по [данной ссылке](docs/documentation.md).
 
 ### Цель
 
@@ -97,12 +64,3 @@ git clone https://github.com/alexeysp11/workflow-lib.git
     <ProjectReference Include="../../workflow-lib/src/WorkflowLib.csproj" />
   </ItemGroup>
 ```
-<!--
-## Как использовать данную библиотеку совместно с XML/JSON оболочкой  
-
-Подразумевается использование данной библиотеки с помощью XML/JSON оболочки (своего рода no-code подход).
--->
-
-## Как улучшить библиотеку 
-
-- [TODO](docs/TODO.md)
