@@ -1,7 +1,7 @@
 
 namespace WorkflowLib.Examples.ServiceInteraction.Core.EsbProxies;
 
-public class EsbSidecarProxy
+public abstract class EsbSidecarProxy
 {
     // 
 }
