@@ -6,7 +6,7 @@ using WorkflowLib.Examples.ServiceInteraction.Core.Contexts;
 using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 using WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 using WorkflowLib.Examples.ServiceInteraction.Core.EndpointMemoryManagement;
-using WorkflowLib.Examples.ServiceInteraction.Core.Resolvers;
+using WorkflowLib.Examples.ServiceInteraction.Core.ServiceRegistry;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 using WorkflowLib.Examples.ServiceInteraction.Tests;
 
@@ -49,7 +49,7 @@ public class Program
 
         services.AddSingleton<EndpointPool>();
         services.AddSingleton<IEndpointLoadBalancer, RandomLoadBalancer>();
-        services.AddSingleton<EndpointServiceResolver>();
+        services.AddSingleton<EsbServiceRegistry>();
         services.AddSingleton<EndpointDAL>();
     }
 }

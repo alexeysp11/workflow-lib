@@ -2,12 +2,12 @@ using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 using WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
-namespace WorkflowLib.Examples.ServiceInteraction.Core.Resolvers;
+namespace WorkflowLib.Examples.ServiceInteraction.Core.ServiceRegistry;
 
 /// <summary>
 /// This class provides a choice of services to call within the microservice architecture.
 /// </summary>
-public class EndpointServiceResolver
+public class EsbServiceRegistry
 {
     private EndpointDAL m_endpointDAL;
     private BusinessProcessDAL m_businessProcessDAL;
@@ -17,7 +17,7 @@ public class EndpointServiceResolver
     /// <summary>
     /// Constructor by default.
     /// </summary>
-    public EndpointServiceResolver(
+    public EsbServiceRegistry(
         EndpointDAL endpointDAL,
         BusinessProcessDAL businessProcessDAL,
         EndpointSelectionParameter endpointSelectionParameter, 

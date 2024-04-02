@@ -1,6 +1,6 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
-using WorkflowLib.Examples.ServiceInteraction.Core.Resolvers;
+using WorkflowLib.Examples.ServiceInteraction.Core.ServiceRegistry;
 using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
@@ -13,7 +13,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL;
 public class ServiceB : IImplicitService
 {
     private LoggingDAL m_loggingDAL;
-    private EndpointServiceResolver m_endpointServiceResolver;
+    private EsbServiceRegistry m_endpointServiceResolver;
     private WorkflowInstance m_workflowInstance;
     private readonly IServiceProvider m_serviceProvider;
 
@@ -22,7 +22,7 @@ public class ServiceB : IImplicitService
     /// </summary>
     public ServiceB(
         LoggingDAL loggingDAL,
-        EndpointServiceResolver endpointServiceResolver,
+        EsbServiceRegistry endpointServiceResolver,
         IServiceProvider serviceProvider)
     {
         m_loggingDAL = loggingDAL;

@@ -2,7 +2,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Examples.ServiceInteraction.Core.Contexts;
 using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
-using WorkflowLib.Examples.ServiceInteraction.Core.Resolvers;
+using WorkflowLib.Examples.ServiceInteraction.Core.ServiceRegistry;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Tests
@@ -22,14 +22,14 @@ namespace WorkflowLib.Examples.ServiceInteraction.Tests
     public class ExampleInstance : IExampleInstance
     {
         private DbContextOptions<ServiceInteractionContext> _contextOptions { get; set; }
-        private EndpointServiceResolver _serviceResolver { get; set; }
+        private EsbServiceRegistry _serviceResolver { get; set; }
 
         /// <summary>
         /// Construstor by default.
         /// </summary>
         public ExampleInstance(
             DbContextOptions<ServiceInteractionContext> contextOptions,
-            EndpointServiceResolver serviceResolver)
+            EsbServiceRegistry serviceResolver)
         {
             _contextOptions = contextOptions;
             _serviceResolver = serviceResolver;
