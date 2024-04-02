@@ -19,7 +19,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Tests
     /// <summary>
     /// The class that is responsible for initializing this example.
     /// </summary>
-    public class ExampleInstance : IExampleInstance
+    public class StartupInstance : IStartupInstance
     {
         private DbContextOptions<ServiceInteractionContext> _contextOptions { get; set; }
         private EsbServiceRegistry _serviceResolver { get; set; }
@@ -27,7 +27,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Tests
         /// <summary>
         /// Construstor by default.
         /// </summary>
-        public ExampleInstance(
+        public StartupInstance(
             DbContextOptions<ServiceInteractionContext> contextOptions,
             EsbServiceRegistry serviceResolver)
         {
