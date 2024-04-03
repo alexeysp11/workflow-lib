@@ -11,17 +11,14 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL;
 public class ServiceE
 {
     private LoggingDAL m_loggingDAL;
-    private readonly IServiceProvider m_serviceProvider;
 
     /// <summary>
     /// Default constructor.
     /// </summary>
     public ServiceE(
-        LoggingDAL loggingDAL,
-        IServiceProvider serviceProvider)
+        LoggingDAL loggingDAL)
     {
         m_loggingDAL = loggingDAL;
-        m_serviceProvider = serviceProvider;
     }
 
     /// <summary>
