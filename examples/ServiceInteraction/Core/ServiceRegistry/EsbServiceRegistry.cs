@@ -5,7 +5,7 @@ using WorkflowLib.Examples.ServiceInteraction.Models;
 namespace WorkflowLib.Examples.ServiceInteraction.Core.ServiceRegistry;
 
 /// <summary>
-/// This class provides a choice of services to call within the microservice architecture.
+/// Receives information from the database where the request can be forwarded and uses load balancers to calculate the load.
 /// </summary>
 public class EsbServiceRegistry
 {
