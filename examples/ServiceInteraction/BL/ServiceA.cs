@@ -42,7 +42,7 @@ public class ServiceA : IImplicitService
         // Get data from DB.
         var nextState = "ServiceB";
         var className = "WorkflowLib.Examples.ServiceInteraction.BL." + nextState;
-        var methodName = "ProcessServiceA";
+        var methodName = "ProcessPreviousService";
 
         // Invoke next service using reflection.
         var type = Type.GetType(className);
@@ -98,7 +98,7 @@ public class ServiceA : IImplicitService
     /// <summary>
     /// Method for processing the previous service depending on the current state of the process.
     /// </summary>
-    public void ProcessPreviousService()
+    public void ProcessPreviousService(long workflowInstanceId = 0, long transitionId = 0)
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");

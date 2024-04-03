@@ -64,7 +64,7 @@ public class ServiceD : IImplicitService
         // Get data from DB.
         var nextState = "ServiceB";
         var className = "WorkflowLib.Examples.ServiceInteraction.BL." + nextState;
-        var methodName = "ProcessServiceD";
+        var methodName = "ProcessPreviousService";
 
         // Invoke next service using reflection.
         var type = Type.GetType(className);
@@ -88,10 +88,19 @@ public class ServiceD : IImplicitService
     /// <summary>
     /// Method for processing the previous service depending on the current state of the process.
     /// </summary>
-    public void ProcessPreviousService()
+    public void ProcessPreviousService(long workflowInstanceId = 0, long transitionId = 0)
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
+
+        switch (transitionId)
+        {
+            case 2:
+                ProcessServiceB(workflowInstanceId, transitionId);
+                break;
+            default:
+                throw new System.Exception($"Incorrect transition ID: {transitionId}");
+        }
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
     }

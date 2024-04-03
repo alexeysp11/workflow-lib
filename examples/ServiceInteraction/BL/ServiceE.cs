@@ -8,7 +8,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL;
 /// Represents service E.
 /// </summary>
 /// <remarks>Does not initiate communication with any service.</remarks>
-public class ServiceE : IImplicitService
+public class ServiceE
 {
     private LoggingDAL m_loggingDAL;
     private readonly IServiceProvider m_serviceProvider;
@@ -28,28 +28,6 @@ public class ServiceE : IImplicitService
     /// Method to process service A.
     /// </summary>
     public void ProcessServiceA()
-    {
-        var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
-        m_loggingDAL.AddDbgLog(sourceName, "started");
-
-        m_loggingDAL.AddDbgLog(sourceName, "finished");
-    }
-
-    /// <summary>
-    /// Method to call the next service depending on the current state of the process.
-    /// </summary>
-    public void CallNextService()
-    {
-        var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
-        m_loggingDAL.AddDbgLog(sourceName, "started");
-
-        m_loggingDAL.AddDbgLog(sourceName, "finished");
-    }
-
-    /// <summary>
-    /// Method for processing the previous service depending on the current state of the process.
-    /// </summary>
-    public void ProcessPreviousService()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
