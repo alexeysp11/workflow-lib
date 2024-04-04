@@ -5,12 +5,12 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.ProcessingPipes;
 /// </summary>
 public abstract class AbstractProcessingPipe
 {
-    protected System.Action<long, long, long> m_function;
+    protected System.Action<IProcessingPipeDelegateParams> m_function;
 
     /// <summary>
     /// Default constructor.
     /// </summary>
-    public AbstractProcessingPipe(System.Action<long, long, long> function)
+    public AbstractProcessingPipe(System.Action<IProcessingPipeDelegateParams> function)
     {
         m_function = function;
     }
@@ -18,5 +18,5 @@ public abstract class AbstractProcessingPipe
     /// <summary>
     /// An abstract method for performing a unit of work as part of a request processing sequence.
     /// </summary>
-    public abstract void Handle(long workflowInstanceId, long businessStateId, long userId);
+    public abstract void Handle(IProcessingPipeDelegateParams parameters);
 }

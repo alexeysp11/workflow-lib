@@ -7,13 +7,13 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.ProcessingPipes;
 /// </summary>
 public class ProcessingPipeBuilder
 {
-    private System.Action<long, long, long> m_mainFunction;
+    private System.Action<IProcessingPipeDelegateParams> m_mainFunction;
     private List<System.Type> m_pipeTypes;
 
     /// <summary>
     /// Default constructor.
     /// </summary>
-    public ProcessingPipeBuilder(System.Action<long, long, long> mainFunction)
+    public ProcessingPipeBuilder(System.Action<IProcessingPipeDelegateParams> mainFunction)
     {
         m_mainFunction = mainFunction;
         m_pipeTypes = new List<System.Type>();
@@ -33,12 +33,12 @@ public class ProcessingPipeBuilder
     /// <summary>
     /// Completes the process of constructing the request processing sequence.
     /// </summary>
-    public System.Action<long, long, long> Build()
+    public System.Action<IProcessingPipeDelegateParams> Build()
     {
         return CreatePipe(0);
     }
 
-    private System.Action<long, long, long> CreatePipe(int index)
+    private System.Action<IProcessingPipeDelegateParams> CreatePipe(int index)
     {
         if (index < m_pipeTypes.Count - 1)
         {
