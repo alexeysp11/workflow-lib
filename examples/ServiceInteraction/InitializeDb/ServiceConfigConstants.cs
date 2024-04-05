@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
-namespace WorkflowLib.Examples.ServiceInteraction.Core.Constants;
+namespace WorkflowLib.Examples.ServiceInteraction.InitializeDb;
 
 /// <summary>
 /// Represents a class that stores constants for configuring services in the application.
