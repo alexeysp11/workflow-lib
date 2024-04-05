@@ -7,7 +7,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.ServiceRegistry;
 /// <summary>
 /// Receives information from the database where the request can be forwarded and uses load balancers to calculate the load.
 /// </summary>
-public class EsbServiceRegistry
+public class EsbServiceRegistry : IEsbServiceRegistry
 {
     private IEndpointDAL m_endpointDAL;
     private IBusinessProcessDAL m_businessProcessDAL;
@@ -20,7 +20,7 @@ public class EsbServiceRegistry
     public EsbServiceRegistry(
         IEndpointDAL endpointDAL,
         IBusinessProcessDAL businessProcessDAL,
-        EndpointSelectionParameter endpointSelectionParameter, 
+        EndpointSelectionParameter endpointSelectionParameter,
         IEndpointLoadBalancer loadBalancer)
     {
         m_endpointDAL = endpointDAL;
@@ -51,7 +51,7 @@ public class EsbServiceRegistry
     /// Method for selecting an endpoint within an explicit call to an element of a microservice architecture (by endpoint types).
     /// </summary>
     public Endpoint GetEndpointExplicit(
-        EndpointType endpointTypeFrom, 
+        EndpointType endpointTypeFrom,
         EndpointType endpointTypeTo)
     {
         if (endpointTypeFrom == null || endpointTypeFrom.Id == null) 
@@ -80,7 +80,9 @@ public class EsbServiceRegistry
     /// <summary>
     /// Initializes a business process instance.
     /// </summary>
-    public WorkflowInstance CreateInitialWI(string processName, string taskName)
+    public WorkflowInstance CreateInitialWI(
+        string processName, 
+        string taskName)
     {
         if (string.IsNullOrEmpty(processName))
             throw new System.ArgumentNullException(nameof(processName));
@@ -104,9 +106,9 @@ public class EsbServiceRegistry
     /// Create a task for a workflow instance.
     /// </summary>
     public BusinessTask CreateBusinessTaskByWI(
-        WorkflowInstance workflowInstance, 
-        string taskName, 
-        long? transitionId = null, 
+        WorkflowInstance workflowInstance,
+        string taskName,
+        long? transitionId = null,
         bool isNextTask = true)
     {
         if (workflowInstance == null)
@@ -140,7 +142,9 @@ public class EsbServiceRegistry
     /// <summary>
     /// Returns a next task instance for the given state transition ID.
     /// </summary>
-    public BusinessTask GetNextBusinessTask(long workflowInstanceId, long transitionId)
+    public BusinessTask GetNextBusinessTask(
+        long workflowInstanceId, 
+        long transitionId)
     {
         var businessTask = m_businessProcessDAL.GetNextBusinessTask(workflowInstanceId, transitionId);
         if (businessTask == null)

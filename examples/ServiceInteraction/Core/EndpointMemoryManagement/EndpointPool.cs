@@ -8,7 +8,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointMemoryManagement;
 /// <summary>
 /// Class for managing a pool of endpoints.
 /// </summary>
-public class EndpointPool
+public sealed class EndpointPool
 {
     private ConcurrentDictionary<long, EndpointCollectionParameter> m_endpointParameters;
     private IReadOnlyDictionary<long, EndpointCollectionParameter> m_cachedEndpointParameters;

@@ -9,14 +9,14 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Routing;
 public class EsbServiceMeshControlPlane
 {
     private EbsRoutingConfigs m_ebsRoutingConfigs;
-    private EsbServiceRegistry m_esbServiceRegistry;
+    private IEsbServiceRegistry m_esbServiceRegistry;
 
     /// <summary>
     /// Default constructor.
     /// </summary>
     public EsbServiceMeshControlPlane(
         EbsRoutingConfigs ebsRoutingConfigs,
-        EsbServiceRegistry esbServiceRegistry)
+        IEsbServiceRegistry esbServiceRegistry)
     {
         m_ebsRoutingConfigs = ebsRoutingConfigs;
         m_esbServiceRegistry = esbServiceRegistry;

@@ -53,7 +53,7 @@ public class Program
         services.AddSingleton<IEndpointLoadBalancer, RandomLoadBalancer>();
 
         // Resolvers.
-        services.AddSingleton<EsbServiceRegistry>();
+        services.AddSingleton<IEsbServiceRegistry, EsbServiceRegistry>();
 
         // DAL.
         services.AddSingleton<ILoggingDAL, LoggingDAL>();

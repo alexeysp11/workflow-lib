@@ -50,7 +50,7 @@ public class Program
 
         services.AddSingleton<EndpointPool>();
         services.AddSingleton<IEndpointLoadBalancer, RandomLoadBalancer>();
-        services.AddSingleton<EsbServiceRegistry>();
+        services.AddSingleton<IEsbServiceRegistry, EsbServiceRegistry>();
 
         // DAL.
         services.AddSingleton<IEndpointDAL, EndpointDAL>();

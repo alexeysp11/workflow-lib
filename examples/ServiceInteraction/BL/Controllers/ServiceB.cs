@@ -13,7 +13,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL.Controllers;
 public class ServiceB : IImplicitService
 {
     private ILoggingDAL m_loggingDAL;
-    private EsbServiceRegistry m_endpointServiceResolver;
+    private IEsbServiceRegistry m_endpointServiceResolver;
     private WorkflowInstance m_workflowInstance;
     private readonly IServiceProvider m_serviceProvider;
 
@@ -22,7 +22,7 @@ public class ServiceB : IImplicitService
     /// </summary>
     public ServiceB(
         ILoggingDAL loggingDAL,
-        EsbServiceRegistry endpointServiceResolver,
+        IEsbServiceRegistry endpointServiceResolver,
         IServiceProvider serviceProvider)
     {
         m_loggingDAL = loggingDAL;
