@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
-namespace WorkflowLib.Examples.ServiceInteraction.Core.Contexts;
+namespace WorkflowLib.Examples.ServiceInteraction.BL.Contexts;
 
 /// <summary>
 /// Represents the database context for Service Interaction in the application.

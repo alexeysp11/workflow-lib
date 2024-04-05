@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using WorkflowLib.Examples.ServiceInteraction.Core.Contexts;
+using WorkflowLib.Examples.ServiceInteraction.BL.Contexts;
 
 #nullable disable
 
-namespace WorkflowLib.Examples.ServiceInteraction.Core.Migrations
+namespace WorkflowLib.Examples.ServiceInteraction.BL.Migrations
 {
     [DbContext(typeof(ServiceInteractionContext))]
-    [Migration("20240326173935_AddTaskManagementClasses")]
-    partial class AddTaskManagementClasses
+    [Migration("20240405161901_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -119,6 +119,9 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
+                    b.Property<long?>("PreviousId")
+                        .HasColumnType("bigint");
+
                     b.Property<long?>("ToStateId")
                         .HasColumnType("bigint");
 
@@ -130,6 +133,8 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Migrations
                     b.HasIndex("BusinessProcessId");
 
                     b.HasIndex("FromStateId");
+
+                    b.HasIndex("PreviousId");
 
                     b.HasIndex("ToStateId");
 
@@ -147,6 +152,9 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Migrations
                     b.Property<int?>("BusinessEntityStatus")
                         .HasColumnType("integer");
 
+                    b.Property<long?>("BusinessProcessStateId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
@@ -159,7 +167,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
-                    b.Property<long>("ParentTaskId")
+                    b.Property<long?>("ParentTaskId")
                         .HasColumnType("bigint");
 
                     b.Property<int>("Priority")
@@ -176,6 +184,8 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BusinessProcessStateId");
 
                     b.HasIndex("ParentTaskId");
 
@@ -349,7 +359,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
-                    b.Property<long>("ParentInstanceId")
+                    b.Property<long?>("ParentInstanceId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Uid")
@@ -433,6 +443,10 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Migrations
                         .WithMany()
                         .HasForeignKey("FromStateId");
 
+                    b.HasOne("WorkflowLib.Examples.ServiceInteraction.Models.BusinessProcessStateTransition", "Previous")
+                        .WithMany()
+                        .HasForeignKey("PreviousId");
+
                     b.HasOne("WorkflowLib.Examples.ServiceInteraction.Models.BusinessProcessState", "ToState")
                         .WithMany()
                         .HasForeignKey("ToStateId");
@@ -441,16 +455,22 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Migrations
 
                     b.Navigation("FromState");
 
+                    b.Navigation("Previous");
+
                     b.Navigation("ToState");
                 });
 
             modelBuilder.Entity("WorkflowLib.Examples.ServiceInteraction.Models.BusinessTask", b =>
                 {
+                    b.HasOne("WorkflowLib.Examples.ServiceInteraction.Models.BusinessProcessState", "BusinessProcessState")
+                        .WithMany()
+                        .HasForeignKey("BusinessProcessStateId");
+
                     b.HasOne("WorkflowLib.Examples.ServiceInteraction.Models.BusinessTask", "ParentTask")
                         .WithMany("ChildTasks")
-                        .HasForeignKey("ParentTaskId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ParentTaskId");
+
+                    b.Navigation("BusinessProcessState");
 
                     b.Navigation("ParentTask");
                 });
@@ -513,9 +533,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Migrations
 
                     b.HasOne("WorkflowLib.Examples.ServiceInteraction.Models.WorkflowInstance", "ParentInstance")
                         .WithMany()
-                        .HasForeignKey("ParentInstanceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ParentInstanceId");
 
                     b.Navigation("BusinessProcess");
 

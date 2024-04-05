@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Examples.ServiceInteraction.Core.Contexts;
+using WorkflowLib.Examples.ServiceInteraction.BL.Contexts;
 using WorkflowLib.Examples.ServiceInteraction.Core.Constants;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 

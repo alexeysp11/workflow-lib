@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 using WorkflowLib.Examples.ServiceInteraction.BL.Controllers;
 using WorkflowLib.Examples.ServiceInteraction.BL.DAL;
 using WorkflowLib.Examples.ServiceInteraction.Core;
-using WorkflowLib.Examples.ServiceInteraction.Core.Contexts;
+using WorkflowLib.Examples.ServiceInteraction.BL.Contexts;
 using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 using WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 using WorkflowLib.Examples.ServiceInteraction.Core.EndpointMemoryManagement;
@@ -37,7 +37,7 @@ public class Program
         services.AddDbContext<ServiceInteractionContext>((serviceProvider, options) =>
         {
             options.UseNpgsql("Server=127.0.0.1;Port=5432;Database=deliveryservicelibexample;Username=postgres;Password=postgres",
-                b => b.MigrationsAssembly("WorkflowLib.Examples.ServiceInteraction.Core"));
+                b => b.MigrationsAssembly("WorkflowLib.Examples.ServiceInteraction.BL"));
         });
 
         // Register services.

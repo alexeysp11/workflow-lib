@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WorkflowLib.Examples.ServiceInteraction.Core.Contexts;
+using WorkflowLib.Examples.ServiceInteraction.BL.Contexts;
 using WorkflowLib.Examples.ServiceInteraction.InitializeDb;
 
 IHost _host = Host.CreateDefaultBuilder().ConfigureServices(
@@ -13,7 +13,7 @@ IHost _host = Host.CreateDefaultBuilder().ConfigureServices(
         services.AddSingleton((_) => {
             return new DbContextOptionsBuilder<ServiceInteractionContext>()
                 .UseNpgsql("Server=127.0.0.1;Port=5432;Database=deliveryservicelibexample;Username=postgres;Password=postgres", 
-                    b => b.MigrationsAssembly("WorkflowLib.Examples.ServiceInteraction.Core"))
+                    b => b.MigrationsAssembly("WorkflowLib.Examples.ServiceInteraction.BL"))
                 .Options;
         });
         

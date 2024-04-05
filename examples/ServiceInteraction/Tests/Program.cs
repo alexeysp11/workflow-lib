@@ -2,7 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WorkflowLib.Examples.ServiceInteraction.Core;
-using WorkflowLib.Examples.ServiceInteraction.Core.Contexts;
+using WorkflowLib.Examples.ServiceInteraction.BL.Contexts;
+using WorkflowLib.Examples.ServiceInteraction.BL.DAL;
 using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 using WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 using WorkflowLib.Examples.ServiceInteraction.Core.EndpointMemoryManagement;
@@ -35,7 +36,7 @@ public class Program
         services.AddSingleton((_) => {
             return new DbContextOptionsBuilder<ServiceInteractionContext>()
                 .UseNpgsql("Server=127.0.0.1;Port=5432;Database=deliveryservicelibexample;Username=postgres;Password=postgres", 
-                    b => b.MigrationsAssembly("WorkflowLib.Examples.ServiceInteraction.Core"))
+                    b => b.MigrationsAssembly("WorkflowLib.Examples.ServiceInteraction.BL"))
                 .Options;
         });
         
@@ -50,6 +51,9 @@ public class Program
         services.AddSingleton<EndpointPool>();
         services.AddSingleton<IEndpointLoadBalancer, RandomLoadBalancer>();
         services.AddSingleton<EsbServiceRegistry>();
-        services.AddSingleton<EndpointDAL>();
+
+        // DAL.
+        services.AddSingleton<IEndpointDAL, EndpointDAL>();
+        services.AddSingleton<IBusinessProcessDAL, BusinessProcessDAL>();
     }
 }

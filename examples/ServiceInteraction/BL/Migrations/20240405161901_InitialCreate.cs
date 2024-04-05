@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace WorkflowLib.Examples.ServiceInteraction.Core.Migrations
+namespace WorkflowLib.Examples.ServiceInteraction.BL.Migrations
 {
     public partial class InitialCreate : Migration
     {
@@ -88,18 +88,49 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "WorkflowInstances",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    IsEmulation = table.Column<bool>(type: "boolean", nullable: false),
+                    ParentInstanceId = table.Column<long>(type: "bigint", nullable: true),
+                    BusinessProcessId = table.Column<long>(type: "bigint", nullable: false),
+                    Uid = table.Column<string>(type: "text", nullable: true),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    BusinessEntityStatus = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WorkflowInstances", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_WorkflowInstances_BusinessProcesses_BusinessProcessId",
+                        column: x => x.BusinessProcessId,
+                        principalTable: "BusinessProcesses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_WorkflowInstances_WorkflowInstances_ParentInstanceId",
+                        column: x => x.ParentInstanceId,
+                        principalTable: "WorkflowInstances",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Endpoints",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: true),
+                    ClassName = table.Column<string>(type: "text", nullable: true),
                     IpAddress = table.Column<string>(type: "text", nullable: true),
                     Port = table.Column<int>(type: "integer", nullable: true),
                     NetworkAddress = table.Column<string>(type: "text", nullable: true),
-                    Status = table.Column<int>(type: "integer", nullable: true),
                     EndpointTypeId = table.Column<long>(type: "bigint", nullable: true),
-                    EndpointDeploymentType = table.Column<int>(type: "integer", nullable: true)
+                    EndpointDeploymentType = table.Column<int>(type: "integer", nullable: true),
+                    Status = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -120,6 +151,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Migrations
                     BusinessProcessId = table.Column<long>(type: "bigint", nullable: true),
                     FromStateId = table.Column<long>(type: "bigint", nullable: true),
                     ToStateId = table.Column<long>(type: "bigint", nullable: true),
+                    PreviousId = table.Column<long>(type: "bigint", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     Uid = table.Column<string>(type: "text", nullable: true),
                     Name = table.Column<string>(type: "text", nullable: true),
@@ -143,6 +175,44 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Migrations
                         name: "FK_BusinessProcessStateTransitions_BusinessProcessStates_ToSta~",
                         column: x => x.ToStateId,
                         principalTable: "BusinessProcessStates",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_BusinessProcessStateTransitions_BusinessProcessStateTransit~",
+                        column: x => x.PreviousId,
+                        principalTable: "BusinessProcessStateTransitions",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BusinessTasks",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Subject = table.Column<string>(type: "text", nullable: false),
+                    ExpiredNotificationSent = table.Column<bool>(type: "boolean", nullable: false),
+                    IsEmulation = table.Column<bool>(type: "boolean", nullable: false),
+                    ParentTaskId = table.Column<long>(type: "bigint", nullable: true),
+                    Priority = table.Column<int>(type: "integer", nullable: false),
+                    BusinessProcessStateId = table.Column<long>(type: "bigint", nullable: true),
+                    Status = table.Column<int>(type: "integer", nullable: false),
+                    Uid = table.Column<string>(type: "text", nullable: true),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    BusinessEntityStatus = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BusinessTasks", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BusinessTasks_BusinessProcessStates_BusinessProcessStateId",
+                        column: x => x.BusinessProcessStateId,
+                        principalTable: "BusinessProcessStates",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_BusinessTasks_BusinessTasks_ParentTaskId",
+                        column: x => x.ParentTaskId,
+                        principalTable: "BusinessTasks",
                         principalColumn: "Id");
                 });
 
@@ -200,6 +270,38 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Migrations
                         principalColumn: "Id");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "WorkflowTrackingItems",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    WorkflowInstanceId = table.Column<long>(type: "bigint", nullable: false),
+                    ActiveTaskId = table.Column<long>(type: "bigint", nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Status = table.Column<int>(type: "integer", nullable: false),
+                    Uid = table.Column<string>(type: "text", nullable: true),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    BusinessEntityStatus = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WorkflowTrackingItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_WorkflowTrackingItems_BusinessTasks_ActiveTaskId",
+                        column: x => x.ActiveTaskId,
+                        principalTable: "BusinessTasks",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_WorkflowTrackingItems_WorkflowInstances_WorkflowInstanceId",
+                        column: x => x.WorkflowInstanceId,
+                        principalTable: "WorkflowInstances",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_BusinessProcesses_ParentId",
                 table: "BusinessProcesses",
@@ -221,9 +323,24 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Migrations
                 column: "FromStateId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_BusinessProcessStateTransitions_PreviousId",
+                table: "BusinessProcessStateTransitions",
+                column: "PreviousId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_BusinessProcessStateTransitions_ToStateId",
                 table: "BusinessProcessStateTransitions",
                 column: "ToStateId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BusinessTasks_BusinessProcessStateId",
+                table: "BusinessTasks",
+                column: "BusinessProcessStateId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BusinessTasks_ParentTaskId",
+                table: "BusinessTasks",
+                column: "ParentTaskId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EndpointCalls_BusinessProcessStateId",
@@ -259,6 +376,26 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Migrations
                 name: "IX_Endpoints_EndpointTypeId",
                 table: "Endpoints",
                 column: "EndpointTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WorkflowInstances_BusinessProcessId",
+                table: "WorkflowInstances",
+                column: "BusinessProcessId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WorkflowInstances_ParentInstanceId",
+                table: "WorkflowInstances",
+                column: "ParentInstanceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WorkflowTrackingItems_ActiveTaskId",
+                table: "WorkflowTrackingItems",
+                column: "ActiveTaskId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WorkflowTrackingItems_WorkflowInstanceId",
+                table: "WorkflowTrackingItems",
+                column: "WorkflowInstanceId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -270,16 +407,25 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Migrations
                 name: "EndpointCalls");
 
             migrationBuilder.DropTable(
+                name: "WorkflowTrackingItems");
+
+            migrationBuilder.DropTable(
                 name: "BusinessProcessStateTransitions");
 
             migrationBuilder.DropTable(
                 name: "Endpoints");
 
             migrationBuilder.DropTable(
-                name: "BusinessProcessStates");
+                name: "BusinessTasks");
+
+            migrationBuilder.DropTable(
+                name: "WorkflowInstances");
 
             migrationBuilder.DropTable(
                 name: "EndpointTypes");
+
+            migrationBuilder.DropTable(
+                name: "BusinessProcessStates");
 
             migrationBuilder.DropTable(
                 name: "BusinessProcesses");

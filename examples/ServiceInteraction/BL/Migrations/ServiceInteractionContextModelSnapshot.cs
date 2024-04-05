@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using WorkflowLib.Examples.ServiceInteraction.Core.Contexts;
+using WorkflowLib.Examples.ServiceInteraction.BL.Contexts;
 
 #nullable disable
 
-namespace WorkflowLib.Examples.ServiceInteraction.Core.Migrations
+namespace WorkflowLib.Examples.ServiceInteraction.BL.Migrations
 {
     [DbContext(typeof(ServiceInteractionContext))]
     partial class ServiceInteractionContextModelSnapshot : ModelSnapshot

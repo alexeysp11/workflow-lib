@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Examples.ServiceInteraction.Core.Contexts;
+using WorkflowLib.Examples.ServiceInteraction.BL.Contexts;
 using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
