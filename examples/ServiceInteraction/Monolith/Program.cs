@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WorkflowLib.Examples.ServiceInteraction.BL;
+using WorkflowLib.Examples.ServiceInteraction.BL.Controllers;
+using WorkflowLib.Examples.ServiceInteraction.BL.DAL;
 using WorkflowLib.Examples.ServiceInteraction.Core;
 using WorkflowLib.Examples.ServiceInteraction.Core.Contexts;
 using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
@@ -55,9 +56,9 @@ public class Program
         services.AddSingleton<EsbServiceRegistry>();
 
         // DAL.
-        services.AddSingleton<LoggingDAL>();
-        services.AddSingleton<EndpointDAL>();
-        services.AddSingleton<BusinessProcessDAL>();
+        services.AddSingleton<ILoggingDAL, LoggingDAL>();
+        services.AddSingleton<IEndpointDAL, EndpointDAL>();
+        services.AddSingleton<IBusinessProcessDAL, BusinessProcessDAL>();
 
         // Services.
         services.AddSingleton<ServiceA>();

@@ -1,4 +1,4 @@
-using WorkflowLib.Examples.ServiceInteraction.BL;
+using WorkflowLib.Examples.ServiceInteraction.BL.Controllers;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Monolith

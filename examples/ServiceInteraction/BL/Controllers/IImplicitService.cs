@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.ServiceInteraction.BL;
+namespace WorkflowLib.Examples.ServiceInteraction.BL.Controllers;
 
 /// <summary>
 /// An interface for providing implicit communication between services.

@@ -4,15 +4,15 @@ using WorkflowLib.Examples.ServiceInteraction.Core.ServiceRegistry;
 using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
-namespace WorkflowLib.Examples.ServiceInteraction.BL;
+namespace WorkflowLib.Examples.ServiceInteraction.BL.Controllers;
 
 /// <summary>
-/// Represents service D.
+/// Represents service B.
 /// </summary>
-/// <remarks>Initiates communication with the following services: B.</remarks>
-public class ServiceD : IImplicitService
+/// <remarks>Initiates communication with the following services: C, D.</remarks>
+public class ServiceB : IImplicitService
 {
-    private LoggingDAL m_loggingDAL;
+    private ILoggingDAL m_loggingDAL;
     private EsbServiceRegistry m_endpointServiceResolver;
     private WorkflowInstance m_workflowInstance;
     private readonly IServiceProvider m_serviceProvider;
@@ -20,8 +20,8 @@ public class ServiceD : IImplicitService
     /// <summary>
     /// Default constructor.
     /// </summary>
-    public ServiceD(
-        LoggingDAL loggingDAL,
+    public ServiceB(
+        ILoggingDAL loggingDAL,
         EsbServiceRegistry endpointServiceResolver,
         IServiceProvider serviceProvider)
     {
@@ -31,19 +31,19 @@ public class ServiceD : IImplicitService
     }
 
     /// <summary>
-    /// Method to process service B.
+    /// Method to process service A.
     /// </summary>
-    public void ProcessServiceB(long workflowInstanceId, long transitionId)
+    public void ProcessServiceA(long workflowInstanceId, long transitionId)
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
-        
+
         try
         {
             if (m_workflowInstance == null)
                 m_workflowInstance = m_endpointServiceResolver.GetWorkflowInstanceById(workflowInstanceId);
-            m_endpointServiceResolver.CreateBusinessTaskByWI(m_workflowInstance, "ServiceD-ServiceB", transitionId);
-            CallServiceB();
+            m_endpointServiceResolver.CreateBusinessTaskByWI(m_workflowInstance, "ServiceB-ServiceD", transitionId);
+            CallServiceD();
         }
         catch (System.Exception ex)
         {
@@ -54,22 +54,66 @@ public class ServiceD : IImplicitService
     }
 
     /// <summary>
-    /// Method to call service B.
+    /// Method to process service D.
     /// </summary>
-    public void CallServiceB()
+    public void ProcessServiceD(long workflowInstanceId, long transitionId)
+    {
+        var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
+        m_loggingDAL.AddDbgLog(sourceName, "started");
+
+        try
+        {
+            if (m_workflowInstance == null)
+                m_workflowInstance = m_endpointServiceResolver.GetWorkflowInstanceById(workflowInstanceId);
+            m_endpointServiceResolver.CreateBusinessTaskByWI(m_workflowInstance, "ServiceB-ServiceC", transitionId);
+            CallServiceC();
+        }
+        catch (System.Exception ex)
+        {
+            m_loggingDAL.AddDbgLog(sourceName, ex.ToString());
+        }
+
+        m_loggingDAL.AddDbgLog(sourceName, "finished");
+    }
+
+    /// <summary>
+    /// Method to call service C.
+    /// </summary>
+    public void CallServiceC()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
         
         // Get data from DB.
-        var nextState = "ServiceB";
-        var className = "WorkflowLib.Examples.ServiceInteraction.BL." + nextState;
+        var nextState = "ServiceC";
+        var className = "WorkflowLib.Examples.ServiceInteraction.BL.Controllers." + nextState;
         var methodName = "ProcessPreviousService";
 
         // Invoke next service using reflection.
         var type = Type.GetType(className);
         var instance = m_serviceProvider.GetRequiredService(type);
-        type.GetMethod(methodName).Invoke(instance, new object[]{m_workflowInstance.Id, 3});
+        type.GetMethod(methodName).Invoke(instance, new object[]{m_workflowInstance.Id, 4});
+
+        m_loggingDAL.AddDbgLog(sourceName, "finished");
+    }
+
+    /// <summary>
+    /// Method to call service D.
+    /// </summary>
+    public void CallServiceD()
+    {
+        var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
+        m_loggingDAL.AddDbgLog(sourceName, "started");
+
+        // Get data from DB.
+        var nextState = "ServiceD";
+        var className = "WorkflowLib.Examples.ServiceInteraction.BL.Controllers." + nextState;
+        var methodName = "ProcessPreviousService";
+
+        // Invoke next service using reflection.
+        var type = Type.GetType(className);
+        var instance = m_serviceProvider.GetRequiredService(type);
+        type.GetMethod(methodName).Invoke(instance, new object[]{m_workflowInstance.Id, 2});
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
     }
@@ -95,8 +139,11 @@ public class ServiceD : IImplicitService
 
         switch (transitionId)
         {
-            case 2:
-                ProcessServiceB(workflowInstanceId, transitionId);
+            case 1:
+                ProcessServiceA(workflowInstanceId, transitionId);
+                break;
+            case 3:
+                ProcessServiceD(workflowInstanceId, transitionId);
                 break;
             default:
                 throw new System.Exception($"Incorrect transition ID: {transitionId}");

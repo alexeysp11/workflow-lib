@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using WorkflowLib.Examples.ServiceInteraction.BL;
+using WorkflowLib.Examples.ServiceInteraction.BL.Controllers;
 using WorkflowLib.Examples.ServiceInteraction.Core.Constants;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 

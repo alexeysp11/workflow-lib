@@ -2,14 +2,15 @@ using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Examples.ServiceInteraction.Core.Contexts;
+using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
-namespace WorkflowLib.Examples.ServiceInteraction.Core.DAL;
+namespace WorkflowLib.Examples.ServiceInteraction.BL.DAL;
 
 /// <summary>
 /// A class at the DAL level that performs operations related to business processes in the database.
 /// </summary>
-public class BusinessProcessDAL
+public class BusinessProcessDAL : IBusinessProcessDAL
 {
     private DbContextOptions<ServiceInteractionContext> m_contextOptions;
 
@@ -139,7 +140,9 @@ public class BusinessProcessDAL
     /// <summary>
     /// Returns the next state of the business process by transaction ID.
     /// </summary>
-    public BusinessProcessState GetBPStateByTransaction(long transitionId, bool isNextTask = true)
+    public BusinessProcessState GetBPStateByTransaction(
+        long transitionId, 
+        bool isNextTask = true)
     {
         if (transitionId <= 0)
             throw new System.ArgumentOutOfRangeException(nameof(transitionId), $"State transition ID should be positive, but '{transitionId}' was passed");
@@ -155,7 +158,9 @@ public class BusinessProcessDAL
     /// <summary>
     /// Returns a task instance for the given workflow instance ID and state transition ID.
     /// </summary>
-    public BusinessTask GetNextBusinessTask(long workflowInstanceId, long transitionId)
+    public BusinessTask GetNextBusinessTask(
+        long workflowInstanceId, 
+        long transitionId)
     {
         if (workflowInstanceId <= 0)
             throw new System.ArgumentOutOfRangeException(nameof(workflowInstanceId), $"Workflow instance ID should be positive, but '{workflowInstanceId}' was passed");

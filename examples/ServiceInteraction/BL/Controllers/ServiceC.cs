@@ -2,7 +2,7 @@ using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 
-namespace WorkflowLib.Examples.ServiceInteraction.BL;
+namespace WorkflowLib.Examples.ServiceInteraction.BL.Controllers;
 
 /// <summary>
 /// Represents service C.
@@ -10,14 +10,14 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL;
 /// <remarks>Does not initiate communication with any service.</remarks>
 public class ServiceC : IImplicitService
 {
-    private LoggingDAL m_loggingDAL;
+    private ILoggingDAL m_loggingDAL;
     private readonly IServiceProvider m_serviceProvider;
 
     /// <summary>
     /// Default constructor.
     /// </summary>
     public ServiceC(
-        LoggingDAL loggingDAL,
+        ILoggingDAL loggingDAL,
         IServiceProvider serviceProvider)
     {
         m_loggingDAL = loggingDAL;

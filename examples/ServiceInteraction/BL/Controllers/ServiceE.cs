@@ -2,7 +2,7 @@ using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 
-namespace WorkflowLib.Examples.ServiceInteraction.BL;
+namespace WorkflowLib.Examples.ServiceInteraction.BL.Controllers;
 
 /// <summary>
 /// Represents service E.
@@ -10,13 +10,13 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL;
 /// <remarks>Does not initiate communication with any service.</remarks>
 public class ServiceE
 {
-    private LoggingDAL m_loggingDAL;
+    private ILoggingDAL m_loggingDAL;
 
     /// <summary>
     /// Default constructor.
     /// </summary>
     public ServiceE(
-        LoggingDAL loggingDAL)
+        ILoggingDAL loggingDAL)
     {
         m_loggingDAL = loggingDAL;
     }

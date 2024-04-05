@@ -9,8 +9,8 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.ServiceRegistry;
 /// </summary>
 public class EsbServiceRegistry
 {
-    private EndpointDAL m_endpointDAL;
-    private BusinessProcessDAL m_businessProcessDAL;
+    private IEndpointDAL m_endpointDAL;
+    private IBusinessProcessDAL m_businessProcessDAL;
     private EndpointSelectionParameter m_endpointSelectionParameter;
     private IEndpointLoadBalancer m_loadBalancer;
 
@@ -18,8 +18,8 @@ public class EsbServiceRegistry
     /// Constructor by default.
     /// </summary>
     public EsbServiceRegistry(
-        EndpointDAL endpointDAL,
-        BusinessProcessDAL businessProcessDAL,
+        IEndpointDAL endpointDAL,
+        IBusinessProcessDAL businessProcessDAL,
         EndpointSelectionParameter endpointSelectionParameter, 
         IEndpointLoadBalancer loadBalancer)
     {

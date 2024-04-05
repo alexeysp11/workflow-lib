@@ -3,14 +3,15 @@ using System.Linq.Expressions;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Examples.ServiceInteraction.Core.Contexts;
+using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
-namespace WorkflowLib.Examples.ServiceInteraction.Core.DAL;
+namespace WorkflowLib.Examples.ServiceInteraction.BL.DAL;
 
 /// <summary>
 /// A class at the DAL level that performs endpoint-related operations in the database.
 /// </summary>
-public class EndpointDAL
+public class EndpointDAL : IEndpointDAL
 {
     private DbContextOptions<ServiceInteractionContext> m_contextOptions;
 
