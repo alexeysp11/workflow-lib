@@ -1,3 +1,4 @@
+using WorkflowLib.Examples.ServiceInteraction.Core.ProcessingPipes;
 using WorkflowLib.Examples.ServiceInteraction.Core.ServiceRegistry;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Core.Routing;
@@ -8,17 +9,17 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Routing;
 /// </summary>
 public class EsbServiceMeshControlPlane
 {
-    private EbsRoutingConfigs m_ebsRoutingConfigs;
+    private EsbRoutingConfigs m_esbRoutingConfigs;
     private IEsbServiceRegistry m_esbServiceRegistry;
 
     /// <summary>
     /// Default constructor.
     /// </summary>
     public EsbServiceMeshControlPlane(
-        EbsRoutingConfigs ebsRoutingConfigs,
+        EsbRoutingConfigs esbRoutingConfigs,
         IEsbServiceRegistry esbServiceRegistry)
     {
-        m_ebsRoutingConfigs = ebsRoutingConfigs;
+        m_esbRoutingConfigs = esbRoutingConfigs;
         m_esbServiceRegistry = esbServiceRegistry;
     }
 
@@ -65,8 +66,32 @@ public class EsbServiceMeshControlPlane
     /// <summary>
     /// Method for processing the previous service depending on the current state of the process.
     /// </summary>
-    public void ProcessPreviousService(long workflowInstanceId = 0, long transitionId = 0)
+    public void ProcessPreviousService(IProcessingPipeDelegateParams parameters)
     {
-        // 
+        var esbRoutingEntries = m_esbRoutingConfigs.EsbRoutingEntry;
+        if (esbRoutingEntries == null)
+            throw new System.Exception("ESB routing entries dictionary could not be null");
+        
+        var workflowInstanceId = parameters.WorkflowInstanceId;
+        var transitionId = parameters.BusinessProcessStateTransitionId;
+        
+        System.Action<IProcessingPipeDelegateParams> function;
+        long key;
+        switch (transitionId)
+        {
+            case 0:
+                key = 4;
+                break;
+            default:
+                throw new System.Exception($"Incorrect parameters: workflowInstanceId: {workflowInstanceId}, transitionId: {transitionId}");
+        }
+
+        if (!esbRoutingEntries.ContainsKey(key))
+            throw new System.Exception($"Specified key does not exist in the ESB routing entries dictionary: key = {key}");
+        function = esbRoutingEntries[key];
+        if (function == null)
+            throw new System.Exception("ESB delegate could not be null");
+        
+        function(parameters);
     }
 }
