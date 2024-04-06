@@ -85,7 +85,7 @@ public class ServiceA : IImplicitService
             CallServiceE();
 
             m_endpointServiceResolver.CreateBusinessTaskByWI(m_workflowInstance, "ServiceA-ServiceB", 1, false);
-            CallServiceB();
+            // CallServiceB();
         }
         catch (System.Exception ex)
         {

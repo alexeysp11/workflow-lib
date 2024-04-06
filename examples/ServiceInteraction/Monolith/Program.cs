@@ -9,6 +9,7 @@ using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 using WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
 using WorkflowLib.Examples.ServiceInteraction.Core.EndpointMemoryManagement;
 using WorkflowLib.Examples.ServiceInteraction.Core.ServiceRegistry;
+using WorkflowLib.Examples.ServiceInteraction.Core.Routing;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 using WorkflowLib.Examples.ServiceInteraction.Monolith;
 
@@ -51,9 +52,11 @@ public class Program
         // Endpoint selection.
         services.AddSingleton<EndpointPool>();
         services.AddSingleton<IEndpointLoadBalancer, RandomLoadBalancer>();
-
-        // Resolvers.
+    
+        // Service mesh.
         services.AddSingleton<IEsbServiceRegistry, EsbServiceRegistry>();
+        services.AddSingleton<EsbRoutingConfigs>();
+        services.AddSingleton<EsbServiceMeshControlPlane>();
 
         // DAL.
         services.AddSingleton<ILoggingDAL, LoggingDAL>();
