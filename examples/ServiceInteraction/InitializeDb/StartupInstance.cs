@@ -34,11 +34,11 @@ namespace WorkflowLib.Examples.ServiceInteraction.InitializeDb
             
             // Class names.
             var classNames = new Dictionary<string, string>();
-            classNames.Add(customerBackendName, typeof(ServiceA).Name);
-            classNames.Add(whBackendName, typeof(ServiceB).Name);
-            classNames.Add(courierBackendName, typeof(ServiceC).Name);
-            classNames.Add(kitchenBackendName, typeof(ServiceD).Name);
-            classNames.Add(fileserviceBackendName, typeof(ServiceE).Name);
+            classNames.Add(customerBackendName, typeof(CustomerController).Name);
+            classNames.Add(whBackendName, typeof(WarehouseController).Name);
+            classNames.Add(courierBackendName, typeof(CourierController).Name);
+            classNames.Add(kitchenBackendName, typeof(KitchenController).Name);
+            classNames.Add(fileserviceBackendName, typeof(FileService).Name);
             
             m_configResolver.InitCommunicationConfigs();
             m_configResolver.InitMonolithEndpoints(classNames);

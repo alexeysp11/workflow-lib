@@ -8,23 +8,23 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL.Controllers;
 /// Represents service E.
 /// </summary>
 /// <remarks>Does not initiate communication with any service.</remarks>
-public class ServiceE
+public class FileService
 {
     private ILoggingDAL m_loggingDAL;
 
     /// <summary>
     /// Default constructor.
     /// </summary>
-    public ServiceE(
+    public FileService(
         ILoggingDAL loggingDAL)
     {
         m_loggingDAL = loggingDAL;
     }
 
     /// <summary>
-    /// Method to process service A.
+    /// Method to process customer controller.
     /// </summary>
-    public void ProcessServiceA()
+    public void ProcessCustomerController()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");

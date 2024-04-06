@@ -7,10 +7,10 @@ using WorkflowLib.Examples.ServiceInteraction.Models;
 namespace WorkflowLib.Examples.ServiceInteraction.BL.Controllers;
 
 /// <summary>
-/// Represents service B.
+/// Represents warehouse controller.
 /// </summary>
 /// <remarks>Initiates communication with the following services: C, D.</remarks>
-public class ServiceB : IImplicitService
+public class WarehouseController : IImplicitService
 {
     private ILoggingDAL m_loggingDAL;
     private IEsbServiceRegistry m_endpointServiceResolver;
@@ -20,7 +20,7 @@ public class ServiceB : IImplicitService
     /// <summary>
     /// Default constructor.
     /// </summary>
-    public ServiceB(
+    public WarehouseController(
         ILoggingDAL loggingDAL,
         IEsbServiceRegistry endpointServiceResolver,
         IServiceProvider serviceProvider)
@@ -31,9 +31,9 @@ public class ServiceB : IImplicitService
     }
 
     /// <summary>
-    /// Method to process service A.
+    /// Method to process customer controller.
     /// </summary>
-    public void ProcessServiceA(long workflowInstanceId, long transitionId)
+    public void ProcessCustomerController(long workflowInstanceId, long transitionId)
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
@@ -42,8 +42,8 @@ public class ServiceB : IImplicitService
         {
             if (m_workflowInstance == null)
                 m_workflowInstance = m_endpointServiceResolver.GetWorkflowInstanceById(workflowInstanceId);
-            m_endpointServiceResolver.CreateBusinessTaskByWI(m_workflowInstance, "ServiceB-ServiceD", transitionId);
-            CallServiceD();
+            m_endpointServiceResolver.CreateBusinessTaskByWI(m_workflowInstance, "WarehouseController-KitchenController", transitionId);
+            CallKitchenController();
         }
         catch (System.Exception ex)
         {
@@ -54,9 +54,9 @@ public class ServiceB : IImplicitService
     }
 
     /// <summary>
-    /// Method to process service D.
+    /// Method to process kitchen controller.
     /// </summary>
-    public void ProcessServiceD(long workflowInstanceId, long transitionId)
+    public void ProcessKitchenController(long workflowInstanceId, long transitionId)
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
@@ -65,8 +65,8 @@ public class ServiceB : IImplicitService
         {
             if (m_workflowInstance == null)
                 m_workflowInstance = m_endpointServiceResolver.GetWorkflowInstanceById(workflowInstanceId);
-            m_endpointServiceResolver.CreateBusinessTaskByWI(m_workflowInstance, "ServiceB-ServiceC", transitionId);
-            CallServiceC();
+            m_endpointServiceResolver.CreateBusinessTaskByWI(m_workflowInstance, "WarehouseController-CourierController", transitionId);
+            CallCourierController();
         }
         catch (System.Exception ex)
         {
@@ -77,15 +77,15 @@ public class ServiceB : IImplicitService
     }
 
     /// <summary>
-    /// Method to call service C.
+    /// Method to call courier controller.
     /// </summary>
-    public void CallServiceC()
+    public void CallCourierController()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
         
         // Get data from DB.
-        var nextState = "ServiceC";
+        var nextState = "CourierController";
         var className = "WorkflowLib.Examples.ServiceInteraction.BL.Controllers." + nextState;
         var methodName = "ProcessPreviousService";
 
@@ -98,15 +98,15 @@ public class ServiceB : IImplicitService
     }
 
     /// <summary>
-    /// Method to call service D.
+    /// Method to call kitchen controller.
     /// </summary>
-    public void CallServiceD()
+    public void CallKitchenController()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
 
         // Get data from DB.
-        var nextState = "ServiceD";
+        var nextState = "KitchenController";
         var className = "WorkflowLib.Examples.ServiceInteraction.BL.Controllers." + nextState;
         var methodName = "ProcessPreviousService";
 
@@ -140,10 +140,10 @@ public class ServiceB : IImplicitService
         switch (transitionId)
         {
             case 1:
-                ProcessServiceA(workflowInstanceId, transitionId);
+                ProcessCustomerController(workflowInstanceId, transitionId);
                 break;
             case 3:
-                ProcessServiceD(workflowInstanceId, transitionId);
+                ProcessKitchenController(workflowInstanceId, transitionId);
                 break;
             default:
                 throw new System.Exception($"Incorrect transition ID: {transitionId}");

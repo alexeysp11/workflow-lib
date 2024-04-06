@@ -5,10 +5,10 @@ using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 namespace WorkflowLib.Examples.ServiceInteraction.BL.Controllers;
 
 /// <summary>
-/// Represents service C.
+/// Represents courier controller.
 /// </summary>
 /// <remarks>Does not initiate communication with any service.</remarks>
-public class ServiceC : IImplicitService
+public class CourierController : IImplicitService
 {
     private ILoggingDAL m_loggingDAL;
     private readonly IServiceProvider m_serviceProvider;
@@ -16,7 +16,7 @@ public class ServiceC : IImplicitService
     /// <summary>
     /// Default constructor.
     /// </summary>
-    public ServiceC(
+    public CourierController(
         ILoggingDAL loggingDAL,
         IServiceProvider serviceProvider)
     {
@@ -25,9 +25,9 @@ public class ServiceC : IImplicitService
     }
 
     /// <summary>
-    /// Method to process service B.
+    /// Method to process warehouse controller.
     /// </summary>
-    public void ProcessServiceB(long workflowInstanceId, long transitionId)
+    public void ProcessWarehouseController(long workflowInstanceId, long transitionId)
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
@@ -57,7 +57,7 @@ public class ServiceC : IImplicitService
         switch (transitionId)
         {
             case 4:
-                ProcessServiceB(workflowInstanceId, transitionId);
+                ProcessWarehouseController(workflowInstanceId, transitionId);
                 break;
             default:
                 throw new System.Exception($"Incorrect transition ID: {transitionId}");

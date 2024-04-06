@@ -8,10 +8,10 @@ using WorkflowLib.Examples.ServiceInteraction.Models;
 namespace WorkflowLib.Examples.ServiceInteraction.BL.Controllers;
 
 /// <summary>
-/// Represents service A.
+/// Represents customer controller.
 /// </summary>
 /// <remarks>Initiates communication with the following services: B, E.</remarks>
-public class ServiceA : IImplicitService
+public class CustomerController : IImplicitService
 {
     private ILoggingDAL m_loggingDAL;
     private IEsbServiceRegistry m_endpointServiceResolver;
@@ -21,7 +21,7 @@ public class ServiceA : IImplicitService
     /// <summary>
     /// Default constructor.
     /// </summary>
-    public ServiceA(
+    public CustomerController(
         ILoggingDAL loggingDAL,
         IEsbServiceRegistry endpointServiceResolver,
         IServiceProvider serviceProvider)
@@ -32,15 +32,15 @@ public class ServiceA : IImplicitService
     }
 
     /// <summary>
-    /// Method to call service B.
+    /// Method to call warehouse controller.
     /// </summary>
-    public void CallServiceB()
+    public void CallWarehouseController()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
 
         // Get data from DB.
-        var nextState = "ServiceB";
+        var nextState = "WarehouseController";
         var className = "WorkflowLib.Examples.ServiceInteraction.BL.Controllers." + nextState;
         var methodName = "ProcessPreviousService";
 
@@ -60,9 +60,9 @@ public class ServiceA : IImplicitService
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
 
-        string nextState = "ServiceE";
+        string nextState = "FileService";
         var className = "WorkflowLib.Examples.ServiceInteraction.BL.Controllers." + nextState;
-        var methodName = "ProcessServiceA";
+        var methodName = "ProcessCustomerController";
 
         // Invoke next service using reflection.
         var type = Type.GetType(className);
@@ -84,8 +84,8 @@ public class ServiceA : IImplicitService
         {
             CallServiceE();
 
-            m_endpointServiceResolver.CreateBusinessTaskByWI(m_workflowInstance, "ServiceA-ServiceB", 1, false);
-            // CallServiceB();
+            m_endpointServiceResolver.CreateBusinessTaskByWI(m_workflowInstance, "CustomerController-WarehouseController", 1, false);
+            // CallWarehouseController();
         }
         catch (System.Exception ex)
         {
@@ -105,7 +105,7 @@ public class ServiceA : IImplicitService
 
         try
         {
-            m_workflowInstance = m_endpointServiceResolver.CreateInitialWI("Delivering of the order", "ServiceA");           
+            m_workflowInstance = m_endpointServiceResolver.CreateInitialWI("Delivering of the order", "CustomerController");           
             CallNextService();
         }
         catch (System.Exception ex)

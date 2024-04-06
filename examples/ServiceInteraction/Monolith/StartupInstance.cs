@@ -24,12 +24,12 @@ namespace WorkflowLib.Examples.ServiceInteraction.Monolith
         public StartupInstance(
             EsbServiceMeshControlPlane esbServiceMesh,
             EsbRoutingConfigs esbRoutingConfigs,
-            ServiceA serviceA,
+            CustomerController customerController,
             IServiceProvider serviceProvider)
         {
             m_esbServiceMesh = esbServiceMesh;
             m_esbRoutingConfigs = esbRoutingConfigs;
-            m_service = serviceA;
+            m_service = customerController;
             m_serviceProvider = serviceProvider;
         }
 
@@ -57,14 +57,31 @@ namespace WorkflowLib.Examples.ServiceInteraction.Monolith
             // Get services.
             if (m_serviceProvider == null)
                 throw new System.Exception("Could not resolve service provider");
-            var serviceA = (ServiceA) m_serviceProvider.GetRequiredService(typeof(ServiceA));
-            CustomerPipe.SetService(serviceA);
+            var customerController = (CustomerController) m_serviceProvider.GetRequiredService(typeof(CustomerController));
+            CustomerPipe.SetService(customerController);
+            var warehouseController = (WarehouseController) m_serviceProvider.GetRequiredService(typeof(WarehouseController));
+            WarehousePipe.SetService(warehouseController);
+            var courierController = (CourierController) m_serviceProvider.GetRequiredService(typeof(CourierController));
+            CourierPipe.SetService(courierController);
+            var kitchenController = (KitchenController) m_serviceProvider.GetRequiredService(typeof(KitchenController));
+            KitchenPipe.SetService(kitchenController);
 
-            // Manually initialize pipes to process requests.
-            var customer2whPipe = new ProcessingPipeBuilder(m_esbServiceMesh.ProcessPreviousService)
+            // Build pipes.
+            var customerPipe = new ProcessingPipeBuilder(m_esbServiceMesh.ProcessPreviousService)
                 .AddPipe(typeof(CustomerPipe))
                 .Build();
-            m_esbRoutingConfigs.EsbRoutingEntry.Add(4, customer2whPipe);
+            var warehousePipe = new ProcessingPipeBuilder(m_esbServiceMesh.ProcessPreviousService)
+                .AddPipe(typeof(WarehousePipe))
+                .Build();
+            var kitchenPipe = new ProcessingPipeBuilder(m_esbServiceMesh.ProcessPreviousService)
+                .AddPipe(typeof(KitchenPipe))
+                .Build();
+
+            // Manually map pipes to process requests.
+            m_esbRoutingConfigs.EsbRoutingEntry.Add(4, customerPipe);
+            m_esbRoutingConfigs.EsbRoutingEntry.Add(7, warehousePipe);
+            m_esbRoutingConfigs.EsbRoutingEntry.Add(10, kitchenPipe);
+            m_esbRoutingConfigs.EsbRoutingEntry.Add(13, warehousePipe);
         }
     }
 }

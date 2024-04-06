@@ -3,12 +3,12 @@ using WorkflowLib.Examples.ServiceInteraction.Core.ProcessingPipes;
 namespace WorkflowLib.Examples.ServiceInteraction.BL.BLProcessingPipes;
 
 /// <summary>
-/// Pipe which is responsible for processing the request on the customer service side.
+/// Pipe which is responsible for processing the request on the courier service side.
 /// </summary>
-public class CustomerPipe : BaseBLServicePipe
+public class CourierPipe : BaseBLServicePipe
 {
     /// <summary>
     /// Default constructor.
     /// </summary>
-    public CustomerPipe(System.Action<IProcessingPipeDelegateParams> function) : base(function) {}
+    public CourierPipe(System.Action<IProcessingPipeDelegateParams> function) : base(function) {}
 }

@@ -47,13 +47,20 @@ public interface IBusinessProcessDAL
     /// Returns the next state of the business process by transaction ID.
     /// </summary>
     BusinessProcessState GetBPStateByTransaction(
-        long transitionId, 
+        long transitionId,
         bool isNextTask = true);
 
     /// <summary>
     /// Returns a task instance for the given workflow instance ID and state transition ID.
     /// </summary>
     BusinessTask GetNextBusinessTask(
-        long workflowInstanceId, 
+        long workflowInstanceId,
         long transitionId);
+
+    // /// <summary>
+    // /// Returns an endpoint call instance for the given workflow instance ID and state transition ID.
+    // /// </summary>
+    // EndpointCall GetNextEndpointCall(
+    //     long workflowInstanceId,
+    //     long transitionId);
 }

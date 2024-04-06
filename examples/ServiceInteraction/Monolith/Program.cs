@@ -64,10 +64,10 @@ public class Program
         services.AddSingleton<IBusinessProcessDAL, BusinessProcessDAL>();
 
         // Services.
-        services.AddSingleton<ServiceA>();
-        services.AddSingleton<ServiceB>();
-        services.AddSingleton<ServiceC>();
-        services.AddSingleton<ServiceD>();
-        services.AddSingleton<ServiceE>();
+        services.AddSingleton<CustomerController>();
+        services.AddSingleton<WarehouseController>();
+        services.AddSingleton<CourierController>();
+        services.AddSingleton<KitchenController>();
+        services.AddSingleton<FileService>();
     }
 }
