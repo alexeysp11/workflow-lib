@@ -7,3 +7,4 @@ select
 	dl."ChangeDate"
 from "DbgLogs" dl 
 order by dl."Id" desc
+limit 50
