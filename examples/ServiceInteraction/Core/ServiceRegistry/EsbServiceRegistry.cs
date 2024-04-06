@@ -66,14 +66,15 @@ public class EsbServiceRegistry : IEsbServiceRegistry
     /// <summary>
     /// Returns a workflow instance by its ID.
     /// </summary>
-    public WorkflowInstance GetWorkflowInstanceById(long id)
+    public WorkflowInstance GetWorkflowInstanceById(
+        long workflowInstanceId)
     {
-        if (id <= 0)
-            throw new System.ArgumentOutOfRangeException(nameof(id), $"Workflow instance ID should be positive, but '{id}' was passed");
+        if (workflowInstanceId <= 0)
+            throw new System.ArgumentOutOfRangeException(nameof(workflowInstanceId), $"Workflow instance ID should be positive, but '{workflowInstanceId}' was passed");
         
-        var workflowInstance = m_businessProcessDAL.GetWorkflowInstanceById(id);
+        var workflowInstance = m_businessProcessDAL.GetWorkflowInstanceById(workflowInstanceId);
         if (workflowInstance == null)
-            throw new System.Exception($"Workflow instance with the specified ID does not exist (id: {id})");
+            throw new System.Exception($"Workflow instance with the specified ID does not exist (workflowInstanceId: {workflowInstanceId})");
         return workflowInstance;
     }
 

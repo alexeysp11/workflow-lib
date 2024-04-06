@@ -25,7 +25,8 @@ public interface IEsbServiceRegistry
     /// <summary>
     /// Returns a workflow instance by its ID.
     /// </summary>
-    WorkflowInstance GetWorkflowInstanceById(long id);
+    WorkflowInstance GetWorkflowInstanceById(
+        long workflowInstanceId);
 
     /// <summary>
     /// Initializes a business process instance.

@@ -75,20 +75,21 @@ public class EsbServiceMeshControlPlane
         var workflowInstanceId = parameters.WorkflowInstanceId;
         var transitionId = parameters.BusinessProcessStateTransitionId;
         
-        System.Action<IProcessingPipeDelegateParams> function;
-        long key;
+        // Get the edpointCallId value from the database depending on workflowInstanceId and transitionId.
+        long edpointCallId;
         switch (transitionId)
         {
             case 0:
-                key = 4;
+                edpointCallId = 4;
                 break;
             default:
                 throw new System.Exception($"Incorrect parameters: workflowInstanceId: {workflowInstanceId}, transitionId: {transitionId}");
         }
-
-        if (!esbRoutingEntries.ContainsKey(key))
-            throw new System.Exception($"Specified key does not exist in the ESB routing entries dictionary: key = {key}");
-        function = esbRoutingEntries[key];
+        
+        // Get the delegate from the dictionary depending on the edpointCallId value.
+        if (!esbRoutingEntries.ContainsKey(edpointCallId))
+            throw new System.Exception($"Specified edpoint call ID does not exist in the ESB routing entries dictionary: edpointCallId = {edpointCallId}");
+        var function = esbRoutingEntries[edpointCallId];
         if (function == null)
             throw new System.Exception("ESB delegate could not be null");
         
