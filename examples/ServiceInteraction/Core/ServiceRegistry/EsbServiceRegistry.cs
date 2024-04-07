@@ -1,5 +1,6 @@
 using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 using WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
+using WorkflowLib.Examples.ServiceInteraction.Core.ProcessingPipes;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Core.ServiceRegistry;
@@ -144,12 +145,21 @@ public class EsbServiceRegistry : IEsbServiceRegistry
     /// Returns a next task instance for the given state transition ID.
     /// </summary>
     public BusinessTask GetNextBusinessTask(
-        long workflowInstanceId, 
+        long workflowInstanceId,
         long transitionId)
     {
         var businessTask = m_businessProcessDAL.GetNextBusinessTask(workflowInstanceId, transitionId);
         if (businessTask == null)
             throw new System.Exception($"Business task could not be found by the state transition ID (workflowInstanceId: {workflowInstanceId}, transitionId: {transitionId})");
         return businessTask;
+    }
+
+    /// <summary>
+    /// Returns the next state transition ID of the specified process.
+    /// </summary>
+    public long GetNextStateTransitionId(
+        IProcessingPipeDelegateParams parameters)
+    {
+        return 0;
     }
 }

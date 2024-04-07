@@ -48,6 +48,14 @@ public class EsbServiceMeshControlPlane
     }
 
     /// <summary>
+    /// Returns the next state transition ID of the specified process.
+    /// </summary>
+    public long GetNextStateTransitionId(IProcessingPipeDelegateParams parameters)
+    {
+        return m_esbServiceRegistry.GetNextStateTransitionId(parameters);
+    }
+
+    /// <summary>
     /// Make changes related to the current state within the current process.
     /// </summary>
     public void PostCurrentState(long workflowInstanceId, long userId)

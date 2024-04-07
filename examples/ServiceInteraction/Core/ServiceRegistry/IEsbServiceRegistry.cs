@@ -1,3 +1,4 @@
+using WorkflowLib.Examples.ServiceInteraction.Core.ProcessingPipes;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Core.ServiceRegistry;
@@ -50,4 +51,10 @@ public interface IEsbServiceRegistry
     BusinessTask GetNextBusinessTask(
         long workflowInstanceId, 
         long transitionId);
+    
+    /// <summary>
+    /// Returns the next state transition ID of the specified process.
+    /// </summary>
+    long GetNextStateTransitionId(
+        IProcessingPipeDelegateParams parameters);
 }
