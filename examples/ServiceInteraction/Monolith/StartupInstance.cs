@@ -12,7 +12,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Monolith
     /// </summary>
     public class StartupInstance : IStartupInstance
     {
-        private EsbServiceMeshControlPlane m_esbServiceMesh;
+        private EsbServiceMeshControlPlane m_controlPlane;
         private EsbRoutingConfigs m_esbRoutingConfigs;
         private IImplicitService m_service;
         private readonly IServiceProvider m_serviceProvider;
@@ -22,12 +22,12 @@ namespace WorkflowLib.Examples.ServiceInteraction.Monolith
         /// Construstor by default.
         /// </summary>
         public StartupInstance(
-            EsbServiceMeshControlPlane esbServiceMesh,
+            EsbServiceMeshControlPlane controlPlane,
             EsbRoutingConfigs esbRoutingConfigs,
             CustomerController customerController,
             IServiceProvider serviceProvider)
         {
-            m_esbServiceMesh = esbServiceMesh;
+            m_controlPlane = controlPlane;
             m_esbRoutingConfigs = esbRoutingConfigs;
             m_service = customerController;
             m_serviceProvider = serviceProvider;
@@ -47,7 +47,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Monolith
                 BusinessProcessStateTransitionId = 0,
                 UserId = 1
             };
-            m_esbServiceMesh.ProcessPreviousService(parameters);
+            m_controlPlane.ProcessPreviousService(parameters);
         }
 
         private void InitProcessingPipes()
@@ -57,6 +57,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Monolith
             // Get services.
             if (m_serviceProvider == null)
                 throw new System.Exception("Could not resolve service provider");
+            BusinessStatePipe.SetEsbServiceRegistry(m_controlPlane);
             var customerController = (CustomerController) m_serviceProvider.GetRequiredService(typeof(CustomerController));
             CustomerPipe.SetService(customerController);
             var warehouseController = (WarehouseController) m_serviceProvider.GetRequiredService(typeof(WarehouseController));
@@ -67,14 +68,17 @@ namespace WorkflowLib.Examples.ServiceInteraction.Monolith
             KitchenPipe.SetService(kitchenController);
 
             // Build pipes.
-            var customerPipe = new ProcessingPipeBuilder(m_esbServiceMesh.ProcessPreviousService)
+            var customerPipe = new ProcessingPipeBuilder(m_controlPlane.ProcessPreviousService)
                 .AddPipe(typeof(CustomerPipe))
+                .AddPipe(typeof(BusinessStatePipe))
                 .Build();
-            var warehousePipe = new ProcessingPipeBuilder(m_esbServiceMesh.ProcessPreviousService)
+            var warehousePipe = new ProcessingPipeBuilder(m_controlPlane.ProcessPreviousService)
                 .AddPipe(typeof(WarehousePipe))
+                .AddPipe(typeof(BusinessStatePipe))
                 .Build();
-            var kitchenPipe = new ProcessingPipeBuilder(m_esbServiceMesh.ProcessPreviousService)
+            var kitchenPipe = new ProcessingPipeBuilder(m_controlPlane.ProcessPreviousService)
                 .AddPipe(typeof(KitchenPipe))
+                .AddPipe(typeof(BusinessStatePipe))
                 .Build();
 
             // Manually map pipes to process requests.
