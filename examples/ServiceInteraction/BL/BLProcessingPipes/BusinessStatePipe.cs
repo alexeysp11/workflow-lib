@@ -9,7 +9,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL.BLProcessingPipes;
 /// </summary>
 public class BusinessStatePipe : AbstractProcessingPipe
 {
-    private static EsbServiceMeshControlPlane m_controlPlane;
+    private static EsbControlPlane m_controlPlane;
 
     /// <summary>
     /// Default constructor.
@@ -19,7 +19,7 @@ public class BusinessStatePipe : AbstractProcessingPipe
     /// <summary>
     /// Sets ESB service registry.
     /// </summary>
-    public static void SetEsbServiceRegistry(EsbServiceMeshControlPlane controlPlane)
+    public static void SetEsbServiceRegistry(EsbControlPlane controlPlane)
     {
         m_controlPlane = controlPlane;
     }

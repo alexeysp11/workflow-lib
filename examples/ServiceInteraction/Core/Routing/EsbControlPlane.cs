@@ -7,7 +7,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Core.Routing;
 /// Provides functionality for the service mesh control plane (receives information where to redirect the process 
 /// and causes a redirect using EsbProxies).
 /// </summary>
-public class EsbServiceMeshControlPlane
+public class EsbControlPlane
 {
     private EsbRoutingConfigs m_esbRoutingConfigs;
     private IEsbServiceRegistry m_esbServiceRegistry;
@@ -15,7 +15,7 @@ public class EsbServiceMeshControlPlane
     /// <summary>
     /// Default constructor.
     /// </summary>
-    public EsbServiceMeshControlPlane(
+    public EsbControlPlane(
         EsbRoutingConfigs esbRoutingConfigs,
         IEsbServiceRegistry esbServiceRegistry)
     {

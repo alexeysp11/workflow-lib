@@ -12,7 +12,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Monolith
     /// </summary>
     public class StartupInstance : IStartupInstance
     {
-        private EsbServiceMeshControlPlane m_controlPlane;
+        private EsbControlPlane m_controlPlane;
         private EsbRoutingConfigs m_esbRoutingConfigs;
         private IImplicitService m_service;
         private readonly IServiceProvider m_serviceProvider;
@@ -22,7 +22,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Monolith
         /// Construstor by default.
         /// </summary>
         public StartupInstance(
-            EsbServiceMeshControlPlane controlPlane,
+            EsbControlPlane controlPlane,
             EsbRoutingConfigs esbRoutingConfigs,
             CustomerController customerController,
             IServiceProvider serviceProvider)

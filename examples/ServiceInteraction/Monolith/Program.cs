@@ -56,7 +56,7 @@ public class Program
         // Service mesh.
         services.AddSingleton<IEsbServiceRegistry, EsbServiceRegistry>();
         services.AddSingleton<EsbRoutingConfigs>();
-        services.AddSingleton<EsbServiceMeshControlPlane>();
+        services.AddSingleton<EsbControlPlane>();
 
         // DAL.
         services.AddSingleton<ILoggingDAL, LoggingDAL>();
