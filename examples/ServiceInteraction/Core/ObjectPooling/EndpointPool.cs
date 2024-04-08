@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
-namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointMemoryManagement;
+namespace WorkflowLib.Examples.ServiceInteraction.Core.ObjectPooling;
 
 /// <summary>
 /// Class for managing a pool of endpoints.
