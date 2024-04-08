@@ -1,12 +1,12 @@
 using WorkflowLib.Examples.ServiceInteraction.Core.ObjectPooling;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
-namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
+namespace WorkflowLib.Examples.ServiceInteraction.Core.LoadBalancers;
 
 /// <summary>
 /// Load balancer that uses weighted round-robin to select endpoints based on their weights.
 /// </summary>
-public class WeightedRoundRobinLoadBalancer : BaseEndpointLoadBalancer, IEndpointLoadBalancer
+public class WeightedRoundRobinLoadBalancer : BaseEsbLoadBalancer, IEsbLoadBalancer
 {
     private readonly object m_lock = new object();
     private readonly System.Random m_random;

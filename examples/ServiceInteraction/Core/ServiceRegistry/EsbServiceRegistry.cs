@@ -1,5 +1,5 @@
 using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
-using WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
+using WorkflowLib.Examples.ServiceInteraction.Core.LoadBalancers;
 using WorkflowLib.Examples.ServiceInteraction.Core.ProcessingPipes;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
@@ -13,7 +13,7 @@ public class EsbServiceRegistry : IEsbServiceRegistry
     private IEndpointDAL m_endpointDAL;
     private IBusinessProcessDAL m_businessProcessDAL;
     private EndpointSelectionParameter m_endpointSelectionParameter;
-    private IEndpointLoadBalancer m_loadBalancer;
+    private IEsbLoadBalancer m_loadBalancer;
 
     /// <summary>
     /// Constructor by default.
@@ -22,7 +22,7 @@ public class EsbServiceRegistry : IEsbServiceRegistry
         IEndpointDAL endpointDAL,
         IBusinessProcessDAL businessProcessDAL,
         EndpointSelectionParameter endpointSelectionParameter,
-        IEndpointLoadBalancer loadBalancer)
+        IEsbLoadBalancer loadBalancer)
     {
         m_endpointDAL = endpointDAL;
         m_businessProcessDAL = businessProcessDAL;

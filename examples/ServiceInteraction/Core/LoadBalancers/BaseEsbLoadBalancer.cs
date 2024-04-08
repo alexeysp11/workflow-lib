@@ -1,12 +1,12 @@
 using WorkflowLib.Examples.ServiceInteraction.Core.ObjectPooling;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
-namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
+namespace WorkflowLib.Examples.ServiceInteraction.Core.LoadBalancers;
 
 /// <summary>
 /// A base abstract class that implements a load balancer.
 /// </summary>
-public abstract class BaseEndpointLoadBalancer
+public abstract class BaseEsbLoadBalancer
 {
     private protected EndpointPool m_endpointPool;
 

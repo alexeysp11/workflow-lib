@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using WorkflowLib.Examples.ServiceInteraction.Core.ObjectPooling;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
-namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
+namespace WorkflowLib.Examples.ServiceInteraction.Core.LoadBalancers;
 
 /// <summary>
 /// Load balancer that selects endpoints in a round-robin manner.
 /// </summary>
-public class RoundRobinLoadBalancer : BaseEndpointLoadBalancer, IEndpointLoadBalancer
+public class RoundRobinLoadBalancer : BaseEsbLoadBalancer, IEsbLoadBalancer
 {
     private readonly object m_lock = new object();
     private int m_currentIndex;

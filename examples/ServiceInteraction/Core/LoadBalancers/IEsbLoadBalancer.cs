@@ -1,11 +1,11 @@
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
-namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
+namespace WorkflowLib.Examples.ServiceInteraction.Core.LoadBalancers;
 
 /// <summary>
 /// Represents a load balancer that manages endpoints based on their current load.
 /// </summary>
-public interface IEndpointLoadBalancer
+public interface IEsbLoadBalancer
 {
     /// <summary>
     /// Gets the next available endpoint based on the load balancing strategy.

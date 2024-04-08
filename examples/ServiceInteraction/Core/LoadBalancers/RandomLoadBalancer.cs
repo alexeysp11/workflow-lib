@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using WorkflowLib.Examples.ServiceInteraction.Core.ObjectPooling;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
-namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
+namespace WorkflowLib.Examples.ServiceInteraction.Core.LoadBalancers;
 
 /// <summary>
 /// Represents a load balancer that randomly selects endpoints from a collection.
 /// </summary>
-public class RandomLoadBalancer : BaseEndpointLoadBalancer, IEndpointLoadBalancer
+public class RandomLoadBalancer : BaseEsbLoadBalancer, IEsbLoadBalancer
 {
     private readonly System.Random m_random;
 

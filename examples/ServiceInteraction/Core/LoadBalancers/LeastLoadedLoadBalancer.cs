@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using WorkflowLib.Examples.ServiceInteraction.Core.ObjectPooling;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
-namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
+namespace WorkflowLib.Examples.ServiceInteraction.Core.LoadBalancers;
 
 /// <summary>
 /// Load balancer that selects the least loaded endpoint based on the current load.
 /// </summary>
-public class LeastLoadedLoadBalancer : BaseEndpointLoadBalancer, IEndpointLoadBalancer
+public class LeastLoadedLoadBalancer : BaseEsbLoadBalancer, IEsbLoadBalancer
 {
     /// <summary>
     /// Initializes a new instance of the LeastLoadedLoadBalancer class with the specified initial load map.

@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using WorkflowLib.Examples.ServiceInteraction.Core.ObjectPooling;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
-namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
+namespace WorkflowLib.Examples.ServiceInteraction.Core.LoadBalancers;
 
 /// <summary>
 /// Load balancer that selects the endpoint with the least number of active connections.
 /// </summary>
-public class LeastConnectionsLoadBalancer : BaseEndpointLoadBalancer, IEndpointLoadBalancer
+public class LeastConnectionsLoadBalancer : BaseEsbLoadBalancer, IEsbLoadBalancer
 {
     /// <summary>
     /// Initializes a new instance of the LeastConnectionsLoadBalancer class with the specified initial connection map.

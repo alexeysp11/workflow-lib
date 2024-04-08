@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using WorkflowLib.Examples.ServiceInteraction.Core.ObjectPooling;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
-namespace WorkflowLib.Examples.ServiceInteraction.Core.EndpointLoadBalancers;
+namespace WorkflowLib.Examples.ServiceInteraction.Core.LoadBalancers;
 
 /// <summary>
 /// Load balancer that selects the endpoint with the least response time.
 /// </summary>
-public class LeastResponseTimeLoadBalancer : BaseEndpointLoadBalancer, IEndpointLoadBalancer
+public class LeastResponseTimeLoadBalancer : BaseEsbLoadBalancer, IEsbLoadBalancer
 {
     /// <summary>
     /// Initializes a new instance of the LeastResponseTimeLoadBalancer class with the specified initial endpoint map.
