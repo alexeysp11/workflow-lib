@@ -1,4 +1,3 @@
-
 namespace WorkflowLib.Examples.ServiceInteraction.Core.EsbProxies;
 
 /// <summary>
