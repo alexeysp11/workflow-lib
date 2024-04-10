@@ -9,7 +9,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL.BLProcessingPipes;
 /// </summary>
 public class BusinessStatePipe : AbstractProcessingPipe
 {
-    private static EsbControlPlane m_controlPlane;
+    private static EsbControlPlane s_controlPlane;
 
     /// <summary>
     /// Default constructor.
@@ -21,7 +21,7 @@ public class BusinessStatePipe : AbstractProcessingPipe
     /// </summary>
     public static void SetEsbServiceRegistry(EsbControlPlane controlPlane)
     {
-        m_controlPlane = controlPlane;
+        s_controlPlane = controlPlane;
     }
 
     /// <summary>
@@ -29,7 +29,7 @@ public class BusinessStatePipe : AbstractProcessingPipe
     /// </summary>
     public override void Handle(IProcessingPipeDelegateParams parameters)
     {
-        parameters.BusinessProcessStateTransitionId = m_controlPlane.GetNextStateTransitionId(parameters);
+        parameters.BusinessProcessStateTransitionId = s_controlPlane.GetNextStateTransitionId(parameters);
         m_function(parameters);
     }
 }

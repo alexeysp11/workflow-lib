@@ -8,7 +8,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL.BLProcessingPipes;
 /// </summary>
 public class CourierPipe : AbstractProcessingPipe
 {
-    private static IImplicitService m_service;
+    private static IImplicitService s_service;
 
     /// <summary>
     /// Default constructor.
@@ -20,7 +20,7 @@ public class CourierPipe : AbstractProcessingPipe
     /// </summary>
     public static void SetService(IImplicitService service)
     {
-        m_service = service;
+        s_service = service;
     }
 
     /// <summary>
@@ -28,7 +28,7 @@ public class CourierPipe : AbstractProcessingPipe
     /// </summary>
     public override void Handle(IProcessingPipeDelegateParams parameters)
     {
-        m_service.ProcessPreviousService(parameters.WorkflowInstanceId, parameters.BusinessProcessStateTransitionId);
+        s_service.ProcessPreviousService(parameters.WorkflowInstanceId, parameters.BusinessProcessStateTransitionId);
         m_function(parameters);
     }
 }
