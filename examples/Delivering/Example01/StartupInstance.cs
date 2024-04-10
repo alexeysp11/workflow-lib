@@ -32,7 +32,7 @@ namespace WorkflowLib.Examples.Delivering.Example01
         private DeliverOrderStep _step09 { get; set; }
 
         /// <summary>
-        /// Construstor by default.
+        /// Default constructor.
         /// </summary>
         public StartupInstance(
             DbContextOptions<DeliveringContext> contextOptions,
