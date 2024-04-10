@@ -12,7 +12,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.InitializeDb
         private ConfigResolver m_configResolver;
 
         /// <summary>
-        /// Construstor by default.
+        /// Default constructor.
         /// </summary>
         public StartupInstance(
             ConfigResolver configResolver)

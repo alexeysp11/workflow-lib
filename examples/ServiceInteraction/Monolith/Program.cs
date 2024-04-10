@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WorkflowLib.Examples.ServiceInteraction.BL.BPInitializers;
+using WorkflowLib.Examples.ServiceInteraction.BL.Contexts;
 using WorkflowLib.Examples.ServiceInteraction.BL.Controllers;
 using WorkflowLib.Examples.ServiceInteraction.BL.DAL;
 using WorkflowLib.Examples.ServiceInteraction.Core;
-using WorkflowLib.Examples.ServiceInteraction.BL.Contexts;
 using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 using WorkflowLib.Examples.ServiceInteraction.Core.LoadBalancers;
 using WorkflowLib.Examples.ServiceInteraction.Core.ObjectPooling;
@@ -54,6 +55,10 @@ public class Program
         services.AddSingleton<EndpointPool>();
         services.AddSingleton<IEsbLoadBalancer, RandomLoadBalancer>();
     
+        // Business process initializers.
+        services.AddSingleton<BPTransitionInitializer>();
+        services.AddSingleton<ProcessingPipeInitializer>();
+
         // Service mesh.
         services.AddSingleton<IEsbServiceRegistry, EsbServiceRegistry>();
         services.AddSingleton<EsbRoutingConfigs>();

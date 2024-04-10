@@ -25,7 +25,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Tests
         private IEsbServiceRegistry _serviceResolver { get; set; }
 
         /// <summary>
-        /// Construstor by default.
+        /// Default constructor.
         /// </summary>
         public StartupInstance(
             DbContextOptions<ServiceInteractionContext> contextOptions,

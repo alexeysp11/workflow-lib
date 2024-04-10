@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Core.DAL;
@@ -44,9 +45,9 @@ public interface IBusinessProcessDAL
         BusinessTask activeTask);
 
     /// <summary>
-    /// Returns the next state of the business process by transaction ID.
+    /// Returns the next state of the business process by transition ID.
     /// </summary>
-    BusinessProcessState GetBPStateByTransaction(
+    BusinessProcessState GetBPStateByTransition(
         long transitionId,
         bool isNextTask = true);
 
@@ -56,6 +57,11 @@ public interface IBusinessProcessDAL
     BusinessTask GetNextBusinessTask(
         long workflowInstanceId,
         long transitionId);
+    
+    /// <summary>
+    /// Get all business process state transitions.
+    /// </summary>
+    IList<BusinessProcessStateTransition> GetBusinessProcessStateTransitions();
 
     // /// <summary>
     // /// Returns an endpoint call instance for the given workflow instance ID and state transition ID.

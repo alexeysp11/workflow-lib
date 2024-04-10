@@ -138,9 +138,9 @@ public class BusinessProcessDAL : IBusinessProcessDAL
     }
     
     /// <summary>
-    /// Returns the next state of the business process by transaction ID.
+    /// Returns the next state of the business process by transition ID.
     /// </summary>
-    public BusinessProcessState GetBPStateByTransaction(
+    public BusinessProcessState GetBPStateByTransition(
         long transitionId, 
         bool isNextTask = true)
     {
@@ -179,5 +179,14 @@ public class BusinessProcessDAL : IBusinessProcessDAL
                 select bt
             ).FirstOrDefault();
         return businessTask;
+    }
+
+    /// <summary>
+    /// Get all business process state transitions.
+    /// </summary>
+    public IList<BusinessProcessStateTransition> GetBusinessProcessStateTransitions()
+    {
+        using var context = new ServiceInteractionContext(m_contextOptions);
+        return context.BusinessProcessStateTransitions.ToList();
     }
 }

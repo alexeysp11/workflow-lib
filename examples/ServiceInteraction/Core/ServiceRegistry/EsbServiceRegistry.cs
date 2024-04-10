@@ -126,7 +126,7 @@ public class EsbServiceRegistry : IEsbServiceRegistry
         BusinessProcessState processState = null;
         if (transitionId != null)
         {
-            processState = m_businessProcessDAL.GetBPStateByTransaction(transitionId.Value, isNextTask);
+            processState = m_businessProcessDAL.GetBPStateByTransition(transitionId.Value, isNextTask);
             if (processState == null)
                 throw new System.Exception($"Process state could not be found with for the specified transition (transitionId: {transitionId.Value}, isNextTask: {isNextTask})");
         }
