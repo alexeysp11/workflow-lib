@@ -1,5 +1,6 @@
 using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 using WorkflowLib.Examples.ServiceInteraction.Core.LoadBalancers;
+using WorkflowLib.Examples.ServiceInteraction.Core.ObjectPooling;
 using WorkflowLib.Examples.ServiceInteraction.Core.ProcessingPipes;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
@@ -14,6 +15,7 @@ public class EsbServiceRegistry : IEsbServiceRegistry
     private IBusinessProcessDAL m_businessProcessDAL;
     private EndpointSelectionParameter m_endpointSelectionParameter;
     private IEsbLoadBalancer m_loadBalancer;
+    private TransitionPool m_transitionPool;
 
     /// <summary>
     /// Constructor by default.
@@ -22,12 +24,14 @@ public class EsbServiceRegistry : IEsbServiceRegistry
         IEndpointDAL endpointDAL,
         IBusinessProcessDAL businessProcessDAL,
         EndpointSelectionParameter endpointSelectionParameter,
-        IEsbLoadBalancer loadBalancer)
+        IEsbLoadBalancer loadBalancer,
+        TransitionPool transitionPool)
     {
         m_endpointDAL = endpointDAL;
         m_businessProcessDAL = businessProcessDAL;
         m_endpointSelectionParameter = endpointSelectionParameter;
         m_loadBalancer = loadBalancer;
+        m_transitionPool = transitionPool;
     }
 
     /// <summary>
@@ -160,6 +164,10 @@ public class EsbServiceRegistry : IEsbServiceRegistry
     public long GetNextStateTransitionId(
         IProcessingPipeDelegateParams parameters)
     {
-        return 0;
+        var transitionId = parameters.BusinessProcessStateTransitionId;
+        var nextTransition = m_transitionPool.GetNextTransitionById(transitionId);
+        if (nextTransition == null)
+            throw new System.Exception($"Unable to find next transition for the specified transition ID: {transitionId}");
+        return nextTransition.Id;
     }
 }

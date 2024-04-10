@@ -12,7 +12,7 @@ public sealed class EndpointPool
 {
     private ConcurrentDictionary<long, EndpointCollectionParameter> m_endpointParameters;
     private IReadOnlyDictionary<long, EndpointCollectionParameter> m_cachedEndpointParameters;
-    private IReadOnlyList<EndpointCollectionParameter> m_activeCachedEndpointParameters;
+    private IReadOnlyList<EndpointCollectionParameter> m_cachedActiveEndpointParameters;
 
     /// <summary>
     /// Collection of endpoint parameters.
@@ -36,13 +36,13 @@ public sealed class EndpointPool
     {
         get
         {
-            if (m_activeCachedEndpointParameters == null)
+            if (m_cachedActiveEndpointParameters == null)
             {
-                m_activeCachedEndpointParameters = EndpointParameters.Values
+                m_cachedActiveEndpointParameters = EndpointParameters.Values
                     .Where(p => p != null && p.Endpoint != null && p.Endpoint.Status == EndpointStatus.Active)
                     .ToList();
             }
-            return m_activeCachedEndpointParameters;
+            return m_cachedActiveEndpointParameters;
         }
     }
 
@@ -101,6 +101,6 @@ public sealed class EndpointPool
     private void ClearCacheFields()
     {
         m_cachedEndpointParameters = null;
-        m_activeCachedEndpointParameters = null;
+        m_cachedActiveEndpointParameters = null;
     }
 }
