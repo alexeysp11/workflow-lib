@@ -50,6 +50,7 @@ public class Program
         });
 
         // Endpoint selection.
+        services.AddSingleton<TransitionPool>();
         services.AddSingleton<EndpointPool>();
         services.AddSingleton<IEsbLoadBalancer, RandomLoadBalancer>();
     
