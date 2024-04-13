@@ -32,27 +32,6 @@ public class CustomerController : IImplicitService
     }
 
     /// <summary>
-    /// Method to call warehouse controller.
-    /// </summary>
-    public void CallWarehouseController()
-    {
-        var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
-        m_loggingDAL.AddDbgLog(sourceName, "started");
-
-        // Get data from DB.
-        var nextState = "WarehouseController";
-        var className = "WorkflowLib.Examples.ServiceInteraction.BL.Controllers." + nextState;
-        var methodName = "ProcessPreviousService";
-
-        // Invoke next service using reflection.
-        var type = Type.GetType(className);
-        var instance = m_serviceProvider.GetRequiredService(type);
-        type.GetMethod(methodName).Invoke(instance, new object[]{m_workflowInstance.Id, 1});
-
-        m_loggingDAL.AddDbgLog(sourceName, "finished");
-    }
-
-    /// <summary>
     /// Method to call service E.
     /// </summary>
     public void CallServiceE()
@@ -85,7 +64,6 @@ public class CustomerController : IImplicitService
             CallServiceE();
 
             m_endpointServiceResolver.CreateBusinessTaskByWI(m_workflowInstance, "CustomerController-WarehouseController", 1, false);
-            // CallWarehouseController();
         }
         catch (System.Exception ex)
         {
