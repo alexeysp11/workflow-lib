@@ -5,7 +5,6 @@ using WorkflowLib.Examples.ServiceInteraction.BL.BPInitializers;
 using WorkflowLib.Examples.ServiceInteraction.BL.Contexts;
 using WorkflowLib.Examples.ServiceInteraction.BL.Controllers;
 using WorkflowLib.Examples.ServiceInteraction.BL.DAL;
-using WorkflowLib.Examples.ServiceInteraction.Core;
 using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 using WorkflowLib.Examples.ServiceInteraction.Core.LoadBalancers;
 using WorkflowLib.Examples.ServiceInteraction.Core.ObjectPooling;

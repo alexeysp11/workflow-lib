@@ -90,6 +90,9 @@ public class EsbControlPlane
             case 0:
                 edpointCallId = 4;
                 break;
+            case 1:
+                edpointCallId = 5; // check if it is correct.
+                break;
             default:
                 throw new System.Exception($"Incorrect parameters: workflowInstanceId: {workflowInstanceId}, transitionId: {transitionId}");
         }

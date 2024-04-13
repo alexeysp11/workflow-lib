@@ -43,12 +43,10 @@ public sealed class TransitionPool
     /// <param name="transition">Transition to add to the pool.</param>
     public void AddTransitionToPool(BusinessProcessStateTransition transition)
     {
-        if (transition.Previous == null)
-            return;
-        
-        if (!m_prev2NextTransitions.ContainsKey(transition.Previous.Id))
+        var previousId = (transition.Previous == null ? 0 : transition.Previous.Id);
+        if (!m_prev2NextTransitions.ContainsKey(previousId))
         {
-            m_prev2NextTransitions.TryAdd(transition.Previous.Id, transition);
+            m_prev2NextTransitions.TryAdd(previousId, transition);
             ClearCacheFields();
         }
     }

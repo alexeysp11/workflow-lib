@@ -187,6 +187,6 @@ public class BusinessProcessDAL : IBusinessProcessDAL
     public IList<BusinessProcessStateTransition> GetBusinessProcessStateTransitions()
     {
         using var context = new ServiceInteractionContext(m_contextOptions);
-        return context.BusinessProcessStateTransitions.ToList();
+        return context.BusinessProcessStateTransitions.Include(x => x.Previous).ToList();
     }
 }

@@ -2,7 +2,6 @@ using Microsoft.Extensions.DependencyInjection;
 using WorkflowLib.Examples.ServiceInteraction.BL.BLProcessingPipes;
 using WorkflowLib.Examples.ServiceInteraction.BL.BPInitializers;
 using WorkflowLib.Examples.ServiceInteraction.Core.Routing;
-using WorkflowLib.Examples.ServiceInteraction.Models;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Monolith
 {
