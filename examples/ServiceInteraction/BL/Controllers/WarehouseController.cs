@@ -14,8 +14,8 @@ public class WarehouseController : IImplicitService
 {
     private ILoggingDAL m_loggingDAL;
     private IEsbServiceRegistry m_endpointServiceResolver;
-    private WorkflowInstance m_workflowInstance;
     private readonly IServiceProvider m_serviceProvider;
+    private WorkflowInstance? m_workflowInstance;
 
     /// <summary>
     /// Default constructor.
@@ -33,7 +33,7 @@ public class WarehouseController : IImplicitService
     /// <summary>
     /// Method to process customer controller.
     /// </summary>
-    public void ProcessCustomerController(long workflowInstanceId, long transitionId)
+    public void ProcessCustomerController(ref long workflowInstanceId, ref long transitionId)
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
@@ -43,7 +43,7 @@ public class WarehouseController : IImplicitService
             if (m_workflowInstance == null)
                 m_workflowInstance = m_endpointServiceResolver.GetWorkflowInstanceById(workflowInstanceId);
             m_endpointServiceResolver.CreateBusinessTaskByWI(m_workflowInstance, "WarehouseController-KitchenController", transitionId);
-            CallKitchenController();
+            // CallKitchenController();
         }
         catch (System.Exception ex)
         {
@@ -56,7 +56,7 @@ public class WarehouseController : IImplicitService
     /// <summary>
     /// Method to process kitchen controller.
     /// </summary>
-    public void ProcessKitchenController(long workflowInstanceId, long transitionId)
+    public void ProcessKitchenController(ref long workflowInstanceId, ref long transitionId)
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
@@ -66,7 +66,7 @@ public class WarehouseController : IImplicitService
             if (m_workflowInstance == null)
                 m_workflowInstance = m_endpointServiceResolver.GetWorkflowInstanceById(workflowInstanceId);
             m_endpointServiceResolver.CreateBusinessTaskByWI(m_workflowInstance, "WarehouseController-CourierController", transitionId);
-            CallCourierController();
+            // CallCourierController();
         }
         catch (System.Exception ex)
         {
@@ -132,7 +132,7 @@ public class WarehouseController : IImplicitService
     /// <summary>
     /// Method for processing the previous service depending on the current state of the process.
     /// </summary>
-    public void ProcessPreviousService(long workflowInstanceId = 0, long transitionId = 0)
+    public void ProcessPreviousService(ref long workflowInstanceId, ref long transitionId)
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
@@ -140,10 +140,10 @@ public class WarehouseController : IImplicitService
         switch (transitionId)
         {
             case 1:
-                ProcessCustomerController(workflowInstanceId, transitionId);
+                ProcessCustomerController(ref workflowInstanceId, ref transitionId);
                 break;
             case 3:
-                ProcessKitchenController(workflowInstanceId, transitionId);
+                ProcessKitchenController(ref workflowInstanceId, ref transitionId);
                 break;
             default:
                 throw new System.Exception($"Incorrect transition ID: {transitionId}");

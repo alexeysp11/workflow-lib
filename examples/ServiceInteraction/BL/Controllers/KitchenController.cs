@@ -14,8 +14,8 @@ public class KitchenController : IImplicitService
 {
     private ILoggingDAL m_loggingDAL;
     private IEsbServiceRegistry m_endpointServiceResolver;
-    private WorkflowInstance m_workflowInstance;
     private readonly IServiceProvider m_serviceProvider;
+    private WorkflowInstance? m_workflowInstance;
 
     /// <summary>
     /// Default constructor.
@@ -33,7 +33,7 @@ public class KitchenController : IImplicitService
     /// <summary>
     /// Method to process warehouse controller.
     /// </summary>
-    public void ProcessWarehouseController(long workflowInstanceId, long transitionId)
+    public void ProcessWarehouseController(ref long workflowInstanceId, ref long transitionId)
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
@@ -43,7 +43,7 @@ public class KitchenController : IImplicitService
             if (m_workflowInstance == null)
                 m_workflowInstance = m_endpointServiceResolver.GetWorkflowInstanceById(workflowInstanceId);
             m_endpointServiceResolver.CreateBusinessTaskByWI(m_workflowInstance, "KitchenController-WarehouseController", transitionId);
-            CallWarehouseController();
+            // CallWarehouseController();
         }
         catch (System.Exception ex)
         {
@@ -88,7 +88,7 @@ public class KitchenController : IImplicitService
     /// <summary>
     /// Method for processing the previous service depending on the current state of the process.
     /// </summary>
-    public void ProcessPreviousService(long workflowInstanceId = 0, long transitionId = 0)
+    public void ProcessPreviousService(ref long workflowInstanceId, ref long transitionId)
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
@@ -96,7 +96,7 @@ public class KitchenController : IImplicitService
         switch (transitionId)
         {
             case 2:
-                ProcessWarehouseController(workflowInstanceId, transitionId);
+                ProcessWarehouseController(ref workflowInstanceId, ref transitionId);
                 break;
             default:
                 throw new System.Exception($"Incorrect transition ID: {transitionId}");

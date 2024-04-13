@@ -28,7 +28,9 @@ public class KitchenPipe : AbstractProcessingPipe
     /// </summary>
     public override void Handle(IProcessingPipeDelegateParams parameters)
     {
-        s_service.ProcessPreviousService(parameters.WorkflowInstanceId, parameters.BusinessProcessStateTransitionId);
+        var workflowInstanceId = parameters.WorkflowInstanceId;
+        var bpstId = parameters.BusinessProcessStateTransitionId;
+        s_service.ProcessPreviousService(ref workflowInstanceId, ref bpstId);
         m_function(parameters);
     }
 }

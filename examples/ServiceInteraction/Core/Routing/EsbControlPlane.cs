@@ -91,7 +91,13 @@ public class EsbControlPlane
                 edpointCallId = 4;
                 break;
             case 1:
-                edpointCallId = 5; // check if it is correct.
+                edpointCallId = 7;
+                break;
+            case 2:
+                edpointCallId = 10;
+                break;
+            case 3:
+                edpointCallId = 13;
                 break;
             default:
                 throw new System.Exception($"Incorrect parameters: workflowInstanceId: {workflowInstanceId}, transitionId: {transitionId}");

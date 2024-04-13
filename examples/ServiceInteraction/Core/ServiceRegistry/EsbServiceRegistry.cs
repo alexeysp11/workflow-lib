@@ -42,9 +42,7 @@ public class EsbServiceRegistry : IEsbServiceRegistry
         BusinessProcessState currentState,
         BusinessProcessStateTransition stateTransition)
     {
-        if (endpointCallType == null) 
-            throw new System.Exception("Endpoint call type could not be null");
-        if (currentState == null || currentState.Id == null) 
+        if (currentState == null) 
             throw new System.Exception("Current state could not be null or undefined");
         
         return m_endpointDAL.GetEndpoint(x => x.EndpointCallType == endpointCallType
@@ -59,9 +57,9 @@ public class EsbServiceRegistry : IEsbServiceRegistry
         EndpointType endpointTypeFrom,
         EndpointType endpointTypeTo)
     {
-        if (endpointTypeFrom == null || endpointTypeFrom.Id == null) 
+        if (endpointTypeFrom == null) 
             throw new System.Exception("Source endpoint type could not be null");
-        if (endpointTypeTo == null || endpointTypeTo.Id == null) 
+        if (endpointTypeTo == null)
             throw new System.Exception("Destination endpoint type could not be null");
 
         return m_endpointDAL.GetEndpoint(x => x.EndpointTypeFrom.Id == endpointTypeFrom.Id

@@ -15,8 +15,8 @@ public class CustomerController : IImplicitService
 {
     private ILoggingDAL m_loggingDAL;
     private IEsbServiceRegistry m_endpointServiceResolver;
-    private WorkflowInstance m_workflowInstance;
     private readonly IServiceProvider m_serviceProvider;
+    private WorkflowInstance? m_workflowInstance;
 
     /// <summary>
     /// Default constructor.
@@ -98,7 +98,7 @@ public class CustomerController : IImplicitService
     /// <summary>
     /// Method for processing the previous service depending on the current state of the process.
     /// </summary>
-    public void ProcessPreviousService(long workflowInstanceId = 0, long transitionId = 0)
+    public void ProcessPreviousService(ref long workflowInstanceId, ref long transitionId)
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
@@ -106,6 +106,7 @@ public class CustomerController : IImplicitService
         try
         {
             m_workflowInstance = m_endpointServiceResolver.CreateInitialWI("Delivering of the order", "CustomerController");           
+            workflowInstanceId = m_workflowInstance.Id;
             CallNextService();
         }
         catch (System.Exception ex)
