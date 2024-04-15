@@ -1,11 +1,8 @@
-using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 using WorkflowLib.Examples.ServiceInteraction.BL.BLProcessingPipes;
 using WorkflowLib.Examples.ServiceInteraction.BL.Controllers;
-using WorkflowLib.Examples.ServiceInteraction.Core.ObjectPooling;
 using WorkflowLib.Examples.ServiceInteraction.Core.ProcessingPipes;
 using WorkflowLib.Examples.ServiceInteraction.Core.Routing;
-using WorkflowLib.Examples.ServiceInteraction.Models;
 
 namespace WorkflowLib.Examples.ServiceInteraction.BL.BPInitializers;
 
@@ -36,7 +33,8 @@ public class ProcessingPipeInitializer : IBPInitializer
     /// </summary>
     public void Initialize()
     {
-        m_esbRoutingConfigs.EsbRoutingEntry = new Dictionary<long, System.Action<IProcessingPipeDelegateParams>>();
+        m_esbRoutingConfigs.EsbRoutingEntries = new Dictionary<long, System.Action<IProcessingPipeDelegateParams>>();
+        m_esbRoutingConfigs.Transition2EdpointCallDictionary = new Dictionary<long, long>();
 
         // Get services.
         if (m_serviceProvider == null)
@@ -66,9 +64,15 @@ public class ProcessingPipeInitializer : IBPInitializer
             .Build();
 
         // Manually map pipes to process requests.
-        m_esbRoutingConfigs.EsbRoutingEntry.Add(4, customerPipe);
-        m_esbRoutingConfigs.EsbRoutingEntry.Add(7, warehousePipe);
-        m_esbRoutingConfigs.EsbRoutingEntry.Add(10, kitchenPipe);
-        m_esbRoutingConfigs.EsbRoutingEntry.Add(13, warehousePipe);
+        m_esbRoutingConfigs.EsbRoutingEntries.Add(4, customerPipe);
+        m_esbRoutingConfigs.EsbRoutingEntries.Add(7, warehousePipe);
+        m_esbRoutingConfigs.EsbRoutingEntries.Add(10, kitchenPipe);
+        m_esbRoutingConfigs.EsbRoutingEntries.Add(13, warehousePipe);
+
+        // Manually map current transition ID to endpoint call ID.
+        m_esbRoutingConfigs.Transition2EdpointCallDictionary.Add(0, 4);
+        m_esbRoutingConfigs.Transition2EdpointCallDictionary.Add(1, 7);
+        m_esbRoutingConfigs.Transition2EdpointCallDictionary.Add(2, 10);
+        m_esbRoutingConfigs.Transition2EdpointCallDictionary.Add(3, 13);
     }
 }

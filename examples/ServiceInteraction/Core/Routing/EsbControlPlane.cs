@@ -76,32 +76,20 @@ public class EsbControlPlane
     /// </summary>
     public void ProcessPreviousService(IProcessingPipeDelegateParams parameters)
     {
-        var esbRoutingEntries = m_esbRoutingConfigs.EsbRoutingEntry;
+        var esbRoutingEntries = m_esbRoutingConfigs.EsbRoutingEntries;
         if (esbRoutingEntries == null)
             throw new System.Exception("ESB routing entries dictionary could not be null");
-        
+        var transition2EdpointCall = m_esbRoutingConfigs.Transition2EdpointCallDictionary;
+        if (transition2EdpointCall == null)
+            throw new System.Exception("Transition ID to endpoint ID dictionary could not be null");
+
         var workflowInstanceId = parameters.WorkflowInstanceId;
         var transitionId = parameters.BusinessProcessStateTransitionId;
-        
-        // Get the edpointCallId value from the database depending on workflowInstanceId and transitionId.
-        long edpointCallId;
-        switch (transitionId)
-        {
-            case 0:
-                edpointCallId = 4;
-                break;
-            case 1:
-                edpointCallId = 7;
-                break;
-            case 2:
-                edpointCallId = 10;
-                break;
-            case 3:
-                edpointCallId = 13;
-                break;
-            default:
-                throw new System.Exception($"Incorrect parameters: workflowInstanceId: {workflowInstanceId}, transitionId: {transitionId}");
-        }
+
+        // Get endpoint call ID.
+        if (!transition2EdpointCall.ContainsKey(transitionId))
+            throw new System.Exception($"Specified transition ID does not exist in the dictionary: transitionId = {transitionId}");
+        var edpointCallId = transition2EdpointCall[transitionId];
         
         // Get the delegate from the dictionary depending on the edpointCallId value.
         if (!esbRoutingEntries.ContainsKey(edpointCallId))
