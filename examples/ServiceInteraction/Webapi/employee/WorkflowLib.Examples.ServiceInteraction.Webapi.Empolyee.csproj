@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <ProjectReference Include="..\..\BL\WorkflowLib.Examples.ServiceInteraction.BL.csproj" />
     <ProjectReference Include="..\..\Core\WorkflowLib.Examples.ServiceInteraction.Core.csproj" />

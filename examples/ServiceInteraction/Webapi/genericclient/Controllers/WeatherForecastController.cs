@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace kitchen.Controllers;
+namespace WorkflowLib.Examples.ServiceInteraction.Webapi.GenericClient.Controllers;
 
 [ApiController]
 [Route("[controller]")]

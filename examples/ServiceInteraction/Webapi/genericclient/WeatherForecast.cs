@@ -1,4 +1,4 @@
-namespace kitchen;
+namespace WorkflowLib.Examples.ServiceInteraction.Webapi.GenericClient;
 
 public class WeatherForecast
 {

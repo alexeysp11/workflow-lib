@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace customer.Controllers;
+namespace WorkflowLib.Examples.ServiceInteraction.Webapi.Customer.Controllers;
 
 [ApiController]
 [Route("[controller]")]

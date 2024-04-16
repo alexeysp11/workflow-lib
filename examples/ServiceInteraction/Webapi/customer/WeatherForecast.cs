@@ -1,4 +1,4 @@
-namespace customer;
+namespace WorkflowLib.Examples.ServiceInteraction.Webapi.Customer;
 
 public class WeatherForecast
 {

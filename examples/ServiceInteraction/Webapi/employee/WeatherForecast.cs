@@ -1,4 +1,4 @@
-namespace warehouse;
+namespace WorkflowLib.Examples.ServiceInteraction.Webapi.Empolyee;
 
 public class WeatherForecast
 {

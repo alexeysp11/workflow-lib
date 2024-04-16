@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace courier.Controllers;
+namespace WorkflowLib.Examples.ServiceInteraction.Webapi.Empolyee.Controllers;
 
 [ApiController]
 [Route("[controller]")]
