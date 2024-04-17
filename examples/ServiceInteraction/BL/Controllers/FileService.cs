@@ -24,7 +24,7 @@ public class FileService
     /// <summary>
     /// Method to process customer controller.
     /// </summary>
-    public void ProcessCustomerController()
+    public void ProcessCustomerControllerBL()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");

@@ -40,13 +40,13 @@ public class ProcessingPipeInitializer : IBPInitializer
         if (m_serviceProvider == null)
             throw new System.Exception("Could not resolve service provider");
         BusinessStatePipe.SetEsbServiceRegistry(m_controlPlane);
-        var customerController = (CustomerController) m_serviceProvider.GetRequiredService(typeof(CustomerController));
+        var customerController = (CustomerBLController) m_serviceProvider.GetRequiredService(typeof(CustomerBLController));
         CustomerPipe.SetService(customerController);
-        var warehouseController = (WarehouseController) m_serviceProvider.GetRequiredService(typeof(WarehouseController));
+        var warehouseController = (WarehouseBLController) m_serviceProvider.GetRequiredService(typeof(WarehouseBLController));
         WarehousePipe.SetService(warehouseController);
-        var courierController = (CourierController) m_serviceProvider.GetRequiredService(typeof(CourierController));
+        var courierController = (CourierBLController) m_serviceProvider.GetRequiredService(typeof(CourierBLController));
         CourierPipe.SetService(courierController);
-        var kitchenController = (KitchenController) m_serviceProvider.GetRequiredService(typeof(KitchenController));
+        var kitchenController = (KitchenBLController) m_serviceProvider.GetRequiredService(typeof(KitchenBLController));
         KitchenPipe.SetService(kitchenController);
 
         // Build pipes.

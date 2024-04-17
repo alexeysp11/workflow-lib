@@ -8,7 +8,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL.Controllers;
 /// Represents courier controller.
 /// </summary>
 /// <remarks>Does not initiate communication with any service.</remarks>
-public class CourierController : IImplicitService
+public class CourierBLController : IImplicitService
 {
     private ILoggingDAL m_loggingDAL;
     private readonly IServiceProvider m_serviceProvider;
@@ -16,7 +16,7 @@ public class CourierController : IImplicitService
     /// <summary>
     /// Default constructor.
     /// </summary>
-    public CourierController(
+    public CourierBLController(
         ILoggingDAL loggingDAL,
         IServiceProvider serviceProvider)
     {

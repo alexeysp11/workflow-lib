@@ -1,3 +1,4 @@
+﻿using System;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using WorkflowLib.Examples.ServiceInteraction.Core.ServiceRegistry;
@@ -7,10 +8,10 @@ using WorkflowLib.Examples.ServiceInteraction.Models;
 namespace WorkflowLib.Examples.ServiceInteraction.BL.Controllers;
 
 /// <summary>
-/// Represents kitchen controller.
+/// Represents customer controller.
 /// </summary>
-/// <remarks>Initiates communication with the following services: B.</remarks>
-public class KitchenController : IImplicitService
+/// <remarks>Initiates communication with the following services: B, E.</remarks>
+public class CustomerBLController : IImplicitService
 {
     private ILoggingDAL m_loggingDAL;
     private IEsbServiceRegistry m_endpointServiceResolver;
@@ -20,7 +21,7 @@ public class KitchenController : IImplicitService
     /// <summary>
     /// Default constructor.
     /// </summary>
-    public KitchenController(
+    public CustomerBLController(
         ILoggingDAL loggingDAL,
         IEsbServiceRegistry endpointServiceResolver,
         IServiceProvider serviceProvider)
@@ -31,24 +32,22 @@ public class KitchenController : IImplicitService
     }
 
     /// <summary>
-    /// Method to process warehouse controller.
+    /// Method to call service E.
     /// </summary>
-    public void ProcessWarehouseController(ref long workflowInstanceId, ref long transitionId)
+    public void CallServiceE()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
-        
-        try
-        {
-            if (m_workflowInstance == null)
-                m_workflowInstance = m_endpointServiceResolver.GetWorkflowInstanceById(workflowInstanceId);
-            m_endpointServiceResolver.CreateBusinessTaskByWI(m_workflowInstance, "KitchenController-WarehouseController", transitionId);
-        }
-        catch (System.Exception ex)
-        {
-            m_loggingDAL.AddDbgLog(sourceName, ex.ToString());
-        }
 
+        string nextState = "FileService";
+        var className = "WorkflowLib.Examples.ServiceInteraction.BL.Controllers." + nextState;
+        var methodName = "ProcessCustomerControllerBL";
+
+        // Invoke next service using reflection.
+        var type = Type.GetType(className);
+        var instance = m_serviceProvider.GetRequiredService(type);
+        type.GetMethod(methodName).Invoke(instance, null);
+        
         m_loggingDAL.AddDbgLog(sourceName, "finished");
     }
 
@@ -60,9 +59,20 @@ public class KitchenController : IImplicitService
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
 
+        try
+        {
+            CallServiceE();
+
+            m_endpointServiceResolver.CreateBusinessTaskByWI(m_workflowInstance, "CustomerBLController-WarehouseBLController", 1, false);
+        }
+        catch (System.Exception ex)
+        {
+            m_loggingDAL.AddDbgLog(sourceName, ex.ToString());
+        }
+
         m_loggingDAL.AddDbgLog(sourceName, "finished");
     }
-    
+
     /// <summary>
     /// Method for processing the previous service depending on the current state of the process.
     /// </summary>
@@ -71,13 +81,15 @@ public class KitchenController : IImplicitService
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
 
-        switch (transitionId)
+        try
         {
-            case 2:
-                ProcessWarehouseController(ref workflowInstanceId, ref transitionId);
-                break;
-            default:
-                throw new System.Exception($"Incorrect transition ID: {transitionId}");
+            m_workflowInstance = m_endpointServiceResolver.CreateInitialWI("Delivering of the order", "CustomerBLController");           
+            workflowInstanceId = m_workflowInstance.Id;
+            CallNextService();
+        }
+        catch (System.Exception ex)
+        {
+            m_loggingDAL.AddDbgLog(sourceName, ex.ToString());
         }
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");

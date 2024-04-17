@@ -1,4 +1,3 @@
-﻿using System;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using WorkflowLib.Examples.ServiceInteraction.Core.ServiceRegistry;
@@ -8,10 +7,10 @@ using WorkflowLib.Examples.ServiceInteraction.Models;
 namespace WorkflowLib.Examples.ServiceInteraction.BL.Controllers;
 
 /// <summary>
-/// Represents customer controller.
+/// Represents warehouse controller.
 /// </summary>
-/// <remarks>Initiates communication with the following services: B, E.</remarks>
-public class CustomerController : IImplicitService
+/// <remarks>Initiates communication with the following services: C, D.</remarks>
+public class WarehouseBLController : IImplicitService
 {
     private ILoggingDAL m_loggingDAL;
     private IEsbServiceRegistry m_endpointServiceResolver;
@@ -21,7 +20,7 @@ public class CustomerController : IImplicitService
     /// <summary>
     /// Default constructor.
     /// </summary>
-    public CustomerController(
+    public WarehouseBLController(
         ILoggingDAL loggingDAL,
         IEsbServiceRegistry endpointServiceResolver,
         IServiceProvider serviceProvider)
@@ -32,22 +31,46 @@ public class CustomerController : IImplicitService
     }
 
     /// <summary>
-    /// Method to call service E.
+    /// Method to process customer controller.
     /// </summary>
-    public void CallServiceE()
+    public void ProcessCustomerControllerBL(ref long workflowInstanceId, ref long transitionId)
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
 
-        string nextState = "FileService";
-        var className = "WorkflowLib.Examples.ServiceInteraction.BL.Controllers." + nextState;
-        var methodName = "ProcessCustomerController";
+        try
+        {
+            if (m_workflowInstance == null)
+                m_workflowInstance = m_endpointServiceResolver.GetWorkflowInstanceById(workflowInstanceId);
+            m_endpointServiceResolver.CreateBusinessTaskByWI(m_workflowInstance, "WarehouseBLController-KitchenBLController", transitionId);
+        }
+        catch (System.Exception ex)
+        {
+            m_loggingDAL.AddDbgLog(sourceName, ex.ToString());
+        }
 
-        // Invoke next service using reflection.
-        var type = Type.GetType(className);
-        var instance = m_serviceProvider.GetRequiredService(type);
-        type.GetMethod(methodName).Invoke(instance, null);
-        
+        m_loggingDAL.AddDbgLog(sourceName, "finished");
+    }
+
+    /// <summary>
+    /// Method to process kitchen controller.
+    /// </summary>
+    public void ProcessKitchenController(ref long workflowInstanceId, ref long transitionId)
+    {
+        var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
+        m_loggingDAL.AddDbgLog(sourceName, "started");
+
+        try
+        {
+            if (m_workflowInstance == null)
+                m_workflowInstance = m_endpointServiceResolver.GetWorkflowInstanceById(workflowInstanceId);
+            m_endpointServiceResolver.CreateBusinessTaskByWI(m_workflowInstance, "WarehouseBLController-CourierBLController", transitionId);
+        }
+        catch (System.Exception ex)
+        {
+            m_loggingDAL.AddDbgLog(sourceName, ex.ToString());
+        }
+
         m_loggingDAL.AddDbgLog(sourceName, "finished");
     }
 
@@ -59,20 +82,9 @@ public class CustomerController : IImplicitService
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
 
-        try
-        {
-            CallServiceE();
-
-            m_endpointServiceResolver.CreateBusinessTaskByWI(m_workflowInstance, "CustomerController-WarehouseController", 1, false);
-        }
-        catch (System.Exception ex)
-        {
-            m_loggingDAL.AddDbgLog(sourceName, ex.ToString());
-        }
-
         m_loggingDAL.AddDbgLog(sourceName, "finished");
     }
-
+    
     /// <summary>
     /// Method for processing the previous service depending on the current state of the process.
     /// </summary>
@@ -81,15 +93,16 @@ public class CustomerController : IImplicitService
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
 
-        try
+        switch (transitionId)
         {
-            m_workflowInstance = m_endpointServiceResolver.CreateInitialWI("Delivering of the order", "CustomerController");           
-            workflowInstanceId = m_workflowInstance.Id;
-            CallNextService();
-        }
-        catch (System.Exception ex)
-        {
-            m_loggingDAL.AddDbgLog(sourceName, ex.ToString());
+            case 1:
+                ProcessCustomerControllerBL(ref workflowInstanceId, ref transitionId);
+                break;
+            case 3:
+                ProcessKitchenController(ref workflowInstanceId, ref transitionId);
+                break;
+            default:
+                throw new System.Exception($"Incorrect transition ID: {transitionId}");
         }
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
