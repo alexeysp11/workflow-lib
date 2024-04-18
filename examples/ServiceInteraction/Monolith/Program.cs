@@ -41,12 +41,17 @@ public class Program
                 b => b.MigrationsAssembly("WorkflowLib.Examples.ServiceInteraction.BL"));
         });
 
-        // Register services.
+        // Register parameters.
         services.AddSingleton<EndpointSelectionParameter>(new EndpointSelectionParameter
         {
             RetrieveFromDb = false,
             EndpointSelectionType = EndpointSelectionType.Random,
             InactiveTimeSpan = System.TimeSpan.FromHours(1)
+        });
+        services.AddSingleton<StartupInitDetails>(new StartupInitDetails
+        {
+            ApplicationDeploymentType = ApplicationDeploymentType.Monolith,
+            ApplicationClientType = ApplicationClientType.CombineAll
         });
 
         // Endpoint selection.
