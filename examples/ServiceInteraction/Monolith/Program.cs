@@ -42,13 +42,13 @@ public class Program
         });
 
         // Register parameters.
-        services.AddSingleton<EndpointSelectionParameter>(new EndpointSelectionParameter
+        services.AddSingleton(new EndpointSelectionParameter
         {
             RetrieveFromDb = false,
             EndpointSelectionType = EndpointSelectionType.Random,
             InactiveTimeSpan = System.TimeSpan.FromHours(1)
         });
-        services.AddSingleton<StartupInitDetails>(new StartupInitDetails
+        services.AddSingleton(new StartupInitDetails
         {
             ApplicationDeploymentType = ApplicationDeploymentType.Monolith,
             ApplicationClientType = ApplicationClientType.CombineAll
