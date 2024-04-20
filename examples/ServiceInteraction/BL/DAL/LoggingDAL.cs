@@ -10,6 +10,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL.DAL;
 /// </summary>
 public class LoggingDAL : ILoggingDAL
 {
+    private object m_object = new object(); 
     private DbContextOptions<ServiceInteractionContext> m_contextOptions;
 
     /// <summary>
@@ -26,7 +27,6 @@ public class LoggingDAL : ILoggingDAL
     /// </summary>
     public void AddDbgLog(string sourceName, string sourceDetails)
     {
-        using var context = new ServiceInteractionContext(m_contextOptions);
         var dbglog = new DbgLog
         {
             SourceName = sourceName,
@@ -34,7 +34,12 @@ public class LoggingDAL : ILoggingDAL
             CreateDate = System.DateTime.UtcNow,
             ChangeDate = System.DateTime.UtcNow
         };
-        context.DbgLogs.Add(dbglog);
-        context.SaveChanges();
+
+        lock (m_object)
+        {
+            using var context = new ServiceInteractionContext(m_contextOptions);
+            context.DbgLogs.Add(dbglog);
+            context.SaveChanges();
+        }
     }
 }

@@ -12,6 +12,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL.DAL;
 /// </summary>
 public class BusinessProcessDAL : IBusinessProcessDAL
 {
+    private object m_object = new object();
     private DbContextOptions<ServiceInteractionContext> m_contextOptions;
 
     /// <summary>
@@ -31,8 +32,12 @@ public class BusinessProcessDAL : IBusinessProcessDAL
         if (string.IsNullOrEmpty(processName))
             throw new System.ArgumentNullException(nameof(processName));
         
-        using var context = new ServiceInteractionContext(m_contextOptions);
-        var process = context.BusinessProcesses.FirstOrDefault(x => x.Name == processName);
+        BusinessProcess process;
+        lock (m_object)
+        {
+            using var context = new ServiceInteractionContext(m_contextOptions);
+            process = context.BusinessProcesses.FirstOrDefault(x => x.Name == processName);
+        }
         return process;
     }
 
@@ -41,8 +46,12 @@ public class BusinessProcessDAL : IBusinessProcessDAL
     /// </summary>
     public WorkflowInstance GetWorkflowInstanceById(long id)
     {
-        using var context = new ServiceInteractionContext(m_contextOptions);
-        var workflowInstance = context.WorkflowInstances.FirstOrDefault(x => x.Id == id);
+        WorkflowInstance workflowInstance;
+        lock (m_object)
+        {
+            using var context = new ServiceInteractionContext(m_contextOptions);
+            workflowInstance = context.WorkflowInstances.FirstOrDefault(x => x.Id == id);
+        }
         return workflowInstance;
     }
 
@@ -66,10 +75,13 @@ public class BusinessProcessDAL : IBusinessProcessDAL
             IsEmulation = isEmulation
         };
         
-        using var context = new ServiceInteractionContext(m_contextOptions);
-        context.BusinessProcesses.Attach(process);
-        context.WorkflowInstances.Add(workflowInstance);
-        context.SaveChanges();
+        lock (m_object)
+        {
+            using var context = new ServiceInteractionContext(m_contextOptions);
+            context.BusinessProcesses.Attach(process);
+            context.WorkflowInstances.Add(workflowInstance);
+            context.SaveChanges();
+        }
 
         return workflowInstance;
     }
@@ -99,13 +111,16 @@ public class BusinessProcessDAL : IBusinessProcessDAL
             IsEmulation = isEmulation
         };
         
-        using var context = new ServiceInteractionContext(m_contextOptions);
-        if (parentTask != null)
-            context.BusinessTasks.Attach(parentTask);
-        if (processState != null)
-            context.BusinessProcessStates.Attach(processState);
-        context.BusinessTasks.Add(businessTask);
-        context.SaveChanges();
+        lock (m_object)
+        {
+            using var context = new ServiceInteractionContext(m_contextOptions);
+            if (parentTask != null)
+                context.BusinessTasks.Attach(parentTask);
+            if (processState != null)
+                context.BusinessProcessStates.Attach(processState);
+            context.BusinessTasks.Add(businessTask);
+            context.SaveChanges();
+        }
 
         return businessTask;
     }
@@ -128,11 +143,14 @@ public class BusinessProcessDAL : IBusinessProcessDAL
             ActiveTask = activeTask
         };
         
-        using var context = new ServiceInteractionContext(m_contextOptions);
-        context.WorkflowInstances.Attach(workflowInstance);
-        context.BusinessTasks.Attach(activeTask);
-        context.WorkflowTrackingItems.Add(workflowTrackingItem);
-        context.SaveChanges();
+        lock (m_object)
+        {
+            using var context = new ServiceInteractionContext(m_contextOptions);
+            context.WorkflowInstances.Attach(workflowInstance);
+            context.BusinessTasks.Attach(activeTask);
+            context.WorkflowTrackingItems.Add(workflowTrackingItem);
+            context.SaveChanges();
+        }
 
         return workflowTrackingItem;
     }
@@ -147,11 +165,15 @@ public class BusinessProcessDAL : IBusinessProcessDAL
         if (transitionId <= 0)
             throw new System.ArgumentOutOfRangeException(nameof(transitionId), $"State transition ID should be positive, but '{transitionId}' was passed");
 
-        using var context = new ServiceInteractionContext(m_contextOptions);
-        var processState = context.BusinessProcessStateTransitions
-            .Where(x => x.Id == transitionId)
-            .Select(x => isNextTask ? x.ToState : x.FromState)
-            .FirstOrDefault();
+        BusinessProcessState processState;
+        lock (m_object)
+        {
+            using var context = new ServiceInteractionContext(m_contextOptions);
+            processState = context.BusinessProcessStateTransitions
+                .Where(x => x.Id == transitionId)
+                .Select(x => isNextTask ? x.ToState : x.FromState)
+                .FirstOrDefault();
+        }
         return processState;
     }
     
@@ -167,17 +189,21 @@ public class BusinessProcessDAL : IBusinessProcessDAL
         if (transitionId <= 0)
             throw new System.ArgumentOutOfRangeException(nameof(transitionId), $"State transition ID should be positive, but '{transitionId}' was passed");
 
-        using var context = new ServiceInteractionContext(m_contextOptions);
-        var businessTask = 
-            (
-                from bt in context.BusinessTasks
-                join t in context.BusinessProcessStateTransitions
-                    on bt.BusinessProcessState.Id equals t.ToState.Id
-                join wti in context.WorkflowTrackingItems
-                    on bt.Id equals wti.ActiveTask.Id
-                where t.Id == transitionId && wti.WorkflowInstance.Id == workflowInstanceId
-                select bt
-            ).FirstOrDefault();
+        BusinessTask businessTask;
+        lock (m_object)
+        {
+            using var context = new ServiceInteractionContext(m_contextOptions);
+            businessTask = 
+                (
+                    from btask in context.BusinessTasks
+                    join transition in context.BusinessProcessStateTransitions
+                        on btask.BusinessProcessState.Id equals transition.ToState.Id
+                    join wfTrackingItem in context.WorkflowTrackingItems
+                        on btask.Id equals wfTrackingItem.ActiveTask.Id
+                    where transition.Id == transitionId && wfTrackingItem.WorkflowInstance.Id == workflowInstanceId
+                    select btask
+                ).FirstOrDefault();
+        }
         return businessTask;
     }
 
@@ -186,7 +212,12 @@ public class BusinessProcessDAL : IBusinessProcessDAL
     /// </summary>
     public IList<BusinessProcessStateTransition> GetBusinessProcessStateTransitions()
     {
-        using var context = new ServiceInteractionContext(m_contextOptions);
-        return context.BusinessProcessStateTransitions.Include(x => x.Previous).ToList();
+        IList<BusinessProcessStateTransition> result;
+        lock (m_object)
+        {
+            using var context = new ServiceInteractionContext(m_contextOptions);
+            result = context.BusinessProcessStateTransitions.Include(x => x.Previous).ToList();
+        }
+        return result;
     }
 }
