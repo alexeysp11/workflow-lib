@@ -57,4 +57,9 @@ public interface IEsbServiceRegistry
     /// </summary>
     long GetNextStateTransitionId(
         IProcessingPipeDelegateParams parameters);
+    
+    /// <summary>
+    /// Method for preserving the state of the service.
+    /// </summary>
+    void PreserveServiceState(IProcessingPipeDelegateParams parameters);
 }

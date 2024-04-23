@@ -65,7 +65,7 @@ public class Program
         });
         services.AddSingleton(new StartupInitDetails
         {
-            ApplicationDeploymentType = ApplicationDeploymentType.Monolith,
+            ApplicationDeploymentType = ApplicationDeploymentType.WebAPI,
             ApplicationClientType = ApplicationClientType.Customer
         });
 
@@ -90,5 +90,6 @@ public class Program
 
         // Services.
         services.AddSingleton<CustomerBLController>();
+        services.AddSingleton<FileService>();
     }
 }

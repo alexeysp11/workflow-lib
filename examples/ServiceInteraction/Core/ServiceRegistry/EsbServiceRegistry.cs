@@ -168,4 +168,12 @@ public class EsbServiceRegistry : IEsbServiceRegistry
             throw new System.Exception($"Unable to find next transition for the specified transition ID: {transitionId}");
         return nextTransition.Id;
     }
+    
+    /// <summary>
+    /// Method for preserving the state of the service.
+    /// </summary>
+    public void PreserveServiceState(IProcessingPipeDelegateParams parameters)
+    {
+        // 
+    }
 }

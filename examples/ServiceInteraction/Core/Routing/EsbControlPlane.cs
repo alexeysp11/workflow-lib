@@ -72,6 +72,21 @@ public class EsbControlPlane
     }
 
     /// <summary>
+    /// Method for preserving the state of the service.
+    /// </summary>
+    public void PreserveServiceState(IProcessingPipeDelegateParams parameters)
+    {
+        var esbRoutingEntries = m_esbRoutingConfigs.EsbRoutingEntries;
+        if (esbRoutingEntries == null)
+            throw new System.Exception("ESB routing entries dictionary could not be null");
+        var transition2EdpointCall = m_esbRoutingConfigs.Transition2EdpointCallDictionary;
+        if (transition2EdpointCall == null)
+            throw new System.Exception("Transition ID to endpoint ID dictionary could not be null");
+        
+        m_esbServiceRegistry.PreserveServiceState(parameters);
+    }
+
+    /// <summary>
     /// Method for processing the previous service depending on the current state of the process.
     /// </summary>
     public void ProcessPreviousService(IProcessingPipeDelegateParams parameters)

@@ -65,23 +65,34 @@ public class ProcessingPipeInitializer : IBPInitializer
         var customerController = (CustomerBLController) m_serviceProvider.GetRequiredService(typeof(CustomerBLController));
         CustomerPipe.SetService(customerController);
 
-        // Build pipes.
-        var customerPipe = new ProcessingPipeBuilder(m_controlPlane.ProcessPreviousService)
-            .AddPipe(typeof(CustomerPipe))
-            .AddPipe(typeof(BusinessStatePipe))
-            .Build();
-
-        // Manually map pipes to process requests.
-        m_esbRoutingConfigs.EsbRoutingEntries.Add(4, customerPipe);
-        
-        // Manually map current transition ID to endpoint call ID.
+        Action<IProcessingPipeDelegateParams> customerPipe;
         var appDeploymentType = m_startupInitDetails.ApplicationDeploymentType;
         switch (appDeploymentType)
         {
             case ApplicationDeploymentType.Monolith:
+                // Build pipes.
+                customerPipe = new ProcessingPipeBuilder(m_controlPlane.ProcessPreviousService)
+                    .AddPipe(typeof(CustomerPipe))
+                    .AddPipe(typeof(BusinessStatePipe))
+                    .Build();
+
+                // Manually map pipes to process requests.
+                m_esbRoutingConfigs.EsbRoutingEntries.Add(4, customerPipe);
+                
+                // Manually map current transition ID to endpoint call ID.
                 m_esbRoutingConfigs.Transition2EdpointCallDictionary.Add(0, 4);
                 break;
             case ApplicationDeploymentType.WebAPI:
+                // Build pipes.
+                customerPipe = new ProcessingPipeBuilder(m_controlPlane.PreserveServiceState)
+                    .AddPipe(typeof(CustomerPipe))
+                    .AddPipe(typeof(BusinessStatePipe))
+                    .Build();
+
+                // Manually map pipes to process requests.
+                m_esbRoutingConfigs.EsbRoutingEntries.Add(4, customerPipe);
+                
+                // Manually map current transition ID to endpoint call ID.
                 m_esbRoutingConfigs.Transition2EdpointCallDictionary.Add(0, 4);
                 break;
             default:
@@ -99,31 +110,49 @@ public class ProcessingPipeInitializer : IBPInitializer
         var kitchenController = (KitchenBLController) m_serviceProvider.GetRequiredService(typeof(KitchenBLController));
         KitchenPipe.SetService(kitchenController);
         
-        // Build pipes.
-        var warehousePipe = new ProcessingPipeBuilder(m_controlPlane.ProcessPreviousService)
-            .AddPipe(typeof(WarehousePipe))
-            .AddPipe(typeof(BusinessStatePipe))
-            .Build();
-        var kitchenPipe = new ProcessingPipeBuilder(m_controlPlane.ProcessPreviousService)
-            .AddPipe(typeof(KitchenPipe))
-            .AddPipe(typeof(BusinessStatePipe))
-            .Build();
-        
-        // Manually map pipes to process requests.
-        m_esbRoutingConfigs.EsbRoutingEntries.Add(7, warehousePipe);
-        m_esbRoutingConfigs.EsbRoutingEntries.Add(10, kitchenPipe);
-        m_esbRoutingConfigs.EsbRoutingEntries.Add(13, warehousePipe);
-        
-        // Manually map current transition ID to endpoint call ID.
+        Action<IProcessingPipeDelegateParams> warehousePipe;
+        Action<IProcessingPipeDelegateParams> kitchenPipe;
         var appDeploymentType = m_startupInitDetails.ApplicationDeploymentType;
         switch (appDeploymentType)
         {
             case ApplicationDeploymentType.Monolith:
+                // Build pipes.
+                warehousePipe = new ProcessingPipeBuilder(m_controlPlane.ProcessPreviousService)
+                    .AddPipe(typeof(WarehousePipe))
+                    .AddPipe(typeof(BusinessStatePipe))
+                    .Build();
+                kitchenPipe = new ProcessingPipeBuilder(m_controlPlane.ProcessPreviousService)
+                    .AddPipe(typeof(KitchenPipe))
+                    .AddPipe(typeof(BusinessStatePipe))
+                    .Build();
+
+                // Manually map pipes to process requests.
+                m_esbRoutingConfigs.EsbRoutingEntries.Add(7, warehousePipe);
+                m_esbRoutingConfigs.EsbRoutingEntries.Add(10, kitchenPipe);
+                m_esbRoutingConfigs.EsbRoutingEntries.Add(13, warehousePipe);
+                
+                // Manually map current transition ID to endpoint call ID.
                 m_esbRoutingConfigs.Transition2EdpointCallDictionary.Add(1, 7);
                 m_esbRoutingConfigs.Transition2EdpointCallDictionary.Add(2, 10);
                 m_esbRoutingConfigs.Transition2EdpointCallDictionary.Add(3, 13);
                 break;
             case ApplicationDeploymentType.WebAPI:
+                // Build pipes.
+                warehousePipe = new ProcessingPipeBuilder(m_controlPlane.PreserveServiceState)
+                    .AddPipe(typeof(WarehousePipe))
+                    .AddPipe(typeof(BusinessStatePipe))
+                    .Build();
+                kitchenPipe = new ProcessingPipeBuilder(m_controlPlane.PreserveServiceState)
+                    .AddPipe(typeof(KitchenPipe))
+                    .AddPipe(typeof(BusinessStatePipe))
+                    .Build();
+
+                // Manually map pipes to process requests.
+                m_esbRoutingConfigs.EsbRoutingEntries.Add(7, warehousePipe);
+                m_esbRoutingConfigs.EsbRoutingEntries.Add(10, kitchenPipe);
+                m_esbRoutingConfigs.EsbRoutingEntries.Add(13, warehousePipe);
+                
+                // Manually map current transition ID to endpoint call ID.
                 m_esbRoutingConfigs.Transition2EdpointCallDictionary.Add(1, 7);
                 m_esbRoutingConfigs.Transition2EdpointCallDictionary.Add(2, 10);
                 m_esbRoutingConfigs.Transition2EdpointCallDictionary.Add(3, 13);
