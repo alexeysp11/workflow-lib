@@ -26,6 +26,12 @@ Algorithms for selecting an endpoint in a distributed system:
 - **Weighted Round-robin**: Distribution of requests taking into account the weights of instances (for example, more powerful servers receive more weight).
 - **Least Response Time**: Select the service with the shortest response time.
 
+## Sequence of request processing on services
+
+### Customer
+
+![ServiceInteraction_CustomerService](../../docs/img/examples/ServiceInteraction_CustomerService.png)
+
 ## EndpointPool
 
 There is a collection that stores objects of type `EndpointCollectionParameter` (i.e. information about active endpoints). But it happens that an endpoint becomes temporarily unavailable; accordingly, such an endpoint will need to be removed from the collection. However, this object will remain on the heap until it is removed by the garbage collector. The problem is that when the connection to the endpoint is restored, you will need to create exactly the same endpoint in memory (thus, there will be two endpoints in the managed heap, which is not very correct from the point of view of memory use).
