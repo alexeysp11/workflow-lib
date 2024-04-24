@@ -32,9 +32,9 @@ public class CustomerBLController : IImplicitService
     }
 
     /// <summary>
-    /// Method to call service E.
+    /// Method to call file service.
     /// </summary>
-    public void CallServiceE()
+    public void CallFileService()
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
@@ -61,7 +61,7 @@ public class CustomerBLController : IImplicitService
 
         try
         {
-            CallServiceE();
+            CallFileService();
 
             m_endpointServiceResolver.CreateBusinessTaskByWI(m_workflowInstance, "CustomerBLController-WarehouseBLController", 1, false);
         }
