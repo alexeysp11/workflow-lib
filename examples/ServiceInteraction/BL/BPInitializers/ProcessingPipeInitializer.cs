@@ -36,8 +36,7 @@ public class ProcessingPipeInitializer : IBPInitializer
     /// </summary>
     public void Initialize()
     {
-        m_esbRoutingConfigs.EsbRoutingEntries = new Dictionary<long, System.Action<IProcessingPipeDelegateParams>>();
-        m_esbRoutingConfigs.Transition2EdpointCallDictionary = new Dictionary<long, long>();
+        m_esbRoutingConfigs.Transition2Delegate = new Dictionary<long, System.Action<IProcessingPipeDelegateParams>>();
 
         if (m_serviceProvider == null)
             throw new System.Exception("Could not resolve service provider");
@@ -75,12 +74,9 @@ public class ProcessingPipeInitializer : IBPInitializer
                     .AddPipe(typeof(CustomerPipe))
                     .AddPipe(typeof(BusinessStatePipe))
                     .Build();
-
-                // Manually map pipes to process requests.
-                m_esbRoutingConfigs.EsbRoutingEntries.Add(4, customerPipe);
                 
-                // Manually map current transition ID to endpoint call ID.
-                m_esbRoutingConfigs.Transition2EdpointCallDictionary.Add(0, 4);
+                // Manually map transition ID to the specified delegate.
+                m_esbRoutingConfigs.Transition2Delegate.Add(0, customerPipe);
                 break;
             case ApplicationDeploymentType.WebAPI:
                 // Build pipes.
@@ -88,12 +84,9 @@ public class ProcessingPipeInitializer : IBPInitializer
                     .AddPipe(typeof(CustomerPipe))
                     .AddPipe(typeof(BusinessStatePipe))
                     .Build();
-
-                // Manually map pipes to process requests.
-                m_esbRoutingConfigs.EsbRoutingEntries.Add(4, customerPipe);
                 
-                // Manually map current transition ID to endpoint call ID.
-                m_esbRoutingConfigs.Transition2EdpointCallDictionary.Add(0, 4);
+                // Manually map transition ID to the specified delegate.
+                m_esbRoutingConfigs.Transition2Delegate.Add(0, customerPipe);
                 break;
             default:
                 throw new System.NotImplementedException();
@@ -125,16 +118,11 @@ public class ProcessingPipeInitializer : IBPInitializer
                     .AddPipe(typeof(KitchenPipe))
                     .AddPipe(typeof(BusinessStatePipe))
                     .Build();
-
-                // Manually map pipes to process requests.
-                m_esbRoutingConfigs.EsbRoutingEntries.Add(7, warehousePipe);
-                m_esbRoutingConfigs.EsbRoutingEntries.Add(10, kitchenPipe);
-                m_esbRoutingConfigs.EsbRoutingEntries.Add(13, warehousePipe);
                 
-                // Manually map current transition ID to endpoint call ID.
-                m_esbRoutingConfigs.Transition2EdpointCallDictionary.Add(1, 7);
-                m_esbRoutingConfigs.Transition2EdpointCallDictionary.Add(2, 10);
-                m_esbRoutingConfigs.Transition2EdpointCallDictionary.Add(3, 13);
+                // Manually map transition ID to the specified delegate.
+                m_esbRoutingConfigs.Transition2Delegate.Add(1, warehousePipe);
+                m_esbRoutingConfigs.Transition2Delegate.Add(10, kitchenPipe);
+                m_esbRoutingConfigs.Transition2Delegate.Add(13, warehousePipe);
                 break;
             case ApplicationDeploymentType.WebAPI:
                 // Build pipes.
@@ -146,16 +134,11 @@ public class ProcessingPipeInitializer : IBPInitializer
                     .AddPipe(typeof(KitchenPipe))
                     .AddPipe(typeof(BusinessStatePipe))
                     .Build();
-
-                // Manually map pipes to process requests.
-                m_esbRoutingConfigs.EsbRoutingEntries.Add(7, warehousePipe);
-                m_esbRoutingConfigs.EsbRoutingEntries.Add(10, kitchenPipe);
-                m_esbRoutingConfigs.EsbRoutingEntries.Add(13, warehousePipe);
                 
-                // Manually map current transition ID to endpoint call ID.
-                m_esbRoutingConfigs.Transition2EdpointCallDictionary.Add(1, 7);
-                m_esbRoutingConfigs.Transition2EdpointCallDictionary.Add(2, 10);
-                m_esbRoutingConfigs.Transition2EdpointCallDictionary.Add(3, 13);
+                // Manually map transition ID to the specified delegate.
+                m_esbRoutingConfigs.Transition2Delegate.Add(1, warehousePipe);
+                m_esbRoutingConfigs.Transition2Delegate.Add(10, kitchenPipe);
+                m_esbRoutingConfigs.Transition2Delegate.Add(13, warehousePipe);
                 break;
             default:
                 throw new System.NotImplementedException();

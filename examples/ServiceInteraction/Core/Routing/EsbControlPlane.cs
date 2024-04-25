@@ -76,13 +76,6 @@ public class EsbControlPlane
     /// </summary>
     public void PreserveServiceState(IProcessingPipeDelegateParams parameters)
     {
-        var esbRoutingEntries = m_esbRoutingConfigs.EsbRoutingEntries;
-        if (esbRoutingEntries == null)
-            throw new System.Exception("ESB routing entries dictionary could not be null");
-        var transition2EdpointCall = m_esbRoutingConfigs.Transition2EdpointCallDictionary;
-        if (transition2EdpointCall == null)
-            throw new System.Exception("Transition ID to endpoint ID dictionary could not be null");
-        
         m_esbServiceRegistry.PreserveServiceState(parameters);
     }
 
@@ -91,25 +84,17 @@ public class EsbControlPlane
     /// </summary>
     public void ProcessPreviousService(IProcessingPipeDelegateParams parameters)
     {
-        var esbRoutingEntries = m_esbRoutingConfigs.EsbRoutingEntries;
-        if (esbRoutingEntries == null)
-            throw new System.Exception("ESB routing entries dictionary could not be null");
-        var transition2EdpointCall = m_esbRoutingConfigs.Transition2EdpointCallDictionary;
-        if (transition2EdpointCall == null)
-            throw new System.Exception("Transition ID to endpoint ID dictionary could not be null");
-
+        var transition2Delegate = m_esbRoutingConfigs.Transition2Delegate;
+        if (transition2Delegate == null)
+            throw new System.InvalidOperationException("The dictionary that binds transition ID to delegate could not be null");
+        
         var workflowInstanceId = parameters.WorkflowInstanceId;
         var transitionId = parameters.BusinessProcessStateTransitionId;
 
         // Get endpoint call ID.
-        if (!transition2EdpointCall.ContainsKey(transitionId))
-            throw new System.Exception($"Specified transition ID does not exist in the dictionary: transitionId = {transitionId}");
-        var edpointCallId = transition2EdpointCall[transitionId];
-        
-        // Get the delegate from the dictionary depending on the edpointCallId value.
-        if (!esbRoutingEntries.ContainsKey(edpointCallId))
-            throw new System.Exception($"Specified edpoint call ID does not exist in the ESB routing entries dictionary: edpointCallId = {edpointCallId}");
-        var function = esbRoutingEntries[edpointCallId];
+        if (!transition2Delegate.ContainsKey(transitionId))
+            throw new System.Exception($"Specified transition ID does not exist in the dictionary (transition ID = {transitionId})");
+        var function = transition2Delegate[transitionId];
         if (function == null)
             throw new System.Exception("ESB delegate could not be null");
         
