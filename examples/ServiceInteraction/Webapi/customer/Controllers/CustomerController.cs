@@ -3,6 +3,9 @@ using WorkflowLib.Examples.ServiceInteraction.Webapi.Customer;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Webapi.Customer.Controllers;
 
+/// <summary>
+/// Controller for processing customer requests.
+/// </summary>
 [ApiController]
 [Route("[controller]")]
 public class CustomerController : ControllerBase
@@ -10,6 +13,9 @@ public class CustomerController : ControllerBase
     private readonly ILogger<CustomerController> _logger;
     private IStartupInstance _startupInstance;
 
+    /// <summary>
+    /// Default constructor.
+    /// </summary>
     public CustomerController(
         ILogger<CustomerController> logger,
         IStartupInstance startupInstance)
@@ -18,6 +24,9 @@ public class CustomerController : ControllerBase
         _startupInstance = startupInstance;
     }
 
+    /// <summary>
+    /// Start order processing.
+    /// </summary>
     [HttpPost(Name = "MakeOrder")]
     public string MakeOrder(string info)
     {
@@ -25,6 +34,9 @@ public class CustomerController : ControllerBase
         return "Stab: MakeOrder";
     }
 
+    /// <summary>
+    /// Get order processing status.
+    /// </summary>
     [HttpGet(Name = "GetOrderStatus")]
     public string GetOrderStatus()
     {
