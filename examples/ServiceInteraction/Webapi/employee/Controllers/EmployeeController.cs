@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using WorkflowLib.Examples.ServiceInteraction.Models;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Webapi.Employee.Controllers
 {
@@ -22,53 +24,53 @@ namespace WorkflowLib.Examples.ServiceInteraction.Webapi.Employee.Controllers
         /// <summary>
         /// Get a list of all business processes.
         /// </summary>
-        [HttpPost("GetProcesses", Name = "GetProcesses")]
-        public string GetProcesses(string info)
+        [HttpGet("GetBusinessProcesses", Name = "GetBusinessProcesses")]
+        public List<BusinessProcess> GetBusinessProcesses(long userId)
         {
-            return "Stab: GetProcesses";
+            return new List<BusinessProcess>();
         }
 
         /// <summary>
         /// Get a list of workflow instances of the specified business process.
         /// </summary>
-        [HttpPost("GetWorkflowInstances", Name = "GetWorkflowInstances")]
-        public string GetWorkflowInstances(string info)
+        [HttpGet("GetWorkflowInstances", Name = "GetWorkflowInstances")]
+        public List<WorkflowInstance> GetWorkflowInstances(long businessProcessId)
         {
-            return "Stab: GetWorkflowInstances";
+            return new List<WorkflowInstance>();
         }
         
         /// <summary>
         /// Get the status of a workflow instance.
         /// </summary>
-        [HttpPost("GetWorkflowInstanceStatus", Name = "GetWorkflowInstanceStatus")]
-        public string GetWorkflowInstanceStatus(string info)
+        [HttpGet("GetWorkflowInstanceStatus", Name = "GetWorkflowInstanceStatus")]
+        public string GetWorkflowInstanceStatus(long workflowInstanceId)
         {
-            return "Stab: GetWorkflowInstanceStatus";
+            return BusinessEntityStatus.Active.ToString();
         }
         
         /// <summary>
         /// Get the workflow instance details.
         /// </summary>
-        [HttpPost("GetWorkflowInstanceDetails", Name = "GetWorkflowInstanceDetails")]
-        public string GetWorkflowInstanceDetails(string info)
+        [HttpGet("GetWorkflowInstanceDetails", Name = "GetWorkflowInstanceDetails")]
+        public BusinessProcessState GetWorkflowInstanceDetails(long workflowInstanceId)
         {
-            return "Stab: GetWorkflowInstanceDetails";
+            return new BusinessProcessState();
         }
         
         /// <summary>
         /// Get the current task for a specific workflow instance.
         /// </summary>
-        [HttpPost("GetCurrentTask", Name = "GetCurrentTask")]
-        public string GetCurrentTask(string info)
+        [HttpGet("GetCurrentTask", Name = "GetCurrentTask")]
+        public BusinessTask GetCurrentTask(long workflowInstanceId)
         {
-            return "Stab: GetCurrentTask";
+            return new BusinessTask();
         }
 
         /// <summary>
         /// Move a workflow instance to the next state.
         /// </summary>
         [HttpPost("MoveWorkflowInstanceNext", Name = "MoveWorkflowInstanceNext")]
-        public string MoveWorkflowInstanceNext(string info)
+        public string MoveWorkflowInstanceNext(long workflowInstanceId)
         {
             return "Stab: MoveWorkflowInstanceNext";
         }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+
 namespace WorkflowLib.Examples.ServiceInteraction.Models
 {
     /// <summary>
