@@ -82,7 +82,7 @@ public class EsbControlPlane
     /// <summary>
     /// Method for processing the previous service depending on the current state of the process.
     /// </summary>
-    public void ProcessPreviousService(IProcessingPipeDelegateParams parameters)
+    public void MoveWorkflowInstanceNext(IProcessingPipeDelegateParams parameters)
     {
         var transition2Delegate = m_esbRoutingConfigs.Transition2Delegate;
         if (transition2Delegate == null)

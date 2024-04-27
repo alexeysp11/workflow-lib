@@ -36,7 +36,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Monolith
                 BusinessProcessStateTransitionId = 0,
                 UserId = 1
             };
-            m_controlPlane.ProcessPreviousService(parameters);
+            m_controlPlane.MoveWorkflowInstanceNext(parameters);
         }
 
         private void Initialize()

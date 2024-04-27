@@ -66,7 +66,7 @@ public class KitchenBLController : IImplicitService
     /// <summary>
     /// Method for processing the previous service depending on the current state of the process.
     /// </summary>
-    public void ProcessPreviousService(ref long workflowInstanceId, ref long transitionId)
+    public void MoveWorkflowInstanceNext(ref long workflowInstanceId, ref long transitionId)
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");

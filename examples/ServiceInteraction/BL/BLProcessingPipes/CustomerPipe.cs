@@ -30,7 +30,7 @@ public class CustomerPipe : AbstractProcessingPipe
     {
         var workflowInstanceId = parameters.WorkflowInstanceId;
         var bpstId = parameters.BusinessProcessStateTransitionId;
-        s_service.ProcessPreviousService(ref workflowInstanceId, ref bpstId);
+        s_service.MoveWorkflowInstanceNext(ref workflowInstanceId, ref bpstId);
         parameters.WorkflowInstanceId = workflowInstanceId;
         m_function(parameters);
     }
