@@ -70,7 +70,7 @@ public class ProcessingPipeInitializer : IBPInitializer
         {
             case ApplicationDeploymentType.Monolith:
                 // Build pipes.
-                customerPipe = new ProcessingPipeBuilder(m_controlPlane.ProcessPreviousService)
+                customerPipe = new ProcessingPipeBuilder(m_controlPlane.MoveWorkflowInstanceNext)
                     .AddPipe(typeof(CustomerPipe))
                     .AddPipe(typeof(BusinessStatePipe))
                     .Build();
@@ -98,24 +98,29 @@ public class ProcessingPipeInitializer : IBPInitializer
         // Get services.
         var warehouseController = (WarehouseBLController) m_serviceProvider.GetRequiredService(typeof(WarehouseBLController));
         WarehousePipe.SetService(warehouseController);
-        var courierController = (CourierBLController) m_serviceProvider.GetRequiredService(typeof(CourierBLController));
-        CourierPipe.SetService(courierController);
         var kitchenController = (KitchenBLController) m_serviceProvider.GetRequiredService(typeof(KitchenBLController));
         KitchenPipe.SetService(kitchenController);
+        var courierController = (CourierBLController) m_serviceProvider.GetRequiredService(typeof(CourierBLController));
+        CourierPipe.SetService(courierController);
         
         Action<IProcessingPipeDelegateParams> warehousePipe;
         Action<IProcessingPipeDelegateParams> kitchenPipe;
+        Action<IProcessingPipeDelegateParams> courierPipe;
         var appDeploymentType = m_startupInitDetails.ApplicationDeploymentType;
         switch (appDeploymentType)
         {
             case ApplicationDeploymentType.Monolith:
                 // Build pipes.
-                warehousePipe = new ProcessingPipeBuilder(m_controlPlane.ProcessPreviousService)
+                warehousePipe = new ProcessingPipeBuilder(m_controlPlane.MoveWorkflowInstanceNext)
                     .AddPipe(typeof(WarehousePipe))
                     .AddPipe(typeof(BusinessStatePipe))
                     .Build();
-                kitchenPipe = new ProcessingPipeBuilder(m_controlPlane.ProcessPreviousService)
+                kitchenPipe = new ProcessingPipeBuilder(m_controlPlane.MoveWorkflowInstanceNext)
                     .AddPipe(typeof(KitchenPipe))
+                    .AddPipe(typeof(BusinessStatePipe))
+                    .Build();
+                courierPipe = new ProcessingPipeBuilder(m_controlPlane.MoveWorkflowInstanceNext)
+                    .AddPipe(typeof(CourierPipe))
                     .AddPipe(typeof(BusinessStatePipe))
                     .Build();
                 
@@ -132,6 +137,10 @@ public class ProcessingPipeInitializer : IBPInitializer
                     .Build();
                 kitchenPipe = new ProcessingPipeBuilder(m_controlPlane.PreserveServiceState)
                     .AddPipe(typeof(KitchenPipe))
+                    .AddPipe(typeof(BusinessStatePipe))
+                    .Build();
+                courierPipe = new ProcessingPipeBuilder(m_controlPlane.PreserveServiceState)
+                    .AddPipe(typeof(CourierPipe))
                     .AddPipe(typeof(BusinessStatePipe))
                     .Build();
                 

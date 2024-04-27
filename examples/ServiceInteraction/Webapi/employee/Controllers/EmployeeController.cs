@@ -13,28 +13,40 @@ namespace WorkflowLib.Examples.ServiceInteraction.Webapi.Employee.Controllers
             _logger = logger;
         }
 
-        [HttpPost("ProcessPreviousService", Name = "ProcessPreviousService")]
-        public string ProcessPreviousService(string info)
+        [HttpPost("GetProcesses", Name = "GetProcesses")]
+        public string GetProcesses(string info)
         {
-            return "Stab: ProcessPreviousService";
+            return "Stab: GetProcesses";
         }
 
-        [HttpPost("CallNextService", Name = "CallNextService")]
-        public string CallNextService(string info)
+        [HttpPost("GetWorkflowInstances", Name = "GetWorkflowInstances")]
+        public string GetWorkflowInstances(string info)
         {
-            return "Stab: CallNextService";
+            return "Stab: GetWorkflowInstances";
         }
         
-        [HttpPost("GetBusinessProcessStatus", Name = "GetBusinessProcessStatus")]
-        public string GetBusinessProcessStatus(string info)
+        [HttpPost("GetWorkflowInstanceStatus", Name = "GetWorkflowInstanceStatus")]
+        public string GetWorkflowInstanceStatus(string info)
         {
-            return "Stab: GetBusinessProcessStatus";
+            return "Stab: GetWorkflowInstanceStatus";
         }
         
-        [HttpPost("GetBusinessProcessDetails", Name = "GetBusinessProcessDetails")]
-        public string GetBusinessProcessDetails(string info)
+        [HttpPost("GetWorkflowInstanceDetails", Name = "GetWorkflowInstanceDetails")]
+        public string GetWorkflowInstanceDetails(string info)
         {
-            return "Stab: GetBusinessProcessDetails";
+            return "Stab: GetWorkflowInstanceDetails";
+        }
+        
+        [HttpPost("GetCurrentTask", Name = "GetCurrentTask")]
+        public string GetCurrentTask(string info)
+        {
+            return "Stab: GetCurrentTask";
+        }
+
+        [HttpPost("MoveWorkflowInstanceNext", Name = "MoveWorkflowInstanceNext")]
+        public string MoveWorkflowInstanceNext(string info)
+        {
+            return "Stab: MoveWorkflowInstanceNext";
         }
     }
 }
