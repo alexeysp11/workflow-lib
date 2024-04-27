@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkflowLib.Examples.Servic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Webapi", "Webapi", "{743080DC-8C56-4F52-B945-A58A27700867}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkflowLib.Examples.ServiceInteraction.Webapi.Empolyee", "Webapi\employee\WorkflowLib.Examples.ServiceInteraction.Webapi.Empolyee.csproj", "{7B23B9B8-1435-496C-B9B9-7FBA92363428}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkflowLib.Examples.ServiceInteraction.Webapi.Employee", "Webapi\employee\WorkflowLib.Examples.ServiceInteraction.Webapi.Employee.csproj", "{7B23B9B8-1435-496C-B9B9-7FBA92363428}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkflowLib.Examples.ServiceInteraction.Webapi.Customer", "Webapi\customer\WorkflowLib.Examples.ServiceInteraction.Webapi.Customer.csproj", "{E3BB2683-A5CB-4EC0-BFCD-4F25CE8287CC}"
 EndProject
