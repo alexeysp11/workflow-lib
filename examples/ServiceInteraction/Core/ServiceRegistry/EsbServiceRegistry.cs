@@ -176,4 +176,44 @@ public class EsbServiceRegistry : IEsbServiceRegistry
     {
         // 
     }
+
+    /// <summary>
+    /// Get a list of all business processes.
+    /// </summary>
+    public List<BusinessProcess> GetBusinessProcesses(long userId)
+    {
+        return m_businessProcessDAL.GetBusinessProcesses(userId);
+    }
+
+    /// <summary>
+    /// Get a list of workflow instances of the specified business process.
+    /// </summary>
+    public List<WorkflowInstance> GetWorkflowInstances(long businessProcessId)
+    {
+        return m_businessProcessDAL.GetWorkflowInstances(businessProcessId);
+    }
+    
+    /// <summary>
+    /// Get the status of a workflow instance.
+    /// </summary>
+    public BusinessEntityStatus GetWorkflowInstanceStatus(long workflowInstanceId)
+    {
+        return m_businessProcessDAL.GetWorkflowInstanceStatus(workflowInstanceId);
+    }
+    
+    /// <summary>
+    /// Get the workflow instance details.
+    /// </summary>
+    public BusinessProcessState GetWorkflowInstanceDetails(long workflowInstanceId)
+    {
+        return m_businessProcessDAL.GetWorkflowInstanceDetails(workflowInstanceId);
+    }
+    
+    /// <summary>
+    /// Get the current task for a specific workflow instance.
+    /// </summary>
+    public BusinessTask GetCurrentTask(long workflowInstanceId)
+    {
+        return m_businessProcessDAL.GetCurrentTask(workflowInstanceId);
+    }
 }

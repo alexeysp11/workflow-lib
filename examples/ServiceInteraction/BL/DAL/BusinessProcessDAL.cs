@@ -220,4 +220,44 @@ public class BusinessProcessDAL : IBusinessProcessDAL
         }
         return result;
     }
+
+    /// <summary>
+    /// Get a list of all business processes.
+    /// </summary>
+    public List<BusinessProcess> GetBusinessProcesses(long userId)
+    {
+        return new List<BusinessProcess>();
+    }
+
+    /// <summary>
+    /// Get a list of workflow instances of the specified business process.
+    /// </summary>
+    public List<WorkflowInstance> GetWorkflowInstances(long businessProcessId)
+    {
+        return new List<WorkflowInstance>();
+    }
+    
+    /// <summary>
+    /// Get the status of a workflow instance.
+    /// </summary>
+    public BusinessEntityStatus GetWorkflowInstanceStatus(long workflowInstanceId)
+    {
+        return BusinessEntityStatus.Active;
+    }
+    
+    /// <summary>
+    /// Get the workflow instance details.
+    /// </summary>
+    public BusinessProcessState GetWorkflowInstanceDetails(long workflowInstanceId)
+    {
+        return new BusinessProcessState();
+    }
+    
+    /// <summary>
+    /// Get the current task for a specific workflow instance.
+    /// </summary>
+    public BusinessTask GetCurrentTask(long workflowInstanceId)
+    {
+        return new BusinessTask();
+    }
 }

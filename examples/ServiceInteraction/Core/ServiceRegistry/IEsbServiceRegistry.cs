@@ -62,4 +62,29 @@ public interface IEsbServiceRegistry
     /// Method for preserving the state of the service.
     /// </summary>
     void PreserveServiceState(IProcessingPipeDelegateParams parameters);
+    
+    /// <summary>
+    /// Get a list of all business processes.
+    /// </summary>
+    List<BusinessProcess> GetBusinessProcesses(long userId);
+
+    /// <summary>
+    /// Get a list of workflow instances of the specified business process.
+    /// </summary>
+    List<WorkflowInstance> GetWorkflowInstances(long businessProcessId);
+    
+    /// <summary>
+    /// Get the status of a workflow instance.
+    /// </summary>
+    BusinessEntityStatus GetWorkflowInstanceStatus(long workflowInstanceId);
+    
+    /// <summary>
+    /// Get the workflow instance details.
+    /// </summary>
+    BusinessProcessState GetWorkflowInstanceDetails(long workflowInstanceId);
+    
+    /// <summary>
+    /// Get the current task for a specific workflow instance.
+    /// </summary>
+    BusinessTask GetCurrentTask(long workflowInstanceId);
 }

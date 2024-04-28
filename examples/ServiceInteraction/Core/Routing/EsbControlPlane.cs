@@ -37,7 +37,7 @@ public class EsbControlPlane
     /// </summary>
     public List<BusinessProcess> GetBusinessProcesses(long userId)
     {
-        return new List<BusinessProcess>();
+        return m_esbServiceRegistry.GetBusinessProcesses(userId);
     }
 
     /// <summary>
@@ -45,7 +45,7 @@ public class EsbControlPlane
     /// </summary>
     public List<WorkflowInstance> GetWorkflowInstances(long businessProcessId)
     {
-        return new List<WorkflowInstance>();
+        return m_esbServiceRegistry.GetWorkflowInstances(businessProcessId);
     }
     
     /// <summary>
@@ -53,7 +53,7 @@ public class EsbControlPlane
     /// </summary>
     public string GetWorkflowInstanceStatus(long workflowInstanceId)
     {
-        return BusinessEntityStatus.Active.ToString();
+        return m_esbServiceRegistry.GetWorkflowInstanceStatus(workflowInstanceId).ToString();
     }
     
     /// <summary>
@@ -61,7 +61,7 @@ public class EsbControlPlane
     /// </summary>
     public BusinessProcessState GetWorkflowInstanceDetails(long workflowInstanceId)
     {
-        return new BusinessProcessState();
+        return m_esbServiceRegistry.GetWorkflowInstanceDetails(workflowInstanceId);
     }
     
     /// <summary>
@@ -69,7 +69,7 @@ public class EsbControlPlane
     /// </summary>
     public BusinessTask GetCurrentTask(long workflowInstanceId)
     {
-        return new BusinessTask();
+        return m_esbServiceRegistry.GetCurrentTask(workflowInstanceId);
     }
 
     /// <summary>
