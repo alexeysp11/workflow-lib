@@ -1,5 +1,6 @@
 using WorkflowLib.Examples.ServiceInteraction.Core.ProcessingPipes;
 using WorkflowLib.Examples.ServiceInteraction.Core.ServiceRegistry;
+using WorkflowLib.Examples.ServiceInteraction.Models;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Core.Routing;
 
@@ -24,30 +25,6 @@ public class EsbControlPlane
     }
 
     /// <summary>
-    /// Load the process in its current state.
-    /// </summary>
-    public void LoadCurrentState(long workflowInstanceId, long userId)
-    {
-        var currentStateId = GetCurrentStateId(workflowInstanceId, userId);
-    }
-
-    /// <summary>
-    /// Load a process in a specified state.
-    /// </summary>
-    public void LoadSpecifiedState(long workflowInstanceId, long businessStateId, long userId)
-    {
-        // 
-    }
-
-    /// <summary>
-    /// Returns the current state ID of the specified process.
-    /// </summary>
-    public long GetCurrentStateId(long workflowInstanceId, long userId)
-    {
-        return 0;
-    }
-
-    /// <summary>
     /// Returns the next state transition ID of the specified process.
     /// </summary>
     public long GetNextStateTransitionId(IProcessingPipeDelegateParams parameters)
@@ -56,19 +33,43 @@ public class EsbControlPlane
     }
 
     /// <summary>
-    /// Make changes related to the current state within the current process.
+    /// Get a list of all business processes.
     /// </summary>
-    public void PostCurrentState(long workflowInstanceId, long userId)
+    public List<BusinessProcess> GetBusinessProcesses(long userId)
     {
-        // 
+        return new List<BusinessProcess>();
     }
 
     /// <summary>
-    /// Method to call the next service depending on the current state of the process.
+    /// Get a list of workflow instances of the specified business process.
     /// </summary>
-    public void CallNextService(long workflowInstanceId, long transitionId)
+    public List<WorkflowInstance> GetWorkflowInstances(long businessProcessId)
     {
-        // 
+        return new List<WorkflowInstance>();
+    }
+    
+    /// <summary>
+    /// Get the status of a workflow instance.
+    /// </summary>
+    public string GetWorkflowInstanceStatus(long workflowInstanceId)
+    {
+        return BusinessEntityStatus.Active.ToString();
+    }
+    
+    /// <summary>
+    /// Get the workflow instance details.
+    /// </summary>
+    public BusinessProcessState GetWorkflowInstanceDetails(long workflowInstanceId)
+    {
+        return new BusinessProcessState();
+    }
+    
+    /// <summary>
+    /// Get the current task for a specific workflow instance.
+    /// </summary>
+    public BusinessTask GetCurrentTask(long workflowInstanceId)
+    {
+        return new BusinessTask();
     }
 
     /// <summary>

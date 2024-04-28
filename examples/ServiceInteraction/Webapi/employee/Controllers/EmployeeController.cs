@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using WorkflowLib.Examples.ServiceInteraction.Core.Routing;
 using WorkflowLib.Examples.ServiceInteraction.Models;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Webapi.Employee.Controllers
@@ -11,14 +12,18 @@ namespace WorkflowLib.Examples.ServiceInteraction.Webapi.Employee.Controllers
     [Route("[controller]")]
     public class EmployeeController : ControllerBase
     {
-        private readonly ILogger<EmployeeController> _logger;
+        private readonly ILogger<EmployeeController> m_logger;
+        private EsbControlPlane m_controlPlane;
 
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public EmployeeController(ILogger<EmployeeController> logger)
+        public EmployeeController(
+            ILogger<EmployeeController> logger,
+            EsbControlPlane controlPlane)
         {
-            _logger = logger;
+            m_logger = logger;
+            m_controlPlane = controlPlane;
         }
 
         /// <summary>
@@ -27,7 +32,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Webapi.Employee.Controllers
         [HttpGet("GetBusinessProcesses", Name = "GetBusinessProcesses")]
         public List<BusinessProcess> GetBusinessProcesses(long userId)
         {
-            return new List<BusinessProcess>();
+            return m_controlPlane.GetBusinessProcesses(userId);
         }
 
         /// <summary>
@@ -36,7 +41,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Webapi.Employee.Controllers
         [HttpGet("GetWorkflowInstances", Name = "GetWorkflowInstances")]
         public List<WorkflowInstance> GetWorkflowInstances(long businessProcessId)
         {
-            return new List<WorkflowInstance>();
+            return m_controlPlane.GetWorkflowInstances(businessProcessId);
         }
         
         /// <summary>
@@ -45,7 +50,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Webapi.Employee.Controllers
         [HttpGet("GetWorkflowInstanceStatus", Name = "GetWorkflowInstanceStatus")]
         public string GetWorkflowInstanceStatus(long workflowInstanceId)
         {
-            return BusinessEntityStatus.Active.ToString();
+            return m_controlPlane.GetWorkflowInstanceStatus(workflowInstanceId);
         }
         
         /// <summary>
@@ -54,7 +59,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Webapi.Employee.Controllers
         [HttpGet("GetWorkflowInstanceDetails", Name = "GetWorkflowInstanceDetails")]
         public BusinessProcessState GetWorkflowInstanceDetails(long workflowInstanceId)
         {
-            return new BusinessProcessState();
+            return m_controlPlane.GetWorkflowInstanceDetails(workflowInstanceId);
         }
         
         /// <summary>
@@ -63,7 +68,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Webapi.Employee.Controllers
         [HttpGet("GetCurrentTask", Name = "GetCurrentTask")]
         public BusinessTask GetCurrentTask(long workflowInstanceId)
         {
-            return new BusinessTask();
+            return m_controlPlane.GetCurrentTask(workflowInstanceId);
         }
 
         /// <summary>
