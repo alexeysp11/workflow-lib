@@ -226,7 +226,13 @@ public class BusinessProcessDAL : IBusinessProcessDAL
     /// </summary>
     public List<BusinessProcess> GetBusinessProcesses(long userId)
     {
-        return new List<BusinessProcess>();
+        List<BusinessProcess> result;
+        lock (m_object)
+        {
+            using var context = new ServiceInteractionContext(m_contextOptions);
+            result = context.BusinessProcesses.ToList();
+        }
+        return result;
     }
 
     /// <summary>
@@ -234,7 +240,15 @@ public class BusinessProcessDAL : IBusinessProcessDAL
     /// </summary>
     public List<WorkflowInstance> GetWorkflowInstances(long businessProcessId)
     {
-        return new List<WorkflowInstance>();
+        List<WorkflowInstance> result;
+        lock (m_object)
+        {
+            using var context = new ServiceInteractionContext(m_contextOptions);
+            result = context.WorkflowInstances
+                .Where(x => x.BusinessProcess != null && x.BusinessProcess.Id == businessProcessId)
+                .ToList();
+        }
+        return result;
     }
     
     /// <summary>
@@ -242,7 +256,13 @@ public class BusinessProcessDAL : IBusinessProcessDAL
     /// </summary>
     public BusinessEntityStatus GetWorkflowInstanceStatus(long workflowInstanceId)
     {
-        return BusinessEntityStatus.Active;
+        BusinessEntityStatus result;
+        lock (m_object)
+        {
+            using var context = new ServiceInteractionContext(m_contextOptions);
+            result = (BusinessEntityStatus) (context.WorkflowInstances.FirstOrDefault(x => x.Id == workflowInstanceId).BusinessEntityStatus);
+        }
+        return result;
     }
     
     /// <summary>
@@ -258,6 +278,14 @@ public class BusinessProcessDAL : IBusinessProcessDAL
     /// </summary>
     public BusinessTask GetCurrentTask(long workflowInstanceId)
     {
-        return new BusinessTask();
+        BusinessTask result;
+        lock (m_object)
+        {
+            using var context = new ServiceInteractionContext(m_contextOptions);
+            result = (BusinessTask) (context.WorkflowTrackingItems
+                .FirstOrDefault(x => x.ActiveTask != null && x.WorkflowInstance != null && x.WorkflowInstance.Id == workflowInstanceId)
+                .ActiveTask);
+        }
+        return result;
     }
 }
