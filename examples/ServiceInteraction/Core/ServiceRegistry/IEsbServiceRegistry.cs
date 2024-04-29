@@ -56,25 +56,29 @@ public interface IEsbServiceRegistry
     /// Returns the next state transition ID of the specified process.
     /// </summary>
     long GetNextStateTransitionId(
-        IProcessingPipeDelegateParams parameters);
+        long transitionId);
     
     /// <summary>
     /// Method for preserving the state of the service.
     /// </summary>
-    void PreserveServiceState(IProcessingPipeDelegateParams parameters);
+    void PreserveServiceState(
+        IProcessingPipeDelegateParams parameters);
     
     /// <summary>
     /// Get a list of all business processes.
     /// </summary>
-    List<BusinessProcess> GetBusinessProcesses(long userId);
+    List<BusinessProcess> GetBusinessProcesses(
+        long userId);
 
     /// <summary>
     /// Get a list of workflow instances of the specified business process.
     /// </summary>
-    List<WorkflowInstance> GetWorkflowInstances(long businessProcessId);
+    List<WorkflowInstance> GetWorkflowInstances(
+        long businessProcessId);
     
     /// <summary>
     /// Get the current task for a specific workflow instance.
     /// </summary>
-    BusinessTask GetCurrentTask(long workflowInstanceId);
+    BusinessTask GetCurrentTask(
+        long workflowInstanceId);
 }

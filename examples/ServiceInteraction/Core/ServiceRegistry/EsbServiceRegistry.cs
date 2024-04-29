@@ -160,9 +160,8 @@ public class EsbServiceRegistry : IEsbServiceRegistry
     /// Returns the next state transition ID of the specified process.
     /// </summary>
     public long GetNextStateTransitionId(
-        IProcessingPipeDelegateParams parameters)
+        long transitionId)
     {
-        var transitionId = parameters.BusinessProcessStateTransitionId;
         var nextTransition = m_transitionPool.GetNextTransitionById(transitionId);
         if (nextTransition == null)
             throw new System.Exception($"Unable to find next transition for the specified transition ID: {transitionId}");
@@ -172,7 +171,8 @@ public class EsbServiceRegistry : IEsbServiceRegistry
     /// <summary>
     /// Method for preserving the state of the service.
     /// </summary>
-    public void PreserveServiceState(IProcessingPipeDelegateParams parameters)
+    public void PreserveServiceState(
+        IProcessingPipeDelegateParams parameters)
     {
         // 
     }
@@ -180,7 +180,8 @@ public class EsbServiceRegistry : IEsbServiceRegistry
     /// <summary>
     /// Get a list of all business processes.
     /// </summary>
-    public List<BusinessProcess> GetBusinessProcesses(long userId)
+    public List<BusinessProcess> GetBusinessProcesses(
+        long userId)
     {
         return m_businessProcessDAL.GetBusinessProcesses(userId);
     }
@@ -188,7 +189,8 @@ public class EsbServiceRegistry : IEsbServiceRegistry
     /// <summary>
     /// Get a list of workflow instances of the specified business process.
     /// </summary>
-    public List<WorkflowInstance> GetWorkflowInstances(long businessProcessId)
+    public List<WorkflowInstance> GetWorkflowInstances(
+        long businessProcessId)
     {
         return m_businessProcessDAL.GetWorkflowInstances(businessProcessId);
     }
@@ -196,7 +198,8 @@ public class EsbServiceRegistry : IEsbServiceRegistry
     /// <summary>
     /// Get the current task for a specific workflow instance.
     /// </summary>
-    public BusinessTask GetCurrentTask(long workflowInstanceId)
+    public BusinessTask GetCurrentTask(
+        long workflowInstanceId)
     {
         return m_businessProcessDAL.GetCurrentTask(workflowInstanceId);
     }

@@ -126,8 +126,8 @@ public class ProcessingPipeInitializer : IBPInitializer
                 
                 // Manually map transition ID to the specified delegate.
                 m_esbRoutingConfigs.Transition2Delegate.Add(1, warehousePipe);
-                m_esbRoutingConfigs.Transition2Delegate.Add(10, kitchenPipe);
-                m_esbRoutingConfigs.Transition2Delegate.Add(13, warehousePipe);
+                m_esbRoutingConfigs.Transition2Delegate.Add(2, kitchenPipe);
+                m_esbRoutingConfigs.Transition2Delegate.Add(3, warehousePipe);
                 break;
             case ApplicationDeploymentType.WebAPI:
                 // Build pipes.
@@ -146,8 +146,8 @@ public class ProcessingPipeInitializer : IBPInitializer
                 
                 // Manually map transition ID to the specified delegate.
                 m_esbRoutingConfigs.Transition2Delegate.Add(1, warehousePipe);
-                m_esbRoutingConfigs.Transition2Delegate.Add(10, kitchenPipe);
-                m_esbRoutingConfigs.Transition2Delegate.Add(13, warehousePipe);
+                m_esbRoutingConfigs.Transition2Delegate.Add(2, kitchenPipe);
+                m_esbRoutingConfigs.Transition2Delegate.Add(3, warehousePipe);
                 break;
             default:
                 throw new System.NotImplementedException();

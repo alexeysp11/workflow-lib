@@ -27,15 +27,17 @@ public class EsbControlPlane
     /// <summary>
     /// Returns the next state transition ID of the specified process.
     /// </summary>
-    public long GetNextStateTransitionId(IProcessingPipeDelegateParams parameters)
+    public long GetNextStateTransitionId(
+        long transitionId)
     {
-        return m_esbServiceRegistry.GetNextStateTransitionId(parameters);
+        return m_esbServiceRegistry.GetNextStateTransitionId(transitionId);
     }
 
     /// <summary>
     /// Get a list of all business processes.
     /// </summary>
-    public List<BusinessProcess> GetBusinessProcesses(long userId)
+    public List<BusinessProcess> GetBusinessProcesses(
+        long userId)
     {
         return m_esbServiceRegistry.GetBusinessProcesses(userId);
     }
@@ -43,7 +45,8 @@ public class EsbControlPlane
     /// <summary>
     /// Get a list of workflow instances of the specified business process.
     /// </summary>
-    public List<WorkflowInstance> GetWorkflowInstances(long businessProcessId)
+    public List<WorkflowInstance> GetWorkflowInstances(
+        long businessProcessId)
     {
         return m_esbServiceRegistry.GetWorkflowInstances(businessProcessId);
     }
@@ -51,7 +54,8 @@ public class EsbControlPlane
     /// <summary>
     /// Get the workflow instance by its ID.
     /// </summary>
-    public WorkflowInstance GetWorkflowInstanceById(long workflowInstanceId)
+    public WorkflowInstance GetWorkflowInstanceById(
+        long workflowInstanceId)
     {
         return m_esbServiceRegistry.GetWorkflowInstanceById(workflowInstanceId);
     }
@@ -59,7 +63,8 @@ public class EsbControlPlane
     /// <summary>
     /// Get the current task for a specific workflow instance.
     /// </summary>
-    public BusinessTask GetCurrentTask(long workflowInstanceId)
+    public BusinessTask GetCurrentTask(
+        long workflowInstanceId)
     {
         return m_esbServiceRegistry.GetCurrentTask(workflowInstanceId);
     }
@@ -67,7 +72,8 @@ public class EsbControlPlane
     /// <summary>
     /// Method for preserving the state of the service.
     /// </summary>
-    public void PreserveServiceState(IProcessingPipeDelegateParams parameters)
+    public void PreserveServiceState(
+        IProcessingPipeDelegateParams parameters)
     {
         m_esbServiceRegistry.PreserveServiceState(parameters);
     }
@@ -75,7 +81,8 @@ public class EsbControlPlane
     /// <summary>
     /// Method for processing the previous service depending on the current state of the process.
     /// </summary>
-    public void MoveWorkflowInstanceNext(IProcessingPipeDelegateParams parameters)
+    public void MoveWorkflowInstanceNext(
+        IProcessingPipeDelegateParams parameters)
     {
         var transition2Delegate = m_esbRoutingConfigs.Transition2Delegate;
         if (transition2Delegate == null)

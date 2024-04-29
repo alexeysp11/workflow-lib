@@ -29,7 +29,7 @@ public class BusinessStatePipe : AbstractProcessingPipe
     /// </summary>
     public override void Handle(IProcessingPipeDelegateParams parameters)
     {
-        parameters.BusinessProcessStateTransitionId = s_controlPlane.GetNextStateTransitionId(parameters);
+        parameters.BusinessProcessStateTransitionId = s_controlPlane.GetNextStateTransitionId(parameters.BusinessProcessStateTransitionId);
         m_function(parameters);
     }
 }
