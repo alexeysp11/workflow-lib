@@ -74,16 +74,6 @@ public interface IEsbServiceRegistry
     List<WorkflowInstance> GetWorkflowInstances(long businessProcessId);
     
     /// <summary>
-    /// Get the status of a workflow instance.
-    /// </summary>
-    BusinessEntityStatus GetWorkflowInstanceStatus(long workflowInstanceId);
-    
-    /// <summary>
-    /// Get the workflow instance details.
-    /// </summary>
-    BusinessProcessState GetWorkflowInstanceDetails(long workflowInstanceId);
-    
-    /// <summary>
     /// Get the current task for a specific workflow instance.
     /// </summary>
     BusinessTask GetCurrentTask(long workflowInstanceId);

@@ -252,28 +252,6 @@ public class BusinessProcessDAL : IBusinessProcessDAL
     }
     
     /// <summary>
-    /// Get the status of a workflow instance.
-    /// </summary>
-    public BusinessEntityStatus GetWorkflowInstanceStatus(long workflowInstanceId)
-    {
-        BusinessEntityStatus result;
-        lock (m_object)
-        {
-            using var context = new ServiceInteractionContext(m_contextOptions);
-            result = (BusinessEntityStatus) (context.WorkflowInstances.FirstOrDefault(x => x.Id == workflowInstanceId).BusinessEntityStatus);
-        }
-        return result;
-    }
-    
-    /// <summary>
-    /// Get the workflow instance details.
-    /// </summary>
-    public BusinessProcessState GetWorkflowInstanceDetails(long workflowInstanceId)
-    {
-        return new BusinessProcessState();
-    }
-    
-    /// <summary>
     /// Get the current task for a specific workflow instance.
     /// </summary>
     public BusinessTask GetCurrentTask(long workflowInstanceId)

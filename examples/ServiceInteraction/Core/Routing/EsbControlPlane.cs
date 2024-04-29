@@ -57,22 +57,6 @@ public class EsbControlPlane
     }
     
     /// <summary>
-    /// Get the status of a workflow instance.
-    /// </summary>
-    public string GetWorkflowInstanceStatus(long workflowInstanceId)
-    {
-        return m_esbServiceRegistry.GetWorkflowInstanceStatus(workflowInstanceId).ToString();
-    }
-    
-    /// <summary>
-    /// Get the workflow instance details.
-    /// </summary>
-    public BusinessProcessState GetWorkflowInstanceDetails(long workflowInstanceId)
-    {
-        return m_esbServiceRegistry.GetWorkflowInstanceDetails(workflowInstanceId);
-    }
-    
-    /// <summary>
     /// Get the current task for a specific workflow instance.
     /// </summary>
     public BusinessTask GetCurrentTask(long workflowInstanceId)

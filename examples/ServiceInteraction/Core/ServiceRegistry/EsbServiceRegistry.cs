@@ -194,22 +194,6 @@ public class EsbServiceRegistry : IEsbServiceRegistry
     }
     
     /// <summary>
-    /// Get the status of a workflow instance.
-    /// </summary>
-    public BusinessEntityStatus GetWorkflowInstanceStatus(long workflowInstanceId)
-    {
-        return m_businessProcessDAL.GetWorkflowInstanceStatus(workflowInstanceId);
-    }
-    
-    /// <summary>
-    /// Get the workflow instance details.
-    /// </summary>
-    public BusinessProcessState GetWorkflowInstanceDetails(long workflowInstanceId)
-    {
-        return m_businessProcessDAL.GetWorkflowInstanceDetails(workflowInstanceId);
-    }
-    
-    /// <summary>
     /// Get the current task for a specific workflow instance.
     /// </summary>
     public BusinessTask GetCurrentTask(long workflowInstanceId)
