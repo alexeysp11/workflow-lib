@@ -49,6 +49,14 @@ public class EsbControlPlane
     }
     
     /// <summary>
+    /// Get the workflow instance by its ID.
+    /// </summary>
+    public WorkflowInstance GetWorkflowInstanceById(long workflowInstanceId)
+    {
+        return m_esbServiceRegistry.GetWorkflowInstanceById(workflowInstanceId);
+    }
+    
+    /// <summary>
     /// Get the status of a workflow instance.
     /// </summary>
     public string GetWorkflowInstanceStatus(long workflowInstanceId)

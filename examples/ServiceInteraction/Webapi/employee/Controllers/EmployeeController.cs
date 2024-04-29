@@ -45,6 +45,15 @@ namespace WorkflowLib.Examples.ServiceInteraction.Webapi.Employee.Controllers
         }
         
         /// <summary>
+        /// Get the workflow instance by its ID.
+        /// </summary>
+        [HttpGet("GetWorkflowInstanceById", Name = "GetWorkflowInstanceById")]
+        public WorkflowInstance GetWorkflowInstanceById(long workflowInstanceId)
+        {
+            return m_controlPlane.GetWorkflowInstanceById(workflowInstanceId);
+        }
+        
+        /// <summary>
         /// Get the status of a workflow instance.
         /// </summary>
         [HttpGet("GetWorkflowInstanceStatus", Name = "GetWorkflowInstanceStatus")]
