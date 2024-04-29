@@ -282,9 +282,15 @@ public class BusinessProcessDAL : IBusinessProcessDAL
         lock (m_object)
         {
             using var context = new ServiceInteractionContext(m_contextOptions);
-            result = (BusinessTask) (context.WorkflowTrackingItems
-                .FirstOrDefault(x => x.ActiveTask != null && x.WorkflowInstance != null && x.WorkflowInstance.Id == workflowInstanceId)
-                .ActiveTask);
+            result = 
+                (
+                    from btask in context.BusinessTasks
+                    join wfTrackingItem in context.WorkflowTrackingItems
+                        on btask.Id equals wfTrackingItem.ActiveTask.Id
+                    where wfTrackingItem.WorkflowInstance.Id == workflowInstanceId
+                    orderby btask.Id descending
+                    select btask
+                ).FirstOrDefault();
         }
         return result;
     }
