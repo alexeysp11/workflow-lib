@@ -57,6 +57,12 @@ public interface IEsbServiceRegistry
     /// </summary>
     long GetNextStateTransitionId(
         long transitionId);
+
+    /// <summary>
+    /// Returns the state transition by business task ID.
+    /// </summary>
+    BusinessProcessStateTransition GetTransitionByTaskId(
+        long businessTaskId);
     
     /// <summary>
     /// Method for preserving the state of the service.

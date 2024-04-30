@@ -11,12 +11,14 @@ public interface IBusinessProcessDAL
     /// <summary>
     /// Returns the business process by its name.
     /// </summary>
-    BusinessProcess GetBusinessProcessByName(string processName);
+    BusinessProcess GetBusinessProcessByName(
+        string processName);
     
     /// <summary>
     /// Returns a workflow instance by its ID.
     /// </summary>
-    WorkflowInstance GetWorkflowInstanceById(long id);
+    WorkflowInstance GetWorkflowInstanceById(
+        long id);
 
     /// <summary>
     /// Creates a workflow instance.
@@ -66,15 +68,24 @@ public interface IBusinessProcessDAL
     /// <summary>
     /// Get a list of all business processes.
     /// </summary>
-    List<BusinessProcess> GetBusinessProcesses(long userId);
+    List<BusinessProcess> GetBusinessProcesses(
+        long userId);
 
     /// <summary>
     /// Get a list of workflow instances of the specified business process.
     /// </summary>
-    List<WorkflowInstance> GetWorkflowInstances(long businessProcessId);
+    List<WorkflowInstance> GetWorkflowInstances(
+        long businessProcessId);
     
     /// <summary>
     /// Get the current task for a specific workflow instance.
     /// </summary>
-    BusinessTask GetCurrentTask(long workflowInstanceId);
+    BusinessTask GetCurrentTask(
+        long workflowInstanceId);
+    
+    /// <summary>
+    /// Returns the state transition by business task ID.
+    /// </summary>
+    BusinessProcessStateTransition GetTransitionByTaskId(
+        long businessTaskId);
 }

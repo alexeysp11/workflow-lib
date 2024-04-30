@@ -90,6 +90,9 @@ public class Program
 
         // Services.
         services.AddSingleton<CustomerBLController>();
+        services.AddSingleton<WarehouseBLController>();
+        services.AddSingleton<CourierBLController>();
+        services.AddSingleton<KitchenBLController>();
         services.AddSingleton<FileService>();
     }
 }

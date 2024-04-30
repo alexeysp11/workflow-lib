@@ -126,7 +126,7 @@ public class EsbServiceRegistry : IEsbServiceRegistry
         {
             processState = m_businessProcessDAL.GetBPStateByTransition(transitionId.Value, isNextTask);
             if (processState == null)
-                throw new System.Exception($"Process state could not be found with for the specified transition (transitionId: {transitionId.Value}, isNextTask: {isNextTask})");
+                throw new System.Exception($"Process state could not be found with for the specified transition ID (transitionId: {transitionId.Value}, isNextTask: {isNextTask})");
         }
         
         // Create business task.
@@ -166,6 +166,15 @@ public class EsbServiceRegistry : IEsbServiceRegistry
         if (nextTransition == null)
             throw new System.Exception($"Unable to find next transition for the specified transition ID: {transitionId}");
         return nextTransition.Id;
+    }
+
+    /// <summary>
+    /// Returns the state transition by business task ID.
+    /// </summary>
+    public BusinessProcessStateTransition GetTransitionByTaskId(
+        long businessTaskId)
+    {
+        return m_businessProcessDAL.GetTransitionByTaskId(businessTaskId);
     }
     
     /// <summary>

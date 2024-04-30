@@ -272,4 +272,28 @@ public class BusinessProcessDAL : IBusinessProcessDAL
         }
         return result;
     }
+
+    /// <summary>
+    /// Returns the state transition by business task ID.
+    /// </summary>
+    public BusinessProcessStateTransition GetTransitionByTaskId(
+        long businessTaskId)
+    {
+        BusinessProcessStateTransition result;
+        lock (m_object)
+        {
+            using var context = new ServiceInteractionContext(m_contextOptions);
+            result = 
+                (
+                    from btask in context.BusinessTasks
+                    join bpStates in context.BusinessProcessStates
+                        on btask.BusinessProcessState.Id equals bpStates.Id
+                    join bpsTransition in context.BusinessProcessStateTransitions
+                        on bpStates.Id equals bpsTransition.FromState.Id
+                    where btask.Id == businessTaskId
+                    select bpsTransition
+                ).FirstOrDefault();
+        }
+        return result;
+    }
 }

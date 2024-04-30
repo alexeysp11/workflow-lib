@@ -25,12 +25,20 @@ public class EsbControlPlane
     }
 
     /// <summary>
-    /// Returns the next state transition ID of the specified process.
+    /// Returns the next state transition ID.
     /// </summary>
     public long GetNextStateTransitionId(
         long transitionId)
     {
         return m_esbServiceRegistry.GetNextStateTransitionId(transitionId);
+    }
+
+    /// <summary>
+    /// Returns the state transition by business task ID.
+    /// </summary>
+    public BusinessProcessStateTransition GetTransitionByTaskId(long businessTaskId)
+    {
+        return m_esbServiceRegistry.GetTransitionByTaskId(businessTaskId);
     }
 
     /// <summary>
