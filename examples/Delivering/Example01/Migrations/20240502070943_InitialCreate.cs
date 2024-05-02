@@ -10,31 +10,6 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Addresses",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    AdditionalInfo = table.Column<string>(type: "TEXT", nullable: true),
-                    RoomNumber = table.Column<string>(type: "TEXT", nullable: true),
-                    Floor = table.Column<int>(type: "INTEGER", nullable: false),
-                    StreetNumber = table.Column<string>(type: "TEXT", nullable: true),
-                    StreetName = table.Column<string>(type: "TEXT", nullable: true),
-                    PostalCode = table.Column<string>(type: "TEXT", nullable: true),
-                    City = table.Column<string>(type: "TEXT", nullable: true),
-                    CountryProvince = table.Column<string>(type: "TEXT", nullable: true),
-                    Country = table.Column<string>(type: "TEXT", nullable: true),
-                    Uid = table.Column<string>(type: "TEXT", nullable: true),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
-                    Description = table.Column<string>(type: "TEXT", nullable: true),
-                    BusinessEntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Addresses", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Contacts",
                 columns: table => new
                 {
@@ -62,7 +37,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    ContractType = table.Column<int>(type: "INTEGER", nullable: false),
+                    ContractType = table.Column<int>(type: "INTEGER", nullable: true),
                     Uid = table.Column<string>(type: "TEXT", nullable: true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
@@ -97,10 +72,10 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    FirstName = table.Column<string>(type: "TEXT", nullable: true),
+                    FirstName = table.Column<string>(type: "TEXT", nullable: false),
                     MiddleName = table.Column<string>(type: "TEXT", nullable: true),
-                    LastName = table.Column<string>(type: "TEXT", nullable: true),
-                    FullName = table.Column<string>(type: "TEXT", nullable: true),
+                    LastName = table.Column<string>(type: "TEXT", nullable: false),
+                    FullName = table.Column<string>(type: "TEXT", nullable: false),
                     MobilePhone = table.Column<string>(type: "TEXT", nullable: true),
                     WorkPhone = table.Column<string>(type: "TEXT", nullable: true),
                     Skype = table.Column<string>(type: "TEXT", nullable: true),
@@ -121,24 +96,6 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ExecutionTime",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    DateTimeBegin = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    DateTimeEnd = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Uid = table.Column<string>(type: "TEXT", nullable: true),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
-                    Description = table.Column<string>(type: "TEXT", nullable: true),
-                    BusinessEntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ExecutionTime", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Notifications",
                 columns: table => new
                 {
@@ -146,7 +103,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     SenderId = table.Column<long>(type: "INTEGER", nullable: false),
                     ReceiverId = table.Column<long>(type: "INTEGER", nullable: false),
-                    TitleText = table.Column<string>(type: "TEXT", nullable: true),
+                    TitleText = table.Column<string>(type: "TEXT", nullable: false),
                     BodyText = table.Column<string>(type: "TEXT", nullable: true),
                     SentDateTime = table.Column<DateTime>(type: "TEXT", nullable: true),
                     ReceivedDateTime = table.Column<DateTime>(type: "TEXT", nullable: true),
@@ -169,6 +126,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     PictureUrl = table.Column<string>(type: "TEXT", nullable: true),
                     PictureDescription = table.Column<string>(type: "TEXT", nullable: true),
+                    ProductCategoryType = table.Column<int>(type: "INTEGER", nullable: true),
                     Uid = table.Column<string>(type: "TEXT", nullable: true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
@@ -185,7 +143,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Priority = table.Column<int>(type: "INTEGER", nullable: false),
+                    Priority = table.Column<int>(type: "INTEGER", nullable: true),
                     ProjectPlanItemId = table.Column<long>(type: "INTEGER", nullable: true),
                     Uid = table.Column<string>(type: "TEXT", nullable: true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
@@ -208,12 +166,12 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    RegistrationNumber = table.Column<string>(type: "TEXT", nullable: true),
-                    VatNumber = table.Column<string>(type: "TEXT", nullable: true),
+                    RegistrationNumber = table.Column<string>(type: "TEXT", nullable: false),
+                    VatNumber = table.Column<string>(type: "TEXT", nullable: false),
                     CRMRoleType = table.Column<int>(type: "INTEGER", nullable: false),
                     ContactId = table.Column<long>(type: "INTEGER", nullable: true),
-                    AddressId = table.Column<long>(type: "INTEGER", nullable: true),
-                    ShippingAddressId = table.Column<long>(type: "INTEGER", nullable: true),
+                    Address = table.Column<string>(type: "TEXT", nullable: true),
+                    ShippingAddress = table.Column<string>(type: "TEXT", nullable: true),
                     HasVatRegistration = table.Column<bool>(type: "INTEGER", nullable: false),
                     Uid = table.Column<string>(type: "TEXT", nullable: true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
@@ -223,16 +181,6 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Companies", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Companies_Addresses_AddressId",
-                        column: x => x.AddressId,
-                        principalTable: "Addresses",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Companies_Addresses_ShippingAddressId",
-                        column: x => x.ShippingAddressId,
-                        principalTable: "Addresses",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Companies_Contacts_ContactId",
                         column: x => x.ContactId,
@@ -485,10 +433,10 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    FirstName = table.Column<string>(type: "TEXT", nullable: true),
+                    FirstName = table.Column<string>(type: "TEXT", nullable: false),
                     MiddleName = table.Column<string>(type: "TEXT", nullable: true),
-                    LastName = table.Column<string>(type: "TEXT", nullable: true),
-                    FullName = table.Column<string>(type: "TEXT", nullable: true),
+                    LastName = table.Column<string>(type: "TEXT", nullable: false),
+                    FullName = table.Column<string>(type: "TEXT", nullable: false),
                     CRMRoleType = table.Column<int>(type: "INTEGER", nullable: false),
                     ContactId = table.Column<long>(type: "INTEGER", nullable: true),
                     UserAccountId = table.Column<long>(type: "INTEGER", nullable: true),
@@ -521,14 +469,14 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
                     ContractId = table.Column<long>(type: "INTEGER", nullable: false),
-                    LocationId = table.Column<long>(type: "INTEGER", nullable: true),
-                    CompanyId = table.Column<long>(type: "INTEGER", nullable: true),
-                    CustomerId = table.Column<long>(type: "INTEGER", nullable: true),
+                    Location = table.Column<string>(type: "TEXT", nullable: true),
+                    CompanyId = table.Column<long>(type: "INTEGER", nullable: false),
+                    CustomerId = table.Column<long>(type: "INTEGER", nullable: false),
                     StartDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     EndDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     ActualEndDate = table.Column<DateTime>(type: "TEXT", nullable: true),
                     GuaranteePeriodInMonths = table.Column<int>(type: "INTEGER", nullable: false),
-                    ManagerId = table.Column<long>(type: "INTEGER", nullable: true),
+                    ManagerId = table.Column<long>(type: "INTEGER", nullable: false),
                     CompletePercent = table.Column<int>(type: "INTEGER", nullable: false),
                     Uid = table.Column<string>(type: "TEXT", nullable: true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
@@ -539,15 +487,11 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                 {
                     table.PrimaryKey("PK_Project", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Project_Addresses_LocationId",
-                        column: x => x.LocationId,
-                        principalTable: "Addresses",
-                        principalColumn: "Id");
-                    table.ForeignKey(
                         name: "FK_Project_Companies_CompanyId",
                         column: x => x.CompanyId,
                         principalTable: "Companies",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Project_Contract_ContractId",
                         column: x => x.ContractId,
@@ -558,12 +502,14 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                         name: "FK_Project_Customers_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Project_Employees_ManagerId",
                         column: x => x.ManagerId,
                         principalTable: "Employees",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -669,8 +615,8 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     DeliveryMethodId = table.Column<long>(type: "INTEGER", nullable: true),
                     DeliveryOperationId = table.Column<long>(type: "INTEGER", nullable: true),
                     DeliveryPrice = table.Column<decimal>(type: "TEXT", nullable: true),
-                    OriginId = table.Column<long>(type: "INTEGER", nullable: true),
-                    DestinationId = table.Column<long>(type: "INTEGER", nullable: true),
+                    Origin = table.Column<string>(type: "TEXT", nullable: true),
+                    Destination = table.Column<string>(type: "TEXT", nullable: true),
                     Uid = table.Column<string>(type: "TEXT", nullable: true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
@@ -679,16 +625,6 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Orders", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Orders_Addresses_DestinationId",
-                        column: x => x.DestinationId,
-                        principalTable: "Addresses",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Orders_Addresses_OriginId",
-                        column: x => x.OriginId,
-                        principalTable: "Addresses",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Orders_DeliveryMethods_DeliveryMethodId",
                         column: x => x.DeliveryMethodId,
@@ -716,7 +652,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     Receiver = table.Column<string>(type: "TEXT", nullable: true),
                     CardNumber = table.Column<string>(type: "TEXT", nullable: true),
                     Amount = table.Column<decimal>(type: "TEXT", nullable: false),
-                    Date = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Date = table.Column<DateTime>(type: "TEXT", nullable: true),
                     PaymentType = table.Column<string>(type: "TEXT", nullable: true),
                     PaymentMethod = table.Column<string>(type: "TEXT", nullable: true),
                     Status = table.Column<string>(type: "TEXT", nullable: true),
@@ -749,7 +685,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     DeliveryOrderId = table.Column<long>(type: "INTEGER", nullable: true),
                     ParentId = table.Column<long>(type: "INTEGER", nullable: true),
                     BusinessOperationId = table.Column<long>(type: "INTEGER", nullable: true),
-                    Date = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Date = table.Column<DateTime>(type: "TEXT", nullable: true),
                     OldQuantity = table.Column<double>(type: "REAL", nullable: true),
                     NewQuantity = table.Column<double>(type: "REAL", nullable: false),
                     QuantityDelta = table.Column<double>(type: "REAL", nullable: false),
@@ -803,7 +739,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     BusinessTaskId = table.Column<long>(type: "INTEGER", nullable: true),
                     DeliveryOrderId = table.Column<long>(type: "INTEGER", nullable: true),
-                    Discriminator = table.Column<string>(type: "TEXT", nullable: true),
+                    Discriminator = table.Column<string>(type: "TEXT", nullable: false),
                     Uid = table.Column<string>(type: "TEXT", nullable: true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
@@ -826,8 +762,10 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     ParentTaskId = table.Column<long>(type: "INTEGER", nullable: true),
-                    ActualExecutionTimeId = table.Column<long>(type: "INTEGER", nullable: true),
-                    EstimatedExecutionTimeId = table.Column<long>(type: "INTEGER", nullable: true),
+                    ActualDateTimeBegin = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    ActualDateTimeEnd = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    EstimatedDateTimeBegin = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    EstimatedDateTimeEnd = table.Column<DateTime>(type: "TEXT", nullable: true),
                     ExecutorId = table.Column<long>(type: "INTEGER", nullable: true),
                     ExecutorIsEmulationId = table.Column<long>(type: "INTEGER", nullable: true),
                     ExecutorReplacedId = table.Column<long>(type: "INTEGER", nullable: true),
@@ -840,8 +778,8 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     Discriminator = table.Column<string>(type: "TEXT", nullable: false),
                     OrderNumber = table.Column<string>(type: "TEXT", nullable: true),
                     DeliveryMethodId = table.Column<long>(type: "INTEGER", nullable: true),
-                    OriginId = table.Column<long>(type: "INTEGER", nullable: true),
-                    DestinationId = table.Column<long>(type: "INTEGER", nullable: true),
+                    Origin = table.Column<string>(type: "TEXT", nullable: true),
+                    Destination = table.Column<string>(type: "TEXT", nullable: true),
                     CustomerName = table.Column<string>(type: "TEXT", nullable: true),
                     ContactId = table.Column<long>(type: "INTEGER", nullable: true),
                     GeneratedOrderQrCode = table.Column<string>(type: "TEXT", nullable: true),
@@ -853,16 +791,6 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BusinessTasks", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_BusinessTasks_Addresses_DestinationId",
-                        column: x => x.DestinationId,
-                        principalTable: "Addresses",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_BusinessTasks_Addresses_OriginId",
-                        column: x => x.OriginId,
-                        principalTable: "Addresses",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_BusinessTasks_BusinessTasks_ParentTaskId",
                         column: x => x.ParentTaskId,
@@ -877,16 +805,6 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                         name: "FK_BusinessTasks_DeliveryMethods_DeliveryMethodId",
                         column: x => x.DeliveryMethodId,
                         principalTable: "DeliveryMethods",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_BusinessTasks_ExecutionTime_ActualExecutionTimeId",
-                        column: x => x.ActualExecutionTimeId,
-                        principalTable: "ExecutionTime",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_BusinessTasks_ExecutionTime_EstimatedExecutionTimeId",
-                        column: x => x.EstimatedExecutionTimeId,
-                        principalTable: "ExecutionTime",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_BusinessTasks_Orders_DeliveryOrderId",
@@ -951,12 +869,12 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Severity = table.Column<int>(type: "INTEGER", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    CreationAuthorId = table.Column<long>(type: "INTEGER", nullable: true),
+                    CreationAuthorId = table.Column<long>(type: "INTEGER", nullable: false),
                     ChangeDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ChangeAuthorId = table.Column<long>(type: "INTEGER", nullable: true),
+                    ChangeAuthorId = table.Column<long>(type: "INTEGER", nullable: false),
                     ResolvingDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ResolvingAuthorId = table.Column<long>(type: "INTEGER", nullable: true),
-                    ResolvingComment = table.Column<string>(type: "TEXT", nullable: true),
+                    ResolvingAuthorId = table.Column<long>(type: "INTEGER", nullable: false),
+                    ResolvingComment = table.Column<string>(type: "TEXT", nullable: false),
                     Status = table.Column<int>(type: "INTEGER", nullable: false),
                     BusinessTaskId = table.Column<long>(type: "INTEGER", nullable: true),
                     ProjectId = table.Column<long>(type: "INTEGER", nullable: true),
@@ -977,17 +895,20 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                         name: "FK_Risk_Employees_ChangeAuthorId",
                         column: x => x.ChangeAuthorId,
                         principalTable: "Employees",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Risk_Employees_CreationAuthorId",
                         column: x => x.CreationAuthorId,
                         principalTable: "Employees",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Risk_Employees_ResolvingAuthorId",
                         column: x => x.ResolvingAuthorId,
                         principalTable: "Employees",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Risk_Project_ProjectId",
                         column: x => x.ProjectId,
@@ -1095,9 +1016,9 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Text = table.Column<string>(type: "TEXT", nullable: true),
+                    Text = table.Column<string>(type: "TEXT", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    CreationAuthorId = table.Column<long>(type: "INTEGER", nullable: true),
+                    CreationAuthorId = table.Column<long>(type: "INTEGER", nullable: false),
                     BusinessTaskId = table.Column<long>(type: "INTEGER", nullable: true),
                     Uid = table.Column<string>(type: "TEXT", nullable: true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
@@ -1125,7 +1046,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     HardDelete = table.Column<bool>(type: "INTEGER", nullable: false),
                     ParentItemId = table.Column<long>(type: "INTEGER", nullable: true),
                     UserId = table.Column<long>(type: "INTEGER", nullable: true),
-                    AddressId = table.Column<long>(type: "INTEGER", nullable: true),
+                    Address = table.Column<string>(type: "TEXT", nullable: true),
                     Uid = table.Column<string>(type: "TEXT", nullable: true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
@@ -1134,11 +1055,6 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OrganizationItems", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_OrganizationItems_Addresses_AddressId",
-                        column: x => x.AddressId,
-                        principalTable: "Addresses",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_OrganizationItems_OrganizationItems_ParentItemId",
                         column: x => x.ParentItemId,
@@ -1180,14 +1096,14 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Login = table.Column<string>(type: "TEXT", nullable: true),
+                    Login = table.Column<string>(type: "TEXT", nullable: false),
                     Email = table.Column<string>(type: "TEXT", nullable: true),
                     PhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
-                    Password = table.Column<string>(type: "TEXT", nullable: true),
+                    Password = table.Column<string>(type: "TEXT", nullable: false),
                     Photo = table.Column<byte[]>(type: "BLOB", nullable: true),
                     PhotoUrl = table.Column<string>(type: "TEXT", nullable: true),
                     Status = table.Column<int>(type: "INTEGER", nullable: false),
-                    LastSeenDt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    LastSeenDt = table.Column<DateTime>(type: "TEXT", nullable: true),
                     EmployeeId = table.Column<long>(type: "INTEGER", nullable: true),
                     OrganizationItemId = table.Column<long>(type: "INTEGER", nullable: true),
                     UserGroupId = table.Column<long>(type: "INTEGER", nullable: true),
@@ -1220,9 +1136,9 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     IsGroupByDefault = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsSystem = table.Column<bool>(type: "INTEGER", nullable: false),
                     CreationAuthorId = table.Column<long>(type: "INTEGER", nullable: true),
-                    CreationDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "TEXT", nullable: true),
                     ChangeAuthorId = table.Column<long>(type: "INTEGER", nullable: true),
-                    ChangeDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ChangeDate = table.Column<DateTime>(type: "TEXT", nullable: true),
                     Uid = table.Column<string>(type: "TEXT", nullable: true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
@@ -1254,11 +1170,6 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                 column: "DeliveryOrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BusinessTasks_ActualExecutionTimeId",
-                table: "BusinessTasks",
-                column: "ActualExecutionTimeId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_BusinessTasks_ContactId",
                 table: "BusinessTasks",
                 column: "ContactId");
@@ -1272,16 +1183,6 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                 name: "IX_BusinessTasks_DeliveryOrderId",
                 table: "BusinessTasks",
                 column: "DeliveryOrderId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_BusinessTasks_DestinationId",
-                table: "BusinessTasks",
-                column: "DestinationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_BusinessTasks_EstimatedExecutionTimeId",
-                table: "BusinessTasks",
-                column: "EstimatedExecutionTimeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BusinessTasks_ExecutorId",
@@ -1299,11 +1200,6 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                 column: "ExecutorReplacedId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BusinessTasks_OriginId",
-                table: "BusinessTasks",
-                column: "OriginId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_BusinessTasks_ParentTaskId",
                 table: "BusinessTasks",
                 column: "ParentTaskId");
@@ -1319,19 +1215,9 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                 column: "CreationAuthorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Companies_AddressId",
-                table: "Companies",
-                column: "AddressId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Companies_ContactId",
                 table: "Companies",
                 column: "ContactId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Companies_ShippingAddressId",
-                table: "Companies",
-                column: "ShippingAddressId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CompanyContract_CustomerCompaniesId",
@@ -1489,16 +1375,6 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                 column: "DeliveryOperationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Orders_DestinationId",
-                table: "Orders",
-                column: "DestinationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Orders_OriginId",
-                table: "Orders",
-                column: "OriginId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Orders_ParentDeliveryOrderId",
                 table: "Orders",
                 column: "ParentDeliveryOrderId");
@@ -1507,11 +1383,6 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                 name: "IX_Orders_ParentOrderId",
                 table: "Orders",
                 column: "ParentOrderId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OrganizationItems_AddressId",
-                table: "OrganizationItems",
-                column: "AddressId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrganizationItems_ParentItemId",
@@ -1587,11 +1458,6 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                 name: "IX_Project_CustomerId",
                 table: "Project",
                 column: "CustomerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Project_LocationId",
-                table: "Project",
-                column: "LocationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Project_ManagerId",
@@ -1755,7 +1621,8 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                 table: "Comments",
                 column: "CreationAuthorId",
                 principalTable: "UserAccounts",
-                principalColumn: "Id");
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_OrganizationItems_UserAccounts_UserId",
@@ -1777,10 +1644,6 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
             migrationBuilder.DropForeignKey(
                 name: "FK_Orders_BusinessTasks_DeliveryOperationId",
                 table: "Orders");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_OrganizationItems_Addresses_AddressId",
-                table: "OrganizationItems");
 
             migrationBuilder.DropForeignKey(
                 name: "FK_UserAccounts_Employees_EmployeeId",
@@ -1892,16 +1755,10 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                 name: "Contacts");
 
             migrationBuilder.DropTable(
-                name: "ExecutionTime");
-
-            migrationBuilder.DropTable(
                 name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "DeliveryMethods");
-
-            migrationBuilder.DropTable(
-                name: "Addresses");
 
             migrationBuilder.DropTable(
                 name: "Employees");

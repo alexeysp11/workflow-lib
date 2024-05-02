@@ -264,17 +264,7 @@ namespace WorkflowLib.Examples.Delivering.Example01
                 return;
             
             // Companies.
-            var address = new Address
-            {
-                Uid = System.Guid.NewGuid().ToString(),
-                Name = "Address 1",
-                Country = "Country1",
-                CountryProvince = "CountryProvince1",
-                City = "City1",
-                PostalCode = "PostalCode1",
-                StreetName = "StreetName1",
-                StreetNumber = "StreetNumber1",
-            };
+            var addressString = "Country1, CountryProvince1, City1, StreetName1, StreetNumber1";
             var company = new Company
             {
                 Uid = System.Guid.NewGuid().ToString(),
@@ -283,8 +273,8 @@ namespace WorkflowLib.Examples.Delivering.Example01
                 HasVatRegistration = true,
                 VatNumber = "VatNumber", 
                 CRMRoleType = CRMRoleType.Supplier,
-                Address = address,
-                ShippingAddress = address
+                Address = addressString,
+                ShippingAddress = addressString
             };
             context.Companies.Add(company);
 

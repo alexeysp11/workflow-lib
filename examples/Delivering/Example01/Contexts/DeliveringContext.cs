@@ -25,7 +25,6 @@ namespace WorkflowLib.Examples.Delivering.Example01.Contexts
 
         public DbSet<Customer> Customers { get; set; }
 
-        public DbSet<Address> Addresses { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Organization> Organizations { get; set; }
         public DbSet<OrganizationItem> OrganizationItems { get; set; }

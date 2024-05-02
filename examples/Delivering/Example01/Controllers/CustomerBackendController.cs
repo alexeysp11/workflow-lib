@@ -158,24 +158,13 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                 }
 
                 // Save data into DB.
-                var destinationExists = true;
-                var destination = context.Addresses.FirstOrDefault(x => x.Name == model.Address);
-                if (destination == null)
-                {
-                    destinationExists = false;
-                    destination = new Address
-                    {
-                        Uid = System.Guid.NewGuid().ToString(),
-                        Name = model.Address
-                    };
-                }
+                var destination = model.Address;
                 var organization = context.Organizations
                     .Include(x => x.Company)
-                    .Include(x => x.Company.Address)
                     .FirstOrDefault();
                 if (organization == null || organization.Company == null)
                     throw new System.Exception("Organization or company is not defined");
-                if (organization.Company.Address == null)
+                if (string.IsNullOrEmpty(organization.Company.Address))
                     throw new System.Exception("Address of the company is not specified");
                 var customer = context.Customers
                     .Include(x => x.UserAccount)
@@ -213,8 +202,6 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                 };
                 initialOrder.DeliveryOrder = deliveryOrder;
                 context.DeliveryOrders.Add(deliveryOrder);
-                if (!destinationExists)
-                    context.Addresses.Add(deliveryOrder.Destination);
                 context.Payments.AddRange(deliveryOrder.Payments);
                 var initialOrderProducts = context.InitialOrderProducts
                     .Include(x => x.Product)
