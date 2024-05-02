@@ -1,5 +1,4 @@
 using WorkflowLib.Models.ErrorHandling;
-using WorkflowLib.Models.Performance;
 using WorkflowLib.Models.Network.MicroserviceConfigurations;
 
 namespace WorkflowLib.Models.Network
@@ -77,9 +76,14 @@ namespace WorkflowLib.Models.Network
         #endregion  // Messages between client and server 
 
         /// <summary>
-        /// Property that could be used to measure performance of the API operation (execution time).
+        /// Start time of the operation.
         /// </summary>
-        public ExecutionTime ExecutionTime { get; set; }
+        public System.DateTime DateTimeBegin { get; set; }
+
+        /// <summary>
+        /// End time of the operation.
+        /// </summary>
+        public System.DateTime DateTimeEnd { get; set; }
 
         /// <summary>
         /// Configuration of interaction between microservices.
