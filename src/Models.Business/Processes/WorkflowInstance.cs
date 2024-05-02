@@ -11,63 +11,58 @@ namespace WorkflowLib.Models.Business.Processes
     public class WorkflowInstance : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
-        /// 
+        /// Gets or sets the business process associated with this workflow instance.
         /// </summary>
-        public ICollection<Comment> Comments { get; set; }
-
+        public BusinessProcess BusinessProcess { get; set; }
+        
         /// <summary>
-        /// 
+        /// Workflow instance context.
         /// </summary>
-        public WorkflowInstanceContext Context { get; set; }
+        public WorkflowInstanceContext? Context { get; set; }
         
         /// <summary>
         /// Actual start time of the operation.
         /// </summary>
-        public System.DateTime ActualDateTimeBegin { get; set; }
+        public System.DateTime? ActualDateTimeBegin { get; set; }
 
         /// <summary>
         /// Actual end time of the operation.
         /// </summary>
-        public System.DateTime ActualDateTimeEnd { get; set; }
+        public System.DateTime? ActualDateTimeEnd { get; set; }
 
         /// <summary>
         /// Estimated start time of the operation.
         /// </summary>
-        public System.DateTime EstimatedDateTimeBegin { get; set; }
+        public System.DateTime? EstimatedDateTimeBegin { get; set; }
 
         /// <summary>
         /// Estimated end time of the operation.
         /// </summary>
-        public System.DateTime EstimatedDateTimeEnd { get; set; }
+        public System.DateTime? EstimatedDateTimeEnd { get; set; }
 
         /// <summary>
-        /// 
+        /// Initiator.
         /// </summary>
-        public UserAccount Initiator { get; set; }
+        public UserAccount? Initiator { get; set; }
 
         /// <summary>
-        /// 
+        /// Gets or sets a flag indicating if the workflow instance is in emulation mode.
         /// </summary>
         public bool IsEmulation { get; set; }
 
         /// <summary>
-        /// 
+        /// Collection of workflow instance members.
         /// </summary>
         public ICollection<WorkflowInstanceMember> Members { get; set; }
 
         /// <summary>
-        /// 
+        /// Gets or sets the parent workflow instance if applicable.
         /// </summary>
-        public WorkflowInstance ParentInstance { get; set; }
+        public WorkflowInstance? ParentInstance { get; set; }
 
         /// <summary>
-        /// 
+        /// Comments.
         /// </summary>
-        public BusinessProcess BusinessProcess { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public WorkflowTrackingItem Tracking { get; set; }
+        public ICollection<Comment> Comments { get; set; }
     }
 }

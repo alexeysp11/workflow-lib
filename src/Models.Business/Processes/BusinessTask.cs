@@ -11,9 +11,9 @@ namespace WorkflowLib.Models.Business.Processes
     public class BusinessTask : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
-        /// Collection of comments associated with the task.
+        /// Subject.
         /// </summary>
-        public ICollection<Comment> Comments { get; set; }
+        public string? Subject { get; set; }
 
         /// <summary>
         /// Parent task.
@@ -61,16 +61,6 @@ namespace WorkflowLib.Models.Business.Processes
         public UserAccount? ExecutorReplaced { get; set; }
 
         /// <summary>
-        /// Shows if it is necessary to send notifications if the task is expired and not completed.
-        /// </summary>
-        public bool ExpiredNotificationSent { get; set; }
-
-        /// <summary>
-        /// Shows if the task is launched in the emulation mode.
-        /// </summary>
-        public bool IsEmulation { get; set; }
-
-        /// <summary>
         /// Priority.
         /// </summary>
         public TaskPriority Priority { get; set; }
@@ -81,9 +71,19 @@ namespace WorkflowLib.Models.Business.Processes
         public ICollection<Risk> Risks { get; set; }
 
         /// <summary>
-        /// Subject.
+        /// Collection of comments associated with the task.
         /// </summary>
-        public string? Subject { get; set; }
+        public ICollection<Comment> Comments { get; set; }
+
+        /// <summary>
+        /// Shows if it is necessary to send notifications if the task is expired and not completed.
+        /// </summary>
+        public bool ExpiredNotificationSent { get; set; }
+
+        /// <summary>
+        /// Shows if the task is launched in the emulation mode.
+        /// </summary>
+        public bool IsEmulation { get; set; }
         
         /// <summary>
         /// Status of the business task.
