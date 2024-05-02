@@ -8,7 +8,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using WorkflowLib.Models.Network;
-using WorkflowLib.Models.Performance;
 
 namespace WorkflowLib.NetworkAPIs
 {
@@ -59,11 +58,8 @@ namespace WorkflowLib.NetworkAPIs
                 MethodName = methodName,
                 Request = requestStr,
                 Response = await response.Content.ReadAsStringAsync(),
-                ExecutionTime = new ExecutionTime
-                {
-                    DateTimeBegin = dt1,
-                    DateTimeEnd = dt2
-                }
+                DateTimeBegin = dt1,
+                DateTimeEnd = dt2
             };
         }
 
@@ -102,11 +98,8 @@ namespace WorkflowLib.NetworkAPIs
                     MethodName = methodName,
                     Request = requestStrings[i],
                     Response = await tasks[i].Result.Content.ReadAsStringAsync(),
-                    ExecutionTime = new ExecutionTime
-                    {
-                        DateTimeBegin = dt1,
-                        DateTimeEnd = dt2
-                    }
+                    DateTimeBegin = dt1,
+                    DateTimeEnd = dt2
                 });
             }
             return result;
