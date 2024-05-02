@@ -18,7 +18,7 @@ namespace WorkflowLib.Models.Business.Customers
         /// <summary>
         /// Middle name of the customer.
         /// </summary>
-        public string MiddleName { get; set; }
+        public string? MiddleName { get; set; }
         
         /// <summary>
         /// Last name of the customer.
@@ -38,17 +38,17 @@ namespace WorkflowLib.Models.Business.Customers
         /// <summary>
         /// Contact of the customer.
         /// </summary>
-        public Contact Contact { get; set; }
+        public Contact? Contact { get; set; }
 
         /// <summary>
         /// User account of the customer.
         /// </summary>
-        public UserAccount UserAccount { get; set; }
+        public UserAccount? UserAccount { get; set; }
 
         /// <summary>
         /// Company of the customer.
         /// </summary>
-        public Company Company { get; set; }
+        public Company? Company { get; set; }
 
         /// <summary>
         /// Contracts.

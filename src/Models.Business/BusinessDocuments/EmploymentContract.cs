@@ -20,7 +20,7 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// Contract.
         /// </summary>
-        public Contract Contract { get; set; }
+        public Contract? Contract { get; set; }
 
         /// <summary>
         /// Employment contract type.
@@ -30,22 +30,22 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// Expired employment contract.
         /// </summary>
-        public EmploymentContract ExpiredEmploymentContract { get; set; }
+        public EmploymentContract? ExpiredEmploymentContract { get; set; }
 
         /// <summary>
         /// Company.
         /// </summary>
-        public Company Company { get; set; }
+        public Company? Company { get; set; }
 
         /// <summary>
         /// Employee.
         /// </summary>
-        public Employee Employee { get; set; }
+        public Employee? Employee { get; set; }
 
         /// <summary>
         /// Pay rate.
         /// </summary>
-        public PayRate PayRate { get; set; }
+        public PayRate? PayRate { get; set; }
 
         /// <summary>
         /// Estimated period.

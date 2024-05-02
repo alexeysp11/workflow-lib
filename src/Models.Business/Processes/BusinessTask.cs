@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using WorkflowLib.Models.Business;
 using WorkflowLib.Models.Business.InformationSystem;
 using WorkflowLib.Models.Business.SocialCommunication;
-using WorkflowLib.Models.Performance;
 
 namespace WorkflowLib.Models.Business.Processes
 {
@@ -19,7 +18,7 @@ namespace WorkflowLib.Models.Business.Processes
         /// <summary>
         /// Parent task.
         /// </summary>
-        public BusinessTask ParentTask { get; set; }
+        public BusinessTask? ParentTask { get; set; }
 
         /// <summary>
         /// Child tasks.
@@ -27,29 +26,39 @@ namespace WorkflowLib.Models.Business.Processes
         public ICollection<BusinessTask> ChildTasks { get; set; }
 
         /// <summary>
-        /// Actual execution time.
+        /// Actual start time of the operation.
         /// </summary>
-        public ExecutionTime ActualExecutionTime { get; set; }
+        public System.DateTime? ActualDateTimeBegin { get; set; }
 
         /// <summary>
-        /// Estimated execution time.
+        /// Actual end time of the operation.
         /// </summary>
-        public ExecutionTime EstimatedExecutionTime { get; set; }
+        public System.DateTime? ActualDateTimeEnd { get; set; }
+
+        /// <summary>
+        /// Estimated start time of the operation.
+        /// </summary>
+        public System.DateTime? EstimatedDateTimeBegin { get; set; }
+
+        /// <summary>
+        /// Estimated end time of the operation.
+        /// </summary>
+        public System.DateTime? EstimatedDateTimeEnd { get; set; }
 
         /// <summary>
         /// Executor.
         /// </summary>
-        public UserAccount Executor { get; set; }
+        public UserAccount? Executor { get; set; }
 
         /// <summary>
         /// Executor by default in the emulation mode.
         /// </summary>
-        public UserAccount ExecutorIsEmulation { get; set; }
+        public UserAccount? ExecutorIsEmulation { get; set; }
 
         /// <summary>
         /// Executor after replacement.
         /// </summary>
-        public UserAccount ExecutorReplaced { get; set; }
+        public UserAccount? ExecutorReplaced { get; set; }
 
         /// <summary>
         /// Shows if it is necessary to send notifications if the task is expired and not completed.
@@ -74,11 +83,11 @@ namespace WorkflowLib.Models.Business.Processes
         /// <summary>
         /// Subject.
         /// </summary>
-        public string Subject { get; set; }
+        public string? Subject { get; set; }
         
         /// <summary>
         /// Status of the business task.
         /// </summary>
-        public string Status { get; set; }
+        public string? Status { get; set; }
     }
 }

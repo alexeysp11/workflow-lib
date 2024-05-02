@@ -25,7 +25,7 @@ namespace WorkflowLib.Models.Business.Customers
         /// <summary>
         /// Body text.
         /// </summary>
-        public string BodyText { get; set; }
+        public string? BodyText { get; set; }
 
         /// <summary>
         /// Timestamp when the notification was sent.

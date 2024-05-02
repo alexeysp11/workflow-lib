@@ -15,7 +15,7 @@ namespace WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// Employee.
         /// </summary>
-        public Employee Employee { get; set; }
+        public Employee? Employee { get; set; }
         
         /// <summary>
         /// Performance rating.

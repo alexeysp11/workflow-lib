@@ -29,7 +29,7 @@ namespace WorkflowLib.Models.Business.Products
         /// <summary>
         /// Location of the project.
         /// </summary>
-        public Address Location { get; set; }
+        public string? Location { get; set; }
 
         /// <summary>
         /// Company.

@@ -10,21 +10,21 @@ namespace WorkflowLib.Models.Business.Products
         /// <summary>
         /// 
         /// </summary>
-        public Project Project { get; set; }
+        public Project? Project { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public Employee Employee { get; set; }
+        public Employee? Employee { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public System.DateTime StartDate { get; set; }
+        public System.DateTime? StartDate { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public System.DateTime EndDate { get; set; }
+        public System.DateTime? EndDate { get; set; }
     }
 }

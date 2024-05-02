@@ -15,17 +15,17 @@ namespace WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// User account related to the employee that is absent.
         /// </summary>
-        public UserAccount User { get; set; }
+        public UserAccount? User { get; set; }
         
         /// <summary>
         /// Timestamp when the absence started.
         /// </summary>
-        public System.DateTime StartDate { get; set; }
+        public System.DateTime? StartDate { get; set; }
         
         /// <summary>
         /// Timestamp when the absence finished.
         /// </summary>
-        public System.DateTime EndDate { get; set; }
+        public System.DateTime? EndDate { get; set; }
         
         /// <summary>
         /// Reason of the absence.

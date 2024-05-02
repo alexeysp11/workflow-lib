@@ -12,11 +12,11 @@ namespace WorkflowLib.Models.Business.Cooking
         /// <summary>
         /// Order product.
         /// </summary>
-        public OrderProduct OrderProduct { get; set; }
+        public OrderProduct? OrderProduct { get; set; }
         
         /// <summary>
         /// Cooking operation.
         /// </summary>
-        public CookingOperation CookingOperation { get; set; }
+        public CookingOperation? CookingOperation { get; set; }
     }
 }

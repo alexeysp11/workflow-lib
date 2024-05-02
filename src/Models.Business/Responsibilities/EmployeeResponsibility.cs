@@ -13,7 +13,7 @@ namespace WorkflowLib.Models.Business.Responsibilities
         /// <summary>
         /// Project.
         /// </summary>
-        public Project Project { get; set; }
+        public Project? Project { get; set; }
 
         /// <summary>
         /// Skills required for the project/responsibility.

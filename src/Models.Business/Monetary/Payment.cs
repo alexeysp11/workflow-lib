@@ -10,12 +10,12 @@ namespace WorkflowLib.Models.Business.Monetary
         /// <summary>
         /// Payer.
         /// </summary>
-        public string Payer { get; set; }
+        public string? Payer { get; set; }
         
         /// <summary>
         /// Receiver.
         /// </summary>
-        public string Receiver { get; set; }
+        public string? Receiver { get; set; }
 
         /// <summary>
         /// Card number.
@@ -30,12 +30,12 @@ namespace WorkflowLib.Models.Business.Monetary
         /// <summary>
         /// Date of the payment.
         /// </summary>
-        public System.DateTime Date { get; private set; }
+        public System.DateTime? Date { get; private set; }
 
         /// <summary>
         /// Payment type.
         /// </summary>
-        public string PaymentType { get; set; }
+        public string? PaymentType { get; set; }
         
         /// <summary>
         /// Payment method.

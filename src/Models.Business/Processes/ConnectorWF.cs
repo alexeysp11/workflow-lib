@@ -8,11 +8,11 @@ namespace WorkflowLib.Models.Business.Processes
         /// <summary>
         /// 
         /// </summary>
-        public BusinessDiagramElement StartElement { get; set; }
+        public BusinessDiagramElement? StartElement { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public BusinessDiagramElement EndElement { get; set; }
+        public BusinessDiagramElement? EndElement { get; set; }
     }
 }

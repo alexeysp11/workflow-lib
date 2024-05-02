@@ -11,7 +11,7 @@ namespace WorkflowLib.Models.Business.Products
         /// <summary>
         /// Product.
         /// </summary>
-        public Product Product { get; set; }
+        public Product? Product { get; set; }
 
         /// <summary>
         /// Ingredients.
@@ -21,6 +21,6 @@ namespace WorkflowLib.Models.Business.Products
         /// <summary>
         /// Instruction how to cook.
         /// </summary>
-        public string Instruction { get; set; }
+        public string? Instruction { get; set; }
     }
 }

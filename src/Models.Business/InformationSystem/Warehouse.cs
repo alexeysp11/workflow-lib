@@ -21,6 +21,6 @@ namespace WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// Location of the warehouse.
         /// </summary>
-        public Address Location { get; set; }
+        public string? Location { get; set; }
     }
 }

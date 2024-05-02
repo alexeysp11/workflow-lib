@@ -11,12 +11,12 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// Business task.
         /// </summary>
-        public BusinessTask BusinessTask { get; set; }
+        public BusinessTask? BusinessTask { get; set; }
 
         /// <summary>
         /// Delivery order.
         /// </summary>
-        public DeliveryOrder DeliveryOrder { get; set; }
+        public DeliveryOrder? DeliveryOrder { get; set; }
 
         /// <summary>
         /// Discriminator.

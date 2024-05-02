@@ -11,12 +11,12 @@ namespace WorkflowLib.Models.Business.Processes
         /// <summary>
         /// 
         /// </summary>
-        public BusinessDiagram Diagram { get; set; }
+        public BusinessDiagram? Diagram { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public BusinessProcess Parent { get; set; }
+        public BusinessProcess? Parent { get; set; }
 
         /// <summary>
         /// 
@@ -31,6 +31,6 @@ namespace WorkflowLib.Models.Business.Processes
         /// <summary>
         /// 
         /// </summary>
-        public System.DateTime DateCreated { get; set; }
+        public System.DateTime? DateCreated { get; set; }
     }
 }

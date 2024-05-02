@@ -11,12 +11,12 @@ namespace WorkflowLib.Models.Business.Products
         /// <summary>
         /// Ingredient.
         /// </summary>
-        public Ingredient Ingredient { get; set; }
+        public Ingredient? Ingredient { get; set; }
         
         /// <summary>
         /// Order.
         /// </summary>
-        public Order Order { get; set; }
+        public Order? Order { get; set; }
         
         /// <summary>
         /// Quantity.

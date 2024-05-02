@@ -11,7 +11,7 @@ namespace WorkflowLib.Models.Business.Products
         /// <summary>
         /// Product.
         /// </summary>
-        public Product Product { get; set; }
+        public Product? Product { get; set; }
 
         /// <summary>
         /// Quantity of the product.

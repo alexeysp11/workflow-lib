@@ -8,21 +8,21 @@ namespace WorkflowLib.Models.Business.Processes
         /// <summary>
         /// 
         /// </summary>
-        public BusinessProcess BusinessProcess { get; set; }
+        public BusinessProcess? BusinessProcess { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public BusinessProcessState FromState { get; set; }
+        public BusinessProcessState? FromState { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public BusinessProcessState ToState { get; set; }
+        public BusinessProcessState? ToState { get; set; }
         
         /// <summary>
         /// 
         /// </summary>
-        public System.DateTime DateCreated { get; set; }
+        public System.DateTime? DateCreated { get; set; }
     }
 }

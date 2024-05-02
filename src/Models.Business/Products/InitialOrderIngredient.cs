@@ -12,17 +12,17 @@ namespace WorkflowLib.Models.Business.Products
         /// <summary>
         /// Ingredient.
         /// </summary>
-        public Ingredient Ingredient { get; set; }
+        public Ingredient? Ingredient { get; set; }
         
         /// <summary>
         /// Initial order.
         /// </summary>
-        public InitialOrder InitialOrder { get; set; }
+        public InitialOrder? InitialOrder { get; set; }
         
         /// <summary>
         /// Initial order product.
         /// </summary>
-        public InitialOrderProduct InitialOrderProduct { get; set; }
+        public InitialOrderProduct? InitialOrderProduct { get; set; }
         
         /// <summary>
         /// Quantity.

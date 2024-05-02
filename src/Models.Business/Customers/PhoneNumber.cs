@@ -13,6 +13,6 @@ namespace WorkflowLib.Models.Business.Customers
         /// <summary>
         /// Notes.
         /// </summary>
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
     }
 }

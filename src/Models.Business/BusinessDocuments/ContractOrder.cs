@@ -12,11 +12,11 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// Contract.
         /// </summary>
-        public Contract Contract { get; set; }
+        public Contract? Contract { get; set; }
 
         /// <summary>
         /// Order.
         /// </summary>
-        public Order Order { get; set; }
+        public Order? Order { get; set; }
     }
 }

@@ -13,17 +13,17 @@ namespace WorkflowLib.Models.Business
         /// <summary>
         /// UID of the business entity.
         /// </summary>
-        string Uid { get; set; }
+        string? Uid { get; set; }
         
         /// <summary>
         /// Name of the business entity.
         /// </summary>
-        string Name { get; set; }
+        string? Name { get; set; }
 
         /// <summary>
         /// Description of the business entity.
         /// </summary>
-        string Description { get; set; }
+        string? Description { get; set; }
 
         /// <summary>
         /// Business entity status.

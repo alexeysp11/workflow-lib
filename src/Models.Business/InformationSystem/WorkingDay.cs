@@ -12,31 +12,31 @@ namespace WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// Date.
         /// </summary>
-        public System.DateTime Date { get; set; }
+        public System.DateTime? Date { get; set; }
 
         /// <summary>
         /// Working day option.
         /// </summary>
-        public WorkingDayOption WorkingDayOption { get; set; }
+        public WorkingDayOption? WorkingDayOption { get; set; }
 
         /// <summary>
         /// Expected working hours.
         /// </summary>
-        public WorkingHours ExpectedWorkingHours { get; set; }
+        public WorkingHours? ExpectedWorkingHours { get; set; }
 
         /// <summary>
         /// Actual working hours.
         /// </summary>
-        public WorkingHours ActualWorkingHours { get; set; }
+        public WorkingHours? ActualWorkingHours { get; set; }
 
         /// <summary>
         /// Employee.
         /// </summary>
-        public virtual Employee Employee { get; set; }
+        public virtual Employee? Employee { get; set; }
 
         /// <summary>
         /// Project.
         /// </summary>
-        public virtual Project Project { get; set; }
+        public virtual Project? Project { get; set; }
     }
 }

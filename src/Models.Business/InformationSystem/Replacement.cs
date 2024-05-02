@@ -21,22 +21,22 @@ namespace WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// Start date.
         /// </summary>
-        public System.DateTime StartDate { get; set; }
+        public System.DateTime? StartDate { get; set; }
         
         /// <summary>
         /// End date.
         /// </summary>
-        public System.DateTime EndDate { get; set; }
+        public System.DateTime? EndDate { get; set; }
         
         /// <summary>
         /// User who is replaced.
         /// </summary>
-        public UserAccount SourceUser { get; set; }
+        public UserAccount? SourceUser { get; set; }
         
         /// <summary>
         /// User who is replacing the absent user.
         /// </summary>
-        public UserAccount TargetUser { get; set; }
+        public UserAccount? TargetUser { get; set; }
         
         /// <summary>
         /// Status of the replacement.

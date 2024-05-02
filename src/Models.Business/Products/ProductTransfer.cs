@@ -10,32 +10,32 @@ namespace WorkflowLib.Models.Business.Products
         /// <summary>
         /// Warehouse product.
         /// </summary>
-        public WHProduct WHProduct { get; set; }
+        public WHProduct? WHProduct { get; set; }
 
         /// <summary>
-        /// Order product ID.
+        /// Order product.
         /// </summary>
-        public OrderProduct OrderProduct { get; set; }
+        public OrderProduct? OrderProduct { get; set; }
 
         /// <summary>
-        /// Order ID.
+        /// Order.
         /// </summary>
-        public Order Order { get; set; }
+        public Order? Order { get; set; }
 
         /// <summary>
-        /// Delivery order product ID.
+        /// Delivery order product.
         /// </summary>
-        public DeliveryOrderProduct DeliveryOrderProduct { get; set; }
+        public DeliveryOrderProduct? DeliveryOrderProduct { get; set; }
 
         /// <summary>
-        /// Delivery order ID.
+        /// Delivery order.
         /// </summary>
-        public DeliveryOrder DeliveryOrder { get; set; }
+        public DeliveryOrder? DeliveryOrder { get; set; }
 
         /// <summary>
         /// Parent element.
         /// </summary>
-        public ProductTransfer Parent { get; set; }
+        public ProductTransfer? Parent { get; set; }
         
         /// <summary>
         /// Business operation ID.
@@ -45,7 +45,7 @@ namespace WorkflowLib.Models.Business.Products
         /// <summary>
         /// Date.
         /// </summary>
-        public System.DateTime Date { get; set; }
+        public System.DateTime? Date { get; set; }
         
         /// <summary>
         /// Old quantity.

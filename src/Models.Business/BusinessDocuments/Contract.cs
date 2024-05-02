@@ -13,7 +13,7 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// Contract type.
         /// </summary>
-        public ContractType ContractType { get; set; }
+        public ContractType? ContractType { get; set; }
 
         /// <summary>
         /// Customers.

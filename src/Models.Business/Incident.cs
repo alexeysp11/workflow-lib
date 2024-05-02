@@ -13,7 +13,7 @@ namespace WorkflowLib.Models.Business
         /// <summary>
         /// Location.
         /// </summary>
-        public Address Location { get; set; }
+        public string? Location { get; set; }
 
         /// <summary>
         /// Date.

@@ -3,7 +3,7 @@
 [English](README.md) | [Русский](README.ru.md)
 
 This part of the library provides classes for business:
-- Common: [address](Address.cs), [business task](BusinessTask.cs), [period](Period.cs), [risk](Risk.cs), etc.
+- Common: [business task](BusinessTask.cs), [period](Period.cs), [risk](Risk.cs), etc.
 - Business documents: [bill](BusinessDocuments/Bill.cs), [delivery order](BusinessDocuments/DeliveryOrder.cs), [employment contract](BusinessDocuments/EmploymentContract.cs), etc.
 - Customers: [customer](Customers/Customer.cs), [company](Customers/Company.cs), [contact](Customers/Contact.cs), etc.
 - Information system: [employee](InformationSystem/Employee.cs), [user account](InformationSystem/UserAccount.cs), [working day](InformationSystem/WorkingDay.cs), etc.

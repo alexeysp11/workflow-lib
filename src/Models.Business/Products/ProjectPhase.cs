@@ -10,11 +10,11 @@ namespace WorkflowLib.Models.Business.Products
         /// <summary>
         /// Project.
         /// </summary>
-        public Project Project { get; set; }
+        public Project? Project { get; set; }
 
         /// <summary>
         /// Project plan item.
         /// </summary>
-        public ProjectPlanItem ProjectPlanItem { get; set; }
+        public ProjectPlanItem? ProjectPlanItem { get; set; }
     }
 }

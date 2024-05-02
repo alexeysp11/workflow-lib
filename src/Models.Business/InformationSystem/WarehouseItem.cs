@@ -11,12 +11,12 @@ namespace WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// Warehouse.
         /// </summary>
-        public Warehouse Warehouse { get; set; }
+        public Warehouse? Warehouse { get; set; }
 
         /// <summary>
         /// Product.
         /// </summary>
-        public Product Product { get; set; }
+        public Product? Product { get; set; }
 
         /// <summary>
         /// Warehouse item status.

@@ -10,31 +10,31 @@ namespace WorkflowLib.Models.Business.Customers
         /// <summary>
         /// Mobile phone.
         /// </summary>
-        public string MobilePhone { get; set; }
+        public string? MobilePhone { get; set; }
 
         /// <summary>
         /// Home phone.
         /// </summary>
-        public string HomePhone { get; set; }
+        public string? HomePhone { get; set; }
 
         /// <summary>
         /// Work phone.
         /// </summary>
-        public string WorkPhone { get; set; }
+        public string? WorkPhone { get; set; }
 
         /// <summary>
         /// Office phone.
         /// </summary>
-        public string OfficePhone { get; set; }
+        public string? OfficePhone { get; set; }
         
         /// <summary>
         /// Email.
         /// </summary>
-        public string Email { get; set; }
+        public string? Email { get; set; }
         
         /// <summary>
         /// Office email.
         /// </summary>
-        public string OfficeEmail { get; set; }
+        public string? OfficeEmail { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace WorkflowLib.Models.Business.Products
         /// <summary>
         /// Priority.
         /// </summary>
-        public TaskPriority Priority { get; set; }
+        public TaskPriority? Priority { get; set; }
 
         /// <summary>
         /// Items.

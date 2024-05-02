@@ -13,7 +13,7 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// Number of the order.
         /// </summary>
-        public string Number { get; set; }
+        public string? Number { get; set; }
         
         /// <summary>
         /// Timestamp when the order was opened.
@@ -28,7 +28,7 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// Parent order.
         /// </summary>
-        public Order ParentOrder { get; set; }
+        public Order? ParentOrder { get; set; }
         
         /// <summary>
         /// Customer UID of the order.

@@ -29,17 +29,17 @@ namespace WorkflowLib.Models.Business.Customers
         /// <summary>
         /// Contact of the company.
         /// </summary>
-        public Contact Contact { get; set; }
+        public Contact? Contact { get; set; }
 
         /// <summary>
         /// Address of the company.
         /// </summary>
-        public Address Address { get; set; }
+        public string? Address { get; set; }
 
         /// <summary>
         /// Shipping address of the company.
         /// </summary>
-        public Address ShippingAddress { get; set; }
+        public string? ShippingAddress { get; set; }
 
         /// <summary>
         /// Does the company have VAT registration.

@@ -59,6 +59,6 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// Delivery order that is associated with the initial order.
         /// </summary>
-        public DeliveryOrder DeliveryOrder { get; set; }
+        public DeliveryOrder? DeliveryOrder { get; set; }
     }
 }

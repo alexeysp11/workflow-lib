@@ -32,7 +32,7 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// Order.
         /// </summary>
-        public Order Order { get; set; }
+        public Order? Order { get; set; }
 
         /// <summary>
         /// Factual start date.

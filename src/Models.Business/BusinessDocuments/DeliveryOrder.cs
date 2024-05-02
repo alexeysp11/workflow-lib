@@ -15,12 +15,12 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// Parent delivery order.
         /// </summary>
-        public DeliveryOrder ParentDeliveryOrder { get; set; }
+        public DeliveryOrder? ParentDeliveryOrder { get; set; }
 
         /// <summary>
         /// Delivery method.
         /// </summary>
-        public DeliveryMethod DeliveryMethod { get; set; }
+        public DeliveryMethod? DeliveryMethod { get; set; }
         
         /// <summary>
         /// Preparing operations for the delivery order.
@@ -40,11 +40,11 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// Initial address of the delivery.
         /// </summary>
-        public Address Origin { get; set; }
+        public string? Origin { get; set; }
         
         /// <summary>
         /// Final address of the delivery (destination).
         /// </summary>
-        public Address Destination { get; set; }
+        public string? Destination { get; set; }
     }
 }

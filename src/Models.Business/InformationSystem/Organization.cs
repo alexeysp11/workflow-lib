@@ -12,12 +12,12 @@ namespace WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// Company.
         /// </summary>
-        public Company Company { get; set; }
+        public Company? Company { get; set; }
         
         /// <summary>
         /// Head organization item.
         /// </summary>
-        public OrganizationItem HeadItem { get; set; }
+        public OrganizationItem? HeadItem { get; set; }
         
         /// <summary>
         /// Contracts.

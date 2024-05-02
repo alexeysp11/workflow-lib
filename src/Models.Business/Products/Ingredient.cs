@@ -12,12 +12,12 @@ namespace WorkflowLib.Models.Business.Products
         /// Product that represents the ingredient itself.
         /// </summary>
         /// <remarks>There could be a situation where flour is both an ingredient and product at the same time.</remarks>
-        public Product IngredientProduct { get; set; }
+        public Product? IngredientProduct { get; set; }
 
         /// <summary>
         /// Final product that is associated with the ingredient.
         /// </summary>
-        public Product FinalProduct { get; set; }
+        public Product? FinalProduct { get; set; }
 
         /// <summary>
         /// Quantity of ingredients that are necessary for cooking the final product.

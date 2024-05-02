@@ -11,12 +11,12 @@ namespace WorkflowLib.Models.Business.Products
         /// <summary>
         /// Supplier (comany).
         /// </summary>
-        public Company CompanySupplier { get; set; }
+        public Company? CompanySupplier { get; set; }
 
         /// <summary>
         /// Supplier (customer).
         /// </summary>
-        public Customer CustomerSupplier { get; set; }
+        public Customer? CustomerSupplier { get; set; }
 
         /// <summary>
         /// Beneficiaries (comanies).
@@ -36,17 +36,17 @@ namespace WorkflowLib.Models.Business.Products
         /// <summary>
         /// Date created.
         /// </summary>
-        public System.DateTime DateCreated { get; set; }
+        public System.DateTime? DateCreated { get; set; }
 
         /// <summary>
         /// Date from.
         /// </summary>
-        public System.DateTime DateFrom { get; set; }
+        public System.DateTime? DateFrom { get; set; }
 
         /// <summary>
         /// Date to.
         /// </summary>
-        public System.DateTime DateTo { get; set; }
+        public System.DateTime? DateTo { get; set; }
 
         /// <summary>
         /// Actual price.

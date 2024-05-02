@@ -19,7 +19,7 @@ namespace WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// Middle name of the employee.
         /// </summary>
-        public string MiddleName { get; set; }
+        public string? MiddleName { get; set; }
         
         /// <summary>
         /// Last name of the employee.

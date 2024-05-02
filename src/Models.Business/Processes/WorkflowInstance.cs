@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using WorkflowLib.Models.Business;
 using WorkflowLib.Models.Business.InformationSystem;
 using WorkflowLib.Models.Business.SocialCommunication;
-using WorkflowLib.Models.Performance;
 
 namespace WorkflowLib.Models.Business.Processes
 {
@@ -22,14 +21,24 @@ namespace WorkflowLib.Models.Business.Processes
         public WorkflowInstanceContext Context { get; set; }
         
         /// <summary>
-        /// Actual execution time.
+        /// Actual start time of the operation.
         /// </summary>
-        public ExecutionTime ActualExecutionTime { get; set; }
+        public System.DateTime ActualDateTimeBegin { get; set; }
 
         /// <summary>
-        /// Estimated execution time.
+        /// Actual end time of the operation.
         /// </summary>
-        public ExecutionTime EstimatedExecutionTime { get; set; }
+        public System.DateTime ActualDateTimeEnd { get; set; }
+
+        /// <summary>
+        /// Estimated start time of the operation.
+        /// </summary>
+        public System.DateTime EstimatedDateTimeBegin { get; set; }
+
+        /// <summary>
+        /// Estimated end time of the operation.
+        /// </summary>
+        public System.DateTime EstimatedDateTimeEnd { get; set; }
 
         /// <summary>
         /// 

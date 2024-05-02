@@ -11,12 +11,12 @@ namespace WorkflowLib.Models.Business.Products
         /// <summary>
         /// Product.
         /// </summary>
-        public Product Product { get; set; }
+        public Product? Product { get; set; }
         
         /// <summary>
         /// Delivery order.
         /// </summary>
-        public DeliveryOrder DeliveryOrder { get; set; }
+        public DeliveryOrder? DeliveryOrder { get; set; }
         
         /// <summary>
         /// Quantity.

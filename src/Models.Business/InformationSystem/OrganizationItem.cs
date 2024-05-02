@@ -26,7 +26,7 @@ namespace WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// Parent organization item.
         /// </summary>
-        public OrganizationItem ParentItem { get; set; }
+        public OrganizationItem? ParentItem { get; set; }
         
         /// <summary>
         /// Collection of child organization items.
@@ -36,7 +36,7 @@ namespace WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// User that is related to the organization item (when the organization item is a job position).
         /// </summary>
-        public UserAccount User { get; set; }
+        public UserAccount? User { get; set; }
         
         /// <summary>
         /// Collection of users that are related to the organization item (when the organization item is department, group of users etc).
@@ -46,6 +46,6 @@ namespace WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// Address of the organization item.
         /// </summary>
-        public Address Address { get; set; }
+        public string? Address { get; set; }
     }
 }

@@ -11,16 +11,16 @@ namespace WorkflowLib.Models.Business.Processes
         /// <summary>
         /// 
         /// </summary>
-        public WorkflowInstance Instance { get; set; }
+        public WorkflowInstance? Instance { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public UserAccount UserAccount { get; set; }
+        public UserAccount? UserAccount { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public BusinessTask BusinessTask { get; set; }
+        public BusinessTask? BusinessTask { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace WorkflowLib.Models.Business.Products
         /// <summary>
         /// Category of the product.
         /// </summary>
-        public ProductCategory ProductCategory { get; set; }
+        public ProductCategory? ProductCategory { get; set; }
 
         /// <summary>
         /// Picture URL of the product.

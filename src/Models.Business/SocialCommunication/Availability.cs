@@ -30,6 +30,6 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         /// <summary>
         /// 
         /// </summary>
-        public System.DateTime Modified { get; set; }
+        public System.DateTime? Modified { get; set; }
     }
 }
