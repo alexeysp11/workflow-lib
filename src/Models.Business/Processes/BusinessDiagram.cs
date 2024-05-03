@@ -9,7 +9,7 @@ namespace WorkflowLib.Models.Business.Processes
     public class BusinessDiagram : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
-        /// 
+        /// Collection of business diagram elements.
         /// </summary>
         public ICollection<BusinessDiagramElement> Elements { get; set; }
     }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using WorkflowLib.Models.Business;
 using WorkflowLib.Models.Business.InformationSystem;
 using WorkflowLib.Models.Business.SocialCommunication;
@@ -18,6 +19,7 @@ namespace WorkflowLib.Models.Business.Processes
         /// <summary>
         /// Workflow instance context.
         /// </summary>
+        [NotMapped]
         public WorkflowInstanceContext? Context { get; set; }
         
         /// <summary>

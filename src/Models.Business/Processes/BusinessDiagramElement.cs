@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using WorkflowLib.Models.Business;
 
 namespace WorkflowLib.Models.Business.Processes
@@ -11,11 +12,13 @@ namespace WorkflowLib.Models.Business.Processes
         /// <summary>
         /// 
         /// </summary>
-        public ICollection<ConnectorWF> InputConnectors { get; set; }
+        [NotMapped]
+        public ICollection<BDEConnector> InputConnectors { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public ICollection<ConnectorWF> OutputConnectors { get; set; }
+        [NotMapped]
+        public ICollection<BDEConnector> OutputConnectors { get; set; }
     }
 }
