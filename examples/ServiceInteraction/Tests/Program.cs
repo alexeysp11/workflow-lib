@@ -2,14 +2,14 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WorkflowLib.Examples.ServiceInteraction.Core;
-using WorkflowLib.Examples.ServiceInteraction.BL.Contexts;
+using WorkflowLib.Examples.ServiceInteraction.BL.DbContexts;
 using WorkflowLib.Examples.ServiceInteraction.BL.DAL;
 using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 using WorkflowLib.Examples.ServiceInteraction.Core.LoadBalancers;
 using WorkflowLib.Examples.ServiceInteraction.Core.ObjectPooling;
 using WorkflowLib.Examples.ServiceInteraction.Core.ServiceRegistry;
-using WorkflowLib.Examples.ServiceInteraction.Models;
 using WorkflowLib.Examples.ServiceInteraction.Tests;
+using WorkflowLib.Models.Network.MicroserviceConfigurations;
 
 public class Program
 {
@@ -34,7 +34,7 @@ public class Program
 
         // Configure DbContext.
         services.AddSingleton((_) => {
-            return new DbContextOptionsBuilder<ServiceInteractionContext>()
+            return new DbContextOptionsBuilder<ServiceInteractionDbContext>()
                 .UseNpgsql("Server=127.0.0.1;Port=5432;Database=deliveryservicelibexample;Username=postgres;Password=postgres", 
                     b => b.MigrationsAssembly("WorkflowLib.Examples.ServiceInteraction.BL"))
                 .Options;

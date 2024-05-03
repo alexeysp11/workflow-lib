@@ -1,9 +1,9 @@
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Examples.ServiceInteraction.BL.Contexts;
+using WorkflowLib.Examples.ServiceInteraction.BL.DbContexts;
 using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 using WorkflowLib.Examples.ServiceInteraction.Core.ServiceRegistry;
-using WorkflowLib.Examples.ServiceInteraction.Models;
+using WorkflowLib.Models.Network.MicroserviceConfigurations;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Tests
 {
@@ -21,14 +21,14 @@ namespace WorkflowLib.Examples.ServiceInteraction.Tests
     /// </summary>
     public class StartupInstance : IStartupInstance
     {
-        private DbContextOptions<ServiceInteractionContext> _contextOptions { get; set; }
+        private DbContextOptions<ServiceInteractionDbContext> _contextOptions { get; set; }
         private IEsbServiceRegistry _serviceResolver { get; set; }
 
         /// <summary>
         /// Default constructor.
         /// </summary>
         public StartupInstance(
-            DbContextOptions<ServiceInteractionContext> contextOptions,
+            DbContextOptions<ServiceInteractionDbContext> contextOptions,
             IEsbServiceRegistry serviceResolver)
         {
             _contextOptions = contextOptions;
@@ -45,34 +45,39 @@ namespace WorkflowLib.Examples.ServiceInteraction.Tests
 
         private void TestMonolithEndpoints()
         {
-            using var context = new ServiceInteractionContext(_contextOptions);
+            using var context = new ServiceInteractionDbContext(_contextOptions);
             
             var stringBuilder = new StringBuilder();
 
             var direction = CompareEndpointDirections.Destination;
             var endpointCallType = EndpointCallType.Monolith;
 
-            var endpointCalls = context.EndpointCalls
-                .Where(x => x.EndpointCallType == endpointCallType)
-                .Include(x => x.BusinessProcessState)
-                .Include(x => x.BusinessProcessStateTransition)
-                .Include(x => x.EndpointTypeFrom)
-                .Include(x => x.EndpointTypeTo)
+            var stateTransitions = context.BusinessProcessStateTransitions
+                .Where(x => x.FromState != null 
+                    && x.EndpointCall != null 
+                    && x.EndpointCall.EndpointCallType == endpointCallType 
+                    && x.EndpointCall.EndpointTypeFrom != null 
+                    && x.EndpointCall.EndpointTypeTo != null)
+                .Include(x => x.FromState)
+                .Include(x => x.EndpointCall)
+                .Include(x => x.EndpointCall.EndpointTypeFrom)
+                .Include(x => x.EndpointCall.EndpointTypeTo)
                 .ToList();
-            if (endpointCalls == null || !endpointCalls.Any())
-                throw new System.Exception("Collection of endpoint calls could not be null or empty");
+            if (stateTransitions == null || !stateTransitions.Any())
+                throw new System.Exception("Collection of state transitions could not be null or empty");
 
             stringBuilder.Clear();
-            foreach (var endpointCall in endpointCalls)
+            foreach (var stateTransition in stateTransitions)
             {
+                var endpointCall = stateTransition.EndpointCall;
                 stringBuilder.Append("Endpoint call: #").Append(endpointCall.Id);
 
                 // Call the next element.
                 stringBuilder.Append("\n\t").Append("Next: ");
                 var endpointNext = _serviceResolver.GetNextEndpoint(
                     endpointCallType, 
-                    endpointCall.BusinessProcessState, 
-                    endpointCall.BusinessProcessStateTransition);
+                    stateTransition.FromState,
+                    stateTransition);
                 if (endpointNext == null)
                     stringBuilder.Append("Endpoint next could not be null.");
                 else
@@ -94,7 +99,7 @@ namespace WorkflowLib.Examples.ServiceInteraction.Tests
         }
 
         private void CompareEndpoints(
-            ServiceInteractionContext context,
+            ServiceInteractionDbContext context,
             Endpoint endpointObtained,
             EndpointType endpointTypeInitial,
             CompareEndpointDirections direction,
