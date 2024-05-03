@@ -11,11 +11,6 @@ namespace WorkflowLib.Models.Business.Processes
         /// Gets or sets the associated business process.
         /// </summary>
         public BusinessProcess? BusinessProcess { get; set; }
-
-        /// <summary>
-        /// Gets or sets the associated endpoint call.
-        /// </summary>
-        public EndpointCall? EndpointCall { get; set; }
         
         /// <summary>
         /// Gets or sets the date when the business process state was created.
