@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using WorkflowLib.Examples.ServiceInteraction.Core.ProcessingPipes;
 using WorkflowLib.Examples.ServiceInteraction.Core.Routing;
 using WorkflowLib.Examples.ServiceInteraction.BL.BLProcessingPipes;
-using WorkflowLib.Examples.ServiceInteraction.Models;
 using WorkflowLib.Examples.ServiceInteraction.Webapi.Employee;
+using WorkflowLib.Models.Business.Processes;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Webapi.Employee.Controllers
 {
