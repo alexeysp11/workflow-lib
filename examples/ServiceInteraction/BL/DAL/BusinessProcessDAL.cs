@@ -1,9 +1,9 @@
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Examples.ServiceInteraction.BL.Contexts;
+using WorkflowLib.Examples.ServiceInteraction.BL.DbContexts;
 using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
-using WorkflowLib.Examples.ServiceInteraction.Models;
+using WorkflowLib.Models.Business.Processes;
 
 namespace WorkflowLib.Examples.ServiceInteraction.BL.DAL;
 
@@ -13,13 +13,13 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL.DAL;
 public class BusinessProcessDAL : IBusinessProcessDAL
 {
     private object m_object = new object();
-    private DbContextOptions<ServiceInteractionContext> m_contextOptions;
+    private DbContextOptions<ServiceInteractionDbContext> m_contextOptions;
 
     /// <summary>
     /// Constructor by default.
     /// </summary>
     public BusinessProcessDAL(
-        DbContextOptions<ServiceInteractionContext> contextOptions) 
+        DbContextOptions<ServiceInteractionDbContext> contextOptions) 
     {
         m_contextOptions = contextOptions;
     }
@@ -35,7 +35,7 @@ public class BusinessProcessDAL : IBusinessProcessDAL
         BusinessProcess process;
         lock (m_object)
         {
-            using var context = new ServiceInteractionContext(m_contextOptions);
+            using var context = new ServiceInteractionDbContext(m_contextOptions);
             process = context.BusinessProcesses.FirstOrDefault(x => x.Name == processName);
         }
         return process;
@@ -49,7 +49,7 @@ public class BusinessProcessDAL : IBusinessProcessDAL
         WorkflowInstance workflowInstance;
         lock (m_object)
         {
-            using var context = new ServiceInteractionContext(m_contextOptions);
+            using var context = new ServiceInteractionDbContext(m_contextOptions);
             workflowInstance = context.WorkflowInstances.FirstOrDefault(x => x.Id == id);
         }
         return workflowInstance;
@@ -77,7 +77,7 @@ public class BusinessProcessDAL : IBusinessProcessDAL
         
         lock (m_object)
         {
-            using var context = new ServiceInteractionContext(m_contextOptions);
+            using var context = new ServiceInteractionDbContext(m_contextOptions);
             context.BusinessProcesses.Attach(process);
             context.WorkflowInstances.Add(workflowInstance);
             context.SaveChanges();
@@ -113,7 +113,7 @@ public class BusinessProcessDAL : IBusinessProcessDAL
         
         lock (m_object)
         {
-            using var context = new ServiceInteractionContext(m_contextOptions);
+            using var context = new ServiceInteractionDbContext(m_contextOptions);
             if (parentTask != null)
                 context.BusinessTasks.Attach(parentTask);
             if (processState != null)
@@ -145,7 +145,7 @@ public class BusinessProcessDAL : IBusinessProcessDAL
         
         lock (m_object)
         {
-            using var context = new ServiceInteractionContext(m_contextOptions);
+            using var context = new ServiceInteractionDbContext(m_contextOptions);
             context.WorkflowInstances.Attach(workflowInstance);
             context.BusinessTasks.Attach(activeTask);
             context.WorkflowTrackingItems.Add(workflowTrackingItem);
@@ -168,7 +168,7 @@ public class BusinessProcessDAL : IBusinessProcessDAL
         BusinessProcessState processState;
         lock (m_object)
         {
-            using var context = new ServiceInteractionContext(m_contextOptions);
+            using var context = new ServiceInteractionDbContext(m_contextOptions);
             processState = context.BusinessProcessStateTransitions
                 .Where(x => x.Id == transitionId)
                 .Select(x => isNextTask ? x.ToState : x.FromState)
@@ -192,7 +192,7 @@ public class BusinessProcessDAL : IBusinessProcessDAL
         BusinessTask businessTask;
         lock (m_object)
         {
-            using var context = new ServiceInteractionContext(m_contextOptions);
+            using var context = new ServiceInteractionDbContext(m_contextOptions);
             businessTask = 
                 (
                     from btask in context.BusinessTasks
@@ -215,7 +215,7 @@ public class BusinessProcessDAL : IBusinessProcessDAL
         IList<BusinessProcessStateTransition> result;
         lock (m_object)
         {
-            using var context = new ServiceInteractionContext(m_contextOptions);
+            using var context = new ServiceInteractionDbContext(m_contextOptions);
             result = context.BusinessProcessStateTransitions.Include(x => x.Previous).ToList();
         }
         return result;
@@ -229,7 +229,7 @@ public class BusinessProcessDAL : IBusinessProcessDAL
         List<BusinessProcess> result;
         lock (m_object)
         {
-            using var context = new ServiceInteractionContext(m_contextOptions);
+            using var context = new ServiceInteractionDbContext(m_contextOptions);
             result = context.BusinessProcesses.ToList();
         }
         return result;
@@ -243,7 +243,7 @@ public class BusinessProcessDAL : IBusinessProcessDAL
         List<WorkflowInstance> result;
         lock (m_object)
         {
-            using var context = new ServiceInteractionContext(m_contextOptions);
+            using var context = new ServiceInteractionDbContext(m_contextOptions);
             result = context.WorkflowInstances
                 .Where(x => x.BusinessProcess != null && x.BusinessProcess.Id == businessProcessId)
                 .ToList();
@@ -259,7 +259,7 @@ public class BusinessProcessDAL : IBusinessProcessDAL
         BusinessTask result;
         lock (m_object)
         {
-            using var context = new ServiceInteractionContext(m_contextOptions);
+            using var context = new ServiceInteractionDbContext(m_contextOptions);
             result = 
                 (
                     from btask in context.BusinessTasks
@@ -282,7 +282,7 @@ public class BusinessProcessDAL : IBusinessProcessDAL
         BusinessProcessStateTransition result;
         lock (m_object)
         {
-            using var context = new ServiceInteractionContext(m_contextOptions);
+            using var context = new ServiceInteractionDbContext(m_contextOptions);
             result = 
                 (
                     from btask in context.BusinessTasks

@@ -1,18 +1,20 @@
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Examples.ServiceInteraction.Models;
+using WorkflowLib.Models.Business.Processes;
+using WorkflowLib.Models.Logging;
+using WorkflowLib.Models.Network.MicroserviceConfigurations;
 
-namespace WorkflowLib.Examples.ServiceInteraction.BL.Contexts;
+namespace WorkflowLib.Examples.ServiceInteraction.BL.DbContexts;
 
 /// <summary>
 /// Represents the database context for Service Interaction in the application.
 /// </summary>
-public class ServiceInteractionContext : DbContext
+public class ServiceInteractionDbContext : DbContext
 {
     /// <summary>
-    /// Initializes a new instance of the ServiceInteractionContext class with the specified options.
+    /// Initializes a new instance of the ServiceInteractionDbContext class with the specified options.
     /// </summary>
     /// <param name="options">The DbContextOptions to be used by the context.</param>
-    public ServiceInteractionContext(DbContextOptions<ServiceInteractionContext> options) : base(options) { }
+    public ServiceInteractionDbContext(DbContextOptions<ServiceInteractionDbContext> options) : base(options) { }
     
     /// <summary>
     /// Gets or sets the DbSet of DbgLog entities in the context.

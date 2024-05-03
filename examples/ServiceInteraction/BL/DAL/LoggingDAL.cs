@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Examples.ServiceInteraction.BL.Contexts;
+using WorkflowLib.Examples.ServiceInteraction.BL.DbContexts;
 using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
-using WorkflowLib.Examples.ServiceInteraction.Models;
+using WorkflowLib.Models.Logging;
 
 namespace WorkflowLib.Examples.ServiceInteraction.BL.DAL;
 
@@ -11,13 +11,13 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL.DAL;
 public class LoggingDAL : ILoggingDAL
 {
     private object m_object = new object(); 
-    private DbContextOptions<ServiceInteractionContext> m_contextOptions;
+    private DbContextOptions<ServiceInteractionDbContext> m_contextOptions;
 
     /// <summary>
     /// Constructor by default.
     /// </summary>
     public LoggingDAL(
-        DbContextOptions<ServiceInteractionContext> contextOptions) 
+        DbContextOptions<ServiceInteractionDbContext> contextOptions) 
     {
         m_contextOptions = contextOptions;
     }
@@ -37,7 +37,7 @@ public class LoggingDAL : ILoggingDAL
 
         lock (m_object)
         {
-            using var context = new ServiceInteractionContext(m_contextOptions);
+            using var context = new ServiceInteractionDbContext(m_contextOptions);
             context.DbgLogs.Add(dbglog);
             context.SaveChanges();
         }

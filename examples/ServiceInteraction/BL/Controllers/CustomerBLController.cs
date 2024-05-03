@@ -3,7 +3,7 @@ using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using WorkflowLib.Examples.ServiceInteraction.Core.ServiceRegistry;
 using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
-using WorkflowLib.Examples.ServiceInteraction.Models;
+using WorkflowLib.Models.Business.Processes;
 
 namespace WorkflowLib.Examples.ServiceInteraction.BL.Controllers;
 

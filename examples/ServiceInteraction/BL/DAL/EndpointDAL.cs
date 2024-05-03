@@ -2,9 +2,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Examples.ServiceInteraction.BL.Contexts;
+using WorkflowLib.Examples.ServiceInteraction.BL.DbContexts;
 using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
-using WorkflowLib.Examples.ServiceInteraction.Models;
+using WorkflowLib.Models.Network.MicroserviceConfigurations;
 
 namespace WorkflowLib.Examples.ServiceInteraction.BL.DAL;
 
@@ -13,13 +13,13 @@ namespace WorkflowLib.Examples.ServiceInteraction.BL.DAL;
 /// </summary>
 public class EndpointDAL : IEndpointDAL
 {
-    private DbContextOptions<ServiceInteractionContext> m_contextOptions;
+    private DbContextOptions<ServiceInteractionDbContext> m_contextOptions;
 
     /// <summary>
     /// Constructor by default.
     /// </summary>
     public EndpointDAL(
-        DbContextOptions<ServiceInteractionContext> contextOptions) 
+        DbContextOptions<ServiceInteractionDbContext> contextOptions) 
     {
         m_contextOptions = contextOptions;
     }
@@ -32,7 +32,7 @@ public class EndpointDAL : IEndpointDAL
         if (predicate == null)
             throw new System.ArgumentNullException(nameof(predicate));
         
-        using var context = new ServiceInteractionContext(m_contextOptions);
+        using var context = new ServiceInteractionDbContext(m_contextOptions);
         
         var endpointTypeTo = context.EndpointCalls
             .Where(predicate)
