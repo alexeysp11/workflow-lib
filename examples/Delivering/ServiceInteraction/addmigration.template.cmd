@@ -1,0 +1,2 @@
+dotnet ef migrations add InitialCreate --project BL/WorkflowLib.Examples.Delivering.ServiceInteraction.BL.csproj --startup-project InitializeDb/WorkflowLib.Examples.Delivering.ServiceInteraction.InitializeDb.csproj
+dotnet ef database update --project BL/WorkflowLib.Examples.Delivering.ServiceInteraction.BL.csproj --startup-project InitializeDb/WorkflowLib.Examples.Delivering.ServiceInteraction.InitializeDb.csproj
