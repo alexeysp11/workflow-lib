@@ -1,6 +1,6 @@
 using WorkflowLib.Examples.ServiceInteraction.Core.ProcessingPipes;
 using WorkflowLib.Examples.ServiceInteraction.Core.ServiceRegistry;
-using WorkflowLib.Examples.ServiceInteraction.Models;
+using WorkflowLib.Models.Business.Processes;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Core.Routing;
 

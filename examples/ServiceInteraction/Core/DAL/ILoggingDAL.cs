@@ -1,5 +1,3 @@
-using WorkflowLib.Examples.ServiceInteraction.Models;
-
 namespace WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 
 /// <summary>

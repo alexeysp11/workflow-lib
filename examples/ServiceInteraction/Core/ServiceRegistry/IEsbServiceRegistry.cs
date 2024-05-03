@@ -1,5 +1,6 @@
 using WorkflowLib.Examples.ServiceInteraction.Core.ProcessingPipes;
-using WorkflowLib.Examples.ServiceInteraction.Models;
+using WorkflowLib.Models.Business.Processes;
+using WorkflowLib.Models.Network.MicroserviceConfigurations;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Core.ServiceRegistry;
 

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using WorkflowLib.Examples.ServiceInteraction.Models;
+using WorkflowLib.Models.Network.MicroserviceConfigurations;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Core.ObjectPooling;
 

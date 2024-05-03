@@ -2,7 +2,8 @@ using WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 using WorkflowLib.Examples.ServiceInteraction.Core.LoadBalancers;
 using WorkflowLib.Examples.ServiceInteraction.Core.ObjectPooling;
 using WorkflowLib.Examples.ServiceInteraction.Core.ProcessingPipes;
-using WorkflowLib.Examples.ServiceInteraction.Models;
+using WorkflowLib.Models.Business.Processes;
+using WorkflowLib.Models.Network.MicroserviceConfigurations;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Core.ServiceRegistry;
 
@@ -42,12 +43,18 @@ public class EsbServiceRegistry : IEsbServiceRegistry
         BusinessProcessState currentState,
         BusinessProcessStateTransition stateTransition)
     {
-        if (currentState == null) 
-            throw new System.Exception("Current state could not be null or undefined");
+        if (currentState == null)
+            throw new System.Exception("Current state could not be null");
+        if (currentState.EndpointCall == null)
+            throw new System.Exception("Current state should reference to existing endpoint call");
+        if (stateTransition == null)
+            throw new System.Exception("State transition could not be null");
+        if (stateTransition.EndpointCall == null)
+            throw new System.Exception("State transition should reference to existing endpoint call");
         
         return m_endpointDAL.GetEndpoint(x => x.EndpointCallType == endpointCallType
-            && x.BusinessProcessState.Id == currentState.Id
-            && (stateTransition == null || x.BusinessProcessStateTransition.Id == stateTransition.Id));
+            && x.Id == currentState.EndpointCall.Id
+            && x.Id == stateTransition.EndpointCall.Id);
     }
 
     /// <summary>

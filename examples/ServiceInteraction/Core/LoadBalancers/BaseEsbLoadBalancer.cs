@@ -1,5 +1,5 @@
 using WorkflowLib.Examples.ServiceInteraction.Core.ObjectPooling;
-using WorkflowLib.Examples.ServiceInteraction.Models;
+using WorkflowLib.Models.Network.MicroserviceConfigurations;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Core.LoadBalancers;
 

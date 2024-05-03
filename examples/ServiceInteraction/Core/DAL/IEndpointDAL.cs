@@ -1,5 +1,5 @@
 using System.Linq.Expressions;
-using WorkflowLib.Examples.ServiceInteraction.Models;
+using WorkflowLib.Models.Network.MicroserviceConfigurations;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Core.DAL;
 
