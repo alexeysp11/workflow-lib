@@ -37,6 +37,11 @@ public class ServiceInteractionDbContext : DbContext
     public DbSet<EndpointCall> EndpointCalls { get; set; }
 
     /// <summary>
+    /// Gets or sets the DbSet of BPStateEndpointCall entities in the context.
+    /// </summary>
+    public DbSet<BPStateEndpointCall> BPStateEndpointCalls { get; set; }
+
+    /// <summary>
     /// Gets or sets the DbSet of BusinessProcess entities in the context.
     /// </summary>
     public DbSet<BusinessProcess> BusinessProcesses { get; set; }
