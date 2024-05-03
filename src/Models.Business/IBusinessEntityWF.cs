@@ -28,6 +28,6 @@ namespace WorkflowLib.Models.Business
         /// <summary>
         /// Business entity status.
         /// </summary>
-        BusinessEntityStatus BusinessEntityStatus { get; set; }
+        BusinessEntityStatus? BusinessEntityStatus { get; set; }
     }
 }
