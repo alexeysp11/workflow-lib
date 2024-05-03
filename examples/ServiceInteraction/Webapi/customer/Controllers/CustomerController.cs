@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using WorkflowLib.Examples.ServiceInteraction.Webapi.Customer;
+using WorkflowLib.Models.Business.BusinessDocuments;
 
 namespace WorkflowLib.Examples.ServiceInteraction.Webapi.Customer.Controllers;
 
@@ -28,7 +29,7 @@ public class CustomerController : ControllerBase
     /// Start order processing.
     /// </summary>
     [HttpPost(Name = "MakeOrder")]
-    public string MakeOrder(string info)
+    public string MakeOrder(InitialOrder initialOrder)
     {
         _startupInstance.Run();
         return "Stab: MakeOrder";
