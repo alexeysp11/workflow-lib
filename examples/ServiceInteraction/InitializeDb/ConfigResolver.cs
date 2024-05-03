@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Examples.ServiceInteraction.BL.Contexts;
-using WorkflowLib.Examples.ServiceInteraction.Models;
+using WorkflowLib.Examples.ServiceInteraction.BL.DbContexts;
+using WorkflowLib.Models.Business.Processes;
+using WorkflowLib.Models.Network.MicroserviceConfigurations;
 
 namespace WorkflowLib.Examples.ServiceInteraction.InitializeDb;
 
@@ -12,13 +13,13 @@ namespace WorkflowLib.Examples.ServiceInteraction.InitializeDb;
 /// </summary>
 public class ConfigResolver
 {
-    private DbContextOptions<ServiceInteractionContext> m_contextOptions;
+    private DbContextOptions<ServiceInteractionDbContext> m_contextOptions;
 
     /// <summary>
     /// Constructor by default.
     /// </summary>
     public ConfigResolver(
-        DbContextOptions<ServiceInteractionContext> contextOptions) 
+        DbContextOptions<ServiceInteractionDbContext> contextOptions) 
     {
         m_contextOptions = contextOptions;
     }
@@ -28,7 +29,7 @@ public class ConfigResolver
     /// </summary>
     public void InitCommunicationConfigs()
     {
-        using var context = new ServiceInteractionContext(m_contextOptions);
+        using var context = new ServiceInteractionDbContext(m_contextOptions);
 
         var stringBuilder = new StringBuilder();
         var dtNow = System.DateTime.UtcNow;
@@ -156,6 +157,7 @@ public class ConfigResolver
 
         // Endpoint calls.
         var endpointCalls = new List<EndpointCall>();
+        var bpStateEndpointCalls = new List<BPStateEndpointCall>();
         foreach (var endpointCallType in endpointCallTypes)
         {
             EndpointCallType callTypeEnum;
@@ -183,44 +185,71 @@ public class ConfigResolver
             if (fileserviceEndpointType == null)
                 throw new System.ArgumentNullException(nameof(fileserviceEndpointType));
             
-            endpointCalls.Add(new EndpointCall
+            var ec_customer_fileservice = new EndpointCall
             {
                 EndpointTypeFrom = customerEndpointType,
                 EndpointTypeTo = fileserviceEndpointType,
-                EndpointCallType = callTypeEnum,
-                BusinessProcessState = customerState
-            });
-            endpointCalls.Add(new EndpointCall
+                EndpointCallType = callTypeEnum
+            };
+            var ec_customer_wh2kitchen = new EndpointCall
             {
                 EndpointTypeFrom = customerEndpointType,
                 EndpointTypeTo = whEndpointType,
-                EndpointCallType = callTypeEnum,
-                BusinessProcessState = customerState,
-                BusinessProcessStateTransition = customer_wh2kitchen
-            });
-            endpointCalls.Add(new EndpointCall
+                EndpointCallType = callTypeEnum
+            };
+            var ec_wh2kitchen_kitchen = new EndpointCall
             {
                 EndpointTypeFrom = whEndpointType,
                 EndpointTypeTo = kitchenEndpointType,
-                EndpointCallType = callTypeEnum,
-                BusinessProcessState = wh2kitchenState,
-                BusinessProcessStateTransition = wh2kitchen_kitchen
-            });
-            endpointCalls.Add(new EndpointCall
+                EndpointCallType = callTypeEnum
+            };
+            var ec_kitchen_wh2courier = new EndpointCall
             {
                 EndpointTypeFrom = kitchenEndpointType,
                 EndpointTypeTo = whEndpointType,
-                EndpointCallType = callTypeEnum,
-                BusinessProcessState = kitchenState,
-                BusinessProcessStateTransition = kitchen_wh2courier
-            });
-            endpointCalls.Add(new EndpointCall
+                EndpointCallType = callTypeEnum
+            };
+            var ec_wh2courier_courier = new EndpointCall
             {
                 EndpointTypeFrom = whEndpointType,
                 EndpointTypeTo = courierEndpointType,
-                EndpointCallType = callTypeEnum,
+                EndpointCallType = callTypeEnum
+            };
+            endpointCalls.Add(ec_customer_fileservice);
+            endpointCalls.Add(ec_customer_wh2kitchen);
+            endpointCalls.Add(ec_wh2kitchen_kitchen);
+            endpointCalls.Add(ec_kitchen_wh2courier);
+            endpointCalls.Add(ec_wh2courier_courier);
+
+            customer_wh2kitchen.EndpointCall = ec_customer_wh2kitchen;
+            wh2kitchen_kitchen.EndpointCall = ec_wh2kitchen_kitchen;
+            kitchen_wh2courier.EndpointCall = ec_kitchen_wh2courier;
+            wh2courier_courier.EndpointCall = ec_wh2courier_courier;
+
+            bpStateEndpointCalls.Add(new BPStateEndpointCall
+            {
+                BusinessProcessState = customerState,
+                EndpointCall = ec_customer_fileservice
+            });
+            bpStateEndpointCalls.Add(new BPStateEndpointCall
+            {
+                BusinessProcessState = customerState,
+                EndpointCall = ec_customer_wh2kitchen
+            });
+            bpStateEndpointCalls.Add(new BPStateEndpointCall
+            {
+                BusinessProcessState = wh2kitchenState,
+                EndpointCall = ec_wh2kitchen_kitchen
+            });
+            bpStateEndpointCalls.Add(new BPStateEndpointCall
+            {
+                BusinessProcessState = kitchenState,
+                EndpointCall = ec_kitchen_wh2courier
+            });
+            bpStateEndpointCalls.Add(new BPStateEndpointCall
+            {
                 BusinessProcessState = wh2courierState,
-                BusinessProcessStateTransition = wh2courier_courier
+                EndpointCall = ec_wh2courier_courier
             });
         }
 
@@ -229,6 +258,7 @@ public class ConfigResolver
         context.BusinessProcessStateTransitions.AddRange(transitions);
         context.EndpointTypes.AddRange(endpointTypes);
         context.EndpointCalls.AddRange(endpointCalls);
+        context.BPStateEndpointCalls.AddRange(bpStateEndpointCalls);
 
         context.SaveChanges();
     }
@@ -239,7 +269,7 @@ public class ConfigResolver
     /// </summary>
     public void InitMonolithEndpoints(Dictionary<string, string> classNames)
     {
-        using var context = new ServiceInteractionContext(m_contextOptions);
+        using var context = new ServiceInteractionDbContext(m_contextOptions);
 
         // Constants.
         var customerBackendName = ServiceConfigConstants.CustomerBackendName;

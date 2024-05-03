@@ -45,15 +45,15 @@ public class EsbServiceRegistry : IEsbServiceRegistry
     {
         if (currentState == null)
             throw new System.Exception("Current state could not be null");
-        if (currentState.EndpointCall == null)
-            throw new System.Exception("Current state should reference to existing endpoint call");
+        // if (currentState.EndpointCall == null)
+        //     throw new System.Exception("Current state should reference to existing endpoint call");
         if (stateTransition == null)
             throw new System.Exception("State transition could not be null");
         if (stateTransition.EndpointCall == null)
             throw new System.Exception("State transition should reference to existing endpoint call");
         
         return m_endpointDAL.GetEndpoint(x => x.EndpointCallType == endpointCallType
-            && x.Id == currentState.EndpointCall.Id
+            // && x.Id == currentState.EndpointCall.Id
             && x.Id == stateTransition.EndpointCall.Id);
     }
 
