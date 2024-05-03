@@ -66,6 +66,11 @@ namespace WorkflowLib.Models.Business.Processes
         public TaskPriority Priority { get; set; }
         
         /// <summary>
+        /// Business process state.
+        /// </summary>
+        public BusinessProcessState? BusinessProcessState { get; set; }
+        
+        /// <summary>
         /// Collection of risks related to the business task.
         /// </summary>
         public ICollection<Risk> Risks { get; set; }
@@ -88,6 +93,6 @@ namespace WorkflowLib.Models.Business.Processes
         /// <summary>
         /// Status of the business task.
         /// </summary>
-        public string? Status { get; set; }
+        public BusinessTaskStatus Status { get; set; }
     }
 }
