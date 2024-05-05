@@ -5,3 +5,7 @@ obj
 publish
 
 examplelocal
+
+*.db
+*.db-shm
+*.db-wal
