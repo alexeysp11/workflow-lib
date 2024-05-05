@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ProcPipes;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.Routing;
+using WorkflowLib.ServiceDiscoveryBpm.ProcPipes;
+using WorkflowLib.ServiceDiscoveryBpm.Routing;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.Webapi.Employee;
 using WorkflowLib.Models.Business.Processes;
