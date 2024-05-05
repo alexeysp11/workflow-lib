@@ -1,0 +1,11 @@
+{
+    "userUid": "7d698e70-cd06-464e-8ec5-859d88fc22cc",
+    "login": "login6",
+    "phoneNumber": "+49 711-5556-417 2212",
+    "city": "Stuttgart",
+    "address": "Keplerstraße 7, 70174 Stuttgart, Germany",
+    "productIds": [ 1, 1, 2, 2, 2, 3, 3 ],
+    "paymentType": "Card",
+    "paymentMethod": "---",
+    "paymentAmount": 158
+}
