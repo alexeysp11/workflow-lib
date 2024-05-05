@@ -1,5 +1,6 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
+using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ServiceRegistry;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.DAL;
 using WorkflowLib.Models.Business.Processes;
@@ -13,7 +14,7 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Controllers;
 public class KitchenBLController : IImplicitService
 {
     private ILoggingDAL m_loggingDAL;
-    private IEsbServiceRegistry m_endpointServiceResolver;
+    private IEsbServiceRegistry m_esbServiceRegistry;
     private readonly IServiceProvider m_serviceProvider;
     private WorkflowInstance? m_workflowInstance;
 
@@ -22,11 +23,11 @@ public class KitchenBLController : IImplicitService
     /// </summary>
     public KitchenBLController(
         ILoggingDAL loggingDAL,
-        IEsbServiceRegistry endpointServiceResolver,
+        IEsbServiceRegistry esbServiceRegistry,
         IServiceProvider serviceProvider)
     {
         m_loggingDAL = loggingDAL;
-        m_endpointServiceResolver = endpointServiceResolver;
+        m_esbServiceRegistry = esbServiceRegistry;
         m_serviceProvider = serviceProvider;
     }
 
@@ -41,8 +42,8 @@ public class KitchenBLController : IImplicitService
         try
         {
             if (m_workflowInstance == null)
-                m_workflowInstance = m_endpointServiceResolver.GetWorkflowInstanceById(workflowInstanceId);
-            m_endpointServiceResolver.CreateBusinessTaskByWI(m_workflowInstance, "KitchenBLController-WarehouseBLController", transitionId);
+                m_workflowInstance = m_esbServiceRegistry.GetWorkflowInstanceById(workflowInstanceId);
+            m_esbServiceRegistry.CreateBusinessTaskByWI(m_workflowInstance, "KitchenBLController-WarehouseBLController", transitionId);
         }
         catch (System.Exception ex)
         {
@@ -66,11 +67,13 @@ public class KitchenBLController : IImplicitService
     /// <summary>
     /// Method for processing the previous service depending on the current state of the process.
     /// </summary>
-    public void MoveWorkflowInstanceNext(ref long workflowInstanceId, ref long transitionId)
+    public void MoveWorkflowInstanceNext(PipeDelegateParams parameters)
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
 
+        var workflowInstanceId = parameters.WorkflowInstanceId;
+        var transitionId = parameters.BPStateTransitionId;
         switch (transitionId)
         {
             case 2:
@@ -79,6 +82,8 @@ public class KitchenBLController : IImplicitService
             default:
                 throw new System.Exception($"Incorrect transition ID: {transitionId}");
         }
+        parameters.WorkflowInstanceId = workflowInstanceId;
+        parameters.BPStateTransitionId = transitionId;
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
     }

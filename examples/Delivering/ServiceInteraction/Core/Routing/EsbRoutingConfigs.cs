@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ProcessingPipes;
+using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ProcPipes;
 
 namespace WorkflowLib.Examples.Delivering.ServiceInteraction.Core.Routing;
 
@@ -11,5 +11,5 @@ public class EsbRoutingConfigs
     /// <summary>
     /// A dictionary where the key is the transition ID, and the value is the delegate to handle the call.
     /// </summary>
-    public Dictionary<long, System.Action<IProcessingPipeDelegateParams>> Transition2Delegate { get; set; }
+    public Dictionary<long, System.Action<IPipeDelegateParams>> Transition2Delegate { get; set; }
 }

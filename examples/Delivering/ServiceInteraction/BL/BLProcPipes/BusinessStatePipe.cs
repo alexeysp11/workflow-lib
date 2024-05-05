@@ -1,20 +1,20 @@
 using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Controllers;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ProcessingPipes;
+using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ProcPipes;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.Routing;
 
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcessingPipes;
+namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
 
 /// <summary>
 /// The pipe responsible for getting the state of the process.
 /// </summary>
-public class BusinessStatePipe : AbstractProcessingPipe
+public class BusinessStatePipe : AbstractProcPipe
 {
     private static EsbControlPlane s_controlPlane;
 
     /// <summary>
     /// Default constructor.
     /// </summary>
-    public BusinessStatePipe(System.Action<IProcessingPipeDelegateParams> function) : base(function) {}
+    public BusinessStatePipe(System.Action<IPipeDelegateParams> function) : base(function) {}
     
     /// <summary>
     /// Sets ESB service registry.
@@ -27,9 +27,9 @@ public class BusinessStatePipe : AbstractProcessingPipe
     /// <summary>
     /// Method for performing a unit of work as part of a request processing sequence.
     /// </summary>
-    public override void Handle(IProcessingPipeDelegateParams parameters)
+    public override void Handle(IPipeDelegateParams parameters)
     {
-        parameters.BusinessProcessStateTransitionId = s_controlPlane.GetNextStateTransitionId(parameters.BusinessProcessStateTransitionId);
+        parameters.BPStateTransitionId = s_controlPlane.GetNextStateTransitionId(parameters.BPStateTransitionId);
         m_function(parameters);
     }
 }

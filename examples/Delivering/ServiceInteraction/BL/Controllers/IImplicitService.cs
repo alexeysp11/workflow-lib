@@ -1,3 +1,5 @@
+using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
+
 namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Controllers;
 
 /// <summary>
@@ -13,5 +15,5 @@ public interface IImplicitService
     /// <summary>
     /// Method for processing the previous service depending on the current state of the process.
     /// </summary>
-    void MoveWorkflowInstanceNext(ref long workflowInstanceId, ref long transitionId);
+    void MoveWorkflowInstanceNext(PipeDelegateParams parameters);
 }

@@ -1,19 +1,19 @@
 using System.Collections.Generic;
 
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ProcessingPipes;
+namespace WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ProcPipes;
 
 /// <summary>
 /// Builds the sequence of request processing.
 /// </summary>
-public class ProcessingPipeBuilder
+public class ProcPipeBuilder
 {
-    private System.Action<IProcessingPipeDelegateParams> m_mainFunction;
+    private System.Action<IPipeDelegateParams> m_mainFunction;
     private List<System.Type> m_pipeTypes;
 
     /// <summary>
     /// Default constructor.
     /// </summary>
-    public ProcessingPipeBuilder(System.Action<IProcessingPipeDelegateParams> mainFunction)
+    public ProcPipeBuilder(System.Action<IPipeDelegateParams> mainFunction)
     {
         m_mainFunction = mainFunction;
         m_pipeTypes = new List<System.Type>();
@@ -22,9 +22,9 @@ public class ProcessingPipeBuilder
     /// <summary>
     /// Adds an element to the request processing sequence.
     /// </summary>
-    public ProcessingPipeBuilder AddPipe(System.Type pipeType)
+    public ProcPipeBuilder AddPipe(System.Type pipeType)
     {
-        // if (!pipeType.IsInstanceOfType(typeof(AbstractProcessingPipe))) 
+        // if (!pipeType.IsInstanceOfType(typeof(AbstractProcPipe))) 
         //     throw new System.Exception("Incorrect pipe type");
         m_pipeTypes.Add(pipeType);
         return this;
@@ -33,22 +33,22 @@ public class ProcessingPipeBuilder
     /// <summary>
     /// Completes the process of constructing the request processing sequence.
     /// </summary>
-    public System.Action<IProcessingPipeDelegateParams> Build()
+    public System.Action<IPipeDelegateParams> Build()
     {
         return CreatePipe(0);
     }
 
-    private System.Action<IProcessingPipeDelegateParams> CreatePipe(int index)
+    private System.Action<IPipeDelegateParams> CreatePipe(int index)
     {
         if (index < m_pipeTypes.Count - 1)
         {
             var childPipeHandle = CreatePipe(index + 1);
-            var pipe = (AbstractProcessingPipe) System.Activator.CreateInstance(m_pipeTypes[index], childPipeHandle);
+            var pipe = (AbstractProcPipe) System.Activator.CreateInstance(m_pipeTypes[index], childPipeHandle);
             return pipe.Handle;
         }
         else
         {
-            var finalPipe = (AbstractProcessingPipe) System.Activator.CreateInstance(m_pipeTypes[index], m_mainFunction);
+            var finalPipe = (AbstractProcPipe) System.Activator.CreateInstance(m_pipeTypes[index], m_mainFunction);
             return finalPipe.Handle;
         }
     }

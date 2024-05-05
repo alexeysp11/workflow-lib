@@ -1,4 +1,4 @@
-using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ProcessingPipes;
+using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ProcPipes;
 using WorkflowLib.Models.Business.Processes;
 using WorkflowLib.Models.Network.MicroserviceConfigurations;
 
@@ -69,7 +69,7 @@ public interface IEsbServiceRegistry
     /// Method for preserving the state of the service.
     /// </summary>
     void PreserveServiceState(
-        IProcessingPipeDelegateParams parameters);
+        IPipeDelegateParams parameters);
     
     /// <summary>
     /// Get a list of all business processes.

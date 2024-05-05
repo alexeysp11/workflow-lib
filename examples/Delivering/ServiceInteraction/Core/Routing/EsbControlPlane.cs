@@ -1,4 +1,4 @@
-using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ProcessingPipes;
+using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ProcPipes;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ServiceRegistry;
 using WorkflowLib.Models.Business.Processes;
 
@@ -81,7 +81,7 @@ public class EsbControlPlane
     /// Method for preserving the state of the service.
     /// </summary>
     public void PreserveServiceState(
-        IProcessingPipeDelegateParams parameters)
+        IPipeDelegateParams parameters)
     {
         m_esbServiceRegistry.PreserveServiceState(parameters);
     }
@@ -90,14 +90,14 @@ public class EsbControlPlane
     /// Method for processing the previous service depending on the current state of the process.
     /// </summary>
     public void MoveWorkflowInstanceNext(
-        IProcessingPipeDelegateParams parameters)
+        IPipeDelegateParams parameters)
     {
         var transition2Delegate = m_esbRoutingConfigs.Transition2Delegate;
         if (transition2Delegate == null)
             throw new System.InvalidOperationException("The dictionary that binds transition ID to delegate could not be null");
         
         var workflowInstanceId = parameters.WorkflowInstanceId;
-        var transitionId = parameters.BusinessProcessStateTransitionId;
+        var transitionId = parameters.BPStateTransitionId;
 
         // Get endpoint call ID.
         if (!transition2Delegate.ContainsKey(transitionId))

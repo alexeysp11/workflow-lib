@@ -1,7 +1,7 @@
 using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.DAL;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.LoadBalancers;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ObjectPooling;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ProcessingPipes;
+using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ProcPipes;
 using WorkflowLib.Models.Business.Processes;
 using WorkflowLib.Models.Network.MicroserviceConfigurations;
 
@@ -188,7 +188,7 @@ public class EsbServiceRegistry : IEsbServiceRegistry
     /// Method for preserving the state of the service.
     /// </summary>
     public void PreserveServiceState(
-        IProcessingPipeDelegateParams parameters)
+        IPipeDelegateParams parameters)
     {
         // 
     }

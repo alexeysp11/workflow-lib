@@ -1,5 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcessingPipes;
+using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BPInitializers;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.Routing;
 
@@ -30,10 +30,10 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.Webapi.Employee
         /// </summary>
         public void Run()
         {
-            // var parameters = new ValueProcessingPipeDelegateParams
+            // var parameters = new PipeDelegateParams
             // {
             //     WorkflowInstanceId = 0,
-            //     BusinessProcessStateTransitionId = 0,
+            //     BPStateTransitionId = 0,
             //     UserId = 1
             // };
             // m_controlPlane.MoveWorkflowInstanceNext(parameters);
@@ -41,7 +41,7 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.Webapi.Employee
 
         private void Initialize()
         {
-            var pipeInitializer = (ProcessingPipeInitializer) m_serviceProvider.GetRequiredService(typeof(ProcessingPipeInitializer));
+            var pipeInitializer = (ProcPipeInitializer) m_serviceProvider.GetRequiredService(typeof(ProcPipeInitializer));
             var transitionInitializer = (BPTransitionInitializer) m_serviceProvider.GetRequiredService(typeof(BPTransitionInitializer));
 
             pipeInitializer.Initialize();

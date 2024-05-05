@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ProcessingPipes;
+using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ProcPipes;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.Routing;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcessingPipes;
+using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.Webapi.Employee;
 using WorkflowLib.Models.Business.Processes;
 
@@ -84,10 +84,10 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.Webapi.Employee.Con
             var transition = m_controlPlane.GetTransitionByTaskId(businessTaskId);
             if (transition == null)
                 throw new System.Exception($"Transition could not be null (workflowInstanceId: {workflowInstanceId}, businessTaskId: {businessTaskId})");
-            var parameters = new ValueProcessingPipeDelegateParams
+            var parameters = new PipeDelegateParams
             {
                 WorkflowInstanceId = workflowInstanceId,
-                BusinessProcessStateTransitionId = transition.Id,
+                BPStateTransitionId = transition.Id,
                 UserId = 1
             };
             m_controlPlane.MoveWorkflowInstanceNext(parameters);

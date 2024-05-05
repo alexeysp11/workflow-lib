@@ -1,5 +1,6 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
+using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.DAL;
 
 namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Controllers;
@@ -49,11 +50,13 @@ public class CourierBLController : IImplicitService
     /// <summary>
     /// Method for processing the previous service depending on the current state of the process.
     /// </summary>
-    public void MoveWorkflowInstanceNext(ref long workflowInstanceId, ref long transitionId)
+    public void MoveWorkflowInstanceNext(PipeDelegateParams parameters)
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
         
+        var workflowInstanceId = parameters.WorkflowInstanceId;
+        var transitionId = parameters.BPStateTransitionId;
         switch (transitionId)
         {
             case 4:
@@ -62,6 +65,8 @@ public class CourierBLController : IImplicitService
             default:
                 throw new System.Exception($"Incorrect transition ID: {transitionId}");
         }
+        parameters.WorkflowInstanceId = workflowInstanceId;
+        parameters.BPStateTransitionId = transitionId;
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
     }

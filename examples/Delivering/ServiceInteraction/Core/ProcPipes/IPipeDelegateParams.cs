@@ -1,9 +1,9 @@
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ProcessingPipes;
+namespace WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ProcPipes;
 
 /// <summary>
 /// Parameters for the request processing delegate.
 /// </summary>
-public interface IProcessingPipeDelegateParams
+public interface IPipeDelegateParams
 {
     /// <summary>
     /// Workflow instance ID.
@@ -13,7 +13,7 @@ public interface IProcessingPipeDelegateParams
     /// <summary>
     /// Business process state transition ID.
     /// </summary>
-    long BusinessProcessStateTransitionId { get; set; }
+    long BPStateTransitionId { get; set; }
 
     /// <summary>
     /// User ID.

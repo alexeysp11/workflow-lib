@@ -1,7 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcessingPipes;
+using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Controllers;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ProcessingPipes;
+using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ProcPipes;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.Routing;
 
 namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BPInitializers;
@@ -9,7 +9,7 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BPInitializers;
 /// <summary>
 /// Processing pipe initializer.
 /// </summary>
-public class ProcessingPipeInitializer : IBPInitializer
+public class ProcPipeInitializer : IBPInitializer
 {
     private EsbControlPlane m_controlPlane;
     private EsbRoutingConfigs m_esbRoutingConfigs;
@@ -19,7 +19,7 @@ public class ProcessingPipeInitializer : IBPInitializer
     /// <summary>
     /// Default constructor.
     /// </summary>
-    public ProcessingPipeInitializer(
+    public ProcPipeInitializer(
         EsbControlPlane controlPlane,
         EsbRoutingConfigs esbRoutingConfigs,
         StartupInitDetails startupInitDetails,
@@ -36,7 +36,7 @@ public class ProcessingPipeInitializer : IBPInitializer
     /// </summary>
     public void Initialize()
     {
-        m_esbRoutingConfigs.Transition2Delegate = new Dictionary<long, System.Action<IProcessingPipeDelegateParams>>();
+        m_esbRoutingConfigs.Transition2Delegate = new Dictionary<long, System.Action<IPipeDelegateParams>>();
 
         if (m_serviceProvider == null)
             throw new System.Exception("Could not resolve service provider");
@@ -64,13 +64,13 @@ public class ProcessingPipeInitializer : IBPInitializer
         var customerController = (CustomerBLController) m_serviceProvider.GetRequiredService(typeof(CustomerBLController));
         CustomerPipe.SetService(customerController);
 
-        Action<IProcessingPipeDelegateParams> customerPipe;
+        Action<IPipeDelegateParams> customerPipe;
         var appDeploymentType = m_startupInitDetails.ApplicationDeploymentType;
         switch (appDeploymentType)
         {
             case ApplicationDeploymentType.Monolith:
                 // Build pipes.
-                customerPipe = new ProcessingPipeBuilder(m_controlPlane.MoveWorkflowInstanceNext)
+                customerPipe = new ProcPipeBuilder(m_controlPlane.MoveWorkflowInstanceNext)
                     .AddPipe(typeof(CustomerPipe))
                     .AddPipe(typeof(BusinessStatePipe))
                     .Build();
@@ -80,7 +80,7 @@ public class ProcessingPipeInitializer : IBPInitializer
                 break;
             case ApplicationDeploymentType.WebAPI:
                 // Build pipes.
-                customerPipe = new ProcessingPipeBuilder(m_controlPlane.PreserveServiceState)
+                customerPipe = new ProcPipeBuilder(m_controlPlane.PreserveServiceState)
                     .AddPipe(typeof(CustomerPipe))
                     .AddPipe(typeof(BusinessStatePipe))
                     .Build();
@@ -103,23 +103,23 @@ public class ProcessingPipeInitializer : IBPInitializer
         var courierController = (CourierBLController) m_serviceProvider.GetRequiredService(typeof(CourierBLController));
         CourierPipe.SetService(courierController);
         
-        Action<IProcessingPipeDelegateParams> warehousePipe;
-        Action<IProcessingPipeDelegateParams> kitchenPipe;
-        Action<IProcessingPipeDelegateParams> courierPipe;
+        Action<IPipeDelegateParams> warehousePipe;
+        Action<IPipeDelegateParams> kitchenPipe;
+        Action<IPipeDelegateParams> courierPipe;
         var appDeploymentType = m_startupInitDetails.ApplicationDeploymentType;
         switch (appDeploymentType)
         {
             case ApplicationDeploymentType.Monolith:
                 // Build pipes.
-                warehousePipe = new ProcessingPipeBuilder(m_controlPlane.MoveWorkflowInstanceNext)
+                warehousePipe = new ProcPipeBuilder(m_controlPlane.MoveWorkflowInstanceNext)
                     .AddPipe(typeof(WarehousePipe))
                     .AddPipe(typeof(BusinessStatePipe))
                     .Build();
-                kitchenPipe = new ProcessingPipeBuilder(m_controlPlane.MoveWorkflowInstanceNext)
+                kitchenPipe = new ProcPipeBuilder(m_controlPlane.MoveWorkflowInstanceNext)
                     .AddPipe(typeof(KitchenPipe))
                     .AddPipe(typeof(BusinessStatePipe))
                     .Build();
-                courierPipe = new ProcessingPipeBuilder(m_controlPlane.MoveWorkflowInstanceNext)
+                courierPipe = new ProcPipeBuilder(m_controlPlane.MoveWorkflowInstanceNext)
                     .AddPipe(typeof(CourierPipe))
                     .AddPipe(typeof(BusinessStatePipe))
                     .Build();
@@ -131,15 +131,15 @@ public class ProcessingPipeInitializer : IBPInitializer
                 break;
             case ApplicationDeploymentType.WebAPI:
                 // Build pipes.
-                warehousePipe = new ProcessingPipeBuilder(m_controlPlane.PreserveServiceState)
+                warehousePipe = new ProcPipeBuilder(m_controlPlane.PreserveServiceState)
                     .AddPipe(typeof(WarehousePipe))
                     .AddPipe(typeof(BusinessStatePipe))
                     .Build();
-                kitchenPipe = new ProcessingPipeBuilder(m_controlPlane.PreserveServiceState)
+                kitchenPipe = new ProcPipeBuilder(m_controlPlane.PreserveServiceState)
                     .AddPipe(typeof(KitchenPipe))
                     .AddPipe(typeof(BusinessStatePipe))
                     .Build();
-                courierPipe = new ProcessingPipeBuilder(m_controlPlane.PreserveServiceState)
+                courierPipe = new ProcPipeBuilder(m_controlPlane.PreserveServiceState)
                     .AddPipe(typeof(CourierPipe))
                     .AddPipe(typeof(BusinessStatePipe))
                     .Build();

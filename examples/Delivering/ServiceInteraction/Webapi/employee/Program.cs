@@ -76,7 +76,7 @@ public class Program
 
         // Business process initializers.
         services.AddSingleton<BPTransitionInitializer>();
-        services.AddSingleton<ProcessingPipeInitializer>();
+        services.AddSingleton<ProcPipeInitializer>();
 
         // Service mesh.
         services.AddSingleton<IEsbServiceRegistry, EsbServiceRegistry>();
