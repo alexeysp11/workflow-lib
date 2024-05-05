@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DbContexts;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.DAL;
+using WorkflowLib.ServiceDiscoveryBpm.DAL;
 using WorkflowLib.Models.Network.MicroserviceConfigurations;
 
 namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DAL;

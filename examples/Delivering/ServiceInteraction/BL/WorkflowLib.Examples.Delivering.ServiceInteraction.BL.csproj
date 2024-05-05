@@ -9,7 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\src\Models\WorkflowLib.Models.csproj" />
     <ProjectReference Include="..\..\..\..\src\Models.Business\WorkflowLib.Models.Business.csproj" />
-    <ProjectReference Include="..\Core\WorkflowLib.Examples.Delivering.ServiceInteraction.Core.csproj" />
+    <ProjectReference Include="..\..\..\..\src\ServiceDiscoveryBpm\WorkflowLib.ServiceDiscoveryBpm.csproj" />
   </ItemGroup>
   
   <ItemGroup>

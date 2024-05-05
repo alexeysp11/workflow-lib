@@ -1,4 +1,4 @@
-using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ProcPipes;
+using WorkflowLib.ServiceDiscoveryBpm.ProcPipes;
 using WorkflowLib.Models.Business.BusinessDocuments;
 
 namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;

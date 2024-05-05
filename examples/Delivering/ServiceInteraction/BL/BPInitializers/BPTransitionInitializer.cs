@@ -1,5 +1,5 @@
-using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.DAL;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ObjectPooling;
+using WorkflowLib.ServiceDiscoveryBpm.DAL;
+using WorkflowLib.ServiceDiscoveryBpm.ObjectPooling;
 
 namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BPInitializers;
 
