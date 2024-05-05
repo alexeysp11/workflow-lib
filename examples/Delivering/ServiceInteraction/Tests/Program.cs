@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.Core;
+using WorkflowLib.ServiceDiscoveryBpm;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DbContexts;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DAL;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.DAL;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.LoadBalancers;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ObjectPooling;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.Core.ServiceRegistry;
+using WorkflowLib.ServiceDiscoveryBpm.DAL;
+using WorkflowLib.ServiceDiscoveryBpm.LoadBalancers;
+using WorkflowLib.ServiceDiscoveryBpm.ObjectPooling;
+using WorkflowLib.ServiceDiscoveryBpm.ServiceRegistry;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.Tests;
 using WorkflowLib.Models.Network.MicroserviceConfigurations;
 
