@@ -200,7 +200,6 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                     Destination = destination,
                     OpenOrderDt = System.DateTime.Now
                 };
-                initialOrder.DeliveryOrder = deliveryOrder;
                 context.DeliveryOrders.Add(deliveryOrder);
                 context.Payments.AddRange(deliveryOrder.Payments);
                 var initialOrderProducts = context.InitialOrderProducts
@@ -220,6 +219,10 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                 }
                 deliveryOrder.ProductsPrice = model.PaymentAmount;
                 deliveryOrder.TotalPrice = model.PaymentAmount;
+                context.SaveChanges();
+
+                // Save the reference to DeliveryOrder.
+                initialOrder.DeliveryOrderId = deliveryOrder.Id;
                 context.SaveChanges();
 
                 // Title text.

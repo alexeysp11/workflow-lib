@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WorkflowLib.Examples.Delivering.Example01.Contexts;
 
@@ -10,9 +11,10 @@ using WorkflowLib.Examples.Delivering.Example01.Contexts;
 namespace WorkflowLib.Examples.Delivering.Example01.Migrations
 {
     [DbContext(typeof(DeliveringContext))]
-    partial class DeliveringContextModelSnapshot : ModelSnapshot
+    [Migration("20240505062505_AddBusinessTaskDeliveryOrder")]
+    partial class AddBusinessTaskDeliveryOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.1");

@@ -54,7 +54,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                 
                 // Create a DeliveryOperation object and associate it with the delivery order.
                 NotifyDeliverOrder(model, "Store2Wh");
-                var deliveryOperation = new DeliveryOperation
+                var businessTask = new DeliveryOperation
                 {
                     Uid = System.Guid.NewGuid().ToString(),
                     Name = Notification.TitleText,
@@ -63,10 +63,18 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                     CustomerName = deliveryOrder.CustomerName,
                     Origin = deliveryOrder.Origin,
                     Destination = deliveryOrder.Destination,
-                    Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Open)
+                    Status = BusinessTaskStatus.Open
                 };
-                deliveryOrder.DeliveryOperation = deliveryOperation;
-                context.DeliveryOperations.Add(deliveryOperation);
+                var businessTaskDeliveryOrder = new BusinessTaskDeliveryOrder
+                {
+                    Uid = System.Guid.NewGuid().ToString(),
+                    BusinessTask = businessTask,
+                    DeliveryOrder = deliveryOrder,
+                    Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.DeliveryOperation)
+                };
+                // deliveryOrder.DeliveryOperation = businessTask;
+                context.DeliveryOperations.Add(businessTask);
+                context.BusinessTaskDeliveryOrders.Add(businessTaskDeliveryOrder);
                 context.SaveChanges();
 
                 // 
@@ -99,14 +107,15 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                 // Update DB.
                 System.Console.WriteLine("CourierBackend.Store2WhExecute: cache");
 
-                // Close the related business task.
-                var deliveryOperation = context.DeliveryOrders
-                    .Where(x => x.Id == model.Id && x.DeliveryOperation != null)
-                    .Select(x => x.DeliveryOperation)
-                    .FirstOrDefault();
-                if (deliveryOperation == null)
-                    throw new System.Exception("Delivery operation is not defined");
-                deliveryOperation.Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Closed);
+                // Close the related business tasks.
+                var deliveryOperations = context.BusinessTaskDeliveryOrders
+                    .Where(x => x.DeliveryOrder != null && x.DeliveryOrder.Id == model.Id && x.BusinessTask != null)
+                    .Select(x => x.BusinessTask)
+                    .ToList();
+                foreach (var deliveryOperation in deliveryOperations)
+                {
+                    deliveryOperation.Status = BusinessTaskStatus.Closed;
+                }
                 context.SaveChanges();
 
                 // Notify warehouse backend controller.
@@ -154,7 +163,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
 
                 // Create a DeliveryOperation object and associate it with the delivery order.
                 NotifyDeliverOrder(model, "DeliverOrder");
-                var deliveryOperation = new DeliveryOperation
+                var businessTask = new DeliveryOperation
                 {
                     Uid = System.Guid.NewGuid().ToString(),
                     Name = Notification.TitleText,
@@ -163,10 +172,18 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                     CustomerName = deliveryOrder.CustomerName,
                     Origin = deliveryOrder.Origin,
                     Destination = deliveryOrder.Destination,
-                    Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Open)
+                    Status = BusinessTaskStatus.Open
                 };
-                deliveryOrder.DeliveryOperation = deliveryOperation;
-                context.DeliveryOperations.Add(deliveryOperation);
+                var businessTaskDeliveryOrder = new BusinessTaskDeliveryOrder
+                {
+                    Uid = System.Guid.NewGuid().ToString(),
+                    BusinessTask = businessTask,
+                    DeliveryOrder = deliveryOrder,
+                    Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.DeliveryOperation)
+                };
+                // deliveryOrder.DeliveryOperation = businessTask;
+                context.DeliveryOperations.Add(businessTask);
+                context.BusinessTaskDeliveryOrders.Add(businessTaskDeliveryOrder);
                 context.SaveChanges();
 
                 // 
@@ -199,19 +216,21 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                 // Update DB.
                 System.Console.WriteLine("CourierBackend.DeliverOrderExecute: cache");
                 
-                // Close the related business task.
                 var deliveryOrder = context.DeliveryOrders
-                    .Where(x => x.Id == model.Id && x.DeliveryOperation != null)
-                    .Include(x => x.DeliveryOperation)
+                    .Where(x => x.Id == model.Id)
                     .FirstOrDefault();
                 if (deliveryOrder == null)
                     throw new System.Exception($"Delivery order is not defined (delivery order ID: {model.Id})");
-                var deliveryOperation = deliveryOrder.DeliveryOperation;
-                if (deliveryOperation == null)
-                    throw new System.Exception($"Delivery operation is not defined (delivery order ID: {model.Id})");
-                deliveryOperation.Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Closed);
-
-                // Change the status of the corresponding delivery order.
+                
+                // Close the related business tasks.
+                var deliveryOperations = context.BusinessTaskDeliveryOrders
+                    .Where(x => x.DeliveryOrder != null && x.DeliveryOrder.Id == model.Id && x.BusinessTask != null)
+                    .Select(x => x.BusinessTask)
+                    .ToList();
+                foreach (var deliveryOperation in deliveryOperations)
+                {
+                    deliveryOperation.Status = BusinessTaskStatus.Closed;
+                }
                 deliveryOrder.CloseOrderDt = System.DateTime.Now;
                 deliveryOrder.Status = EnumExtensions.GetDisplayName(OrderStatus.Finished);
                 context.SaveChanges();

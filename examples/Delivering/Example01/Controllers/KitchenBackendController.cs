@@ -52,7 +52,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                 var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
                 if (deliveryOrder == null)
                     throw new System.Exception($"Delivery order could not be null (delivery order ID: {model.Id})");
-                var initialOrder = context.InitialOrders.FirstOrDefault(x => x.DeliveryOrder.Id == deliveryOrder.Id);
+                var initialOrder = context.InitialOrders.FirstOrDefault(x => x.DeliveryOrderId == deliveryOrder.Id);
                 if (initialOrder == null)
                     throw new System.Exception($"Initial order could not be null (delivery order ID: {model.Id})");
                 var deliveryOrderProducts = context.DeliveryOrderProducts
@@ -112,7 +112,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                 });
 
                 // Create the cooking operation object.
-                var cookingOperation = new CookingOperation
+                var businessTask = new CookingOperation
                 {
                     Uid = System.Guid.NewGuid().ToString(),
                     Name = notification.TitleText,
@@ -122,9 +122,17 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                     {
                         initialOrder
                     },
-                    Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Open)
+                    Status = BusinessTaskStatus.Open
                 };
-                context.CookingOperations.Add(cookingOperation);
+                var businessTaskDeliveryOrder = new BusinessTaskDeliveryOrder
+                {
+                    Uid = System.Guid.NewGuid().ToString(),
+                    BusinessTask = businessTask,
+                    DeliveryOrder = deliveryOrder,
+                    Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.CookingOperation)
+                };
+                context.CookingOperations.Add(businessTask);
+                context.BusinessTaskDeliveryOrders.Add(businessTaskDeliveryOrder);
                 context.SaveChanges();
                 
                 // Insert into cache.
@@ -167,7 +175,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                 var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
                 if (deliveryOrder == null)
                     throw new System.Exception($"Delivery order could not be null (delivery order ID: {model.Id})");
-                var initialOrder = context.InitialOrders.FirstOrDefault(x => x.DeliveryOrder.Id == deliveryOrder.Id);
+                var initialOrder = context.InitialOrders.FirstOrDefault(x => x.DeliveryOrderId == deliveryOrder.Id);
                 if (initialOrder == null)
                     throw new System.Exception($"Initial order could not be null (delivery order ID: {model.Id})");
                 var cookingOperation = context.CookingOperations
@@ -175,7 +183,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                     .FirstOrDefault();
                 if (cookingOperation == null)
                     throw new System.Exception($"Could not find the business task CookingOperation (delivery order ID: {model.Id})");
-                cookingOperation.Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Closed);
+                cookingOperation.Status = BusinessTaskStatus.Closed;
                 context.SaveChanges();
 
                 // Send HTTP request.

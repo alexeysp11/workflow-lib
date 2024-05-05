@@ -296,7 +296,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                     Name = notification.TitleText,
                     Subject = notification.TitleText,
                     Description = notification.BodyText,
-                    Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Open)
+                    Status = BusinessTaskStatus.Open
                 };
                 var businessTaskDeliveryOrder = new BusinessTaskDeliveryOrder
                 {
@@ -357,7 +357,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                 // by setting Status to Closed.
                 foreach (var businessTask in businessTasks)
                 {
-                    businessTask.Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Closed);
+                    businessTask.Status = BusinessTaskStatus.Closed;
                 }
 
                 // Change the status of the corresponding delivery order.
@@ -461,7 +461,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                     Name = notification.TitleText,
                     Subject = notification.TitleText,
                     Description = notification.BodyText,
-                    Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Open)
+                    Status = BusinessTaskStatus.Open
                 };
                 var businessTaskDeliveryOrder = new BusinessTaskDeliveryOrder
                 {
@@ -523,7 +523,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                 // by setting Status to Closed.
                 foreach (var businessTask in businessTasks)
                 {
-                    businessTask.Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Closed);
+                    businessTask.Status = BusinessTaskStatus.Closed;
                 }
 
                 // Change the status of the corresponding delivery order.
@@ -574,13 +574,18 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                 
                 // Update DB.
                 System.Console.WriteLine("WarehouseBackend.Wh2KitchenStart: cache");
+
+                // Get the object related to the specified delivery order.
+                var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
+                if (deliveryOrder == null)
+                    throw new System.Exception($"Delivery order could not be null (delivery order ID: {model.Id})");
                 
                 // Getting the products that should be delivered.
                 var deliveryOrderProducts = context.DeliveryOrderProducts
                     .Include(x => x.Product)
-                    .Where(x => x.DeliveryOrder.Id == model.Id && x.Product != null);
+                    .Where(x => x.DeliveryOrder.Id == deliveryOrder.Id && x.Product != null);
                 if (deliveryOrderProducts.Count() == 0)
-                    throw new System.Exception($"There are no existing products associated with the specified DeliveryOrder (ID: {model.Id})");
+                    throw new System.Exception($"There are no existing products associated with the specified DeliveryOrder (ID: {deliveryOrder.Id})");
                 
                 // Get sender and receiver of the notification.
                 var adminUser = context.UserAccounts.FirstOrDefault();
@@ -590,13 +595,13 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                 
                 // Title text.
                 var sbMessageText = new StringBuilder();
-                sbMessageText.Append("Wh2Kitchen: deliver order #").Append(model.Id.ToString()).Append(" from the warehouse to the kitchen");
+                sbMessageText.Append("Wh2Kitchen: deliver order #").Append(deliveryOrder.Id.ToString()).Append(" from the warehouse to the kitchen");
                 string titleText = sbMessageText.ToString();
                 sbMessageText.Clear();
                 
                 // Body text.
                 sbMessageText.Append("Please be informed that you are responsible for shipping order #");
-                sbMessageText.Append(model.Id.ToString());
+                sbMessageText.Append(deliveryOrder.Id.ToString());
                 sbMessageText.Append(" from the warehouse to the kitchen.\n");
                 sbMessageText.Append("\n");
                 sbMessageText.Append("Products for delivery:\n");
@@ -620,7 +625,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                 });
 
                 // Create input parameter.
-                var initialOrder = context.InitialOrders.FirstOrDefault(x => x.DeliveryOrder.Id == model.Id);
+                var initialOrder = context.InitialOrders.FirstOrDefault(x => x.DeliveryOrderId == deliveryOrder.Id);
                 if (initialOrder == null)
                     throw new System.Exception("Initial order could not be null");
                 var initialOrderProducts = context.InitialOrderProducts.Where(x => x.InitialOrder.Id == initialOrder.Id).ToList();
@@ -629,21 +634,29 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                 var initialOrderIngredients = context.InitialOrderIngredients.Where(x => x.InitialOrder.Id == initialOrder.Id).ToList();
                 if (initialOrderIngredients == null || !initialOrderIngredients.Any())
                     throw new System.Exception("List of ingredients that is related to the initial order could not be null or empty");
-                var deliveryWh2Kitchen = new DeliveryWh2Kitchen
+                var businessTask = new DeliveryWh2Kitchen
                 {
                     Uid = System.Guid.NewGuid().ToString(),
                     Name = notification.TitleText,
                     Subject = notification.TitleText,
                     Description = notification.BodyText,
-                    Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Open),
-                    InitialOrders = new List<InitialOrder>() 
+                    Status = BusinessTaskStatus.Open,
+                    InitialOrders = new List<InitialOrder>
                     {
                         initialOrder
                     },
                     InitialOrderProducts = initialOrderProducts,
                     InitialOrderIngredients = initialOrderIngredients
                 };
-                context.DeliveriesWh2Kitchen.Add(deliveryWh2Kitchen);
+                var businessTaskDeliveryOrder = new BusinessTaskDeliveryOrder
+                {
+                    Uid = System.Guid.NewGuid().ToString(),
+                    BusinessTask = businessTask,
+                    DeliveryOrder = deliveryOrder,
+                    Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.DeliveryOperation)
+                };
+                context.DeliveriesWh2Kitchen.Add(businessTask);
+                context.BusinessTaskDeliveryOrders.Add(businessTaskDeliveryOrder);
                 context.SaveChanges();
 
                 // 
@@ -678,7 +691,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
 
                 // Close a business task that is associated with a delivery order.
                 var initialOrder = context.InitialOrders
-                    .Where(x => x.DeliveryOrder != null && x.DeliveryOrder.Id == model.Id)
+                    .Where(x => x.DeliveryOrderId == model.Id)
                     .FirstOrDefault();
                 if (initialOrder == null)
                     throw new System.Exception($"Could not find the initial order (delivery order ID: {model.Id})");
@@ -687,7 +700,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                     .FirstOrDefault();
                 if (deliveryWh2Kitchen == null)
                     throw new System.Exception($"Could not find the business task DeliveryWh2Kitchen (delivery order ID: {model.Id})");
-                deliveryWh2Kitchen.Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Closed);
+                deliveryWh2Kitchen.Status = BusinessTaskStatus.Closed;
                 context.SaveChanges();
 
                 // Send HTTP request.
@@ -738,7 +751,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                 var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
                 if (deliveryOrder == null)
                     throw new System.Exception($"Delivery order could not be null (delivery order ID: {model.Id})");
-                var initialOrder = context.InitialOrders.FirstOrDefault(x => x.DeliveryOrder.Id == deliveryOrder.Id);
+                var initialOrder = context.InitialOrders.FirstOrDefault(x => x.DeliveryOrderId == deliveryOrder.Id);
                 if (initialOrder == null)
                     throw new System.Exception($"Initial order could not be null (delivery order ID: {model.Id})");
 
@@ -781,7 +794,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                 });
                 
                 // Create DeliveryKitchen2Wh object.
-                var deliveryKitchen2Wh = new DeliveryKitchen2Wh
+                var businessTask = new DeliveryKitchen2Wh
                 {
                     Uid = System.Guid.NewGuid().ToString(),
                     Name = notification.TitleText,
@@ -791,9 +804,17 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                     {
                         initialOrder
                     },
-                    Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Open)
+                    Status = BusinessTaskStatus.Open
                 };
-                context.DeliveriesKitchen2Wh.Add(deliveryKitchen2Wh);
+                var businessTaskDeliveryOrder = new BusinessTaskDeliveryOrder
+                {
+                    Uid = System.Guid.NewGuid().ToString(),
+                    BusinessTask = businessTask,
+                    DeliveryOrder = deliveryOrder,
+                    Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.DeliveryOperation)
+                };
+                context.DeliveriesKitchen2Wh.Add(businessTask);
+                context.BusinessTaskDeliveryOrders.Add(businessTaskDeliveryOrder);
                 context.SaveChanges();
 
                 // 
@@ -828,7 +849,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
 
                 // Close a business task that is associated with a delivery order.
                 var initialOrder = context.InitialOrders
-                    .Where(x => x.DeliveryOrder != null && x.DeliveryOrder.Id == model.Id)
+                    .Where(x => x.DeliveryOrderId == model.Id)
                     .FirstOrDefault();
                 if (initialOrder == null)
                     throw new System.Exception($"Could not find the initial order (delivery order ID: {model.Id})");
@@ -837,7 +858,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                     .FirstOrDefault();
                 if (deliveryKitchen2Wh == null)
                     throw new System.Exception($"Could not find the business task DeliveryKitchen2Wh (delivery order ID: {model.Id})");
-                deliveryKitchen2Wh.Status = EnumExtensions.GetDisplayName(BusinessTaskStatus.Closed);
+                deliveryKitchen2Wh.Status = BusinessTaskStatus.Closed;
                 context.SaveChanges();
 
                 // Send HTTP request.
