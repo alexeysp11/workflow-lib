@@ -16,27 +16,17 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// Parent delivery order.
         /// </summary>
         public DeliveryOrder? ParentDeliveryOrder { get; set; }
-
+        
         /// <summary>
         /// Delivery method.
         /// </summary>
         public DeliveryMethod? DeliveryMethod { get; set; }
         
         /// <summary>
-        /// Preparing operations for the delivery order.
-        /// </summary>
-        public ICollection<BusinessTask> PreparingOperations { get; set; }
-        
-        /// <summary>
-        /// Delivery operation.
-        /// </summary>
-        public DeliveryOperation? DeliveryOperation { get; set; }
-        
-        /// <summary>
         /// Price for the delivery.
         /// </summary>
         public decimal DeliveryPrice { get; set; }
-                
+        
         /// <summary>
         /// Initial address of the delivery.
         /// </summary>
