@@ -6,7 +6,7 @@ using WorkflowLib.Models.Business.Products;
 namespace WorkflowLib.Models.Business.BusinessDocuments
 {
     /// <summary>
-    /// Model for placing order, that is used to send request from frontend to the controller.
+    /// Model for placing order, that is used mostly as the DTO.
     /// </summary>
     public class InitialOrder : BusinessEntityWF, IBusinessEntityWF
     {
