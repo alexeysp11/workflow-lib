@@ -1,6 +1,16 @@
 using Microsoft.EntityFrameworkCore;
+using WorkflowLib.Models.Business;
+using WorkflowLib.Models.Business.BusinessDocuments;
+using WorkflowLib.Models.Business.Cooking;
+using WorkflowLib.Models.Business.Customers;
+using WorkflowLib.Models.Business.Delivery;
+using WorkflowLib.Models.Business.InformationSystem;
+using WorkflowLib.Models.Business.Monetary;
 using WorkflowLib.Models.Business.Processes;
+using WorkflowLib.Models.Business.Products;
+using WorkflowLib.Models.Business.SocialCommunication;
 using WorkflowLib.Models.Logging;
+using WorkflowLib.Models.Network;
 using WorkflowLib.Models.Network.MicroserviceConfigurations;
 
 namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DbContexts;
@@ -21,6 +31,7 @@ public class ServiceInteractionDbContext : DbContext
     /// </summary>
     public DbSet<DbgLog> DbgLogs { get; set; }
 
+    #region Service discovery/BPM
     /// <summary>
     /// Gets or sets the DbSet of Endpoint entities in the context.
     /// </summary>
@@ -70,4 +81,157 @@ public class ServiceInteractionDbContext : DbContext
     /// Gets or sets the DbSet of WorkflowTrackingItem entities in the context.
     /// </summary>
     public DbSet<WorkflowTrackingItem> WorkflowTrackingItems { get; set; }
+    #endregion  // Service discovery/BPM
+
+    #region Business orders and deliverings
+    /// <summary>
+    /// Gets or sets the DbSet of UserAccount entities in the context.
+    /// </summary>
+    public DbSet<UserAccount> UserAccounts { get; set; }
+
+    /// <summary>
+    /// Gets or sets the DbSet of UserGroup entities in the context.
+    /// </summary>
+    public DbSet<UserGroup> UserGroups { get; set; }
+
+    /// <summary>
+    /// Gets or sets the DbSet of Customer entities in the context.
+    /// </summary>
+    public DbSet<Customer> Customers { get; set; }
+
+    /// <summary>
+    /// Gets or sets the DbSet of Contact entities in the context.
+    /// </summary>
+    public DbSet<Contact> Contacts { get; set; }
+
+    /// <summary>
+    /// Gets or sets the DbSet of Organization entities in the context.
+    /// </summary>
+    public DbSet<Organization> Organizations { get; set; }
+
+    /// <summary>
+    /// Gets or sets the DbSet of OrganizationItem entities in the context.
+    /// </summary>
+    public DbSet<OrganizationItem> OrganizationItems { get; set; }
+
+    /// <summary>
+    /// Gets or sets the DbSet of Company entities in the context.
+    /// </summary>
+    public DbSet<Company> Companies { get; set; }
+
+    /// <summary>
+    /// Gets or sets the DbSet of Employee entities in the context.
+    /// </summary>
+    public DbSet<Employee> Employees { get; set; }
+
+    /// <summary>
+    /// Gets or sets the DbSet of Comment entities in the context.
+    /// </summary>
+    public DbSet<Comment> Comments { get; set; }
+
+    /// <summary>
+    /// Gets or sets the DbSet of Order entities in the context.
+    /// </summary>
+    public DbSet<Order> Orders { get; set; }
+    
+    /// <summary>
+    /// Gets or sets the DbSet of OrderProduct entities in the context.
+    /// </summary>
+    public DbSet<OrderProduct> OrderProducts { get; set; }
+    
+    /// <summary>
+    /// Gets or sets the DbSet of InitialOrder entities in the context.
+    /// </summary>
+    public DbSet<InitialOrder> InitialOrders { get; set; }
+    
+    /// <summary>
+    /// Gets or sets the DbSet of InitialOrderProduct entities in the context.
+    /// </summary>
+    public DbSet<InitialOrderProduct> InitialOrderProducts { get; set; }
+    
+    /// <summary>
+    /// Gets or sets the DbSet of InitialOrderIngredient entities in the context.
+    /// </summary>
+    public DbSet<InitialOrderIngredient> InitialOrderIngredients { get; set; }
+    
+    /// <summary>
+    /// Gets or sets the DbSet of DeliveryOrder entities in the context.
+    /// </summary>
+    public DbSet<DeliveryOrder> DeliveryOrders { get; set; }
+    
+    /// <summary>
+    /// Gets or sets the DbSet of DeliveryOrderProduct entities in the context.
+    /// </summary>
+    public DbSet<DeliveryOrderProduct> DeliveryOrderProducts { get; set; }
+    
+    /// <summary>
+    /// Gets or sets the DbSet of BusinessTaskDeliveryOrder entities in the context.
+    /// </summary>
+    public DbSet<BusinessTaskDeliveryOrder> BusinessTaskDeliveryOrders { get; set; }
+    
+    /// <summary>
+    /// Gets or sets the DbSet of DeliveryMethod entities in the context.
+    /// </summary>
+    public DbSet<DeliveryMethod> DeliveryMethods { get; set; }
+    
+    /// <summary>
+    /// Gets or sets the DbSet of Payment entities in the context.
+    /// </summary>
+    public DbSet<Payment> Payments { get; set; }
+    
+    /// <summary>
+    /// Gets or sets the DbSet of ProductCategory entities in the context.
+    /// </summary>
+    public DbSet<ProductCategory> ProductCategories { get; set; }
+    
+    /// <summary>
+    /// Gets or sets the DbSet of Product entities in the context.
+    /// </summary>
+    public DbSet<Product> Products { get; set; }
+    
+    /// <summary>
+    /// Gets or sets the DbSet of WHProduct entities in the context.
+    /// </summary>
+    public DbSet<WHProduct> WHProducts { get; set; }
+    
+    /// <summary>
+    /// Gets or sets the DbSet of Ingredient entities in the context.
+    /// </summary>
+    public DbSet<Ingredient> Ingredients { get; set; }
+    
+    /// <summary>
+    /// Gets or sets the DbSet of Recipe entities in the context.
+    /// </summary>
+    public DbSet<Recipe> Recipes { get; set; }
+    
+    /// <summary>
+    /// Gets or sets the DbSet of ProductTransfer entities in the context.
+    /// </summary>
+    public DbSet<ProductTransfer> ProductTransfers { get; set; }
+
+    /// <summary>
+    /// Gets or sets the DbSet of Notification entities in the context.
+    /// </summary>
+    public DbSet<Notification> Notifications { get; set; }
+
+    /// <summary>
+    /// Gets or sets the DbSet of DeliveryWh2Kitchen entities in the context.
+    /// </summary>
+    public DbSet<DeliveryWh2Kitchen> DeliveriesWh2Kitchen { get; set; }
+    
+    /// <summary>
+    /// Gets or sets the DbSet of DeliveryKitchen2Wh entities in the context.
+    /// </summary>
+    public DbSet<DeliveryKitchen2Wh> DeliveriesKitchen2Wh { get; set; }
+    
+    /// <summary>
+    /// Gets or sets the DbSet of DeliveryOperation entities in the context.
+    /// </summary>
+    public DbSet<DeliveryOperation> DeliveryOperations { get; set; }
+    
+    /// <summary>
+    /// Gets or sets the DbSet of CookingOperation entities in the context.
+    /// </summary>
+    public DbSet<CookingOperation> CookingOperations { get; set; }
+    #endregion  // Business orders and deliverings
 }
