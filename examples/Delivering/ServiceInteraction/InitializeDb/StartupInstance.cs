@@ -9,14 +9,17 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.InitializeDb
     public class StartupInstance : IStartupInstance
     {
         private ConfigResolver m_configResolver;
+        private BusinessOrderInitializer m_orderInitializer;
 
         /// <summary>
         /// Default constructor.
         /// </summary>
         public StartupInstance(
-            ConfigResolver configResolver)
+            ConfigResolver configResolver,
+            BusinessOrderInitializer orderInitializer)
         {
             m_configResolver = configResolver;
+            m_orderInitializer = orderInitializer;
         }
 
         /// <summary>
@@ -39,8 +42,9 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.InitializeDb
             classNames.Add(kitchenBackendName, typeof(KitchenBLController).Name);
             classNames.Add(fileserviceBackendName, typeof(FileService).Name);
             
-            m_configResolver.InitCommunicationConfigs();
-            m_configResolver.InitMonolithEndpoints(classNames);
+            // m_configResolver.InitCommunicationConfigs();
+            // m_configResolver.InitMonolithEndpoints(classNames);
+            m_orderInitializer.ConfigureDbContext();
         }
     }
 }

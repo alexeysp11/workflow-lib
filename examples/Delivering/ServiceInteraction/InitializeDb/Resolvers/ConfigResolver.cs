@@ -25,7 +25,7 @@ public class ConfigResolver
     }
 
     /// <summary>
-    /// 
+    /// Initialize communication configs.
     /// </summary>
     public void InitCommunicationConfigs()
     {
@@ -263,9 +263,8 @@ public class ConfigResolver
         context.SaveChanges();
     }
 
-    
     /// <summary>
-    /// 
+    /// Initialize endpoints for the monolithic application.
     /// </summary>
     public void InitMonolithEndpoints(Dictionary<string, string> classNames)
     {

@@ -19,6 +19,7 @@ IHost _host = Host.CreateDefaultBuilder().ConfigureServices(
         
         // 
         services.AddSingleton<ConfigResolver>();
+        services.AddSingleton<BusinessOrderInitializer>();
     }).Build();
 
 var app = _host.Services.GetRequiredService<IStartupInstance>();
