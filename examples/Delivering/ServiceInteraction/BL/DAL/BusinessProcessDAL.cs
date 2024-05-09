@@ -2,8 +2,10 @@ using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DbContexts;
-using WorkflowLib.ServiceDiscoveryBpm.DAL;
+using WorkflowLib.Models.Business.BusinessDocuments;
 using WorkflowLib.Models.Business.Processes;
+using WorkflowLib.Models.Business.Products;
+using WorkflowLib.ServiceDiscoveryBpm.DAL;
 
 namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DAL;
 
@@ -69,7 +71,7 @@ public class BusinessProcessDAL : IBusinessProcessDAL
         var workflowInstance = new WorkflowInstance
         {
             Uid = System.Guid.NewGuid().ToString(),
-            Name = $"Workflow instance of BusinessProcess #{process.Id} (name: '{process.Name}') - {System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")}",
+            Name = $"Workflow instance of BusinessProcess #{process.Id} (name: '{process.Name}') - {System.DateTime.UtcNow.ToString("yyyy/MM/dd HH:mm:ss")}",
             BusinessProcess = process,
             ParentInstance = parentInstance,
             IsEmulation = isEmulation
@@ -295,5 +297,59 @@ public class BusinessProcessDAL : IBusinessProcessDAL
                 ).FirstOrDefault();
         }
         return result;
+    }
+
+    /// <summary>
+    /// Saves the specified initial order in the database.
+    /// </summary>
+    public void SaveInitialOrder(
+        InitialOrder initialOrder)
+    {
+        using var context = new ServiceInteractionDbContext(m_contextOptions);
+
+        var initialOrderProducts = new List<InitialOrderProduct>();
+        var initialOrderIngredients = new List<InitialOrderIngredient>();
+        foreach (var pid in initialOrder.ProductIds)
+        {
+            if (initialOrderProducts.Any(x => x.Product.Id == pid))
+                continue;
+            
+            int productQty = initialOrder.ProductIds.Where(x => x == pid).Count();
+            var product = context.Products.Where(x => x.Id == pid).FirstOrDefault();
+            if (product == null)
+                throw new System.Exception($"The product with the specified ID does not exist in the database: {pid}");
+            var initialOrderProduct = new InitialOrderProduct
+            {
+                Uid = System.Guid.NewGuid().ToString(),
+                Name = product.Name,
+                Product = product,
+                InitialOrder = initialOrder,
+                Quantity = productQty
+            };
+            initialOrderProducts.Add(initialOrderProduct);
+
+            var ingredientsTmp = context.Ingredients
+                .Include(x => x.IngredientProduct)
+                .Where(x => x.FinalProduct.Id == product.Id);
+            foreach (var ingredient in ingredientsTmp)
+            {
+                initialOrderIngredients.Add(new InitialOrderIngredient
+                {
+                    Uid = System.Guid.NewGuid().ToString(),
+                    Name = ingredient.Name,
+                    Ingredient = ingredient,
+                    InitialOrder = initialOrder,
+                    InitialOrderProduct = initialOrderProduct,
+                    Quantity = productQty * (int)ingredient.Quantity
+                });
+            }
+            
+            initialOrder.PaymentAmount += productQty * product.Price;
+        }
+        initialOrder.Uid = System.Guid.NewGuid().ToString();
+        context.InitialOrderProducts.AddRange(initialOrderProducts);
+        context.InitialOrderIngredients.AddRange(initialOrderIngredients);
+        context.InitialOrders.Add(initialOrder);
+        context.SaveChanges();
     }
 }

@@ -35,17 +35,6 @@ public class CourierBLController : IImplicitService
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
     }
-
-    /// <summary>
-    /// Method to call the next service depending on the current state of the process.
-    /// </summary>
-    public void CallNextService()
-    {
-        var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
-        m_loggingDAL.AddDbgLog(sourceName, "started");
-
-        m_loggingDAL.AddDbgLog(sourceName, "finished");
-    }
     
     /// <summary>
     /// Method for processing the previous service depending on the current state of the process.

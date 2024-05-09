@@ -33,48 +33,6 @@ public class CustomerBLController : IImplicitService
     }
 
     /// <summary>
-    /// Method to call file service.
-    /// </summary>
-    public void CallFileService()
-    {
-        var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
-        m_loggingDAL.AddDbgLog(sourceName, "started");
-
-        string nextState = "FileService";
-        var className = "WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Controllers." + nextState;
-        var methodName = "ProcessCustomerControllerBL";
-
-        // Invoke next service using reflection.
-        var type = Type.GetType(className);
-        var instance = m_serviceProvider.GetRequiredService(type);
-        type.GetMethod(methodName).Invoke(instance, null);
-        
-        m_loggingDAL.AddDbgLog(sourceName, "finished");
-    }
-
-    /// <summary>
-    /// Method to call the next service depending on the current state of the process.
-    /// </summary>
-    public void CallNextService()
-    {
-        var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
-        m_loggingDAL.AddDbgLog(sourceName, "started");
-
-        try
-        {
-            CallFileService();
-
-            m_esbServiceRegistry.CreateBusinessTaskByWI(m_workflowInstance, "CustomerBLController-WarehouseBLController", 1, false);
-        }
-        catch (System.Exception ex)
-        {
-            m_loggingDAL.AddDbgLog(sourceName, ex.ToString());
-        }
-
-        m_loggingDAL.AddDbgLog(sourceName, "finished");
-    }
-
-    /// <summary>
     /// Method for processing the previous service depending on the current state of the process.
     /// </summary>
     public void MoveWorkflowInstanceNext(PipeDelegateParams parameters)
@@ -84,11 +42,25 @@ public class CustomerBLController : IImplicitService
 
         var workflowInstanceId = parameters.WorkflowInstanceId;
         var transitionId = parameters.BPStateTransitionId;
+        var initialOrder = parameters.InitialOrder;
         try
         {
+            if (initialOrder == null)
+                throw new System.Exception("Initial order could not be null");
+            m_esbServiceRegistry.SaveInitialOrder(initialOrder);
+            
             m_workflowInstance = m_esbServiceRegistry.CreateInitialWI("Delivering of the order", "CustomerBLController");           
             workflowInstanceId = m_workflowInstance.Id;
-            CallNextService();
+            
+            // Invoke file service using reflection.
+            string nextState = "FileService";
+            var className = "WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Controllers." + nextState;
+            var methodName = "ProcessCustomerControllerBL";
+            var type = Type.GetType(className);
+            var instance = m_serviceProvider.GetRequiredService(type);
+            type.GetMethod(methodName).Invoke(instance, null);
+
+            var businessTask = m_esbServiceRegistry.CreateBusinessTaskByWI(m_workflowInstance, "CustomerBLController-WarehouseBLController", 1, false);
         }
         catch (System.Exception ex)
         {
