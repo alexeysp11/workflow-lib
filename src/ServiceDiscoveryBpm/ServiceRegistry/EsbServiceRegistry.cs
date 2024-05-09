@@ -2,6 +2,7 @@ using WorkflowLib.ServiceDiscoveryBpm.DAL;
 using WorkflowLib.ServiceDiscoveryBpm.LoadBalancers;
 using WorkflowLib.ServiceDiscoveryBpm.ObjectPooling;
 using WorkflowLib.ServiceDiscoveryBpm.ProcPipes;
+using WorkflowLib.Models.Business.BusinessDocuments;
 using WorkflowLib.Models.Business.Processes;
 using WorkflowLib.Models.Network.MicroserviceConfigurations;
 
@@ -218,5 +219,14 @@ public class EsbServiceRegistry : IEsbServiceRegistry
         long workflowInstanceId)
     {
         return m_businessProcessDAL.GetCurrentTask(workflowInstanceId);
+    }
+
+    /// <summary>
+    /// Saves the specified initial order in the database.
+    /// </summary>
+    public void SaveInitialOrder(
+        InitialOrder initialOrder)
+    {
+        m_businessProcessDAL.SaveInitialOrder(initialOrder);
     }
 }

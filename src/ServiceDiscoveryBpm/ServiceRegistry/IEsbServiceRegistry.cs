@@ -1,4 +1,5 @@
 using WorkflowLib.ServiceDiscoveryBpm.ProcPipes;
+using WorkflowLib.Models.Business.BusinessDocuments;
 using WorkflowLib.Models.Business.Processes;
 using WorkflowLib.Models.Network.MicroserviceConfigurations;
 
@@ -88,4 +89,10 @@ public interface IEsbServiceRegistry
     /// </summary>
     BusinessTask GetCurrentTask(
         long workflowInstanceId);
+    
+    /// <summary>
+    /// Saves the specified initial order in the database.
+    /// </summary>
+    void SaveInitialOrder(
+        InitialOrder initialOrder);
 }
