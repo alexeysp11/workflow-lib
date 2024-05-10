@@ -38,18 +38,11 @@ public class KitchenBLController : IImplicitService
     {
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
-        
-        try
-        {
-            if (m_workflowInstance == null)
-                m_workflowInstance = m_esbServiceRegistry.GetWorkflowInstanceById(workflowInstanceId);
-            m_esbServiceRegistry.CreateBusinessTaskByWI(m_workflowInstance, "KitchenBLController-WarehouseBLController", transitionId);
-        }
-        catch (System.Exception ex)
-        {
-            m_loggingDAL.AddDbgLog(sourceName, ex.ToString());
-        }
 
+        if (m_workflowInstance == null)
+            m_workflowInstance = m_esbServiceRegistry.GetWorkflowInstanceById(workflowInstanceId);
+        m_esbServiceRegistry.CreateBusinessTaskByWI(m_workflowInstance, "KitchenBLController-WarehouseBLController", transitionId);
+        
         m_loggingDAL.AddDbgLog(sourceName, "finished");
     }
     
@@ -61,19 +54,27 @@ public class KitchenBLController : IImplicitService
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
 
-        var workflowInstanceId = parameters.WorkflowInstanceId;
-        var transitionId = parameters.BPStateTransitionId;
-        switch (transitionId)
+        try
         {
-            case 2:
-                ProcessWarehouseController(ref workflowInstanceId, ref transitionId);
-                break;
-            default:
-                throw new System.Exception($"Incorrect transition ID: {transitionId}");
-        }
-        parameters.WorkflowInstanceId = workflowInstanceId;
-        parameters.BPStateTransitionId = transitionId;
+            var workflowInstanceId = parameters.WorkflowInstanceId;
+            var transitionId = parameters.BPStateTransitionId;
+            switch (transitionId)
+            {
+                case 2:
+                    ProcessWarehouseController(ref workflowInstanceId, ref transitionId);
+                    break;
+                default:
+                    throw new System.Exception($"Incorrect transition ID: {transitionId}");
+            }
+            parameters.WorkflowInstanceId = workflowInstanceId;
+            parameters.BPStateTransitionId = transitionId;
 
-        m_loggingDAL.AddDbgLog(sourceName, "finished");
+            m_loggingDAL.AddDbgLog(sourceName, "finished");
+        }
+        catch (System.Exception ex)
+        {
+            m_loggingDAL.AddDbgLog(sourceName, ex.ToString());
+            throw ex;
+        }
     }
 }

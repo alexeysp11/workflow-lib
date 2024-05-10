@@ -41,7 +41,6 @@ public class CustomerBLController : IImplicitService
         m_loggingDAL.AddDbgLog(sourceName, "started");
 
         var workflowInstanceId = parameters.WorkflowInstanceId;
-        var transitionId = parameters.BPStateTransitionId;
         var initialOrder = parameters.InitialOrder;
         try
         {
@@ -61,14 +60,15 @@ public class CustomerBLController : IImplicitService
             type.GetMethod(methodName).Invoke(instance, null);
 
             var businessTask = m_esbServiceRegistry.CreateBusinessTaskByWI(m_workflowInstance, "CustomerBLController-WarehouseBLController", 1, false);
+            
+            parameters.WorkflowInstanceId = workflowInstanceId;
+            
+            m_loggingDAL.AddDbgLog(sourceName, "finished");
         }
         catch (System.Exception ex)
         {
             m_loggingDAL.AddDbgLog(sourceName, ex.ToString());
+            throw ex;
         }
-        parameters.WorkflowInstanceId = workflowInstanceId;
-        parameters.BPStateTransitionId = transitionId;
-
-        m_loggingDAL.AddDbgLog(sourceName, "finished");
     }
 }

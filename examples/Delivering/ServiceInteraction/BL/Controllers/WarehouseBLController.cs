@@ -39,17 +39,10 @@ public class WarehouseBLController : IImplicitService
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
 
-        try
-        {
-            if (m_workflowInstance == null)
-                m_workflowInstance = m_esbServiceRegistry.GetWorkflowInstanceById(workflowInstanceId);
-            m_esbServiceRegistry.CreateBusinessTaskByWI(m_workflowInstance, "WarehouseBLController-KitchenBLController", transitionId);
-        }
-        catch (System.Exception ex)
-        {
-            m_loggingDAL.AddDbgLog(sourceName, ex.ToString());
-        }
-
+        if (m_workflowInstance == null)
+            m_workflowInstance = m_esbServiceRegistry.GetWorkflowInstanceById(workflowInstanceId);
+        m_esbServiceRegistry.CreateBusinessTaskByWI(m_workflowInstance, "WarehouseBLController-KitchenBLController", transitionId);
+        
         m_loggingDAL.AddDbgLog(sourceName, "finished");
     }
 
@@ -61,16 +54,9 @@ public class WarehouseBLController : IImplicitService
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
 
-        try
-        {
-            if (m_workflowInstance == null)
-                m_workflowInstance = m_esbServiceRegistry.GetWorkflowInstanceById(workflowInstanceId);
-            m_esbServiceRegistry.CreateBusinessTaskByWI(m_workflowInstance, "WarehouseBLController-CourierBLController", transitionId);
-        }
-        catch (System.Exception ex)
-        {
-            m_loggingDAL.AddDbgLog(sourceName, ex.ToString());
-        }
+        if (m_workflowInstance == null)
+            m_workflowInstance = m_esbServiceRegistry.GetWorkflowInstanceById(workflowInstanceId);
+        m_esbServiceRegistry.CreateBusinessTaskByWI(m_workflowInstance, "WarehouseBLController-CourierBLController", transitionId);
 
         m_loggingDAL.AddDbgLog(sourceName, "finished");
     }
@@ -83,22 +69,30 @@ public class WarehouseBLController : IImplicitService
         var sourceName = this.GetType().Name + "." + MethodBase.GetCurrentMethod().Name;
         m_loggingDAL.AddDbgLog(sourceName, "started");
 
-        var workflowInstanceId = parameters.WorkflowInstanceId;
-        var transitionId = parameters.BPStateTransitionId;
-        switch (transitionId)
+        try
         {
-            case 1:
-                ProcessCustomerControllerBL(ref workflowInstanceId, ref transitionId);
-                break;
-            case 3:
-                ProcessKitchenController(ref workflowInstanceId, ref transitionId);
-                break;
-            default:
-                throw new System.Exception($"Incorrect transition ID: {transitionId}");
-        }
-        parameters.WorkflowInstanceId = workflowInstanceId;
-        parameters.BPStateTransitionId = transitionId;
+            var workflowInstanceId = parameters.WorkflowInstanceId;
+            var transitionId = parameters.BPStateTransitionId;
+            switch (transitionId)
+            {
+                case 1:
+                    ProcessCustomerControllerBL(ref workflowInstanceId, ref transitionId);
+                    break;
+                case 3:
+                    ProcessKitchenController(ref workflowInstanceId, ref transitionId);
+                    break;
+                default:
+                    throw new System.Exception($"Incorrect transition ID: {transitionId}");
+            }
+            parameters.WorkflowInstanceId = workflowInstanceId;
+            parameters.BPStateTransitionId = transitionId;
 
-        m_loggingDAL.AddDbgLog(sourceName, "finished");
+            m_loggingDAL.AddDbgLog(sourceName, "finished");
+        }
+        catch (System.Exception ex)
+        {
+            m_loggingDAL.AddDbgLog(sourceName, ex.ToString());
+            throw ex;
+        }
     }
 }
