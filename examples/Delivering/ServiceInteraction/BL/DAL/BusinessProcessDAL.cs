@@ -307,6 +307,7 @@ public class BusinessProcessDAL : IBusinessProcessDAL
     {
         using var context = new ServiceInteractionDbContext(m_contextOptions);
 
+        decimal paymentAmount = 0.0m;
         var initialOrderProducts = new List<InitialOrderProduct>();
         var initialOrderIngredients = new List<InitialOrderIngredient>();
         foreach (var pid in initialOrder.ProductIds)
@@ -318,6 +319,7 @@ public class BusinessProcessDAL : IBusinessProcessDAL
             var product = context.Products.Where(x => x.Id == pid).FirstOrDefault();
             if (product == null)
                 throw new System.Exception($"The product with the specified ID does not exist in the database: {pid}");
+            paymentAmount += productQty * product.Price;
             var initialOrderProduct = new InitialOrderProduct
             {
                 Uid = System.Guid.NewGuid().ToString(),
@@ -343,9 +345,11 @@ public class BusinessProcessDAL : IBusinessProcessDAL
                     Quantity = productQty * (int)ingredient.Quantity
                 });
             }
-            
-            initialOrder.PaymentAmount += productQty * product.Price;
         }
+
+        if (Math.Abs(initialOrder.PaymentAmount - paymentAmount) >= 0.01m)
+            throw new System.Exception($"Payment amount should be consistent (given: '{initialOrder.PaymentAmount}', re-calculated: '{paymentAmount}')");
+        
         initialOrder.Uid = System.Guid.NewGuid().ToString();
         context.InitialOrderProducts.AddRange(initialOrderProducts);
         context.InitialOrderIngredients.AddRange(initialOrderIngredients);
