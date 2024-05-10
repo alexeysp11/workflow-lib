@@ -20,3 +20,17 @@
 ### Customer
 
 ![ServiceInteraction_CustomerService](../../../docs/img/examples/ServiceInteraction_CustomerService.png)
+
+## Конфигурация проектов
+
+1. В базе данных PostgreSQL создать базу с именем `deliveryservicelibexample`.
+
+2. Выполнить команду для обновления базы данных на основе миграций.
+
+```
+dotnet ef database update --project BL/WorkflowLib.Examples.Delivering.ServiceInteraction.BL.csproj --startup-project InitializeDb/WorkflowLib.Examples.Delivering.ServiceInteraction.InitializeDb.csproj
+```
+
+3. Заполнить базу данных тестовыми данными: запустить консольное приложение `InitializeDb`.
+
+4. После удачного выполнения консольного приложения `InitializeDb`, подкорректировать файл [Customer.MakeOrder.json](JsonRequestTemplates\Customer.MakeOrder.json): параметр `productIds` должен иметь ИД записей, которые соответствуют первым 3 продуктам. Данный файл используется для тестирования АПИ при заведении заказа на стороне потребителя (например, приложение [WebAPI customer](Webapi/customer/README.ru.md)).
