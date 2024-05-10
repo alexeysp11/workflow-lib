@@ -4,7 +4,7 @@
     "phoneNumber": "+49 711-5556-417 2212",
     "city": "Stuttgart",
     "address": "Keplerstraße 7, 70174 Stuttgart, Germany",
-    "productIds": [ 1, 1, 2, 2, 2, 3, 3 ],
+    "productIds": [ 10, 10, 11, 11, 11, 12, 12 ],
     "paymentType": "Card",
     "paymentMethod": "---",
     "paymentAmount": 158
