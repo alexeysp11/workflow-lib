@@ -33,4 +33,4 @@ dotnet ef database update --project BL/WorkflowLib.Examples.Delivering.ServiceIn
 
 3. Fill the database with test data: run the `InitializeDb` console application.
 
-4. After successful execution of the `InitializeDb` console application, adjust the [Customer.MakeOrder.json](JsonRequestTemplates\Customer.MakeOrder.json) file: the `productIds` parameter should have record IDs that correspond to the first 3 products. This file is used to test the API when placing an order on the consumer side (for example, the [WebAPI customer](Webapi/customer/README.ru.md) application).
+4. After successful execution of the `InitializeDb` console application, adjust the [Customer.MakeOrder.json](JsonRequestTemplates\Customer.MakeOrder.json) file: the `productIds` parameter should have record IDs that correspond to the first 3 products. This file is used to test the API when placing an order on the consumer side (for example, the [WebAPI customer](Webapi/customer/README.md) application).
