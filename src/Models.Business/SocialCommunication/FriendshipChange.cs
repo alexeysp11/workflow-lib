@@ -18,11 +18,6 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         public FriendshipStatus Status { get; set; }
 
         /// <summary>
-        /// Date when the user sent the change.
-        /// </summary>
-        public System.DateTime DateCreated { get; set; }
-
-        /// <summary>
         /// 
         /// </summary>
         public Friendship Friendship { get; set; }

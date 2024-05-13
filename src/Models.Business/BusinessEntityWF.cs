@@ -26,6 +26,11 @@ namespace WorkflowLib.Models.Business
         public string? Description { get; set; }
 
         /// <summary>
+        /// The date when the business entity was created.
+        /// </summary>
+        public System.DateTime? DateCreated { get; set; }
+
+        /// <summary>
         /// Business entity status.
         /// </summary>
         public BusinessEntityStatus? BusinessEntityStatus { get; set; }

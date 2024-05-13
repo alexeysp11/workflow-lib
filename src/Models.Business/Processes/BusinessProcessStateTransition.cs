@@ -31,10 +31,5 @@ namespace WorkflowLib.Models.Business.Processes
         /// Gets or sets the associated endpoint call.
         /// </summary>
         public EndpointCall? EndpointCall { get; set; }
-
-        /// <summary>
-        /// Gets or sets the date when the transition was created.
-        /// </summary>
-        public System.DateTime? DateCreated { get; set; }
     }
 }

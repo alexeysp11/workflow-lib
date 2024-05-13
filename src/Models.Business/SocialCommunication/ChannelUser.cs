@@ -21,10 +21,5 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         /// Is the user admin of the channel.
         /// </summary>
         public bool IsAdmin { get; set; }
-        
-        /// <summary>
-        /// Date created.
-        /// </summary>
-        public System.DateTime? DateCreated { get; set; }
     }
 }

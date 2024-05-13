@@ -28,11 +28,6 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         public string PhotoUrl { get; set; }
         
         /// <summary>
-        /// Timestamp when a chatroom was created.
-        /// </summary>
-        public System.DateTime DateCreated { get; set; }
-        
-        /// <summary>
         /// Timestamp when a chatroom was deleted.
         /// </summary>
         public System.DateTime DateDeleted { get; set; }

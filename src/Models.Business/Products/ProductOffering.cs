@@ -34,11 +34,6 @@ namespace WorkflowLib.Models.Business.Products
         public ICollection<Product> Products { get; set; }
 
         /// <summary>
-        /// Date created.
-        /// </summary>
-        public System.DateTime? DateCreated { get; set; }
-
-        /// <summary>
         /// Date from.
         /// </summary>
         public System.DateTime? DateFrom { get; set; }

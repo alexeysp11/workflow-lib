@@ -27,10 +27,5 @@ namespace WorkflowLib.Models.Business.Processes
         /// Version number of the business process.
         /// </summary>
         public string? VersionNumber { get; set; }
-
-        /// <summary>
-        /// The date when the business process was created.
-        /// </summary>
-        public System.DateTime? DateCreated { get; set; }
     }
 }

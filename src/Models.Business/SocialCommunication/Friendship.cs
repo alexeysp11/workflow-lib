@@ -32,10 +32,5 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         /// Status changes.
         /// </summary>
         public ICollection<FriendshipChange> StatusChanges { get; set; }
-        
-        /// <summary>
-        /// Date when the user sent the friendship request.
-        /// </summary>
-        public System.DateTime DateCreated { get; set; }
     }
 }
