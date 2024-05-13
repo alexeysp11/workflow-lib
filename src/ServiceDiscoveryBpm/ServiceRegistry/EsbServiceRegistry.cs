@@ -220,13 +220,4 @@ public class EsbServiceRegistry : IEsbServiceRegistry
     {
         return m_businessProcessDAL.GetCurrentTask(workflowInstanceId);
     }
-
-    /// <summary>
-    /// Saves the specified initial order in the database.
-    /// </summary>
-    public void SaveInitialOrder(
-        InitialOrder initialOrder)
-    {
-        m_businessProcessDAL.SaveInitialOrder(initialOrder);
-    }
 }

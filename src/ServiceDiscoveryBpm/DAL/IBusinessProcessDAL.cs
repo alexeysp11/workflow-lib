@@ -89,10 +89,4 @@ public interface IBusinessProcessDAL
     /// </summary>
     BusinessProcessStateTransition GetTransitionByTaskId(
         long businessTaskId);
-
-    /// <summary>
-    /// Saves the specified initial order in the database.
-    /// </summary>
-    void SaveInitialOrder(
-        InitialOrder initialOrder);
 }

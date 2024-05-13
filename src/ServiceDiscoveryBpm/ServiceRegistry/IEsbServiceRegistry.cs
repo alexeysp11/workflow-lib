@@ -89,10 +89,4 @@ public interface IEsbServiceRegistry
     /// </summary>
     BusinessTask GetCurrentTask(
         long workflowInstanceId);
-    
-    /// <summary>
-    /// Saves the specified initial order in the database.
-    /// </summary>
-    void SaveInitialOrder(
-        InitialOrder initialOrder);
 }
