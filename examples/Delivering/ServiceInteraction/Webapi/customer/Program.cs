@@ -85,6 +85,7 @@ public class Program
 
         // DAL.
         services.AddSingleton<ILoggingDAL, LoggingDAL>();
+        services.AddSingleton<DeliveryOrderDAL>();
         services.AddSingleton<IEndpointDAL, EndpointDAL>();
         services.AddSingleton<IBusinessProcessDAL, BusinessProcessDAL>();
 

@@ -2,6 +2,7 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
+using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DAL;
 using WorkflowLib.ServiceDiscoveryBpm.ServiceRegistry;
 using WorkflowLib.ServiceDiscoveryBpm.DAL;
 using WorkflowLib.Models.Business.Processes;
@@ -15,6 +16,7 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Controllers;
 public class CustomerBLController : IImplicitService
 {
     private ILoggingDAL m_loggingDAL;
+    private DeliveryOrderDAL m_deliveryOrderDAL;
     private IEsbServiceRegistry m_esbServiceRegistry;
     private readonly IServiceProvider m_serviceProvider;
     private WorkflowInstance? m_workflowInstance;
@@ -24,10 +26,12 @@ public class CustomerBLController : IImplicitService
     /// </summary>
     public CustomerBLController(
         ILoggingDAL loggingDAL,
+        DeliveryOrderDAL deliveryOrderDAL,
         IEsbServiceRegistry esbServiceRegistry,
         IServiceProvider serviceProvider)
     {
         m_loggingDAL = loggingDAL;
+        m_deliveryOrderDAL = deliveryOrderDAL;
         m_esbServiceRegistry = esbServiceRegistry;
         m_serviceProvider = serviceProvider;
     }
@@ -46,7 +50,7 @@ public class CustomerBLController : IImplicitService
         {
             if (initialOrder == null)
                 throw new System.Exception("Initial order could not be null");
-            m_esbServiceRegistry.SaveInitialOrder(initialOrder);
+            m_deliveryOrderDAL.SaveInitialOrder(initialOrder);
             
             m_workflowInstance = m_esbServiceRegistry.CreateInitialWI("Delivering of the order", "CustomerBLController");           
             workflowInstanceId = m_workflowInstance.Id;
