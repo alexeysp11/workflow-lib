@@ -10,7 +10,7 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         /// <summary>
         /// Title of a channel.
         /// </summary>
-        public string Title { get; set; }
+        public string? Title { get; set; }
         
         /// <summary>
         /// Photo of a channel.
@@ -20,6 +20,6 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         /// <summary>
         /// Photo URL of a channel.
         /// </summary>
-        public string PhotoUrl { get; set; }
+        public string? PhotoUrl { get; set; }
     }
 }

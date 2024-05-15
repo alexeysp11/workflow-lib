@@ -10,7 +10,7 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         /// <summary>
         /// Title of a chatroom.
         /// </summary>
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
         /// <summary>
         /// Type of the chatroom.
@@ -25,6 +25,6 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         /// <summary>
         /// Photo URL of the user.
         /// </summary>
-        public string PhotoUrl { get; set; }
+        public string? PhotoUrl { get; set; }
     }
 }

@@ -25,7 +25,7 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// 
         /// </summary>
-        public string HtmlContent { get; private set; }
+        public string? HtmlContent { get; private set; }
 
         /// <summary>
         /// 
@@ -45,22 +45,22 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// 
         /// </summary>
-        public string InquiryId { get; private set; }
+        public string? InquiryId { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string SentById { get; private set; }
+        public string? SentById { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string CreatedById { get; private set; }
+        public string? CreatedById { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string ContractId { get; private set; }
+        public string? ContractId { get; private set; }
 
         /// <summary>
         /// 

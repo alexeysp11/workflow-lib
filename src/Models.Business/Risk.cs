@@ -15,27 +15,27 @@ namespace WorkflowLib.Models.Business
         /// <summary>
         /// Creation author.
         /// </summary>
-        public Employee CreationAuthor { get; set; }
+        public Employee AuthorCreated { get; set; }
 
         /// <summary>
         /// Change author.
         /// </summary>
-        public Employee ChangeAuthor { get; set; }
+        public Employee AuthorChanged { get; set; }
 
         /// <summary>
         /// Resolving date.
         /// </summary>
-        public System.DateTime ResolvingDate { get; set; }
+        public System.DateTime DateResolved { get; set; }
 
         /// <summary>
         /// Resolving author.
         /// </summary>
-        public Employee ResolvingAuthor { get; set; }
+        public Employee AuthorResolved { get; set; }
 
         /// <summary>
         /// Resolving comment.
         /// </summary>
-        public string ResolvingComment { get; set; }
+        public string? CommentResolved { get; set; }
 
         /// <summary>
         /// Status of the risk.

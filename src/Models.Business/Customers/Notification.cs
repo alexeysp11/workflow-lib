@@ -20,7 +20,7 @@ namespace WorkflowLib.Models.Business.Customers
         /// <summary>
         /// Title text.
         /// </summary>
-        public string TitleText { get; set; }
+        public string? TitleText { get; set; }
 
         /// <summary>
         /// Body text.

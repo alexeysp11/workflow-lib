@@ -10,7 +10,7 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// Geographic area.
         /// </summary>
-        public string GeographicArea { get; set; }
+        public string? GeographicArea { get; set; }
 
         /// <summary>
         /// Period.
@@ -20,16 +20,16 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// ???
         /// </summary>
-        public string LimitedScope { get; set; }
+        public string? LimitedScope { get; set; }
 
         /// <summary>
         /// ???
         /// </summary>
-        public string LegitimateCompetitiveInterest { get; set; }
+        public string? LegitimateCompetitiveInterest { get; set; }
 
         /// <summary>
         /// ??? 
         /// </summary>
-        public string EmployeeCompensation { get; set; }
+        public string? EmployeeCompensation { get; set; }
     }
 }

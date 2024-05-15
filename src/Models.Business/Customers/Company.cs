@@ -14,12 +14,12 @@ namespace WorkflowLib.Models.Business.Customers
         /// <summary>
         /// Registration number of the company.
         /// </summary>
-        public string RegistrationNumber { get; set; }
+        public string? RegistrationNumber { get; set; }
 
         /// <summary>
         /// VAT number of the company.
         /// </summary>
-        public string VatNumber { get; set; }
+        public string? VatNumber { get; set; }
         
         /// <summary>
         /// CRM role type.

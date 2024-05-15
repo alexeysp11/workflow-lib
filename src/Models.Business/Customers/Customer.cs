@@ -13,7 +13,7 @@ namespace WorkflowLib.Models.Business.Customers
         /// <summary>
         /// First name of the customer.
         /// </summary>
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
 
         /// <summary>
         /// Middle name of the customer.
@@ -23,12 +23,12 @@ namespace WorkflowLib.Models.Business.Customers
         /// <summary>
         /// Last name of the customer.
         /// </summary>
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
         
         /// <summary>
         /// Full name of the customer.
         /// </summary>
-        public string FullName { get; set; }
+        public string? FullName { get; set; }
 
         /// <summary>
         /// CRM role type.

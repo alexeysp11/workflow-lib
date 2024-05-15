@@ -20,7 +20,7 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         /// <summary>
         /// 
         /// </summary>
-        public string StatusMessage { get; set; }
+        public string? StatusMessage { get; set; }
         
         /// <summary>
         /// 

@@ -8,7 +8,7 @@ namespace WorkflowLib.Models.Business.Customers
         /// <summary>
         /// Number.
         /// </summary>
-        public string Number { get; set; }
+        public string? Number { get; set; }
         
         /// <summary>
         /// Notes.

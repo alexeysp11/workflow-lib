@@ -11,7 +11,7 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         /// <summary>
         /// Content text.
         /// </summary>
-        public string ContentText { get; set; }
+        public string? ContentText { get; set; }
 
         /// <summary>
         /// Comments.

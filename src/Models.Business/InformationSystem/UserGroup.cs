@@ -26,11 +26,11 @@ namespace WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// User that created the user group.
         /// </summary>
-        public UserAccount? CreationAuthor { get; set; }
+        public UserAccount? AuthorCreated { get; set; }
         
         /// <summary>
         /// User that changed the user group.
         /// </summary>
-        public UserAccount? ChangeAuthor { get; set; }
+        public UserAccount? AuthorChanged { get; set; }
     }
 }

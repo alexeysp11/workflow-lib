@@ -22,7 +22,7 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         /// <summary>
         /// Public ID of the photo.
         /// </summary>
-        public string PublicId { get; set; }
+        public string? PublicId { get; set; }
         
         /// <summary>
         /// User ID.

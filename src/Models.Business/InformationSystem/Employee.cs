@@ -14,7 +14,7 @@ namespace WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// First name of the employee.
         /// </summary>
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
 
         /// <summary>
         /// Middle name of the employee.
@@ -24,12 +24,12 @@ namespace WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// Last name of the employee.
         /// </summary>
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
         
         /// <summary>
         /// Full name of the employee.
         /// </summary>
-        public string FullName { get; set; }
+        public string? FullName { get; set; }
         
         /// <summary>
         /// Mobile phone of the employee.

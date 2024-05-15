@@ -15,7 +15,7 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         /// <summary>
         /// Title of a chatroom, that is displayed for the user specifically.
         /// </summary>
-        public string ChatroomTitle { get; set; }
+        public string? ChatroomTitle { get; set; }
         
         /// <summary>
         /// User ID.

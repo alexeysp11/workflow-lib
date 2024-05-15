@@ -12,12 +12,12 @@ namespace WorkflowLib.Models.Business.Customers
         /// <summary>
         /// Subject of the message.
         /// </summary>
-        public string Subject { get; set; }
+        public string? Subject { get; set; }
 
         /// <summary>
         /// Body of the message.
         /// </summary>
-        public string Body { get; set; }
+        public string? Body { get; set; }
 
         /// <summary>
         /// Category of the message.

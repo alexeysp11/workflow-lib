@@ -21,6 +21,6 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// Discriminator.
         /// </summary>
-        public string Discriminator { get; set; }
+        public string? Discriminator { get; set; }
     }
 }

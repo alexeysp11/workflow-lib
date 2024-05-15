@@ -10,12 +10,12 @@ namespace WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// Subect.
         /// </summary>
-        public string Subject { get; set; }
+        public string? Subject { get; set; }
 
         /// <summary>
         /// Body.
         /// </summary>
-        public string Body { get; set; }
+        public string? Body { get; set; }
         
         /// <summary>
         /// Message category.

@@ -22,12 +22,12 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// 
         /// </summary>
-        public string ReceivedById { get; private set; }
+        public string? ReceivedById { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string CustomerId { get; private set; }
+        public string? CustomerId { get; private set; }
 
         /// <summary>
         /// 

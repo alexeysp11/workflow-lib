@@ -18,12 +18,12 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         /// <summary>
         /// Subject of a message.
         /// </summary>
-        public string Subject { get; set; }
+        public string? Subject { get; set; }
 
         /// <summary>
         /// Body of a message.
         /// </summary>
-        public string Body { get; set; }
+        public string? Body { get; set; }
 
         /// <summary>
         /// Channel ID.
