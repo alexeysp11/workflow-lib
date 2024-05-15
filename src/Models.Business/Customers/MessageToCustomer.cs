@@ -27,12 +27,12 @@ namespace WorkflowLib.Models.Business.Customers
         /// <summary>
         /// Timestamp when the message was sent.
         /// </summary>
-        public System.DateTime SentAt { get; set; }
+        public System.DateTime DateSent { get; set; }
 
         /// <summary>
         /// Timestamp when the message was received.
         /// </summary>
-        public System.DateTime? ReceivedAt { get; set; }
+        public System.DateTime? DateReceived { get; set; }
 
         /// <summary>
         /// Is the message new.

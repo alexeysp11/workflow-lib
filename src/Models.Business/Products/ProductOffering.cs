@@ -36,12 +36,12 @@ namespace WorkflowLib.Models.Business.Products
         /// <summary>
         /// Date from.
         /// </summary>
-        public System.DateTime? DateFrom { get; set; }
+        public System.DateTime? DateStarted { get; set; }
 
         /// <summary>
         /// Date to.
         /// </summary>
-        public System.DateTime? DateTo { get; set; }
+        public System.DateTime? DateEnded { get; set; }
 
         /// <summary>
         /// Actual price.

@@ -10,7 +10,7 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// 
         /// </summary>
-        public System.DateTime? SentAt { get; private set; }
+        public System.DateTime? DateSent { get; private set; }
 
         /// <summary>
         /// 

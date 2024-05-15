@@ -26,10 +26,5 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         /// 
         /// </summary>
         public AvailabilityStatus Status { get; set; }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public System.DateTime? Modified { get; set; }
     }
 }

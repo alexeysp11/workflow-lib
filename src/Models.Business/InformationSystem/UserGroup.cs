@@ -29,18 +29,8 @@ namespace WorkflowLib.Models.Business.InformationSystem
         public UserAccount? CreationAuthor { get; set; }
         
         /// <summary>
-        /// Timestamp when the user group was created.
-        /// </summary>
-        public System.DateTime? CreationDate { get; set; }
-        
-        /// <summary>
         /// User that changed the user group.
         /// </summary>
         public UserAccount? ChangeAuthor { get; set; }
-        
-        /// <summary>
-        /// Timestamp when the user group was changed.
-        /// </summary>
-        public System.DateTime? ChangeDate { get; set; }
     }
 }

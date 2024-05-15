@@ -22,11 +22,6 @@ namespace WorkflowLib.Models.Business.Processes
         /// Connector for the workflow tracking item.
         /// </summary>
         public BDEConnector? BDEConnector { get; set; }
-
-        /// <summary>
-        /// Gets or sets the date when the workflow tracking item was created.
-        /// </summary>
-        public System.DateTime? CreationDate { get; set; }
         
         /// <summary>
         /// Comment for the workflow tracking item.

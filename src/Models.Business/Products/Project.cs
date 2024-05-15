@@ -44,17 +44,17 @@ namespace WorkflowLib.Models.Business.Products
         /// <summary>
         /// Start date of the project.
         /// </summary>
-        public System.DateTime StartDate { get; set; }
+        public System.DateTime DateStarted { get; set; }
 
         /// <summary>
         /// End date of the project (expected).
         /// </summary>
-        public System.DateTime EndDate { get; set; }
+        public System.DateTime DateEnded { get; set; }
 
         /// <summary>
         /// Actual end date of the project.
         /// </summary>
-        public System.DateTime? ActualEndDate { get; set; }
+        public System.DateTime? DateEndedActual { get; set; }
 
         /// <summary>
         /// Guarantee period in months.

@@ -31,6 +31,11 @@ namespace WorkflowLib.Models.Business
         public System.DateTime? DateCreated { get; set; }
 
         /// <summary>
+        /// The date when the business entity was changed.
+        /// </summary>
+        public System.DateTime? DateChanged { get; set; }
+
+        /// <summary>
         /// Business entity status.
         /// </summary>
         public BusinessEntityStatus? BusinessEntityStatus { get; set; }

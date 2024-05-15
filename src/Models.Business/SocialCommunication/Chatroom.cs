@@ -26,10 +26,5 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         /// Photo URL of the user.
         /// </summary>
         public string PhotoUrl { get; set; }
-        
-        /// <summary>
-        /// Timestamp when a chatroom was deleted.
-        /// </summary>
-        public System.DateTime DateDeleted { get; set; }
     }
 }

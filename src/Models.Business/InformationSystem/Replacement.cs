@@ -21,12 +21,12 @@ namespace WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// Start date.
         /// </summary>
-        public System.DateTime? StartDate { get; set; }
+        public System.DateTime? DateStarted { get; set; }
         
         /// <summary>
         /// End date.
         /// </summary>
-        public System.DateTime? EndDate { get; set; }
+        public System.DateTime? DateEnded { get; set; }
         
         /// <summary>
         /// User who is replaced.

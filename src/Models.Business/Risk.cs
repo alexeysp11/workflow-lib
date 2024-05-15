@@ -13,19 +13,9 @@ namespace WorkflowLib.Models.Business
         public RiskSeverity Severity { get; set; }
 
         /// <summary>
-        /// Creation date.
-        /// </summary>
-        public System.DateTime CreationDate { get; set; }
-
-        /// <summary>
         /// Creation author.
         /// </summary>
         public Employee CreationAuthor { get; set; }
-
-        /// <summary>
-        /// Change date.
-        /// </summary>
-        public System.DateTime ChangeDate { get; set; }
 
         /// <summary>
         /// Change author.

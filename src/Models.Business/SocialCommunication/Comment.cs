@@ -14,11 +14,6 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         public string Text { get; set; }
 
         /// <summary>
-        /// Creation date.
-        /// </summary>
-        public System.DateTime CreationDate { get; set; }
-
-        /// <summary>
         /// Creation author.
         /// </summary>
         public UserAccount CreationAuthor { get; set; }

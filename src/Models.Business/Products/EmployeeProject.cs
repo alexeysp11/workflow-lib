@@ -20,11 +20,11 @@ namespace WorkflowLib.Models.Business.Products
         /// <summary>
         /// 
         /// </summary>
-        public System.DateTime? StartDate { get; set; }
+        public System.DateTime? DateStarted { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public System.DateTime? EndDate { get; set; }
+        public System.DateTime? DateEnded { get; set; }
     }
 }

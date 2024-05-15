@@ -12,7 +12,7 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// Timestamp when the inquiry was received.
         /// </summary>
-        public System.DateTime ReceivedAt { get; private set; }
+        public System.DateTime DateReceived { get; private set; }
 
         /// <summary>
         /// Timestamp when the inquiry was closed.

@@ -25,12 +25,12 @@ namespace WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// 
         /// </summary>
-        public System.DateTime SentAt { get; set; }
+        public System.DateTime DateSent { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public System.DateTime? ReceivedAt { get; set; }
+        public System.DateTime? DateReceived { get; set; }
 
         /// <summary>
         /// 

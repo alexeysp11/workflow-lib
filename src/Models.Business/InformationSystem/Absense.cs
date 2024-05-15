@@ -20,12 +20,12 @@ namespace WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// Timestamp when the absence started.
         /// </summary>
-        public System.DateTime? StartDate { get; set; }
+        public System.DateTime? DateStarted { get; set; }
         
         /// <summary>
         /// Timestamp when the absence finished.
         /// </summary>
-        public System.DateTime? EndDate { get; set; }
+        public System.DateTime? DateEnded { get; set; }
         
         /// <summary>
         /// Reason of the absence.
