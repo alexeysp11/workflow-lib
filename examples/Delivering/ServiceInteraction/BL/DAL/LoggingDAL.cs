@@ -31,8 +31,8 @@ public class LoggingDAL : ILoggingDAL
         {
             SourceName = sourceName,
             SourceDetails = sourceDetails,
-            CreateDate = System.DateTime.UtcNow,
-            ChangeDate = System.DateTime.UtcNow
+            DateCreated = System.DateTime.UtcNow,
+            DateChanged = System.DateTime.UtcNow
         };
 
         lock (m_object)

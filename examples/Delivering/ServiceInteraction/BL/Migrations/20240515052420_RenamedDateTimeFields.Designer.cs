@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DbContexts;
@@ -11,9 +12,10 @@ using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DbContexts;
 namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
 {
     [DbContext(typeof(ServiceInteractionDbContext))]
-    partial class ServiceInteractionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240515052420_RenamedDateTimeFields")]
+    partial class RenamedDateTimeFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,6 +126,7 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Discriminator")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
@@ -371,6 +374,7 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("RegistrationNumber")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("ShippingAddress")
@@ -380,6 +384,7 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("VatNumber")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -468,12 +473,15 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("FullName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("MiddleName")
@@ -541,6 +549,7 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("TitleText")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Uid")
@@ -618,15 +627,18 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("FullName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("ICQ")
                         .HasColumnType("text");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Locale")
@@ -868,14 +880,14 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long?>("AuthorChangedId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("AuthorCreatedId")
-                        .HasColumnType("bigint");
-
                     b.Property<int?>("BusinessEntityStatus")
                         .HasColumnType("integer");
+
+                    b.Property<long?>("ChangeAuthorId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("CreationAuthorId")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime?>("DateChanged")
                         .HasColumnType("timestamp with time zone");
@@ -900,9 +912,9 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorChangedId");
+                    b.HasIndex("ChangeAuthorId");
 
-                    b.HasIndex("AuthorCreatedId");
+                    b.HasIndex("CreationAuthorId");
 
                     b.ToTable("UserGroups");
                 });
@@ -2166,31 +2178,22 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("AuthorChangedId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("AuthorCreatedId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("AuthorResolvedId")
-                        .HasColumnType("bigint");
-
                     b.Property<int?>("BusinessEntityStatus")
                         .HasColumnType("integer");
 
                     b.Property<long?>("BusinessTaskId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("CommentResolved")
-                        .HasColumnType("text");
+                    b.Property<long>("ChangeAuthorId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CreationAuthorId")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime?>("DateChanged")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime?>("DateCreated")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("DateResolved")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Description")
@@ -2201,6 +2204,16 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
 
                     b.Property<long?>("ProjectId")
                         .HasColumnType("bigint");
+
+                    b.Property<long>("ResolvingAuthorId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ResolvingComment")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("ResolvingDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("Severity")
                         .HasColumnType("integer");
@@ -2213,15 +2226,15 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorChangedId");
-
-                    b.HasIndex("AuthorCreatedId");
-
-                    b.HasIndex("AuthorResolvedId");
-
                     b.HasIndex("BusinessTaskId");
 
+                    b.HasIndex("ChangeAuthorId");
+
+                    b.HasIndex("CreationAuthorId");
+
                     b.HasIndex("ProjectId");
+
+                    b.HasIndex("ResolvingAuthorId");
 
                     b.ToTable("Risk");
                 });
@@ -2234,13 +2247,13 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("AuthorCreatedId")
-                        .HasColumnType("bigint");
-
                     b.Property<int?>("BusinessEntityStatus")
                         .HasColumnType("integer");
 
                     b.Property<long?>("BusinessTaskId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CreationAuthorId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("DateChanged")
@@ -2256,6 +2269,7 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Text")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Uid")
@@ -2266,9 +2280,9 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorCreatedId");
-
                     b.HasIndex("BusinessTaskId");
+
+                    b.HasIndex("CreationAuthorId");
 
                     b.HasIndex("WorkflowInstanceId");
 
@@ -2686,17 +2700,17 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
 
             modelBuilder.Entity("WorkflowLib.Models.Business.InformationSystem.UserGroup", b =>
                 {
-                    b.HasOne("WorkflowLib.Models.Business.InformationSystem.UserAccount", "AuthorChanged")
+                    b.HasOne("WorkflowLib.Models.Business.InformationSystem.UserAccount", "ChangeAuthor")
                         .WithMany()
-                        .HasForeignKey("AuthorChangedId");
+                        .HasForeignKey("ChangeAuthorId");
 
-                    b.HasOne("WorkflowLib.Models.Business.InformationSystem.UserAccount", "AuthorCreated")
+                    b.HasOne("WorkflowLib.Models.Business.InformationSystem.UserAccount", "CreationAuthor")
                         .WithMany()
-                        .HasForeignKey("AuthorCreatedId");
+                        .HasForeignKey("CreationAuthorId");
 
-                    b.Navigation("AuthorChanged");
+                    b.Navigation("ChangeAuthor");
 
-                    b.Navigation("AuthorCreated");
+                    b.Navigation("CreationAuthor");
                 });
 
             modelBuilder.Entity("WorkflowLib.Models.Business.Monetary.Payment", b =>
@@ -3136,56 +3150,56 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
 
             modelBuilder.Entity("WorkflowLib.Models.Business.Risk", b =>
                 {
-                    b.HasOne("WorkflowLib.Models.Business.InformationSystem.Employee", "AuthorChanged")
-                        .WithMany()
-                        .HasForeignKey("AuthorChangedId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WorkflowLib.Models.Business.InformationSystem.Employee", "AuthorCreated")
-                        .WithMany()
-                        .HasForeignKey("AuthorCreatedId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WorkflowLib.Models.Business.InformationSystem.Employee", "AuthorResolved")
-                        .WithMany()
-                        .HasForeignKey("AuthorResolvedId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("WorkflowLib.Models.Business.Processes.BusinessTask", null)
                         .WithMany("Risks")
                         .HasForeignKey("BusinessTaskId");
+
+                    b.HasOne("WorkflowLib.Models.Business.InformationSystem.Employee", "ChangeAuthor")
+                        .WithMany()
+                        .HasForeignKey("ChangeAuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WorkflowLib.Models.Business.InformationSystem.Employee", "CreationAuthor")
+                        .WithMany()
+                        .HasForeignKey("CreationAuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("WorkflowLib.Models.Business.Products.Project", null)
                         .WithMany("Risks")
                         .HasForeignKey("ProjectId");
 
-                    b.Navigation("AuthorChanged");
+                    b.HasOne("WorkflowLib.Models.Business.InformationSystem.Employee", "ResolvingAuthor")
+                        .WithMany()
+                        .HasForeignKey("ResolvingAuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("AuthorCreated");
+                    b.Navigation("ChangeAuthor");
 
-                    b.Navigation("AuthorResolved");
+                    b.Navigation("CreationAuthor");
+
+                    b.Navigation("ResolvingAuthor");
                 });
 
             modelBuilder.Entity("WorkflowLib.Models.Business.SocialCommunication.Comment", b =>
                 {
-                    b.HasOne("WorkflowLib.Models.Business.InformationSystem.UserAccount", "AuthorCreated")
-                        .WithMany()
-                        .HasForeignKey("AuthorCreatedId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("WorkflowLib.Models.Business.Processes.BusinessTask", null)
                         .WithMany("Comments")
                         .HasForeignKey("BusinessTaskId");
+
+                    b.HasOne("WorkflowLib.Models.Business.InformationSystem.UserAccount", "CreationAuthor")
+                        .WithMany()
+                        .HasForeignKey("CreationAuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("WorkflowLib.Models.Business.Processes.WorkflowInstance", null)
                         .WithMany("Comments")
                         .HasForeignKey("WorkflowInstanceId");
 
-                    b.Navigation("AuthorCreated");
+                    b.Navigation("CreationAuthor");
                 });
 
             modelBuilder.Entity("WorkflowLib.Models.Network.MicroserviceConfigurations.Endpoint", b =>

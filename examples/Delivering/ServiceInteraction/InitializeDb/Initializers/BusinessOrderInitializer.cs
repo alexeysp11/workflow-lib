@@ -126,10 +126,10 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.InitializeDb
                     Uid = System.Guid.NewGuid().ToString(),
                     Name = userGroupNames[i],
                     Users = users,
-                    CreationAuthor = admin,
-                    CreationDate = dtnow,
-                    ChangeAuthor = admin,
-                    ChangeDate = dtnow
+                    AuthorCreated = admin,
+                    DateCreated = dtnow,
+                    AuthorChanged = admin,
+                    DateChanged = dtnow
                 };
                 context.UserGroups.Add(userGroup);
             }
