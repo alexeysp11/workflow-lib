@@ -6,7 +6,7 @@ namespace WorkflowLib.Models.Business.Products
     /// <summary>
     /// Product offering.
     /// </summary>
-    public class ProductOffering : BusinessEntityWF, IBusinessEntityWF
+    public class ProductOffering : BusinessEntityWF, IBusinessEntityWF, ITemporalBusinessEntityWF
     {
         /// <summary>
         /// Supplier (comany).
@@ -34,18 +34,28 @@ namespace WorkflowLib.Models.Business.Products
         public ICollection<Product> Products { get; set; }
 
         /// <summary>
-        /// Date from.
-        /// </summary>
-        public System.DateTime? DateStarted { get; set; }
-
-        /// <summary>
-        /// Date to.
-        /// </summary>
-        public System.DateTime? DateEnded { get; set; }
-
-        /// <summary>
         /// Actual price.
         /// </summary>
         public decimal Price { get; set; }
+
+        /// <summary>
+        /// Factual start date.
+        /// </summary>
+        public System.DateTime? FactualStartDate { get; set; }
+        
+        /// <summary>
+        /// Factual end date.
+        /// </summary>
+        public System.DateTime? FactualEndDate { get; set; }
+        
+        /// <summary>
+        /// Expected start date.
+        /// </summary>
+        public System.DateTime? ExpectedStartDate { get; set; }
+        
+        /// <summary>
+        /// Expected end date.
+        /// </summary>
+        public System.DateTime? ExpectedEndDate { get; set; }
     }
 }

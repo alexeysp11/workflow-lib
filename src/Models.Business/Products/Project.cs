@@ -3,13 +3,14 @@ using WorkflowLib.Models.Business;
 using WorkflowLib.Models.Business.BusinessDocuments;
 using WorkflowLib.Models.Business.Customers;
 using WorkflowLib.Models.Business.InformationSystem;
+using WorkflowLib.Models.Business.RiskManagement;
 
 namespace WorkflowLib.Models.Business.Products
 {
     /// <summary>
     /// Project.
     /// </summary>
-    public class Project : BusinessEntityWF, IBusinessEntityWF
+    public class Project : BusinessEntityWF, IBusinessEntityWF, ITemporalBusinessEntityWF
     {
         /// <summary>
         /// Boolean variable that shows if the project is active.
@@ -42,21 +43,6 @@ namespace WorkflowLib.Models.Business.Products
         public virtual Customer Customer { get; set; }
 
         /// <summary>
-        /// Start date of the project.
-        /// </summary>
-        public System.DateTime DateStarted { get; set; }
-
-        /// <summary>
-        /// End date of the project (expected).
-        /// </summary>
-        public System.DateTime DateEnded { get; set; }
-
-        /// <summary>
-        /// Actual end date of the project.
-        /// </summary>
-        public System.DateTime? DateEndedActual { get; set; }
-
-        /// <summary>
         /// Guarantee period in months.
         /// </summary>
         public int GuaranteePeriodInMonths { get; set; }        
@@ -80,5 +66,25 @@ namespace WorkflowLib.Models.Business.Products
         /// Complete percent.
         /// </summary>
         public int CompletePercent { get; set; }
+
+        /// <summary>
+        /// Factual start date.
+        /// </summary>
+        public System.DateTime? FactualStartDate { get; set; }
+        
+        /// <summary>
+        /// Factual end date.
+        /// </summary>
+        public System.DateTime? FactualEndDate { get; set; }
+        
+        /// <summary>
+        /// Expected start date.
+        /// </summary>
+        public System.DateTime? ExpectedStartDate { get; set; }
+        
+        /// <summary>
+        /// Expected end date.
+        /// </summary>
+        public System.DateTime? ExpectedEndDate { get; set; }
     }
 }

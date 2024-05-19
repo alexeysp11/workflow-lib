@@ -5,7 +5,7 @@ namespace WorkflowLib.Models.Business.Products
     /// <summary>
     /// Associate table between project and employee.
     /// </summary>
-    public class EmployeeProject : BusinessEntityWF, IBusinessEntityWF
+    public class EmployeeProject : BusinessEntityWF, IBusinessEntityWF, ITemporalBusinessEntityWF
     {
         /// <summary>
         /// 
@@ -18,13 +18,23 @@ namespace WorkflowLib.Models.Business.Products
         public Employee? Employee { get; set; }
 
         /// <summary>
-        /// 
+        /// Factual start date.
         /// </summary>
-        public System.DateTime? DateStarted { get; set; }
-
+        public System.DateTime? FactualStartDate { get; set; }
+        
         /// <summary>
-        /// 
+        /// Factual end date.
         /// </summary>
-        public System.DateTime? DateEnded { get; set; }
+        public System.DateTime? FactualEndDate { get; set; }
+        
+        /// <summary>
+        /// Expected start date.
+        /// </summary>
+        public System.DateTime? ExpectedStartDate { get; set; }
+        
+        /// <summary>
+        /// Expected end date.
+        /// </summary>
+        public System.DateTime? ExpectedEndDate { get; set; }
     }
 }
