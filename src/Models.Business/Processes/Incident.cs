@@ -1,4 +1,6 @@
-namespace WorkflowLib.Models.Business
+using WorkflowLib.Models.Business;
+
+namespace WorkflowLib.Models.Business.Processes
 {
     /// <summary>
     /// Incident.

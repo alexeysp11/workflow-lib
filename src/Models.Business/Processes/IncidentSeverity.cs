@@ -1,4 +1,4 @@
-namespace WorkflowLib.Models.Business
+namespace WorkflowLib.Models.Business.Processes
 {
     /// <summary>
     /// Incident severity.

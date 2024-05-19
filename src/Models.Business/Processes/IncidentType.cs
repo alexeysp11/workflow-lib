@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WorkflowLib.Models.Business
+namespace WorkflowLib.Models.Business.Processes
 {
     /// <summary>
     /// Incident type.
