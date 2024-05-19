@@ -10,7 +10,7 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
     /// <summary>
     /// Employment contract.
     /// </summary>
-    public class EmploymentContract : BusinessEntityWF, IBusinessEntityWF
+    public class EmploymentContract : BusinessEntityWF, IBusinessEntityWF, ITemporalBusinessEntityWF
     {
         /// <summary>
         /// Contract ID.
@@ -46,16 +46,6 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// Pay rate.
         /// </summary>
         public PayRate? PayRate { get; set; }
-
-        /// <summary>
-        /// Estimated period.
-        /// </summary>
-        public Period EstimatedPeriod { get; set; }
-
-        /// <summary>
-        /// Actual period.
-        /// </summary>
-        public Period ActualPeriod { get; set; }
 
         /// <summary>
         /// Employee responsibilities.
@@ -96,5 +86,25 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// Official termination reasons.
         /// </summary>
         public EmploymentTerminationReason OfficialTerminationReason { get; set; }
+        
+        /// <summary>
+        /// Factual start date.
+        /// </summary>
+        public System.DateTime? FactualStartDate { get; set; }
+        
+        /// <summary>
+        /// Factual end date.
+        /// </summary>
+        public System.DateTime? FactualEndDate { get; set; }
+        
+        /// <summary>
+        /// Expected start date.
+        /// </summary>
+        public System.DateTime? ExpectedStartDate { get; set; }
+        
+        /// <summary>
+        /// Expected end date.
+        /// </summary>
+        public System.DateTime? ExpectedEndDate { get; set; }
     }
 }

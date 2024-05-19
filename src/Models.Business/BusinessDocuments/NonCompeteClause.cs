@@ -5,17 +5,12 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
     /// <summary>
     /// Non-complete clause.
     /// </summary>
-    public class NonCompeteClause : BusinessEntityWF, IBusinessEntityWF
+    public class NonCompeteClause : BusinessEntityWF, IBusinessEntityWF, ITemporalBusinessEntityWF
     {
         /// <summary>
         /// Geographic area.
         /// </summary>
         public string? GeographicArea { get; set; }
-
-        /// <summary>
-        /// Period.
-        /// </summary>
-        public Period Period { get; set; }
 
         /// <summary>
         /// ???
@@ -31,5 +26,25 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// ??? 
         /// </summary>
         public string? EmployeeCompensation { get; set; }
+        
+        /// <summary>
+        /// Factual start date.
+        /// </summary>
+        public System.DateTime? FactualStartDate { get; set; }
+        
+        /// <summary>
+        /// Factual end date.
+        /// </summary>
+        public System.DateTime? FactualEndDate { get; set; }
+        
+        /// <summary>
+        /// Expected start date.
+        /// </summary>
+        public System.DateTime? ExpectedStartDate { get; set; }
+        
+        /// <summary>
+        /// Expected end date.
+        /// </summary>
+        public System.DateTime? ExpectedEndDate { get; set; }
     }
 }

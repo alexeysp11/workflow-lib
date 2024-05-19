@@ -8,22 +8,12 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
     /// <summary>
     /// Order.
     /// </summary>
-    public class Order : BusinessEntityWF, IBusinessEntityWF
+    public class Order : BusinessEntityWF, IBusinessEntityWF, ITemporalBusinessEntityWF
     {
         /// <summary>
         /// Number of the order.
         /// </summary>
         public string? Number { get; set; }
-        
-        /// <summary>
-        /// Timestamp when the order was opened.
-        /// </summary>
-        public System.DateTime? OpenOrderDt { get; set; }
-        
-        /// <summary>
-        /// Timestamp when the order was closed.
-        /// </summary>
-        public System.DateTime? CloseOrderDt { get; set; }
         
         /// <summary>
         /// Parent order.
@@ -94,5 +84,25 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// Status of the order.
         /// </summary>
         public string? Status { get; set; }
+        
+        /// <summary>
+        /// Factual start date.
+        /// </summary>
+        public System.DateTime? FactualStartDate { get; set; }
+        
+        /// <summary>
+        /// Factual end date.
+        /// </summary>
+        public System.DateTime? FactualEndDate { get; set; }
+        
+        /// <summary>
+        /// Expected start date.
+        /// </summary>
+        public System.DateTime? ExpectedStartDate { get; set; }
+        
+        /// <summary>
+        /// Expected end date.
+        /// </summary>
+        public System.DateTime? ExpectedEndDate { get; set; }
     }
 }

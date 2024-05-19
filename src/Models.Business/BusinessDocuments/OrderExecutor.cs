@@ -7,7 +7,7 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
     /// <summary>
     /// Associate table between any executor and order.
     /// </summary>
-    public class OrderExecutor : BusinessEntityWF, IBusinessEntityWF
+    public class OrderExecutor : BusinessEntityWF, IBusinessEntityWF, ITemporalBusinessEntityWF
     {
         /// <summary>
         /// Executor UID of the order.
@@ -33,7 +33,7 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// Order.
         /// </summary>
         public Order? Order { get; set; }
-
+        
         /// <summary>
         /// Factual start date.
         /// </summary>

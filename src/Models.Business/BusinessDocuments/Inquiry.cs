@@ -7,17 +7,17 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
     /// <summary>
     /// Inquiry.
     /// </summary>
-    public class Inquiry : BusinessEntityWF, IBusinessEntityWF
+    public class Inquiry : BusinessEntityWF, IBusinessEntityWF, IReceivableBusinessEntityWF
     {
-        /// <summary>
-        /// Timestamp when the inquiry was received.
-        /// </summary>
-        public System.DateTime DateReceived { get; private set; }
-
         /// <summary>
         /// Timestamp when the inquiry was closed.
         /// </summary>
-        public System.DateTime? ClosedAt { get; private set; }
+        public System.DateTime? DateClosed { get; private set; }
+
+        /// <summary>
+        /// Date the business entity was received.
+        /// </summary>
+        public System.DateTime? DateReceived { get; set; }
 
         /// <summary>
         /// 
@@ -27,12 +27,12 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// 
         /// </summary>
-        public string? CustomerId { get; private set; }
+        public virtual Employee ReceivedBy { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual Employee ReceivedBy { get; private set; }
+        public string? CustomerId { get; private set; }
 
         /// <summary>
         /// 

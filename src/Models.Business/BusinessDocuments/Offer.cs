@@ -5,13 +5,8 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
     /// <summary>
     /// Offer.
     /// </summary>
-    public class Offer : BusinessEntityWF, IBusinessEntityWF
+    public class Offer : BusinessEntityWF, IBusinessEntityWF, ISendableBusinessEntityWF
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public System.DateTime? DateSent { get; private set; }
-
         /// <summary>
         /// 
         /// </summary>
@@ -20,7 +15,7 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// 
         /// </summary>
-        public System.DateTime? LastRevisedAt { get; private set; }
+        public System.DateTime? DateLastRevised { get; private set; }
 
         /// <summary>
         /// 
@@ -35,17 +30,22 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// 
         /// </summary>
-        public bool IsSent{ get; private set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public System.DateTime? ApprovedAt { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
         public string? InquiryId { get; private set; }
+
+        /// <summary>
+        /// Date the business entity was sent.
+        /// </summary>
+        public System.DateTime? DateSent { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool IsSent{ get; private set; }
 
         /// <summary>
         /// 
