@@ -1,6 +1,7 @@
+using WorkflowLib.Models.Business;
 using WorkflowLib.Models.Business.InformationSystem;
 
-namespace WorkflowLib.Models.Business
+namespace WorkflowLib.Models.Business.RiskManagement
 {
     /// <summary>
     /// Risk.
