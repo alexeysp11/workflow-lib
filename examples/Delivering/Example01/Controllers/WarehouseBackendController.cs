@@ -134,7 +134,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                     ExecutorName = courierEmployee.FullName,
                     OrderExecutorType = OrderExecutorType.Employee,
                     Destination = model.Origin,
-                    OpenOrderDt = System.DateTime.Now
+                    DateStartActual = System.DateTime.Now
                 };
                 var deliveryOrderProductsStore2Wh = new List<DeliveryOrderProduct>();
                 foreach (var whingredient in whingredients)
@@ -527,7 +527,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                 }
 
                 // Change the status of the corresponding delivery order.
-                deliveryOrder.CloseOrderDt = System.DateTime.Now;
+                deliveryOrder.DateEndActual = System.DateTime.Now;
                 deliveryOrder.Status = EnumExtensions.GetDisplayName(OrderStatus.Finished);
 
                 // Get the parent delivery order that should be delivered from the warehouse to the kitchen.

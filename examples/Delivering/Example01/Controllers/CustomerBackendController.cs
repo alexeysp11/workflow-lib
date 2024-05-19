@@ -198,7 +198,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                     OrderExecutorType = OrderExecutorType.Company,
                     Origin = organization.Company.Address,
                     Destination = destination,
-                    OpenOrderDt = System.DateTime.Now
+                    DateStartActual = System.DateTime.Now
                 };
                 context.DeliveryOrders.Add(deliveryOrder);
                 context.Payments.AddRange(deliveryOrder.Payments);

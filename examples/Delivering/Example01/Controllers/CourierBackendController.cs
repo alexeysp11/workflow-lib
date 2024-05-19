@@ -231,7 +231,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                 {
                     deliveryOperation.Status = BusinessTaskStatus.Closed;
                 }
-                deliveryOrder.CloseOrderDt = System.DateTime.Now;
+                deliveryOrder.DateEndActual = System.DateTime.Now;
                 deliveryOrder.Status = EnumExtensions.GetDisplayName(OrderStatus.Finished);
                 context.SaveChanges();
 
@@ -324,7 +324,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                 sbMessageText.Append("\n");
                 sbMessageText.Append("Ordering information:\n");
                 sbMessageText.Append("UID: ").Append(model.Uid).Append(".\n");
-                sbMessageText.Append("Creation date: ").Append(model.OpenOrderDt.ToString()).Append(".\n");
+                sbMessageText.Append("Creation date: ").Append(model.DateStartActual.ToString()).Append(".\n");
                 sbMessageText.Append("Order author: ").Append(model.OrderCustomerType.ToString()).Append(" ").Append(model.CustomerName).Append(".\n");
                 sbMessageText.Append("\n");
                 sbMessageText.Append("Products for delivery:\n");
