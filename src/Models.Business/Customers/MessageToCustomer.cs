@@ -7,7 +7,7 @@ namespace WorkflowLib.Models.Business.Customers
     /// <summary>
     /// Message to the customer.
     /// </summary>
-    public class MessageToCustomer : BusinessEntityWF, IBusinessEntityWF
+    public class MessageToCustomer : BusinessEntityWF, IBusinessEntityWF, ISendableBusinessEntityWF, IReceivableBusinessEntityWF
     {
         /// <summary>
         /// Subject of the message.
@@ -25,16 +25,6 @@ namespace WorkflowLib.Models.Business.Customers
         public MessageCategory MessageCategory { get; set; }
 
         /// <summary>
-        /// Timestamp when the message was sent.
-        /// </summary>
-        public System.DateTime DateSent { get; set; }
-
-        /// <summary>
-        /// Timestamp when the message was received.
-        /// </summary>
-        public System.DateTime? DateReceived { get; set; }
-
-        /// <summary>
         /// Is the message new.
         /// </summary>
         public bool IsNew { get; set; }
@@ -45,9 +35,29 @@ namespace WorkflowLib.Models.Business.Customers
         public bool IsDeleted { get; set; }
 
         /// <summary>
+        /// Date the business entity was received.
+        /// </summary>
+        public System.DateTime? DateReceived { get; set; }
+        
+        /// <summary>
+        /// Collection of recipient IDs.
+        /// </summary>
+        public ICollection<string> RecipientIDs { get; set; }
+
+        /// <summary>
+        /// Collection of recipients.
+        /// </summary>
+        public virtual ICollection<Customer> Recipients { get; set; }
+
+        /// <summary>
         /// Is the message received.
         /// </summary>
         public bool IsReceived { get; set; }
+
+        /// <summary>
+        /// Date the business entity was sent.
+        /// </summary>
+        public System.DateTime? DateSent { get; set; }
 
         /// <summary>
         /// Sende ID.
@@ -55,18 +65,8 @@ namespace WorkflowLib.Models.Business.Customers
         public long SenderId { get; set; }
 
         /// <summary>
-        /// Collection of recipient IDs.
-        /// </summary>
-        public ICollection<string> RecipientIDs { get; set; }
-
-        /// <summary>
         /// User account of the sender.
         /// </summary>
         public virtual UserAccount Sender { get; set; }
-
-        /// <summary>
-        /// Collection of recipients.
-        /// </summary>
-        public virtual ICollection<Customer> Recipients { get; set; }
     }
 }

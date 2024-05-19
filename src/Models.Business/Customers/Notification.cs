@@ -5,12 +5,22 @@ namespace WorkflowLib.Models.Business.Customers
     /// <summary>
     /// Notification.
     /// </summary>
-    public class Notification : BusinessEntityWF, IBusinessEntityWF
+    public class Notification : BusinessEntityWF, IBusinessEntityWF, ISendableBusinessEntityWF, IReceivableBusinessEntityWF
     {
+        /// <summary>
+        /// Date the business entity was sent.
+        /// </summary>
+        public System.DateTime? DateSent { get; set; }
+        
         /// <summary>
         /// Sender ID.
         /// </summary>
         public long SenderId { get; set; }
+
+        /// <summary>
+        /// Date the business entity was received.
+        /// </summary>
+        public System.DateTime? DateReceived { get; set; }
 
         /// <summary>
         /// Receiver ID.
@@ -26,16 +36,6 @@ namespace WorkflowLib.Models.Business.Customers
         /// Body text.
         /// </summary>
         public string? BodyText { get; set; }
-
-        /// <summary>
-        /// Timestamp when the notification was sent.
-        /// </summary>
-        public System.DateTime? SentDateTime { get; set; }
-        
-        /// <summary>
-        /// Timestamp when the notification was received.
-        /// </summary>
-        public System.DateTime? ReceivedDateTime { get; set; }
 
         /// <summary>
         /// Notes.
