@@ -5,7 +5,7 @@ namespace WorkflowLib.Models.Business.InformationSystem
     /// <summary>
     /// Message to user.
     /// </summary>
-    public class MessageToUser : BusinessEntityWF, IBusinessEntityWF
+    public class MessageToUser : BusinessEntityWF, IBusinessEntityWF, ISendableBusinessEntityWF, IReceivableBusinessEntityWF
     {
         /// <summary>
         /// Subect.
@@ -25,16 +25,6 @@ namespace WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// 
         /// </summary>
-        public System.DateTime DateSent { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public System.DateTime? DateReceived { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public bool IsNew { get; set; }
 
         /// <summary>
@@ -43,14 +33,10 @@ namespace WorkflowLib.Models.Business.InformationSystem
         public bool IsDeleted { get; set; }
 
         /// <summary>
-        /// 
+        /// Date the business entity was received.
         /// </summary>
-        public bool IsReceived { get; set; }
+        public System.DateTime? DateReceived { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public long SenderId { get; set; }
 
         /// <summary>
         /// 
@@ -60,11 +46,25 @@ namespace WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// 
         /// </summary>
-        public virtual UserAccount Sender { get; set; }
+        public virtual ICollection<UserAccount> Recipients { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool IsReceived { get; set; }
+
+        /// <summary>
+        /// Date the business entity was sent.
+        /// </summary>
+        public System.DateTime? DateSent { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual ICollection<UserAccount> Recipients { get; set; }
+        public long SenderId { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual UserAccount Sender { get; set; }
     }
 }

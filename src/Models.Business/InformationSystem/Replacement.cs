@@ -5,7 +5,7 @@ namespace WorkflowLib.Models.Business.InformationSystem
     /// <summary>
     /// Replacement.
     /// </summary>
-    public class Replacement : BusinessEntityWF, IBusinessEntityWF
+    public class Replacement : BusinessEntityWF, IBusinessEntityWF, ITemporalBusinessEntityWF
     {
         /// <summary>
         /// The number of working days for which the replacement mechanism must be completed 
@@ -17,16 +17,6 @@ namespace WorkflowLib.Models.Business.InformationSystem
         /// Whether or not to duplicate messages to the Substitute, if "Yes" - the messages go to the Substitute and the Substitute.
         /// </summary>
         public bool DuplicateMessage { get; set; }
-        
-        /// <summary>
-        /// Start date.
-        /// </summary>
-        public System.DateTime? DateStarted { get; set; }
-        
-        /// <summary>
-        /// End date.
-        /// </summary>
-        public System.DateTime? DateEnded { get; set; }
         
         /// <summary>
         /// User who is replaced.
@@ -42,5 +32,25 @@ namespace WorkflowLib.Models.Business.InformationSystem
         /// Status of the replacement.
         /// </summary>
         public ReplacementStatus Status { get; set; }
+        
+        /// <summary>
+        /// Factual start date.
+        /// </summary>
+        public System.DateTime? FactualStartDate { get; set; }
+        
+        /// <summary>
+        /// Factual end date.
+        /// </summary>
+        public System.DateTime? FactualEndDate { get; set; }
+        
+        /// <summary>
+        /// Expected start date.
+        /// </summary>
+        public System.DateTime? ExpectedStartDate { get; set; }
+        
+        /// <summary>
+        /// Expected end date.
+        /// </summary>
+        public System.DateTime? ExpectedEndDate { get; set; }
     }
 }
