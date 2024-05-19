@@ -9,7 +9,7 @@ namespace WorkflowLib.Models.Business.Processes
     /// <summary>
     /// A specific entity (workflow instance) that implements a business process.
     /// </summary>
-    public class WorkflowInstance : BusinessEntityWF, IBusinessEntityWF
+    public class WorkflowInstance : BusinessEntityWF, IBusinessEntityWF, ITemporalBusinessEntityWF
     {
         /// <summary>
         /// Gets or sets the business process associated with this workflow instance.
@@ -23,24 +23,24 @@ namespace WorkflowLib.Models.Business.Processes
         public WorkflowInstanceContext? Context { get; set; }
         
         /// <summary>
-        /// Actual start time of the operation.
+        /// Factual start date.
         /// </summary>
-        public System.DateTime? ActualDateTimeBegin { get; set; }
-
+        public System.DateTime? FactualStartDate { get; set; }
+        
         /// <summary>
-        /// Actual end time of the operation.
+        /// Factual end date.
         /// </summary>
-        public System.DateTime? ActualDateTimeEnd { get; set; }
-
+        public System.DateTime? FactualEndDate { get; set; }
+        
         /// <summary>
-        /// Estimated start time of the operation.
+        /// Expected start date.
         /// </summary>
-        public System.DateTime? EstimatedDateTimeBegin { get; set; }
-
+        public System.DateTime? ExpectedStartDate { get; set; }
+        
         /// <summary>
-        /// Estimated end time of the operation.
+        /// Expected end date.
         /// </summary>
-        public System.DateTime? EstimatedDateTimeEnd { get; set; }
+        public System.DateTime? ExpectedEndDate { get; set; }
 
         /// <summary>
         /// Initiator.

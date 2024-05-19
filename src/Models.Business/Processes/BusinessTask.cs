@@ -2,13 +2,14 @@ using System.Collections.Generic;
 using WorkflowLib.Models.Business;
 using WorkflowLib.Models.Business.InformationSystem;
 using WorkflowLib.Models.Business.SocialCommunication;
+using WorkflowLib.Models.Business.RiskManagement;
 
 namespace WorkflowLib.Models.Business.Processes
 {
     /// <summary>
     /// Actual business task that was assigned to a specific employee.
     /// </summary>
-    public class BusinessTask : BusinessEntityWF, IBusinessEntityWF
+    public class BusinessTask : BusinessEntityWF, IBusinessEntityWF, ITemporalBusinessEntityWF
     {
         /// <summary>
         /// Subject.
@@ -24,26 +25,26 @@ namespace WorkflowLib.Models.Business.Processes
         /// Child tasks.
         /// </summary>
         public ICollection<BusinessTask> ChildTasks { get; set; }
-
+        
         /// <summary>
-        /// Actual start time of the operation.
+        /// Factual start date.
         /// </summary>
-        public System.DateTime? ActualDateTimeBegin { get; set; }
-
+        public System.DateTime? FactualStartDate { get; set; }
+        
         /// <summary>
-        /// Actual end time of the operation.
+        /// Factual end date.
         /// </summary>
-        public System.DateTime? ActualDateTimeEnd { get; set; }
-
+        public System.DateTime? FactualEndDate { get; set; }
+        
         /// <summary>
-        /// Estimated start time of the operation.
+        /// Expected start date.
         /// </summary>
-        public System.DateTime? EstimatedDateTimeBegin { get; set; }
-
+        public System.DateTime? ExpectedStartDate { get; set; }
+        
         /// <summary>
-        /// Estimated end time of the operation.
+        /// Expected end date.
         /// </summary>
-        public System.DateTime? EstimatedDateTimeEnd { get; set; }
+        public System.DateTime? ExpectedEndDate { get; set; }
 
         /// <summary>
         /// Executor.
