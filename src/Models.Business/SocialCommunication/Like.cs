@@ -9,31 +9,6 @@ namespace WorkflowLib.Models.Business.SocialCommunication
     public class Like : BusinessEntityWF, IBusinessEntityWF
     {
         /// <summary>
-        /// Like type.
-        /// </summary>
-        public LikeType LikeType { get; set; }
-        
-        /// <summary>
-        /// Liker ID.
-        /// </summary>
-        public long LikerId { get; set; }
-        
-        /// <summary>
-        /// Likee ID.
-        /// </summary>
-        public long LikeeId { get; set; }
-
-        /// <summary>
-        /// Message ID.
-        /// </summary>
-        public long MessageId { get; set; }
-
-        /// <summary>
-        /// Post ID.
-        /// </summary>
-        public long PostId { get; set; }
-        
-        /// <summary>
         /// Liker.
         /// </summary>
         public UserAccount Liker { get; set; }
@@ -41,16 +16,21 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         /// <summary>
         /// Likee.
         /// </summary>
-        public UserAccount Likee { get; set; }
+        public UserAccount? Likee { get; set; }
 
         /// <summary>
         /// Message.
         /// </summary>
-        public MessageWF MessageWF { get; set; }
+        public MessageWF? MessageWF { get; set; }
 
         /// <summary>
         /// Post.
         /// </summary>
-        public Post Post { get; set; }
+        public Post? Post { get; set; }
+        
+        /// <summary>
+        /// Like type.
+        /// </summary>
+        public LikeType LikeType { get; set; }
     }
 }

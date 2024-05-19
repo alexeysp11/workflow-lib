@@ -15,7 +15,7 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         /// <summary>
         /// Photo of a channel.
         /// </summary>
-        public byte[] Photo { get; set; }
+        public byte[]? Photo { get; set; }
 
         /// <summary>
         /// Photo URL of a channel.

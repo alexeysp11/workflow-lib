@@ -16,12 +16,12 @@ namespace WorkflowLib.Models.Business.RiskManagement
         /// <summary>
         /// Creation author.
         /// </summary>
-        public Employee AuthorCreated { get; set; }
+        public Employee? AuthorCreated { get; set; }
 
         /// <summary>
         /// Change author.
         /// </summary>
-        public Employee AuthorChanged { get; set; }
+        public Employee? AuthorChanged { get; set; }
 
         /// <summary>
         /// Resolving date.
@@ -31,7 +31,7 @@ namespace WorkflowLib.Models.Business.RiskManagement
         /// <summary>
         /// Resolving author.
         /// </summary>
-        public Employee AuthorResolved { get; set; }
+        public Employee? AuthorResolved { get; set; }
 
         /// <summary>
         /// Resolving comment.

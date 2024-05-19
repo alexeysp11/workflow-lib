@@ -21,7 +21,7 @@ namespace WorkflowLib.Models.Business.Monetary
         /// <summary>
         /// Days off.
         /// </summary>
-        public DaysOff DaysOff { get; private set; }
+        public DaysOff? DaysOff { get; private set; }
 
         /// <summary>
         /// Sub total payments.

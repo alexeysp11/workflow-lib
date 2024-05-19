@@ -12,11 +12,6 @@ namespace WorkflowLib.Models.Business.Delivery
     public class DeliveryKitchen2Wh : DeliveryOperation, IBusinessEntityWF
     {
         /// <summary>
-        /// Order number.
-        /// </summary>
-        public string? OrderNumber { get; set; }
-
-        /// <summary>
         /// Generated QR code attached to the order.
         /// </summary>
         public string? GeneratedOrderQrCode { get; set; }

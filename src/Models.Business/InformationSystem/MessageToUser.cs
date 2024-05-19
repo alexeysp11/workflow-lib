@@ -20,7 +20,7 @@ namespace WorkflowLib.Models.Business.InformationSystem
         /// <summary>
         /// Message category.
         /// </summary>
-        public MessageCategory MessageCategory { get; set; }
+        public MessageCategory? MessageCategory { get; set; }
 
         /// <summary>
         /// 
@@ -37,7 +37,6 @@ namespace WorkflowLib.Models.Business.InformationSystem
         /// </summary>
         public System.DateTime? DateReceived { get; set; }
 
-
         /// <summary>
         /// 
         /// </summary>
@@ -47,10 +46,6 @@ namespace WorkflowLib.Models.Business.InformationSystem
         /// 
         /// </summary>
         public virtual ICollection<UserAccount> Recipients { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool IsReceived { get; set; }
 
         /// <summary>
         /// Date the business entity was sent.

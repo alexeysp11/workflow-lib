@@ -32,7 +32,7 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         /// <summary>
         /// User account.
         /// </summary>
-        public UserAccount User { get; set; }
+        public UserAccount? User { get; set; }
 
         /// <summary>
         /// Comments.

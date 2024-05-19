@@ -65,12 +65,12 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// Schedule.
         /// </summary>
-        public Schedule Schedule { get; set; }
+        public Schedule? Schedule { get; set; }
 
         /// <summary>
         /// Non-compete clause.
         /// </summary>
-        public NonCompeteClause NonCompeteClause { get; set; }
+        public NonCompeteClause? NonCompeteClause { get; set; }
 
         /// <summary>
         /// Status of the employment contract.
@@ -85,7 +85,7 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// Official termination reasons.
         /// </summary>
-        public EmploymentTerminationReason OfficialTerminationReason { get; set; }
+        public EmploymentTerminationReason? OfficialTerminationReason { get; set; }
         
         /// <summary>
         /// Actual start date.

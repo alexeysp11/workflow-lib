@@ -25,7 +25,7 @@ namespace WorkflowLib.Models.Business.Products
         /// <summary>
         /// Contract.
         /// </summary>
-        public Contract Contract { get; set; }
+        public Contract? Contract { get; set; }
 
         /// <summary>
         /// Location of the project.
@@ -35,12 +35,12 @@ namespace WorkflowLib.Models.Business.Products
         /// <summary>
         /// Company.
         /// </summary>
-        public virtual Company Company { get; set; }
+        public Company? Company { get; set; }
 
         /// <summary>
         /// Customer.
         /// </summary>
-        public virtual Customer Customer { get; set; }
+        public Customer? Customer { get; set; }
 
         /// <summary>
         /// Guarantee period in months.
@@ -50,7 +50,7 @@ namespace WorkflowLib.Models.Business.Products
         /// <summary>
         /// Project manager.
         /// </summary>
-        public Employee Manager { get; set; }
+        public Employee? Manager { get; set; }
         
         /// <summary>
         /// Risks of the project.

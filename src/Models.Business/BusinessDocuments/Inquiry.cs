@@ -27,7 +27,7 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// 
         /// </summary>
-        public virtual Employee ReceivedBy { get; private set; }
+        public Employee? ReceivedBy { get; private set; }
 
         /// <summary>
         /// 
@@ -37,17 +37,17 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// 
         /// </summary>
-        public virtual Company Customer { get; private set; }
+        public Company? CustomerCompany { get; private set; }
 
         /// <summary>
         /// List of offers.
         /// </summary>
-        public virtual List<Offer> Offers { get; private set; }
+        public List<Offer> Offers { get; private set; }
 
-        //public virtual List<Attachment> Attachments { get; private set; }
+        //public List<Attachment> Attachments { get; private set; }
 
-        //public virtual List<InfoRequest> InfoRequests { get; private set; }
+        //public List<InfoRequest> InfoRequests { get; private set; }
 
-        //public virtual List<InquiryEmployee> Assignees { get; private set; }
+        //public List<InquiryEmployee> Assignees { get; private set; }
     }
 }

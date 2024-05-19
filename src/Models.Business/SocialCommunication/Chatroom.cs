@@ -20,7 +20,7 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         /// <summary>
         /// Photo of the user.
         /// </summary>
-        public byte[] Photo { get; set; }
+        public byte[]? Photo { get; set; }
 
         /// <summary>
         /// Photo URL of the user.
