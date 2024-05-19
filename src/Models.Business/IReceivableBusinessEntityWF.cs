@@ -6,7 +6,7 @@ namespace WorkflowLib.Models.Business
     public interface IReceivableBusinessEntityWF : IBusinessEntityWF
     {
         /// <summary>
-        /// Timestamp when the message was received.
+        /// Date the business entity was received.
         /// </summary>
         System.DateTime? DateReceived { get; set; }
     }
