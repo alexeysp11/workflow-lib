@@ -6,17 +6,12 @@ namespace WorkflowLib.Models.Business.Monetary
     /// <summary>
     /// Paycheck.
     /// </summary>
-    public class Paycheck : BusinessEntityWF, IBusinessEntityWF
+    public class Paycheck : BusinessEntityWF, IBusinessEntityWF, ITemporalBusinessEntityWF
     {
         /// <summary>
         /// Date.
         /// </summary>
         public System.DateTime Date { get; private set; }
-
-        /// <summary>
-        /// Period.
-        /// </summary>
-        public Period Period { get; private set; }
 
         /// <summary>
         /// Working hours.
@@ -42,5 +37,25 @@ namespace WorkflowLib.Models.Business.Monetary
         /// Employee.
         /// </summary>
         public virtual Employee Employee { get; private set; }
+        
+        /// <summary>
+        /// Factual start date.
+        /// </summary>
+        public System.DateTime? FactualStartDate { get; set; }
+        
+        /// <summary>
+        /// Factual end date.
+        /// </summary>
+        public System.DateTime? FactualEndDate { get; set; }
+        
+        /// <summary>
+        /// Expected start date.
+        /// </summary>
+        public System.DateTime? ExpectedStartDate { get; set; }
+        
+        /// <summary>
+        /// Expected end date.
+        /// </summary>
+        public System.DateTime? ExpectedEndDate { get; set; }
     }
 }
