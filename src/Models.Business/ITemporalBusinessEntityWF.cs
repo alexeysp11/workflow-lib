@@ -3,23 +3,23 @@ namespace WorkflowLib.Models.Business
     public interface ITemporalBusinessEntityWF : IBusinessEntityWF
     {
         /// <summary>
-        /// Factual start date.
+        /// Actual start date.
         /// </summary>
-        System.DateTime? FactualStartDate { get; set; }
+        System.DateTime? DateStartActual { get; set; }
         
         /// <summary>
-        /// Factual end date.
+        /// Actual end date.
         /// </summary>
-        System.DateTime? FactualEndDate { get; set; }
+        System.DateTime? DateEndActual { get; set; }
         
         /// <summary>
         /// Expected start date.
         /// </summary>
-        System.DateTime? ExpectedStartDate { get; set; }
+        System.DateTime? DateStartExpected { get; set; }
         
         /// <summary>
         /// Expected end date.
         /// </summary>
-        System.DateTime? ExpectedEndDate { get; set; }
+        System.DateTime? DateEndExpected { get; set; }
     }
 }

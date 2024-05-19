@@ -28,23 +28,23 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         public string? EmployeeCompensation { get; set; }
         
         /// <summary>
-        /// Factual start date.
+        /// Actual start date.
         /// </summary>
-        public System.DateTime? FactualStartDate { get; set; }
+        public System.DateTime? DateStartActual { get; set; }
         
         /// <summary>
-        /// Factual end date.
+        /// Actual end date.
         /// </summary>
-        public System.DateTime? FactualEndDate { get; set; }
+        public System.DateTime? DateEndActual { get; set; }
         
         /// <summary>
         /// Expected start date.
         /// </summary>
-        public System.DateTime? ExpectedStartDate { get; set; }
+        public System.DateTime? DateStartExpected { get; set; }
         
         /// <summary>
         /// Expected end date.
         /// </summary>
-        public System.DateTime? ExpectedEndDate { get; set; }
+        public System.DateTime? DateEndExpected { get; set; }
     }
 }
