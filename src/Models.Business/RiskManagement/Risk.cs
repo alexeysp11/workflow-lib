@@ -26,7 +26,7 @@ namespace WorkflowLib.Models.Business.RiskManagement
         /// <summary>
         /// Resolving date.
         /// </summary>
-        public System.DateTime DateResolved { get; set; }
+        public System.DateTime? DateResolved { get; set; }
 
         /// <summary>
         /// Resolving author.
