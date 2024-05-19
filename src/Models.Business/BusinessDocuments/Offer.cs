@@ -30,7 +30,7 @@ namespace WorkflowLib.Models.Business.BusinessDocuments
         /// <summary>
         /// 
         /// </summary>
-        public System.DateTime? ApprovedAt { get; private set; }
+        public System.DateTime? DateApproved { get; private set; }
 
         /// <summary>
         /// 
