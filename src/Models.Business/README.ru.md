@@ -3,7 +3,7 @@
 [English](README.md) | [Русский](README.ru.md)
 
 Данная часть библиотеки предоставляет классы для бизнеса:
-- Общее: [бизнес-задача](BusinessTask.cs), [период](Period.cs), [риск](Risk.cs), etc.
+- Общее: [бизнес-задача](BusinessTask.cs), [риск](Risk.cs), etc.
 - Бизнес-документы: [счёт](BusinessDocuments/Bill.cs), [заказ на доставку](BusinessDocuments/DeliveryOrder.cs), [трудовой договор](BusinessDocuments/EmploymentContract.cs), etc.
 - Потербители: [потребитель](Customers/Customer.cs), [компания](Customers/Company.cs), [contact](Customers/Contact.cs), etc.
 - Информационная система: [работник](InformationSystem/Employee.cs), [аккаунт пользователя](InformationSystem/UserAccount.cs), [рабочий день](InformationSystem/WorkingDay.cs), etc.
