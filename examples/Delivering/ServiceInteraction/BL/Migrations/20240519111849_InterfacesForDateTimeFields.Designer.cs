@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DbContexts;
@@ -11,9 +12,10 @@ using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DbContexts;
 namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
 {
     [DbContext(typeof(ServiceInteractionDbContext))]
-    partial class ServiceInteractionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240519111849_InterfacesForDateTimeFields")]
+    partial class InterfacesForDateTimeFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
