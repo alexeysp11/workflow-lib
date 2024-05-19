@@ -8,7 +8,7 @@ namespace WorkflowLib.Models.Business.SocialCommunication
     /// <summary>
     /// Respresents a message that is specific for the workflow-lib.
     /// </summary>
-    public class MessageWF : BusinessEntityWF, IBusinessEntityWF
+    public class MessageWF : BusinessEntityWF, IBusinessEntityWF, ISendableBusinessEntityWF, IReceivableBusinessEntityWF
     {
         /// <summary>
         /// Category of a message.
@@ -46,6 +46,11 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         public Chatroom Chatroom { get; set; }
 
         /// <summary>
+        /// Date the business entity was sent.
+        /// </summary>
+        public System.DateTime? DateSent { get; set; }
+
+        /// <summary>
         /// Sender ID.
         /// </summary>
         public long SenderId { get; set; }
@@ -54,6 +59,11 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         /// Instance of a user, that has sent the message.
         /// </summary>
         public virtual UserAccount Sender { get; set; }
+
+        /// <summary>
+        /// Date the business entity was received.
+        /// </summary>
+        public System.DateTime? DateReceived { get; set; }
         
         /// <summary>
         /// Collection of recipient IDs.
@@ -66,19 +76,9 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         public virtual ICollection<UserAccount> UserRecipients { get; set; }
 
         /// <summary>
-        /// Collection of attachments of the message.
+        /// Boolean variable to indicate if the message is received.
         /// </summary>
-        public ICollection<Attachment> Attachments { get; set; }
-        
-        /// <summary>
-        /// Timestamp when the message was sent.
-        /// </summary>
-        public System.DateTime DateSent { get; set; }
-
-        /// <summary>
-        /// Timestamp when the message was received.
-        /// </summary>
-        public System.DateTime DateReceived { get; set; }
+        public bool IsReceived { get; set; }
         
         /// <summary>
         /// Message status.
@@ -96,13 +96,13 @@ namespace WorkflowLib.Models.Business.SocialCommunication
         public bool IsNew { get; set; }
 
         /// <summary>
+        /// Collection of attachments of the message.
+        /// </summary>
+        public ICollection<Attachment> Attachments { get; set; }
+
+        /// <summary>
         /// Boolean variable to indicate if the message is deleted.
         /// </summary>
         public bool IsDeleted { get; set; }
-
-        /// <summary>
-        /// Boolean variable to indicate if the message is received.
-        /// </summary>
-        public bool IsReceived { get; set; }
     }
 }
