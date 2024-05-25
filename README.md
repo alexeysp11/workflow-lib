@@ -7,8 +7,9 @@ This project is a comprehensive library that provides a wide range of functional
 Overall, this library is a powerful tool that can be used in ERP/CRM systems to streamline and automate various business processes. 
 It offers a wide range of functionalities and data models that can be customized to meet the specific needs of any organization.
 
-Developers working on applications that require the functionalities provided by the library could use this application. 
-Companies in industries such as logistics, finance, and document management could potentially benefit from using applications that incorporate this library.
+Who can use this library:
+- Developers working on applications that require the functionalities provided by the library could use this application. 
+- Companies in industries such as logistics, finance, and document management could potentially benefit from using applications that incorporate this library.
 
 ## Technologies 
 
