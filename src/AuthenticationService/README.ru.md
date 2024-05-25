@@ -36,7 +36,7 @@
 
 ## Список технологий 
 
-- .NET 6 (C# 10);
+- .NET 6;
 - PostgreSQL;
 - Entity Framework;
 - LINQ;

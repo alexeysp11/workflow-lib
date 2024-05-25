@@ -37,7 +37,7 @@ This library could be used in a variety of client app projects that require auth
 
 ## Technologies
 
-- .NET 6 (C# 10);
+- .NET 6;
 - PostgreSQL;
 - Entity Framework;
 - LINQ;
