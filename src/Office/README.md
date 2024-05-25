@@ -22,3 +22,9 @@ This part of the library provides basic functionality for performing operations 
 - [itext7.pdfhtml](https://github.com/itext/i7n-pdfhtml)
 - [Open XML SDK](https://github.com/dotnet/Open-XML-SDK)
 - [Open-Xml-PowerTools](https://github.com/alexeysp11/Open-Xml-PowerTools.git)
+
+Please note that to use [Open-Xml-PowerTools](https://github.com/alexeysp11/Open-Xml-PowerTools.git) you must run the following command in the root folder of your projects:
+
+```
+git clone https://github.com/alexeysp11/Open-Xml-PowerTools.git
+```

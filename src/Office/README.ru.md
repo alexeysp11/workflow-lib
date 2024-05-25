@@ -22,3 +22,9 @@
 - [itext7.pdfhtml](https://github.com/itext/i7n-pdfhtml)
 - [Open XML SDK](https://github.com/dotnet/Open-XML-SDK)
 - [Open-Xml-PowerTools](https://github.com/alexeysp11/Open-Xml-PowerTools.git)
+
+Пожалуйста, обратите внимание, что для использования [Open-Xml-PowerTools](https://github.com/alexeysp11/Open-Xml-PowerTools.git) необходимо выполнить следующую команду в корневой папке ваших проектов:
+
+```
+git clone https://github.com/alexeysp11/Open-Xml-PowerTools.git
+```
