@@ -15,7 +15,7 @@
 
 ## Технологии 
 
-- Фреймворки .NET:
+- Целевые фреймворки:
   - .NET Core 3.1
   - .NET 6
 - [itext7](https://github.com/itext/itext7-dotnet)

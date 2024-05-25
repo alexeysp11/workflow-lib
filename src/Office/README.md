@@ -15,7 +15,7 @@ This part of the library provides basic functionality for performing operations 
 
 ## Technologies 
 
-- .NET frameworks:
+- Target frameworks:
   - .NET Core 3.1
   - .NET 6
 - [itext7](https://github.com/itext/itext7-dotnet)

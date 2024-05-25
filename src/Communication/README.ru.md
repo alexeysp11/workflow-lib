@@ -13,7 +13,7 @@
 
 ## Технологии 
 
-- Фреймворки .NET:
+- Целевые фреймворки:
   - .NET Core 3.1
   - .NET 6
 - [RabbitMQ](https://github.com/rabbitmq/rabbitmq-dotnet-client)
