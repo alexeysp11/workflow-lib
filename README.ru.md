@@ -11,6 +11,16 @@
 - Разработчики, работающие над приложениями, которым требуются функции, предоставляемые библиотекой, могут использовать это приложение.
 - Компании в таких отраслях, как логистика, финансы и управление документами, потенциально могут получить выгоду от использования приложений, включающих эту библиотеку.
 
+## Проекты внутри библиотеки
+
+- [AuthenticationService](src/AuthenticationService/README.ru.md)
+- [CodeExtensions](src/CodeExtensions/README.ru.md)
+- [Communication](src/Communication/README.ru.md)
+- [Models](src/Models/README.ru.md)
+- [Models.Business](src/Models.Business/README.ru.md)
+- [Office](src/Office/README.ru.md)
+- [ServiceDiscoveryBpm](src/ServiceDiscoveryBpm/README.ru.md)
+
 ## Технологии 
 
 - Фреймворки .NET:
