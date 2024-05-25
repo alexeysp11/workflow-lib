@@ -2,6 +2,8 @@
 
 [English](README.md) | [Русский](README.ru.md)
 
+The library offers operations with documents, supporting multiple formats such as MS word (doc, docx), MS Excel (XLS, XLSX), PDF, images (PNG, BMP, JPEG), and binary files.
+
 This part of the library provides basic functionality for performing operations with documents (writing, reading, converting):
 - Text-based: [MS Word](DocFormats/TextBased/MSWordConverter.cs) (DOC, DOT, DOCX, DOTX, DOCM, DOTM), OpenDocument (ODT, FODT, OTT), [TXT](DocFormats/TextBased/TxtConverter.cs);
 - Spreadsheets: [MS Excel](DocFormats/Spreadsheets/MSExcelConverter.cs) (XLS, XLT, XLW, XLSX, XLTX, XLSM, XLTM), OpenDocument (ODS, FODS, OTS);

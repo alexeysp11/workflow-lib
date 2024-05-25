@@ -2,6 +2,10 @@
 
 [English](README.md) | [Русский](README.ru.md)
 
+The library includes several classes for business, such as common data models like address, business task, period, risk, etc. 
+It also includes classes for business documents like bill, delivery order, employment contract, customers like customer, company, contact, information system like employee, user account, working day, monetary models like paycheck, payment, pay rate and products like product, product category, project. 
+Additionally, the library provides classes for responsibilities like employee responsibility, employer responsibility and social communication like message.
+
 This part of the library provides classes for business:
 - Common: [business task](BusinessTask.cs), [risk](Risk.cs), etc.
 - Business documents: [bill](BusinessDocuments/Bill.cs), [delivery order](BusinessDocuments/DeliveryOrder.cs), [employment contract](BusinessDocuments/EmploymentContract.cs), etc.
