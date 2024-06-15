@@ -1,7 +1,7 @@
 using System.Data;
 using System.Linq;
-using WorkflowLib.DbConnections;
-using WorkflowLib.Models.Business.Products;
+using WorkflowLib.Shared.DbConnections;
+using WorkflowLib.Shared.Models.Business.Products;
 
 namespace WorkflowLib.Examples.DbConnections.PostgreSQL.Example01.Resolvers;
 

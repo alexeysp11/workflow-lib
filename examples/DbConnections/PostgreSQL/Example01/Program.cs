@@ -1,6 +1,6 @@
-﻿using WorkflowLib.Models.Business;
-using WorkflowLib.Models.Business.Delivery;
-using WorkflowLib.Models.Business.Products;
+﻿using WorkflowLib.Shared.Models.Business;
+using WorkflowLib.Shared.Models.Business.Delivery;
+using WorkflowLib.Shared.Models.Business.Products;
 using WorkflowLib.Examples.DbConnections.PostgreSQL.Example01.Resolvers;
 
 IEnumerable<Product> menuItems = new List<Product>();
