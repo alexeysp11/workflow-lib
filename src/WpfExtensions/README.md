@@ -1,5 +1,5 @@
-# workflow-lib-wpf
+# WpfExtensions
 
 [English](README.md) | [Русский](README.ru.md)
 
-`workflow-lib-wpf` is a library of visual elements for WPF applications. 
+`WpfExtensions` is a library of visual elements for WPF applications. 
