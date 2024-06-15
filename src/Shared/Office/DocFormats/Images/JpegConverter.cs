@@ -2,15 +2,15 @@ using System.IO;
 using System.Drawing; 
 using System.Linq; 
 
-namespace WorkflowLib.Office.DocFormats.Images
+namespace WorkflowLib.Shared.Office.DocFormats.Images
 {
     /// <summary>
-    /// Class for converting text into a BMP image.
+    /// Class for converting text into a JPEG image
     /// </summary>
-    public class BmpConverter : BaseImageConverter, IImageConverter
+    public class JpegConverter : BaseImageConverter, IImageConverter
     {
         /// <summary>
-        /// Method for converting text into an image.
+        /// 
         /// </summary>
         public void TextToImg(string text, string foldername, string filename)
         {
@@ -26,7 +26,7 @@ namespace WorkflowLib.Office.DocFormats.Images
             
             base.CheckText(text); 
             base.CheckFolderName(foldername); 
-            base.CheckFileName(filename, "bmp"); 
+            base.CheckFileName(filename, "jpeg"); 
 
             // 
             MemoryStream ms = new MemoryStream();            
@@ -58,23 +58,23 @@ namespace WorkflowLib.Office.DocFormats.Images
             drawing.Dispose();
 
             string filepath = Path.Combine(foldername, filename); 
-            img.Save(filepath, System.Drawing.Imaging.ImageFormat.Bmp);
+            img.Save(filepath, System.Drawing.Imaging.ImageFormat.Jpeg);
             img.Dispose();
         }
 
         /// <summary>
-        /// Method for converting binary to image.
+        /// 
         /// </summary>
         public void BinaryToImg(byte[] bytes, string foldername, string filename)
         {
             base.CheckFolderName(foldername); 
-            base.CheckFileName(filename, "bmp"); 
+            base.CheckFileName(filename, "jpeg"); 
 
             // 
         }
 
         /// <summary>
-        /// Method for converting image into binary 
+        /// 
         /// </summary>
         public byte[] ImgToBinary(string foldername, string filename)
         {

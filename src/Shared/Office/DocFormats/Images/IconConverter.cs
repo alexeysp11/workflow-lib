@@ -2,12 +2,12 @@ using System.IO;
 using System.Drawing; 
 using System.Linq; 
 
-namespace WorkflowLib.Office.DocFormats.Images
+namespace WorkflowLib.Shared.Office.DocFormats.Images
 {
     /// <summary>
-    /// Class for converting text into a PNG image
+    /// Icon converter.
     /// </summary>
-    public class PngConverter : BaseImageConverter, IImageConverter
+    public class IconConverter : BaseImageConverter, IImageConverter
     {
         /// <summary>
         /// 
@@ -26,7 +26,7 @@ namespace WorkflowLib.Office.DocFormats.Images
             
             base.CheckText(text); 
             base.CheckFolderName(foldername); 
-            base.CheckFileName(filename, "png"); 
+            base.CheckFileName(filename, "ico"); 
 
             // 
             MemoryStream ms = new MemoryStream();            
@@ -58,7 +58,7 @@ namespace WorkflowLib.Office.DocFormats.Images
             drawing.Dispose();
 
             string filepath = Path.Combine(foldername, filename); 
-            img.Save(filepath, System.Drawing.Imaging.ImageFormat.Png);
+            img.Save(filepath, System.Drawing.Imaging.ImageFormat.Icon);
             img.Dispose();
         }
 
@@ -67,9 +67,10 @@ namespace WorkflowLib.Office.DocFormats.Images
         /// </summary>
         public void BinaryToImg(byte[] bytes, string foldername, string filename)
         {
-            // 
             base.CheckFolderName(foldername); 
-            base.CheckFileName(filename, "png"); 
+            base.CheckFileName(filename, "ico"); 
+
+            // 
         }
 
         /// <summary>

@@ -2,12 +2,12 @@ using System.IO;
 using System.Drawing; 
 using System.Linq; 
 
-namespace WorkflowLib.Office.DocFormats.Images
+namespace WorkflowLib.Shared.Office.DocFormats.Images
 {
     /// <summary>
-    /// Class for converting text into a JPEG image
+    /// GIF converter.
     /// </summary>
-    public class JpegConverter : BaseImageConverter, IImageConverter
+    public class GifConverter : BaseImageConverter, IImageConverter
     {
         /// <summary>
         /// 
@@ -26,7 +26,7 @@ namespace WorkflowLib.Office.DocFormats.Images
             
             base.CheckText(text); 
             base.CheckFolderName(foldername); 
-            base.CheckFileName(filename, "jpeg"); 
+            base.CheckFileName(filename, "gif"); 
 
             // 
             MemoryStream ms = new MemoryStream();            
@@ -58,7 +58,7 @@ namespace WorkflowLib.Office.DocFormats.Images
             drawing.Dispose();
 
             string filepath = Path.Combine(foldername, filename); 
-            img.Save(filepath, System.Drawing.Imaging.ImageFormat.Jpeg);
+            img.Save(filepath, System.Drawing.Imaging.ImageFormat.Gif);
             img.Dispose();
         }
 
@@ -68,7 +68,7 @@ namespace WorkflowLib.Office.DocFormats.Images
         public void BinaryToImg(byte[] bytes, string foldername, string filename)
         {
             base.CheckFolderName(foldername); 
-            base.CheckFileName(filename, "jpeg"); 
+            base.CheckFileName(filename, "gif"); 
 
             // 
         }

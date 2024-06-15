@@ -1,16 +1,13 @@
 using System.IO; 
 using System.Linq; 
-using iText.Kernel.Pdf; 
-using iText.Layout; 
-using iText.Layout.Element; 
-using WorkflowLib.Models.Documents; 
+using WorkflowLib.Shared.Models.Documents; 
 
-namespace WorkflowLib.Office.DocFormats
+namespace WorkflowLib.Shared.Office.DocFormats.TextBased
 {
     /// <summary>
-    /// Class for using PDF (PDF converter)
+    /// Class for using TXT documents 
     /// </summary>
-    public class PdfConverter : WorkflowLib.Office.DocFormats.TextBased.ITextBased
+    public class TxtConverter : ITextBased
     {
         /// <summary>
         /// Method for converting a list of TextDocElement into TXT document.
@@ -19,29 +16,31 @@ namespace WorkflowLib.Office.DocFormats
         {
             if (!Directory.Exists(foldername)) throw new System.Exception("Folder name does not exist"); 
             if (string.IsNullOrEmpty(filename)) throw new System.Exception("File name could not be null or empty"); 
-            if (filename.Split('.').Last().ToLower() != "pdf") throw new System.Exception("Incorrect file extension"); 
+            if (filename.Split('.').Last().ToLower() != "txt") throw new System.Exception("Incorrect file extension"); 
 
-            // TODO: Check if the following piece of code catches all the possible exceptions! 
-            try
+            string filepath = Path.Combine(foldername, filename); 
+
+            // 
+            if (!File.Exists(filepath))
             {
-                string filepath = Path.Combine(foldername, filename); 
-                using (var writer = new PdfWriter(filepath))
-                    using (PdfDocument pdf = new PdfDocument(writer))
-                    using (Document doc = new Document(pdf))
+                // Create a file to write to.
+                using (StreamWriter sw = File.CreateText(filepath))
                 {
                     foreach (var element in elements)
                     {
-                        Paragraph paragraph = new Paragraph(element.Content)
-                            .SetTextAlignment((iText.Layout.Properties.TextAlignment)element.TextAlignment)
-                            .SetFontSize(element.FontSize); 
-                        doc.Add(paragraph); 
+                        sw.WriteLine(element.Content);
                     }
-                    doc.Close(); 
                 }
+                return; 
             }
-            catch (System.Exception)
+
+            // 
+            using (StreamWriter sw = File.AppendText(filepath))
             {
-                throw; 
+                foreach (var element in elements)
+                {
+                    sw.WriteLine(element.Content);
+                }
             }
         }
 
@@ -86,10 +85,31 @@ namespace WorkflowLib.Office.DocFormats
         {
             if (string.IsNullOrEmpty(xmlContent)) throw new System.Exception("XML content could not be empty"); 
 
-            // 
-
-            return new System.Collections.Generic.List<TextDocElement>();
+            var elements = new System.Collections.Generic.List<TextDocElement>(); 
+            string line = string.Empty; 
+            StringReader reader = new StringReader(xmlContent);
+            while ((line = reader.ReadLine()) != null)
+            {
+                elements.Add(new TextDocElement() { Content = line }); 
+            };
+            
+            return elements;
         }
         #endregion  // Convert to list of TextDocElement 
+        
+        private void CheckCorrectness(string filepath, System.Collections.Generic.List<TextDocElement> elements)
+        {
+            if (string.IsNullOrEmpty(filepath)) throw new System.Exception("File path could not be null or empty"); 
+
+            // Open the file to read from.
+            using (StreamReader sr = File.OpenText(filepath))
+            {
+                string s = "";
+                while ((s = sr.ReadLine()) != null)
+                {
+                    // Console.WriteLine(s);
+                }
+            }
+        }
     }
 }

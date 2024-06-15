@@ -1,13 +1,16 @@
 using System.IO; 
 using System.Linq; 
-using WorkflowLib.Models.Documents; 
+using iText.Kernel.Pdf; 
+using iText.Layout; 
+using iText.Layout.Element; 
+using WorkflowLib.Shared.Models.Documents; 
 
-namespace WorkflowLib.Office.DocFormats.TextBased
+namespace WorkflowLib.Shared.Office.DocFormats
 {
     /// <summary>
-    /// Class for using TXT documents 
+    /// Class for using PDF (PDF converter)
     /// </summary>
-    public class TxtConverter : ITextBased
+    public class PdfConverter : WorkflowLib.Shared.Office.DocFormats.TextBased.ITextBased
     {
         /// <summary>
         /// Method for converting a list of TextDocElement into TXT document.
@@ -16,31 +19,29 @@ namespace WorkflowLib.Office.DocFormats.TextBased
         {
             if (!Directory.Exists(foldername)) throw new System.Exception("Folder name does not exist"); 
             if (string.IsNullOrEmpty(filename)) throw new System.Exception("File name could not be null or empty"); 
-            if (filename.Split('.').Last().ToLower() != "txt") throw new System.Exception("Incorrect file extension"); 
+            if (filename.Split('.').Last().ToLower() != "pdf") throw new System.Exception("Incorrect file extension"); 
 
-            string filepath = Path.Combine(foldername, filename); 
-
-            // 
-            if (!File.Exists(filepath))
+            // TODO: Check if the following piece of code catches all the possible exceptions! 
+            try
             {
-                // Create a file to write to.
-                using (StreamWriter sw = File.CreateText(filepath))
+                string filepath = Path.Combine(foldername, filename); 
+                using (var writer = new PdfWriter(filepath))
+                    using (PdfDocument pdf = new PdfDocument(writer))
+                    using (Document doc = new Document(pdf))
                 {
                     foreach (var element in elements)
                     {
-                        sw.WriteLine(element.Content);
+                        Paragraph paragraph = new Paragraph(element.Content)
+                            .SetTextAlignment((iText.Layout.Properties.TextAlignment)element.TextAlignment)
+                            .SetFontSize(element.FontSize); 
+                        doc.Add(paragraph); 
                     }
+                    doc.Close(); 
                 }
-                return; 
             }
-
-            // 
-            using (StreamWriter sw = File.AppendText(filepath))
+            catch (System.Exception)
             {
-                foreach (var element in elements)
-                {
-                    sw.WriteLine(element.Content);
-                }
+                throw; 
             }
         }
 
@@ -85,31 +86,10 @@ namespace WorkflowLib.Office.DocFormats.TextBased
         {
             if (string.IsNullOrEmpty(xmlContent)) throw new System.Exception("XML content could not be empty"); 
 
-            var elements = new System.Collections.Generic.List<TextDocElement>(); 
-            string line = string.Empty; 
-            StringReader reader = new StringReader(xmlContent);
-            while ((line = reader.ReadLine()) != null)
-            {
-                elements.Add(new TextDocElement() { Content = line }); 
-            };
-            
-            return elements;
+            // 
+
+            return new System.Collections.Generic.List<TextDocElement>();
         }
         #endregion  // Convert to list of TextDocElement 
-        
-        private void CheckCorrectness(string filepath, System.Collections.Generic.List<TextDocElement> elements)
-        {
-            if (string.IsNullOrEmpty(filepath)) throw new System.Exception("File path could not be null or empty"); 
-
-            // Open the file to read from.
-            using (StreamReader sr = File.OpenText(filepath))
-            {
-                string s = "";
-                while ((s = sr.ReadLine()) != null)
-                {
-                    // Console.WriteLine(s);
-                }
-            }
-        }
     }
 }

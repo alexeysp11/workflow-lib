@@ -5,14 +5,14 @@ using System.Text.RegularExpressions;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
-using WorkflowLib.Models.Documents; 
+using WorkflowLib.Shared.Models.Documents; 
 
-namespace WorkflowLib.Office.DocFormats.Spreadsheets
+namespace WorkflowLib.Shared.Office.DocFormats.Spreadsheets
 {
     /// <summary>
     /// Class for using MS Excel (MS Excel converter).
     /// </summary>
-    public class MSExcelConverter : WorkflowLib.Office.DocFormats.Spreadsheets.ISpreadsheets
+    public class MSExcelConverter : WorkflowLib.Shared.Office.DocFormats.Spreadsheets.ISpreadsheets
     {
         /// <summary>
         /// Method for converting a list of SpreadsheetElement into Excel document.

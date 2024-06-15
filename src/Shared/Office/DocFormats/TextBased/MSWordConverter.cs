@@ -4,9 +4,9 @@ using System.Xml.Linq;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using OpenXmlPowerTools;
-using WorkflowLib.Models.Documents;
+using WorkflowLib.Shared.Models.Documents;
 
-namespace WorkflowLib.Office.DocFormats.TextBased
+namespace WorkflowLib.Shared.Office.DocFormats.TextBased
 {
     /// <summary>
     /// Class for using MS Word (MS Word converter)

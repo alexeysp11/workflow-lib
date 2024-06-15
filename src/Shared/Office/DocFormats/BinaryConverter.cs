@@ -1,6 +1,6 @@
 using System.IO; 
 
-namespace WorkflowLib.Office.DocFormats
+namespace WorkflowLib.Shared.Office.DocFormats
 {
     /// <summary>
     /// Class for using banaries (binary converter)

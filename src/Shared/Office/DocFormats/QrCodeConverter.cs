@@ -1,4 +1,4 @@
-namespace WorkflowLib.Office.DocFormats
+namespace WorkflowLib.Shared.Office.DocFormats
 {
     /// <summary>
     /// QR code converter.
