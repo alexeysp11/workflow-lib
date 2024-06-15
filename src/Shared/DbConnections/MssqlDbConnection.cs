@@ -1,7 +1,7 @@
 using System.Data; 
 using Microsoft.Data.SqlClient;
 
-namespace WorkflowLib.DbConnections
+namespace WorkflowLib.Shared.DbConnections
 {
     /// <summary>
     /// MS SQL database connection.

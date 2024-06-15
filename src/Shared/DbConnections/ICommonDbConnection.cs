@@ -1,6 +1,6 @@
 using System.Data;
 
-namespace WorkflowLib.DbConnections
+namespace WorkflowLib.Shared.DbConnections
 {
     /// <summary>
     /// Interface for database connections.

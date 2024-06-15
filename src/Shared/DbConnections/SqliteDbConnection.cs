@@ -1,7 +1,7 @@
 using System.Data; 
 using Microsoft.Data.Sqlite;
 
-namespace WorkflowLib.DbConnections
+namespace WorkflowLib.Shared.DbConnections
 {
     /// <summary>
     /// Class for using SQLite database
