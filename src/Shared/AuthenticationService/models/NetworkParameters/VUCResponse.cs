@@ -1,4 +1,4 @@
-using WorkflowLib.Models.ErrorHandling;
+using WorkflowLib.Shared.Models.ErrorHandling;
 
 namespace WokflowLib.Authentication.Models.NetworkParameters;
 

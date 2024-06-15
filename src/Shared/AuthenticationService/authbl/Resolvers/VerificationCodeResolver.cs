@@ -1,6 +1,6 @@
 using System.Data;
-using WorkflowLib.DbConnections;
-using WorkflowLib.Models.ErrorHandling;
+using WorkflowLib.Shared.DbConnections;
+using WorkflowLib.Shared.Models.ErrorHandling;
 using WokflowLib.Authentication.Models;
 using WokflowLib.Authentication.Models.NetworkParameters;
 
