@@ -2,7 +2,6 @@
 
 ## Documentation 
 
-- Add docs for all the `Monetary` classes.
 - Add documents (taxation, employment, termination) for the following countries: Russia, Georgia, Armenia, Kazakhstan, Serbia, Montenegro, Italy, Spain, Turkey, Cyprus, Argentina, Mexico, Brazil, Uruguay, USA, Canada.
 - Classes for onboarding.
 - Add XML and JSON extensions.
