@@ -15,8 +15,8 @@
 
   <ItemGroup>
     <ProjectReference Include="../src/Shared/CodeExtensions/WorkflowLib.Shared.CodeExtensions.csproj" />
-    <ProjectReference Include="../src/DbConnections/WorkflowLib.DbConnections.csproj" />
-    <ProjectReference Include="../src/Office/WorkflowLib.Office.csproj" />
+    <ProjectReference Include="../src/Shared/DbConnections/WorkflowLib.Shared.DbConnections.csproj" />
+    <ProjectReference Include="../src/Shared/Office/WorkflowLib.Shared.Office.csproj" />
   </ItemGroup>
 
 </Project>

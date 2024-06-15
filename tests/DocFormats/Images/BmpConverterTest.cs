@@ -4,9 +4,9 @@ using System.Linq;
 using System.Reflection;
 using System.Data; 
 using Xunit;
-using WorkflowLib.Office.DocFormats.Images; 
+using WorkflowLib.Shared.Office.DocFormats.Images; 
 
-namespace Cims.Tests.WorkflowLib.Office.DocFormats.Images
+namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats.Images
 {
     public class BmpConverterTest
     {
