@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using WorkflowLib.Models.Business.BusinessDocuments;
-using WorkflowLib.Models.Business.Processes;
+using WorkflowLib.Shared.Models.Business.BusinessDocuments;
+using WorkflowLib.Shared.Models.Business.Processes;
 
 namespace WorkflowLib.Shared.ServiceDiscoveryBpm.DAL;
 

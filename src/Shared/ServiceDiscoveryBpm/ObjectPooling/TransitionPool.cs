@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using WorkflowLib.Models.Business.Processes;
+using WorkflowLib.Shared.Models.Business.Processes;
 
 namespace WorkflowLib.Shared.ServiceDiscoveryBpm.ObjectPooling;
 

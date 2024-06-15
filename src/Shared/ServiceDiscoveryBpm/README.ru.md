@@ -51,7 +51,7 @@
     - после этого всё взамодействие между сервисами производится аналогично, как в предыдущем варианте.
 
 Вышеперечисленные способы межсервисной коммуникции позволили бы очень гибко настраивать коммуникацию между микросервисами через конфиги или БД.
-Соответствующие классы для настройки межсервисной коммуникции можно найти в пространстве имён [WorkflowLib.Models.Network.MicroserviceConfigurations](https://github.com/alexeysp11/workflow-lib/tree/main/src/Shared/Models/Network/MicroserviceConfigurations).
+Соответствующие классы для настройки межсервисной коммуникции можно найти в пространстве имён [WorkflowLib.Shared.Models.Network.MicroserviceConfigurations](https://github.com/alexeysp11/workflow-lib/tree/main/src/Shared/Models/Network/MicroserviceConfigurations).
 
 ### Регистрация и мониторинг сервисов
 

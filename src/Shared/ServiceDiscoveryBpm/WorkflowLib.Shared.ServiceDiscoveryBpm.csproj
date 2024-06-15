@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Models\WorkflowLib.Models.csproj" />
+    <ProjectReference Include="..\Models\WorkflowLib.Shared.Models.csproj" />
     <ProjectReference Include="..\Models.Business\WorkflowLib.Shared.Models.Business.csproj" />
   </ItemGroup>
 

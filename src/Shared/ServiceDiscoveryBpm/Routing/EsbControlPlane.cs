@@ -1,6 +1,6 @@
 using WorkflowLib.Shared.ServiceDiscoveryBpm.ProcPipes;
 using WorkflowLib.Shared.ServiceDiscoveryBpm.ServiceRegistry;
-using WorkflowLib.Models.Business.Processes;
+using WorkflowLib.Shared.Models.Business.Processes;
 
 namespace WorkflowLib.Shared.ServiceDiscoveryBpm.Routing;
 

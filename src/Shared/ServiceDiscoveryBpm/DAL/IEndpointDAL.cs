@@ -1,5 +1,5 @@
 using System.Linq.Expressions;
-using WorkflowLib.Models.Network.MicroserviceConfigurations;
+using WorkflowLib.Shared.Models.Network.MicroserviceConfigurations;
 
 namespace WorkflowLib.Shared.ServiceDiscoveryBpm.DAL;
 

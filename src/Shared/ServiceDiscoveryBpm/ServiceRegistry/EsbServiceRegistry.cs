@@ -2,9 +2,9 @@ using WorkflowLib.Shared.ServiceDiscoveryBpm.DAL;
 using WorkflowLib.Shared.ServiceDiscoveryBpm.LoadBalancers;
 using WorkflowLib.Shared.ServiceDiscoveryBpm.ObjectPooling;
 using WorkflowLib.Shared.ServiceDiscoveryBpm.ProcPipes;
-using WorkflowLib.Models.Business.BusinessDocuments;
-using WorkflowLib.Models.Business.Processes;
-using WorkflowLib.Models.Network.MicroserviceConfigurations;
+using WorkflowLib.Shared.Models.Business.BusinessDocuments;
+using WorkflowLib.Shared.Models.Business.Processes;
+using WorkflowLib.Shared.Models.Network.MicroserviceConfigurations;
 
 namespace WorkflowLib.Shared.ServiceDiscoveryBpm.ServiceRegistry;
 
