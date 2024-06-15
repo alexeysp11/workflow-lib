@@ -13,10 +13,10 @@ Who can use this library:
 
 ## Library
 
-- [AuthenticationService](src/AuthenticationService/README.md)
-- [CodeExtensions](src/CodeExtensions/README.md)
-- [Communication](src/Communication/README.md)
-- [Models](src/Models/README.md)
-- [Models.Business](src/Models.Business/README.md)
-- [Office](src/Office/README.md)
-- [ServiceDiscoveryBpm](src/ServiceDiscoveryBpm/README.md)
+- [AuthenticationService](src/Shared/AuthenticationService/README.md)
+- [CodeExtensions](src/Shared/CodeExtensions/README.md)
+- [Communication](src/Shared/Communication/README.md)
+- [Models](src/Shared/Models/README.md)
+- [Models.Business](src/Shared/Models.Business/README.md)
+- [Office](src/Shared/Office/README.md)
+- [ServiceDiscoveryBpm](src/Shared/ServiceDiscoveryBpm/README.md)

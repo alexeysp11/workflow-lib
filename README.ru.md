@@ -13,10 +13,10 @@
 
 ## Библиотека
 
-- [AuthenticationService](src/AuthenticationService/README.ru.md)
-- [CodeExtensions](src/CodeExtensions/README.ru.md)
-- [Communication](src/Communication/README.ru.md)
-- [Models](src/Models/README.ru.md)
-- [Models.Business](src/Models.Business/README.ru.md)
-- [Office](src/Office/README.ru.md)
-- [ServiceDiscoveryBpm](src/ServiceDiscoveryBpm/README.ru.md)
+- [AuthenticationService](src/Shared/AuthenticationService/README.ru.md)
+- [CodeExtensions](src/Shared/CodeExtensions/README.ru.md)
+- [Communication](src/Shared/Communication/README.ru.md)
+- [Models](src/Shared/Models/README.ru.md)
+- [Models.Business](src/Shared/Models.Business/README.ru.md)
+- [Office](src/Shared/Office/README.ru.md)
+- [ServiceDiscoveryBpm](src/Shared/ServiceDiscoveryBpm/README.ru.md)
