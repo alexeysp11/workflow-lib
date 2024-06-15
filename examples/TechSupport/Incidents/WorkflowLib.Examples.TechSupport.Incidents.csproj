@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WorkflowLib.Examples.TechSupport.Customers\WorkflowLib.Examples.TechSupport.Customers.csproj" />
+    <ProjectReference Include="..\Customers\WorkflowLib.Examples.TechSupport.Customers.csproj" />
   </ItemGroup>
 
 </Project>
