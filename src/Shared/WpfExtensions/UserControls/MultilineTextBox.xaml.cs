@@ -1,7 +1,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace WorkflowLib.WpfExtensions.UserControls
+namespace WorkflowLib.Shared.WpfExtensions.UserControls
 {
     /// <summary>
     /// Interaction logic for MultilineTextBox.xaml
