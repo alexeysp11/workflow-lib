@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../Models/WorkflowLib.Models.csproj" />
+    <ProjectReference Include="../Models/WorkflowLib.Shared.Models.csproj" />
   </ItemGroup>
 
 </Project>

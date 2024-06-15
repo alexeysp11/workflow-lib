@@ -7,7 +7,7 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using WorkflowLib.Models.Network;
+using WorkflowLib.Shared.Models.Network;
 
 namespace WorkflowLib.NetworkAPIs
 {
