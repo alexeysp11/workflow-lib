@@ -2,7 +2,7 @@ using System.Collections;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace WorkflowLib.Wpf.UserControls
+namespace WorkflowLib.WpfExtensions.UserControls
 {
     /// <summary>
     /// Interaction logic for DbGrid.xaml

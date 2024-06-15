@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>WorkflowLib.Wpf</RootNamespace>
+    <RootNamespace>WorkflowLib.WpfExtensions</RootNamespace>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
