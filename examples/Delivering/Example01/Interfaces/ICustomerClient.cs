@@ -1,5 +1,5 @@
-using WorkflowLib.Models.Business.Monetary;
-using WorkflowLib.Models.Business.BusinessDocuments;
+using WorkflowLib.Shared.Models.Business.Monetary;
+using WorkflowLib.Shared.Models.Business.BusinessDocuments;
 
 namespace WorkflowLib.Examples.Delivering.Example01.Interfaces
 {

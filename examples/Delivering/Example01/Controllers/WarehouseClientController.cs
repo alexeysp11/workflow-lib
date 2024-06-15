@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Models.Business.BusinessDocuments;
-using WorkflowLib.Models.Business.Delivery;
-using WorkflowLib.Models.Network;
+using WorkflowLib.Shared.Models.Business.BusinessDocuments;
+using WorkflowLib.Shared.Models.Business.Delivery;
+using WorkflowLib.Shared.Models.Network;
 using WorkflowLib.Examples.Delivering.Example01.Contexts;
 using WorkflowLib.Examples.Delivering.Example01.Interfaces;
 

@@ -1,11 +1,11 @@
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Extensions;
-using WorkflowLib.Models.Business.BusinessDocuments;
-using WorkflowLib.Models.Business.Cooking;
-using WorkflowLib.Models.Business.Customers;
-using WorkflowLib.Models.Network;
-using WorkflowLib.Models.Business.Processes;
+using WorkflowLib.Shared.Models.Business.BusinessDocuments;
+using WorkflowLib.Shared.Models.Business.Cooking;
+using WorkflowLib.Shared.Models.Business.Customers;
+using WorkflowLib.Shared.Models.Network;
+using WorkflowLib.Shared.Models.Business.Processes;
 using WorkflowLib.Examples.Delivering.Example01.Contexts;
 
 namespace WorkflowLib.Examples.Delivering.Example01.Controllers

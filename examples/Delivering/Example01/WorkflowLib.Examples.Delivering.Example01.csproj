@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\Shared\CodeExtensions\WorkflowLib.Shared.CodeExtensions.csproj" />
-    <ProjectReference Include="..\..\..\src\Models.Business\WorkflowLib.Models.Business.csproj" />
+    <ProjectReference Include="..\..\..\src\Shared\Models.Business\WorkflowLib.Shared.Models.Business.csproj" />
   </ItemGroup>
 
   <ItemGroup>

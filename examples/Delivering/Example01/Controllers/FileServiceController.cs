@@ -1,5 +1,5 @@
-using WorkflowLib.Models.Business.BusinessDocuments;
-using WorkflowLib.Models.Network;
+using WorkflowLib.Shared.Models.Business.BusinessDocuments;
+using WorkflowLib.Shared.Models.Network;
 
 namespace WorkflowLib.Examples.Delivering.Example01.Controllers
 {

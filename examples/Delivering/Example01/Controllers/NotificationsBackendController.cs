@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Models.Business.BusinessDocuments;
-using WorkflowLib.Models.Business.Customers;
+using WorkflowLib.Shared.Models.Business.BusinessDocuments;
+using WorkflowLib.Shared.Models.Business.Customers;
 using WorkflowLib.Examples.Delivering.Example01.Contexts;
 using WorkflowLib.Examples.Delivering.Example01.Interfaces;
 
