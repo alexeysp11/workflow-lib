@@ -11,7 +11,7 @@ Who can use this library:
 - Developers working on applications that require the functionalities provided by the library could use this application. 
 - Companies in industries such as logistics, finance, and document management could potentially benefit from using applications that incorporate this library.
 
-## Projects inside the library
+## Library
 
 - [AuthenticationService](src/AuthenticationService/README.md)
 - [CodeExtensions](src/CodeExtensions/README.md)
