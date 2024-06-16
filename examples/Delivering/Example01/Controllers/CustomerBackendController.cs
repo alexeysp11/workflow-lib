@@ -2,12 +2,12 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using WorkflowLib.Extensions;
-using WorkflowLib.Models.Business;
-using WorkflowLib.Models.Business.BusinessDocuments;
-using WorkflowLib.Models.Business.Customers;
-using WorkflowLib.Models.Business.Monetary;
-using WorkflowLib.Models.Business.Products;
-using WorkflowLib.Models.Network;
+using WorkflowLib.Shared.Models.Business;
+using WorkflowLib.Shared.Models.Business.BusinessDocuments;
+using WorkflowLib.Shared.Models.Business.Customers;
+using WorkflowLib.Shared.Models.Business.Monetary;
+using WorkflowLib.Shared.Models.Business.Products;
+using WorkflowLib.Shared.Models.Network;
 using WorkflowLib.Examples.Delivering.Example01.Contexts;
 using WorkflowLib.Examples.Delivering.Example01.Interfaces;
 

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Reflection;
 using System.Data; 
 using Xunit;
-using WorkflowLib.Office.DocFormats.TextBased; 
-using WorkflowLib.Models.Documents; 
-using WorkflowLib.Models.Documents.Enums; 
+using WorkflowLib.Shared.Office.DocFormats.TextBased; 
+using WorkflowLib.Shared.Models.Documents; 
+using WorkflowLib.Shared.Models.Documents.Enums; 
 
-namespace Cims.Tests.WorkflowLib.Office.DocFormats.TextBased
+namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats.TextBased
 {
     public class TxtConverterTest
     {

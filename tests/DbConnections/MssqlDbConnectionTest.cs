@@ -1,9 +1,9 @@
 using System;
 using System.Data; 
 using Xunit;
-using WorkflowLib.DbConnections; 
+using WorkflowLib.Shared.DbConnections; 
 
-namespace Cims.Tests.WorkflowLib.DbConnections
+namespace Cims.Tests.WorkflowLib.Shared.DbConnections
 {
     public class MssqlDbConnectionTest 
     {

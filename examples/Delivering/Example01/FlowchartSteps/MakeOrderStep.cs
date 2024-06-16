@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using WorkflowLib.Extensions;
-using WorkflowLib.Models.Business.BusinessDocuments;
-using WorkflowLib.Models.Business.Monetary;
-using WorkflowLib.Models.Network;
+using WorkflowLib.Shared.Models.Business.BusinessDocuments;
+using WorkflowLib.Shared.Models.Business.Monetary;
+using WorkflowLib.Shared.Models.Network;
 using WorkflowLib.Examples.Delivering.Example01.Contexts;
 using WorkflowLib.Examples.Delivering.Example01.Controllers;
 

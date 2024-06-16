@@ -12,7 +12,7 @@
 // - esb reader
 
 using System.Linq;
-using WorkflowLib.Models.Network.MicroserviceConfigurations;
+using WorkflowLib.Shared.Models.Network.MicroserviceConfigurations;
 
 var endpoints = new List<Endpoint>();
 var serviceNames = new List<string>
