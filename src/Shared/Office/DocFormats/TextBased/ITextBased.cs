@@ -1,4 +1,5 @@
-using System.IO; 
+using System.IO;
+using System.Collections.Generic;
 using WorkflowLib.Shared.Models.Documents; 
 
 namespace WorkflowLib.Shared.Office.DocFormats.TextBased
@@ -11,26 +12,6 @@ namespace WorkflowLib.Shared.Office.DocFormats.TextBased
         /// <summary>
         /// Method for converting a list of TextDocElement into text-based document.
         /// </summary>
-        void TextDocElementsToDocument(string foldername, string filename, System.Collections.Generic.List<TextDocElement> elements); 
-
-        /// <summary>
-        /// Convert WordprocessingML to list of TextDocElement 
-        /// </summary>
-        System.Collections.Generic.List<TextDocElement> ConvertFileToTde(string foldername, string filename); 
-        
-        /// <summary>
-        /// Convert WordprocessingML to list of TextDocElement 
-        /// </summary>
-        System.Collections.Generic.List<TextDocElement> ConvertFileToTde(string filepath);
-        
-        /// <summary>
-        /// Convert WordprocessingML to list of TextDocElement 
-        /// </summary>
-        System.Collections.Generic.List<TextDocElement> ConvertFileToTde(FileInfo file);
-        
-        /// <summary>
-        /// Convert WordprocessingML to list of TextDocElement 
-        /// </summary>
-        System.Collections.Generic.List<TextDocElement> ConvertStringToTde(string xmlContent);
+        void TextDocElementsToDocument(string foldername, string filename, List<TextDocElement> elements);
     }
 }

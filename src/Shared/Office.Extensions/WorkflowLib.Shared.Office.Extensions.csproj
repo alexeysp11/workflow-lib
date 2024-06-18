@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp3.1;net6.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../../../Open-Xml-PowerTools/OpenXmlPowerTools/OpenXmlPowerTools.csproj" />
+    <ProjectReference Include="../Office/WorkflowLib.Shared.Office.csproj" />
+    <ProjectReference Include="../Models/WorkflowLib.Shared.Models.csproj" />
+  </ItemGroup>
+
+</Project>

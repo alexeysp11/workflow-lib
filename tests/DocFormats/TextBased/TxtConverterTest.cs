@@ -1,12 +1,13 @@
 using System;
+using System.Collections.Generic;
+using System.Data;
 using System.IO;
-using System.Linq; 
+using System.Linq;
 using System.Reflection;
-using System.Data; 
 using Xunit;
-using WorkflowLib.Shared.Office.DocFormats.TextBased; 
-using WorkflowLib.Shared.Models.Documents; 
-using WorkflowLib.Shared.Models.Documents.Enums; 
+using WorkflowLib.Shared.Office.DocFormats.TextBased;
+using WorkflowLib.Shared.Models.Documents;
+using WorkflowLib.Shared.Models.Documents.Enums;
 
 namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats.TextBased
 {
@@ -20,7 +21,7 @@ namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats.TextBased
             // Arrange
             string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".txt"; 
             string filepath = Path.Combine(FolderName, filename); 
-            var elements = new System.Collections.Generic.List<TextDocElement>()
+            var elements = new List<TextDocElement>()
             {
                 new TextDocElement() 
                 {
@@ -66,7 +67,7 @@ namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats.TextBased
             string copyFilename = filename.Replace(".txt", "_copy.txt"); 
             string filepath = Path.Combine(FolderName, filename); 
             string copyFilePath = Path.Combine(FolderName, copyFilename); 
-            var elements = new System.Collections.Generic.List<TextDocElement>()
+            var elements = new List<TextDocElement>()
             {
                 new TextDocElement() 
                 {
@@ -94,7 +95,7 @@ namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats.TextBased
                 }
             }; 
 
-            ITextBased converter = new TxtConverter(); 
+            var converter = new TxtConverter(); 
             CreateFolderIfNotExists(FolderName); 
 
             // Act
