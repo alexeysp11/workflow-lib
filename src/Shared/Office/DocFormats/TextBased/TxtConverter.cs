@@ -1,5 +1,6 @@
 using System.IO; 
 using System.Linq; 
+using System.Collections.Generic;
 using WorkflowLib.Shared.Models.Documents; 
 
 namespace WorkflowLib.Shared.Office.DocFormats.TextBased
@@ -12,7 +13,7 @@ namespace WorkflowLib.Shared.Office.DocFormats.TextBased
         /// <summary>
         /// Method for converting a list of TextDocElement into TXT document.
         /// </summary>
-        public void TextDocElementsToDocument(string foldername, string filename, System.Collections.Generic.List<TextDocElement> elements)
+        public void TextDocElementsToDocument(string foldername, string filename, List<TextDocElement> elements)
         {
             if (!Directory.Exists(foldername)) throw new System.Exception("Folder name does not exist"); 
             if (string.IsNullOrEmpty(filename)) throw new System.Exception("File name could not be null or empty"); 
@@ -48,7 +49,7 @@ namespace WorkflowLib.Shared.Office.DocFormats.TextBased
         /// <summary>
         /// Convert to list of TextDocElement 
         /// </summary>
-        public System.Collections.Generic.List<TextDocElement> ConvertFileToTde(string foldername, string filename)
+        public List<TextDocElement> ConvertFileToTde(string foldername, string filename)
         {
             if (!Directory.Exists(foldername)) throw new System.Exception("Folder does not exist"); 
             if (string.IsNullOrEmpty(filename)) throw new System.Exception("File name could not be null or empty"); 
@@ -59,7 +60,7 @@ namespace WorkflowLib.Shared.Office.DocFormats.TextBased
         /// <summary>
         /// Convert to list of TextDocElement 
         /// </summary>
-        public System.Collections.Generic.List<TextDocElement> ConvertFileToTde(string filepath)
+        public List<TextDocElement> ConvertFileToTde(string filepath)
         {
             if (string.IsNullOrEmpty(filepath)) throw new System.Exception("File name could not be null or empty"); 
             if (!File.Exists(filepath)) throw new System.Exception("File does not exist"); 
@@ -70,7 +71,7 @@ namespace WorkflowLib.Shared.Office.DocFormats.TextBased
         /// <summary>
         /// Convert to list of TextDocElement 
         /// </summary>
-        public System.Collections.Generic.List<TextDocElement> ConvertFileToTde(FileInfo file)
+        public List<TextDocElement> ConvertFileToTde(FileInfo file)
         {
             string content = System.IO.File.ReadAllText(file.FullName); 
             if (string.IsNullOrEmpty(content)) throw new System.Exception("File content could not be empty"); 
@@ -81,11 +82,11 @@ namespace WorkflowLib.Shared.Office.DocFormats.TextBased
         /// <summary>
         /// Convert to list of TextDocElement 
         /// </summary>
-        public System.Collections.Generic.List<TextDocElement> ConvertStringToTde(string xmlContent)
+        public List<TextDocElement> ConvertStringToTde(string xmlContent)
         {
             if (string.IsNullOrEmpty(xmlContent)) throw new System.Exception("XML content could not be empty"); 
 
-            var elements = new System.Collections.Generic.List<TextDocElement>(); 
+            var elements = new List<TextDocElement>(); 
             string line = string.Empty; 
             StringReader reader = new StringReader(xmlContent);
             while ((line = reader.ReadLine()) != null)
@@ -97,7 +98,7 @@ namespace WorkflowLib.Shared.Office.DocFormats.TextBased
         }
         #endregion  // Convert to list of TextDocElement 
         
-        private void CheckCorrectness(string filepath, System.Collections.Generic.List<TextDocElement> elements)
+        private void CheckCorrectness(string filepath, List<TextDocElement> elements)
         {
             if (string.IsNullOrEmpty(filepath)) throw new System.Exception("File path could not be null or empty"); 
 
