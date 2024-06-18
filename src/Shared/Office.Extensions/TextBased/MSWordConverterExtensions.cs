@@ -1,6 +1,8 @@
 ﻿using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using OpenXmlPowerTools;
+using System.IO;
+using System.Linq;
 using System.Xml.Linq;
 using WorkflowLib.Shared.Office.DocFormats.TextBased;
 
