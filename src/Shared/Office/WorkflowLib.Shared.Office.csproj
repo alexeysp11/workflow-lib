@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../../../Open-Xml-PowerTools/OpenXmlPowerTools/OpenXmlPowerTools.csproj" />
     <ProjectReference Include="../Models/WorkflowLib.Shared.Models.csproj" />
   </ItemGroup>
 
