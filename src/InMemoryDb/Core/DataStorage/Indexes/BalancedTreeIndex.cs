@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using WorkflowLib.InMemoryDatabase.DataStorage.Primitives;
+using WorkflowLib.InMemoryDb.Core.DataStorage.Primitives;
 
-namespace WorkflowLib.InMemoryDatabase.DataStorage.Indexes;
+namespace WorkflowLib.InMemoryDb.Core.DataStorage.Indexes;
 
 /// <summary>
 /// The BalancedTreeIndex class, which implements a B-tree index.

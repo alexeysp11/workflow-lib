@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace WorkflowLib.InMemoryDatabase.DataStorage.DialectConversions;
+namespace WorkflowLib.InMemoryDb.Core.DataStorage.DialectConversions;
 
 /// <summary>
 /// 

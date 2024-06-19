@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace WorkflowLib.InMemoryDatabase.DataStorage.Queries;
+namespace WorkflowLib.InMemoryDb.Core.DataStorage.Queries;
 
 /// <summary>
 /// 

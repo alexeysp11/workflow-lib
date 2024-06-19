@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace WorkflowLib.InMemoryDatabase.DataStorage.Indexes;
+namespace WorkflowLib.InMemoryDb.Core.DataStorage.Indexes;
 
 /// <summary>
 /// The HashIndex class, which implements a hash index.
