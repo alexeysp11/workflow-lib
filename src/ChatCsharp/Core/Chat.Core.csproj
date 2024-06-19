@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../workflow-lib/src/WorkflowLib.csproj" />
+    <ProjectReference Include="../../workflow-auth/authbl/WokflowLib.Authentication.AuthBL.csproj" />
+  </ItemGroup>
+
+</Project>
