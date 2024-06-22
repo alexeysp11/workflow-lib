@@ -1,4 +1,4 @@
-# ChatCsharp 
+# Convo 
 
 [English](README.md) | [Русский](README.ru.md)
 
@@ -8,7 +8,7 @@ It consists of two projects: a client-side app written using **WPF** and **MVVM*
 
 ## Description 
 
-The project description is presented at [this link](../../docs/src/ChatCsharp/Description.md).
+The project description is presented at [this link](../../docs/src/Convo/Description.md).
 
 ### Goals 
 
@@ -60,7 +60,7 @@ In order to get the application, run the following command in the CMD:
 ```
 git clone https://github.com/alexeysp11/workflow-auth.git
 git clone https://github.com/alexeysp11/workflow-lib.git
-git clone https://github.com/alexeysp11/ChatCsharp.git
+git clone https://github.com/alexeysp11/Convo.git
 ```
 
 ## Code snippets 

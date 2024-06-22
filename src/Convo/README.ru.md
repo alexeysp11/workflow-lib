@@ -1,4 +1,4 @@
-# ChatCsharp 
+# Convo 
 
 [English](README.md) | [Русский](README.ru.md)
 
@@ -8,7 +8,7 @@
 
 ## Описание
 
-Описание проекта представлено по [этой ссылке](../../docs/src/ChatCsharp/Description.ru.md).
+Описание проекта представлено по [этой ссылке](../../docs/src/Convo/Description.ru.md).
 
 ### Цели
 
@@ -60,7 +60,7 @@
 ```
 git clone https://github.com/alexeysp11/workflow-auth.git
 git clone https://github.com/alexeysp11/workflow-lib.git
-git clone https://github.com/alexeysp11/ChatCsharp.git
+git clone https://github.com/alexeysp11/Convo.git
 ```
 
 ## Фрагменты кода
