@@ -67,9 +67,9 @@ cd your-project
 
 ### Использование в качестве библиотеки 
 
-Проект [ChatCsharp](https://github.com/alexeysp11/ChatCsharp) использует данный сервис аутентификации в качестве библиотеки: 
+Проект [Convo](../../Convo) использует данный сервис аутентификации в качестве библиотеки: 
 
-![AuthService](https://github.com/alexeysp11/ChatCsharp/raw/main/Docs/img/AuthService.png)
+![AuthService](../../../docs/img/Convo/AuthService.png)
 
 ## Как можно улучшить данный проект
 

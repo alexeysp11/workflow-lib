@@ -68,9 +68,9 @@ As an example of an external system that uses this authentication service, you c
 
 ### Using as a library 
 
-The [ChatCsharp](https://github.com/alexeysp11/ChatCsharp) project uses this authentication service as a library:
+The [Convo](../../Convo) project uses this authentication service as a library:
 
-![AuthService](https://github.com/alexeysp11/ChatCsharp/raw/main/Docs/img/AuthService.png)
+![AuthService](../../../docs/img/Convo/AuthService.png)
 
 ## How to improve this project 
 
