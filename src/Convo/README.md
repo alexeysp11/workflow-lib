@@ -8,7 +8,7 @@ It consists of two projects: a client-side app written using **WPF** and **MVVM*
 
 ## Description 
 
-The project description is presented at [this link](../../docs/src/Convo/Description.md).
+The project description is presented at [this link](../../docs/Convo/Description.md).
 
 ### Goals 
 
