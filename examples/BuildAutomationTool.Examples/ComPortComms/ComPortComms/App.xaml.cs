@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace FirstWpfApp
+namespace ComPortComms
 {
     /// <summary>
     /// Логика взаимодействия для App.xaml

@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FirstWpfApp
+namespace ComPortComms
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
