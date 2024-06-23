@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-//using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +16,7 @@ using System.Windows.Shapes;
 namespace ComPortComms
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -68,16 +67,24 @@ namespace ComPortComms
             int CRC = 0xFFFF;
             for (int p = 0; p < newMsg.Length; p++)
             {
-                CRC ^= (int)newMsg[p];          // XOR byte into least sig. byte of crc
-                for (int i = 8; i != 0; i--)      // Loop over each bit
+                // XOR byte into least sig. byte of crc.
+                CRC ^= (int)newMsg[p];
+                
+                // Loop over each bit.
+                for (int i = 8; i != 0; i--)
                 {
-                    if ((CRC & 0x0001) != 0)        // If the LSB is set
+                    // Check if the LSB is set.
+                    if ((CRC & 0x0001) != 0)
                     {
-                        CRC >>= 1;                    // Shift right and XOR 0xA001
+                        // Shift right and XOR 0xA001
+                        CRC >>= 1;
                         CRC ^= 0xA001;
                     }
-                    else                            // Else LSB is not set
-                        CRC >>= 1;                    // Just shift right
+                    else            
+                    {
+                        // Just shift right.
+                        CRC >>= 1; 
+                    }
                 }
             }
             byte[] crc = new byte[2];
@@ -150,7 +157,6 @@ namespace ComPortComms
             }
             tbCmd.Text = txt2;
             tbCmd.CaretIndex = tbCmd.Text.Length;
-            //MessageBox.Show(e.Key.ToString());
             
         }
 

@@ -53,7 +53,7 @@ namespace ComPortComms
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка: " + ex.Message);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 
@@ -63,20 +63,20 @@ namespace ComPortComms
             try
             {
                 comPort.Open();
-                DisplayData(Brushes.Black, "Порт " + comPort.PortName + " открыт " + DateTime.Now);
+                DisplayData(Brushes.Black, "Port " + comPort.PortName + " is open " + DateTime.Now);
                 return true;
             }
             catch (UnauthorizedAccessException p)
             {
                 comPort.Close();
-                DisplayData(Brushes.Black, "Порт " + comPort.PortName + " закрыт " + DateTime.Now);
+                DisplayData(Brushes.Black, "Port " + comPort.PortName + " is closed " + DateTime.Now);
                 comPort.Open();
-                DisplayData(Brushes.Black, "Порт " + comPort.PortName + " открыт " + DateTime.Now);
+                DisplayData(Brushes.Black, "Port " + comPort.PortName + " is open " + DateTime.Now);
                 return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка: " + ex.Message + "\n" + ex.GetType().ToString());
+                MessageBox.Show("Error: " + ex.Message + "\n" + ex.GetType().ToString());
                 return false;
             }
         }
@@ -86,7 +86,7 @@ namespace ComPortComms
             try
             {
                 comPort.Close();
-                DisplayData(Brushes.Black, "Порт " + comPort.PortName + " закрыт " + DateTime.Now);
+                DisplayData(Brushes.Black, "Port " + comPort.PortName + " is closed " + DateTime.Now);
                 return true;
             }
             catch
@@ -112,7 +112,7 @@ namespace ComPortComms
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Ошибка: " + ex.Message);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 
@@ -145,6 +145,5 @@ namespace ComPortComms
                     PadRight(3, ' '));
             return builder.ToString().ToUpper();
         }
-
     }
 }

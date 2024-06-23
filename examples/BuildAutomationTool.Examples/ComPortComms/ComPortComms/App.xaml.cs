@@ -9,7 +9,7 @@ using System.Windows;
 namespace ComPortComms
 {
     /// <summary>
-    /// Логика взаимодействия для App.xaml
+    /// Logic for App.xaml
     /// </summary>
     public partial class App : Application
     {
