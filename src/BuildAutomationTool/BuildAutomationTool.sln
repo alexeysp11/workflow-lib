@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildAutomationTool", "BuildAutomationTool\BuildAutomationTool.csproj", "{F4547570-F18A-48FC-A549-E74C74CDDDA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildAutomationTool.Common", "BuildAutomationTool.Common\BuildAutomationTool.Common.csproj", "{B7C4C31F-1FC7-435C-9C0D-31D48B56DF01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildAutomationTool.NetFramework", "BuildAutomationTool.NetFramework\BuildAutomationTool.NetFramework.csproj", "{AB1FB1A2-0034-4B17-97EA-8DC237B12DF4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F4547570-F18A-48FC-A549-E74C74CDDDA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4547570-F18A-48FC-A549-E74C74CDDDA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4547570-F18A-48FC-A549-E74C74CDDDA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4547570-F18A-48FC-A549-E74C74CDDDA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7C4C31F-1FC7-435C-9C0D-31D48B56DF01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7C4C31F-1FC7-435C-9C0D-31D48B56DF01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7C4C31F-1FC7-435C-9C0D-31D48B56DF01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7C4C31F-1FC7-435C-9C0D-31D48B56DF01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB1FB1A2-0034-4B17-97EA-8DC237B12DF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB1FB1A2-0034-4B17-97EA-8DC237B12DF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB1FB1A2-0034-4B17-97EA-8DC237B12DF4}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB1FB1A2-0034-4B17-97EA-8DC237B12DF4}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+EndGlobal
