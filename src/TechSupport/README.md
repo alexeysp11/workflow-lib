@@ -1,4 +1,4 @@
-# WorkflowLib.Examples.TechSupport
+# TechSupport
 
 [English](README.md) | [Русский](README.ru.md)
 
