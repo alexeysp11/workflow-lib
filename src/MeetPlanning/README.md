@@ -15,15 +15,3 @@
 ### Getting started 
 
 You need to download SQLite.
-
-### Starting using command line 
-
-In order to run **server** using command line, write the following command: 
-```
-runserver.cmd 
-```
-
-In order to run **WPF version** using command line, write the following command: 
-```
-runwpf.cmd 
-```
