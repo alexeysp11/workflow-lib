@@ -1,0 +1,34 @@
+<UserControl x:Class="WorkflowLib.Examples.HcsBudget.UserControls.DataOut"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WorkflowLib.Examples.HcsBudget"
+        xmlns:uc="clr-namespace:WorkflowLib.Examples.HcsBudget.UserControls">
+    <Grid Background="Gray">
+        <ScrollViewer ScrollViewer.CanContentScroll="True" 
+                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                ScrollViewer.HorizontalScrollBarVisibility="Auto">
+            <DataGrid Name="dgrHCS" 
+                    Background="Transparent"
+                    IsReadOnly="True"
+                    AutoGenerateColumns="False"
+                    HorizontalAlignment="Left"
+                    ItemsSource="{Binding HcsDataTable}"
+                    SelectionChanged="DataGrid_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Service" Width="100"
+                            Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Quantity" Width="75"
+                            Binding="{Binding Qty}" />
+                    <DataGridTextColumn Header="Price" Width="75"
+                            Binding="{Binding PriceUsd}" />
+                    <DataGridTextColumn Header="Participants" Width="125"
+                            Binding="{Binding ParticipantName}" />
+                    <DataGridTextColumn Header="Avg. price" Width="100"
+                            Binding="{Binding AvgPrice}" />
+                    <DataGridTextColumn Header="Total price" Width="100"
+                            Binding="{Binding TotalPrice}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
