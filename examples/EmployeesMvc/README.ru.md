@@ -39,10 +39,8 @@
 
 Сотрудники: 
 
-![employees_nofilter](docs/img/employees_nofilter.png)
+![employees_nofilter](../../docs/img/examples/EmployeesMvc/employees_nofilter.png)
 
 Отпуска:
 
-![vacations_nofilter](docs/img/vacations_nofilter.png)
-
-Примеры использования фильтров представлены [здесь](docs/examples.ru.md). 
+![vacations_nofilter](../../docs/img/examples/EmployeesMvc/vacations_nofilter.png)

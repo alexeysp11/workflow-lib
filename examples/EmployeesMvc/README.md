@@ -39,10 +39,8 @@ Possible limitations of this project could include the complexity of implementin
 
 Employees: 
 
-![employees_nofilter](docs/img/employees_nofilter.png)
+![employees_nofilter](../../docs/img/examples/EmployeesMvc/employees_nofilter.png)
 
 Vacations: 
 
-![vacations_nofilter](docs/img/vacations_nofilter.png)
-
-[Click here](docs/examples.md) to find some examples of how to use the filters. 
+![vacations_nofilter](../../docs/img/examples/EmployeesMvc/vacations_nofilter.png)
