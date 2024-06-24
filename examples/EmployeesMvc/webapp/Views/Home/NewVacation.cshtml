@@ -1,0 +1,33 @@
+@{
+    ViewData["Title"] = "New Vacation Page";
+    var jobTitles = System.Enum.GetValues(typeof(WorkflowLib.Examples.EmployeesMvc.Models.JobTitle)); 
+    var departments = System.Enum.GetValues(typeof(WorkflowLib.Examples.EmployeesMvc.Models.Department)); 
+}
+
+<div class="text-center">
+    <h1 class="display-4">New vacation</h1>
+
+    <form method="post" asp-controller="Home" asp-action="AddNewVaction" role="post"> 
+        <label>FIO: </label>
+        <input type="text" placeholder="Enter FIO" name="fio">
+        <label>Begin date: </label>
+        <input type="date" name="beginDate">
+        <label>End date: </label>
+        <input type="date" name="endDate">
+        <input type="submit" value="Add new vacation" class="btn btn-primary" />
+    </form>
+</div>
+
+<div>
+    Note: 
+    <ul>
+        <li>
+            Make sure that the employee with the specified FIO exists in the initial dataset (see, 
+            <a class="text-dark" asp-area="" asp-controller="Home" asp-action="Employees">Employees page</a>).
+            If such user does not exist, contact admins to add the employee.
+        </li>
+        <li>
+            Employee's FIO should be exactly the same as specified in the initial dataset.
+        </li>
+    <ul>
+</div>
