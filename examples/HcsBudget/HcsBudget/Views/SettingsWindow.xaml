@@ -1,0 +1,81 @@
+<Window x:Class="WorkflowLib.Examples.HcsBudget.Views.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WorkflowLib.Examples.HcsBudget"
+        xmlns:uc="clr-namespace:WorkflowLib.Examples.HcsBudget.UserControls"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="WorkflowLib.Examples.HcsBudget (for Windows): Settings" 
+        MaxHeight="415" MaxWidth="400" MinHeight="415" MinWidth="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="135" />
+            <RowDefinition Height="175" />
+            <RowDefinition Height="35" />
+        </Grid.RowDefinitions>
+
+        <Label Content="SETTINGS" HorizontalAlignment="Center" Grid.Row="0" />
+        
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center"
+                VerticalAlignment="Top" Margin="5,5,5,5" Grid.Row="1">
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <Label Content="User:" Width="100" />
+                <ComboBox Name="cbUser" Width="150" SelectedIndex="1"
+                        DropDownClosed="cbUser_DropDownClosed">
+                    <ComboBoxItem Name="cbiAdmin">Administrator</ComboBoxItem>
+                    <ComboBoxItem Name="cbiGuest">Guest</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <Label Content="Language:" Width="100" />
+                <ComboBox Name="cbLanguage" Width="150" SelectedIndex="0">
+                    <ComboBoxItem Name="cbiEng">English</ComboBoxItem>
+                    <ComboBoxItem Name="cbiGer">German</ComboBoxItem>
+                    <ComboBoxItem Name="cbiRus">Russian</ComboBoxItem>
+                    <ComboBoxItem Name="cbiEsp">Spanish</ComboBoxItem>
+                    <ComboBoxItem Name="cbiPor">Portugues</ComboBoxItem>
+                    <ComboBoxItem Name="cbiFra">French</ComboBoxItem>
+                    <ComboBoxItem Name="cbiIta">Italian</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <Label Content="Currency:" Width="100" />
+                <ComboBox Name="cbCurrency" Width="150" SelectedIndex="0">
+                    <ComboBoxItem Name="cbiUsd">USD</ComboBoxItem>
+                    <ComboBoxItem Name="cbiEur">EUR</ComboBoxItem>
+                    <ComboBoxItem Name="cbiGbp">GBP</ComboBoxItem>
+                    <ComboBoxItem Name="cbiRub">RUB</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <Label Content="Database:" Width="100" />
+                <ComboBox Name="cbDatabase" Width="150" SelectedIndex="0">
+                    <ComboBoxItem Name="cbiApp">Application</ComboBoxItem>
+                    <ComboBoxItem Name="cbiTest">Test</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
+
+        <uc:Participants x:Name="Participants" HorizontalAlignment="Center" Grid.Row="2" />
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"
+                Margin="5,5,5,5" Grid.Row="3">
+            <Button Name="DefaultBtn" Content="Default" Width="95" Height="25"
+                    Click="DefaultBtn_Clicked" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                Margin="5,5,5,5" Grid.Row="3">
+            <Button Name="SaveBtn" Content="Save" Width="95" Height="25"
+                    Click="SaveBtn_Clicked" />
+            <Button Name="CancelBtn" Content="Cancel" Width="95" Height="25" 
+                    Margin="5,0,0,0" Click="CancelBtn_Clicked" />
+        </StackPanel>
+    </Grid>
+</Window>
