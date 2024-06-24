@@ -1,6 +1,6 @@
 # MeetPlanning 
 
-`MeetPlanning` is an open-source application for managing your meetings. 
+`MeetPlanning` is an application for managing your meetings. 
 
 ## Common info 
 
