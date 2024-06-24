@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <AssemblyName>FuzzyModules.Api</AssemblyName>
+    <AssemblyName>WorkflowLib.Shared.FuzzyModules.API</AssemblyName>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 

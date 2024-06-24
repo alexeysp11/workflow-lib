@@ -1,4 +1,4 @@
-﻿namespace FuzzyModules.Examples
+﻿namespace WorkflowLib.Shared.FuzzyModules.Examples
 {
     public class Program
     {

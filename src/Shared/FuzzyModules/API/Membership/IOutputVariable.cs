@@ -1,4 +1,4 @@
-namespace FuzzyModules.Api.Membership
+namespace WorkflowLib.Shared.FuzzyModules.API.Membership
 {
     public interface IOutputVariable 
     {

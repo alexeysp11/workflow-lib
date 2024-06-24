@@ -1,9 +1,9 @@
 using System;
 using Xunit;
-using FuzzyModules.Api; 
-using FuzzyModules.Api.Membership; 
+using WorkflowLib.Shared.FuzzyModules.API; 
+using WorkflowLib.Shared.FuzzyModules.API.Membership; 
 
-namespace Tests.FuzzyModules.Api.Membership 
+namespace Tests.WorkflowLib.Shared.FuzzyModules.API.Membership 
 {
     public class TriangularTest
     {

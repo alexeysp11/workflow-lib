@@ -2,12 +2,12 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <AssemblyName>FuzzyModules.Examples</AssemblyName>
+    <AssemblyName>WorkflowLib.Shared.FuzzyModules.Examples</AssemblyName>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\API\WorkflowLib.FuzzyModules.API.csproj" />
+    <ProjectReference Include="..\API\WorkflowLib.Shared.FuzzyModules.API.csproj" />
   </ItemGroup>
 
 </Project>

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.FuzzyModules.API", "API\WorkflowLib.FuzzyModules.API.csproj", "{11B66CC8-6803-4A25-BD0F-4EA864F9EB12}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Shared.FuzzyModules.API", "API\WorkflowLib.Shared.FuzzyModules.API.csproj", "{11B66CC8-6803-4A25-BD0F-4EA864F9EB12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.FuzzyModules.Examples", "Examples\WorkflowLib.FuzzyModules.Examples.csproj", "{49ADC223-0CE2-4DF4-899E-83344FE860DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Shared.FuzzyModules.Examples", "Examples\WorkflowLib.Shared.FuzzyModules.Examples.csproj", "{49ADC223-0CE2-4DF4-899E-83344FE860DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.FuzzyModules.API.Tests", "API.Tests\WorkflowLib.FuzzyModules.API.Tests.csproj", "{C5473041-0AD3-4B09-B24B-8008F204A26B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Shared.FuzzyModules.API.Tests", "API.Tests\WorkflowLib.Shared.FuzzyModules.API.Tests.csproj", "{C5473041-0AD3-4B09-B24B-8008F204A26B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

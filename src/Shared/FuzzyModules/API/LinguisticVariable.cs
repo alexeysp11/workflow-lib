@@ -1,6 +1,6 @@
-using FuzzyModules.Api.Membership; 
+using WorkflowLib.Shared.FuzzyModules.API.Membership; 
 
-namespace FuzzyModules.Api
+namespace WorkflowLib.Shared.FuzzyModules.API
 {
     public class LinguisticVariable
     {
