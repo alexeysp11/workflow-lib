@@ -1,0 +1,193 @@
+@page
+@model RevenueModel
+@{
+    ViewData["Title"] = "Revenue";
+}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css" />
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<div class="text-center"> 
+    <h1>Revenue</h1> 
+</div>
+
+<h2>Personal summary</h2>
+@try
+{
+    var employeeStats = Repository.Instance.GetPersonalRevenue(); 
+    <table id="personal_revenue_table" class="stripe row-border order-column" style="width:80%">
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Employee name</th>
+                <th>Total revenue</th>
+                <th>Weighted revenue</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var employee in employeeStats)
+                {
+                    <tr>
+                        <td>@employee.EmployeeId</td>
+                        <td>@employee.EmployeeName</td>
+                        <td>@employee.TotalRevenue</td>
+                        <td>@employee.WeightedRevenue</td>
+                    </tr>
+                }
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Employee ID</th>
+                <th>Employee name</th>
+                <th>Total revenue</th>
+                <th>Weighted revenue</th>
+            </tr>
+        </tfoot>
+    </table>
+    <hr>
+    <div name="personal_charts" id="personal_charts" style="display: grid; grid-template-columns: 50% 50%;">
+        <div name="personal_revenue_barchart" id="personal_revenue_barchart" style="height:350px;"></div>
+        <div name="personal_revenue_piechart" id="personal_revenue_piechart" style="height:350px;"></div>
+    </div>
+}
+catch (System.Exception)
+{
+    <p>Unable to get information about employees' stats.</p>
+}
+
+<h2>Product summary</h2>
+@try
+{
+    var products = Repository.Instance.GetProductRevenueInfo(); 
+    <table id="product_table" class="stripe row-border order-column" style="width:80%">
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Product title</th>
+                <th>Total revenue</th>
+                <th>Weighted revenue</th>
+                <th>Export quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var product in products)
+                {
+                    <tr>
+                        <td>@product.ProductId</td>
+                        <td>@product.ProductTitle</td>
+                        <td>@product.TotalRevenue</td>
+                        <td>@product.WeightedRevenue</td>
+                        <td>@product.ExportQuantity</td>
+                    </tr>
+                }
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Product ID</th>
+                <th>Product title</th>
+                <th>Total revenue</th>
+                <th>Weighted revenue</th>
+                <th>Export quantity</th>
+            </tr>
+        </tfoot>
+    </table>
+    <hr>
+    <div name="product_charts" id="product_charts" style="display: grid; grid-template-columns: 50% 50%;">
+        <div name="product_barchart" id="product_barchart" style="height:350px;"></div>
+        <div name="product_piechart" id="product_piechart" style="height:350px;"></div>
+    </div>
+}
+catch (System.Exception)
+{
+    <p>Unable to get information about products.</p>
+}
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+    $.noConflict();
+
+    jQuery( document ).ready(function( $ ) {
+        $(document).ready(function() {
+            // Tables. 
+            var personalRevenueTable = $('#personal_revenue_table').DataTable({
+                "columnDefs": [
+                    {
+                        "targets": [ 0 ],
+                        "visible": false,
+                        "searchable": false
+                    }
+                ]
+            });
+            var productTable = $('#product_table').DataTable({
+                "columnDefs": [
+                    {
+                        "targets": [ 0 ],
+                        "visible": false,
+                        "searchable": false
+                    }
+                ]
+            });
+            
+            // Personal revenue pie chart. 
+            var personalPieData = [
+                {
+                    values: personalRevenueTable.column(2).data().toArray(),
+                    labels: personalRevenueTable.column(1).data().toArray(),
+                    type: 'pie'
+                }
+            ];
+            var personalPieLayout = {
+                title: 'Total revenue per sales person', 
+                height: 400,
+                width: 500
+            };
+            Plotly.newPlot('personal_revenue_piechart', personalPieData, personalPieLayout);
+
+            // Personal revenue bar chart. 
+            var personalBarChartData = [
+                {
+                    x: personalRevenueTable.column(1).data().toArray(),
+                    y: personalRevenueTable.column(2).data().toArray(),
+                    type: 'bar'
+                }
+            ];
+            var personalBarChartLayout = {
+                title: 'Total revenue per sales person'
+            };
+            Plotly.newPlot('personal_revenue_barchart', personalBarChartData, personalBarChartLayout);
+
+            // Product pie chart. 
+            var productPieChartData = [
+                {
+                    values: productTable.column(4).data().toArray(),
+                    labels: productTable.column(1).data().toArray(),
+                    type: 'pie'
+                }
+            ];
+            var productPieChartLayout = {
+                title: 'Number of saled products', 
+                height: 400,
+                width: 500
+            };
+            Plotly.newPlot('product_piechart', productPieChartData, productPieChartLayout);
+
+            // Product bar chart.
+            var productBarChartData = [
+                {
+                    x: productTable.column(1).data().toArray(),
+                    y: productTable.column(2).data().toArray(),
+                    type: 'bar'
+                }
+            ];
+            var productBarChartLayout = {
+                title: 'Total revenue per product'
+            };
+            Plotly.newPlot('product_barchart', productBarChartData, productBarChartLayout);
+        } ); 
+    });
+</script>

@@ -1,0 +1,72 @@
+@page
+@model ProductsModel
+@{
+    ViewData["Title"] = "Products";
+}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css" />
+
+<div class="text-center"> 
+    <h1>Products</h1> 
+</div>
+
+@try
+{
+    var products = Repository.Instance.GetProductRemainsReport();
+    <table id="product_table" class="stripe row-border order-column" style="width:80%">
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Product name</th>
+                <th>Quantity</th>
+                <th>Avg. price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var product in products)
+                {
+                    <tr>
+                        <td>@product.ProductId</td>
+                        <td>@product.ProductTitle</td>
+                        <td>@product.QuantityLeft</td>
+                        <td>@product.AvgPriceImport</td>
+                    </tr>
+                }
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Product ID</th>
+                <th>Product name</th>
+                <th>Quantity</th>
+                <th>Avg. price</th>
+            </tr>
+        </tfoot>
+    </table>
+}
+catch (System.Exception)
+{
+    <p>Unable to get information about products.</p>
+}
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+    $.noConflict();
+    jQuery( document ).ready(function( $ ) {
+        let isRowSelected = false; 
+        
+        $(document).ready(function() {
+            var table = $('#product_table').DataTable({
+                "columnDefs": [
+                    {
+                        "targets": [ 0 ],
+                        "visible": false,
+                        "searchable": false
+                    }
+                ]
+            });
+        } ); 
+    });
+</script>

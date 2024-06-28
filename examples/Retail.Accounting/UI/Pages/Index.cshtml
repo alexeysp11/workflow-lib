@@ -1,0 +1,70 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@try 
+{
+    var company = Repository.Instance.GetMainCompany(); 
+    <div class="info-wrapper">
+        <div style="grid-column: 1; grid-row: 1;">
+            <b>Company name:</b>
+        </div>
+        <div style="grid-column: 2; grid-row: 1;">@company.CompanyName</div>
+
+        <div style="grid-column: 1; grid-row: 2;">
+            <b>Owner:</b>
+        </div>
+        <div style="grid-column: 2; grid-row: 2;">@company.Owner</div>
+
+        <div style="grid-column: 1; grid-row: 3;">
+            <b>Country:</b>
+        </div>
+        <div style="grid-column: 2; grid-row: 3;">@company.Country</div>
+
+        <div style="grid-column: 1; grid-row: 4;">
+            <b>City:</b>
+        </div>
+        <div style="grid-column: 2; grid-row: 4;">@company.City</div>
+    </div>
+}
+catch (System.Exception)
+{
+    <p>Unable to read general info</p>
+}
+
+<br>
+
+<form method="post">
+    <div class="text-center">
+        <div class="table-wrapper">
+            <div style="grid-column: 1; grid-row: 2;">
+                <input type="submit" value="Import" class="home-btn" asp-area="" 
+                    asp-page="/InputData/Import">
+            </div>
+            <div style="grid-column: 1; grid-row: 3;">
+                <input type="submit" value="Export" class="home-btn" asp-area="" 
+                    asp-page="/InputData/Export">
+            </div>
+
+            <div style="grid-column: 2; grid-row: 2;">
+                <input type="submit" value="Revenue" class="home-btn" asp-area="" 
+                    asp-page="/Reports/Revenue">
+            </div>
+            <div style="grid-column: 2; grid-row: 3;">
+                <input type="submit" value="Products" class="home-btn" asp-area="" 
+                    asp-page="/Reports/Products">
+            </div>
+            
+            <div style="grid-column: 3; grid-row: 2;">
+                <input type="submit" value="Employees" class="home-btn" asp-area="" 
+                    asp-page="/Management/Employees">
+            </div>
+            <div style="grid-column: 3; grid-row: 3;">
+                <input type="submit" value="Partners" class="home-btn" asp-area="" 
+                    asp-page="/Management/Partners">
+            </div>
+        </div>
+    </div>
+</form>

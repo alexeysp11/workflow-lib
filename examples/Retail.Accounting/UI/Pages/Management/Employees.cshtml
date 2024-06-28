@@ -1,0 +1,159 @@
+@page
+@model EmployeesModel
+@{
+    ViewData["Title"] = "Employees";
+}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css" />
+
+<div class="text-center"> 
+    <h1>Employees</h1> 
+</div>
+
+@try
+{
+    var employees = Repository.Instance.GetEmployees(); 
+    <table id="employees_table" class="stripe row-border order-column" style="width:100%;">
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Employee name</th>
+                <th>Manager name</th>
+                <th>Department</th>
+                <th>Salary</th>
+                <th>Email</th>
+                <th>Phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var employee in employees)
+                {
+                    <tr>
+                        <td>@employee.EmployeeId</td>
+                        <td>@employee.EmployeeName</td>
+                        <td>@employee.ManagerName</td>
+                        <td>@employee.Department</td>
+                        <td>@employee.Salary</td>
+                        <td>@employee.Email</td>
+                        <td>@employee.Phone</td>
+                    </tr>
+                }
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Employee ID</th>
+                <th>Employee name</th>
+                <th>Manager name</th>
+                <th>Department</th>
+                <th>Salary</th>
+                <th>Email</th>
+                <th>Phone</th>
+            </tr>
+        </tfoot>
+    </table>
+}
+catch (System.Exception e)
+{
+    <p>Unable to draw the table.</p>
+    <p>Exception: @e</p>
+}
+
+<form method="post">
+    <div id="sticky_buttons" style="top: 355px; left: 50px; border: thin solid black; background: white; visibility: hidden; width: 800px;">
+        <div style="margin-top: 10px; margin-left: 15px; margin-bottom: 10px;">
+            <input type="number" name="employee_id" id="employee_id" value="0" style="width: 15px; visibility: hidden;">
+            <input type="text" name="employee_name" id="employee_name" placeholder="Employee name">
+            <input type="text" name="manager_name" id="manager_name" placeholder="Manager name">
+            <input type="text" name="department" id="department" placeholder="Department">
+            <input type="number" name="salary" id="salary" placeholder="Salary">
+        </div>
+        <div style="margin-top: 10px; margin-left: 150px; margin-bottom: 10px;">
+            <input type="text" name="email" id="email" placeholder="Email" style="width: 300px;">
+            <input type="text" name="phone" id="phone" placeholder="Phone" style="width: 200px;">
+        </div>
+
+        <div style="margin-top: 10px; margin-left: 200px; margin-bottom: 10px;">
+            <input class="home-btn" type="submit" asp-page-handler="AddBtn" value="Add">
+            <input class="home-btn" type="submit" asp-page-handler="EditBtn" value="Edit">
+            <input class="home-btn" type="submit" asp-page-handler="DeleteBtn" value="Delete">
+        </div>
+    </div>
+</form>
+
+@if (Repository.IsErrorMessageActivatedOnEmployees)
+{
+    <form method="post">
+        <div id="error_message" style="position: absolute; top: 0px; left: 60%; width: 350px; height: auto; border: thin solid black; background: white;">
+            <div id="error_text" name="error_text" style="margin-left: 15px; margin-right: 15px;">
+                <b>Error message: </b>
+                <p>@Repository.ErrorMessageOnEmployees</p>
+            </div>
+            <div style="margin-left: 100px; margin-bottom: 15px;">
+                <input type="submit" class="home-btn" asp-page-handler="CloseErrorBtn" value="Close">
+            </div>
+        </div>
+    </form>
+}
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+    $.noConflict();
+    jQuery( document ).ready(function( $ ) {
+        let isRowSelected = false; 
+        
+        $(document).ready(function() {
+            var table = $('#employees_table').DataTable({
+                "columnDefs": [
+                    {
+                        "targets": [ 0 ],
+                        "visible": false,
+                        "searchable": false
+                    }
+                ]
+            });
+
+            $('#employees_table tbody').on( 'click', 'tr', function () {
+                if ( $(this).hasClass('selected') ) {
+                    $(this).removeClass('selected');
+                    document.getElementById('sticky_buttons').style.visibility = "hidden";
+                }
+                else {
+                    table.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                    document.getElementById('sticky_buttons').style.visibility = "visible";
+                    
+                    var rowArray = table.row(this).data();
+                    document.getElementById('employee_id').value = rowArray[0]; 
+                    document.getElementById('employee_name').value = rowArray[1]; 
+                    document.getElementById('manager_name').value = rowArray[2]; 
+                    document.getElementById('department').value = rowArray[3]; 
+                    document.getElementById('salary').value = rowArray[4]; 
+                    document.getElementById('email').value = rowArray[5]; 
+                    document.getElementById('phone').value = rowArray[6]; 
+                }
+            } );
+        } ); 
+
+        var initTopPosition= $('#sticky_buttons').offset().top; 
+
+        $(window).scroll(function() {
+            if($(window).scrollTop() > 0)
+            {
+                $('#sticky_buttons').css({'position':'fixed','top':'355px'});
+
+                if ( $(window).scrollTop() + $(window).height() >= $(document).find('#main_footer').prop('disabled', true).offset().top - 10 )
+                {
+                    let topPosition = $(document).find('#main_footer').prop('disabled', true).offset().top + document.getElementById('sticky_buttons').offsetHeight; 
+                    $('#sticky_buttons').css({'position':'fixed','top':'295px'});
+                }
+            }
+            else
+            {
+                $('#sticky_buttons').css({'position':'absolute','top':initTopPosition+'px'});
+            }
+        });
+    });
+</script>
