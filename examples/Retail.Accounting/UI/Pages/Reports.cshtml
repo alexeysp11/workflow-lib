@@ -1,0 +1,25 @@
+@page
+@model ReportsModel
+@{
+    ViewData["Title"] = "Reports";
+}
+
+<h1>Reports</h1>
+
+
+<form method="post">
+    <div class="table-wrapper-section">
+        <div style="grid-column: 1; grid-row: 1;">
+            <input type="submit" value="Revenue" class="home-btn" asp-area="" 
+                asp-page="/Reports/Revenue">
+        </div>
+        <div style="grid-column: 1; grid-row: 2;">
+            <input type="submit" value="Revenue" class="home-btn" asp-area="" 
+                asp-page="/Reports/Revenue">
+        </div>
+        <div style="grid-column: 1; grid-row: 3;">
+            <input type="submit" value="Products" class="home-btn" asp-area="" 
+                asp-page="/Reports/Products">
+        </div>
+    </div>
+</form>

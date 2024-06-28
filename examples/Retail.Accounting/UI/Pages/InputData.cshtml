@@ -1,0 +1,24 @@
+@page
+@model InputDataModel
+@{
+    ViewData["Title"] = "Input data";
+}
+
+<h1>Input data</h1>
+
+<form method="post">
+    <div class="table-wrapper-section">
+        <div style="grid-column: 1; grid-row: 1;">
+            <input type="submit" value="Import" class="home-btn" asp-area="" 
+                asp-page="/InputData/Import">
+        </div>
+        <div style="grid-column: 1; grid-row: 2;">
+            <input type="submit" value="Export" class="home-btn" asp-area="" 
+                asp-page="/InputData/Export">
+        </div>
+        <div style="grid-column: 1; grid-row: 3;">
+            <input type="submit" value="Inventary" class="home-btn" asp-area="" 
+                asp-page="/InputData/Inventary">
+        </div>
+    </div>
+</form>

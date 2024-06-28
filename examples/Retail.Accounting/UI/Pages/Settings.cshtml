@@ -1,0 +1,51 @@
+@page
+@model SettingsModel
+@{
+    ViewData["Title"] = "Settings";
+}
+
+<h1>Settings</h1>
+
+@try
+{
+    var company = Repository.Instance.GetMainCompany(); 
+    <form method="post">
+        <div id="GeneralInfo">
+            <h3>General info</h3>
+            <div>
+                <input type="text" name="company_name" id="company_name" class="settings-input" placeholder="Company name" value="@company.CompanyName">
+            </div>
+            <div>
+                <input type="text" name="owner" id="owner" class="settings-input" placeholder="Owner" value="@company.Owner">
+            </div>
+            <div>
+                <input type="text" name="country" id="country" class="settings-input" placeholder="Country" value="@company.Country">
+            </div>
+            <div>
+                <input type="text" name="city" id="city" class="settings-input" placeholder="City" value="@company.City">
+            </div>
+            <div>
+                <input type="submit" class="settings-btn" asp-page-handler="SaveBtn" value="Save">
+            </div>
+        </div>
+    </form>
+}
+catch (System.Exception)
+{
+    <p>Unable to get info for Setting page</p>
+}
+
+@if (Repository.IsErrorMessageActivatedOnSettings)
+{
+    <form method="post">
+        <div id="error_message" style="position: absolute; top: 0px; left: 60%; width: 350px; height: auto; border: thin solid black; background: white; visibility: visible;">
+            <div id="error_text" name="error_text" style="margin-left: 15px; margin-right: 15px;">
+                <b>Error message: </b>
+                <p>@Repository.ErrorMessageOnSettings</p>
+            </div>
+            <div style="margin-left: 100px; margin-bottom: 15px;">
+                <input type="submit" class="home-btn" asp-page-handler="CloseErrorBtn" value="Close">
+            </div>
+        </div>
+    </form>
+}
