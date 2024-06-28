@@ -54,7 +54,7 @@ The current implementation of the application uses the following technologies:
 - Database: PostgreSQL;
 - Message Broker: RabbitMQ.
 
-![MessageQueueArchitecture](docs/img/MessageQueueArchitecture.png)
+![MessageQueueArchitecture](../../docs/img/examples/PublicTransportDevices/MessageQueueArchitecture.png)
 
 An explanation of why this type of architecture was chosen, and what alternatives to this approach can be, can be found at [this link](docs/architecture.md).
 
@@ -113,4 +113,4 @@ Registering a device using JSON (Request URL: `https://localhost:7010/RegisterDe
 
 ### Registering a new event for a specific device and entering it into the database
 
-[This link](docs/insertptdi.md) provides information on how a new event is registered for a specific device and entered into the database.
+[This link](insertptdi.md) provides information on how a new event is registered for a specific device and entered into the database.

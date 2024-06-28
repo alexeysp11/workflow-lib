@@ -54,7 +54,7 @@
 - База данных: PostgreSQL; 
 - Брокер сообщений: RabbitMQ. 
 
-![MessageQueueArchitecture](docs/img/MessageQueueArchitecture.png)
+![MessageQueueArchitecture](../../docs/img/examples/PublicTransportDevices/MessageQueueArchitecture.png)
 
 Объяснение, почему выбран данный тип архитектуры, и какие могут быть альтернативы данном подходу, можно прочитать по [ссылке](docs/architecture.ru.md). 
 
@@ -113,4 +113,4 @@ await httpClient.PostAsJsonAsync(url, device);
 
 ### Регистрация нового события для конкретного устройства с занесением его в базу данных
 
-По [данной ссылке](docs/insertptdi.ru.md) представлена информация о том, как производится регистрация нового события для конкретного устройства с занесением его в базу данных. 
+По [данной ссылке](insertptdi.ru.md) представлена информация о том, как производится регистрация нового события для конкретного устройства с занесением его в базу данных. 
