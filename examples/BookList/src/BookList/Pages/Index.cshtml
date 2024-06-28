@@ -1,0 +1,36 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome!</h1>
+    <br>
+
+    @if (Repository.IsAuthenticated)
+    {
+        <div>
+            <p>Fullname: @Repository.UserRepositoryInstance.GetUser().Fullname</p>
+            <p>Country: @Repository.UserRepositoryInstance.GetUser().Country</p>
+            <p>City: @Repository.UserRepositoryInstance.GetUser().City</p>
+        </div>
+        <form method="post">
+            <input type="submit" id="books-btn" asp-page-handler="Books" 
+                value="Books">
+            <input type="submit" id="logout-btn" asp-page-handler="LogOut" 
+                value="Log Out">
+        </form>
+    }
+    else
+    {
+        <h3>Join now to manage the list of your favorite books</h3>
+        <form method="post">
+            <input type="submit" asp-area="" asp-page="/Auth/Login" 
+                value="Log In" style="width: 200px; margin-top: 15px;">
+            <br>
+            <input type="submit" asp-area="" asp-page="/Auth/Register" 
+                value="Create account" style="width: 200px; margin-top: 5px;">
+        </form>
+    }
+</div>

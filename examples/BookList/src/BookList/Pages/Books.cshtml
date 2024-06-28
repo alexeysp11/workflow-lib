@@ -1,0 +1,136 @@
+@page 
+@model BooksModel 
+@{
+    ViewData["Title"] = "Books page"; 
+}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css" />
+
+<div class="text-center">
+    <h1 class="display-4">Your Books</h1>
+
+    @try
+    {
+        var books = Repository.UserRepositoryInstance.GetUser().Books; 
+        <table name="books_table" id="books_table" style="width:80%;">
+            <thead>
+                <tr>
+                    <th>BookId</th>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>Author</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int index = 1; 
+                    foreach (var book in books)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => book.BookId)
+                            <td>@index</td>
+                            <td>@Html.DisplayFor(modelItem => book.Name)
+                            <td>@Html.DisplayFor(modelItem => book.Author)</td> 
+                            <td>@Html.DisplayFor(modelItem => book.Desciption)</td>
+                        </tr>
+                        index++; 
+                    }
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>BookId</th>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>Author</th>
+                    <th>Description</th>
+                </tr>
+            </tfoot>
+        </table>
+
+        <form method="post">
+            <div name="sticky_buttons" id="sticky_buttons" style="top: 335px; left: 50px; border: thin solid black; background: white; visibility: hidden; width: 900px;">
+                <div style="margin-top: 10px; margin-left: 15px; margin-bottom: 10px;">
+                    <input type="number" name="book_id" id="book_id" value="0" style="width: 15px; visibility: hidden;">
+                    <input type="text" name="name" id="name" placeholder="Book name">
+                    <input type="text" name="author" id="author" placeholder="Author">
+                    <input type="text" name="description" id="description" placeholder="Description" style="width: 250pt;">
+                </div>
+
+                <div style="margin-top: 10px; margin-left: 50px; margin-bottom: 10px;">
+                    <input class="home-btn" type="submit" asp-page-handler="AddBtn" value="Add" style="width: 100pt;">
+                    <input class="home-btn" type="submit" asp-page-handler="EditBtn" value="Edit" style="width: 100pt;">
+                    <input class="home-btn" type="submit" asp-page-handler="DeleteBtn" value="Delete" style="width: 100pt;">
+                </div>
+            </div>
+        </form>
+    }
+    catch (System.Exception)
+    {
+        <p>Unable to draw the table. Please, check if you're authorized (just click on <b>Home page</b>).</p>
+        <p>If you're logged in and still cannot access your book list, tell us about your problem.</p>
+    }
+</div>
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+    $.noConflict();
+    jQuery( document ).ready(function( $ ) {
+        let isRowSelected = false; 
+        
+        $(document).ready(function() {
+            var table = $('#books_table').DataTable({
+                "columnDefs": [
+                    {
+                        "targets": [ 0 ],
+                        "visible": false,
+                        "searchable": false
+                    }
+                ]
+            });
+            $('#books_table tbody').on( 'click', 'tr', function () {
+                if ( $(this).hasClass('selected') ) {
+                    $(this).removeClass('selected');
+                    document.getElementById('sticky_buttons').style.visibility = "hidden";
+                }
+                else {
+                    table.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                    document.getElementById('sticky_buttons').style.visibility = "visible";
+                    
+                    var rowArray = table.row(this).data();
+                    document.getElementById('book_id').value = rowArray[0]; 
+                    document.getElementById('name').value = rowArray[2]; 
+                    document.getElementById('author').value = rowArray[3]; 
+                    //document.getElementById('year').value = rowArray[4]; 
+                    document.getElementById("description").value = rowArray[4];
+                }
+            } );
+        } ); 
+
+        if ( $(window).height() >= $(document).find('#main_footer').prop('disabled', true).offset().top - 10 )
+        {
+            let topPosition = $(document).find('#main_footer').prop('disabled', true).offset().top + document.getElementById('sticky_buttons').offsetHeight; 
+            $('#sticky_buttons').css({'position':'fixed','top':'335px'});
+        }
+
+        var initTopPosition= $('#sticky_buttons').offset().top; 
+        $(window).scroll(function() {
+            if($(window).scrollTop() > 0)
+            {
+                $('#sticky_buttons').css({'position':'fixed','top':'390px'});
+                if ( $(window).scrollTop() + $(window).height() >= $(document).find('#main_footer').prop('disabled', true).offset().top - 10 )
+                {
+                    let topPosition = $(document).find('#main_footer').prop('disabled', true).offset().top + document.getElementById('sticky_buttons').offsetHeight; 
+                    $('#sticky_buttons').css({'position':'fixed','top':'335px'});
+                }
+            }
+            else
+            {
+                $('#sticky_buttons').css({'position':'absolute','top':initTopPosition+'px'});
+            }
+        });
+    });
+</script>

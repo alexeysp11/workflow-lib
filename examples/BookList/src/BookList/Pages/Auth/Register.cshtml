@@ -1,0 +1,31 @@
+@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register page";
+}
+
+<div class="text-center">
+    @if (Repository.IsAuthenticated)
+    {
+        <h1>Error</h1>
+        <p>You cannot access the register page (log out first).</p>
+    }
+    else
+    {
+        <h1 class="display-4">Register Page</h1>
+        <h2>Create an account</h2>
+        <br>
+
+        <form method="post">
+            <input type="text" name="fullname" placeholder="Fullname" style="width: 200px;"> 
+            <br>
+            <input type="text" name="country" placeholder="Country" style="width: 200px;"> 
+            <br>
+            <input type="text" name="city" placeholder="City" style="width: 200px;"> 
+            <br>
+            <input type="password" name="password" placeholder="Password" style="width: 200px;"> 
+            <br>
+            <input type="submit" name="register_btn" id="register_btn" value="Create account" style="width: 200px; margin-top: 5px;">
+        </form>
+    }
+</div>
