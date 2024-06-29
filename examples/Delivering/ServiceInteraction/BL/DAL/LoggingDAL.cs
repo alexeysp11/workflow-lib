@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DbContexts;
-using WorkflowLib.ServiceDiscoveryBpm.DAL;
-using WorkflowLib.Models.Logging;
+using WorkflowLib.Shared.ServiceDiscoveryBpm.DAL;
+using WorkflowLib.Shared.Models.Logging;
 
 namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DAL;
 

@@ -1,9 +1,9 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
-using WorkflowLib.ServiceDiscoveryBpm.ServiceRegistry;
-using WorkflowLib.ServiceDiscoveryBpm.DAL;
-using WorkflowLib.Models.Business.Processes;
+using WorkflowLib.Shared.ServiceDiscoveryBpm.ServiceRegistry;
+using WorkflowLib.Shared.ServiceDiscoveryBpm.DAL;
+using WorkflowLib.Shared.Models.Business.Processes;
 
 namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Controllers;
 

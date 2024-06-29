@@ -1,6 +1,6 @@
 using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Controllers;
-using WorkflowLib.ServiceDiscoveryBpm.ProcPipes;
-using WorkflowLib.ServiceDiscoveryBpm.Routing;
+using WorkflowLib.Shared.ServiceDiscoveryBpm.ProcPipes;
+using WorkflowLib.Shared.ServiceDiscoveryBpm.Routing;
 
 namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
 

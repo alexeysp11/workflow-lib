@@ -1,6 +1,6 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
-using WorkflowLib.ServiceDiscoveryBpm.DAL;
+using WorkflowLib.Shared.ServiceDiscoveryBpm.DAL;
 
 namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Controllers;
 

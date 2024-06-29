@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DbContexts;
-using WorkflowLib.Models.Business.Processes;
-using WorkflowLib.Models.Network.MicroserviceConfigurations;
+using WorkflowLib.Shared.Models.Business.Processes;
+using WorkflowLib.Shared.Models.Network.MicroserviceConfigurations;
 
 namespace WorkflowLib.Examples.Delivering.ServiceInteraction.InitializeDb;
 
