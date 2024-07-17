@@ -9,9 +9,9 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly IUnitOfWork _unitOfWork; 
-    private readonly ITekoDataFilter _tekoFilter; 
+    private readonly ICommonDataFilter _tekoFilter; 
 
-    public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork, ITekoDataFilter tekoFilter)
+    public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork, ICommonDataFilter tekoFilter)
     {
         _logger = logger;
         _unitOfWork = unitOfWork; 
