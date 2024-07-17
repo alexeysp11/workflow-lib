@@ -9,9 +9,9 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly IUnitOfWork _unitOfWork; 
-    private readonly ITekoDataFilter _tekoFilter; 
+    private readonly ICommonDataFilter _tekoFilter; 
 
-    public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork, ITekoDataFilter tekoFilter)
+    public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork, ICommonDataFilter tekoFilter)
     {
         _logger = logger;
         _unitOfWork = unitOfWork; 
@@ -116,11 +116,6 @@ public class HomeController : Controller
         if (endDate > beginDate && (endDate - beginDate).Days <= 14)
             _unitOfWork.InsertVacation(fio ?? string.Empty, beginDate, endDate); 
         return RedirectToAction("Vacations"); 
-    }
-
-    public IActionResult Privacy()
-    {
-        return View();
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
