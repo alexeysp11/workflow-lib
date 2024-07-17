@@ -6,7 +6,7 @@ namespace WorkflowLib.Examples.EmployeesMvc.Models;
 /// <summary>
 /// Class for applying filters against initial datasets 
 /// </summary>
-public class TekoDataFilter : ITekoDataFilter
+public class CommonDataFilter : ICommonDataFilter
 {
     #region Filter employees
     /// <summary>

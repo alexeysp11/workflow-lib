@@ -7,7 +7,7 @@ using WorkflowLib.Examples.EmployeesMvc.Helpers;
 
 namespace Tests.WorkflowLib.Examples.EmployeesMvc;
 
-public class tekoDataFilterTest
+public class CommonDataFilterTest
 {
     #region FilterEmployees
     [Theory]
@@ -18,7 +18,7 @@ public class tekoDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new TekoDataFilter(); 
+        var tekoDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = ""; 
         var ageMax = ""; 
@@ -45,7 +45,7 @@ public class tekoDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new TekoDataFilter(); 
+        var tekoDataFilter = new CommonDataFilter(); 
         var ageMin = ""; 
         var ageMax = ""; 
         var gender = ""; 
@@ -70,7 +70,7 @@ public class tekoDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new TekoDataFilter(); 
+        var tekoDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = 40; 
         var ageMax = ""; 
@@ -95,7 +95,7 @@ public class tekoDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new TekoDataFilter(); 
+        var tekoDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = ""; 
         var ageMax = 50; 
@@ -120,7 +120,7 @@ public class tekoDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new TekoDataFilter(); 
+        var tekoDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = 30; 
         var ageMax = 50; 
@@ -147,7 +147,7 @@ public class tekoDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new TekoDataFilter(); 
+        var tekoDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = ""; 
         var ageMax = ""; 
@@ -172,7 +172,7 @@ public class tekoDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new TekoDataFilter(); 
+        var tekoDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = ""; 
         var ageMax = ""; 
@@ -197,7 +197,7 @@ public class tekoDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new TekoDataFilter(); 
+        var tekoDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = ""; 
         var ageMax = ""; 
@@ -222,7 +222,7 @@ public class tekoDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new TekoDataFilter(); 
+        var tekoDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = ""; 
         var ageMax = ""; 
@@ -249,7 +249,7 @@ public class tekoDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new TekoDataFilter(); 
+        var tekoDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = ""; 
         var ageMax = ""; 
@@ -276,7 +276,7 @@ public class tekoDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new TekoDataFilter(); 
+        var tekoDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = ""; 
         var ageMax = ""; 
@@ -304,7 +304,7 @@ public class tekoDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new TekoDataFilter(); 
+        var tekoDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = 34; 
         var ageMax = 55; 
@@ -336,7 +336,7 @@ public class tekoDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new TekoDataFilter(); 
+        var tekoDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = ""; 
         var ageMax = ""; 
@@ -362,7 +362,7 @@ public class tekoDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new TekoDataFilter(); 
+        var tekoDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = ""; 
         var ageMax = ""; 
@@ -388,7 +388,7 @@ public class tekoDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new TekoDataFilter(); 
+        var tekoDataFilter = new CommonDataFilter(); 
         var ageMin = ""; 
         var ageMax = ""; 
         var gender = ""; 
@@ -414,7 +414,7 @@ public class tekoDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new TekoDataFilter(); 
+        var tekoDataFilter = new CommonDataFilter(); 
         var ageMin = 34; 
         var ageMax = 68; 
         var gender = ""; 
@@ -447,7 +447,7 @@ public class tekoDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new TekoDataFilter(); 
+        var tekoDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = 34; 
         var ageMax = 68; 
@@ -479,7 +479,7 @@ public class tekoDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new TekoDataFilter(); 
+        var tekoDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = ""; 
         var ageMax = ""; 
@@ -507,7 +507,7 @@ public class tekoDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new TekoDataFilter(); 
+        var tekoDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = 34; 
         var ageMax = 55; 
