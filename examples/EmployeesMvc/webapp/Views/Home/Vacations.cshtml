@@ -5,6 +5,8 @@
     var departments = System.Enum.GetValues(typeof(WorkflowLib.Examples.EmployeesMvc.Models.Department)); 
 }
 
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css" />
+
 <div class="text-center">
     <h1 class="display-4">Vacations</h1>
     <label>Filter</label>
@@ -67,30 +69,16 @@
 }
 else
 {
-    <table class="table table-bordered table-striped" style="width: 100%">
+    <table name="tblVacations" id="tblVacations" class="table table-bordered table-striped" style="width: 100%">
         <thead>
             <tr>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Gender
-                </th>
-                <th>
-                    Job title
-                </th>
-                <th>
-                    Department
-                </th>
-                <th>
-                    Age
-                </th>
-                <th>
-                    Begin date
-                </th>
-                <th>
-                    End date
-                </th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Job title</th>
+                <th>Department</th>
+                <th>Age</th>
+                <th>Begin date</th>
+                <th>End date</th>
             </tr>
         </thead>
         <tbody>
@@ -100,29 +88,30 @@ else
                 if (obj.Employee.BirthDate.Month > System.DateTime.Now.Month && obj.Employee.BirthDate.Day > System.DateTime.Now.Day)
                     age -= 1; 
                 <tr>
-                    <td>
-                        @obj.Employee.FIO
-                    </td>
-                    <td>
-                        @obj.Employee.Gender
-                    </td>
-                    <td>
-                        @obj.Employee.JobTitle
-                    </td>
-                    <td>
-                        @obj.Employee.Department
-                    </td>
-                    <td>
-                        @age
-                    </td>
-                    <td>
-                        @obj.BeginDate.ToString("dd.MM.yyyy")
-                    </td>
-                    <td>
-                        @obj.EndDate.ToString("dd.MM.yyyy")
-                    </td>
+                    <td>@obj.Employee.FIO</td>
+                    <td>@obj.Employee.Gender</td>
+                    <td>@obj.Employee.JobTitle</td>
+                    <td>@obj.Employee.Department</td>
+                    <td>@age</td>
+                    <td>@obj.BeginDate.ToString("dd.MM.yyyy")</td>
+                    <td>@obj.EndDate.ToString("dd.MM.yyyy")</td>
                 </tr>
             }
         </tbody>
     </table>
 }
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+    $.noConflict();
+    jQuery( document ).ready(function( $ ) {
+        $(document).ready(function() {
+            var table = $('#tblVacations').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/2.0.8/i18n/en-GB.json',
+                }
+            });
+        });
+    });
+</script>

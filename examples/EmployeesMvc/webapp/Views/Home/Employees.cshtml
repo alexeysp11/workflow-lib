@@ -5,51 +5,11 @@
     var departments = System.Enum.GetValues(typeof(WorkflowLib.Examples.EmployeesMvc.Models.Department)); 
 }
 
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css" />
+
 <div class="text-center">
     <h1 class="display-4">Employees</h1>
-    <form method="post" asp-controller="Home" asp-action="FilterEmployees" role="post"> 
-        <label>FIO: </label>
-        <input type="text" placeholder="Enter FIO" name="fio">
-        <label>Age: </label>
-        <input type="text" placeholder="Enter age (min.)" oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"  name="ageMin">
-        <label>-</label>
-        <input type="text" placeholder="Enter age (max.)" oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"  name="ageMax">
-        <label>Gender: </label>
-        <select name="gender">
-            <option></option>
-            <option>Male</option>
-            <option>Female</option>
-        </select>
-        <label>Job title: </label>
-        <select name="jobTitle">
-            <option></option>
-            @foreach (var obj in jobTitles) 
-            {
-                <option>@obj</option>
-            }
-        </select>
-        <label>Department: </label>
-        <select name="department">
-            <option></option>
-            @foreach (var obj in departments) 
-            {
-                <option>@obj</option>
-            }
-        </select>
-        <br>
-
-        <label>Filter options: </label>
-        <select name="filterOptions">
-            <option>@WorkflowLib.Examples.EmployeesMvc.Helpers.StringHelper.FindFilterOptionsShowEmployee</option>
-            <option>@WorkflowLib.Examples.EmployeesMvc.Helpers.StringHelper.FindFilterOptionsExcludeEmployee</option>
-        </select>
-        <input type="submit" value="Find" class="btn btn-primary" />
-    </form>
 </div>
-
-<label><b>Filters:</b> @TempData["filterInfoEmployees"]</label>
-<br>
-<label><b>Filter options:</b> @TempData["filterOptionsEmployees"]</label>
 
 @if (Model == null)
 {
@@ -57,27 +17,15 @@
 }
 else
 {
-    <table class="table table-bordered table-striped" style="width: 100%">
+    <table name="tblEmployees" id="tblEmployees" class="table table-bordered table-striped" style="width: 100%">
         <thead>
             <tr>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Gender
-                </th>
-                <th>
-                    Job title
-                </th>
-                <th>
-                    Department
-                </th>
-                <th>
-                    Age
-                </th>
-                <th>
-                    Birth date
-                </th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Job title</th>
+                <th>Department</th>
+                <th>Age</th>
+                <th>Birth date</th>
             </tr>
         </thead>
         <tbody>
@@ -87,26 +35,29 @@ else
                 if (obj.BirthDate.Month > System.DateTime.Now.Month && obj.BirthDate.Day > System.DateTime.Now.Day)
                     age -= 1; 
                 <tr>
-                    <td>
-                        @obj.FIO
-                    </td>
-                    <td>
-                        @obj.Gender
-                    </td>
-                    <td>
-                        @obj.JobTitle
-                    </td>
-                    <td>
-                        @obj.Department
-                    </td>
-                    <td>
-                        @age
-                    </td>
-                    <td>
-                        @obj.BirthDate.ToString("dd.MM.yyyy")
-                    </td>
+                    <td>@obj.FIO</td>
+                    <td>@obj.Gender</td>
+                    <td>@obj.JobTitle</td>
+                    <td>@obj.Department</td>
+                    <td>@age</td>
+                    <td>@obj.BirthDate.ToString("dd.MM.yyyy")</td>
                 </tr>
             }
         </tbody>
     </table>
 }
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+    $.noConflict();
+    jQuery( document ).ready(function( $ ) {
+        $(document).ready(function() {
+            var table = $('#tblEmployees').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/2.0.8/i18n/en-GB.json',
+                }
+            });
+        });
+    });
+</script>

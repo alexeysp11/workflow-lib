@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IUnitOfWork, UnitOfWork>();
-builder.Services.AddTransient<ITekoDataFilter, TekoDataFilter>();
+builder.Services.AddTransient<ICommonDataFilter, CommonDataFilter>();
 
 var app = builder.Build();
 
