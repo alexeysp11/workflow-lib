@@ -12,8 +12,15 @@ public class CommonDataFilter : ICommonDataFilter
     /// <summary>
     /// Applies filter to the employees collection
     /// </summary>
-    public IEnumerable<Employee> FilterEmployees(string fullName, string ageMin, string ageMax, string gender, string jobTitle, string department, 
-        string filterOptions, Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees)
+    public IEnumerable<Employee> FilterEmployees(
+        string fullName,
+        string ageMin,
+        string ageMax,
+        string gender,
+        string jobTitle,
+        string department,
+        string filterOptions,
+        Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees)
     {
         int ageMinInt = ConfigHelper.EmployeeMinAge; 
         int ageMaxInt = ConfigHelper.EmployeeMaxAge; 
@@ -33,8 +40,15 @@ public class CommonDataFilter : ICommonDataFilter
     /// <summary>
     /// Applies filter to the employees collection
     /// </summary>
-    private IEnumerable<Employee> FilterEmployees(string fullName, int ageMin, int ageMax, string gender, string jobTitle, string department, 
-        string filterOptions, Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees)
+    private IEnumerable<Employee> FilterEmployees(
+        string fullName,
+        int ageMin,
+        int ageMax,
+        string gender,
+        string jobTitle,
+        string department,
+        string filterOptions,
+        Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees)
     {
         var dateMin = System.DateTime.Now.AddYears(-ageMax); 
         var dateMax = System.DateTime.Now.AddYears(-ageMin); 
@@ -44,8 +58,15 @@ public class CommonDataFilter : ICommonDataFilter
     /// <summary>
     /// Applies filter to the employees collection
     /// </summary>
-    private IEnumerable<Employee> FilterEmployees(string fullName, System.DateTime dateMin, System.DateTime dateMax, string gender, string jobTitle, string department, 
-        string filterOptions, Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees)
+    private IEnumerable<Employee> FilterEmployees(
+        string fullName,
+        System.DateTime dateMin,
+        System.DateTime dateMax,
+        string gender,
+        string jobTitle,
+        string department,
+        string filterOptions,
+        Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees)
     {
         IEnumerable<Employee> result; 
         if (!string.IsNullOrEmpty(fullName) && !string.IsNullOrEmpty(gender)
@@ -89,8 +110,16 @@ public class CommonDataFilter : ICommonDataFilter
     /// <summary>
     /// Applies filters to the vacation collection 
     /// </summary>
-    public IEnumerable<Vacation> FilterVacations(string fullName, string ageMin, string ageMax, string gender, string jobTitle, string department, 
-        string currentFio, string filterOptions, Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees,
+    public IEnumerable<Vacation> FilterVacations(
+        string fullName,
+        string ageMin,
+        string ageMax,
+        string gender,
+        string jobTitle,
+        string department,
+        string currentFio,
+        string filterOptions,
+        Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees,
         Func<Expression<Func<Vacation, bool>>, List<Vacation>> getVacations)
     {
         var employees = new List<Employee>(); 

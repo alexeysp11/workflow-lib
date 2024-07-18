@@ -11,6 +11,7 @@ public class PipeParams
     /// Number of employees in the initial dataset 
     /// </summary>
     public int EmployeeQty { get; }
+    
     /// <summary>
     /// Number of valid vacations, mapped to an employee 
     /// </summary>

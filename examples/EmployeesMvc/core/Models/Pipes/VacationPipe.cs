@@ -14,6 +14,7 @@ public class VacationPipe : AbstractPipe
     public VacationPipe(System.Action<PipeResult> function) : base(function)
     {
     }
+
     /// <summary>
     /// 
     /// </summary>
@@ -28,6 +29,7 @@ public class VacationPipe : AbstractPipe
         }
         return vacations; 
     }
+
     /// <summary>
     /// 
     /// </summary>
@@ -53,6 +55,7 @@ public class VacationPipe : AbstractPipe
         };
         result.Vacations.Add(vacation); 
     }
+    
     /// <summary>
     /// Method that implements a generating algorithm 
     /// </summary>

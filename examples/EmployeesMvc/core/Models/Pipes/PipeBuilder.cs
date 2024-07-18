@@ -1,4 +1,4 @@
-using System.Collections.Generic; 
+using System.Collections.Generic;
 
 namespace WorkflowLib.Examples.EmployeesMvc.Models;
 
@@ -10,19 +10,20 @@ public class PipeBuilder
     /// <summary>
     /// The function that is going to be invoked in the end 
     /// </summary>
-    private System.Action<PipeResult> _mainFunction; 
+    private System.Action<PipeResult> _mainFunction;
+    
     /// <summary>
     /// Types of pipe component components 
     /// </summary>
-    private List<System.Type> _pipeTypes; 
+    private List<System.Type> _pipeTypes;
 
     /// <summary>
     /// Basic constructor 
     /// </summary>
     public PipeBuilder(System.Action<PipeResult> mainFunction)
     {
-        _mainFunction = mainFunction; 
-        _pipeTypes = new List<System.Type>(); 
+        _mainFunction = mainFunction;
+        _pipeTypes = new List<System.Type>();
     }
 
     /// <summary>
@@ -31,16 +32,16 @@ public class PipeBuilder
     public PipeBuilder AddPipe(System.Type pipeType)
     {
         // if (!pipeType.IsInstanceOfType(typeof(AbstractPipe))) 
-        //     throw new System.Exception("Incorrect pipe type"); 
-        _pipeTypes.Add(pipeType); 
-        return this; 
+        //     throw new System.Exception("Incorrect pipe type");
+        _pipeTypes.Add(pipeType);
+        return this;
     }
     /// <summary>
     /// Registers a generating pipe component 
     /// </summary>
     public PipeBuilder AddGenerating(System.Type pipeType)
     {
-        return AddPipe(pipeType); 
+        return AddPipe(pipeType);
     }
 
     /// <summary>
@@ -48,7 +49,7 @@ public class PipeBuilder
     /// </summary>
     public System.Action<PipeResult> Build()
     {
-        return CreatePipe(0); 
+        return CreatePipe(0);
     }
 
     /// <summary>
@@ -58,14 +59,14 @@ public class PipeBuilder
     {
         if (index < _pipeTypes.Count - 1)
         {
-            var childPipeHandle = CreatePipe(index + 1); 
-            var pipe = (AbstractPipe) System.Activator.CreateInstance(_pipeTypes[index], childPipeHandle); 
-            return pipe.Handle; 
+            var childPipeHandle = CreatePipe(index + 1);
+            var pipe = (AbstractPipe) System.Activator.CreateInstance(_pipeTypes[index], childPipeHandle);
+            return pipe.Handle;
         }
         else 
         {
-            var finalPipe = (AbstractPipe) System.Activator.CreateInstance(_pipeTypes[index], _mainFunction); 
-            return finalPipe.Handle; 
+            var finalPipe = (AbstractPipe) System.Activator.CreateInstance(_pipeTypes[index], _mainFunction);
+            return finalPipe.Handle;
         }
     }
 }

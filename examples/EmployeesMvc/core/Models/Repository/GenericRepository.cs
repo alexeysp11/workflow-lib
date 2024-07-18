@@ -20,7 +20,7 @@ public class GenericRepository<TEntity> where TEntity : class
     /// </summary>
     public GenericRepository()
     {
-        this.dbSet = new List<TEntity>(); 
+        this.dbSet = new List<TEntity>();
     }
 
     /// <summary>
@@ -43,7 +43,7 @@ public class GenericRepository<TEntity> where TEntity : class
     /// </summary>
     public virtual void Insert(TEntity entity)
     {
-        if (entity == null) throw new System.Exception("Entity could not be null"); 
+        if (entity == null) throw new System.Exception("Entity could not be null");
 
         dbSet.Add(entity);
     }

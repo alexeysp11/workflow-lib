@@ -1,5 +1,5 @@
-using System.Collections.Generic; 
-using WorkflowLib.Examples.EmployeesMvc.Helpers; 
+using System.Collections.Generic;
+using WorkflowLib.Examples.EmployeesMvc.Helpers;
 
 namespace WorkflowLib.Examples.EmployeesMvc.Models;
 
@@ -19,8 +19,8 @@ public class EmployeePipe : AbstractPipe
     /// </summary>
     public override void Handle(PipeResult result)
     {
-        IEmployeeGenerator generator = new EmployeeGenerator(); 
-        result.Employees = generator.GenerateEmployees(result.PipeParams.EmployeeQty, base.GenerateDate); 
-        _function(result); 
+        IEmployeeGenerator generator = new EmployeeGenerator();
+        result.Employees = generator.GenerateEmployees(result.PipeParams.EmployeeQty, base.GenerateDate);
+        _function(result);
     }
 }

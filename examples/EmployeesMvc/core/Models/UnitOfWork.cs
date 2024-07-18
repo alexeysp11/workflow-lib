@@ -28,6 +28,7 @@ public class UnitOfWork : IUnitOfWork
             return employeeRepository;
         }
     }
+
     /// <summary>
     /// Repository of the initial dataset of vacations 
     /// </summary>
@@ -42,6 +43,7 @@ public class UnitOfWork : IUnitOfWork
             return vacationRepository;
         }
     }
+
     /// <summary>
     /// Repository of the filtered dataset of employees 
     /// </summary>
@@ -56,6 +58,7 @@ public class UnitOfWork : IUnitOfWork
             return employeeRepositoryFiltered;
         }
     }
+
     /// <summary>
     /// Repository of the filtered dataset of vacations 
     /// </summary>
@@ -85,6 +88,7 @@ public class UnitOfWork : IUnitOfWork
             .Build(); 
         generatingPipe(result); 
     }
+
     /// <summary>
     /// Gets a collection of employees using the specified filter 
     /// </summary>
@@ -92,6 +96,7 @@ public class UnitOfWork : IUnitOfWork
     {
         return EmployeeRepository.Get(filter: filter).ToList(); 
     }
+
     /// <summary>
     /// Gets a collection of vacations using the specified filter 
     /// </summary>
@@ -99,6 +104,7 @@ public class UnitOfWork : IUnitOfWork
     {
         return VacationRepository.Get(filter: filter).ToList(); 
     }
+
     /// <summary>
     /// Inserts vacation for the specified user 
     /// </summary>
@@ -127,6 +133,7 @@ public class UnitOfWork : IUnitOfWork
                 });
         }
     }
+    
     /// <summary>
     /// Saves filtered employees 
     /// </summary>
@@ -134,6 +141,7 @@ public class UnitOfWork : IUnitOfWork
     {
         return EmployeeRepositoryFiltered.InsertFiltered(entities); 
     }
+
     /// <summary>
     /// Saves filtered vacations 
     /// </summary>
@@ -141,6 +149,7 @@ public class UnitOfWork : IUnitOfWork
     {
         return VacationRepositoryFiltered.InsertFiltered(entities); 
     }
+
     /// <summary>
     /// Gets filtered employees 
     /// </summary>
@@ -148,6 +157,7 @@ public class UnitOfWork : IUnitOfWork
     {
         return EmployeeRepositoryFiltered.GetFiltered(uid); 
     }
+
     /// <summary>
     /// Gets filtered vacations 
     /// </summary>
@@ -155,6 +165,7 @@ public class UnitOfWork : IUnitOfWork
     {
         return VacationRepositoryFiltered.GetFiltered(uid); 
     }
+    
     /// <summary>
     /// Inserts initial datasets into the repositories 
     /// </summary>

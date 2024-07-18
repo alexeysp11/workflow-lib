@@ -11,10 +11,12 @@ public class PipeResult
     /// Parameters used for the purpose of generating initial datasets 
     /// </summary>
     public PipeParams PipeParams { get; }
+    
     /// <summary>
     /// Generated dataset of employees 
     /// </summary>
     public List<Employee> Employees { get; set; }
+    
     /// <summary>
     /// Generated dataset of vacations 
     /// </summary>

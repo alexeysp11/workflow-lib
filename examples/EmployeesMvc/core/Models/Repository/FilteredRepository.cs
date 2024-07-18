@@ -1,4 +1,4 @@
-using System.Collections.Concurrent; 
+using System.Collections.Concurrent;
 using WorkflowLib.Examples.EmployeesMvc.Helpers;
 
 namespace WorkflowLib.Examples.EmployeesMvc.Models;
@@ -11,7 +11,8 @@ public class FilteredRepository<TEntity> where TEntity : class
     /// <summary>
     /// Filtered dataset 
     /// </summary>
-    private ConcurrentDictionary<string, FilteredRecord<TEntity>> filteredDbSet; 
+    private ConcurrentDictionary<string, FilteredRecord<TEntity>> filteredDbSet;
+    
     /// <summary>
     /// Timer for deleting old objects 
     /// </summary>
@@ -22,8 +23,8 @@ public class FilteredRepository<TEntity> where TEntity : class
     /// </summary>
     public FilteredRepository()
     {
-        this.filteredDbSet = new ConcurrentDictionary<string, FilteredRecord<TEntity>>(); 
-        SetTimer(); 
+        this.filteredDbSet = new ConcurrentDictionary<string, FilteredRecord<TEntity>>();
+        SetTimer();
     }
 
     /// <summary>
@@ -31,14 +32,14 @@ public class FilteredRepository<TEntity> where TEntity : class
     /// </summary>
     public virtual IEnumerable<TEntity> GetFiltered(string uid)
     {
-        if (string.IsNullOrEmpty(uid)) throw new System.Exception("UID could not be null or empty"); 
+        if (string.IsNullOrEmpty(uid)) throw new System.Exception("UID could not be null or empty");
 
-        IEnumerable<TEntity> list = new List<TEntity>(); 
+        IEnumerable<TEntity> list = new List<TEntity>();
         if (filteredDbSet.ContainsKey(uid))
         {
             if (filteredDbSet[uid] != null)
-                list = filteredDbSet[uid].Value.ToList(); 
-            filteredDbSet[uid].IsReadyForDeleting = true; 
+                list = filteredDbSet[uid].Value.ToList();
+            filteredDbSet[uid].IsReadyForDeleting = true;
         }
         return list;
     }
@@ -47,20 +48,20 @@ public class FilteredRepository<TEntity> where TEntity : class
     /// </summary>
     public virtual string InsertFiltered(IEnumerable<TEntity> entities)
     {
-        if (entities == null) throw new System.Exception("List of entities could not be null"); 
+        if (entities == null) throw new System.Exception("List of entities could not be null");
 
-        string uid = string.Empty; 
+        string uid = string.Empty;
         do 
         {
-            uid = System.Guid.NewGuid().ToString(); 
-        } while (filteredDbSet.ContainsKey(uid)); 
+            uid = System.Guid.NewGuid().ToString();
+        } while (filteredDbSet.ContainsKey(uid));
         var record = new FilteredRecord<TEntity> 
         {
             Value = entities.ToList(), 
             DateTimeCreated = System.DateTime.Now 
         };
-        filteredDbSet.TryAdd(uid, record); 
-        return uid; 
+        filteredDbSet.TryAdd(uid, record);
+        return uid;
     }
 
     /// <summary>
@@ -82,19 +83,19 @@ public class FilteredRepository<TEntity> where TEntity : class
     private void OnTimedEvent(object source, System.Timers.ElapsedEventArgs e)
     {
         if (filteredDbSet.Count == 0) 
-            return; 
-        List<string> keysToDelete = new List<string>(); 
+            return;
+        List<string> keysToDelete = new List<string>();
         foreach (var item in filteredDbSet)
         {
             // Delete unnecessary elements from dataset and datetime set 
-            var timeDiff = System.DateTime.Now - item.Value.DateTimeCreated; 
+            var timeDiff = System.DateTime.Now - item.Value.DateTimeCreated;
             if (item.Value.IsReadyForDeleting || timeDiff.Milliseconds >= ConfigHelper.DbSetCollectorInterval)
-                keysToDelete.Add(item.Key); 
+                keysToDelete.Add(item.Key);
         }
         foreach (var key in keysToDelete)
         {
-            var element = new FilteredRecord<TEntity>(); 
-            filteredDbSet.TryRemove(key, out element); 
+            var element = new FilteredRecord<TEntity>();
+            filteredDbSet.TryRemove(key, out element);
         }
     }
 }
