@@ -5,7 +5,7 @@ using WorkflowLib.Examples.EmployeesMvc.Helpers;
 namespace WorkflowLib.Examples.EmployeesMvc.Models;
 
 /// <summary>
-/// Implementation of the 'Unit of work' pattern 
+/// Implementation of the 'Unit of work' pattern.
 /// </summary>
 public class UnitOfWork : IUnitOfWork
 {
@@ -15,7 +15,7 @@ public class UnitOfWork : IUnitOfWork
     private FilteredRepository<Vacation> vacationRepositoryFiltered;
 
     /// <summary>
-    /// Repository of the initial dataset of employees 
+    /// Repository of the initial dataset of employees.
     /// </summary>
     public GenericRepository<Employee> EmployeeRepository
     {
@@ -30,7 +30,7 @@ public class UnitOfWork : IUnitOfWork
     }
 
     /// <summary>
-    /// Repository of the initial dataset of vacations 
+    /// Repository of the initial dataset of vacations.
     /// </summary>
     public GenericRepository<Vacation> VacationRepository
     {
@@ -45,7 +45,7 @@ public class UnitOfWork : IUnitOfWork
     }
 
     /// <summary>
-    /// Repository of the filtered dataset of employees 
+    /// Repository of the filtered dataset of employees.
     /// </summary>
     public FilteredRepository<Employee> EmployeeRepositoryFiltered
     {
@@ -60,7 +60,7 @@ public class UnitOfWork : IUnitOfWork
     }
 
     /// <summary>
-    /// Repository of the filtered dataset of vacations 
+    /// Repository of the filtered dataset of vacations.
     /// </summary>
     public FilteredRepository<Vacation> VacationRepositoryFiltered
     {
@@ -75,45 +75,45 @@ public class UnitOfWork : IUnitOfWork
     }
 
     /// <summary>
-    /// Basic constructor 
+    /// Basic constructor.
     /// </summary>
     public UnitOfWork()
     {
         var pipeParams = new PipeParams(ConfigHelper.EmployeeQty, ConfigHelper.VacationIntervals);
-        var result = new PipeResult(pipeParams); 
+        var result = new PipeResult(pipeParams);
         
         var generatingPipe = new PipeBuilder(InsertIntoRepository)
             .AddGenerating(typeof(EmployeePipe))
             .AddGenerating(typeof(VacationPipe))
-            .Build(); 
-        generatingPipe(result); 
+            .Build();
+        generatingPipe(result);
     }
 
     /// <summary>
-    /// Gets a collection of employees using the specified filter 
+    /// Gets a collection of employees using the specified filter.
     /// </summary>
     public List<Employee> GetEmployees(Expression<Func<Employee, bool>> filter = null)
     {
-        return EmployeeRepository.Get(filter: filter).ToList(); 
+        return EmployeeRepository.Get(filter: filter).ToList();
     }
 
     /// <summary>
-    /// Gets a collection of vacations using the specified filter 
+    /// Gets a collection of vacations using the specified filter.
     /// </summary>
     public List<Vacation> GetVacations(Expression<Func<Vacation, bool>> filter = null)
     {
-        return VacationRepository.Get(filter: filter).ToList(); 
+        return VacationRepository.Get(filter: filter).ToList();
     }
 
     /// <summary>
-    /// Inserts vacation for the specified user 
+    /// Inserts vacation for the specified user.
     /// </summary>
     public void InsertVacation(string fullName, System.DateTime begin, System.DateTime end)
     {
         // Find employee 
-        var employees = EmployeeRepository.Get(filter: x => x.FullName == fullName).ToList(); 
+        var employees = EmployeeRepository.Get(filter: x => x.FullName == fullName).ToList();
         if (employees.Count == 0) 
-            return; 
+            return;
         
         // Check if the vacations overlap 
         var vacations = VacationRepository
@@ -124,56 +124,55 @@ public class UnitOfWork : IUnitOfWork
                             )).ToList(); 
         if (vacations.Count == 0)
         {
-            VacationRepository.Insert(
-                new Vacation
-                {
-                    BeginDate = begin, 
-                    EndDate = end,
-                    Employee = employees.First()
-                });
+            VacationRepository.Insert(new Vacation
+            {
+                BeginDate = begin, 
+                EndDate = end,
+                Employee = employees.First()
+            });
         }
     }
     
     /// <summary>
-    /// Saves filtered employees 
+    /// Saves filtered employees.
     /// </summary>
     public string InsertFilteredEmployees(IEnumerable<Employee> entities)
     {
-        return EmployeeRepositoryFiltered.InsertFiltered(entities); 
+        return EmployeeRepositoryFiltered.InsertFiltered(entities);
     }
 
     /// <summary>
-    /// Saves filtered vacations 
+    /// Saves filtered vacations.
     /// </summary>
     public string InsertFilteredVacations(IEnumerable<Vacation> entities)
     {
-        return VacationRepositoryFiltered.InsertFiltered(entities); 
+        return VacationRepositoryFiltered.InsertFiltered(entities);
     }
 
     /// <summary>
-    /// Gets filtered employees 
+    /// Gets filtered employees.
     /// </summary>
     public IEnumerable<Employee> GetFilteredEmployees(string uid)
     {
-        return EmployeeRepositoryFiltered.GetFiltered(uid); 
+        return EmployeeRepositoryFiltered.GetFiltered(uid);
     }
 
     /// <summary>
-    /// Gets filtered vacations 
+    /// Gets filtered vacations.
     /// </summary>
     public IEnumerable<Vacation> GetFilteredVacations(string uid)
     {
-        return VacationRepositoryFiltered.GetFiltered(uid); 
+        return VacationRepositoryFiltered.GetFiltered(uid);
     }
     
     /// <summary>
-    /// Inserts initial datasets into the repositories 
+    /// Inserts initial datasets into the repositories.
     /// </summary>
     private void InsertIntoRepository(PipeResult result)
     {
-        System.Console.WriteLine("data added into the repository"); 
+        System.Console.WriteLine("data added into the repository");
         foreach (var employee in result.Employees)
-            EmployeeRepository.Insert(employee); 
+            EmployeeRepository.Insert(employee);
         foreach (var vacation in result.Vacations)
             VacationRepository.Insert(vacation);
     }

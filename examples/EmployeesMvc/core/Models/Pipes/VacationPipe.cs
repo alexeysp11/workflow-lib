@@ -1,15 +1,15 @@
 using System.Linq; 
-using System.Collections.Generic; 
+using System.Collections.Generic;
 
 namespace WorkflowLib.Examples.EmployeesMvc.Models;
 
 /// <summary>
-/// Pipe component for generating a collection of employees 
+/// Pipe component for generating a collection of employees.
 /// </summary>
 public class VacationPipe : AbstractPipe
 {
     /// <summary>
-    /// Constructor of the pipe complonent 
+    /// Constructor of the pipe complonent.
     /// </summary>
     public VacationPipe(System.Action<PipeResult> function) : base(function)
     {
@@ -20,14 +20,14 @@ public class VacationPipe : AbstractPipe
     /// </summary>
     private List<Vacation> GenerateVacations(List<Employee> employees, int[] vacationIntervals)
     {
-        var vacations = new List<Vacation>(); 
+        var vacations = new List<Vacation>();
         foreach (var employee in employees)
         {
-            IVacationGenerator generator = new VacationGenerator(); 
-            var employeeVacations = generator.GenerateVacations(employee, vacationIntervals, GenerateDate); 
-            vacations.AddRange(employeeVacations); 
+            IVacationGenerator generator = new VacationGenerator();
+            var employeeVacations = generator.GenerateVacations(employee, vacationIntervals, GenerateDate);
+            vacations.AddRange(employeeVacations);
         }
-        return vacations; 
+        return vacations;
     }
 
     /// <summary>
@@ -35,17 +35,17 @@ public class VacationPipe : AbstractPipe
     /// </summary>
     public static void AddVacation(PipeResult result, string fullName, System.DateTime begin, System.DateTime end)
     {
-        // Get available slots for the employee 
+        // Get available slots for the employee.
         var slots = result.Vacations
             .Where(x => x.Employee.FullName == fullName 
                         && x.BeginDate <= begin 
                         && x.EndDate > begin 
                         && x.BeginDate < end 
-                        && x.EndDate >= end).ToList(); 
+                        && x.EndDate >= end).ToList();
         if (slots.Count == 0)
-            return; 
+            return;
 
-        // Generate for the employee 
+        // Generate for the employee.
         var employee = result.Employees.FirstOrDefault(x => x.FullName == fullName);
         var vacation = new Vacation 
         {
@@ -53,15 +53,15 @@ public class VacationPipe : AbstractPipe
             EndDate = end, 
             Employee = employee
         };
-        result.Vacations.Add(vacation); 
+        result.Vacations.Add(vacation);
     }
     
     /// <summary>
-    /// Method that implements a generating algorithm 
+    /// Method that implements a generating algorithm.
     /// </summary>
     public override void Handle(PipeResult result)
     {
-        result.Vacations = GenerateVacations(result.Employees, result.PipeParams.VacationIntervals); 
-        _function(result); 
+        result.Vacations = GenerateVacations(result.Employees, result.PipeParams.VacationIntervals);
+        _function(result);
     }
 }

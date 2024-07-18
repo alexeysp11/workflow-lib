@@ -4,13 +4,13 @@ using WorkflowLib.Examples.EmployeesMvc.Helpers;
 namespace WorkflowLib.Examples.EmployeesMvc.Models;
 
 /// <summary>
-/// Class for applying filters against initial datasets 
+/// Class for applying filters against initial datasets.
 /// </summary>
 public class CommonDataFilter : ICommonDataFilter
 {
     #region Filter employees
     /// <summary>
-    /// Applies filter to the employees collection
+    /// Applies filter to the employees collection.
     /// </summary>
     public IEnumerable<Employee> FilterEmployees(
         string fullName,
@@ -38,7 +38,7 @@ public class CommonDataFilter : ICommonDataFilter
     }
 
     /// <summary>
-    /// Applies filter to the employees collection
+    /// Applies filter to the employees collection.
     /// </summary>
     private IEnumerable<Employee> FilterEmployees(
         string fullName,
@@ -56,7 +56,7 @@ public class CommonDataFilter : ICommonDataFilter
     }
 
     /// <summary>
-    /// Applies filter to the employees collection
+    /// Applies filter to the employees collection.
     /// </summary>
     private IEnumerable<Employee> FilterEmployees(
         string fullName,
@@ -82,7 +82,7 @@ public class CommonDataFilter : ICommonDataFilter
         }
         else 
         {
-            // Retrieve data using the specified filter 
+            // Retrieve data using the specified filter.
             result = getEmployees(x => x.BirthDate >= dateMin && x.BirthDate <= dateMax); 
             if (!string.IsNullOrEmpty(fullName))
                 result = result.Where(x => x.FullName.Contains(fullName)); 
@@ -93,7 +93,7 @@ public class CommonDataFilter : ICommonDataFilter
             if (!string.IsNullOrEmpty(department))
                 result = result.Where(x => x.Department.ToString() == department); 
             
-            // Retrive date using exclude filter 
+            // Retrive date using exclude filter.
             if (filterOptions == StringHelper.FindFilterOptionsExcludeEmployee)
             {
                 var excludeList = getEmployees(x => true); 
@@ -108,7 +108,7 @@ public class CommonDataFilter : ICommonDataFilter
 
     #region Filter vacations
     /// <summary>
-    /// Applies filters to the vacation collection 
+    /// Applies filters to the vacation collection.
     /// </summary>
     public IEnumerable<Vacation> FilterVacations(
         string fullName,
@@ -125,9 +125,9 @@ public class CommonDataFilter : ICommonDataFilter
         var employees = new List<Employee>(); 
         var vacations = new List<Vacation>(); 
 
-        // Get filtered employees 
-        // If all filters are empty and current is not empty, then don't filter employees 
-        // TODO: the following if-statement looks a little bit weird, so try to express the condition above in the more elegant way 
+        // Get filtered employees.
+        // If all filters are empty and current is not empty, then don't filter employees.
+        // TODO: the following if-statement looks a little bit weird, so try to express the condition above in the more elegant way.
         if (
             (
                 string.IsNullOrEmpty(fullName) 
@@ -145,14 +145,14 @@ public class CommonDataFilter : ICommonDataFilter
             employees = FilterEmployees(fullName, ageMin, ageMax, gender, jobTitle, department, "", getEmployees).ToList(); 
         }
 
-        // Get vacations using filter 
+        // Get vacations using filter.
         foreach (var employee in employees)
         {
             var vacationsFiltered = getVacations(x => x.Employee.FullName == employee.FullName); 
             vacations.AddRange(vacationsFiltered); 
         }
 
-        // Get vacations of the current employee 
+        // Get vacations of the current employee.
         if (!string.IsNullOrEmpty(currentFio))
         {
             var currentVacations = getVacations(x => x.Employee.FullName.Contains(currentFio)); 
@@ -169,13 +169,14 @@ public class CommonDataFilter : ICommonDataFilter
             }
         }
 
-        // Apply filter options 
+        // Apply filter options.
         if (filterOptions == StringHelper.FindFilterOptionsShowIntersections)
             return GetIntersections(vacations, currentFio); 
         if (filterOptions == StringHelper.FindFilterOptionsExcludeIntersections)
             return ExcludeIntersections(vacations, currentFio); 
         return vacations; 
     }
+
     /// <summary>
     /// 
     /// </summary>
@@ -208,6 +209,7 @@ public class CommonDataFilter : ICommonDataFilter
         }
         return filteredVacations; 
     }
+
     /// <summary>
     /// 
     /// </summary>

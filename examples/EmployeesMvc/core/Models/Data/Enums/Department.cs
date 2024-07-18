@@ -2,7 +2,7 @@ namespace WorkflowLib.Examples.EmployeesMvc.Models;
 
 
 /// <summary>
-/// Names of all the departments in the company  
+/// Names of all the departments in the company.
 /// </summary>
 public enum Department 
 {

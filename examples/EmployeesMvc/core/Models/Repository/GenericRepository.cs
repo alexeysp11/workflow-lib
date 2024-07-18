@@ -6,17 +6,17 @@ using System.Linq.Expressions;
 namespace WorkflowLib.Examples.EmployeesMvc.Models;
 
 /// <summary>
-/// Allows to interact with the initial collections 
+/// Allows to interact with the initial collections.
 /// </summary>
 public class GenericRepository<TEntity> where TEntity : class
 {
     /// <summary>
-    /// Initial dataset 
+    /// Initial dataset.
     /// </summary>
     private List<TEntity> dbSet;
 
     /// <summary>
-    /// Basic constructor 
+    /// Basic constructor.
     /// </summary>
     public GenericRepository()
     {
@@ -24,7 +24,7 @@ public class GenericRepository<TEntity> where TEntity : class
     }
 
     /// <summary>
-    /// Gets a collection after applying the specified filtered 
+    /// Gets a collection after applying the specified filtered.
     /// </summary>
     public virtual IEnumerable<TEntity> Get(
         Expression<Func<TEntity, bool>> filter = null,
@@ -39,7 +39,7 @@ public class GenericRepository<TEntity> where TEntity : class
     }
 
     /// <summary>
-    /// Adds an object to the dataset 
+    /// Adds an object to the dataset.
     /// </summary>
     public virtual void Insert(TEntity entity)
     {

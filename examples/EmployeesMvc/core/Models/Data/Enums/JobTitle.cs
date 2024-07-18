@@ -1,7 +1,7 @@
 namespace WorkflowLib.Examples.EmployeesMvc.Models;
 
 /// <summary>
-/// Job titles used in the company 
+/// Job titles used in the company.
 /// </summary>
 public enum JobTitle
 {

@@ -4,22 +4,22 @@ using WorkflowLib.Examples.EmployeesMvc.Helpers;
 namespace WorkflowLib.Examples.EmployeesMvc.Models;
 
 /// <summary>
-/// Allows to interact with the filtered collections 
+/// Allows to interact with the filtered collections.
 /// </summary>
 public class FilteredRepository<TEntity> where TEntity : class
 {
     /// <summary>
-    /// Filtered dataset 
+    /// Filtered dataset.
     /// </summary>
     private ConcurrentDictionary<string, FilteredRecord<TEntity>> filteredDbSet;
     
     /// <summary>
-    /// Timer for deleting old objects 
+    /// Timer for deleting old objects.
     /// </summary>
     private System.Timers.Timer aTimer;
 
     /// <summary>
-    /// Basic constructor 
+    /// Basic constructor.
     /// </summary>
     public FilteredRepository()
     {
@@ -28,7 +28,7 @@ public class FilteredRepository<TEntity> where TEntity : class
     }
 
     /// <summary>
-    /// Retrieves a collection of the filtered objects using its UID 
+    /// Retrieves a collection of the filtered objects using its UID.
     /// </summary>
     public virtual IEnumerable<TEntity> GetFiltered(string uid)
     {
@@ -44,7 +44,7 @@ public class FilteredRepository<TEntity> where TEntity : class
         return list;
     }
     /// <summary>
-    /// Saves a collection of filtered objects 
+    /// Saves a collection of filtered objects.
     /// </summary>
     public virtual string InsertFiltered(IEnumerable<TEntity> entities)
     {
@@ -65,7 +65,7 @@ public class FilteredRepository<TEntity> where TEntity : class
     }
 
     /// <summary>
-    /// Registers a timer 
+    /// Registers a timer.
     /// </summary>
     private void SetTimer()
     {
@@ -78,7 +78,7 @@ public class FilteredRepository<TEntity> where TEntity : class
         aTimer.Enabled = true;
     }
     /// <summary>
-    /// Deletes olde values 
+    /// Deletes olde values.
     /// </summary>
     private void OnTimedEvent(object source, System.Timers.ElapsedEventArgs e)
     {
