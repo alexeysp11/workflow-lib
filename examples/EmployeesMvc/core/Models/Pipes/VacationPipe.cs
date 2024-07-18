@@ -31,11 +31,11 @@ public class VacationPipe : AbstractPipe
     /// <summary>
     /// 
     /// </summary>
-    public static void AddVacation(PipeResult result, string fio, System.DateTime begin, System.DateTime end)
+    public static void AddVacation(PipeResult result, string fullName, System.DateTime begin, System.DateTime end)
     {
         // Get available slots for the employee 
         var slots = result.Vacations
-            .Where(x => x.Employee.FIO == fio 
+            .Where(x => x.Employee.FullName == fullName 
                         && x.BeginDate <= begin 
                         && x.EndDate > begin 
                         && x.BeginDate < end 
@@ -44,7 +44,7 @@ public class VacationPipe : AbstractPipe
             return; 
 
         // Generate for the employee 
-        var employee = result.Employees.FirstOrDefault(x => x.FIO == fio);
+        var employee = result.Employees.FirstOrDefault(x => x.FullName == fullName);
         var vacation = new Vacation 
         {
             BeginDate = begin, 

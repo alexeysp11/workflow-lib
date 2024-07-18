@@ -72,18 +72,18 @@ public class HomeController : Controller
 
     [HttpPost("[action]")]
     [Route("/Home")]
-    public IActionResult FilterEmployees(string fio, string ageMin, string ageMax, string gender, string jobTitle, string department, 
+    public IActionResult FilterEmployees(string fullName, string ageMin, string ageMax, string gender, string jobTitle, string department, 
         string filterOptions)
     {
         // Apply filters 
-        var employees = _commonFilter.FilterEmployees(fio, ageMin, ageMax, gender, jobTitle, department, filterOptions, _unitOfWork.GetEmployees); 
+        var employees = _commonFilter.FilterEmployees(fullName, ageMin, ageMax, gender, jobTitle, department, filterOptions, _unitOfWork.GetEmployees); 
         
         // Save filtered employees 
         string uid = _unitOfWork.InsertFilteredEmployees(employees); 
 
         // Save info about applied filters 
         TempData[StringHelper.EmployeesUidStr] = uid; 
-        TempData[StringHelper.FilterInfoEmployeesStr] = StringHelper.GetFilterOptionsString(fio, ageMin, ageMax, gender, jobTitle, department); 
+        TempData[StringHelper.FilterInfoEmployeesStr] = StringHelper.GetFilterOptionsString(fullName, ageMin, ageMax, gender, jobTitle, department); 
         TempData[StringHelper.FilterOptionsEmployeesStr] = filterOptions; 
         
         return RedirectToAction("Employees");
@@ -91,11 +91,11 @@ public class HomeController : Controller
 
     [HttpPost("[action]")]
     [Route("/Home")]
-    public IActionResult FilterVacations(string fio, string ageMin, string ageMax, string gender, string jobTitle, string department, 
+    public IActionResult FilterVacations(string fullName, string ageMin, string ageMax, string gender, string jobTitle, string department, 
         string currentFio, string filterOptions)
     {
         // Get filtered data 
-        var vacations = _commonFilter.FilterVacations(fio, ageMin, ageMax, gender, jobTitle, department, currentFio, filterOptions, _unitOfWork.GetEmployees, _unitOfWork.GetVacations); 
+        var vacations = _commonFilter.FilterVacations(fullName, ageMin, ageMax, gender, jobTitle, department, currentFio, filterOptions, _unitOfWork.GetEmployees, _unitOfWork.GetVacations); 
 
         // Insert filtered data and get UID 
         string uid = _unitOfWork.InsertFilteredVacations(vacations); 
@@ -104,17 +104,17 @@ public class HomeController : Controller
         TempData[StringHelper.VacationsUidStr] = uid; 
 
         // Store info about filtering 
-        TempData[StringHelper.FilterInfoVacationsStr] = StringHelper.GetFilterOptionsString(fio, ageMin, ageMax, gender, jobTitle, department);  
+        TempData[StringHelper.FilterInfoVacationsStr] = StringHelper.GetFilterOptionsString(fullName, ageMin, ageMax, gender, jobTitle, department);  
         TempData[StringHelper.EmployeeInfoVacationsStr] = StringHelper.GetFilterOptionsString(currentFio);  
         TempData[StringHelper.FilterOptionsVacationsStr] = filterOptions; 
 
         return RedirectToAction("Vacations");
     }
 
-    public IActionResult AddNewVaction(string fio, System.DateTime beginDate, System.DateTime endDate)
+    public IActionResult AddNewVaction(string fullName, System.DateTime beginDate, System.DateTime endDate)
     {
         if (endDate > beginDate && (endDate - beginDate).Days <= 14)
-            _unitOfWork.InsertVacation(fio ?? string.Empty, beginDate, endDate); 
+            _unitOfWork.InsertVacation(fullName ?? string.Empty, beginDate, endDate); 
         return RedirectToAction("Vacations"); 
     }
 

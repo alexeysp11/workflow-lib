@@ -10,7 +10,7 @@ public interface IUnitOfWork
 
     // void Generate();
     
-    void InsertVacation(string fio, System.DateTime start, System.DateTime end); 
+    void InsertVacation(string fullName, System.DateTime start, System.DateTime end); 
 
     List<Employee> GetEmployees(Expression<Func<Employee, bool>> filter = null); 
     List<Vacation> GetVacations(Expression<Func<Vacation, bool>> filter = null); 

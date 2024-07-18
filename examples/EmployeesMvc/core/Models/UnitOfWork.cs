@@ -102,16 +102,16 @@ public class UnitOfWork : IUnitOfWork
     /// <summary>
     /// Inserts vacation for the specified user 
     /// </summary>
-    public void InsertVacation(string fio, System.DateTime begin, System.DateTime end)
+    public void InsertVacation(string fullName, System.DateTime begin, System.DateTime end)
     {
         // Find employee 
-        var employees = EmployeeRepository.Get(filter: x => x.FIO == fio).ToList(); 
+        var employees = EmployeeRepository.Get(filter: x => x.FullName == fullName).ToList(); 
         if (employees.Count == 0) 
             return; 
         
         // Check if the vacations overlap 
         var vacations = VacationRepository
-            .Get(filter: x => x.Employee.FIO == fio
+            .Get(filter: x => x.Employee.FullName == fullName
                             && (
                                 (x.BeginDate <= begin && x.EndDate > begin) 
                                 || (x.BeginDate <= end && x.EndDate > end)

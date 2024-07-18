@@ -30,7 +30,7 @@ public class GenericRepositoryTest
         var vacations = new GenericRepository<Vacation>();
         var employee = new Employee() 
         {
-            FIO = "Random FIO", 
+            FullName = "Random FullName", 
             Gender = Gender.Male, 
             JobTitle = JobTitle.ChiefExecutiveOfficer, 
             Department = Department.Administration, 
@@ -52,7 +52,7 @@ public class GenericRepositoryTest
         // Assert 
         Assert.True(employeeCollection.ToList().Count == 1); 
         Assert.True(vacationCollection.ToList().Count == 1); 
-        Assert.True(employeeCollection.Where(x => x.FIO == employee.FIO).ToList().Count == 1); 
-        Assert.True(vacationCollection.Where(x => x.Employee.FIO == employee.FIO).ToList().Count == 1); 
+        Assert.True(employeeCollection.Where(x => x.FullName == employee.FullName).ToList().Count == 1); 
+        Assert.True(vacationCollection.Where(x => x.Employee.FullName == employee.FullName).ToList().Count == 1); 
     }
 }

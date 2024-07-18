@@ -11,8 +11,8 @@
     <h1 class="display-4">Vacations</h1>
     <label>Filter</label>
     <form method="post" asp-controller="Home" asp-action="FilterVacations" role="post"> 
-        <label>FIO: </label>
-        <input type="text" placeholder="Enter FIO" name="fio">
+        <label>Full name: </label>
+        <input type="text" placeholder="Enter full name" name="fullName">
         <label>Age: </label>
         <input type="text" placeholder="Enter age (min.)" oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"  name="ageMin">
         <label>-</label>
@@ -43,8 +43,8 @@
 
         <label>Current employee</label>
         <br>
-        <label>FIO: </label>
-        <input type="text" placeholder="Enter FIO" name="currentFio">
+        <label>Full name: </label>
+        <input type="text" placeholder="Enter full name" name="currentFio">
         <br>
         
         <label>Filter options: </label>
@@ -72,7 +72,7 @@ else
     <table name="tblVacations" id="tblVacations" class="table table-bordered table-striped" style="width: 100%">
         <thead>
             <tr>
-                <th>Name</th>
+                <th>Full name</th>
                 <th>Gender</th>
                 <th>Job title</th>
                 <th>Department</th>
@@ -88,7 +88,7 @@ else
                 if (obj.Employee.BirthDate.Month > System.DateTime.Now.Month && obj.Employee.BirthDate.Day > System.DateTime.Now.Day)
                     age -= 1; 
                 <tr>
-                    <td>@obj.Employee.FIO</td>
+                    <td>@obj.Employee.FullName</td>
                     <td>@obj.Employee.Gender</td>
                     <td>@obj.Employee.JobTitle</td>
                     <td>@obj.Employee.Department</td>

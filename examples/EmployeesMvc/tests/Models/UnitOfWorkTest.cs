@@ -26,7 +26,7 @@ public class UnitOfWorkTest
     [InlineData("")]
     [InlineData(null)]
     [InlineData("IncorrectFullnameOfTheEmployee")]
-    public void InsertVacation_IncorrectFio_RecordIsNotInserted(string fio)
+    public void InsertVacation_IncorrectFio_RecordIsNotInserted(string fullName)
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
@@ -34,10 +34,10 @@ public class UnitOfWorkTest
         var endDate = beginDate.AddDays(14); 
 
         // Act 
-        unitOfWork.InsertVacation(fio, beginDate, endDate); 
+        unitOfWork.InsertVacation(fullName, beginDate, endDate); 
         var vacations = unitOfWork.GetVacations(); 
         var isInserted = vacations.Where(x => 
-                x.Employee.FIO == fio 
+                x.Employee.FullName == fullName 
                 && x.BeginDate == beginDate 
                 && x.EndDate == endDate)
             .ToList().Count > 0; 
@@ -54,13 +54,13 @@ public class UnitOfWorkTest
         var unitOfWork = new UnitOfWork(); 
         var beginDate = System.DateTime.Now; 
         var endDate = beginDate.AddDays(14); 
-        var fio = unitOfWork.GetVacations().First().Employee.FIO; 
+        var fullName = unitOfWork.GetVacations().First().Employee.FullName; 
 
         // Act 
-        unitOfWork.InsertVacation(fio, beginDate, endDate); 
+        unitOfWork.InsertVacation(fullName, beginDate, endDate); 
         var vacations = unitOfWork.GetVacations(); 
         var isInserted = vacations.Where(x => 
-                x.Employee.FIO == fio 
+                x.Employee.FullName == fullName 
                 && x.BeginDate == beginDate 
                 && x.EndDate == endDate)
             .ToList().Count == 1; 

@@ -67,10 +67,10 @@ public static class StringHelper
     /// <summary>
     /// Generates an info message about filter options 
     /// </summary>
-    public static string GetFilterOptionsString(string fio = "", string ageMin = "", string ageMax = "", string gender = "", string jobTitle = "", string department = "")
+    public static string GetFilterOptionsString(string fullName = "", string ageMin = "", string ageMax = "", string gender = "", string jobTitle = "", string department = "")
     {
         // If no filters applied 
-        if (string.IsNullOrEmpty(fio) && string.IsNullOrEmpty(ageMin) 
+        if (string.IsNullOrEmpty(fullName) && string.IsNullOrEmpty(ageMin) 
             && string.IsNullOrEmpty(ageMax) && string.IsNullOrEmpty(gender)
             && string.IsNullOrEmpty(jobTitle) && string.IsNullOrEmpty(department))
         {
@@ -79,8 +79,8 @@ public static class StringHelper
 
         // Create a string about a filter
         string result = string.Empty; 
-        if (!string.IsNullOrEmpty(fio))
-            result += "FIO: " + fio; 
+        if (!string.IsNullOrEmpty(fullName))
+            result += "FullName: " + fullName; 
         if (!string.IsNullOrEmpty(ageMin) || !string.IsNullOrEmpty(ageMax))
         {
             if (!string.IsNullOrEmpty(result))

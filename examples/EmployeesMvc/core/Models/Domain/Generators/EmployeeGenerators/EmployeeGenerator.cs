@@ -19,7 +19,7 @@ public class EmployeeGenerator : IEmployeeGenerator
         {
             var employee = new Employee 
             {
-                FIO = GenerateFIO(),
+                FullName = GenerateFullName(),
                 Gender = GenerateEnum<Gender>(),
                 JobTitle = GenerateEnum<JobTitle>(),
                 Department = GenerateEnum<Department>(),
@@ -32,7 +32,7 @@ public class EmployeeGenerator : IEmployeeGenerator
     /// <summary>
     /// Generate a fullname of the employee 
     /// </summary>
-    private string GenerateFIO()
+    private string GenerateFullName()
     {
         var finalString = string.Empty; 
         var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
