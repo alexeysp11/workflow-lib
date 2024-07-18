@@ -8,14 +8,14 @@ namespace WorkflowLib.Examples.EmployeesMvc.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    private readonly IUnitOfWork _unitOfWork; 
-    private readonly ICommonDataFilter _tekoFilter; 
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly ICommonDataFilter _commonFilter;
 
-    public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork, ICommonDataFilter tekoFilter)
+    public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork, ICommonDataFilter commonFilter)
     {
         _logger = logger;
-        _unitOfWork = unitOfWork; 
-        _tekoFilter = tekoFilter; 
+        _unitOfWork = unitOfWork;
+        _commonFilter = commonFilter;
     }
 
     public IActionResult Index()
@@ -76,7 +76,7 @@ public class HomeController : Controller
         string filterOptions)
     {
         // Apply filters 
-        var employees = _tekoFilter.FilterEmployees(fio, ageMin, ageMax, gender, jobTitle, department, filterOptions, _unitOfWork.GetEmployees); 
+        var employees = _commonFilter.FilterEmployees(fio, ageMin, ageMax, gender, jobTitle, department, filterOptions, _unitOfWork.GetEmployees); 
         
         // Save filtered employees 
         string uid = _unitOfWork.InsertFilteredEmployees(employees); 
@@ -95,7 +95,7 @@ public class HomeController : Controller
         string currentFio, string filterOptions)
     {
         // Get filtered data 
-        var vacations = _tekoFilter.FilterVacations(fio, ageMin, ageMax, gender, jobTitle, department, currentFio, filterOptions, _unitOfWork.GetEmployees, _unitOfWork.GetVacations); 
+        var vacations = _commonFilter.FilterVacations(fio, ageMin, ageMax, gender, jobTitle, department, currentFio, filterOptions, _unitOfWork.GetEmployees, _unitOfWork.GetVacations); 
 
         // Insert filtered data and get UID 
         string uid = _unitOfWork.InsertFilteredVacations(vacations); 

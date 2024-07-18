@@ -18,7 +18,7 @@ public class CommonDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new CommonDataFilter(); 
+        var commonDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = ""; 
         var ageMax = ""; 
@@ -31,7 +31,7 @@ public class CommonDataFilterTest
 
         // Act 
         var employees = filterOptionsParams == "Exclude" ? new List<Employee>() : unitOfWork.GetEmployees().ToList(); 
-        var filtered = tekoDataFilter.FilterEmployees(fio, ageMin, ageMax, gender, jobTitle, department, filterOptions, unitOfWork.GetEmployees).ToList(); 
+        var filtered = commonDataFilter.FilterEmployees(fio, ageMin, ageMax, gender, jobTitle, department, filterOptions, unitOfWork.GetEmployees).ToList(); 
         var identical = CompareLists(employees, filtered);
 
         // Assert 
@@ -45,7 +45,7 @@ public class CommonDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new CommonDataFilter(); 
+        var commonDataFilter = new CommonDataFilter(); 
         var ageMin = ""; 
         var ageMax = ""; 
         var gender = ""; 
@@ -57,7 +57,7 @@ public class CommonDataFilterTest
         var employees = unitOfWork.GetEmployees().ToList(); 
         var fio = employees.FirstOrDefault().FIO; 
         var referenceList = employees.Where(x => x.FIO == fio).ToList(); 
-        var filtered = tekoDataFilter.FilterEmployees(fio, ageMin, ageMax, gender, jobTitle, department, filterOptions, unitOfWork.GetEmployees).ToList(); 
+        var filtered = commonDataFilter.FilterEmployees(fio, ageMin, ageMax, gender, jobTitle, department, filterOptions, unitOfWork.GetEmployees).ToList(); 
         var identical = CompareLists(referenceList, filtered);
 
         // Assert 
@@ -70,7 +70,7 @@ public class CommonDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new CommonDataFilter(); 
+        var commonDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = 40; 
         var ageMax = ""; 
@@ -82,7 +82,7 @@ public class CommonDataFilterTest
         // Act 
         var employees = unitOfWork.GetEmployees().ToList(); 
         var referenceList = employees.Where(x => x.BirthDate <= System.DateTime.Now.AddYears(-ageMin)).ToList(); 
-        var filtered = tekoDataFilter.FilterEmployees(fio, ageMin.ToString(), ageMax, gender, jobTitle, department, filterOptions, unitOfWork.GetEmployees).ToList(); 
+        var filtered = commonDataFilter.FilterEmployees(fio, ageMin.ToString(), ageMax, gender, jobTitle, department, filterOptions, unitOfWork.GetEmployees).ToList(); 
         var identical = CompareLists(referenceList, filtered);
 
         // Assert 
@@ -95,7 +95,7 @@ public class CommonDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new CommonDataFilter(); 
+        var commonDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = ""; 
         var ageMax = 50; 
@@ -107,7 +107,7 @@ public class CommonDataFilterTest
         // Act 
         var employees = unitOfWork.GetEmployees().ToList(); 
         var referenceList = employees.Where(x => x.BirthDate >= System.DateTime.Now.AddYears(-ageMax)).ToList(); 
-        var filtered = tekoDataFilter.FilterEmployees(fio, ageMin, ageMax.ToString(), gender, jobTitle, department, filterOptions, unitOfWork.GetEmployees).ToList(); 
+        var filtered = commonDataFilter.FilterEmployees(fio, ageMin, ageMax.ToString(), gender, jobTitle, department, filterOptions, unitOfWork.GetEmployees).ToList(); 
         var identical = CompareLists(referenceList, filtered);
 
         // Assert 
@@ -120,7 +120,7 @@ public class CommonDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new CommonDataFilter(); 
+        var commonDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = 30; 
         var ageMax = 50; 
@@ -134,7 +134,7 @@ public class CommonDataFilterTest
         var referenceList = employees.Where(x => 
             x.BirthDate <= System.DateTime.Now.AddYears(-ageMin)
             && x.BirthDate >= System.DateTime.Now.AddYears(-ageMax)).ToList(); 
-        var filtered = tekoDataFilter.FilterEmployees(fio, ageMin.ToString(), ageMax.ToString(), gender, jobTitle, department, filterOptions, unitOfWork.GetEmployees).ToList(); 
+        var filtered = commonDataFilter.FilterEmployees(fio, ageMin.ToString(), ageMax.ToString(), gender, jobTitle, department, filterOptions, unitOfWork.GetEmployees).ToList(); 
         var identical = CompareLists(referenceList, filtered);
 
         // Assert 
@@ -147,7 +147,7 @@ public class CommonDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new CommonDataFilter(); 
+        var commonDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = ""; 
         var ageMax = ""; 
@@ -159,7 +159,7 @@ public class CommonDataFilterTest
         // Act 
         var employees = unitOfWork.GetEmployees().ToList(); 
         var referenceList = employees.Where(x => x.Gender.ToString() == gender).ToList(); 
-        var filtered = tekoDataFilter.FilterEmployees(fio, ageMin, ageMax, gender, jobTitle, department, filterOptions, unitOfWork.GetEmployees).ToList(); 
+        var filtered = commonDataFilter.FilterEmployees(fio, ageMin, ageMax, gender, jobTitle, department, filterOptions, unitOfWork.GetEmployees).ToList(); 
         var identical = CompareLists(referenceList, filtered);
 
         // Assert 
@@ -172,7 +172,7 @@ public class CommonDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new CommonDataFilter(); 
+        var commonDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = ""; 
         var ageMax = ""; 
@@ -184,7 +184,7 @@ public class CommonDataFilterTest
         // Act 
         var employees = unitOfWork.GetEmployees().ToList(); 
         var referenceList = employees.Where(x => x.JobTitle.ToString() == jobTitle).ToList(); 
-        var filtered = tekoDataFilter.FilterEmployees(fio, ageMin, ageMax, gender, jobTitle, department, filterOptions, unitOfWork.GetEmployees).ToList(); 
+        var filtered = commonDataFilter.FilterEmployees(fio, ageMin, ageMax, gender, jobTitle, department, filterOptions, unitOfWork.GetEmployees).ToList(); 
         var identical = CompareLists(referenceList, filtered);
 
         // Assert 
@@ -197,7 +197,7 @@ public class CommonDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new CommonDataFilter(); 
+        var commonDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = ""; 
         var ageMax = ""; 
@@ -209,7 +209,7 @@ public class CommonDataFilterTest
         // Act 
         var employees = unitOfWork.GetEmployees().ToList(); 
         var referenceList = employees.Where(x => x.Department.ToString() == department).ToList(); 
-        var filtered = tekoDataFilter.FilterEmployees(fio, ageMin, ageMax, gender, jobTitle, department, filterOptions, unitOfWork.GetEmployees).ToList(); 
+        var filtered = commonDataFilter.FilterEmployees(fio, ageMin, ageMax, gender, jobTitle, department, filterOptions, unitOfWork.GetEmployees).ToList(); 
         var identical = CompareLists(referenceList, filtered);
 
         // Assert 
@@ -222,7 +222,7 @@ public class CommonDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new CommonDataFilter(); 
+        var commonDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = ""; 
         var ageMax = ""; 
@@ -236,7 +236,7 @@ public class CommonDataFilterTest
         var referenceList = employees.Where(x => 
             x.JobTitle.ToString() == jobTitle
             && x.Department.ToString() == department).ToList(); 
-        var filtered = tekoDataFilter.FilterEmployees(fio, ageMin, ageMax, gender, jobTitle, department, filterOptions, unitOfWork.GetEmployees).ToList(); 
+        var filtered = commonDataFilter.FilterEmployees(fio, ageMin, ageMax, gender, jobTitle, department, filterOptions, unitOfWork.GetEmployees).ToList(); 
         var identical = CompareLists(referenceList, filtered);
 
         // Assert 
@@ -249,7 +249,7 @@ public class CommonDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new CommonDataFilter(); 
+        var commonDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = ""; 
         var ageMax = ""; 
@@ -263,7 +263,7 @@ public class CommonDataFilterTest
         var referenceList = employees.Where(x => 
             x.Gender.ToString() == gender
             && x.JobTitle.ToString() == jobTitle).ToList(); 
-        var filtered = tekoDataFilter.FilterEmployees(fio, ageMin, ageMax, gender, jobTitle, department, filterOptions, unitOfWork.GetEmployees).ToList(); 
+        var filtered = commonDataFilter.FilterEmployees(fio, ageMin, ageMax, gender, jobTitle, department, filterOptions, unitOfWork.GetEmployees).ToList(); 
         var identical = CompareLists(referenceList, filtered);
 
         // Assert 
@@ -276,7 +276,7 @@ public class CommonDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new CommonDataFilter(); 
+        var commonDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = ""; 
         var ageMax = ""; 
@@ -291,7 +291,7 @@ public class CommonDataFilterTest
             x.Gender.ToString() == gender
             && x.JobTitle.ToString() == jobTitle
             && x.Department.ToString() == department).ToList(); 
-        var filtered = tekoDataFilter.FilterEmployees(fio, ageMin, ageMax, gender, jobTitle, department, filterOptions, unitOfWork.GetEmployees).ToList(); 
+        var filtered = commonDataFilter.FilterEmployees(fio, ageMin, ageMax, gender, jobTitle, department, filterOptions, unitOfWork.GetEmployees).ToList(); 
         var identical = CompareLists(referenceList, filtered);
 
         // Assert 
@@ -304,7 +304,7 @@ public class CommonDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new CommonDataFilter(); 
+        var commonDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = 34; 
         var ageMax = 55; 
@@ -321,7 +321,7 @@ public class CommonDataFilterTest
             && x.Gender.ToString() == gender
             && x.JobTitle.ToString() == jobTitle
             && x.Department.ToString() == department).ToList(); 
-        var filtered = tekoDataFilter.FilterEmployees(fio, ageMin.ToString(), ageMax.ToString(), gender, jobTitle, department, filterOptions, unitOfWork.GetEmployees).ToList(); 
+        var filtered = commonDataFilter.FilterEmployees(fio, ageMin.ToString(), ageMax.ToString(), gender, jobTitle, department, filterOptions, unitOfWork.GetEmployees).ToList(); 
         var identical = CompareLists(referenceList, filtered);
 
         // Assert 
@@ -336,7 +336,7 @@ public class CommonDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new CommonDataFilter(); 
+        var commonDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = ""; 
         var ageMax = ""; 
@@ -348,7 +348,7 @@ public class CommonDataFilterTest
 
         // Act 
         var vacations = unitOfWork.GetVacations().ToList(); 
-        var filtered = tekoDataFilter.FilterVacations(fio, ageMin, ageMax, gender, jobTitle, department, currentFio, filterOptions, unitOfWork.GetEmployees, unitOfWork.GetVacations).ToList(); 
+        var filtered = commonDataFilter.FilterVacations(fio, ageMin, ageMax, gender, jobTitle, department, currentFio, filterOptions, unitOfWork.GetEmployees, unitOfWork.GetVacations).ToList(); 
         var identical = CompareLists(vacations, filtered);
 
         // Assert 
@@ -362,7 +362,7 @@ public class CommonDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new CommonDataFilter(); 
+        var commonDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = ""; 
         var ageMax = ""; 
@@ -375,7 +375,7 @@ public class CommonDataFilterTest
         var vacations = unitOfWork.GetVacations().ToList(); 
         var currentFio = vacations.First().Employee.FIO; 
         var referenceList = vacations.Where(x => x.Employee.FIO == currentFio).ToList(); 
-        var filtered = tekoDataFilter.FilterVacations(fio, ageMin.ToString(), ageMax.ToString(), gender, jobTitle, department, currentFio, filterOptions, unitOfWork.GetEmployees, unitOfWork.GetVacations).ToList(); 
+        var filtered = commonDataFilter.FilterVacations(fio, ageMin.ToString(), ageMax.ToString(), gender, jobTitle, department, currentFio, filterOptions, unitOfWork.GetEmployees, unitOfWork.GetVacations).ToList(); 
         var identical = CompareLists(referenceList, filtered);
 
         // Assert 
@@ -388,7 +388,7 @@ public class CommonDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new CommonDataFilter(); 
+        var commonDataFilter = new CommonDataFilter(); 
         var ageMin = ""; 
         var ageMax = ""; 
         var gender = ""; 
@@ -401,7 +401,7 @@ public class CommonDataFilterTest
         var fio = vacations.First().Employee.FIO; 
         var currentFio = fio; 
         var referenceList = vacations.Where(x => x.Employee.FIO == fio).ToList(); 
-        var filtered = tekoDataFilter.FilterVacations(fio, ageMin, ageMax, gender, jobTitle, department, currentFio, filterOptions, unitOfWork.GetEmployees, unitOfWork.GetVacations).ToList(); 
+        var filtered = commonDataFilter.FilterVacations(fio, ageMin, ageMax, gender, jobTitle, department, currentFio, filterOptions, unitOfWork.GetEmployees, unitOfWork.GetVacations).ToList(); 
         var identical = CompareLists(referenceList, filtered);
 
         // Assert 
@@ -414,7 +414,7 @@ public class CommonDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new CommonDataFilter(); 
+        var commonDataFilter = new CommonDataFilter(); 
         var ageMin = 34; 
         var ageMax = 68; 
         var gender = ""; 
@@ -434,7 +434,7 @@ public class CommonDataFilterTest
                 && x.Employee.Department.ToString() == department
             )
             || x.Employee.FIO == currentFio).ToList(); 
-        var filtered = tekoDataFilter.FilterVacations(fio, ageMin.ToString(), ageMax.ToString(), gender, jobTitle, department, currentFio, filterOptions, unitOfWork.GetEmployees, unitOfWork.GetVacations).ToList(); 
+        var filtered = commonDataFilter.FilterVacations(fio, ageMin.ToString(), ageMax.ToString(), gender, jobTitle, department, currentFio, filterOptions, unitOfWork.GetEmployees, unitOfWork.GetVacations).ToList(); 
         var identical = CompareLists(referenceList, filtered);
 
         // Assert 
@@ -447,7 +447,7 @@ public class CommonDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new CommonDataFilter(); 
+        var commonDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = 34; 
         var ageMax = 68; 
@@ -466,7 +466,7 @@ public class CommonDataFilterTest
                 && x.Employee.BirthDate >= System.DateTime.Now.AddYears(-ageMax)
             )
             || x.Employee.FIO == currentFio).ToList(); 
-        var filtered = tekoDataFilter.FilterVacations(fio, ageMin.ToString(), ageMax.ToString(), gender, jobTitle, department, currentFio, filterOptions, unitOfWork.GetEmployees, unitOfWork.GetVacations).ToList(); 
+        var filtered = commonDataFilter.FilterVacations(fio, ageMin.ToString(), ageMax.ToString(), gender, jobTitle, department, currentFio, filterOptions, unitOfWork.GetEmployees, unitOfWork.GetVacations).ToList(); 
         var identical = CompareLists(referenceList, filtered);
 
         // Assert 
@@ -479,7 +479,7 @@ public class CommonDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new CommonDataFilter(); 
+        var commonDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = ""; 
         var ageMax = ""; 
@@ -494,7 +494,7 @@ public class CommonDataFilterTest
         var referenceList = vacations.Where(x => 
             x.Employee.FIO == currentFio
             || x.Employee.Department.ToString() == department).ToList(); 
-        var filtered = tekoDataFilter.FilterVacations(fio, ageMin.ToString(), ageMax.ToString(), gender, jobTitle, department, currentFio, filterOptions, unitOfWork.GetEmployees, unitOfWork.GetVacations).ToList(); 
+        var filtered = commonDataFilter.FilterVacations(fio, ageMin.ToString(), ageMax.ToString(), gender, jobTitle, department, currentFio, filterOptions, unitOfWork.GetEmployees, unitOfWork.GetVacations).ToList(); 
         var identical = CompareLists(referenceList, filtered);
 
         // Assert 
@@ -507,7 +507,7 @@ public class CommonDataFilterTest
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
-        var tekoDataFilter = new CommonDataFilter(); 
+        var commonDataFilter = new CommonDataFilter(); 
         var fio = ""; 
         var ageMin = 34; 
         var ageMax = 55; 
@@ -525,7 +525,7 @@ public class CommonDataFilterTest
             && x.Employee.Gender.ToString() == gender
             && x.Employee.JobTitle.ToString() == jobTitle
             && x.Employee.Department.ToString() == department).ToList(); 
-        var filtered = tekoDataFilter.FilterVacations(fio, ageMin.ToString(), ageMax.ToString(), gender, jobTitle, department, currentFio, filterOptions, unitOfWork.GetEmployees, unitOfWork.GetVacations).ToList(); 
+        var filtered = commonDataFilter.FilterVacations(fio, ageMin.ToString(), ageMax.ToString(), gender, jobTitle, department, currentFio, filterOptions, unitOfWork.GetEmployees, unitOfWork.GetVacations).ToList(); 
         var identical = CompareLists(referenceList, filtered);
 
         // Assert 
