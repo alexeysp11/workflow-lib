@@ -1,7 +1,9 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using WorkflowLib.Examples.EmployeesMvc.Helpers; 
-using WorkflowLib.Examples.EmployeesMvc.Models;
+using WorkflowLib.Examples.EmployeesMvc.Core.Models;
+using WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
+using WorkflowLib.Examples.EmployeesMvc.Core.Domain.Filtering;
 
 namespace WorkflowLib.Examples.EmployeesMvc.Controllers;
 

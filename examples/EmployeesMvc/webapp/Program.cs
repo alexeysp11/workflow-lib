@@ -1,4 +1,6 @@
-using WorkflowLib.Examples.EmployeesMvc.Models;
+using WorkflowLib.Examples.EmployeesMvc.Core.Models;
+using WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
+using WorkflowLib.Examples.EmployeesMvc.Core.Domain.Filtering;
 
 var builder = WebApplication.CreateBuilder(args);
 
