@@ -39,10 +39,10 @@ public class EmployeeGenerator : IEmployeeGenerator
     {
         var finalString = string.Empty;
         var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        // var stringChars = new char[AppSettings.EmployeeFioLength];
+        // var stringChars = new char[AppSettings.EmployeeFullNameLength];
         var stringChars = new char[10];
         var random = new Random();
-        // for (int i = 0; i < AppSettings.EmployeeFioWordsNumber; i++)
+        // for (int i = 0; i < AppSettings.EmployeeFullNameWordsNumber; i++)
         for (int i = 0; i < 3; i++)
         {
             for (int j = 0; j < stringChars.Length; j++)

@@ -44,10 +44,10 @@ public class AppSettings
     /// <summary>
     /// Length of a part of a employee's fullname.
     /// </summary>
-    public int EmployeeFioLength { get; set; }
+    public int EmployeeFullNameLength { get; set; }
     
     /// <summary>
     /// Number of parts that the fullname consists of.
     /// </summary>
-    public int EmployeeFioWordsNumber { get; set; }
+    public int EmployeeFullNameWordsNumber { get; set; }
 }

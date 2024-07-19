@@ -109,11 +109,11 @@ public class HomeController : Controller
         string gender,
         string jobTitle,
         string department,
-        string currentFio,
+        string currentFullName,
         string filterOptions)
     {
         // Get filtered data 
-        var vacations = _commonFilter.FilterVacations(fullName, ageMin, ageMax, gender, jobTitle, department, currentFio, filterOptions, _unitOfWork.GetEmployees, _unitOfWork.GetVacations);
+        var vacations = _commonFilter.FilterVacations(fullName, ageMin, ageMax, gender, jobTitle, department, currentFullName, filterOptions, _unitOfWork.GetEmployees, _unitOfWork.GetVacations);
 
         // Insert filtered data and get UID 
         string uid = _unitOfWork.InsertFilteredVacations(vacations);
@@ -123,7 +123,7 @@ public class HomeController : Controller
 
         // Store info about filtering 
         TempData[StringHelper.FilterInfoVacationsStr] = StringHelper.GetFilterOptionsString(fullName, ageMin, ageMax, gender, jobTitle, department);  
-        TempData[StringHelper.EmployeeInfoVacationsStr] = StringHelper.GetFilterOptionsString(currentFio);  
+        TempData[StringHelper.EmployeeInfoVacationsStr] = StringHelper.GetFilterOptionsString(currentFullName);  
         TempData[StringHelper.FilterOptionsVacationsStr] = filterOptions;
 
         return RedirectToAction("Vacations");

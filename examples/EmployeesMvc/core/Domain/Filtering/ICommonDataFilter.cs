@@ -22,7 +22,7 @@ public interface ICommonDataFilter
         string gender,
         string jobTitle,
         string department,
-        string currentFio,
+        string currentFullName,
         string filterOptions,
         Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees,
         Func<Expression<Func<Vacation, bool>>, List<Vacation>> getVacations);  

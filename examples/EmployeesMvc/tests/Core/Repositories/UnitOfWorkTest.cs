@@ -27,7 +27,7 @@ public class UnitOfWorkTest
     [InlineData("")]
     [InlineData(null)]
     [InlineData("IncorrectFullnameOfTheEmployee")]
-    public void InsertVacation_IncorrectFio_RecordIsNotInserted(string fullName)
+    public void InsertVacation_IncorrectFullName_RecordIsNotInserted(string fullName)
     {
         // Arrange
         var unitOfWork = new UnitOfWork(); 
