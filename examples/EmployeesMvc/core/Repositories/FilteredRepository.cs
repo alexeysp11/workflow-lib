@@ -11,11 +11,6 @@ public class FilteredRepository<TEntity> where TEntity : class
 {
     private AppSettings _appSettings;
 
-    public FilteredRepository(AppSettings appSettings)
-    {
-        _appSettings = appSettings;
-    }
-
     /// <summary>
     /// Filtered dataset.
     /// </summary>
@@ -29,8 +24,10 @@ public class FilteredRepository<TEntity> where TEntity : class
     /// <summary>
     /// Basic constructor.
     /// </summary>
-    public FilteredRepository()
+    public FilteredRepository(AppSettings appSettings)
     {
+        _appSettings = appSettings;
+        
         this.filteredDbSet = new ConcurrentDictionary<string, FilteredRecord<TEntity>>();
         SetTimer();
     }

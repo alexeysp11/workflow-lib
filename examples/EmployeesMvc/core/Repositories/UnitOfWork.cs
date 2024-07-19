@@ -57,7 +57,7 @@ public class UnitOfWork : IUnitOfWork
         {
             if (this.employeeRepositoryFiltered == null)
             {
-                this.employeeRepositoryFiltered = new FilteredRepository<Employee>();
+                this.employeeRepositoryFiltered = new FilteredRepository<Employee>(_appSettings);
             }
             return employeeRepositoryFiltered;
         }
@@ -72,7 +72,7 @@ public class UnitOfWork : IUnitOfWork
         {
             if (this.vacationRepositoryFiltered == null)
             {
-                this.vacationRepositoryFiltered = new FilteredRepository<Vacation>();
+                this.vacationRepositoryFiltered = new FilteredRepository<Vacation>(_appSettings);
             }
             return vacationRepositoryFiltered;
         }
