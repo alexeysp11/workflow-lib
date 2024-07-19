@@ -50,4 +50,9 @@ public class AppSettings
     /// Number of parts that the fullname consists of.
     /// </summary>
     public int EmployeeFullNameWordsNumber { get; set; }
+    
+    /// <summary>
+    /// String settings.
+    /// </summary>
+    public StringSettings StringSettings { get; set; }
 }

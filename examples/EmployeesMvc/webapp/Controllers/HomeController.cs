@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using WorkflowLib.Examples.EmployeesMvc.Helpers; 
 using WorkflowLib.Examples.EmployeesMvc.Core.Models;
+using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
 using WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
 using WorkflowLib.Examples.EmployeesMvc.Core.Domain.Filtering;
 
@@ -9,15 +9,24 @@ namespace WorkflowLib.Examples.EmployeesMvc.Controllers;
 
 public class HomeController : Controller
 {
+    private AppSettings _appSettings;
+    private FilterOptionsSettings _filterOptionsSettings;
+    private TempDataSettings _tempDataSettings;
+    
     private readonly ILogger<HomeController> _logger;
     private readonly IUnitOfWork _unitOfWork;
     private readonly ICommonDataFilter _commonFilter;
 
     public HomeController(
+        AppSettings appSettings,
         ILogger<HomeController> logger,
         IUnitOfWork unitOfWork,
         ICommonDataFilter commonFilter)
     {
+        _appSettings = appSettings;
+        _filterOptionsSettings = _appSettings.StringSettings.FilterOptionsSettings;
+        _tempDataSettings = _appSettings.StringSettings.TempDataSettings;
+
         _logger = logger;
         _unitOfWork = unitOfWork;
         _commonFilter = commonFilter;
@@ -30,15 +39,15 @@ public class HomeController : Controller
 
     public IActionResult Employees()
     {
-        var uidObj = TempData[StringHelper.EmployeesUidStr];
+        var uidObj = TempData[_tempDataSettings.EmployeesUidStr];
         if (uidObj != null && !string.IsNullOrEmpty(uidObj.ToString()))
         {
             var employeesFiltered = _unitOfWork.GetFilteredEmployees(uidObj.ToString()).ToList();
             uidObj = string.Empty;
             return View(employeesFiltered);
         }
-        TempData[StringHelper.FilterInfoEmployeesStr] = StringHelper.NoFiltersApplied;
-        TempData[StringHelper.FilterOptionsEmployeesStr] = StringHelper.NoFiltersApplied;
+        TempData[_tempDataSettings.FilterInfoEmployeesStr] = _filterOptionsSettings.NoFiltersApplied;
+        TempData[_tempDataSettings.FilterOptionsEmployeesStr] = _filterOptionsSettings.NoFiltersApplied;
         var employees = _unitOfWork.GetEmployees();
         return View(employees);
     }
@@ -46,7 +55,7 @@ public class HomeController : Controller
     public IActionResult Vacations()
     {
         // Restore previously filtered elements 
-        var uidObj = TempData[StringHelper.VacationsUidStr];
+        var uidObj = TempData[_tempDataSettings.VacationsUidStr];
         if (uidObj != null && !string.IsNullOrEmpty(uidObj.ToString()))
         {
             var vacationsFiltered = _unitOfWork.GetFilteredVacations(uidObj.ToString()).ToList();
@@ -55,9 +64,9 @@ public class HomeController : Controller
         }
 
         // Set info about filters 
-        TempData[StringHelper.FilterInfoVacationsStr] = StringHelper.NoFiltersApplied;
-        TempData[StringHelper.EmployeeInfoVacationsStr] = StringHelper.NoFiltersApplied;
-        TempData[StringHelper.FilterOptionsVacationsStr] = StringHelper.NoFiltersApplied;
+        TempData[_tempDataSettings.FilterInfoVacationsStr] = _filterOptionsSettings.NoFiltersApplied;
+        TempData[_tempDataSettings.EmployeeInfoVacationsStr] = _filterOptionsSettings.NoFiltersApplied;
+        TempData[_tempDataSettings.FilterOptionsVacationsStr] = _filterOptionsSettings.NoFiltersApplied;
 
         // Get all elements 
         var vacations = _unitOfWork.GetVacations();
@@ -93,9 +102,9 @@ public class HomeController : Controller
         string uid = _unitOfWork.InsertFilteredEmployees(employees);
 
         // Save info about applied filters 
-        TempData[StringHelper.EmployeesUidStr] = uid;
-        TempData[StringHelper.FilterInfoEmployeesStr] = StringHelper.GetFilterOptionsString(fullName, ageMin, ageMax, gender, jobTitle, department);
-        TempData[StringHelper.FilterOptionsEmployeesStr] = filterOptions;
+        TempData[_tempDataSettings.EmployeesUidStr] = uid;
+        TempData[_tempDataSettings.FilterInfoEmployeesStr] = _filterOptionsSettings.GetFilterOptionsString(fullName, ageMin, ageMax, gender, jobTitle, department);
+        TempData[_tempDataSettings.FilterOptionsEmployeesStr] = filterOptions;
         
         return RedirectToAction("Employees");
     }
@@ -119,12 +128,12 @@ public class HomeController : Controller
         string uid = _unitOfWork.InsertFilteredVacations(vacations);
 
         // Store UID and  in views 
-        TempData[StringHelper.VacationsUidStr] = uid;
+        TempData[_tempDataSettings.VacationsUidStr] = uid;
 
         // Store info about filtering 
-        TempData[StringHelper.FilterInfoVacationsStr] = StringHelper.GetFilterOptionsString(fullName, ageMin, ageMax, gender, jobTitle, department);  
-        TempData[StringHelper.EmployeeInfoVacationsStr] = StringHelper.GetFilterOptionsString(currentFullName);  
-        TempData[StringHelper.FilterOptionsVacationsStr] = filterOptions;
+        TempData[_tempDataSettings.FilterInfoVacationsStr] = _filterOptionsSettings.GetFilterOptionsString(fullName, ageMin, ageMax, gender, jobTitle, department);  
+        TempData[_tempDataSettings.EmployeeInfoVacationsStr] = _filterOptionsSettings.GetFilterOptionsString(currentFullName);  
+        TempData[_tempDataSettings.FilterOptionsVacationsStr] = filterOptions;
 
         return RedirectToAction("Vacations");
     }

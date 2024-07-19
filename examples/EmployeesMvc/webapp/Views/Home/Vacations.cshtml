@@ -1,7 +1,10 @@
+@using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations
 @using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources
 @model IEnumerable<Vacation>
+@inject AppSettings _appSettings
 @{
     ViewData["Title"] = "Vacations Page";
+    var filterOptionsSettings = _appSettings.StringSettings.FilterOptionsSettings;
     var jobTitles = System.Enum.GetValues(typeof(JobTitle)); 
     var departments = System.Enum.GetValues(typeof(Department)); 
 }
@@ -50,9 +53,9 @@
         
         <label>Filter options: </label>
         <select name="filterOptions">
-            <option>@WorkflowLib.Examples.EmployeesMvc.Helpers.StringHelper.FindFilterOptionsShowAllFilteredVacations</option>
-            <option>@WorkflowLib.Examples.EmployeesMvc.Helpers.StringHelper.FindFilterOptionsShowIntersections</option>
-            <option>@WorkflowLib.Examples.EmployeesMvc.Helpers.StringHelper.FindFilterOptionsExcludeIntersections</option>
+            <option>@filterOptionsSettings.FindFilterOptionsShowAllFilteredVacations</option>
+            <option>@filterOptionsSettings.FindFilterOptionsShowIntersections</option>
+            <option>@filterOptionsSettings.FindFilterOptionsExcludeIntersections</option>
         </select>
         <input type="submit" value="Find" class="btn btn-primary" />
     </form>

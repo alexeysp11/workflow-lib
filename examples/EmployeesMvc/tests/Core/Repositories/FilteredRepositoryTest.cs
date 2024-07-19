@@ -1,4 +1,4 @@
-using System; 
+using System;
 using Xunit;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
 using WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
@@ -17,8 +17,8 @@ public class FilteredRepositoryTest
         var vacations = new FilteredRepository<Vacation>();
 
         // Act 
-        Action actEmployees = () => employees.GetFiltered(uid); 
-        Action actVacations = () => vacations.GetFiltered(uid); 
+        Action actEmployees = () => employees.GetFiltered(uid);
+        Action actVacations = () => vacations.GetFiltered(uid);
 
         // Assert 
         System.Exception exceptionEmployees = Assert.Throws<System.Exception>(actEmployees);

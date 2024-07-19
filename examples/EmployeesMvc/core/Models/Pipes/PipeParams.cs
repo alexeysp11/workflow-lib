@@ -1,4 +1,4 @@
-using System.Collections.Generic; 
+using System.Collections.Generic;
 
 namespace WorkflowLib.Examples.EmployeesMvc.Core.Models.Pipes;
 
@@ -18,11 +18,11 @@ public class PipeParams
     public int[] VacationIntervals { get; }
     
     /// <summary>
-    /// Basic constructor.
+    /// Default constructor.
     /// </summary>
     public PipeParams(int employeeQty, int[] vacationIntervals)
     {
-        EmployeeQty = employeeQty; 
-        VacationIntervals = vacationIntervals; 
+        EmployeeQty = employeeQty;
+        VacationIntervals = vacationIntervals;
     }
 }

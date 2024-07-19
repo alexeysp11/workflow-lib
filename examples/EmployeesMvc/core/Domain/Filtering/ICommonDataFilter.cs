@@ -13,7 +13,7 @@ public interface ICommonDataFilter
         string jobTitle,
         string department,
         string filterOptions,
-        Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees); 
+        Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees);
     
     IEnumerable<Vacation> FilterVacations(
         string fullName,

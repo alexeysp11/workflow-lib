@@ -24,12 +24,12 @@ public class PipeResult
     public List<Vacation> Vacations { get; set; }
     
     /// <summary>
-    /// Basic constructor.
+    /// Default constructor.
     /// </summary>
     public PipeResult(PipeParams pipeParams)
     {
-        PipeParams = pipeParams; 
-        Employees = new List<Employee>(); 
-        Vacations = new List<Vacation>(); 
+        PipeParams = pipeParams;
+        Employees = new List<Employee>();
+        Vacations = new List<Vacation>();
     }
 }

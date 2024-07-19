@@ -1,7 +1,6 @@
 using System.Linq.Expressions;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
-using WorkflowLib.Examples.EmployeesMvc.Helpers; 
 
 namespace WorkflowLib.Examples.EmployeesMvc.Core.Domain.Filtering;
 
@@ -11,10 +10,12 @@ namespace WorkflowLib.Examples.EmployeesMvc.Core.Domain.Filtering;
 public class CommonDataFilter : ICommonDataFilter
 {
     private AppSettings _appSettings;
+    private FilterOptionsSettings _filterOptionsSettings;
 
     public CommonDataFilter(AppSettings appSettings)
     {
         _appSettings = appSettings;
+        _filterOptionsSettings = _appSettings.StringSettings.FilterOptionsSettings;
     }
 
     #region Filter employees
@@ -31,19 +32,19 @@ public class CommonDataFilter : ICommonDataFilter
         string filterOptions,
         Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees)
     {
-        int ageMinInt = _appSettings.EmployeeMinAge; 
-        int ageMaxInt = _appSettings.EmployeeMaxAge; 
+        int ageMinInt = _appSettings.EmployeeMinAge;
+        int ageMaxInt = _appSettings.EmployeeMaxAge;
         if (!string.IsNullOrEmpty(ageMin))
         {
             if (!System.Int32.TryParse(ageMin, out ageMinInt)) 
-                throw new System.Exception("Unable to convert string parameter 'ageMin' to integer"); 
+                throw new System.Exception("Unable to convert string parameter 'ageMin' to integer");
         }
         if (!string.IsNullOrEmpty(ageMax))
         {
             if (!System.Int32.TryParse(ageMax, out ageMaxInt)) 
-                throw new System.Exception("Unable to convert string parameter 'ageMax' to integer"); 
+                throw new System.Exception("Unable to convert string parameter 'ageMax' to integer");
         }
-        return FilterEmployees(fullName, ageMinInt, ageMaxInt, gender, jobTitle, department, filterOptions, getEmployees); 
+        return FilterEmployees(fullName, ageMinInt, ageMaxInt, gender, jobTitle, department, filterOptions, getEmployees);
     }
 
     /// <summary>
@@ -59,9 +60,9 @@ public class CommonDataFilter : ICommonDataFilter
         string filterOptions,
         Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees)
     {
-        var dateMin = System.DateTime.Now.AddYears(-ageMax); 
-        var dateMax = System.DateTime.Now.AddYears(-ageMin); 
-        return FilterEmployees(fullName, dateMin, dateMax, gender, jobTitle, department, filterOptions, getEmployees); 
+        var dateMin = System.DateTime.Now.AddYears(-ageMax);
+        var dateMax = System.DateTime.Now.AddYears(-ageMin);
+        return FilterEmployees(fullName, dateMin, dateMax, gender, jobTitle, department, filterOptions, getEmployees);
     }
 
     /// <summary>
@@ -77,7 +78,7 @@ public class CommonDataFilter : ICommonDataFilter
         string filterOptions,
         Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees)
     {
-        IEnumerable<Employee> result; 
+        IEnumerable<Employee> result;
         if (!string.IsNullOrEmpty(fullName) && !string.IsNullOrEmpty(gender)
             && !string.IsNullOrEmpty(jobTitle) && !string.IsNullOrEmpty(department))
         {
@@ -87,31 +88,31 @@ public class CommonDataFilter : ICommonDataFilter
                 && x.BirthDate >= dateMin 
                 && x.BirthDate <= dateMax
                 && x.JobTitle.ToString() == jobTitle 
-                && x.Department.ToString() == department); 
+                && x.Department.ToString() == department);
         }
         else 
         {
             // Retrieve data using the specified filter.
-            result = getEmployees(x => x.BirthDate >= dateMin && x.BirthDate <= dateMax); 
+            result = getEmployees(x => x.BirthDate >= dateMin && x.BirthDate <= dateMax);
             if (!string.IsNullOrEmpty(fullName))
-                result = result.Where(x => x.FullName.Contains(fullName)); 
+                result = result.Where(x => x.FullName.Contains(fullName));
             if (!string.IsNullOrEmpty(gender))
-                result = result.Where(x => x.Gender.ToString() == gender); 
+                result = result.Where(x => x.Gender.ToString() == gender);
             if (!string.IsNullOrEmpty(jobTitle))
-                result = result.Where(x => x.JobTitle.ToString() == jobTitle); 
+                result = result.Where(x => x.JobTitle.ToString() == jobTitle);
             if (!string.IsNullOrEmpty(department))
-                result = result.Where(x => x.Department.ToString() == department); 
+                result = result.Where(x => x.Department.ToString() == department);
             
             // Retrive date using exclude filter.
-            if (filterOptions == StringHelper.FindFilterOptionsExcludeEmployee)
+            if (filterOptions == _filterOptionsSettings.FindFilterOptionsExcludeEmployee)
             {
-                var excludeList = getEmployees(x => true); 
+                var excludeList = getEmployees(x => true);
                 foreach (var item in result)
-                    excludeList = excludeList.Where(x => x.FullName != item.FullName).ToList(); 
-                return excludeList; 
+                    excludeList = excludeList.Where(x => x.FullName != item.FullName).ToList();
+                return excludeList;
             }
         }
-        return result; 
+        return result;
     }
     #endregion  // Filter employees
 
@@ -131,8 +132,8 @@ public class CommonDataFilter : ICommonDataFilter
         Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees,
         Func<Expression<Func<Vacation, bool>>, List<Vacation>> getVacations)
     {
-        var employees = new List<Employee>(); 
-        var vacations = new List<Vacation>(); 
+        var employees = new List<Employee>();
+        var vacations = new List<Vacation>();
 
         // Get filtered employees.
         // If all filters are empty and current is not empty, then don't filter employees.
@@ -151,20 +152,20 @@ public class CommonDataFilter : ICommonDataFilter
         }
         else
         {
-            employees = FilterEmployees(fullName, ageMin, ageMax, gender, jobTitle, department, "", getEmployees).ToList(); 
+            employees = FilterEmployees(fullName, ageMin, ageMax, gender, jobTitle, department, "", getEmployees).ToList();
         }
 
         // Get vacations using filter.
         foreach (var employee in employees)
         {
-            var vacationsFiltered = getVacations(x => x.Employee.FullName == employee.FullName); 
-            vacations.AddRange(vacationsFiltered); 
+            var vacationsFiltered = getVacations(x => x.Employee.FullName == employee.FullName);
+            vacations.AddRange(vacationsFiltered);
         }
 
         // Get vacations of the current employee.
         if (!string.IsNullOrEmpty(currentFullName))
         {
-            var currentVacations = getVacations(x => x.Employee.FullName.Contains(currentFullName)); 
+            var currentVacations = getVacations(x => x.Employee.FullName.Contains(currentFullName));
             foreach (var vacation in currentVacations)
             {
                 if (vacations.Where(x => 
@@ -173,17 +174,17 @@ public class CommonDataFilter : ICommonDataFilter
                         && x.Employee.FullName == vacation.Employee.FullName)
                     .ToList().Count == 0)
                 {
-                    vacations.Add(vacation); 
+                    vacations.Add(vacation);
                 }
             }
         }
 
         // Apply filter options.
-        if (filterOptions == StringHelper.FindFilterOptionsShowIntersections)
-            return GetIntersections(vacations, currentFullName); 
-        if (filterOptions == StringHelper.FindFilterOptionsExcludeIntersections)
-            return ExcludeIntersections(vacations, currentFullName); 
-        return vacations; 
+        if (filterOptions == _filterOptionsSettings.FindFilterOptionsShowIntersections)
+            return GetIntersections(vacations, currentFullName);
+        if (filterOptions == _filterOptionsSettings.FindFilterOptionsExcludeIntersections)
+            return ExcludeIntersections(vacations, currentFullName);
+        return vacations;
     }
 
     /// <summary>
@@ -192,13 +193,13 @@ public class CommonDataFilter : ICommonDataFilter
     private List<Vacation> GetIntersections(List<Vacation> vacations, string currentFullName)
     {
         if (string.IsNullOrEmpty(currentFullName))
-            return new List<Vacation>(); 
+            return new List<Vacation>();
         
         // 
-        var filteredVacations = new List<Vacation>(); 
-        var employeeVacations = vacations.Where(x => x.Employee.FullName.Contains(currentFullName)); 
-        var otherVacations = vacations.Where(x => !x.Employee.FullName.Contains(currentFullName)); 
-        filteredVacations.AddRange(employeeVacations); 
+        var filteredVacations = new List<Vacation>();
+        var employeeVacations = vacations.Where(x => x.Employee.FullName.Contains(currentFullName));
+        var otherVacations = vacations.Where(x => !x.Employee.FullName.Contains(currentFullName));
+        filteredVacations.AddRange(employeeVacations);
         foreach (var vacation in employeeVacations)
         {
             // Scenario 1: 
@@ -213,10 +214,10 @@ public class CommonDataFilter : ICommonDataFilter
             var filtered = otherVacations.Where(x => 
                 (x.BeginDate <= vacation.BeginDate && x.EndDate > vacation.BeginDate)
                 || (x.BeginDate < vacation.EndDate && x.BeginDate >= vacation.EndDate)
-                || (x.BeginDate == vacation.BeginDate && x.EndDate == vacation.EndDate)); 
-            filteredVacations.AddRange(filtered); 
+                || (x.BeginDate == vacation.BeginDate && x.EndDate == vacation.EndDate));
+            filteredVacations.AddRange(filtered);
         }
-        return filteredVacations; 
+        return filteredVacations;
     }
 
     /// <summary>
@@ -225,18 +226,18 @@ public class CommonDataFilter : ICommonDataFilter
     private List<Vacation> ExcludeIntersections(List<Vacation> vacations, string currentFullName)
     {
         if (string.IsNullOrEmpty(currentFullName))
-            return new List<Vacation>(); 
+            return new List<Vacation>();
 
         // 
-        var intersections = GetIntersections(vacations, currentFullName); 
-        var excludeList = vacations.Where(x => true).ToList(); 
+        var intersections = GetIntersections(vacations, currentFullName);
+        var excludeList = vacations.Where(x => true).ToList();
         foreach (var intersection in intersections)
         {
             excludeList = excludeList.Where(x => 
                 x.Employee.FullName.Contains(currentFullName) 
-                || (x.BeginDate != intersection.BeginDate && x.EndDate != intersection.EndDate)).ToList(); 
+                || (x.BeginDate != intersection.BeginDate && x.EndDate != intersection.EndDate)).ToList();
         }
-        return excludeList; 
+        return excludeList;
     }
     #endregion  // Filter vacations
 }

@@ -8,6 +8,6 @@ public class ConfigHelperTest
     [Fact]
     public void VacationQty()
     {
-        Assert.True(ConfigHelper.EmployeeQty * ConfigHelper.VacationIntervals.Length == ConfigHelper.VacationQty); 
+        Assert.True(ConfigHelper.EmployeeQty * ConfigHelper.VacationIntervals.Length == ConfigHelper.VacationQty);
     }
 }
