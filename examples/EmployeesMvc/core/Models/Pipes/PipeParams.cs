@@ -1,6 +1,6 @@
 using System.Collections.Generic; 
 
-namespace WorkflowLib.Examples.EmployeesMvc.Core.Models;
+namespace WorkflowLib.Examples.EmployeesMvc.Core.Models.Pipes;
 
 /// <summary>
 /// Parameters used for the purpose of generating initial datasets.

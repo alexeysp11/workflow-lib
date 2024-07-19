@@ -1,6 +1,6 @@
 using System; 
 using Xunit;
-using WorkflowLib.Examples.EmployeesMvc.Core.Models;
+using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
 using WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
 
 namespace Tests.WorkflowLib.Examples.EmployeesMvc.Core.Repositories;

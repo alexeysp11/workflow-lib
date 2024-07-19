@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using WorkflowLib.Examples.EmployeesMvc.Core.Models;
+using WorkflowLib.Examples.EmployeesMvc.Core.Models.Pipes;
 
 namespace WorkflowLib.Examples.EmployeesMvc.Core.Pipes;
 

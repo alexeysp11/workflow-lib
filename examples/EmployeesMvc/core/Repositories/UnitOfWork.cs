@@ -1,6 +1,7 @@
 using System.Collections.Generic; 
 using System.Linq.Expressions;
-using WorkflowLib.Examples.EmployeesMvc.Core.Models;
+using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
+using WorkflowLib.Examples.EmployeesMvc.Core.Models.Pipes;
 using WorkflowLib.Examples.EmployeesMvc.Helpers;
 using WorkflowLib.Examples.EmployeesMvc.Core.Pipes;
 

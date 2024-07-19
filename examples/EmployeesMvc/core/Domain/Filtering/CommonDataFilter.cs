@@ -1,5 +1,5 @@
 using System.Linq.Expressions;
-using WorkflowLib.Examples.EmployeesMvc.Core.Models;
+using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
 using WorkflowLib.Examples.EmployeesMvc.Helpers; 
 
 namespace WorkflowLib.Examples.EmployeesMvc.Core.Domain.Filtering;

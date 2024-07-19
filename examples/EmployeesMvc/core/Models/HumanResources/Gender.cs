@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.EmployeesMvc.Core.Models;
+namespace WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
 
 /// <summary>
 /// 

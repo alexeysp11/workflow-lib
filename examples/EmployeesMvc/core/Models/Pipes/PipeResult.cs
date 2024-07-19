@@ -1,6 +1,7 @@
-using System.Collections.Generic; 
+using System.Collections.Generic;
+using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
 
-namespace WorkflowLib.Examples.EmployeesMvc.Core.Models;
+namespace WorkflowLib.Examples.EmployeesMvc.Core.Models.Pipes;
 
 /// <summary>
 /// Represents all the generated collections.

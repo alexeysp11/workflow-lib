@@ -1,8 +1,9 @@
+@using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources
 @model IEnumerable<Employee>
 @{
     ViewData["Title"] = "Employees";
-    var jobTitles = System.Enum.GetValues(typeof(WorkflowLib.Examples.EmployeesMvc.Core.Models.JobTitle)); 
-    var departments = System.Enum.GetValues(typeof(WorkflowLib.Examples.EmployeesMvc.Core.Models.Department)); 
+    var jobTitles = System.Enum.GetValues(typeof(JobTitle)); 
+    var departments = System.Enum.GetValues(typeof(Department)); 
 }
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css" />

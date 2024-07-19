@@ -1,6 +1,6 @@
 using System.Collections.Generic; 
 using System.Linq.Expressions; 
-using WorkflowLib.Examples.EmployeesMvc.Core.Models;
+using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
 
 namespace WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
 

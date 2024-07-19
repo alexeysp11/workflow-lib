@@ -3,7 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using Xunit;
 using WorkflowLib.Examples.EmployeesMvc.Core.Domain.Filtering;
-using WorkflowLib.Examples.EmployeesMvc.Core.Models;
+using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
 using WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
 using WorkflowLib.Examples.EmployeesMvc.Helpers;
 

@@ -1,7 +1,8 @@
+@using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources
 @{
     ViewData["Title"] = "New Vacation Page";
-    var jobTitles = System.Enum.GetValues(typeof(WorkflowLib.Examples.EmployeesMvc.Core.Models.JobTitle)); 
-    var departments = System.Enum.GetValues(typeof(WorkflowLib.Examples.EmployeesMvc.Core.Models.Department)); 
+    var jobTitles = System.Enum.GetValues(typeof(JobTitle)); 
+    var departments = System.Enum.GetValues(typeof(Department)); 
 }
 
 <div class="text-center">
