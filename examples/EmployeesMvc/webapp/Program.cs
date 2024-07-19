@@ -1,11 +1,17 @@
-using WorkflowLib.Examples.EmployeesMvc.Core.Models;
+using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
 using WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
 using WorkflowLib.Examples.EmployeesMvc.Core.Domain.Filtering;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Get configurations.
+var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production";
+var configuration = new ConfigurationBuilder().AddJsonFile($"appsettings.{environment}.json").Build();
+var appsettings = configuration.GetSection("AppSettings").Get<AppSettings>();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton(appsettings);
 builder.Services.AddSingleton<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<ICommonDataFilter, CommonDataFilter>();
 
