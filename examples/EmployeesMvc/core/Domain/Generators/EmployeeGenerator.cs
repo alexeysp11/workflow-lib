@@ -1,5 +1,6 @@
+using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
-using WorkflowLib.Examples.EmployeesMvc.Helpers; 
+using WorkflowLib.Examples.EmployeesMvc.Helpers;
 
 namespace WorkflowLib.Examples.EmployeesMvc.Core.Domain.Generators;
 
@@ -15,7 +16,7 @@ public class EmployeeGenerator : IEmployeeGenerator
         int count, 
         System.Func<System.DateTime, System.DateTime, System.DateTime> generateDate)
     {
-        var employees = new List<Employee>(); 
+        var employees = new List<Employee>();
         for (int i = 0; i < count; i++)
         {
             var employee = new Employee 
@@ -26,43 +27,50 @@ public class EmployeeGenerator : IEmployeeGenerator
                 Department = GenerateEnum<Department>(),
                 BirthDate = GenerateBirthDate(generateDate)
             };
-            employees.Add(employee); 
+            employees.Add(employee);
         }
-        return employees; 
+        return employees;
     }
+    
     /// <summary>
     /// Generate a fullname of the employee 
     /// </summary>
     private string GenerateFullName()
     {
-        var finalString = string.Empty; 
+        var finalString = string.Empty;
         var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        var stringChars = new char[ConfigHelper.EmployeeFioLength];
+        // var stringChars = new char[AppSettings.EmployeeFioLength];
+        var stringChars = new char[10];
         var random = new Random();
-        for (int i = 0; i < ConfigHelper.EmployeeFioWordsNumber; i++)
+        // for (int i = 0; i < AppSettings.EmployeeFioWordsNumber; i++)
+        for (int i = 0; i < 3; i++)
         {
             for (int j = 0; j < stringChars.Length; j++)
                 stringChars[j] = chars[random.Next(chars.Length)];
-            var tmpStr = new String(stringChars); 
-            finalString += tmpStr.First().ToString().ToUpper() + tmpStr.Substring(1).ToLower() + " "; 
+            var tmpStr = new String(stringChars);
+            finalString += tmpStr.First().ToString().ToUpper() + tmpStr.Substring(1).ToLower() + " ";
         }
-        return finalString.Last() == ' ' ? finalString.Remove(finalString.Length - 1) : finalString; 
+        return finalString.Last() == ' ' ? finalString.Remove(finalString.Length - 1) : finalString;
     }
+
     /// <summary>
     /// Generic method for generating the employee's properties, knowing specified typed of enum 
     /// </summary>
     private T GenerateEnum<T>() where T : System.Enum
     {
-        var length = System.Enum.GetNames(typeof(T)).Length; 
-        return (T)(object) new Random().Next(1, length + 1); 
+        var length = System.Enum.GetNames(typeof(T)).Length;
+        return (T)(object) new Random().Next(1, length + 1);
     }
+
     /// <summary>
     /// Generates a bith date of an employee 
     /// </summary>
     private System.DateTime GenerateBirthDate(System.Func<System.DateTime, System.DateTime, System.DateTime> generateDate)
     {
-        System.DateTime start = System.DateTime.Now.AddYears(-ConfigHelper.EmployeeMaxAge); 
-        System.DateTime end = System.DateTime.Now.AddYears(-ConfigHelper.EmployeeMinAge); 
-        return generateDate(start, end); 
+        // System.DateTime start = System.DateTime.Now.AddYears(-AppSettings.EmployeeMaxAge);
+        System.DateTime start = System.DateTime.Now.AddYears(-70);
+        // System.DateTime end = System.DateTime.Now.AddYears(-AppSettings.EmployeeMinAge);
+        System.DateTime end = System.DateTime.Now.AddYears(-18);
+        return generateDate(start, end);
     }
 }

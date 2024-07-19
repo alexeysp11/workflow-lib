@@ -1,4 +1,5 @@
 using System.Linq.Expressions;
+using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
 using WorkflowLib.Examples.EmployeesMvc.Helpers; 
 
@@ -9,6 +10,13 @@ namespace WorkflowLib.Examples.EmployeesMvc.Core.Domain.Filtering;
 /// </summary>
 public class CommonDataFilter : ICommonDataFilter
 {
+    private AppSettings _appSettings;
+
+    public CommonDataFilter(AppSettings appSettings)
+    {
+        _appSettings = appSettings;
+    }
+
     #region Filter employees
     /// <summary>
     /// Applies filter to the employees collection.
@@ -23,8 +31,8 @@ public class CommonDataFilter : ICommonDataFilter
         string filterOptions,
         Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees)
     {
-        int ageMinInt = ConfigHelper.EmployeeMinAge; 
-        int ageMaxInt = ConfigHelper.EmployeeMaxAge; 
+        int ageMinInt = _appSettings.EmployeeMinAge; 
+        int ageMaxInt = _appSettings.EmployeeMaxAge; 
         if (!string.IsNullOrEmpty(ageMin))
         {
             if (!System.Int32.TryParse(ageMin, out ageMinInt)) 

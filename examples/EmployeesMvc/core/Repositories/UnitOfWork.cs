@@ -1,5 +1,6 @@
 using System.Collections.Generic; 
 using System.Linq.Expressions;
+using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.Pipes;
 using WorkflowLib.Examples.EmployeesMvc.Helpers;
@@ -16,6 +17,7 @@ public class UnitOfWork : IUnitOfWork
     private GenericRepository<Vacation> vacationRepository;
     private FilteredRepository<Employee> employeeRepositoryFiltered;
     private FilteredRepository<Vacation> vacationRepositoryFiltered;
+    private AppSettings _appSettings;
 
     /// <summary>
     /// Repository of the initial dataset of employees.
@@ -80,9 +82,11 @@ public class UnitOfWork : IUnitOfWork
     /// <summary>
     /// Basic constructor.
     /// </summary>
-    public UnitOfWork()
+    public UnitOfWork(AppSettings appSettings)
     {
-        var pipeParams = new PipeParams(ConfigHelper.EmployeeQty, ConfigHelper.VacationIntervals);
+        _appSettings = appSettings;
+        
+        var pipeParams = new PipeParams(_appSettings.EmployeeQty, _appSettings.VacationIntervals);
         var result = new PipeResult(pipeParams);
         
         var generatingPipe = new PipeBuilder(InsertIntoRepository)

@@ -1,4 +1,5 @@
 using System.Collections.Concurrent;
+using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models;
 using WorkflowLib.Examples.EmployeesMvc.Helpers;
 
@@ -9,6 +10,13 @@ namespace WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
 /// </summary>
 public class FilteredRepository<TEntity> where TEntity : class
 {
+    private AppSettings _appSettings;
+
+    public FilteredRepository(AppSettings appSettings)
+    {
+        _appSettings = appSettings;
+    }
+
     /// <summary>
     /// Filtered dataset.
     /// </summary>
@@ -71,7 +79,7 @@ public class FilteredRepository<TEntity> where TEntity : class
     private void SetTimer()
     {
         // Create a timer with a two second interval.
-        aTimer = new System.Timers.Timer(ConfigHelper.DbSetCollectorInterval);
+        aTimer = new System.Timers.Timer(_appSettings.DbSetCollectorInterval);
 
         // Hook up the Elapsed event for the timer. 
         aTimer.Elapsed += OnTimedEvent;
@@ -90,7 +98,7 @@ public class FilteredRepository<TEntity> where TEntity : class
         {
             // Delete unnecessary elements from dataset and datetime set 
             var timeDiff = System.DateTime.Now - item.Value.DateTimeCreated;
-            if (item.Value.IsReadyForDeleting || timeDiff.Milliseconds >= ConfigHelper.DbSetCollectorInterval)
+            if (item.Value.IsReadyForDeleting || timeDiff.Milliseconds >= _appSettings.DbSetCollectorInterval)
                 keysToDelete.Add(item.Key);
         }
         foreach (var key in keysToDelete)
