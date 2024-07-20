@@ -1,5 +1,5 @@
 using System.IO;
-using System.Xml.Serialization; 
+using System.Xml.Serialization;
 
 namespace WorkflowLib.Examples.Retail.Accounting.Services
 {

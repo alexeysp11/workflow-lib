@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using WorkflowLib.Examples.Retail.Accounting.Models; 
+using WorkflowLib.Examples.Retail.Accounting.Models;
 
 namespace WorkflowLib.Examples.Retail.Accounting.Services
 {
@@ -13,7 +13,7 @@ namespace WorkflowLib.Examples.Retail.Accounting.Services
             {
                 var departmentList = db.Department
                     .Where(p => p.Title == departmentTitle)
-                    .ToList(); 
+                    .ToList();
                 if (departmentList.Count == 0)
                 {
                     db.Add(new Department { Title = departmentTitle });
@@ -24,22 +24,22 @@ namespace WorkflowLib.Examples.Retail.Accounting.Services
 
         public static int? GetDepartmentId(string departmentTitle)
         {
-            int? departmentId = 0; 
+            int? departmentId = 0;
             using (var db = new AccountingContext())
             {
                 var departmentList = db.Department
                     .Where(d => d.Title == departmentTitle)
-                    .ToList(); 
+                    .ToList();
                 if (departmentList.Count != 0)
                 {
-                    departmentId = departmentList[0].DepartmentId; 
+                    departmentId = departmentList[0].DepartmentId;
                 }
                 else
                 {
-                    departmentId = null; 
+                    departmentId = null;
                 }
             }
-            return departmentId; 
+            return departmentId;
         }
     }
 }
