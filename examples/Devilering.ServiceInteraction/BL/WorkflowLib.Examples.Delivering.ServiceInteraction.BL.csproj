@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\src\Models\WorkflowLib.Models.csproj" />
-    <ProjectReference Include="..\..\..\..\src\Models.Business\WorkflowLib.Models.Business.csproj" />
-    <ProjectReference Include="..\..\..\..\src\ServiceDiscoveryBpm\WorkflowLib.ServiceDiscoveryBpm.csproj" />
+    <ProjectReference Include="..\..\..\src\Models\WorkflowLib.Models.csproj" />
+    <ProjectReference Include="..\..\..\src\Models.Business\WorkflowLib.Models.Business.csproj" />
+    <ProjectReference Include="..\..\..\src\ServiceDiscoveryBpm\WorkflowLib.ServiceDiscoveryBpm.csproj" />
   </ItemGroup>
   
   <ItemGroup>

@@ -64,7 +64,7 @@ public class ConfigResolver
             Name = whBackendName + " (wh2kitchen)",
             BusinessProcess = process,
             DateCreated = dtNow
-        }; 
+        };
         var wh2courierState = new BusinessProcessState
         {
             Name = whBackendName + " (wh2courier)",
@@ -76,13 +76,13 @@ public class ConfigResolver
             Name = courierBackendName,
             BusinessProcess = process,
             DateCreated = dtNow
-        }; 
+        };
         var kitchenState = new BusinessProcessState
         {
             Name = kitchenBackendName,
             BusinessProcess = process,
             DateCreated = dtNow
-        }; 
+        };
         var fileserivceState = new BusinessProcessState
         {
             Name = fileserviceBackendName,

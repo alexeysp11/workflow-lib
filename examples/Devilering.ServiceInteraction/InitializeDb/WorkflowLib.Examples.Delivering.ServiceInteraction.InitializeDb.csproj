@@ -9,8 +9,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BL\WorkflowLib.Examples.Delivering.ServiceInteraction.BL.csproj" />
-    <ProjectReference Include="..\..\..\..\src\Models\WorkflowLib.Models.csproj" />
-    <ProjectReference Include="..\..\..\..\src\Models.Business\WorkflowLib.Models.Business.csproj" />
+    <ProjectReference Include="..\..\..\src\Models\WorkflowLib.Models.csproj" />
+    <ProjectReference Include="..\..\..\src\Models.Business\WorkflowLib.Models.Business.csproj" />
   </ItemGroup>
 
   <ItemGroup>

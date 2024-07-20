@@ -7,11 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkflowLib.Examples.Delive
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkflowLib.Examples.Delivering.ServiceInteraction.BL", "BL\WorkflowLib.Examples.Delivering.ServiceInteraction.BL.csproj", "{01DA3F99-17BB-4756-9288-BB85531E885C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkflowLib.Examples.Delivering.ServiceInteraction.Core", "Core\WorkflowLib.Examples.Delivering.ServiceInteraction.Core.csproj", "{CAC63CBB-8D32-427B-ABB3-5673FB417EF0}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkflowLib.Examples.Delivering.ServiceInteraction.InitializeDb", "InitializeDb\WorkflowLib.Examples.Delivering.ServiceInteraction.InitializeDb.csproj", "{4249E27E-16B4-4B70-AC8B-2EDBB68877EF}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkflowLib.Examples.Delivering.ServiceInteraction.Models", "Models\WorkflowLib.Examples.Delivering.ServiceInteraction.Models.csproj", "{3973C930-E6C6-44DB-990A-F0BCEC3AC128}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkflowLib.Examples.Delivering.ServiceInteraction.Tests", "Tests\WorkflowLib.Examples.Delivering.ServiceInteraction.Tests.csproj", "{483B0AA5-7700-4833-8096-E5D8963A4F82}"
 EndProject
@@ -35,18 +31,10 @@ Global
 		{01DA3F99-17BB-4756-9288-BB85531E885C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01DA3F99-17BB-4756-9288-BB85531E885C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01DA3F99-17BB-4756-9288-BB85531E885C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CAC63CBB-8D32-427B-ABB3-5673FB417EF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CAC63CBB-8D32-427B-ABB3-5673FB417EF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CAC63CBB-8D32-427B-ABB3-5673FB417EF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CAC63CBB-8D32-427B-ABB3-5673FB417EF0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4249E27E-16B4-4B70-AC8B-2EDBB68877EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4249E27E-16B4-4B70-AC8B-2EDBB68877EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4249E27E-16B4-4B70-AC8B-2EDBB68877EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4249E27E-16B4-4B70-AC8B-2EDBB68877EF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3973C930-E6C6-44DB-990A-F0BCEC3AC128}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3973C930-E6C6-44DB-990A-F0BCEC3AC128}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3973C930-E6C6-44DB-990A-F0BCEC3AC128}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3973C930-E6C6-44DB-990A-F0BCEC3AC128}.Release|Any CPU.Build.0 = Release|Any CPU
 		{483B0AA5-7700-4833-8096-E5D8963A4F82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{483B0AA5-7700-4833-8096-E5D8963A4F82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{483B0AA5-7700-4833-8096-E5D8963A4F82}.Release|Any CPU.ActiveCfg = Release|Any CPU

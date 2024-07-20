@@ -10,7 +10,7 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DAL;
 /// </summary>
 public class LoggingDAL : ILoggingDAL
 {
-    private object m_object = new object(); 
+    private object m_object = new object();
     private DbContextOptions<ServiceInteractionDbContext> m_contextOptions;
 
     /// <summary>
