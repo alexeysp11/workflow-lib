@@ -14,7 +14,7 @@ namespace Security.Models
         {
             if (input == null || input == string.Empty)
             {
-                throw new System.Exception("Unable to use Monoalphabetic (input string cannot be null or empty)."); 
+                throw new System.Exception("Unable to use Monoalphabetic (input string cannot be null or empty).");
             }
 
             byte[] bytes = System.Text.Encoding.ASCII.GetBytes(input);
@@ -28,14 +28,14 @@ namespace Security.Models
                 
                 if (isFirstPartUpper || isFirstPartLower)
                 {
-                    bytes[i] = (byte)(bytes[i] + 13); 
+                    bytes[i] = (byte)(bytes[i] + 13);
                 }
                 else if (isSecondPartUpper || isSecondPartLower)
                 {
-                    bytes[i] = (byte)(bytes[i] - 13); 
+                    bytes[i] = (byte)(bytes[i] - 13);
                 }
             }
-            return System.Text.Encoding.ASCII.GetString(bytes); 
+            return System.Text.Encoding.ASCII.GetString(bytes);
         }
     }
 }

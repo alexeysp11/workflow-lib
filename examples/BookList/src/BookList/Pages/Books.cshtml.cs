@@ -6,27 +6,27 @@ namespace WorkflowLib.Examples.BookList.Pages
 {
     public class BooksModel : PageModel 
     {
-        private readonly ILogger _logger; 
+        private readonly ILogger _logger;
 
         public BooksModel(ILogger<BooksModel> logger)
         {
-            _logger = logger; 
+            _logger = logger;
         }
 
         public void OnGet()
         {
             try
             {
-                Repository.UserRepositoryInstance.GetBooksFromDb(); 
-                var books = Repository.UserRepositoryInstance.GetBookList(); 
+                Repository.UserRepositoryInstance.GetBooksFromDb();
+                var books = Repository.UserRepositoryInstance.GetBookList();
                 if (books == null)
                 {
-                    throw new System.Exception("List of books cannot be null"); 
+                    throw new System.Exception("List of books cannot be null");
                 }
             }
             catch (System.Exception e)
             {
-                _logger.LogWarning($"Exception in OnGet method: {e}"); 
+                _logger.LogWarning($"Exception in OnGet method: {e}");
             }
         }
 
@@ -41,12 +41,12 @@ namespace WorkflowLib.Examples.BookList.Pages
             if (isNameCorrect && isAuthorCorrect && isYearCorrect && 
                 isDescriptionCorrect)
             {
-                Repository.UserRepositoryInstance.AddNewBook(name, author, description); 
+                Repository.UserRepositoryInstance.AddNewBook(name, author, description);
                 
-                _logger.LogInformation($"Book is added by {Repository.UserRepositoryInstance.GetUser().Fullname}."); 
+                _logger.LogInformation($"Book is added by {Repository.UserRepositoryInstance.GetUser().Fullname}.");
                 return RedirectToPage("Books");
             }
-            return RedirectToPage(); 
+            return RedirectToPage();
         }
     }
 }
