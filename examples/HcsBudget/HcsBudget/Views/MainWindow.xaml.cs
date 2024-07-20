@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using WorkflowLib.Examples.HcsBudget.ViewModels; 
+using WorkflowLib.Examples.HcsBudget.ViewModels;
 
 namespace WorkflowLib.Examples.HcsBudget.Views
 {
@@ -16,15 +16,15 @@ namespace WorkflowLib.Examples.HcsBudget.Views
 
                 MainVM mainVm = new MainVM(this);
                 
-                DataContext = mainVm; 
-                this.Months.DataContext = mainVm; 
-                this.DataIn.DataContext = mainVm; 
-                this.DataOut.DataContext = mainVm; 
-                this.Report.DataContext = mainVm; 
+                DataContext = mainVm;
+                this.Months.DataContext = mainVm;
+                this.DataIn.DataContext = mainVm;
+                this.DataOut.DataContext = mainVm;
+                this.Report.DataContext = mainVm;
             }
             catch (System.Exception e)
             {
-                System.Windows.MessageBox.Show(e.Message, "Exception"); 
+                System.Windows.MessageBox.Show(e.Message, "Exception");
             }
         }
     }

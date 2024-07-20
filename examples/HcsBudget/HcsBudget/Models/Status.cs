@@ -1,4 +1,4 @@
-using WorkflowLib.Examples.HcsBudget.ViewModels; 
+using WorkflowLib.Examples.HcsBudget.ViewModels;
 
 namespace WorkflowLib.Examples.HcsBudget.Models
 {

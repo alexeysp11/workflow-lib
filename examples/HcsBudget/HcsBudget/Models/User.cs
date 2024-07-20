@@ -15,14 +15,14 @@ namespace WorkflowLib.Examples.HcsBudget.Models
             string currAbbreviation, string database, bool isProtected, 
             string password)
         {
-            UserId = userId; 
-            Name = name; 
-            Language = language; 
-            Currency = currency; 
-            CurrAbbreviation = currAbbreviation; 
-            Database = database; 
-            IsProtected = isProtected; 
-            Password = password; 
+            UserId = userId;
+            Name = name;
+            Language = language;
+            Currency = currency;
+            CurrAbbreviation = currAbbreviation;
+            Database = database;
+            IsProtected = isProtected;
+            Password = password;
         }
     }
 }
