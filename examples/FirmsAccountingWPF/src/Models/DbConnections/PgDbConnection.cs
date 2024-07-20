@@ -1,13 +1,13 @@
 using System.Collections.Generic;
-using System.Data.SqlTypes; 
+using System.Data.SqlTypes;
 using Npgsql;
-using WorkflowLib.Examples.FirmsAccounting.Models.Data; 
+using WorkflowLib.Examples.FirmsAccounting.Models.Data;
 
 namespace WorkflowLib.Examples.FirmsAccounting.Models.DbConnections
 {
     public class PgDbConnection : IFirmsDbConnection, IDocsDbConnection
     {
-        private string ConnString = "Host=localhost;Username=postgres;Database=chtpz_test"; 
+        private string ConnString = "Host=localhost;Username=postgres;Database=chtpz_test";
 
         private string SelectDocsRequest = @"
             SELECT 
@@ -26,7 +26,7 @@ namespace WorkflowLib.Examples.FirmsAccounting.Models.DbConnections
                 COALESCE(dec_sum, 0) AS dec_sum
             FROM test_task.cache_docs
             ORDER BY year;
-        "; 
+        ";
 
 #nullable enable
         private string GetSelectRequestFirmCity(string? firmName, 
@@ -67,7 +67,7 @@ namespace WorkflowLib.Examples.FirmsAccounting.Models.DbConnections
                     (
                         UPPER(f.name) LIKE UPPER('{firmName}') 
                         AND UPPER(pc.name) LIKE UPPER('{postCityName}') 
-                "; 
+                ";
             if (jurCityName == null || jurCityName == string.Empty)
             {
                 selectRequest += @$"AND UPPER({SqlInt32.Null}) IS NULL)";
@@ -77,7 +77,7 @@ namespace WorkflowLib.Examples.FirmsAccounting.Models.DbConnections
                 selectRequest += @$"AND UPPER('{jurCityName}') IS NULL)";
             }
             selectRequest += "ORDER BY firm_id;";
-            return selectRequest; 
+            return selectRequest;
         }
 
 #nullable enable
@@ -85,7 +85,7 @@ namespace WorkflowLib.Examples.FirmsAccounting.Models.DbConnections
             string? postCityName, string? jurCityName)
         {
 #nullable disable
-            List<FirmCity> result = new List<FirmCity>(); 
+            List<FirmCity> result = new List<FirmCity>();
 
             NpgsqlConnection connection = new NpgsqlConnection(ConnString);
             connection.Open();
@@ -105,21 +105,21 @@ namespace WorkflowLib.Examples.FirmsAccounting.Models.DbConnections
                                 dataReader.GetString(1), 
                                 dataReader.GetString(2), 
                                 dataReader.GetString(3)
-                            ) ); 
+                            ) );
                     }
                     dataReader.Dispose();
                 }
             }
             catch (System.Exception e)
             {
-                throw e; 
+                throw e;
             }
             finally
             {
                 cmd.Dispose();
                 connection.Dispose();
             }
-            return result; 
+            return result;
         }
 
         public List<FirmCity> GetFirmCity()
@@ -133,10 +133,10 @@ namespace WorkflowLib.Examples.FirmsAccounting.Models.DbConnections
                 FROM test_task.firm f 
                 INNER JOIN test_task.city pc ON pc.city_id = f.post_city_id
                 INNER JOIN test_task.city jc ON jc.city_id = f.jur_city_id
-                ORDER BY firm_id; 
-            "; 
+                ORDER BY firm_id;
+            ";
 
-            List<FirmCity> result = new List<FirmCity>(); 
+            List<FirmCity> result = new List<FirmCity>();
 
             NpgsqlConnection connection = new NpgsqlConnection(ConnString);
             connection.Open();
@@ -155,29 +155,29 @@ namespace WorkflowLib.Examples.FirmsAccounting.Models.DbConnections
                                 dataReader.GetString(1), 
                                 dataReader.GetString(2), 
                                 dataReader.GetString(3)
-                            ) ); 
+                            ) );
                     }
                     dataReader.Dispose();
                 }
             }
             catch (System.Exception e)
             {
-                throw e; 
+                throw e;
             }
             finally
             {
                 cmd.Dispose();
                 connection.Dispose();
             }
-            return result; 
+            return result;
         }
 
         public List<DocsCalendarSum> GetDocs(int firmId)
         {
-            string funcRequest = System.IO.File.ReadAllText("C:\\Users\\User\\Desktop\\projects\\utility\\employment\\TMK\\TestTask\\WorkflowLib.Examples.FirmsAccounting\\SQL\\SelectDocsFirm.sql"); 
-            funcRequest += $"SELECT test_task.GetDocsFirm({firmId});"; 
+            string funcRequest = System.IO.File.ReadAllText("C:\\Users\\User\\Desktop\\projects\\utility\\employment\\TMK\\TestTask\\WorkflowLib.Examples.FirmsAccounting\\SQL\\SelectDocsFirm.sql");
+            funcRequest += $"SELECT test_task.GetDocsFirm({firmId});";
             
-            List<DocsCalendarSum> result = new List<DocsCalendarSum>(); 
+            List<DocsCalendarSum> result = new List<DocsCalendarSum>();
 
             NpgsqlConnection connection = new NpgsqlConnection(ConnString);
             connection.Open();
@@ -188,7 +188,7 @@ namespace WorkflowLib.Examples.FirmsAccounting.Models.DbConnections
                 cmd.CommandText = funcRequest;
                 cmd.ExecuteNonQuery();
 
-                cmd.CommandText = SelectDocsRequest; 
+                cmd.CommandText = SelectDocsRequest;
                 cmd.CommandType = System.Data.CommandType.Text;
                 using (var dataReader = cmd.ExecuteReader())
                 {
@@ -210,28 +210,28 @@ namespace WorkflowLib.Examples.FirmsAccounting.Models.DbConnections
                                 dataReader.GetFloat(11), 
                                 dataReader.GetFloat(12)
                             )
-                        ); 
+                        );
                     }
                     dataReader.Dispose();
                 }
             }
             catch (System.Exception e)
             {
-                throw e; 
+                throw e;
             }
             finally
             {
                 cmd.Dispose();
                 connection.Dispose();
             }
-            return result; 
+            return result;
         }
 
         public List<DocsCalendarSum> GetDocs()
         {
-            string funcRequest = System.IO.File.ReadAllText("C:\\Users\\User\\Desktop\\projects\\utility\\employment\\TMK\\TestTask\\WorkflowLib.Examples.FirmsAccounting\\SQL\\SelectDocs.sql"); 
+            string funcRequest = System.IO.File.ReadAllText("C:\\Users\\User\\Desktop\\projects\\utility\\employment\\TMK\\TestTask\\WorkflowLib.Examples.FirmsAccounting\\SQL\\SelectDocs.sql");
             
-            List<DocsCalendarSum> result = new List<DocsCalendarSum>(); 
+            List<DocsCalendarSum> result = new List<DocsCalendarSum>();
 
             NpgsqlConnection connection = new NpgsqlConnection(ConnString);
             connection.Open();
@@ -242,7 +242,7 @@ namespace WorkflowLib.Examples.FirmsAccounting.Models.DbConnections
                 cmd.CommandText = funcRequest;
                 cmd.ExecuteNonQuery();
 
-                cmd.CommandText = SelectDocsRequest; 
+                cmd.CommandText = SelectDocsRequest;
                 cmd.CommandType = System.Data.CommandType.Text;
                 using (var dataReader = cmd.ExecuteReader())
                 {
@@ -264,21 +264,21 @@ namespace WorkflowLib.Examples.FirmsAccounting.Models.DbConnections
                                 dataReader.GetFloat(11), 
                                 dataReader.GetFloat(12)
                             )
-                        ); 
+                        );
                     }
                     dataReader.Dispose();
                 }
             }
             catch (System.Exception e)
             {
-                throw e; 
+                throw e;
             }
             finally
             {
                 cmd.Dispose();
                 connection.Dispose();
             }
-            return result; 
+            return result;
         }
     }
 }
