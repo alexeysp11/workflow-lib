@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic; 
-using Microsoft.Data.Sqlite; 
-using WorkflowLib.Examples.BookList.Models; 
+﻿using System.Collections.Generic;
+using Microsoft.Data.Sqlite;
+using WorkflowLib.Examples.BookList.Models;
 
 namespace WorkflowLib.Examples.BookList.Services
 {
     /// <summary>
-    /// Allows to interact with the database. 
+    /// Allows to interact with the database.
     /// </summary>
     public class SqliteDbHelper : IDbHelper
     {
@@ -22,7 +22,7 @@ namespace WorkflowLib.Examples.BookList.Services
         /// </summary>
         public SqliteDbHelper()
         {
-            AbsolutePathToDb = "C:\\Users\\User\\Desktop\\projects\\AspNetCore\\BookList\\Databases\\DB.sqlite3"; 
+            AbsolutePathToDb = "C:\\Users\\User\\Desktop\\projects\\AspNetCore\\BookList\\Databases\\DB.sqlite3";
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace WorkflowLib.Examples.BookList.Services
         /// <param name="absolutePathToDb">Absolute path to the database</param>
         public SqliteDbHelper(string absolutePathToDb)
         {
-            AbsolutePathToDb = absolutePathToDb; 
+            AbsolutePathToDb = absolutePathToDb;
         }
         #endregion  // Constructors
         
@@ -44,7 +44,7 @@ namespace WorkflowLib.Examples.BookList.Services
             // Get request for creating tables in the database.
             string script = System.IO.File.ReadAllText("C:\\Users\\User\\Desktop\\projects\\AspNetCore\\BookList\\BookList.Services\\Source\\CreateTables.sql");
 
-            var connectionStringBuilder = new SqliteConnectionStringBuilder(); 
+            var connectionStringBuilder = new SqliteConnectionStringBuilder();
             connectionStringBuilder.DataSource = AbsolutePathToDb;
             connectionStringBuilder.Mode = SqliteOpenMode.ReadWriteCreate;
 
@@ -52,17 +52,17 @@ namespace WorkflowLib.Examples.BookList.Services
             {
                 try
                 {
-                    connection.Open(); 
+                    connection.Open();
                     if (System.IO.File.Exists(connectionStringBuilder.DataSource))
                     {
-                        var tableCmd = connection.CreateCommand(); 
-                        tableCmd.CommandText = script; 
-                        tableCmd.ExecuteNonQuery(); 
+                        var tableCmd = connection.CreateCommand();
+                        tableCmd.CommandText = script;
+                        tableCmd.ExecuteNonQuery();
                     }
                 }
                 catch (System.Exception e)
                 {
-                    throw e; 
+                    throw e;
                 }
             }
         }
@@ -77,7 +77,7 @@ namespace WorkflowLib.Examples.BookList.Services
         {
             if (request == string.Empty)
             {
-                throw new System.Exception("Request cannot be empty"); 
+                throw new System.Exception("Request cannot be empty");
             }
 
             var connectionStringBuilder = new SqliteConnectionStringBuilder();
@@ -89,7 +89,7 @@ namespace WorkflowLib.Examples.BookList.Services
                     connection.Open();
                     using (var transaction = connection.BeginTransaction())
                     {
-                        var insertCmd = connection.CreateCommand(); 
+                        var insertCmd = connection.CreateCommand();
                         insertCmd.CommandText = request;            // SQL command. 
                         insertCmd.ExecuteNonQuery();                // Execute SQL command. 
                         transaction.Commit();                       // Commit changes. 
@@ -111,7 +111,7 @@ namespace WorkflowLib.Examples.BookList.Services
         {
             if (insertRequest == string.Empty || checkRequest == string.Empty)
             {
-                throw new System.Exception("Request cannot be empty"); 
+                throw new System.Exception("Request cannot be empty");
             }
 
             var connectionStringBuilder = new SqliteConnectionStringBuilder();
@@ -122,17 +122,17 @@ namespace WorkflowLib.Examples.BookList.Services
                 {
                     connection.Open();
 
-                    bool exists = false; 
+                    bool exists = false;
 
                     var selectCmd = connection.CreateCommand();
-                    selectCmd.CommandText = checkRequest; 
+                    selectCmd.CommandText = checkRequest;
                     using (var reader = selectCmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
                             if (reader.GetInt32(0) != 0)
                             {
-                                exists = true; 
+                                exists = true;
                             }
                         }
                     }
@@ -141,10 +141,10 @@ namespace WorkflowLib.Examples.BookList.Services
                     {
                         using (var transaction = connection.BeginTransaction())
                         {
-                            var insertCmd = connection.CreateCommand(); 
-                            insertCmd.CommandText = insertRequest; 
-                            insertCmd.ExecuteNonQuery(); 
-                            transaction.Commit(); 
+                            var insertCmd = connection.CreateCommand();
+                            insertCmd.CommandText = insertRequest;
+                            insertCmd.ExecuteNonQuery();
+                            transaction.Commit();
                         }
                     }
                 }
@@ -165,16 +165,16 @@ namespace WorkflowLib.Examples.BookList.Services
         {
             if (request == string.Empty)
             {
-                throw new System.Exception("Request cannot be empty. "); 
+                throw new System.Exception("Request cannot be empty. ");
             }
 
             try
             {
-                Insert(request); 
+                Insert(request);
             }
             catch (System.Exception e)
             {
-                throw e; 
+                throw e;
             }
         }
         #endregion  // Update methods 
@@ -189,10 +189,10 @@ namespace WorkflowLib.Examples.BookList.Services
         {
             if (readRequest == string.Empty)
             {
-                throw new System.Exception("Request cannot be empty"); 
+                throw new System.Exception("Request cannot be empty");
             }
 
-            bool exists = false; 
+            bool exists = false;
             var connectionStringBuilder = new SqliteConnectionStringBuilder();
             connectionStringBuilder.DataSource = AbsolutePathToDb;
             using (var connection = new SqliteConnection(connectionStringBuilder.ConnectionString))
@@ -202,24 +202,24 @@ namespace WorkflowLib.Examples.BookList.Services
                     connection.Open();
 
                     var selectCmd = connection.CreateCommand();
-                    selectCmd.CommandText = readRequest; 
+                    selectCmd.CommandText = readRequest;
                     using (var reader = selectCmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
                             if (reader.GetInt32(0) != 0)
                             {
-                                exists = true; 
+                                exists = true;
                             }
                         }
                     }
                 }
                 catch (System.Exception e)
                 {
-                    throw e; 
+                    throw e;
                 }
             }
-            return exists; 
+            return exists;
         }
 
         /// <summary>
@@ -236,10 +236,10 @@ namespace WorkflowLib.Examples.BookList.Services
                 FROM Users
                 INNER JOIN Cities ON Users.CityIdFK = Cities.CityId
                 INNER JOIN Countries ON Cities.CountryIdFK = Countries.CountryId
-                WHERE Users.Fullname = '{fullname}' AND Users.Password = '{password}';"; 
+                WHERE Users.Fullname = '{fullname}' AND Users.Password = '{password}';";
 
-            country = string.Empty; 
-            city = string.Empty; 
+            country = string.Empty;
+            city = string.Empty;
 
             var connectionStringBuilder = new SqliteConnectionStringBuilder();
             connectionStringBuilder.DataSource = AbsolutePathToDb;
@@ -250,26 +250,26 @@ namespace WorkflowLib.Examples.BookList.Services
                     connection.Open();
 
                     var selectCmd = connection.CreateCommand();
-                    selectCmd.CommandText = readRequest; 
+                    selectCmd.CommandText = readRequest;
                     using (var reader = selectCmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            country = reader.GetString(1); 
+                            country = reader.GetString(1);
                             city = reader.GetString(2);
                         }
                     }
                 }
                 catch (System.Exception e)
                 {
-                    throw e; 
+                    throw e;
                 }
             }
         }
 
         public int GetBookId(string bookName)
         {
-            int bookId = 0; 
+            int bookId = 0;
             var connectionStringBuilder = new SqliteConnectionStringBuilder();
             connectionStringBuilder.DataSource = AbsolutePathToDb;
             using (var connection = new SqliteConnection(connectionStringBuilder.ConnectionString))
@@ -279,7 +279,7 @@ namespace WorkflowLib.Examples.BookList.Services
                     connection.Open();
 
                     var selectCmd = connection.CreateCommand();
-                    selectCmd.CommandText = $"SELECT BookId FROM Books WHERE BookName LIKE '{bookName}'"; 
+                    selectCmd.CommandText = $"SELECT BookId FROM Books WHERE BookName LIKE '{bookName}'";
                     using (var reader = selectCmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -290,10 +290,10 @@ namespace WorkflowLib.Examples.BookList.Services
                 }
                 catch (System.Exception e)
                 {
-                    throw e; 
+                    throw e;
                 }
             }
-            return bookId; 
+            return bookId;
         }
 
         /// <summary>
@@ -303,7 +303,7 @@ namespace WorkflowLib.Examples.BookList.Services
         /// <returns>List of instances of Book class</returns>
         public List<Book> GetBooksFromDb(string readRequest)
         {
-            List<Book> books = new List<Book>(); 
+            List<Book> books = new List<Book>();
 
             var connectionStringBuilder = new SqliteConnectionStringBuilder();
             connectionStringBuilder.DataSource = AbsolutePathToDb;
@@ -314,7 +314,7 @@ namespace WorkflowLib.Examples.BookList.Services
                     connection.Open();
 
                     var selectCmd = connection.CreateCommand();
-                    selectCmd.CommandText = readRequest; 
+                    selectCmd.CommandText = readRequest;
                     using (var reader = selectCmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -322,18 +322,18 @@ namespace WorkflowLib.Examples.BookList.Services
                             int bookId = reader.GetInt32(0);
                             string name = reader.GetString(1);
                             string author = reader.GetString(2);
-                            string description = reader.GetString(3); 
+                            string description = reader.GetString(3);
 
-                            books.Add(new Book(bookId, name, author, description)); 
+                            books.Add(new Book(bookId, name, author, description));
                         }
                     }
                 }
                 catch (System.Exception e)
                 {
-                    throw e; 
+                    throw e;
                 }
             }
-            return books; 
+            return books;
         }
         #endregion  // Read methods
     }
