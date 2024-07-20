@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore; 
-using WorkflowLib.Examples.RealEstateManager.Database.Models; 
+﻿using Microsoft.EntityFrameworkCore;
+using WorkflowLib.Examples.RealEstateManager.Database.Models;
 
 namespace WorkflowLib.Examples.RealEstateManager.Database
 {
