@@ -1,8 +1,7 @@
+@using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources
 @model IEnumerable<Employee>
 @{
     ViewData["Title"] = "Employees";
-    var jobTitles = System.Enum.GetValues(typeof(WorkflowLib.Examples.EmployeesMvc.Models.JobTitle)); 
-    var departments = System.Enum.GetValues(typeof(WorkflowLib.Examples.EmployeesMvc.Models.Department)); 
 }
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css" />
@@ -11,53 +10,65 @@
     <h1 class="display-4">Employees</h1>
 </div>
 
-@if (Model == null)
+@try
 {
-    <label>Employees are not generated yet...</label>
-}
-else
-{
-    <table name="tblEmployees" id="tblEmployees" class="table table-bordered table-striped" style="width: 100%">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Gender</th>
-                <th>Job title</th>
-                <th>Department</th>
-                <th>Age</th>
-                <th>Birth date</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var obj in Model)
-            {
-                var age = System.DateTime.Now.Year - obj.BirthDate.Year;
-                if (obj.BirthDate.Month > System.DateTime.Now.Month && obj.BirthDate.Day > System.DateTime.Now.Day)
-                    age -= 1; 
-                <tr>
-                    <td>@obj.FIO</td>
-                    <td>@obj.Gender</td>
-                    <td>@obj.JobTitle</td>
-                    <td>@obj.Department</td>
-                    <td>@age</td>
-                    <td>@obj.BirthDate.ToString("dd.MM.yyyy")</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+    var jobTitles = System.Enum.GetValues(typeof(JobTitle));
+    var departments = System.Enum.GetValues(typeof(Department));
 
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="//cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
-<script language="JavaScript" type="text/javascript">
-    $.noConflict();
-    jQuery( document ).ready(function( $ ) {
-        $(document).ready(function() {
-            var table = $('#tblEmployees').DataTable({
-                language: {
-                    url: '//cdn.datatables.net/plug-ins/2.0.8/i18n/en-GB.json',
+    if (Model == null)
+    {
+        <label>Employees are not generated yet...</label>
+    }
+    else
+    {
+        <table name="tblEmployees" id="tblEmployees" class="table table-bordered table-striped" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>Full name</th>
+                    <th>Gender</th>
+                    <th>Job title</th>
+                    <th>Department</th>
+                    <th>Age</th>
+                    <th>Birth date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model)
+                {
+                    var age = System.DateTime.Now.Year - obj.BirthDate.Year;
+                    if (obj.BirthDate.Month > System.DateTime.Now.Month && obj.BirthDate.Day > System.DateTime.Now.Day)
+                        age -= 1; 
+                    <tr>
+                        <td>@obj.FullName</td>
+                        <td>@obj.Gender</td>
+                        <td>@obj.JobTitle</td>
+                        <td>@obj.Department</td>
+                        <td>@age</td>
+                        <td>@obj.BirthDate.ToString("dd.MM.yyyy")</td>
+                    </tr>
                 }
+            </tbody>
+        </table>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
+        <script language="JavaScript" type="text/javascript">
+            $.noConflict();
+            jQuery( document ).ready(function( $ ) {
+                $(document).ready(function() {
+                    var table = $('#tblEmployees').DataTable({
+                        language: {
+                            url: '//cdn.datatables.net/plug-ins/2.0.8/i18n/en-GB.json',
+                        }
+                    });
+                });
             });
-        });
-    });
-</script>
+        </script>
+    }
+}
+catch (System.Exception ex)
+{
+    <div class="text-center">
+        <p class="text-danger">Error: @ex.Message</p>
+    </div>
+}

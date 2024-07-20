@@ -1,21 +1,35 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using WorkflowLib.Examples.EmployeesMvc.Helpers; 
-using WorkflowLib.Examples.EmployeesMvc.Models;
+using WorkflowLib.Examples.EmployeesMvc.Core.Models;
+using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
+using WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
+using WorkflowLib.Examples.EmployeesMvc.Core.Domain.Filtering;
 
 namespace WorkflowLib.Examples.EmployeesMvc.Controllers;
 
 public class HomeController : Controller
 {
+    private AppSettings _appSettings;
+    private FilterOptionsSettings _filterOptionsSettings;
+    private TempDataSettings _tempDataSettings;
+    
     private readonly ILogger<HomeController> _logger;
-    private readonly IUnitOfWork _unitOfWork; 
-    private readonly ICommonDataFilter _tekoFilter; 
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly ICommonDataFilter _commonFilter;
 
-    public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork, ICommonDataFilter tekoFilter)
+    public HomeController(
+        AppSettings appSettings,
+        ILogger<HomeController> logger,
+        IUnitOfWork unitOfWork,
+        ICommonDataFilter commonFilter)
     {
+        _appSettings = appSettings;
+        _filterOptionsSettings = _appSettings.StringSettings.FilterOptionsSettings;
+        _tempDataSettings = _appSettings.StringSettings.TempDataSettings;
+
         _logger = logger;
-        _unitOfWork = unitOfWork; 
-        _tekoFilter = tekoFilter; 
+        _unitOfWork = unitOfWork;
+        _commonFilter = commonFilter;
     }
 
     public IActionResult Index()
@@ -25,97 +39,113 @@ public class HomeController : Controller
 
     public IActionResult Employees()
     {
-        var uidObj = TempData[StringHelper.EmployeesUidStr];
+        var uidObj = TempData[_tempDataSettings.EmployeesUidStr];
         if (uidObj != null && !string.IsNullOrEmpty(uidObj.ToString()))
         {
-            var employeesFiltered = _unitOfWork.GetFilteredEmployees(uidObj.ToString()).ToList(); 
+            var employeesFiltered = _unitOfWork.GetFilteredEmployees(uidObj.ToString()).ToList();
             uidObj = string.Empty;
             return View(employeesFiltered);
         }
-        TempData[StringHelper.FilterInfoEmployeesStr] = StringHelper.NoFiltersApplied; 
-        TempData[StringHelper.FilterOptionsEmployeesStr] = StringHelper.NoFiltersApplied; 
-        var employees = _unitOfWork.GetEmployees(); 
+        TempData[_tempDataSettings.FilterInfoEmployeesStr] = _filterOptionsSettings.NoFiltersApplied;
+        TempData[_tempDataSettings.FilterOptionsEmployeesStr] = _filterOptionsSettings.NoFiltersApplied;
+        var employees = _unitOfWork.GetEmployees();
         return View(employees);
     }
 
     public IActionResult Vacations()
     {
         // Restore previously filtered elements 
-        var uidObj = TempData[StringHelper.VacationsUidStr];
+        var uidObj = TempData[_tempDataSettings.VacationsUidStr];
         if (uidObj != null && !string.IsNullOrEmpty(uidObj.ToString()))
         {
-            var vacationsFiltered = _unitOfWork.GetFilteredVacations(uidObj.ToString()).ToList(); 
+            var vacationsFiltered = _unitOfWork.GetFilteredVacations(uidObj.ToString()).ToList();
             uidObj = string.Empty;
             return View(vacationsFiltered);
         }
 
         // Set info about filters 
-        TempData[StringHelper.FilterInfoVacationsStr] = StringHelper.NoFiltersApplied; 
-        TempData[StringHelper.EmployeeInfoVacationsStr] = StringHelper.NoFiltersApplied; 
-        TempData[StringHelper.FilterOptionsVacationsStr] = StringHelper.NoFiltersApplied; 
+        TempData[_tempDataSettings.FilterInfoVacationsStr] = _filterOptionsSettings.NoFiltersApplied;
+        TempData[_tempDataSettings.EmployeeInfoVacationsStr] = _filterOptionsSettings.NoFiltersApplied;
+        TempData[_tempDataSettings.FilterOptionsVacationsStr] = _filterOptionsSettings.NoFiltersApplied;
 
         // Get all elements 
-        var vacations = _unitOfWork.GetVacations(); 
+        var vacations = _unitOfWork.GetVacations();
 
         return View(vacations);
     }
 
     public IActionResult Managing()
     {
-        return View(); 
+        return View();
     }
 
     public IActionResult NewVacation()
     {
-        return View(); 
+        return View();
     }
 
     [HttpPost("[action]")]
     [Route("/Home")]
-    public IActionResult FilterEmployees(string fio, string ageMin, string ageMax, string gender, string jobTitle, string department, 
+    public IActionResult FilterEmployees(
+        string fullName,
+        string ageMin,
+        string ageMax,
+        string gender,
+        string jobTitle,
+        string department,
         string filterOptions)
     {
         // Apply filters 
-        var employees = _tekoFilter.FilterEmployees(fio, ageMin, ageMax, gender, jobTitle, department, filterOptions, _unitOfWork.GetEmployees); 
+        var employees = _commonFilter.FilterEmployees(fullName, ageMin, ageMax, gender, jobTitle, department, filterOptions, _unitOfWork.GetEmployees);
         
         // Save filtered employees 
-        string uid = _unitOfWork.InsertFilteredEmployees(employees); 
+        string uid = _unitOfWork.InsertFilteredEmployees(employees);
 
         // Save info about applied filters 
-        TempData[StringHelper.EmployeesUidStr] = uid; 
-        TempData[StringHelper.FilterInfoEmployeesStr] = StringHelper.GetFilterOptionsString(fio, ageMin, ageMax, gender, jobTitle, department); 
-        TempData[StringHelper.FilterOptionsEmployeesStr] = filterOptions; 
+        TempData[_tempDataSettings.EmployeesUidStr] = uid;
+        TempData[_tempDataSettings.FilterInfoEmployeesStr] = _filterOptionsSettings.GetFilterOptionsString(fullName, ageMin, ageMax, gender, jobTitle, department);
+        TempData[_tempDataSettings.FilterOptionsEmployeesStr] = filterOptions;
         
         return RedirectToAction("Employees");
     }
 
     [HttpPost("[action]")]
     [Route("/Home")]
-    public IActionResult FilterVacations(string fio, string ageMin, string ageMax, string gender, string jobTitle, string department, 
-        string currentFio, string filterOptions)
+    public IActionResult FilterVacations(
+        string fullName,
+        string ageMin,
+        string ageMax,
+        string gender,
+        string jobTitle,
+        string department,
+        string currentFullName,
+        string filterOptions)
     {
         // Get filtered data 
-        var vacations = _tekoFilter.FilterVacations(fio, ageMin, ageMax, gender, jobTitle, department, currentFio, filterOptions, _unitOfWork.GetEmployees, _unitOfWork.GetVacations); 
+        var vacations = _commonFilter.FilterVacations(fullName, ageMin, ageMax, gender, jobTitle, department, currentFullName, filterOptions, _unitOfWork.GetEmployees, _unitOfWork.GetVacations);
 
         // Insert filtered data and get UID 
-        string uid = _unitOfWork.InsertFilteredVacations(vacations); 
+        string uid = _unitOfWork.InsertFilteredVacations(vacations);
 
         // Store UID and  in views 
-        TempData[StringHelper.VacationsUidStr] = uid; 
+        TempData[_tempDataSettings.VacationsUidStr] = uid;
 
         // Store info about filtering 
-        TempData[StringHelper.FilterInfoVacationsStr] = StringHelper.GetFilterOptionsString(fio, ageMin, ageMax, gender, jobTitle, department);  
-        TempData[StringHelper.EmployeeInfoVacationsStr] = StringHelper.GetFilterOptionsString(currentFio);  
-        TempData[StringHelper.FilterOptionsVacationsStr] = filterOptions; 
+        TempData[_tempDataSettings.FilterInfoVacationsStr] = _filterOptionsSettings.GetFilterOptionsString(fullName, ageMin, ageMax, gender, jobTitle, department);  
+        TempData[_tempDataSettings.EmployeeInfoVacationsStr] = _filterOptionsSettings.GetFilterOptionsString(currentFullName);  
+        TempData[_tempDataSettings.FilterOptionsVacationsStr] = filterOptions;
 
         return RedirectToAction("Vacations");
     }
 
-    public IActionResult AddNewVaction(string fio, System.DateTime beginDate, System.DateTime endDate)
+    public IActionResult AddNewVaction(
+        string fullName,
+        System.DateTime beginDate,
+        System.DateTime endDate)
     {
         if (endDate > beginDate && (endDate - beginDate).Days <= 14)
-            _unitOfWork.InsertVacation(fio ?? string.Empty, beginDate, endDate); 
-        return RedirectToAction("Vacations"); 
+            _unitOfWork.InsertVacation(fullName ?? string.Empty, beginDate, endDate);
+        return RedirectToAction("Vacations");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

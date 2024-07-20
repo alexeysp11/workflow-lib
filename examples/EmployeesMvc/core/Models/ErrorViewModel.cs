@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.EmployeesMvc.Models;
+namespace WorkflowLib.Examples.EmployeesMvc.Core.Models;
 
 public class ErrorViewModel
 {

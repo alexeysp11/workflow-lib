@@ -4,7 +4,18 @@
 
 <div class="text-center">
     <h1 class="display-4">Managing</h1>
-    
-    <label>Managing vacations: </label>
-    <a class="btn btn-primary" role="button" asp-controller="Home" asp-action="NewVacation">Add new vacation</a>
 </div>
+
+@try
+{
+    <div class="text-center">
+        <label>Managing vacations: </label>
+        <a class="btn btn-primary" role="button" asp-controller="Home" asp-action="NewVacation">Add new vacation</a>
+    </div>
+}
+catch (System.Exception ex)
+{
+    <div class="text-center">
+        <p class="text-danger">Error: @ex.Message</p>
+    </div>
+}
