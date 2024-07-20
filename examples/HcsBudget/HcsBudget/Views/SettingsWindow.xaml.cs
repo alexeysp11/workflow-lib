@@ -23,21 +23,21 @@ namespace WorkflowLib.Examples.HcsBudget.Views
             Loaded += (o, e) => 
             {
                 this.MainVM = ((MainVM)(this.DataContext));
-                Participants.DataContext = this.MainVM; 
-                LoadUserSettings(); 
-                LoadParticipants(); 
-                SaveInitialValues(); 
+                Participants.DataContext = this.MainVM;
+                LoadUserSettings();
+                LoadParticipants();
+                SaveInitialValues();
             };
         }
 
         private void DefaultBtn_Clicked(object sender, System.EventArgs e)
         {
-            SetDefaultValues(); 
+            SetDefaultValues();
         }
 
         private void SaveBtn_Clicked(object sender, System.EventArgs e)
         {
-            SaveAll(); 
+            SaveAll();
         }
 
         private void CancelBtn_Clicked(object sender, System.EventArgs e)
@@ -54,34 +54,34 @@ namespace WorkflowLib.Examples.HcsBudget.Views
                 }
                 else
                 {
-                    AskToSaveOnCancel(); 
+                    AskToSaveOnCancel();
                 }
             }
             catch (System.Exception ex)
             {
-                System.Windows.MessageBox.Show(ex.Message, "Exception"); 
+                System.Windows.MessageBox.Show(ex.Message, "Exception");
             }
         }
 
         private void cbUser_DropDownClosed(object sender, System.EventArgs e)
         {
-            SetValuesForSelectedUser(); 
+            SetValuesForSelectedUser();
         }
 
         private void LoadParticipants()
         {
-            List<string> participants = this.MainVM.LoadParticipants(); 
-            this.Participants.tvParticipants.ItemsSource = participants; 
+            List<string> participants = this.MainVM.LoadParticipants();
+            this.Participants.tvParticipants.ItemsSource = participants;
         }
 
         private void SaveInitialValues()
         {
             try
             {
-                InitUser = cbUser.Text; 
-                InitLanguage = cbLanguage.Text; 
-                InitCurrency = cbCurrency.Text; 
-                InitDatabase = cbDatabase.Text; 
+                InitUser = cbUser.Text;
+                InitLanguage = cbLanguage.Text;
+                InitCurrency = cbCurrency.Text;
+                InitDatabase = cbDatabase.Text;
             }
             catch (System.Exception e)
             {
@@ -91,11 +91,11 @@ namespace WorkflowLib.Examples.HcsBudget.Views
 
         private void AskToSaveOnCancel()
         {
-            string msg = "Do you want to save changes?"; 
-            var result = System.Windows.MessageBox.Show(msg, "Close window", System.Windows.MessageBoxButton.YesNoCancel); 
+            string msg = "Do you want to save changes?";
+            var result = System.Windows.MessageBox.Show(msg, "Close window", System.Windows.MessageBoxButton.YesNoCancel);
             if (result == System.Windows.MessageBoxResult.Yes)
             {
-                SaveAll(); 
+                SaveAll();
                 this.Close();
             }
             else if (result == System.Windows.MessageBoxResult.No)
@@ -104,29 +104,29 @@ namespace WorkflowLib.Examples.HcsBudget.Views
             }
             else
             {
-                return; 
+                return;
             }
         }
 
         private void SaveAll()
         {
-            UpdateUserSettings(); 
-            LoadUserSettings(); 
+            UpdateUserSettings();
+            LoadUserSettings();
             SaveInitialValues();
         }
 
         private void LoadUserSettings()
         {
-            this.MainVM.LoadUserSettings(); 
-            SetValuesForSelectedUser(); 
+            this.MainVM.LoadUserSettings();
+            SetValuesForSelectedUser();
         }
 
         private void SetDefaultValues()
         {
-            cbUser.Text = "Guest"; 
-            cbLanguage.Text = "English"; 
-            cbCurrency.Text = "USD"; 
-            cbDatabase.Text = "Application"; 
+            cbUser.Text = "Guest";
+            cbLanguage.Text = "English";
+            cbCurrency.Text = "USD";
+            cbDatabase.Text = "Application";
         }
 
         private void UpdateUserSettings()
@@ -138,13 +138,13 @@ namespace WorkflowLib.Examples.HcsBudget.Views
                     if (user.Name == cbUser.Text)
                     {
                         this.MainVM.UpdateUserSettings(user.UserId, cbLanguage.Text, 
-                            cbCurrency.Text, cbDatabase.Text); 
+                            cbCurrency.Text, cbDatabase.Text);
                     }
                 }
             }
             catch (System.Exception e)
             {
-                System.Windows.MessageBox.Show(e.Message, "Exception"); 
+                System.Windows.MessageBox.Show(e.Message, "Exception");
             }
         }
 
@@ -158,20 +158,20 @@ namespace WorkflowLib.Examples.HcsBudget.Views
                     {
                         if (user.Name == "Administrator")
                         {
-                            string msg = "Unable to connect to database: access is restricted.\nALL OPTIONS WILL BE SET TO DEFAULT."; 
-                            System.Windows.MessageBox.Show(msg, "Error"); 
-                            SetDefaultValues(); 
-                            break; 
+                            string msg = "Unable to connect to database: access is restricted.\nALL OPTIONS WILL BE SET TO DEFAULT.";
+                            System.Windows.MessageBox.Show(msg, "Error");
+                            SetDefaultValues();
+                            break;
                         }
-                        cbLanguage.Text = user.Language; 
-                        cbCurrency.Text = user.CurrAbbreviation; 
-                        cbDatabase.Text = user.Database; 
+                        cbLanguage.Text = user.Language;
+                        cbCurrency.Text = user.CurrAbbreviation;
+                        cbDatabase.Text = user.Database;
                     }
                 }
             }
             catch (System.Exception e)
             {
-                System.Windows.MessageBox.Show(e.Message, "Exception"); 
+                System.Windows.MessageBox.Show(e.Message, "Exception");
             }
         }
     }

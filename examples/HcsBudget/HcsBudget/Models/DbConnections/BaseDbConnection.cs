@@ -1,5 +1,5 @@
-using System.Data; 
-using System.Globalization; 
+using System.Data;
+using System.Globalization;
 using Microsoft.Data.Sqlite;
 
 namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
@@ -8,46 +8,46 @@ namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
     {
         private string PathToDb { get; set; } 
 
-        private string[] PathsToDbFolder = new string[] { "data/", "../../../../data/" }; 
-        private string[] PathsToSqlFolder = new string[] { "src/SQL/", "../../../SQL/" }; 
+        private string[] PathsToDbFolder = new string[] { "data/", "../../../../data/" };
+        private string[] PathsToSqlFolder = new string[] { "src/SQL/", "../../../SQL/" };
 
         protected void SetPathToDb()
         {
-            bool isPassed = false; 
+            bool isPassed = false;
             foreach (string path in PathsToDbFolder)
             {
                 try
                 {
-                    PathToDb = path + "app.db"; 
-                    GetDataTable("SELECT 1"); 
-                    isPassed = true; 
-                    break; 
+                    PathToDb = path + "app.db";
+                    GetDataTable("SELECT 1");
+                    isPassed = true;
+                    break;
                 }
                 catch (System.Exception) {}
             }
             if (!isPassed)
             {
-                throw new System.Exception("Unable to display tables located in the database"); 
+                throw new System.Exception("Unable to display tables located in the database");
             }
         }
 
         protected string GetSqlRequest(string filename)
         {
-            string sqlRequest = string.Empty; 
+            string sqlRequest = string.Empty;
             foreach (string path in PathsToSqlFolder)
             {
                 try
                 {
-                    sqlRequest = System.IO.File.ReadAllText(path + filename); 
-                    break; 
+                    sqlRequest = System.IO.File.ReadAllText(path + filename);
+                    break;
                 }
                 catch (System.Exception) {}
             }
             if (sqlRequest == string.Empty)
             {
-                throw new System.Exception("Unable to display tables located in the database"); 
+                throw new System.Exception("Unable to display tables located in the database");
             }
-            return sqlRequest; 
+            return sqlRequest;
         }
 
         protected DataTable GetDataTable(string sql)
@@ -61,7 +61,7 @@ namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
                 {
                     connection.Open();
                     var selectCmd = connection.CreateCommand();
-                    selectCmd.CommandText = sql; 
+                    selectCmd.CommandText = sql;
                     using (var reader = selectCmd.ExecuteReader())
                     {
                         dt.Load(reader);
@@ -70,19 +70,19 @@ namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
                 }
                 catch (System.Exception e)
                 {
-                    throw e; 
+                    throw e;
                 }
             }
         }
 
         protected void ExecuteSql(string sql)
         {
-            GetDataTable(sql); 
+            GetDataTable(sql);
         }
 
         protected string ToTitleCase(string s)
         {
-            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(s.ToLower()); 
+            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(s.ToLower());
         }
     }
 }
