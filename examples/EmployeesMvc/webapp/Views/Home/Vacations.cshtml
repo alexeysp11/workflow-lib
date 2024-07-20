@@ -4,118 +4,131 @@
 @inject AppSettings _appSettings
 @{
     ViewData["Title"] = "Vacations Page";
-    var filterOptionsSettings = _appSettings.StringSettings.FilterOptionsSettings;
-    var jobTitles = System.Enum.GetValues(typeof(JobTitle)); 
-    var departments = System.Enum.GetValues(typeof(Department)); 
 }
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css" />
 
 <div class="text-center">
     <h1 class="display-4">Vacations</h1>
-    <label>Filter</label>
-    <form method="post" asp-controller="Home" asp-action="FilterVacations" role="post"> 
-        <label>Full name: </label>
-        <input type="text" placeholder="Enter full name" name="fullName">
-        <label>Age: </label>
-        <input type="text" placeholder="Enter age (min.)" oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"  name="ageMin">
-        <label>-</label>
-        <input type="text" placeholder="Enter age (max.)" oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"  name="ageMax">
-        <label>Gender: </label>
-        <select name="gender">
-            <option></option>
-            <option>Male</option>
-            <option>Female</option>
-        </select>
-        <label>Job title: </label>
-        <select name="jobTitle">
-            <option></option>
-            @foreach (var obj in jobTitles) 
-            {
-                <option>@obj</option>
-            }
-        </select>
-        <label>Department: </label>
-        <select name="department">
-            <option></option>
-            @foreach (var obj in departments) 
-            {
-                <option>@obj</option>
-            }
-        </select>
-        <br>
-
-        <label>Current employee</label>
-        <br>
-        <label>Full name: </label>
-        <input type="text" placeholder="Enter full name" name="currentFullName">
-        <br>
-        
-        <label>Filter options: </label>
-        <select name="filterOptions">
-            <option>@filterOptionsSettings.FindFilterOptionsShowAllFilteredVacations</option>
-            <option>@filterOptionsSettings.FindFilterOptionsShowIntersections</option>
-            <option>@filterOptionsSettings.FindFilterOptionsExcludeIntersections</option>
-        </select>
-        <input type="submit" value="Find" class="btn btn-primary" />
-    </form>
 </div>
 
-<label><b>Filters:</b> @TempData["filterInfoVacations"]</label>
-<br>
-<label><b>Current employee:</b> @TempData["employeeInfoVacations"]</label>
-<br>
-<label><b>Filter options:</b> @TempData["filterOptionsVacations"]</label>
-
-@if (Model == null)
+@try
 {
-    <label>Employees are not generated yet...</label>
-}
-else
-{
-    <table name="tblVacations" id="tblVacations" class="table table-bordered table-striped" style="width: 100%">
-        <thead>
-            <tr>
-                <th>Full name</th>
-                <th>Gender</th>
-                <th>Job title</th>
-                <th>Department</th>
-                <th>Age</th>
-                <th>Begin date</th>
-                <th>End date</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var obj in Model)
-            {
-                var age = System.DateTime.Now.Year - obj.Employee.BirthDate.Year;
-                if (obj.Employee.BirthDate.Month > System.DateTime.Now.Month && obj.Employee.BirthDate.Day > System.DateTime.Now.Day)
-                    age -= 1; 
-                <tr>
-                    <td>@obj.Employee.FullName</td>
-                    <td>@obj.Employee.Gender</td>
-                    <td>@obj.Employee.JobTitle</td>
-                    <td>@obj.Employee.Department</td>
-                    <td>@age</td>
-                    <td>@obj.BeginDate.ToString("dd.MM.yyyy")</td>
-                    <td>@obj.EndDate.ToString("dd.MM.yyyy")</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+    var filterOptionsSettings = _appSettings.StringSettings.FilterOptionsSettings;
+    var jobTitles = System.Enum.GetValues(typeof(JobTitle)); 
+    var departments = System.Enum.GetValues(typeof(Department)); 
 
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="//cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
-<script language="JavaScript" type="text/javascript">
-    $.noConflict();
-    jQuery( document ).ready(function( $ ) {
-        $(document).ready(function() {
-            var table = $('#tblVacations').DataTable({
-                language: {
-                    url: '//cdn.datatables.net/plug-ins/2.0.8/i18n/en-GB.json',
+    <div class="text-center">
+        <label>Filter</label>
+        <form method="post" asp-controller="Home" asp-action="FilterVacations" role="post"> 
+            <label>Full name: </label>
+            <input type="text" placeholder="Enter full name" name="fullName">
+            <label>Age: </label>
+            <input type="text" placeholder="Enter age (min.)" oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"  name="ageMin">
+            <label>-</label>
+            <input type="text" placeholder="Enter age (max.)" oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"  name="ageMax">
+            <label>Gender: </label>
+            <select name="gender">
+                <option></option>
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+            <label>Job title: </label>
+            <select name="jobTitle">
+                <option></option>
+                @foreach (var obj in jobTitles) 
+                {
+                    <option>@obj</option>
                 }
+            </select>
+            <label>Department: </label>
+            <select name="department">
+                <option></option>
+                @foreach (var obj in departments) 
+                {
+                    <option>@obj</option>
+                }
+            </select>
+            <br>
+
+            <label>Current employee</label>
+            <br>
+            <label>Full name: </label>
+            <input type="text" placeholder="Enter full name" name="currentFullName">
+            <br>
+            
+            <label>Filter options: </label>
+            <select name="filterOptions">
+                <option>@filterOptionsSettings.FindFilterOptionsShowAllFilteredVacations</option>
+                <option>@filterOptionsSettings.FindFilterOptionsShowIntersections</option>
+                <option>@filterOptionsSettings.FindFilterOptionsExcludeIntersections</option>
+            </select>
+            <input type="submit" value="Find" class="btn btn-primary" />
+        </form>
+    </div>
+
+    <label><b>Filters:</b> @TempData["filterInfoVacations"]</label>
+    <br>
+    <label><b>Current employee:</b> @TempData["employeeInfoVacations"]</label>
+    <br>
+    <label><b>Filter options:</b> @TempData["filterOptionsVacations"]</label>
+
+    @if (Model == null)
+    {
+        <label>Employees are not generated yet...</label>
+    }
+    else
+    {
+        <table name="tblVacations" id="tblVacations" class="table table-bordered table-striped" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>Full name</th>
+                    <th>Gender</th>
+                    <th>Job title</th>
+                    <th>Department</th>
+                    <th>Age</th>
+                    <th>Begin date</th>
+                    <th>End date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model)
+                {
+                    var age = System.DateTime.Now.Year - obj.Employee.BirthDate.Year;
+                    if (obj.Employee.BirthDate.Month > System.DateTime.Now.Month && obj.Employee.BirthDate.Day > System.DateTime.Now.Day)
+                        age -= 1; 
+                    <tr>
+                        <td>@obj.Employee.FullName</td>
+                        <td>@obj.Employee.Gender</td>
+                        <td>@obj.Employee.JobTitle</td>
+                        <td>@obj.Employee.Department</td>
+                        <td>@age</td>
+                        <td>@obj.BeginDate.ToString("dd.MM.yyyy")</td>
+                        <td>@obj.EndDate.ToString("dd.MM.yyyy")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
+    <script language="JavaScript" type="text/javascript">
+        $.noConflict();
+        jQuery( document ).ready(function( $ ) {
+            $(document).ready(function() {
+                var table = $('#tblVacations').DataTable({
+                    language: {
+                        url: '//cdn.datatables.net/plug-ins/2.0.8/i18n/en-GB.json',
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
+}
+catch (System.Exception ex)
+{
+    <div class="text-center">
+        <p class="text-danger">Error: @ex.Message</p>
+    </div>
+}
