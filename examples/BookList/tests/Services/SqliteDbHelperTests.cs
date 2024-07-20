@@ -1,9 +1,9 @@
 using System;
-using System.Collections.Generic; 
-using Microsoft.Data.Sqlite; 
-using WorkflowLib.Examples.BookList.Models; 
+using System.Collections.Generic;
+using Microsoft.Data.Sqlite;
+using WorkflowLib.Examples.BookList.Models;
 using Xunit;
-using WorkflowLib.Examples.BookList.Services; 
+using WorkflowLib.Examples.BookList.Services;
 
 namespace Tests.BookList.Services
 {
@@ -16,14 +16,14 @@ namespace Tests.BookList.Services
         /// <summary>
         /// Instance of database helper. 
         /// </summary>
-        private IDbHelper DbHelper; 
+        private IDbHelper DbHelper;
         #endregion  // Members
 
         #region Configurational settings
         /// <summary>
         /// Private field for storing absolute path to the database. 
         /// </summary>
-        private readonly string pathToDb = "C:\\Users\\User\\Desktop\\projects\\AspNetCore\\BookList\\Databases\\TestDB.sqlite3"; 
+        private readonly string pathToDb = "C:\\Users\\User\\Desktop\\projects\\AspNetCore\\BookList\\Databases\\TestDB.sqlite3";
         #endregion  // Configurational settings
 
         #region Constructors
@@ -32,7 +32,7 @@ namespace Tests.BookList.Services
         /// </summary>
         public SqliteDbHelperTests()
         {
-            DbHelper = new SqliteDbHelper(pathToDb); 
+            DbHelper = new SqliteDbHelper(pathToDb);
         }
         #endregion  // Constructors
 
@@ -44,7 +44,7 @@ namespace Tests.BookList.Services
         /// <returns>Integer value of number of instances</returns>
         private int GetNumberOfInstances(string checkRequest)
         {
-            int numberInstances = 0; 
+            int numberInstances = 0;
 
             var connectionStringBuilder = new SqliteConnectionStringBuilder();
             connectionStringBuilder.DataSource = pathToDb;
@@ -54,12 +54,12 @@ namespace Tests.BookList.Services
                 {
                     connection.Open();
                     var selectCmd = connection.CreateCommand();
-                    selectCmd.CommandText = checkRequest; 
+                    selectCmd.CommandText = checkRequest;
                     using (var reader = selectCmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            numberInstances = reader.GetInt32(0); 
+                            numberInstances = reader.GetInt32(0);
                         }
                     }
                 }
@@ -68,7 +68,7 @@ namespace Tests.BookList.Services
                     throw e;
                 }
             }
-            return numberInstances; 
+            return numberInstances;
         }
         #endregion  // Addtional testing methods
 
@@ -79,12 +79,12 @@ namespace Tests.BookList.Services
             // Arrange. 
             if (System.IO.File.Exists(pathToDb))
             {
-                System.IO.File.Delete(pathToDb); 
+                System.IO.File.Delete(pathToDb);
             }
 
             // Act. 
-            DbHelper.CreateTables(); 
-            bool exists = System.IO.File.Exists(pathToDb); 
+            DbHelper.CreateTables();
+            bool exists = System.IO.File.Exists(pathToDb);
 
             // Assert. 
             Assert.True(exists);
@@ -96,12 +96,12 @@ namespace Tests.BookList.Services
             // Arrange. 
             if (!System.IO.File.Exists(pathToDb))
             {
-                DbHelper.CreateTables(); 
+                DbHelper.CreateTables();
             }
 
             // Act. 
-            DbHelper.CreateTables(); 
-            bool exists = System.IO.File.Exists(pathToDb); 
+            DbHelper.CreateTables();
+            bool exists = System.IO.File.Exists(pathToDb);
 
             // Assert. 
             Assert.True(exists);
@@ -114,12 +114,12 @@ namespace Tests.BookList.Services
         {
             if (!System.IO.File.Exists(pathToDb))
             {
-                DbHelper.CreateTables(); 
+                DbHelper.CreateTables();
             }
 
             // Arrange. 
-            string emptyString1 = string.Empty; 
-            string emptyString2 = ""; 
+            string emptyString1 = string.Empty;
+            string emptyString2 = "";
             
             // Act & assert. 
             Assert.Throws<System.Exception>(() => DbHelper.Insert(emptyString1));
@@ -131,35 +131,35 @@ namespace Tests.BookList.Services
         {
             if (!System.IO.File.Exists(pathToDb))
             {
-                DbHelper.CreateTables(); 
+                DbHelper.CreateTables();
             }
 
             //Given
-            string countryName = "Argentina"; 
+            string countryName = "Argentina";
             string checkRequest = $@"SELECT (1) FROM Countries 
-                WHERE CountryName = '{countryName}';"; 
+                WHERE CountryName = '{countryName}';";
             string insertRequest1 = $@"INSERT INTO Countries (CountryName) 
-                VALUES ('{countryName}');"; 
+                VALUES ('{countryName}');";
             string insertRequest2 = $@"INSERT INTO Countries (CountryName) 
                 SELECT ('{countryName}')
-                WHERE (SELECT (1) FROM Countries WHERE CountryName = '{countryName}') = 0;"; 
+                WHERE (SELECT (1) FROM Countries WHERE CountryName = '{countryName}') = 0;";
 
             //When
-            int numBefore = this.GetNumberOfInstances(checkRequest); 
-            DbHelper.Insert(insertRequest1); 
-            int numAfter1 = this.GetNumberOfInstances(checkRequest); 
-            DbHelper.Insert(insertRequest2); 
-            int numAfter2 = this.GetNumberOfInstances(checkRequest); 
-            DbHelper.Insert(insertRequest2); 
-            int numAfter3 = this.GetNumberOfInstances(checkRequest); 
+            int numBefore = this.GetNumberOfInstances(checkRequest);
+            DbHelper.Insert(insertRequest1);
+            int numAfter1 = this.GetNumberOfInstances(checkRequest);
+            DbHelper.Insert(insertRequest2);
+            int numAfter2 = this.GetNumberOfInstances(checkRequest);
+            DbHelper.Insert(insertRequest2);
+            int numAfter3 = this.GetNumberOfInstances(checkRequest);
             
             //Then
-            Assert.True((numAfter1 - numBefore) == 1); 
-            Assert.True((numAfter2 - numBefore) == 1); 
-            Assert.True((numAfter3 - numBefore) == 1); 
-            Assert.Equal(numAfter1, numAfter2); 
-            Assert.Equal(numAfter1, numAfter3); 
-            Assert.Equal(numAfter2, numAfter3); 
+            Assert.True((numAfter1 - numBefore) == 1);
+            Assert.True((numAfter2 - numBefore) == 1);
+            Assert.True((numAfter3 - numBefore) == 1);
+            Assert.Equal(numAfter1, numAfter2);
+            Assert.Equal(numAfter1, numAfter3);
+            Assert.Equal(numAfter2, numAfter3);
         }
 
         [Fact]
@@ -167,18 +167,18 @@ namespace Tests.BookList.Services
         {
             if (!System.IO.File.Exists(pathToDb))
             {
-                DbHelper.CreateTables(); 
+                DbHelper.CreateTables();
             }
 
             // Arrange. 
-            string countryName = "Belgium"; 
+            string countryName = "Belgium";
             string nonEmptyInsert = $@"INSERT INTO Countries (CountryName) 
                 SELECT ('{countryName}')
-                WHERE (SELECT (1) FROM Countries WHERE CountryName = '{countryName}') = 0;"; 
+                WHERE (SELECT (1) FROM Countries WHERE CountryName = '{countryName}') = 0;";
             string nonEmptyCheck = $@"SELECT (1) FROM Countries 
-                WHERE CountryName = '{countryName}';"; 
-            string emptyString1 = string.Empty; 
-            string emptyString2 = ""; 
+                WHERE CountryName = '{countryName}';";
+            string emptyString1 = string.Empty;
+            string emptyString2 = "";
             
             // Act & assert. 
             Assert.Throws<System.Exception>(() => DbHelper.Insert(emptyString1, emptyString1));
@@ -199,39 +199,39 @@ namespace Tests.BookList.Services
             /*
             if (System.IO.File.Exists(pathToDb))
             {
-                System.IO.File.Delete(pathToDb); 
+                System.IO.File.Delete(pathToDb);
             }
             if (!System.IO.File.Exists(pathToDb))
             {
-                DbHelper.CreateTables(); 
+                DbHelper.CreateTables();
             }
             */
 
             //Given
-            string countryName = "Greece"; 
+            string countryName = "Greece";
             string insertRequest = $@"INSERT INTO Countries (CountryName) 
                 SELECT ('{countryName}')
-                WHERE (SELECT (1) FROM Countries WHERE CountryName = '{countryName}') = 0;"; 
+                WHERE (SELECT (1) FROM Countries WHERE CountryName = '{countryName}') = 0;";
             string checkRequest = $@"SELECT (1) FROM Countries 
-                WHERE CountryName = '{countryName}';"; 
+                WHERE CountryName = '{countryName}';";
             
             //When
-            //int numBefore = this.GetNumberOfInstances(checkRequest); 
-            //DbHelper.Insert(insertRequest, checkRequest); 
-            //int numAfter1 = this.GetNumberOfInstances(checkRequest); 
-            //DbHelper.Insert(insertRequest, checkRequest); 
-            //int numAfter2 = this.GetNumberOfInstances(checkRequest); 
+            //int numBefore = this.GetNumberOfInstances(checkRequest);
+            //DbHelper.Insert(insertRequest, checkRequest);
+            //int numAfter1 = this.GetNumberOfInstances(checkRequest);
+            //DbHelper.Insert(insertRequest, checkRequest);
+            //int numAfter2 = this.GetNumberOfInstances(checkRequest);
             
             //Then
-            //Assert.Equal(numBefore, 0); 
-            //Assert.Equal(numAfter1, 1); 
-            //Assert.Equal(numAfter2, 1); 
-            //Assert.Equal((numAfter1 - numBefore), 1); 
-            //Assert.Equal((numAfter2 - numBefore), 1); 
-            //Assert.Equal(numAfter1, numAfter2); 
+            //Assert.Equal(numBefore, 0);
+            //Assert.Equal(numAfter1, 1);
+            //Assert.Equal(numAfter2, 1);
+            //Assert.Equal((numAfter1 - numBefore), 1);
+            //Assert.Equal((numAfter2 - numBefore), 1);
+            //Assert.Equal(numAfter1, numAfter2);
 
-            bool expectedTrue = true; 
-            Assert.True(expectedTrue); 
+            bool expectedTrue = true;
+            Assert.True(expectedTrue);
         }
         #endregion  // Insert methods 
     }

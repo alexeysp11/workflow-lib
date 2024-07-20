@@ -1,6 +1,6 @@
-using System.Collections.Generic; 
-using WorkflowLib.Examples.BookList.Models; 
-using Security.Models; 
+using System.Collections.Generic;
+using WorkflowLib.Examples.BookList.Models;
+using Security.Models;
 
 namespace WorkflowLib.Examples.BookList.Services
 {
@@ -13,18 +13,18 @@ namespace WorkflowLib.Examples.BookList.Services
         /// <summary>
         /// Instance of database helper for interacting with SQLite DB  
         /// </summary>
-        private IDbHelper DbHelper; 
+        private IDbHelper DbHelper;
         /// <summary>
         /// Instance of the current user. 
         /// </summary>
-        private User UserObj = null; 
+        private User UserObj = null;
         #endregion  // Members
 
         #region Private fields
         /// <summary>
         /// Field that sores the user's password (delete it when the user logged out)
         /// </summary>
-        private string Password; 
+        private string Password;
         #endregion  // Private fields
 
         #region Constructors
@@ -33,8 +33,8 @@ namespace WorkflowLib.Examples.BookList.Services
         /// </summary>
         public UserRepository()
         {
-            DbHelper = new SqliteDbHelper(); 
-            DbHelper.CreateTables(); 
+            DbHelper = new SqliteDbHelper();
+            DbHelper.CreateTables();
         }
 
         /// <summary>
@@ -42,8 +42,8 @@ namespace WorkflowLib.Examples.BookList.Services
         /// </summary>
         public UserRepository(IDbHelper dbHelper)
         {
-            DbHelper = dbHelper; 
-            DbHelper.CreateTables(); 
+            DbHelper = dbHelper;
+            DbHelper.CreateTables();
         }
         #endregion  // Constructors
 
@@ -60,7 +60,7 @@ namespace WorkflowLib.Examples.BookList.Services
         {
             try
             {
-                EncryptPassword(ref password); 
+                EncryptPassword(ref password);
             }
             catch (System.Exception e)
             {
@@ -70,7 +70,7 @@ namespace WorkflowLib.Examples.BookList.Services
             // Requests for country information. 
             string insertCounty = $@"INSERT INTO Countries (CountryName) 
                 SELECT ('{country}')
-                WHERE (SELECT COUNT(1) FROM Countries WHERE CountryName = '{country}') = 0;"; 
+                WHERE (SELECT COUNT(1) FROM Countries WHERE CountryName = '{country}') = 0;";
 
             // Requests for city information. 
             string insertCity = $@"INSERT INTO Cities (CityName, CountryIdFK) 
@@ -79,7 +79,7 @@ namespace WorkflowLib.Examples.BookList.Services
                     (SELECT CountryId FROM Countries WHERE CountryName = '{country}')
                 );";  
             string checkCity = $@"SELECT COUNT (1) FROM Cities 
-                WHERE CityName = '{city}';"; 
+                WHERE CityName = '{city}';";
 
             // Requests for user information. 
             string insertUser = $@"INSERT INTO Users (Fullname, CityIdFK, Password) 
@@ -89,14 +89,14 @@ namespace WorkflowLib.Examples.BookList.Services
                     '{password}'
                 );";  
             string checkUser = $@"SELECT COUNT (1) FROM Users 
-                WHERE Fullname = '{fullname}' AND Password = '{password}';"; 
+                WHERE Fullname = '{fullname}' AND Password = '{password}';";
             
             try
             {
                 // Insert all data into database. 
-                DbHelper.Insert(insertCounty); 
-                DbHelper.Insert(insertCity, checkCity); 
-                DbHelper.Insert(insertUser, checkUser); 
+                DbHelper.Insert(insertCounty);
+                DbHelper.Insert(insertCity, checkCity);
+                DbHelper.Insert(insertUser, checkUser);
             }
             catch (System.Exception e)
             {
@@ -113,35 +113,35 @@ namespace WorkflowLib.Examples.BookList.Services
         public bool DoesExist(string fullname, string password)
         {
             // Get if input strings are correct. 
-            bool isFullnameCorrect = (fullname != null && fullname != string.Empty); 
-            bool isPasswordCorrect = (password != null && password != string.Empty); 
+            bool isFullnameCorrect = (fullname != null && fullname != string.Empty);
+            bool isPasswordCorrect = (password != null && password != string.Empty);
             if (!isFullnameCorrect || !isPasswordCorrect)
             {
-                throw new System.Exception("Unable to athenticate user in the repository (string cannot be empty or null)."); 
+                throw new System.Exception("Unable to athenticate user in the repository (string cannot be empty or null).");
             }
 
             try
             {
-                EncryptPassword(ref password); 
-            }
-            catch (System.Exception e)
-            {
-                throw e; 
-            }
-
-            string checkUser = $@"SELECT COUNT (1) FROM Users 
-                WHERE Fullname = '{fullname}' AND Password = '{password}';"; 
-            
-            bool exists = false; 
-            try
-            {
-                exists = DbHelper.DoesExist(checkUser); 
+                EncryptPassword(ref password);
             }
             catch (System.Exception e)
             {
                 throw e;
             }
-            return exists; 
+
+            string checkUser = $@"SELECT COUNT (1) FROM Users 
+                WHERE Fullname = '{fullname}' AND Password = '{password}';";
+            
+            bool exists = false;
+            try
+            {
+                exists = DbHelper.DoesExist(checkUser);
+            }
+            catch (System.Exception e)
+            {
+                throw e;
+            }
+            return exists;
         }
 
         /// <summary>
@@ -151,11 +151,11 @@ namespace WorkflowLib.Examples.BookList.Services
         public void AuthenticateUser(string fullname, string password)
         {
             // Get if input strings are correct. 
-            bool isFullnameCorrect = (fullname != null && fullname != string.Empty); 
-            bool isPasswordCorrect = (password != null && password != string.Empty); 
+            bool isFullnameCorrect = (fullname != null && fullname != string.Empty);
+            bool isPasswordCorrect = (password != null && password != string.Empty);
             if (!isFullnameCorrect || !isPasswordCorrect)
             {
-                throw new System.Exception("Unable to athenticate user in the repository (string cannot be empty or null)."); 
+                throw new System.Exception("Unable to athenticate user in the repository (string cannot be empty or null).");
             }
 
             // Encrypt password and get if the user exists in the DB. 
@@ -163,7 +163,7 @@ namespace WorkflowLib.Examples.BookList.Services
             {
                 if ( !DoesExist(fullname, password) )
                 {
-                    throw new System.Exception($"Unable to athenticate user in the repository (user {fullname} does not exist in the DB)."); 
+                    throw new System.Exception($"Unable to athenticate user in the repository (user {fullname} does not exist in the DB).");
                 }
             }
             catch (System.Exception e)
@@ -172,16 +172,16 @@ namespace WorkflowLib.Examples.BookList.Services
             }
 
             // Get data about the user from DB. 
-            string country = string.Empty; 
-            string city = string.Empty; 
-            EncryptPassword(ref password); 
-            DbHelper.GetInfoAboutUser(fullname, out country, out city, password); 
+            string country = string.Empty;
+            string city = string.Empty;
+            EncryptPassword(ref password);
+            DbHelper.GetInfoAboutUser(fullname, out country, out city, password);
 
             // Create an instance of the user. 
             UserObj = new User()
             {
                 Fullname = fullname, Country = country, City = city 
-            }; 
+            };
             UserObj.Books = new List<Book>();
 
             // Store password. 
@@ -193,8 +193,8 @@ namespace WorkflowLib.Examples.BookList.Services
         /// </summary>
         public void LogOutUser()
         {
-            Password = string.Empty; 
-            UserObj = null; 
+            Password = string.Empty;
+            UserObj = null;
         }
 
         /// <summary>
@@ -203,7 +203,7 @@ namespace WorkflowLib.Examples.BookList.Services
         /// <returns>Instance of User class</returns>
         public User GetUser()
         {
-            return UserObj; 
+            return UserObj;
         }
         #endregion  // Personal information
 
@@ -218,21 +218,21 @@ namespace WorkflowLib.Examples.BookList.Services
         {
             if (DbHelper == null)
             {
-                throw new System.Exception("Database helper is not assigned."); 
+                throw new System.Exception("Database helper is not assigned.");
             }
             if (UserObj == null)
             {
-                throw new System.Exception("Non authenticated user cannot add new book."); 
+                throw new System.Exception("Non authenticated user cannot add new book.");
             }
             if (UserObj.Books == null)
             {
-                throw new System.Exception("List of books is not assigned."); 
+                throw new System.Exception("List of books is not assigned.");
             }
 
             // Request for author's information. 
             string insertAuthor = $@"INSERT INTO Authors (AuthorName)
                 SELECT ('{author}')
-                WHERE (SELECT COUNT(1) FROM Authors WHERE AuthorName = '{author}') = 0;"; 
+                WHERE (SELECT COUNT(1) FROM Authors WHERE AuthorName = '{author}') = 0;";
             
             // Requests for book's information. 
             string insertBook = $@"INSERT INTO Books (BookName, AuthorIdFK, Description) 
@@ -242,7 +242,7 @@ namespace WorkflowLib.Examples.BookList.Services
                     '{description}'
                 );";  
             string checkBook = $@"SELECT COUNT (1) FROM Books 
-                WHERE BookName = '{name}';"; 
+                WHERE BookName = '{name}';";
             
             // Requests for information about users and books. 
             string insertUserBook = $@"INSERT INTO UsersBooks (UserIdFK, BookIdFK) 
@@ -263,18 +263,18 @@ namespace WorkflowLib.Examples.BookList.Services
                     FROM Books 
                     WHERE BookName = '{name}' 
                         AND AuthorIdFK = (SELECT AuthorId FROM Authors WHERE AuthorName = '{author}')
-                );"; 
+                );";
             
             try
             {
                 // Insert all data into database. 
-                DbHelper.Insert(insertAuthor); 
-                DbHelper.Insert(insertBook, checkBook); 
-                DbHelper.Insert(insertUserBook, checkUserBook); 
-                int bookId = DbHelper.GetBookId(name); 
+                DbHelper.Insert(insertAuthor);
+                DbHelper.Insert(insertBook, checkBook);
+                DbHelper.Insert(insertUserBook, checkUserBook);
+                int bookId = DbHelper.GetBookId(name);
 
                 // Add a book into list of books. 
-                UserObj.Books.Add(new Book(bookId, name, author, description)); 
+                UserObj.Books.Add(new Book(bookId, name, author, description));
             }
             catch (System.Exception e)
             {
@@ -288,20 +288,20 @@ namespace WorkflowLib.Examples.BookList.Services
         /// <returns>List of books</returns>
         public List<Book> GetBookList()
         {
-            List<Book> books; 
+            List<Book> books;
             try
             {
-                books = UserObj.Books; 
+                books = UserObj.Books;
                 if (books == null)
                 {
-                    throw new System.Exception("Unable to get list of books."); 
+                    throw new System.Exception("Unable to get list of books.");
                 }
             }
             catch (System.Exception e)
             {
                 throw e;
             }
-            return books; 
+            return books;
         }
 
         /// <summary>
@@ -316,8 +316,8 @@ namespace WorkflowLib.Examples.BookList.Services
                 WHERE UserIdFK = (
                     SELECT UserId 
                     FROM Users 
-                    WHERE Fullname = '{UserObj.Fullname}' AND Password = '{Password}');"; 
-            UserObj.Books = DbHelper.GetBooksFromDb(request); 
+                    WHERE Fullname = '{UserObj.Fullname}' AND Password = '{Password}');";
+            UserObj.Books = DbHelper.GetBooksFromDb(request);
         }
 
         public void EditBook()
@@ -339,10 +339,10 @@ namespace WorkflowLib.Examples.BookList.Services
         /// <returns></returns>
         private void EncryptPassword(ref string password)
         {
-            SubstitutionCipher cipher = new SubstitutionCipher(); 
+            SubstitutionCipher cipher = new SubstitutionCipher();
             try
             {
-                password = cipher.Monoalphabetic(password); 
+                password = cipher.Monoalphabetic(password);
             }
             catch (System.Exception e)
             {
