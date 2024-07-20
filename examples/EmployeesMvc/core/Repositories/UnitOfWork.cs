@@ -79,7 +79,7 @@ public class UnitOfWork : IUnitOfWork
     }
 
     /// <summary>
-    /// Basic constructor.
+    /// Default constructor.
     /// </summary>
     public UnitOfWork(AppSettings appSettings)
     {
@@ -88,7 +88,7 @@ public class UnitOfWork : IUnitOfWork
         var pipeParams = new PipeParams(_appSettings.EmployeeQty, _appSettings.VacationIntervals);
         var result = new PipeResult(pipeParams);
         
-        var generatingPipe = new PipeBuilder(InsertIntoRepository)
+        var generatingPipe = new PipeBuilder(_appSettings, InsertIntoRepository)
             .AddGenerating(typeof(EmployeePipe))
             .AddGenerating(typeof(VacationPipe))
             .Build();
@@ -176,7 +176,7 @@ public class UnitOfWork : IUnitOfWork
     /// </summary>
     private void InsertIntoRepository(PipeResult result)
     {
-        System.Console.WriteLine("data added into the repository");
+        System.Console.WriteLine("Data added into the repository");
         foreach (var employee in result.Employees)
             EmployeeRepository.Insert(employee);
         foreach (var vacation in result.Vacations)

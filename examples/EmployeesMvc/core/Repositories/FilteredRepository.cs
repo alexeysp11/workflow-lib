@@ -22,7 +22,7 @@ public class FilteredRepository<TEntity> where TEntity : class
     private System.Timers.Timer aTimer;
 
     /// <summary>
-    /// Basic constructor.
+    /// Default constructor.
     /// </summary>
     public FilteredRepository(AppSettings appSettings)
     {
@@ -89,6 +89,7 @@ public class FilteredRepository<TEntity> where TEntity : class
     {
         if (filteredDbSet.Count == 0) 
             return;
+        
         List<string> keysToDelete = new List<string>();
         foreach (var item in filteredDbSet)
         {

@@ -8,6 +8,16 @@ namespace WorkflowLib.Examples.EmployeesMvc.Core.Domain.Generators;
 /// </summary>
 public class EmployeeGenerator : IEmployeeGenerator
 {
+    private AppSettings _appSettings;
+
+    /// <summary>
+    /// Default constructor.
+    /// </summary>
+    public EmployeeGenerator(AppSettings appSettings)
+    {
+        _appSettings = appSettings;
+    }
+
     /// <summary>
     /// Generates specified number of employees 
     /// </summary>
@@ -36,13 +46,11 @@ public class EmployeeGenerator : IEmployeeGenerator
     /// </summary>
     private string GenerateFullName()
     {
+        var random = new Random();
         var finalString = string.Empty;
         var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        // var stringChars = new char[AppSettings.EmployeeFullNameLength];
-        var stringChars = new char[10];
-        var random = new Random();
-        // for (int i = 0; i < AppSettings.EmployeeFullNameWordsNumber; i++)
-        for (int i = 0; i < 3; i++)
+        var stringChars = new char[_appSettings.EmployeeFullNameLength];
+        for (int i = 0; i < _appSettings.EmployeeFullNameWordsNumber; i++)
         {
             for (int j = 0; j < stringChars.Length; j++)
                 stringChars[j] = chars[random.Next(chars.Length)];
@@ -66,10 +74,8 @@ public class EmployeeGenerator : IEmployeeGenerator
     /// </summary>
     private System.DateTime GenerateBirthDate(System.Func<System.DateTime, System.DateTime, System.DateTime> generateDate)
     {
-        // System.DateTime start = System.DateTime.Now.AddYears(-AppSettings.EmployeeMaxAge);
-        System.DateTime start = System.DateTime.Now.AddYears(-70);
-        // System.DateTime end = System.DateTime.Now.AddYears(-AppSettings.EmployeeMinAge);
-        System.DateTime end = System.DateTime.Now.AddYears(-18);
+        System.DateTime start = System.DateTime.Now.AddYears(-_appSettings.EmployeeMaxAge);
+        System.DateTime end = System.DateTime.Now.AddYears(-_appSettings.EmployeeMinAge);
         return generateDate(start, end);
     }
 }

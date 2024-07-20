@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.Pipes;
 using WorkflowLib.Examples.EmployeesMvc.Core.Domain.Generators;
@@ -13,7 +14,7 @@ public class EmployeePipe : AbstractPipe
     /// <summary>
     /// Constructor of the pipe complonent 
     /// </summary>
-    public EmployeePipe(System.Action<PipeResult> function) : base(function)
+    public EmployeePipe(AppSettings appSettings, System.Action<PipeResult> function) : base(appSettings, function)
     {
     }
     
@@ -22,7 +23,7 @@ public class EmployeePipe : AbstractPipe
     /// </summary>
     public override void Handle(PipeResult result)
     {
-        IEmployeeGenerator generator = new EmployeeGenerator();
+        IEmployeeGenerator generator = new EmployeeGenerator(_appSettings);
         result.Employees = generator.GenerateEmployees(result.PipeParams.EmployeeQty, base.GenerateDate);
         _function(result);
     }

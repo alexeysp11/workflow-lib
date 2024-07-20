@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.Pipes;
 
 namespace WorkflowLib.Examples.EmployeesMvc.Core.Pipes;
@@ -8,6 +9,8 @@ namespace WorkflowLib.Examples.EmployeesMvc.Core.Pipes;
 /// </summary>
 public abstract class AbstractPipe
 {
+    protected AppSettings _appSettings;
+
     /// <summary>
     /// The function that is going to be invoked next 
     /// </summary>
@@ -16,8 +19,9 @@ public abstract class AbstractPipe
     /// <summary>
     /// Constructor of the abstract dataset generator 
     /// </summary>
-    public AbstractPipe(System.Action<PipeResult> function)
+    public AbstractPipe(AppSettings appSettings, System.Action<PipeResult> function)
     {
+        _appSettings = appSettings;
         _function = function;
     }
 

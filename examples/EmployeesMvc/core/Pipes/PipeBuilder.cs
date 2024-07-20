@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.Pipes;
 
 namespace WorkflowLib.Examples.EmployeesMvc.Core.Pipes;
@@ -8,6 +9,11 @@ namespace WorkflowLib.Examples.EmployeesMvc.Core.Pipes;
 /// </summary>
 public class PipeBuilder
 {
+    /// <summary>
+    /// Application settings.
+    /// </summary>
+    private AppSettings _appSettings;
+
     /// <summary>
     /// The function that is going to be invoked in the end.
     /// </summary>
@@ -19,10 +25,11 @@ public class PipeBuilder
     private List<System.Type> _pipeTypes;
 
     /// <summary>
-    /// Basic constructor.
+    /// Default constructor.
     /// </summary>
-    public PipeBuilder(System.Action<PipeResult> mainFunction)
+    public PipeBuilder(AppSettings appSettings, System.Action<PipeResult> mainFunction)
     {
+        _appSettings = appSettings;
         _mainFunction = mainFunction;
         _pipeTypes = new List<System.Type>();
     }
@@ -61,12 +68,12 @@ public class PipeBuilder
         if (index < _pipeTypes.Count - 1)
         {
             var childPipeHandle = CreatePipe(index + 1);
-            var pipe = (AbstractPipe) System.Activator.CreateInstance(_pipeTypes[index], childPipeHandle);
+            var pipe = (AbstractPipe) System.Activator.CreateInstance(_pipeTypes[index], _appSettings, childPipeHandle);
             return pipe.Handle;
         }
         else 
         {
-            var finalPipe = (AbstractPipe) System.Activator.CreateInstance(_pipeTypes[index], _mainFunction);
+            var finalPipe = (AbstractPipe) System.Activator.CreateInstance(_pipeTypes[index], _appSettings, _mainFunction);
             return finalPipe.Handle;
         }
     }

@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Collections.Generic;
+using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.Pipes;
 using WorkflowLib.Examples.EmployeesMvc.Core.Domain.Generators;
@@ -14,7 +15,7 @@ public class VacationPipe : AbstractPipe
     /// <summary>
     /// Constructor of the pipe complonent.
     /// </summary>
-    public VacationPipe(System.Action<PipeResult> function) : base(function)
+    public VacationPipe(AppSettings appSettings, System.Action<PipeResult> function) : base(appSettings, function)
     {
     }
 

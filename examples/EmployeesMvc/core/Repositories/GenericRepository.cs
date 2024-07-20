@@ -16,7 +16,7 @@ public class GenericRepository<TEntity> where TEntity : class
     private List<TEntity> dbSet;
 
     /// <summary>
-    /// Basic constructor.
+    /// Default constructor.
     /// </summary>
     public GenericRepository()
     {
