@@ -11,7 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WorkflowLib.Examples.BookList.Models;
-using WorkflowLib.Examples.BookList.Services; 
+using WorkflowLib.Examples.BookList.Services;
 
 namespace WorkflowLib.Examples.BookList
 {
@@ -27,7 +27,7 @@ namespace WorkflowLib.Examples.BookList
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IUserRepository, UserRepository>(); 
+            services.AddSingleton<IUserRepository, UserRepository>();
             services.AddRazorPages(options => 
             {
                 options.Conventions.AuthorizePage("/Books");
@@ -73,7 +73,7 @@ namespace WorkflowLib.Examples.BookList
             };
             app.UseCookiePolicy(cookiePolicyOptions);
 
-            app.UseAuthentication(); 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
