@@ -7,17 +7,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using WorkflowLib.Examples.BookList;
 using WorkflowLib.Examples.BookList.Models;
-using WorkflowLib.Examples.BookList.Services; 
+using WorkflowLib.Examples.BookList.Services;
 
 namespace WorkflowLib.Examples.BookList.Pages
 {
     public class RegisterModel : PageModel 
     {
-        private readonly ILogger _logger; 
+        private readonly ILogger _logger;
 
         public RegisterModel(ILogger<RegisterModel> logger)
         {
-            _logger = logger; 
+            _logger = logger;
         }
 
         public void OnGet()
@@ -44,22 +44,22 @@ namespace WorkflowLib.Examples.BookList.Pages
                 // Insert user into DB and get if it is inserted successfully. 
                 try
                 {
-                    Repository.UserRepositoryInstance.CreateUser(fullname, country, city, password); 
-                    bool exists = Repository.UserRepositoryInstance.DoesExist(fullname, password); 
+                    Repository.UserRepositoryInstance.CreateUser(fullname, country, city, password);
+                    bool exists = Repository.UserRepositoryInstance.DoesExist(fullname, password);
                     if (!exists)
                     {
-                        throw new System.Exception($"User {fullname} does not exist after inserting into the DB."); 
+                        throw new System.Exception($"User {fullname} does not exist after inserting into the DB.");
                     }
-                    _logger.LogInformation($"User {fullname} ({city}, {country}) successfully created an account."); 
+                    _logger.LogInformation($"User {fullname} ({city}, {country}) successfully created an account.");
                 }
                 catch (System.Exception e)
                 {
-                    _logger.LogWarning($"Exception: {e}"); 
-                    return RedirectToPage(); 
+                    _logger.LogWarning($"Exception: {e}");
+                    return RedirectToPage();
                 }
-                return RedirectToPage("Login"); 
+                return RedirectToPage("Login");
             }
-            return RedirectToPage(); 
+            return RedirectToPage();
         }
     }
 }

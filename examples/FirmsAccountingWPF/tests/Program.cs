@@ -6,23 +6,23 @@ namespace WorkflowLib.Examples.FirmsAccounting.Examples
     {
         static void Main(string[] args)
         {
-            var example = new FirmsAccountingExample(); 
+            var example = new FirmsAccountingExample();
             
             // All fields are filled. 
-            example.PrintAllFilled(); 
+            example.PrintAllFilled();
             
             // Only one field is empty. 
-            example.PrintFirmEmpty(); 
-            example.PrintFirmNull(); 
-            example.PrintPostCityEmpty(); 
-            example.PrintPostCityNull(); 
-            example.PrintJurCityEmpty(); 
-            example.PrintJurCityNull(); 
+            example.PrintFirmEmpty();
+            example.PrintFirmNull();
+            example.PrintPostCityEmpty();
+            example.PrintPostCityNull();
+            example.PrintJurCityEmpty();
+            example.PrintJurCityNull();
 
             // Two fields are empty. 
-            //example.PrintFirmAndPostCityEmpty(); 
-            //example.PrintFirmAndJurCityEmpty(); 
-            //example.PrintPostCityAndJurCityEmpty(); 
+            //example.PrintFirmAndPostCityEmpty();
+            //example.PrintFirmAndJurCityEmpty();
+            //example.PrintPostCityAndJurCityEmpty();
 
             // All fields are empty.
             //example.PrintAllEmpty();

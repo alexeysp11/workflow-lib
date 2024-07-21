@@ -1,9 +1,9 @@
-﻿using System; 
-using System.Collections.Generic; 
-using System.Net.Http; 
-using System.Net.Http.Json; 
-using System.Text.Json; 
-using System.Threading.Tasks; 
+﻿using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Text.Json;
+using System.Threading.Tasks;
 using WorkflowLib.Examples.PublicTransportDevices.Models.Data;
 
 namespace WorkflowLib.Examples.PublicTransportDevices.Examples.HttpSender;
@@ -17,11 +17,11 @@ class Program
         // so we can make 166 to 200 insert requests per second. 
 
         // 
-        var httpClient = new HttpClient(); 
-        var requestCount = 1000; 
-        var url = "https://localhost:7010/DeviceInfo"; 
-        var tasks = new Task[requestCount]; 
-        var rnd = new System.Random(); 
+        var httpClient = new HttpClient();
+        var requestCount = 1000;
+        var url = "https://localhost:7010/DeviceInfo";
+        var tasks = new Task[requestCount];
+        var rnd = new System.Random();
         for (int i = 0; i < requestCount; i++)
         {
             var deviceInfo = new DeviceInfo 
@@ -33,24 +33,24 @@ class Program
                         Longitude = rnd.NextDouble()
                     }
                 };
-            tasks[i] = httpClient.PostAsJsonAsync(url, deviceInfo); 
+            tasks[i] = httpClient.PostAsJsonAsync(url, deviceInfo);
         }
         
         // 
-        var dt1 = System.DateTime.Now; 
-        await Task.WhenAll(tasks); 
+        var dt1 = System.DateTime.Now;
+        await Task.WhenAll(tasks);
 
         // 
-        var dt2 = System.DateTime.Now; 
-        var dif = dt2 - dt1; 
+        var dt2 = System.DateTime.Now;
+        var dif = dt2 - dt1;
         Console.WriteLine($"Started: {dt1}");
         Console.WriteLine($"Executed: {dt2}");
         Console.WriteLine($"Executed in: {dif.Seconds}:{dif.Milliseconds}");
 
         // 
-        // Console.WriteLine($"tasks[0].Headers: {tasks[0].Result.Headers}"); 
+        // Console.WriteLine($"tasks[0].Headers: {tasks[0].Result.Headers}");
         // string responseBody = await tasks[0].Result.Content.ReadAsStringAsync();
-        // Console.WriteLine($"tasks[0].Content: {responseBody}"); 
-        // Console.WriteLine($"json: {json}"); 
+        // Console.WriteLine($"tasks[0].Content: {responseBody}");
+        // Console.WriteLine($"json: {json}");
     }
 }

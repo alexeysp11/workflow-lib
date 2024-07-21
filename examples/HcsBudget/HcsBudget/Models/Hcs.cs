@@ -14,22 +14,22 @@ namespace WorkflowLib.Examples.HcsBudget.Models
 
         public Hcs(int periodId)
         {
-            PeriodId = periodId; 
+            PeriodId = periodId;
         }
 
         public Hcs(int hcsId, string name, float qty, float priceUsd, 
             string participantName, float totalPrice, int month, int year, 
             int periodId)
         {
-            HcsId = hcsId; 
-            Name = name; 
-            Qty = qty; 
-            PriceUsd = priceUsd; 
-            ParticipantName = participantName; 
-            TotalPrice = totalPrice; 
-            Month = month; 
-            Year = year; 
-            PeriodId = periodId; 
+            HcsId = hcsId;
+            Name = name;
+            Qty = qty;
+            PriceUsd = priceUsd;
+            ParticipantName = participantName;
+            TotalPrice = totalPrice;
+            Month = month;
+            Year = year;
+            PeriodId = periodId;
         }
     }
 }

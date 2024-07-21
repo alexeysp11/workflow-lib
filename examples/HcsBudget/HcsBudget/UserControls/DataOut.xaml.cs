@@ -25,22 +25,22 @@ namespace WorkflowLib.Examples.HcsBudget.UserControls
             try
             {
                 DataGrid dg = (DataGrid)sender;
-                DataIn dataIn = this.MainVM.MainWindow.DataIn; 
+                DataIn dataIn = this.MainVM.MainWindow.DataIn;
 
                 Hcs selectedHcs = (Hcs)(dg.SelectedItem);
                 this.MainVM.SelectedHcs = selectedHcs;
 
                 if (selectedHcs != null)
                 {
-                    dataIn.ServiceInput.tbService.Text = selectedHcs.Name.ToString(); 
-                    dataIn.ServiceInput.tbQuantity.Text = selectedHcs.Qty.ToString(); 
-                    dataIn.ServiceInput.tbPrice.Text = selectedHcs.PriceUsd.ToString(); 
-                    dataIn.tbParticipants.Text = selectedHcs.ParticipantName.ToString(); 
+                    dataIn.ServiceInput.tbService.Text = selectedHcs.Name.ToString();
+                    dataIn.ServiceInput.tbQuantity.Text = selectedHcs.Qty.ToString();
+                    dataIn.ServiceInput.tbPrice.Text = selectedHcs.PriceUsd.ToString();
+                    dataIn.tbParticipants.Text = selectedHcs.ParticipantName.ToString();
                 }
             }
             catch (System.Exception ex)
             {
-                System.Windows.MessageBox.Show(ex.Message, "Exception"); 
+                System.Windows.MessageBox.Show(ex.Message, "Exception");
             }
         }
     }

@@ -20,19 +20,19 @@ namespace WorkflowLib.Examples.FirmsAccounting.Models.Data
             float aprSum, float maySum, float junSum, float julSum, float augSum, 
             float sepSum, float octSum, float novSum, float decSum)
         {
-            Year = year; 
-            JanSum = janSum; 
-            FebSum = febSum; 
-            MarSum = marSum; 
-            AprSum = aprSum; 
-            MaySum = maySum; 
-            JunSum = junSum; 
-            JulSum = julSum; 
-            AugSum = augSum; 
-            SepSum = sepSum; 
-            OctSum = octSum; 
-            NovSum = novSum; 
-            DecSum = decSum; 
+            Year = year;
+            JanSum = janSum;
+            FebSum = febSum;
+            MarSum = marSum;
+            AprSum = aprSum;
+            MaySum = maySum;
+            JunSum = junSum;
+            JulSum = julSum;
+            AugSum = augSum;
+            SepSum = sepSum;
+            OctSum = octSum;
+            NovSum = novSum;
+            DecSum = decSum;
         }
     }
 }

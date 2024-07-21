@@ -1,6 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
-using WorkflowLib.Examples.HcsBudget.ViewModels; 
+using WorkflowLib.Examples.HcsBudget.ViewModels;
 
 namespace WorkflowLib.Examples.HcsBudget.UserControls
 {
@@ -22,20 +22,20 @@ namespace WorkflowLib.Examples.HcsBudget.UserControls
         {
             try
             {
-                string selectedMonth = (e.NewValue).ToString(); 
+                string selectedMonth = (e.NewValue).ToString();
                 foreach (var month in this.MainVM.MonthsCollection)
                 {
                     if (month.Label == selectedMonth)
                     {
-                        this.MainVM.SelectHcs(month.PeriodId); 
-                        this.MainVM.SelectedHcs = new WorkflowLib.Examples.HcsBudget.Models.Hcs(month.PeriodId); 
-                        break; 
+                        this.MainVM.SelectHcs(month.PeriodId);
+                        this.MainVM.SelectedHcs = new WorkflowLib.Examples.HcsBudget.Models.Hcs(month.PeriodId);
+                        break;
                     }
                 }
             }
             catch (System.Exception ex)
             {
-                System.Windows.MessageBox.Show(ex.Message, "Exception"); 
+                System.Windows.MessageBox.Show(ex.Message, "Exception");
             }
         }
     }

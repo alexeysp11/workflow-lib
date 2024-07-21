@@ -1,8 +1,8 @@
-using System.Collections.Generic; 
-using System.Data; 
-using System.Globalization; 
-using WorkflowLib.Examples.HcsBudget.Models; 
-using WorkflowLib.Examples.HcsBudget.ViewModels; 
+using System.Collections.Generic;
+using System.Data;
+using System.Globalization;
+using WorkflowLib.Examples.HcsBudget.Models;
+using WorkflowLib.Examples.HcsBudget.ViewModels;
 
 namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
 {
@@ -12,25 +12,25 @@ namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
         {
             try 
             {
-                SetPathToDb(); 
+                SetPathToDb();
                 string sqlRequest = string.Format(GetSqlRequest("InsertDate.sql"), 
-                    month, year); 
-                ExecuteSql(sqlRequest); 
+                    month, year);
+                ExecuteSql(sqlRequest);
             }
             catch (System.Exception e)
             {
-                throw e; 
+                throw e;
             }
         }
 
         public List<Month> GetMonths()
         {
-            List<Month> result = new List<Month>(); 
+            List<Month> result = new List<Month>();
             try 
             {
-                SetPathToDb(); 
-                string sqlRequest = GetSqlRequest("GetMonths.sql"); 
-                DataTable dt = GetDataTable(sqlRequest); 
+                SetPathToDb();
+                string sqlRequest = GetSqlRequest("GetMonths.sql");
+                DataTable dt = GetDataTable(sqlRequest);
                 foreach(DataRow row in dt.Rows)
                 {
                     result.Add(new Month(
@@ -44,25 +44,25 @@ namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
                         ToTitleCase(row["portugues"].ToString().ToLower()), 
                         ToTitleCase(row["french"].ToString().ToLower()), 
                         ToTitleCase(row["italian"].ToString().ToLower())
-                    )); 
+                    ));
                 }
             }
             catch (System.Exception e)
             {
-                throw e; 
+                throw e;
             }
-            return result; 
+            return result;
         }
 
         public List<Hcs> GetHcs(int periodId)
         {
-            List<Hcs> result = new List<Hcs>(); 
+            List<Hcs> result = new List<Hcs>();
             try 
             {
-                SetPathToDb(); 
+                SetPathToDb();
                 string sqlRequest = string.Format(GetSqlRequest("GetHcs.sql"), 
-                    periodId); 
-                DataTable dt = GetDataTable(sqlRequest); 
+                    periodId);
+                DataTable dt = GetDataTable(sqlRequest);
                 foreach(DataRow row in dt.Rows)
                 {
                     result.Add(new Hcs(
@@ -75,21 +75,21 @@ namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
                         System.Convert.ToInt32(row["month"]), 
                         System.Convert.ToInt32(row["year"]), 
                         System.Convert.ToInt32(row["period_id"])
-                    )); 
+                    ));
                 }
             }
             catch (System.Exception e)
             {
-                throw e; 
+                throw e;
             }
-            return result; 
+            return result;
         }
         public void InsertHcs(int periodId, string hcsName, float qty, float price, 
             List<string> newParticipants)
         {
             try 
             {
-                SetPathToDb(); 
+                SetPathToDb();
                 string sqlRequest = @$"
                     INSERT INTO hcs (name, qty, price_usd, period_id)
                     VALUES (
@@ -97,11 +97,11 @@ namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
                         {qty.ToString(new CultureInfo("en-US"))}, 
                         {price.ToString(new CultureInfo("en-US"))}, 
                         {periodId}
-                    )"; 
-                ExecuteSql(sqlRequest); 
+                    )";
+                ExecuteSql(sqlRequest);
                 foreach (string item in newParticipants)
                 {
-                    InsertParticipant(item); 
+                    InsertParticipant(item);
                     sqlRequest = @$"
                     INSERT INTO hcs_participant (hcs_id, participant_id)
                     VALUES (
@@ -111,13 +111,13 @@ namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
                             FROM participant 
                             WHERE UPPER(name) LIKE UPPER('{item}')
                         )
-                    )"; 
-                    ExecuteSql(sqlRequest); 
+                    )";
+                    ExecuteSql(sqlRequest);
                 }
             }
             catch (System.Exception e)
             {
-                throw e; 
+                throw e;
             }
         }
 
@@ -126,7 +126,7 @@ namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
         {
             try 
             {
-                SetPathToDb(); 
+                SetPathToDb();
 
                 // Update hcs table
                 string sqlRequest = @$"
@@ -135,11 +135,11 @@ namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
                         name = '{hcsName}', 
                         qty = {qty.ToString(new CultureInfo("en-US"))}, 
                         price_usd = {price.ToString(new CultureInfo("en-US"))}
-                    WHERE hcs_id = {hcsId}"; 
-                ExecuteSql(sqlRequest); 
+                    WHERE hcs_id = {hcsId}";
+                ExecuteSql(sqlRequest);
 
                 // Update hcs_participant table
-                int minLength = System.Math.Min(oldParticipants.Count, newParticipants.Count); 
+                int minLength = System.Math.Min(oldParticipants.Count, newParticipants.Count);
                 for (int i = 0; i < minLength; i++)
                 {
                     sqlRequest = @$"
@@ -157,8 +157,8 @@ namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
                                 FROM participant
                                 WHERE UPPER(name) LIKE UPPER('{oldParticipants[i]}')
                             )
-                        )"; 
-                    ExecuteSql(sqlRequest); 
+                        )";
+                    ExecuteSql(sqlRequest);
                 }
                 if (minLength < newParticipants.Count)
                 {
@@ -171,7 +171,7 @@ namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
                                 FROM participant 
                                 WHERE UPPER(name) LIKE UPPER('{newParticipants[i]}')
                             ))";
-                        ExecuteSql(sqlRequest); 
+                        ExecuteSql(sqlRequest);
                     }
                 }
                 else if (minLength < oldParticipants.Count)
@@ -189,13 +189,13 @@ namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
                                     WHERE UPPER(name) LIKE UPPER('{oldParticipants[i]}')
                                 )
                             )";
-                        ExecuteSql(sqlRequest); 
+                        ExecuteSql(sqlRequest);
                     }
                 }
             }
             catch (System.Exception e)
             {
-                throw e; 
+                throw e;
             }
         }
 
@@ -203,15 +203,15 @@ namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
         {
             try 
             {
-                SetPathToDb(); 
+                SetPathToDb();
                 string sqlRequest = @$"
                     DELETE FROM hcs_participant WHERE hcs_id = {hcsId};
-                    DELETE FROM hcs WHERE hcs_id = {hcsId}; "; 
-                ExecuteSql(sqlRequest); 
+                    DELETE FROM hcs WHERE hcs_id = {hcsId}; ";
+                ExecuteSql(sqlRequest);
             }
             catch (System.Exception e)
             {
-                throw e; 
+                throw e;
             }
         }
 
@@ -219,17 +219,17 @@ namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
         {
             try 
             {
-                SetPathToDb(); 
-                string sqlRequest = "SELECT DISTINCT year FROM period"; 
-                DataTable dt = GetDataTable(sqlRequest); 
+                SetPathToDb();
+                string sqlRequest = "SELECT DISTINCT year FROM period";
+                DataTable dt = GetDataTable(sqlRequest);
                 foreach(DataRow row in dt.Rows)
                 {
-                    years.Add(System.Convert.ToInt32(row["year"])); 
+                    years.Add(System.Convert.ToInt32(row["year"]));
                 }
             }
             catch (System.Exception e)
             {
-                throw e; 
+                throw e;
             }
         }
 
@@ -238,19 +238,19 @@ namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
             List<string> result = new List<string>();
             try 
             {
-                SetPathToDb(); 
-                string sqlRequest = "SELECT name FROM participant"; 
-                DataTable dt = GetDataTable(sqlRequest); 
+                SetPathToDb();
+                string sqlRequest = "SELECT name FROM participant";
+                DataTable dt = GetDataTable(sqlRequest);
                 foreach(DataRow row in dt.Rows)
                 {
-                    result.Add(ToTitleCase(row["name"].ToString().ToLower())); 
+                    result.Add(ToTitleCase(row["name"].ToString().ToLower()));
                 }
             }
             catch (System.Exception e)
             {
-                throw e; 
+                throw e;
             }
-            return result; 
+            return result;
         }
 
         public List<string> SelectAllHcs()
@@ -258,33 +258,33 @@ namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
             List<string> result = new List<string>();
             try 
             {
-                SetPathToDb(); 
-                string sqlRequest = "SELECT name FROM hcs"; 
-                DataTable dt = GetDataTable(sqlRequest); 
+                SetPathToDb();
+                string sqlRequest = "SELECT name FROM hcs";
+                DataTable dt = GetDataTable(sqlRequest);
                 foreach(DataRow row in dt.Rows)
                 {
-                    result.Add(ToTitleCase(row["name"].ToString().ToLower())); 
+                    result.Add(ToTitleCase(row["name"].ToString().ToLower()));
                 }
             }
             catch (System.Exception e)
             {
-                throw e; 
+                throw e;
             }
-            return result; 
+            return result;
         }
 
         public void InsertParticipant(string name)
         {
             try 
             {
-                SetPathToDb(); 
+                SetPathToDb();
                 string sqlRequest = string.Format(GetSqlRequest("InsertParticipant.sql"), 
-                    name); 
-                ExecuteSql(sqlRequest); 
+                    name);
+                ExecuteSql(sqlRequest);
             }
             catch (System.Exception e)
             {
-                throw e; 
+                throw e;
             }
         }
 
@@ -292,14 +292,14 @@ namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
         {
             try 
             {
-                SetPathToDb(); 
+                SetPathToDb();
                 string sqlRequest = string.Format(GetSqlRequest("UpdateParticipant.sql"), 
-                    newName, oldName); 
-                ExecuteSql(sqlRequest); 
+                    newName, oldName);
+                ExecuteSql(sqlRequest);
             }
             catch (System.Exception e)
             {
-                throw e; 
+                throw e;
             }
         }
 
@@ -307,26 +307,26 @@ namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
         {
             string sqlRequest = @$"
                 DELETE FROM participant 
-                WHERE UPPER(name) LIKE UPPER('{name}')"; 
+                WHERE UPPER(name) LIKE UPPER('{name}')";
             try 
             {
-                SetPathToDb(); 
-                ExecuteSql(sqlRequest); 
+                SetPathToDb();
+                ExecuteSql(sqlRequest);
             }
             catch (System.Exception e)
             {
-                throw e; 
+                throw e;
             }
         }
 
         public List<User> SelectUserSettings()
         {
-            List<User> result = new List<User>(); 
+            List<User> result = new List<User>();
             try
             {
-                SetPathToDb(); 
-                string sqlRequest = GetSqlRequest("SelectUserSettings.sql"); 
-                DataTable dt = GetDataTable(sqlRequest); 
+                SetPathToDb();
+                string sqlRequest = GetSqlRequest("SelectUserSettings.sql");
+                DataTable dt = GetDataTable(sqlRequest);
                 foreach(DataRow row in dt.Rows)
                 {
                     result.Add(new User(
@@ -338,14 +338,14 @@ namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
                         ToTitleCase(row["db_name"].ToString().ToLower()), 
                         System.Convert.ToInt32(row["is_protected"]) == 1 ? true : false, 
                         ToTitleCase(row["password"].ToString().ToLower())
-                    )); 
+                    ));
                 }
             }
             catch (System.Exception e)
             {
-                throw e; 
+                throw e;
             }
-            return result; 
+            return result;
         }
 
         public void UpdateUserSettings(int userId, string language, 
@@ -353,40 +353,40 @@ namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
         {
             try
             {
-                SetPathToDb(); 
+                SetPathToDb();
                 string sqlRequest = string.Format(GetSqlRequest("UpdateUserSettings.sql"), 
-                    language, currency, database, userId); 
-                ExecuteSql(sqlRequest); 
+                    language, currency, database, userId);
+                ExecuteSql(sqlRequest);
             }
             catch (System.Exception e)
             {
-                throw e; 
+                throw e;
             }
         }
 
         public List<ReportRow> GetReport(int monthFrom, int yearFrom, int monthTo, int yearTo)
         {
-            List<ReportRow> result = new List<ReportRow>(); 
+            List<ReportRow> result = new List<ReportRow>();
             try
             {
-                SetPathToDb(); 
+                SetPathToDb();
                 string sqlRequest = string.Format(GetSqlRequest("GetReport.sql"), 
-                    monthFrom, yearFrom, monthTo, yearTo); 
-                DataTable dt = GetDataTable(sqlRequest); 
+                    monthFrom, yearFrom, monthTo, yearTo);
+                DataTable dt = GetDataTable(sqlRequest);
                 foreach(DataRow row in dt.Rows)
                 {
                     result.Add(new ReportRow(
                         ToTitleCase(row["p_name"].ToString().ToLower()), 
                         row["hcs_qty"].ToString(), 
                         row["hcs_price_usd"].ToString()
-                    )); 
+                    ));
                 }
             }
             catch (System.Exception e)
             {
-                throw e; 
+                throw e;
             }
-            return result; 
+            return result;
         }
     }
 }
