@@ -13,8 +13,8 @@ public class FilteredRepositoryTest
     public void GetFiltered_IncorrectUid_ThrowsException(string uid)
     {
         // Arrange 
-        var employees = new FilteredRepository<Employee>();
-        var vacations = new FilteredRepository<Vacation>();
+        var employees = new FilteredRepository<Employee>(SettingsHelper.AppSettings);
+        var vacations = new FilteredRepository<Vacation>(SettingsHelper.AppSettings);
 
         // Act 
         Action actEmployees = () => employees.GetFiltered(uid);
