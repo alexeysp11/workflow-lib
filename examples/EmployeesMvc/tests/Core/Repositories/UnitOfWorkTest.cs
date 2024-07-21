@@ -1,8 +1,8 @@
 using System.Linq;
 using Xunit;
+using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
 using WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
-using WorkflowLib.Examples.EmployeesMvc.Helpers;
 
 namespace Tests.WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
 
@@ -12,15 +12,15 @@ public class UnitOfWorkTest
     public void Constructor_NoParameters_CorrectNumberOfGeneratedElements()
     {
         // Arrange
-        var unitOfWork = new UnitOfWork();
+        var unitOfWork = new UnitOfWork(SettingsHelper.AppSettings);
 
         // Act 
         var employees = unitOfWork.GetEmployees();
         var vacations = unitOfWork.GetVacations();
 
         // Assert 
-        Assert.Equal(employees.Count, ConfigHelper.EmployeeQty);
-        Assert.Equal(vacations.Count, ConfigHelper.VacationQty);
+        Assert.Equal(employees.Count, SettingsHelper.AppSettings.EmployeeQty);
+        Assert.Equal(vacations.Count, SettingsHelper.AppSettings.VacationQty);
     }
 
     [Theory]
@@ -30,7 +30,7 @@ public class UnitOfWorkTest
     public void InsertVacation_IncorrectFullName_RecordIsNotInserted(string fullName)
     {
         // Arrange
-        var unitOfWork = new UnitOfWork();
+        var unitOfWork = new UnitOfWork(SettingsHelper.AppSettings);
         var beginDate = System.DateTime.Now;
         var endDate = beginDate.AddDays(14);
 
@@ -45,14 +45,14 @@ public class UnitOfWorkTest
 
         // Assert 
         Assert.False(isInserted);
-        Assert.Equal(vacations.Count, ConfigHelper.VacationQty);
+        Assert.Equal(vacations.Count, SettingsHelper.AppSettings.VacationQty);
     }
 
     [Fact]
     public void InsertVacation_CorrectParameters_OnlyOneRecordWasInsertedAndTotalQtyIncrementedByOne()
     {
         // Arrange
-        var unitOfWork = new UnitOfWork();
+        var unitOfWork = new UnitOfWork(SettingsHelper.AppSettings);
         var beginDate = System.DateTime.Now;
         var endDate = beginDate.AddDays(14);
         var fullName = unitOfWork.GetVacations().First().Employee.FullName;
@@ -68,6 +68,6 @@ public class UnitOfWorkTest
 
         // Assert 
         Assert.True(isInserted);
-        Assert.Equal(vacations.Count, ConfigHelper.VacationQty + 1);
+        Assert.Equal(vacations.Count, SettingsHelper.AppSettings.VacationQty + 1);
     }
 }
