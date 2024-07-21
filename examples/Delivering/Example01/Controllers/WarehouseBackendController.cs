@@ -787,7 +787,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Controllers
                     ReceiverId = warehouseEmployee.Id,
                     TitleText = titleText,
                     BodyText = sbMessageText.ToString()
-                }; 
+                };
                 new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
                 {
                     notification
