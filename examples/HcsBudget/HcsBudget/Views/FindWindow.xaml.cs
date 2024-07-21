@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Windows;
-using WorkflowLib.Examples.HcsBudget.ViewModels; 
+using WorkflowLib.Examples.HcsBudget.ViewModels;
 
 namespace WorkflowLib.Examples.HcsBudget.Views
 {
@@ -17,11 +17,11 @@ namespace WorkflowLib.Examples.HcsBudget.Views
 
             Loaded += (o, e) => 
             {
-                this.MainVM = (MainVM)(this.DataContext); 
-                LoadYears(); 
-                LoadParticipants(); 
-                LoadServices(); 
-            }; 
+                this.MainVM = (MainVM)(this.DataContext);
+                LoadYears();
+                LoadParticipants();
+                LoadServices();
+            };
         }
         
         private void tvParticipantsFrom_MouseDoubleClick(object sender, RoutedEventArgs e)
@@ -33,7 +33,7 @@ namespace WorkflowLib.Examples.HcsBudget.Views
                 {
                     if (item == menuItem) 
                     {
-                        return; 
+                        return;
                     }
                 }
                 this.tvParticipantsTo.Items.Add(menuItem);
@@ -54,7 +54,7 @@ namespace WorkflowLib.Examples.HcsBudget.Views
                 {
                     if (item == menuItem) 
                     {
-                        return; 
+                        return;
                     }
                 }
                 this.tvServicesTo.Items.Add(menuItem);
@@ -83,27 +83,27 @@ namespace WorkflowLib.Examples.HcsBudget.Views
 
         private void LoadYears()
         {
-            List<int> years = this.MainVM.SelectDistinctYears(); 
+            List<int> years = this.MainVM.SelectDistinctYears();
             foreach (int year in years)
             {
                 cbYearFrom.Items.Add(year.ToString());
                 cbYearTo.Items.Add(year.ToString());
 
-                cbYearFrom.SelectedIndex = 0; 
-                cbYearTo.SelectedIndex = 0; 
+                cbYearFrom.SelectedIndex = 0;
+                cbYearTo.SelectedIndex = 0;
             }
         }
 
         private void LoadParticipants()
         {
-            List<string> participants = this.MainVM.LoadParticipants(); 
-            this.tvParticipantsFrom.ItemsSource = participants; 
+            List<string> participants = this.MainVM.LoadParticipants();
+            this.tvParticipantsFrom.ItemsSource = participants;
         }
 
         private void LoadServices()
         {
-            List<string> hcs = this.MainVM.LoadHcs(); 
-            this.tvServicesFrom.ItemsSource = hcs; 
+            List<string> hcs = this.MainVM.LoadHcs();
+            this.tvServicesFrom.ItemsSource = hcs;
         }
     }
 }

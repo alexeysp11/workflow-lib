@@ -1,32 +1,32 @@
-using WorkflowLib.Examples.Retail.Accounting.Services; 
+using WorkflowLib.Examples.Retail.Accounting.Services;
 
 namespace WorkflowLib.Examples.Retail.Accounting
 {
     public static class Repository
     {
-        private static IAccountingRepository accountingRepository = null; 
+        private static IAccountingRepository accountingRepository = null;
         public static IAccountingRepository Instance
         {
             get
             {
                 if (accountingRepository == null)
                 {
-                    accountingRepository = new AccountingRepository(); 
+                    accountingRepository = new AccountingRepository();
                 }
-                return accountingRepository; 
+                return accountingRepository;
             }
         }
 
         public static int ImportDocId { get; set; }
         public static int ExportDocId { get; set; }
 
-        public static bool IsErrorMessageActivatedOnImport { get; set; } = false; 
-        public static bool IsErrorMessageActivatedOnImportItem { get; set; } = false; 
-        public static bool IsErrorMessageActivatedOnExport { get; set; } = false; 
-        public static bool IsErrorMessageActivatedOnExportItem { get; set; } = false; 
-        public static bool IsErrorMessageActivatedOnPartners { get; set; } = false; 
-        public static bool IsErrorMessageActivatedOnEmployees { get; set; } = false; 
-        public static bool IsErrorMessageActivatedOnSettings { get; set; } = false; 
+        public static bool IsErrorMessageActivatedOnImport { get; set; } = false;
+        public static bool IsErrorMessageActivatedOnImportItem { get; set; } = false;
+        public static bool IsErrorMessageActivatedOnExport { get; set; } = false;
+        public static bool IsErrorMessageActivatedOnExportItem { get; set; } = false;
+        public static bool IsErrorMessageActivatedOnPartners { get; set; } = false;
+        public static bool IsErrorMessageActivatedOnEmployees { get; set; } = false;
+        public static bool IsErrorMessageActivatedOnSettings { get; set; } = false;
         
         public static string ErrorMessageOnImport { get; set; }
         public static string ErrorMessageOnImportItem { get; set; }
@@ -38,7 +38,7 @@ namespace WorkflowLib.Examples.Retail.Accounting
 
         public static string GetErrorMessage(string operationName, string possibleProblem)
         {
-            return $"Unable to perform {operationName} operation. Please, check correctness of {possibleProblem}."; 
+            return $"Unable to perform {operationName} operation. Please, check correctness of {possibleProblem}.";
         }
     }
 }

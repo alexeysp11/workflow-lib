@@ -11,10 +11,10 @@ namespace WorkflowLib.Examples.BookList.Models
 
         public Book(int bookId, string name, string author, string description)
         {
-            BookId = bookId; 
-            Name = name; 
-            Author = author; 
-            Desciption = description; 
+            BookId = bookId;
+            Name = name;
+            Author = author;
+            Desciption = description;
         }
     }
 }

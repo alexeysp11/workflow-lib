@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using WorkflowLib.Examples.PublicTransportDevices.Models.Data;
-using WorkflowLib.Examples.PublicTransportDevices.Models.Domain; 
+using WorkflowLib.Examples.PublicTransportDevices.Models.Domain;
 
-namespace WorkflowLib.Examples.PublicTransportDevices.Models.MessageQueues; 
+namespace WorkflowLib.Examples.PublicTransportDevices.Models.MessageQueues;
 
 public class RabbitMQConsumer
 {
-    private readonly DeviceInfoDb _deviceInfoDb; 
-    private readonly IConnection _connection; 
-    private readonly IModel _channel; 
-    private readonly Timer _timer; 
+    private readonly DeviceInfoDb _deviceInfoDb;
+    private readonly IConnection _connection;
+    private readonly IModel _channel;
+    private readonly Timer _timer;
     
-    private readonly string _queueName; 
+    private readonly string _queueName;
 
     public RabbitMQConsumer(DeviceInfoDb deviceInfoDb)
     {
-        _queueName = "ptd_queue"; 
+        _queueName = "ptd_queue";
 
         var factory = new ConnectionFactory { HostName = "localhost" };
         _connection = factory.CreateConnection();
@@ -31,21 +31,21 @@ public class RabbitMQConsumer
                      exclusive: false,
                      autoDelete: false,
                      arguments: null);
-        _timer = new Timer(OnTimerElapsed, null, System.TimeSpan.Zero, System.TimeSpan.FromSeconds(1)); 
-        _deviceInfoDb = deviceInfoDb; 
+        _timer = new Timer(OnTimerElapsed, null, System.TimeSpan.Zero, System.TimeSpan.FromSeconds(1));
+        _deviceInfoDb = deviceInfoDb;
     }
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
-        return Task.CompletedTask; 
+        return Task.CompletedTask;
     }
 
     public Task StopAsync(CancellationToken cancellationToken)
     {
-        _timer.Dispose(); 
-        _channel.Close(); 
-        _connection.Close(); 
-        return Task.CompletedTask; 
+        _timer.Dispose();
+        _channel.Close();
+        _connection.Close();
+        return Task.CompletedTask;
     }
 
     private void OnTimerElapsed(object state)
@@ -58,7 +58,7 @@ public class RabbitMQConsumer
                 var body = ea.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
                 DeviceInfo di = JsonSerializer.Deserialize<DeviceInfo>(message);
-                _deviceInfoDb.InsertDeviceInfo(di); 
+                _deviceInfoDb.InsertDeviceInfo(di);
             };
             _channel.BasicConsume(queue: _queueName,
                                 autoAck: true,
@@ -66,7 +66,7 @@ public class RabbitMQConsumer
         }
         catch (System.Exception ex)
         {
-            System.Console.WriteLine($"Exception: {ex}"); 
+            System.Console.WriteLine($"Exception: {ex}");
         }
     }
 }

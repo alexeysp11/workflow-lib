@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using WorkflowLib.Examples.Retail.Accounting.Models; 
+using WorkflowLib.Examples.Retail.Accounting.Models;
 
 namespace WorkflowLib.Examples.Retail.Accounting.Services
 {
@@ -14,7 +14,7 @@ namespace WorkflowLib.Examples.Retail.Accounting.Services
             {
                 var employeeList = db.Employee
                     .Where(p => p.EmployeeName == employeeName)
-                    .ToList(); 
+                    .ToList();
                 if (employeeList.Count == 0)
                 {
                     db.Add(new Employee 
@@ -33,27 +33,27 @@ namespace WorkflowLib.Examples.Retail.Accounting.Services
 
         public static int? GetEmployeeId(string employeeName)
         {
-            int? employeeId = 0; 
+            int? employeeId = 0;
             using (var db = new AccountingContext())
             {
                 var employeeList = db.Employee
                     .Where(e => e.EmployeeName == employeeName)
-                    .ToList(); 
+                    .ToList();
                 if (employeeList.Count != 0)
                 {
-                    employeeId = employeeList[0].EmployeeId; 
+                    employeeId = employeeList[0].EmployeeId;
                 }
                 else
                 {
-                    employeeId = null; 
+                    employeeId = null;
                 }
             }
-            return employeeId; 
+            return employeeId;
         }
 
         public static IEnumerable<EmployeeInfo> GetEmployees()
         {
-            IEnumerable<EmployeeInfo> employees; 
+            IEnumerable<EmployeeInfo> employees;
             using (var db = new AccountingContext())
             {
                 employees = (from employee in db.Set<Employee>()
@@ -72,9 +72,9 @@ namespace WorkflowLib.Examples.Retail.Accounting.Services
                         Salary = employee.Salary, 
                         Email = employee.Email, 
                         Phone = employee.Phone
-                    }).ToList(); 
+                    }).ToList();
             }
-            return employees; 
+            return employees;
         }
 
         public static void UpdateEmployee(int employeeId, string employeeName, 
@@ -86,13 +86,13 @@ namespace WorkflowLib.Examples.Retail.Accounting.Services
                 var employee = db.Employee
                     .Where(p => p.EmployeeId == employeeId)
                     .ToList()
-                    .First(); 
-                employee.EmployeeName = employeeName; 
-                employee.Salary = salary; 
-                employee.Email = email; 
-                employee.Phone = phone; 
-                employee.ManagerId = managerId; 
-                employee.DepartmentId = departmentId; 
+                    .First();
+                employee.EmployeeName = employeeName;
+                employee.Salary = salary;
+                employee.Email = email;
+                employee.Phone = phone;
+                employee.ManagerId = managerId;
+                employee.DepartmentId = departmentId;
 
                 db.SaveChanges();
             }
@@ -107,7 +107,7 @@ namespace WorkflowLib.Examples.Retail.Accounting.Services
                     var employee = db.Employee
                         .Where(ed => ed.EmployeeId == employeeId)
                         .ToList()
-                        .First(); 
+                        .First();
                     db.Remove(employee);
                     db.SaveChanges();
                 }

@@ -34,23 +34,23 @@ namespace WorkflowLib.Examples.Retail.Accounting.Pages
                 isDocumentIdCorrect)
             {
                 Repository.Instance.InsertExportItem(product_title, quantity, 
-                    item_price, Repository.ExportDocId); 
-                Repository.IsErrorMessageActivatedOnExportItem = false; 
-                _logger.LogInformation($"Added ExportItem (product_title: {product_title}, quantity: {quantity}, item_price: {item_price}) for ExportDocId = {Repository.ExportDocId})"); 
+                    item_price, Repository.ExportDocId);
+                Repository.IsErrorMessageActivatedOnExportItem = false;
+                _logger.LogInformation($"Added ExportItem (product_title: {product_title}, quantity: {quantity}, item_price: {item_price}) for ExportDocId = {Repository.ExportDocId})");
             }
             else
             {
-                Repository.IsErrorMessageActivatedOnExportItem = true; 
+                Repository.IsErrorMessageActivatedOnExportItem = true;
                 Repository.ErrorMessageOnExportItem = Repository.GetErrorMessage("Add", 
-                    "product title, quantity or item price"); 
+                    "product title, quantity or item price");
             }
-            return RedirectToPage(); 
+            return RedirectToPage();
         }
 
         public IActionResult OnPostEditBtn(int item_id, string product_title, 
             float quantity, float item_price)
         {
-            bool isItemIdCorrect = (item_id > 0); 
+            bool isItemIdCorrect = (item_id > 0);
             bool isProductCorrect = (product_title != null && product_title != string.Empty);
             bool isQuantityCorrect = (quantity >= 0);
             bool isPriceCorrect = (item_price >= 0);
@@ -59,39 +59,39 @@ namespace WorkflowLib.Examples.Retail.Accounting.Pages
                 isPriceCorrect)
             {
                 Repository.Instance.UpdateExportItem(item_id, product_title, 
-                    quantity, item_price); 
-                Repository.IsErrorMessageActivatedOnExportItem = false; 
-                _logger.LogInformation($"Edit ExportItem (product_title: {product_title}, quantity: {quantity}, item_price: {item_price})"); 
+                    quantity, item_price);
+                Repository.IsErrorMessageActivatedOnExportItem = false;
+                _logger.LogInformation($"Edit ExportItem (product_title: {product_title}, quantity: {quantity}, item_price: {item_price})");
             }
             else
             {
-                Repository.IsErrorMessageActivatedOnExportItem = true; 
+                Repository.IsErrorMessageActivatedOnExportItem = true;
                 Repository.ErrorMessageOnExportItem = Repository.GetErrorMessage("Edit", 
-                    "item ID, product title, quantity or item price"); 
+                    "item ID, product title, quantity or item price");
             }
-            return RedirectToPage(); 
+            return RedirectToPage();
         }
 
         public IActionResult OnPostDeleteBtn(int item_id)
         {
-            bool isItemIdCorrect = (item_id > 0); 
+            bool isItemIdCorrect = (item_id > 0);
             if (isItemIdCorrect)
             {
-                Repository.Instance.DeleteExportItem(item_id); 
-                Repository.IsErrorMessageActivatedOnExportItem = false; 
-                _logger.LogInformation($"Deleted ExportItem with ID: {item_id}"); 
+                Repository.Instance.DeleteExportItem(item_id);
+                Repository.IsErrorMessageActivatedOnExportItem = false;
+                _logger.LogInformation($"Deleted ExportItem with ID: {item_id}");
             }
             else
             {
-                Repository.IsErrorMessageActivatedOnExportItem = true; 
-                Repository.ErrorMessageOnExportItem = Repository.GetErrorMessage("Delete", "item ID"); 
+                Repository.IsErrorMessageActivatedOnExportItem = true;
+                Repository.ErrorMessageOnExportItem = Repository.GetErrorMessage("Delete", "item ID");
             }
-            return RedirectToPage(); 
+            return RedirectToPage();
         }
 
         public void OnPostCloseErrorBtn()
         {
-            Repository.IsErrorMessageActivatedOnExportItem = false; 
+            Repository.IsErrorMessageActivatedOnExportItem = false;
         }
     }
 }

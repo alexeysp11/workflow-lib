@@ -1,4 +1,4 @@
-using WorkflowLib.Examples.HcsBudget.ViewModels; 
+using WorkflowLib.Examples.HcsBudget.ViewModels;
 
 namespace WorkflowLib.Examples.HcsBudget.Models
 {
@@ -10,9 +10,9 @@ namespace WorkflowLib.Examples.HcsBudget.Models
         
         public ReportRow(string participantName, string qty, string priceUsd)
         {
-            ParticipantName = participantName; 
-            Qty = qty; 
-            PriceUsd = priceUsd; 
+            ParticipantName = participantName;
+            Qty = qty;
+            PriceUsd = priceUsd;
         }
     }
 }
