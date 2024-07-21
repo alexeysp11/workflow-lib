@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Examples.Retail.Accounting.Models; 
+using WorkflowLib.Examples.Retail.Accounting.Models;
 
 namespace WorkflowLib.Examples.Retail.Accounting.Services
 {
@@ -10,7 +10,7 @@ namespace WorkflowLib.Examples.Retail.Accounting.Services
     {
         public static IEnumerable<ProductRevenueInfo> GetProductRevenueInfo()
         {
-            IEnumerable<ProductRevenueInfo> products; 
+            IEnumerable<ProductRevenueInfo> products;
             using (var db = new AccountingContext())
             {
                 products = (from import in db.Set<ImportItem>()
@@ -39,12 +39,12 @@ namespace WorkflowLib.Examples.Retail.Accounting.Services
                         }
                     );
             }
-            return products; 
+            return products;
         }
 
         public static IEnumerable<PersonalRevenueInfo> GetPersonalRevenue()
         {
-            IEnumerable<PersonalRevenueInfo> employeeStats; 
+            IEnumerable<PersonalRevenueInfo> employeeStats;
             using (var db = new AccountingContext())
             {
                 employeeStats = (from ed in db.Set<ExportDoc>()
@@ -71,12 +71,12 @@ namespace WorkflowLib.Examples.Retail.Accounting.Services
                         }
                     );
             }
-            return employeeStats; 
+            return employeeStats;
         }
 
         public static IEnumerable<ProductRemainsInfo> GetProductRemainsReport()
         {
-            IEnumerable<ProductRemainsInfo> products; 
+            IEnumerable<ProductRemainsInfo> products;
             using (var db = new AccountingContext())
             {
                 products = (from p in db.Set<Product>()
@@ -103,7 +103,7 @@ namespace WorkflowLib.Examples.Retail.Accounting.Services
                         }
                     );
             }
-            return products; 
+            return products;
         }
     }
 }

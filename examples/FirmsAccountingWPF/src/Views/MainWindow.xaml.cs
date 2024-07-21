@@ -34,8 +34,8 @@ namespace WorkflowLib.Examples.FirmsAccounting.Views
         public MainWindow()
         {
             InitializeComponent();
-            this.Title = FirmWindowTitle; 
-            DataContext = new MainVM(this); 
+            this.Title = FirmWindowTitle;
+            DataContext = new MainVM(this);
         }
     }
 }

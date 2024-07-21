@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using WorkflowLib.Examples.Retail.Accounting.Models; 
+using WorkflowLib.Examples.Retail.Accounting.Models;
 
 namespace WorkflowLib.Examples.Retail.Accounting.Services
 {
@@ -13,7 +13,7 @@ namespace WorkflowLib.Examples.Retail.Accounting.Services
             {
                 var productList = db.Product
                     .Where(p => p.Title == productTitle)
-                    .ToList(); 
+                    .ToList();
                 if (productList.Count == 0)
                 {
                     db.Add(new Product { Title = productTitle });
@@ -24,12 +24,12 @@ namespace WorkflowLib.Examples.Retail.Accounting.Services
 
         public static List<Product> GetProducts()
         {
-            List<Product> products = new List<Product>(); 
+            List<Product> products = new List<Product>();
             using (var db = new AccountingContext())
             {
-                products = db.Product.OrderBy(id => id.ProductId).ToList(); 
+                products = db.Product.OrderBy(id => id.ProductId).ToList();
             }
-            return products; 
+            return products;
         }
     }
 }

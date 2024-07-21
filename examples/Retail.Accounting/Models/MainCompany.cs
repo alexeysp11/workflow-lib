@@ -5,10 +5,10 @@ namespace WorkflowLib.Examples.Retail.Accounting.Models
         public MainCompany(string companyName, string owner, 
             string country, string city)
         {
-            CompanyName = companyName; 
-            Owner = owner; 
-            Country = country; 
-            City = city; 
+            CompanyName = companyName;
+            Owner = owner;
+            Country = country;
+            City = city;
         }
         
         public string CompanyName { get; set; }

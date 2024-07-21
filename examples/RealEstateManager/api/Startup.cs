@@ -11,7 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using WorkflowLib.Examples.RealEstateManager.Database; 
+using WorkflowLib.Examples.RealEstateManager.Database;
 
 namespace WorkflowLib.Examples.RealEstateManager
 {
@@ -28,7 +28,7 @@ namespace WorkflowLib.Examples.RealEstateManager
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<RealEstateContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:RealEstateDb"])); 
+            services.AddDbContext<RealEstateContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:RealEstateDb"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,7 +50,7 @@ namespace WorkflowLib.Examples.RealEstateManager
                 endpoints.MapControllers();
             });
 
-            db.EnsureSeedData(); 
+            db.EnsureSeedData();
         }
     }
 }

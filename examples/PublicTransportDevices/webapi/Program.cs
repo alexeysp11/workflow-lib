@@ -1,7 +1,7 @@
 using WorkflowLib.Examples.PublicTransportDevices.Models;
 using WorkflowLib.Examples.PublicTransportDevices.DbConnections;
-using WorkflowLib.Examples.PublicTransportDevices.Models.Domain; 
-using WorkflowLib.Examples.PublicTransportDevices.Models.MessageQueues; 
+using WorkflowLib.Examples.PublicTransportDevices.Models.Domain;
+using WorkflowLib.Examples.PublicTransportDevices.Models.MessageQueues;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,8 +13,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<ICommonDbConnection>(x => 
     ActivatorUtilities.CreateInstance<PgDbConnection>(x, builder.Configuration.GetSection("AppSettings")["PostgresConnectionString"]));
-builder.Services.AddTransient<DeviceInfoDb>(); 
-builder.Services.AddSingleton(new RabbitMQConsumer(builder.Services.BuildServiceProvider().GetRequiredService<DeviceInfoDb>())); 
+builder.Services.AddTransient<DeviceInfoDb>();
+builder.Services.AddSingleton(new RabbitMQConsumer(builder.Services.BuildServiceProvider().GetRequiredService<DeviceInfoDb>()));
 
 var app = builder.Build();
 

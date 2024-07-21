@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using WorkflowLib.Examples.Retail.Accounting.Models; 
+using WorkflowLib.Examples.Retail.Accounting.Models;
 
 namespace WorkflowLib.Examples.Retail.Accounting.Services
 {
@@ -28,10 +28,10 @@ namespace WorkflowLib.Examples.Retail.Accounting.Services
         {
             try
             {
-                ProductService.InsertProductIfNotExists(productTitle); 
+                ProductService.InsertProductIfNotExists(productTitle);
                 using (var db = new AccountingContext())
                 {
-                    var product = db.Product.Where(p => p.Title == productTitle).ToList(); 
+                    var product = db.Product.Where(p => p.Title == productTitle).ToList();
                     db.Add(new ImportItem 
                     { 
                         Quantity = quantity, 
@@ -50,7 +50,7 @@ namespace WorkflowLib.Examples.Retail.Accounting.Services
 
         public static IEnumerable<ImportDocInfo> GetImportDocs()
         {
-            IEnumerable<ImportDocInfo> importDocs; 
+            IEnumerable<ImportDocInfo> importDocs;
             using (var db = new AccountingContext())
             {
                 importDocs = (from id in db.Set<ImportDoc>()
@@ -63,14 +63,14 @@ namespace WorkflowLib.Examples.Retail.Accounting.Services
                         EmployeeName = e.EmployeeName,
                         SupplierName = c.PartnerName, 
                         DateTime = id.DateTime
-                    }).ToList(); 
+                    }).ToList();
             }
-            return importDocs; 
+            return importDocs;
         }
 
         public static IEnumerable<ImportItemInfo> GetImportItems(int importDocId)
         {
-            IEnumerable<ImportItemInfo> importItems; 
+            IEnumerable<ImportItemInfo> importItems;
             using (var db = new AccountingContext())
             {
                 importItems = (from ii in db.Set<ImportItem>()
@@ -83,9 +83,9 @@ namespace WorkflowLib.Examples.Retail.Accounting.Services
                         Quantity = ii.Quantity,
                         Price = ii.Price, 
                         TotalPrice = ii.Quantity * ii.Price
-                    }).ToList(); 
+                    }).ToList();
             }
-            return importItems; 
+            return importItems;
         }
 
         public static void UpdateImportDoc(int importDocId, string docNum, 
@@ -98,11 +98,11 @@ namespace WorkflowLib.Examples.Retail.Accounting.Services
                     var importDoc = db.ImportDocs
                         .Where(id => id.ImportDocId == importDocId)
                         .ToList()
-                        .First(); 
-                    importDoc.DocNum = docNum; 
-                    importDoc.EmployeeId = employeeId; 
-                    importDoc.SupplierId = supplierId; 
-                    importDoc.DateTime = dateTime; 
+                        .First();
+                    importDoc.DocNum = docNum;
+                    importDoc.EmployeeId = employeeId;
+                    importDoc.SupplierId = supplierId;
+                    importDoc.DateTime = dateTime;
                     db.SaveChanges();
                 }
             }
@@ -122,10 +122,10 @@ namespace WorkflowLib.Examples.Retail.Accounting.Services
                     var importItem = db.ImportItems
                         .Where(ii => ii.ImportItemId == importItemId)
                         .ToList()
-                        .First(); 
-                    importItem.ProductId = productId; 
-                    importItem.Quantity = quantity; 
-                    importItem.Price = price; 
+                        .First();
+                    importItem.ProductId = productId;
+                    importItem.Quantity = quantity;
+                    importItem.Price = price;
                     db.SaveChanges();
                 }
             }
@@ -144,7 +144,7 @@ namespace WorkflowLib.Examples.Retail.Accounting.Services
                     var importDoc = db.ImportDocs
                         .Where(ii => ii.ImportDocId == importDocId)
                         .ToList()
-                        .First(); 
+                        .First();
                     db.Remove(importDoc);
                     db.SaveChanges();
                 }
@@ -164,7 +164,7 @@ namespace WorkflowLib.Examples.Retail.Accounting.Services
                     var importItem = db.ImportItems
                         .Where(ii => ii.ImportItemId == importItemId)
                         .ToList()
-                        .First(); 
+                        .First();
                     db.Remove(importItem);
                     db.SaveChanges();
                 }

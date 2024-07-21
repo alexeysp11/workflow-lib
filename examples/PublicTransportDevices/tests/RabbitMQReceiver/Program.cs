@@ -8,7 +8,7 @@ var factory = new ConnectionFactory { HostName = "localhost" };
 using var connection = factory.CreateConnection();
 using var channel = connection.CreateModel();
 
-string queueName = "ptd_queue"; 
+string queueName = "ptd_queue";
 
 channel.QueueDeclare(queue: queueName,
                      durable: true,

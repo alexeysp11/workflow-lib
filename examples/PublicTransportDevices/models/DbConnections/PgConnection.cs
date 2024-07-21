@@ -1,4 +1,4 @@
-using System.Data; 
+using System.Data;
 using Npgsql;
 
 namespace WorkflowLib.Examples.PublicTransportDevices.DbConnections
@@ -9,32 +9,32 @@ namespace WorkflowLib.Examples.PublicTransportDevices.DbConnections
 
         public PgDbConnection(string dataSource)
         {
-            DataSource = dataSource; 
+            DataSource = dataSource;
         }
 
         public DataTable ExecuteSqlCommand(string sqlRequest)
         {
-            DataTable table = new DataTable(); 
+            DataTable table = new DataTable();
             using (var conn = new NpgsqlConnection(DataSource))
             {
                 conn.Open();
                 using (var command = new NpgsqlCommand(sqlRequest, conn))
                 {
                     var reader = command.ExecuteReader();
-                    table = GetDataTable(reader); 
+                    table = GetDataTable(reader);
                     reader.Close();
                 }
             }
-            return table; 
+            return table;
         }
 
         private DataTable GetDataTable(NpgsqlDataReader reader)
         {
-            DataTable table = new DataTable(); 
-            if (reader.FieldCount == 0) return table; 
+            DataTable table = new DataTable();
+            if (reader.FieldCount == 0) return table;
             for (int i = 0; i < reader.FieldCount; i++)
             {
-                DataColumn column; 
+                DataColumn column;
                 column = new DataColumn();
                 column.ColumnName = reader.GetName(i);
                 column.ReadOnly = true;
@@ -47,7 +47,7 @@ namespace WorkflowLib.Examples.PublicTransportDevices.DbConnections
                     row[i] = reader.GetValue(i).ToString();
                 table.Rows.Add(row);
             }
-            return table; 
+            return table;
         }
     }
 }

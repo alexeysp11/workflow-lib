@@ -34,16 +34,16 @@ namespace WorkflowLib.Examples.Retail.Accounting.Pages
                 isCityCorrect)
             {
                 Repository.Instance.SetMainCompany(company_name, owner, country, 
-                    city); 
-                Repository.IsErrorMessageActivatedOnSettings = false; 
-                _logger.LogInformation($"Edited information about the company (company_name: {company_name}, owner: {owner}, country: {country}, city: {city})"); 
+                    city);
+                Repository.IsErrorMessageActivatedOnSettings = false;
+                _logger.LogInformation($"Edited information about the company (company_name: {company_name}, owner: {owner}, country: {country}, city: {city})");
             }
             else
             {
-                Repository.IsErrorMessageActivatedOnSettings = true; 
-                Repository.ErrorMessageOnSettings = Repository.GetErrorMessage("Save", "company name, owner, country, city"); 
+                Repository.IsErrorMessageActivatedOnSettings = true;
+                Repository.ErrorMessageOnSettings = Repository.GetErrorMessage("Save", "company name, owner, country, city");
             }
-            return RedirectToPage(); 
+            return RedirectToPage();
         }
     }
 }
