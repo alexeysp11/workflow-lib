@@ -36,17 +36,17 @@ namespace WorkflowLib.Examples.Retail.Accounting.Pages
                 isSalaryCorrect && isEmailCorrect && isPhoneCorrect)
             {
                 Repository.Instance.InsertEmployee(employee_name, salary, email, 
-                    phone, manager_name, department); 
-                Repository.IsErrorMessageActivatedOnEmployees = false; 
-                _logger.LogInformation($"Added new Employee (employee_name: {employee_name}, manager_name: {manager_name}, department: {department})"); 
+                    phone, manager_name, department);
+                Repository.IsErrorMessageActivatedOnEmployees = false;
+                _logger.LogInformation($"Added new Employee (employee_name: {employee_name}, manager_name: {manager_name}, department: {department})");
             }
             else
             {
-                Repository.IsErrorMessageActivatedOnEmployees = true; 
+                Repository.IsErrorMessageActivatedOnEmployees = true;
                 Repository.ErrorMessageOnEmployees = Repository.GetErrorMessage("Add", 
-                    "employee name, manager name, department, salary, email or phone"); 
+                    "employee name, manager name, department, salary, email or phone");
             }
-            return RedirectToPage(); 
+            return RedirectToPage();
         }
 
         public IActionResult OnPostEditBtn(int employee_id, string employee_name, 
@@ -66,17 +66,17 @@ namespace WorkflowLib.Examples.Retail.Accounting.Pages
                 isSalaryCorrect && isEmailCorrect && isPhoneCorrect)
             {
                 Repository.Instance.UpdateEmployee(employee_id, employee_name, 
-                    salary, email, phone, manager_name, department); 
-                Repository.IsErrorMessageActivatedOnEmployees = false; 
-                _logger.LogInformation($"Edited an Employee (employee_name: {employee_name}, manager_name: {manager_name}, department: {department})"); 
+                    salary, email, phone, manager_name, department);
+                Repository.IsErrorMessageActivatedOnEmployees = false;
+                _logger.LogInformation($"Edited an Employee (employee_name: {employee_name}, manager_name: {manager_name}, department: {department})");
             }
             else
             {
-                Repository.IsErrorMessageActivatedOnEmployees = true; 
+                Repository.IsErrorMessageActivatedOnEmployees = true;
                 Repository.ErrorMessageOnEmployees = Repository.GetErrorMessage("Edit", 
-                    "employee ID, employee name, manager name, department, salary, email or phone"); 
+                    "employee ID, employee name, manager name, department, salary, email or phone");
             }
-            return RedirectToPage(); 
+            return RedirectToPage();
         }
 
         public IActionResult OnPostDeleteBtn(int employee_id)
@@ -85,19 +85,19 @@ namespace WorkflowLib.Examples.Retail.Accounting.Pages
             if (isEmployeeIdCorrect)
             {
                 Repository.Instance.DeleteEmployee(employee_id);
-                Repository.IsErrorMessageActivatedOnEmployees = false; 
+                Repository.IsErrorMessageActivatedOnEmployees = false;
             }
             else
             {
-                Repository.IsErrorMessageActivatedOnEmployees = true; 
-                Repository.ErrorMessageOnEmployees = Repository.GetErrorMessage("Delete", "employee ID"); 
+                Repository.IsErrorMessageActivatedOnEmployees = true;
+                Repository.ErrorMessageOnEmployees = Repository.GetErrorMessage("Delete", "employee ID");
             }
-            return RedirectToPage(); 
+            return RedirectToPage();
         }
 
         public void OnPostCloseErrorBtn()
         {
-            Repository.IsErrorMessageActivatedOnEmployees = false; 
+            Repository.IsErrorMessageActivatedOnEmployees = false;
         }
     }
 }

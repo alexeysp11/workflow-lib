@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using WorkflowLib.Examples.Retail.Accounting.Models; 
+using WorkflowLib.Examples.Retail.Accounting.Models;
 
 namespace WorkflowLib.Examples.Retail.Accounting.Services
 {
@@ -24,32 +24,32 @@ namespace WorkflowLib.Examples.Retail.Accounting.Services
 
         public static int? GetPartnerId(string partnerName)
         {
-            int? partnerId = 0; 
+            int? partnerId = 0;
             using (var db = new AccountingContext())
             {
                 var PartnerList = db.Partner
                     .Where(c => c.PartnerName == partnerName)
-                    .ToList(); 
+                    .ToList();
                 if (PartnerList.Count != 0)
                 {
-                    partnerId = PartnerList[0].PartnerId; 
+                    partnerId = PartnerList[0].PartnerId;
                 }
                 else
                 {
-                    partnerId = null; 
+                    partnerId = null;
                 }
             }
-            return partnerId; 
+            return partnerId;
         }
 
         public static List<Partner> GetPartners()
         {
-            List<Partner> Partners = new List<Partner>(); 
+            List<Partner> Partners = new List<Partner>();
             using (var db = new AccountingContext())
             {
-                Partners = db.Partner.OrderBy(c => c.PartnerId).ToList(); 
+                Partners = db.Partner.OrderBy(c => c.PartnerId).ToList();
             }
-            return Partners; 
+            return Partners;
         }
 
         public static void UpdatePartner(int partnerId, string partnerName, 
@@ -62,10 +62,10 @@ namespace WorkflowLib.Examples.Retail.Accounting.Services
                     var Partner = db.Partner
                         .Where(ii => ii.PartnerId == partnerId)
                         .ToList()
-                        .First(); 
-                    Partner.PartnerName = partnerName; 
-                    Partner.Email = email; 
-                    Partner.Phone = phone; 
+                        .First();
+                    Partner.PartnerName = partnerName;
+                    Partner.Email = email;
+                    Partner.Phone = phone;
                     db.SaveChanges();
                 }
             }
@@ -84,7 +84,7 @@ namespace WorkflowLib.Examples.Retail.Accounting.Services
                     var Partner = db.Partner
                         .Where(c => c.PartnerId == partnerId)
                         .ToList()
-                        .First(); 
+                        .First();
                     db.Remove(Partner);
                     db.SaveChanges();
                 }
