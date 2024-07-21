@@ -12,9 +12,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\BL\WorkflowLib.Examples.Delivering.ServiceInteraction.BL.csproj" />
-    <ProjectReference Include="..\..\..\..\src\ServiceDiscoveryBpm\WorkflowLib.ServiceDiscoveryBpm.csproj" />
-    <ProjectReference Include="..\..\..\..\src\Models\WorkflowLib.Models.csproj" />
-    <ProjectReference Include="..\..\..\..\src\Models.Business\WorkflowLib.Models.Business.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Shared\ServiceDiscoveryBpm\WorkflowLib.Shared.ServiceDiscoveryBpm.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Shared\Models\WorkflowLib.Shared.Models.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Shared\Models.Business\WorkflowLib.Shared.Models.Business.csproj" />
   </ItemGroup>
 
 </Project>

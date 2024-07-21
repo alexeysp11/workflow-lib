@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using WorkflowLib.Models.Network.MicroserviceConfigurations;
+using WorkflowLib.Shared.Models.Network.MicroserviceConfigurations;
 
 namespace WorkflowLib.Examples.Delivering.ServiceInteraction.InitializeDb;
 

@@ -1,17 +1,17 @@
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Models.Business;
-using WorkflowLib.Models.Business.BusinessDocuments;
-using WorkflowLib.Models.Business.Cooking;
-using WorkflowLib.Models.Business.Customers;
-using WorkflowLib.Models.Business.Delivery;
-using WorkflowLib.Models.Business.InformationSystem;
-using WorkflowLib.Models.Business.Monetary;
-using WorkflowLib.Models.Business.Processes;
-using WorkflowLib.Models.Business.Products;
-using WorkflowLib.Models.Business.SocialCommunication;
-using WorkflowLib.Models.Logging;
-using WorkflowLib.Models.Network;
-using WorkflowLib.Models.Network.MicroserviceConfigurations;
+using WorkflowLib.Shared.Models.Business;
+using WorkflowLib.Shared.Models.Business.BusinessDocuments;
+using WorkflowLib.Shared.Models.Business.Cooking;
+using WorkflowLib.Shared.Models.Business.Customers;
+using WorkflowLib.Shared.Models.Business.Delivery;
+using WorkflowLib.Shared.Models.Business.InformationSystem;
+using WorkflowLib.Shared.Models.Business.Monetary;
+using WorkflowLib.Shared.Models.Business.Processes;
+using WorkflowLib.Shared.Models.Business.Products;
+using WorkflowLib.Shared.Models.Business.SocialCommunication;
+using WorkflowLib.Shared.Models.Logging;
+using WorkflowLib.Shared.Models.Network;
+using WorkflowLib.Shared.Models.Network.MicroserviceConfigurations;
 
 namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DbContexts;
 

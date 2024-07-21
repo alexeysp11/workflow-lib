@@ -2,8 +2,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DbContexts;
-using WorkflowLib.Models.Business.BusinessDocuments;
-using WorkflowLib.Models.Business.Products;
+using WorkflowLib.Shared.Models.Business.BusinessDocuments;
+using WorkflowLib.Shared.Models.Business.Products;
 
 namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DAL;
 

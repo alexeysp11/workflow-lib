@@ -1,5 +1,5 @@
 using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Controllers;
-using WorkflowLib.ServiceDiscoveryBpm.ProcPipes;
+using WorkflowLib.Shared.ServiceDiscoveryBpm.ProcPipes;
 
 namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
 

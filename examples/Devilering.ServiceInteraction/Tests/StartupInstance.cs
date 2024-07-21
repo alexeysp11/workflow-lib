@@ -1,9 +1,9 @@
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DbContexts;
-using WorkflowLib.ServiceDiscoveryBpm.DAL;
-using WorkflowLib.ServiceDiscoveryBpm.ServiceRegistry;
-using WorkflowLib.Models.Network.MicroserviceConfigurations;
+using WorkflowLib.Shared.ServiceDiscoveryBpm.DAL;
+using WorkflowLib.Shared.ServiceDiscoveryBpm.ServiceRegistry;
+using WorkflowLib.Shared.Models.Network.MicroserviceConfigurations;
 
 namespace WorkflowLib.Examples.Delivering.ServiceInteraction.Tests
 {

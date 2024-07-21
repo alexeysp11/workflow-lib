@@ -1,7 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
 using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BPInitializers;
-using WorkflowLib.ServiceDiscoveryBpm.Routing;
+using WorkflowLib.Shared.ServiceDiscoveryBpm.Routing;
 
 namespace WorkflowLib.Examples.Delivering.ServiceInteraction.Webapi.Employee
 {
