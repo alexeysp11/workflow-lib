@@ -10,10 +10,10 @@ namespace WorkflowLib.Examples.FirmsAccounting.Models.Data
         public FirmCity(int firmId, string firmName, string postalAddressCity, 
             string jurAddressCity)
         {
-            FirmId = firmId; 
-            FirmName = firmName; 
-            PostalAddressCity = postalAddressCity; 
-            JurAddressCity = jurAddressCity; 
+            FirmId = firmId;
+            FirmName = firmName;
+            PostalAddressCity = postalAddressCity;
+            JurAddressCity = jurAddressCity;
         }
     }
 }

@@ -83,7 +83,7 @@ namespace ComPortComms
                     else            
                     {
                         // Just shift right.
-                        CRC >>= 1; 
+                        CRC >>= 1;
                     }
                 }
             }

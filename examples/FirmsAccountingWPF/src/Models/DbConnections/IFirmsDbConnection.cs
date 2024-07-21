@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using WorkflowLib.Examples.FirmsAccounting.Models.Data; 
+using WorkflowLib.Examples.FirmsAccounting.Models.Data;
 
 namespace WorkflowLib.Examples.FirmsAccounting.Models.DbConnections
 {
@@ -7,8 +7,8 @@ namespace WorkflowLib.Examples.FirmsAccounting.Models.DbConnections
     {
 #nullable enable
         List<FirmCity> GetFirmCity(string? firmName, 
-            string? postCityName, string? jurCityName); 
+            string? postCityName, string? jurCityName);
 #nullable disable
-        List<FirmCity> GetFirmCity(); 
+        List<FirmCity> GetFirmCity();
     }
 }
