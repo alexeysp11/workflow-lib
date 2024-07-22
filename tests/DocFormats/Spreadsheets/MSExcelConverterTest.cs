@@ -1,27 +1,27 @@
 using System;
 using System.IO;
-using System.Linq; 
+using System.Linq;
 using System.Reflection;
-using System.Data; 
+using System.Data;
 using Xunit;
-using WorkflowLib.Shared.Office.DocFormats.Spreadsheets; 
-using WorkflowLib.Shared.Models.Documents; 
-using WorkflowLib.Shared.Models.Documents.Enums; 
+using WorkflowLib.Shared.Office.DocFormats.Spreadsheets;
+using WorkflowLib.Shared.Models.Documents;
+using WorkflowLib.Shared.Models.Documents.Enums;
 
 namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats.Spreadsheets
 {
     public class MSExcelConverterTest
     {
-        private string FolderName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), typeof(MSExcelConverterTest).ToString().Split('.').Last()); 
+        private string FolderName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), typeof(MSExcelConverterTest).ToString().Split('.').Last());
 
         [Fact]
         public void SpreadsheetElementsToDocument_CorrectParams_FileExists()
         {
             // Arrange
-            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".xlsx"; 
-            string filepath = Path.Combine(FolderName, filename); 
-            uint worksheetId = 1; 
-            string worksheetName = "TestSheet"; 
+            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".xlsx";
+            string filepath = Path.Combine(FolderName, filename);
+            uint worksheetId = 1;
+            string worksheetName = "TestSheet";
             var elements = new System.Collections.Generic.List<SpreadsheetElement>()
             {
                 new SpreadsheetElement() 
@@ -44,16 +44,16 @@ namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats.Spreadsheets
                         TextAlignment = TextAlignment.CENTER
                     }
                 }
-            }; 
+            };
 
-            ISpreadsheets converter = new MSExcelConverter(); 
-            CreateFolderIfNotExists(FolderName); 
+            ISpreadsheets converter = new MSExcelConverter();
+            CreateFolderIfNotExists(FolderName);
 
             // Act
             converter.SpreadsheetElementsToDocument(FolderName, filename, worksheetId, worksheetName, elements);
 
             // Assert
-            Assert.True(File.Exists(filepath)); 
+            Assert.True(File.Exists(filepath));
         }
 
         [Theory]
@@ -65,11 +65,11 @@ namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats.Spreadsheets
             string content2)
         {
             // Arrange
-            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".xlsx"; 
-            string filepath = Path.Combine(FolderName, filename); 
-            string firstCellName = "A1"; 
-            string lastCellName = "A2"; 
-            string resultCell = "A3"; 
+            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".xlsx";
+            string filepath = Path.Combine(FolderName, filename);
+            string firstCellName = "A1";
+            string lastCellName = "A2";
+            string resultCell = "A3";
             var elements = new System.Collections.Generic.List<SpreadsheetElement>()
             {
                 new SpreadsheetElement() 
@@ -92,23 +92,23 @@ namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats.Spreadsheets
                         TextAlignment = TextAlignment.CENTER
                     }
                 }
-            }; 
+            };
 
-            ISpreadsheets converter = new MSExcelConverter(); 
-            CreateFolderIfNotExists(FolderName); 
+            ISpreadsheets converter = new MSExcelConverter();
+            CreateFolderIfNotExists(FolderName);
 
             // Act
             converter.SpreadsheetElementsToDocument(FolderName, filename, worksheetId, worksheetName, elements);
-            converter.CalculateSumOfCellRange(filepath, worksheetName, firstCellName, lastCellName, resultCell); 
+            converter.CalculateSumOfCellRange(filepath, worksheetName, firstCellName, lastCellName, resultCell);
 
             // Assert
-            Assert.True(File.Exists(filepath)); 
+            Assert.True(File.Exists(filepath));
         }
 
         #region Private methods
         private void CreateFolderIfNotExists(string foldername)
         {
-            if (!Directory.Exists(foldername)) Directory.CreateDirectory(foldername); 
+            if (!Directory.Exists(foldername)) Directory.CreateDirectory(foldername);
         }
         #endregion  // Private methods
     }

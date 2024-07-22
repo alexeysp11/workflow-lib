@@ -1,28 +1,28 @@
 using System;
 using System.IO;
-using System.Linq; 
+using System.Linq;
 using System.Reflection;
-using System.Data; 
+using System.Data;
 using Xunit;
-using WorkflowLib.Shared.Office.DocFormats; 
-using WorkflowLib.Shared.Models.Documents; 
-using WorkflowLib.Shared.Models.Documents.Enums; 
+using WorkflowLib.Shared.Office.DocFormats;
+using WorkflowLib.Shared.Models.Documents;
+using WorkflowLib.Shared.Models.Documents.Enums;
 
 namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats
 {
     public class BinaryConverterTest
     {
-        private string FolderName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), typeof(BinaryConverterTest).ToString().Split('.').Last()); 
+        private string FolderName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), typeof(BinaryConverterTest).ToString().Split('.').Last());
 
         [Fact]
         public void SaveAsBinaryFile_CorrectParams_FileExists()
         {
             // Arrange
-            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".pdf"; 
-            string filepath = Path.Combine(FolderName, filename); 
-            string binFile = filepath.Replace(".pdf", ".bin"); 
-            string copyFile1 = filepath.Replace(".pdf", "_copy_1.pdf"); 
-            string copyFile2 = filepath.Replace(".pdf", "_copy_2.pdf"); 
+            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".pdf";
+            string filepath = Path.Combine(FolderName, filename);
+            string binFile = filepath.Replace(".pdf", ".bin");
+            string copyFile1 = filepath.Replace(".pdf", "_copy_1.pdf");
+            string copyFile2 = filepath.Replace(".pdf", "_copy_2.pdf");
             var elements = new System.Collections.Generic.List<TextDocElement>()
             {
                 new TextDocElement() 
@@ -49,18 +49,18 @@ namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats
                     FontSize = 14, 
                     TextAlignment = TextAlignment.JUSTIFIED
                 }
-            }; 
+            };
 
-            PdfConverter pdfConverter = new PdfConverter(); 
-            BinaryConverter binConverter = new BinaryConverter(); 
-            CreateFolderIfNotExists(FolderName); 
+            PdfConverter pdfConverter = new PdfConverter();
+            BinaryConverter binConverter = new BinaryConverter();
+            CreateFolderIfNotExists(FolderName);
 
             // Act
             pdfConverter.TextDocElementsToDocument(FolderName, filename, elements);
-            byte[] bytes = binConverter.GetBinaryFile(filepath); 
-            binConverter.SaveAsBinaryFile(binFile, bytes); 
-            binConverter.SaveAsBinaryFile(copyFile1, bytes); 
-            binConverter.SaveAsBinaryFile(copyFile2, binConverter.GetBinaryFile(binFile)); 
+            byte[] bytes = binConverter.GetBinaryFile(filepath);
+            binConverter.SaveAsBinaryFile(binFile, bytes);
+            binConverter.SaveAsBinaryFile(copyFile1, bytes);
+            binConverter.SaveAsBinaryFile(copyFile2, binConverter.GetBinaryFile(binFile));
 
             // Assert
             Assert.True(File.Exists(filepath));
@@ -71,7 +71,7 @@ namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats
 
         private void CreateFolderIfNotExists(string foldername)
         {
-            if (!Directory.Exists(foldername)) Directory.CreateDirectory(foldername); 
+            if (!Directory.Exists(foldername)) Directory.CreateDirectory(foldername);
         }
     }
 }
