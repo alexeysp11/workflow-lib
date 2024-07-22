@@ -4,33 +4,33 @@ namespace MeetPlanning.WpfVersion.Models.Languages
     {
         public string GetHelpLabel()
         {
-            return "Помощь"; 
+            return "Помощь";
         }
 
         #region Buttons 
         public string GetLoginBtnLabel()
         {
-            return "Войти"; 
+            return "Войти";
         }
 
         public string GetCreateAccountBtnLabel()
         {
-            return "Регистрация"; 
+            return "Регистрация";
         }
 
         public string GetFindBtnLabel()
         {
-            return "Найти"; 
+            return "Найти";
         }
 
         public string GetClearBtnLabel()
         {
-            return "Очистить"; 
+            return "Очистить";
         }
 
         public string GetShowAllBtnLabel()
         {
-            return "Все записи"; 
+            return "Все записи";
         }
         #endregion  // Buttons 
     }
