@@ -4,7 +4,7 @@
 
 Есть несколько компонентов, которые "общаются" между собой, как представлено на рисунке ниже.
 
-![ServiceInteraction](../../../docs/img/examples/ServiceInteraction.png)
+![ServiceInteraction](../../docs/img/examples/ServiceInteraction.png)
 
 Ксательно коммуникации между компонентами можно выделить несколько пунктов:
 - Компоненты коммуницируют не напрямую, а через библиотеку [ServiceDiscoveryBpm](../../../src/ServiceDiscoveryBpm/README.ru.md).
@@ -19,7 +19,7 @@
 
 ### Customer
 
-![ServiceInteraction_CustomerService](../../../docs/img/examples/ServiceInteraction_CustomerService.png)
+![ServiceInteraction_CustomerService](../../docs/img/examples/ServiceInteraction_CustomerService.png)
 
 ## Конфигурация проектов
 
