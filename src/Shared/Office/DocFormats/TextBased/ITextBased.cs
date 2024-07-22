@@ -1,6 +1,6 @@
 using System.IO;
 using System.Collections.Generic;
-using WorkflowLib.Shared.Models.Documents; 
+using WorkflowLib.Shared.Models.Documents;
 
 namespace WorkflowLib.Shared.Office.DocFormats.TextBased
 {

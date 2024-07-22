@@ -50,7 +50,7 @@ public class AuthResolver : IAuthResolver
             if (AuthResolverSettings.CheckUCConfig.IsEmailRequired && string.IsNullOrWhiteSpace(request.Email))
                 throw new System.Exception("Parameter 'Email' could not be null or empty");
             if (AuthResolverSettings.CheckUCConfig.IsPhoneNumberRequired && string.IsNullOrWhiteSpace(request.PhoneNumber))
-                throw new System.Exception("Parameter 'PhoneNumber' could not be null or empty"); 
+                throw new System.Exception("Parameter 'PhoneNumber' could not be null or empty");
             // 
             new UserResolver().CheckUserExistance(request, response);
         }

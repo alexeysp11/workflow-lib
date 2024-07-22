@@ -34,9 +34,9 @@ namespace WorkflowLib.Shared.WpfExtensions.UserControls
             set 
             {
                 SetValue(HeightProperty, value);
-                tbMultiline.MinHeight = value; 
-                tbMultiline.MaxHeight = value; 
-                brdMultiline.Height = value; 
+                tbMultiline.MinHeight = value;
+                tbMultiline.MaxHeight = value;
+                brdMultiline.Height = value;
             }
         }
 
@@ -46,9 +46,9 @@ namespace WorkflowLib.Shared.WpfExtensions.UserControls
             set 
             {
                 SetValue(WidthProperty, value);
-                tbMultiline.MinWidth = value; 
-                tbMultiline.MaxWidth = value; 
-                brdMultiline.Width = value; 
+                tbMultiline.MinWidth = value;
+                tbMultiline.MaxWidth = value;
+                brdMultiline.Width = value;
             }
         }
         
@@ -58,7 +58,7 @@ namespace WorkflowLib.Shared.WpfExtensions.UserControls
             set 
             {
                 SetValue(IsReadOnlyProperty, value);
-                tbMultiline.IsReadOnly = value; 
+                tbMultiline.IsReadOnly = value;
             }
         }
         
@@ -72,7 +72,7 @@ namespace WorkflowLib.Shared.WpfExtensions.UserControls
             set 
             {
                 SetValue(TextProperty, value);
-                tbMultiline.Text = value; 
+                tbMultiline.Text = value;
             }
         }
         
@@ -82,7 +82,7 @@ namespace WorkflowLib.Shared.WpfExtensions.UserControls
             set 
             {
                 SetValue(FontSizeProperty, value);
-                tbMultiline.FontSize = value; 
+                tbMultiline.FontSize = value;
             }
         }
 
@@ -92,18 +92,18 @@ namespace WorkflowLib.Shared.WpfExtensions.UserControls
 
             Loaded += (o, e) => 
             {
-                tbMultiline.MinHeight = this.Height; 
-                tbMultiline.MaxHeight = this.Height; 
-                brdMultiline.Height = this.Height; 
+                tbMultiline.MinHeight = this.Height;
+                tbMultiline.MaxHeight = this.Height;
+                brdMultiline.Height = this.Height;
 
-                tbMultiline.MinWidth = this.Width; 
-                tbMultiline.MaxWidth = this.Width; 
-                brdMultiline.Width = this.Width; 
+                tbMultiline.MinWidth = this.Width;
+                tbMultiline.MaxWidth = this.Width;
+                brdMultiline.Width = this.Width;
 
                 tbMultiline.IsReadOnly = this.IsReadOnly;
                 tbMultiline.Text = this.Text;
-                tbMultiline.FontSize = this.FontSize; 
-            }; 
+                tbMultiline.FontSize = this.FontSize;
+            };
         }
     }
 }

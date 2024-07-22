@@ -1,4 +1,4 @@
-using System.Data; 
+using System.Data;
 using Microsoft.Data.Sqlite;
 
 namespace WorkflowLib.Shared.DbConnections
@@ -20,25 +20,25 @@ namespace WorkflowLib.Shared.DbConnections
         {
             try
             {
-                SetPathToDb(path); 
+                SetPathToDb(path);
             }
             catch (System.Exception)
             {
-                throw; 
+                throw;
             }
         }
 
         public ICommonDbConnection SetConnString(string connString)
         {
-            ConnString = connString; 
-            return this; 
+            ConnString = connString;
+            return this;
         }
 
         public void SetPathToDb(string path)
         {
             if (!System.IO.File.Exists(path)) throw new System.Exception($"Database file '{path}' does not exists");
             
-            this.AbsolutePathToDb = path; 
+            this.AbsolutePathToDb = path;
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace WorkflowLib.Shared.DbConnections
         /// </summary>
         public DataTable ExecuteSqlCommand(string sqlRequest)
         {
-            DataTable table = new DataTable(); 
+            DataTable table = new DataTable();
             var connectionStringBuilder = new SqliteConnectionStringBuilder();
             connectionStringBuilder.DataSource = AbsolutePathToDb;
             using (var connection = new SqliteConnection(connectionStringBuilder.ConnectionString))
@@ -55,7 +55,7 @@ namespace WorkflowLib.Shared.DbConnections
                 {
                     connection.Open();
                     var selectCmd = connection.CreateCommand();
-                    selectCmd.CommandText = sqlRequest; 
+                    selectCmd.CommandText = sqlRequest;
                     using (var reader = selectCmd.ExecuteReader())
                     {
                         table.Load(reader);
@@ -63,15 +63,15 @@ namespace WorkflowLib.Shared.DbConnections
                 }
                 catch (System.Exception)
                 {
-                    throw; 
+                    throw;
                 }
             }
-            return table; 
+            return table;
         }
 
         public new string GetSqlFromDataTable(DataTable dt, string tableName)
         {
-            return base.GetSqlFromDataTable(dt, tableName); 
+            return base.GetSqlFromDataTable(dt, tableName);
         }
     }
 }

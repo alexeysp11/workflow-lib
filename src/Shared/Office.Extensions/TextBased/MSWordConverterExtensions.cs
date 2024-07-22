@@ -18,14 +18,14 @@ namespace WorkflowLib.Shared.Office.DocFormats.TextBased
         /// </summary>
         public static void ConvertToPdf(this MSWordConverter converter, string foldername, string wordFilename, string pdfFilename)
         {
-            if (!Directory.Exists(foldername)) throw new System.Exception("Folder does not exist"); 
-            if (string.IsNullOrEmpty(wordFilename) || string.IsNullOrEmpty(pdfFilename)) throw new System.Exception("File name could not be null or empty"); 
-            if (wordFilename.Split('.').Last().ToLower() != "doc" && wordFilename.Split('.').Last().ToLower() != "docx") throw new System.Exception("Incorrect MS Word extension"); 
-            if (pdfFilename.Split('.').Last().ToLower() != "pdf") throw new System.Exception("Incorrect PDF extension"); 
+            if (!Directory.Exists(foldername)) throw new System.Exception("Folder does not exist");
+            if (string.IsNullOrEmpty(wordFilename) || string.IsNullOrEmpty(pdfFilename)) throw new System.Exception("File name could not be null or empty");
+            if (wordFilename.Split('.').Last().ToLower() != "doc" && wordFilename.Split('.').Last().ToLower() != "docx") throw new System.Exception("Incorrect MS Word extension");
+            if (pdfFilename.Split('.').Last().ToLower() != "pdf") throw new System.Exception("Incorrect PDF extension");
 
-            string wordPath = Path.Combine(foldername, wordFilename); 
-            string pdfPath = Path.Combine(foldername, pdfFilename); 
-            string htmlPath = pdfPath.Replace(".pdf", ".html"); 
+            string wordPath = Path.Combine(foldername, wordFilename);
+            string pdfPath = Path.Combine(foldername, pdfFilename);
+            string htmlPath = pdfPath.Replace(".pdf", ".html");
             if (!File.Exists(wordPath)) throw new System.Exception("MS Word file does not exist");
 
             // Examples of how to use Open-Xml-PowerTools library for getting HTML: 
@@ -34,7 +34,7 @@ namespace WorkflowLib.Shared.Office.DocFormats.TextBased
             // Source code of a module that converts WordprocessingML to HTML:
             // https://github.com/OpenXmlDev/Open-Xml-PowerTools/blob/921cbccf6ecb29456eedc8d4d7834c7bf62c54c9/OpenXmlPowerTools/WmlToHtmlConverter.cs
             converter.ConvertToHtml(new FileInfo(wordPath), new FileInfo(htmlPath));
-            iText.Html2pdf.HtmlConverter.ConvertToPdf(new FileInfo(htmlPath), new FileInfo(pdfPath)); 
+            iText.Html2pdf.HtmlConverter.ConvertToPdf(new FileInfo(htmlPath), new FileInfo(pdfPath));
         }
 
         #region Convert to WordprocessingML and save into XML file
@@ -43,15 +43,15 @@ namespace WorkflowLib.Shared.Office.DocFormats.TextBased
         /// </summary>
         public static void ConvertToWml(this MSWordConverter converter, string foldername, string wordFilename, string xmlFilename)
         {
-            if (!Directory.Exists(foldername)) throw new System.Exception("Folder does not exist"); 
-            if (string.IsNullOrEmpty(wordFilename) || string.IsNullOrEmpty(xmlFilename)) throw new System.Exception("File name could not be null or empty"); 
-            if (wordFilename.Split('.').Last().ToLower() != "doc" && wordFilename.Split('.').Last().ToLower() != "docx") throw new System.Exception("Incorrect MS Word extension"); 
-            if (xmlFilename.Split('.').Last().ToLower() != "xml") throw new System.Exception("Incorrect XML extension"); 
+            if (!Directory.Exists(foldername)) throw new System.Exception("Folder does not exist");
+            if (string.IsNullOrEmpty(wordFilename) || string.IsNullOrEmpty(xmlFilename)) throw new System.Exception("File name could not be null or empty");
+            if (wordFilename.Split('.').Last().ToLower() != "doc" && wordFilename.Split('.').Last().ToLower() != "docx") throw new System.Exception("Incorrect MS Word extension");
+            if (xmlFilename.Split('.').Last().ToLower() != "xml") throw new System.Exception("Incorrect XML extension");
 
-            string wordPath = Path.Combine(foldername, wordFilename); 
-            string xmlPath = Path.Combine(foldername, xmlFilename); 
+            string wordPath = Path.Combine(foldername, wordFilename);
+            string xmlPath = Path.Combine(foldername, xmlFilename);
 
-            converter.ConvertToWml(new FileInfo(wordPath), new FileInfo(xmlPath)); 
+            converter.ConvertToWml(new FileInfo(wordPath), new FileInfo(xmlPath));
         }
 
         /// <summary>
@@ -59,11 +59,11 @@ namespace WorkflowLib.Shared.Office.DocFormats.TextBased
         /// </summary>
         public static void ConvertToWml(this MSWordConverter converter, string wordFilename, string xmlFilename)
         {
-            if (string.IsNullOrEmpty(wordFilename) || string.IsNullOrEmpty(xmlFilename)) throw new System.Exception("File name could not be null or empty"); 
-            if (wordFilename.Split('.').Last().ToLower() != "doc" && wordFilename.Split('.').Last().ToLower() != "docx") throw new System.Exception("Incorrect MS Word extension"); 
-            if (xmlFilename.Split('.').Last().ToLower() != "xml") throw new System.Exception("Incorrect XML extension"); 
+            if (string.IsNullOrEmpty(wordFilename) || string.IsNullOrEmpty(xmlFilename)) throw new System.Exception("File name could not be null or empty");
+            if (wordFilename.Split('.').Last().ToLower() != "doc" && wordFilename.Split('.').Last().ToLower() != "docx") throw new System.Exception("Incorrect MS Word extension");
+            if (xmlFilename.Split('.').Last().ToLower() != "xml") throw new System.Exception("Incorrect XML extension");
 
-            converter.ConvertToWml(new FileInfo(wordFilename), new FileInfo(xmlFilename)); 
+            converter.ConvertToWml(new FileInfo(wordFilename), new FileInfo(xmlFilename));
         }
         
         /// <summary>
@@ -77,7 +77,7 @@ namespace WorkflowLib.Shared.Office.DocFormats.TextBased
                 memoryStream.Write(byteArray, 0, byteArray.Length);
                 using (WordprocessingDocument wDoc = WordprocessingDocument.Open(memoryStream, true))
                 {
-                    wDoc.MainDocumentPart.GetXDocument().Save(destFileName.FullName); 
+                    wDoc.MainDocumentPart.GetXDocument().Save(destFileName.FullName);
                 }
             }
         }
@@ -89,15 +89,15 @@ namespace WorkflowLib.Shared.Office.DocFormats.TextBased
         /// </summary>
         public static void ConvertToHtml(this MSWordConverter converter, string foldername, string wordFilename, string htmlFilename)
         {
-            if (!Directory.Exists(foldername)) throw new System.Exception("Folder does not exist"); 
-            if (string.IsNullOrEmpty(wordFilename) || string.IsNullOrEmpty(htmlFilename)) throw new System.Exception("File name could not be null or empty"); 
-            if (wordFilename.Split('.').Last().ToLower() != "doc" && wordFilename.Split('.').Last().ToLower() != "docx") throw new System.Exception("Incorrect MS Word extension"); 
-            if (htmlFilename.Split('.').Last().ToLower() != "html") throw new System.Exception("Incorrect HTML extension"); 
+            if (!Directory.Exists(foldername)) throw new System.Exception("Folder does not exist");
+            if (string.IsNullOrEmpty(wordFilename) || string.IsNullOrEmpty(htmlFilename)) throw new System.Exception("File name could not be null or empty");
+            if (wordFilename.Split('.').Last().ToLower() != "doc" && wordFilename.Split('.').Last().ToLower() != "docx") throw new System.Exception("Incorrect MS Word extension");
+            if (htmlFilename.Split('.').Last().ToLower() != "html") throw new System.Exception("Incorrect HTML extension");
 
-            string wordPath = Path.Combine(foldername, wordFilename); 
-            string htmlPath = Path.Combine(foldername, htmlFilename); 
+            string wordPath = Path.Combine(foldername, wordFilename);
+            string htmlPath = Path.Combine(foldername, htmlFilename);
 
-            converter.ConvertToHtml(new FileInfo(wordPath), new FileInfo(htmlPath)); 
+            converter.ConvertToHtml(new FileInfo(wordPath), new FileInfo(htmlPath));
         }
 
         /// <summary>
@@ -105,11 +105,11 @@ namespace WorkflowLib.Shared.Office.DocFormats.TextBased
         /// </summary>
         public static void ConvertToHtml(this MSWordConverter converter, string wordFilename, string htmlFilename)
         {
-            if (string.IsNullOrEmpty(wordFilename) || string.IsNullOrEmpty(htmlFilename)) throw new System.Exception("File name could not be null or empty"); 
-            if (wordFilename.Split('.').Last().ToLower() != "doc" && wordFilename.Split('.').Last().ToLower() != "docx") throw new System.Exception("Incorrect MS Word extension"); 
-            if (htmlFilename.Split('.').Last().ToLower() != "html") throw new System.Exception("Incorrect HTML extension"); 
+            if (string.IsNullOrEmpty(wordFilename) || string.IsNullOrEmpty(htmlFilename)) throw new System.Exception("File name could not be null or empty");
+            if (wordFilename.Split('.').Last().ToLower() != "doc" && wordFilename.Split('.').Last().ToLower() != "docx") throw new System.Exception("Incorrect MS Word extension");
+            if (htmlFilename.Split('.').Last().ToLower() != "html") throw new System.Exception("Incorrect HTML extension");
 
-            converter.ConvertToHtml(new FileInfo(wordFilename), new FileInfo(htmlFilename)); 
+            converter.ConvertToHtml(new FileInfo(wordFilename), new FileInfo(htmlFilename));
         }
         
         /// <summary>

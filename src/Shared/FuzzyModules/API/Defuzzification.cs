@@ -1,10 +1,10 @@
-using System.Collections.Generic; 
+using System.Collections.Generic;
 
 namespace WorkflowLib.Shared.FuzzyModules.API
 {
     public class Defuzzification
     {
-        private double[] MfDegree; 
+        private double[] MfDegree;
 
         public Defuzzification(double[] mfDegree)
         {
@@ -12,42 +12,42 @@ namespace WorkflowLib.Shared.FuzzyModules.API
             {
                 if (mfDegree[i] > 1 || mfDegree[i] < 0)
                 {
-                    throw new System.Exception($"Error while defuzzification: all values of the membership function should range from 0 to 1 ({i}-th element is equal to {mfDegree[i]})"); 
+                    throw new System.Exception($"Error while defuzzification: all values of the membership function should range from 0 to 1 ({i}-th element is equal to {mfDegree[i]})");
                 }
             }
-            MfDegree = mfDegree; 
+            MfDegree = mfDegree;
         }
 
         public double MeanOfMaximum()
         {
-            double max = FindMaxValue(); 
+            double max = FindMaxValue();
 
-            List<int> indexesMax = new List<int>(); 
+            List<int> indexesMax = new List<int>();
             for (int i = 0; i < MfDegree.Length; i++)
             {
                 if (MfDegree[i] == max)
                 {
-                    indexesMax.Add(i); 
+                    indexesMax.Add(i);
                 }
             }
 
-            double sum = 0; 
+            double sum = 0;
             foreach (int index in indexesMax)
             {
-                sum += index; 
+                sum += index;
             }
 
-            return sum / indexesMax.Count; 
+            return sum / indexesMax.Count;
         }
 
         public double FirstOfMaximum()
         {
-            throw new System.NotImplementedException(); 
+            throw new System.NotImplementedException();
         }
 
         public double LastOfMaximum()
         {
-            throw new System.NotImplementedException(); 
+            throw new System.NotImplementedException();
         }
 
         public double Centroid()
@@ -62,15 +62,15 @@ namespace WorkflowLib.Shared.FuzzyModules.API
 
         private double FindMaxValue()
         {
-            double max = 0; 
+            double max = 0;
             for (int i = 0; i < MfDegree.Length; i++)
             {
                 if (max < MfDegree[i])
                 {
-                    max = MfDegree[i]; 
+                    max = MfDegree[i];
                 }
             }
-            return max; 
+            return max;
         }
     }
 }

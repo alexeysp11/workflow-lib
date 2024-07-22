@@ -1,4 +1,4 @@
-using WorkflowLib.Shared.Models.Documents.Enums; 
+using WorkflowLib.Shared.Models.Documents.Enums;
 
 namespace WorkflowLib.Shared.Models.Documents
 {

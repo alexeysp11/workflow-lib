@@ -1,7 +1,7 @@
 using System;
 using Xunit;
-using WorkflowLib.Shared.FuzzyModules.API; 
-using WorkflowLib.Shared.FuzzyModules.API.Membership; 
+using WorkflowLib.Shared.FuzzyModules.API;
+using WorkflowLib.Shared.FuzzyModules.API.Membership;
 
 namespace Tests.WorkflowLib.Shared.FuzzyModules.API.Membership 
 {
@@ -10,7 +10,7 @@ namespace Tests.WorkflowLib.Shared.FuzzyModules.API.Membership
         [Fact]
         public void Trapezoidal_NullLinguisticVariable_GetException()
         {
-            double[] nodes = new double[] { 0.0, 2.0, 4.0, 6.0 }; 
+            double[] nodes = new double[] { 0.0, 2.0, 4.0, 6.0 };
             
             Assert.Throws<Exception>(() => new Trapezoidal(null, nodes));
         }
@@ -20,7 +20,7 @@ namespace Tests.WorkflowLib.Shared.FuzzyModules.API.Membership
         [InlineData(new double[] { 2.0, 2.0, 4.0 })]
         public void Trapezoidal_IncorrectNumOfNodes_GetException(double[] nodes)
         {
-            LinguisticVariable lingVar = new LinguisticVariable(0, 10, 1); 
+            LinguisticVariable lingVar = new LinguisticVariable(0, 10, 1);
 
             Assert.Throws<Exception>(() => new Trapezoidal(lingVar, nodes));
         }
@@ -31,9 +31,9 @@ namespace Tests.WorkflowLib.Shared.FuzzyModules.API.Membership
         [InlineData(new double[] { 0.0, 0.0, 4.0, 3.0 })]
         public void Trapezoidal_IncorrectOrderOfArguments_GetException(double[] nodes)
         {
-            LinguisticVariable lingVar = new LinguisticVariable(0, 10, 1); 
+            LinguisticVariable lingVar = new LinguisticVariable(0, 10, 1);
 
-            Assert.Throws<Exception>(() => new Trapezoidal(lingVar, nodes)); 
+            Assert.Throws<Exception>(() => new Trapezoidal(lingVar, nodes));
         }
 
         [Theory]
@@ -41,9 +41,9 @@ namespace Tests.WorkflowLib.Shared.FuzzyModules.API.Membership
         [InlineData(new double[] { 0.0, 0.0, 0.0, 4.0 })]
         public void Trapezoidal_IncorrectInitOfNodes_GetException(double[] nodes)
         {
-            LinguisticVariable lingVar = new LinguisticVariable(0, 10, 1); 
+            LinguisticVariable lingVar = new LinguisticVariable(0, 10, 1);
 
-            Assert.Throws<Exception>(() => new Trapezoidal(lingVar, nodes)); 
+            Assert.Throws<Exception>(() => new Trapezoidal(lingVar, nodes));
         }
 
         [Theory]
@@ -52,14 +52,14 @@ namespace Tests.WorkflowLib.Shared.FuzzyModules.API.Membership
         public void GetMembershipDegree_InputOutOfRange_GetException(double input)
         {
             // Given
-            LinguisticVariable lingVar = new LinguisticVariable(0, 10, 1); 
-            double[] nodes = new double[] { 0.0, 2.0, 4.0, 6.0 }; 
+            LinguisticVariable lingVar = new LinguisticVariable(0, 10, 1);
+            double[] nodes = new double[] { 0.0, 2.0, 4.0, 6.0 };
             
             // When
-            Trapezoidal trapezoidal = new Trapezoidal(lingVar, nodes); 
+            Trapezoidal trapezoidal = new Trapezoidal(lingVar, nodes);
 
             // Then
-            Assert.Throws<Exception>(() => trapezoidal.GetMembershipDegree(input)); 
+            Assert.Throws<Exception>(() => trapezoidal.GetMembershipDegree(input));
         }
 
         [Theory]
@@ -73,15 +73,15 @@ namespace Tests.WorkflowLib.Shared.FuzzyModules.API.Membership
         public void GetMembershipDegree_PassCorrectArgs_ActualEqualsToExpected(double input, double expected)
         {
             // Given
-            LinguisticVariable lingVar = new LinguisticVariable(0, 10, 1); 
-            double[] nodes = new double[] { 0.0, 2.0, 4.0, 6.0 }; 
+            LinguisticVariable lingVar = new LinguisticVariable(0, 10, 1);
+            double[] nodes = new double[] { 0.0, 2.0, 4.0, 6.0 };
             
             // When
-            Trapezoidal trapezoidal = new Trapezoidal(lingVar, nodes); 
-            double actual = trapezoidal.GetMembershipDegree(input); 
+            Trapezoidal trapezoidal = new Trapezoidal(lingVar, nodes);
+            double actual = trapezoidal.GetMembershipDegree(input);
             
             // Then
-            Assert.Equal(expected, actual); 
+            Assert.Equal(expected, actual);
         }
 
         [Theory]
@@ -91,14 +91,14 @@ namespace Tests.WorkflowLib.Shared.FuzzyModules.API.Membership
         public void ApplyImplication_ValueOutOfRange_GetException(double ruleValue)
         {
             // Given
-            LinguisticVariable lingVar = new LinguisticVariable(0, 10, 1); 
-            double[] nodes = new double[] { 0.0, 2.0, 4.0, 6.0 }; 
+            LinguisticVariable lingVar = new LinguisticVariable(0, 10, 1);
+            double[] nodes = new double[] { 0.0, 2.0, 4.0, 6.0 };
             
             // When
-            Trapezoidal trapezoidal = new Trapezoidal(lingVar, nodes); 
+            Trapezoidal trapezoidal = new Trapezoidal(lingVar, nodes);
 
             // Then
-            Assert.Throws<Exception>(() => trapezoidal.ApplyImplication(ruleValue)); 
+            Assert.Throws<Exception>(() => trapezoidal.ApplyImplication(ruleValue));
         }
     }
 }

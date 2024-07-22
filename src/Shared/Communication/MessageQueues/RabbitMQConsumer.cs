@@ -13,19 +13,19 @@ namespace WorkflowLib.Shared.Models.MessageQueues
     /// </summary>
     public class RabbitMQConsumer<TArg1, TRes>
     {
-        private readonly IConnection _connection; 
-        private readonly IModel _channel; 
-        private readonly Timer _timer; 
-        System.Func<TArg1, TRes> _func; 
+        private readonly IConnection _connection;
+        private readonly IModel _channel;
+        private readonly Timer _timer;
+        System.Func<TArg1, TRes> _func;
         
-        private readonly string _queueName; 
+        private readonly string _queueName;
 
         /// <summary>
         /// 
         /// </summary>
         public RabbitMQConsumer(string hostName, string queueName, System.TimeSpan timeInterval, System.Func<TArg1, TRes> func)
         {
-            _queueName = queueName; 
+            _queueName = queueName;
             var factory = new ConnectionFactory { HostName = hostName };
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
@@ -34,8 +34,8 @@ namespace WorkflowLib.Shared.Models.MessageQueues
                         exclusive: false,
                         autoDelete: false,
                         arguments: null);
-            _timer = new Timer(OnTimerElapsed, null, System.TimeSpan.Zero, timeInterval); 
-            _func = func; 
+            _timer = new Timer(OnTimerElapsed, null, System.TimeSpan.Zero, timeInterval);
+            _func = func;
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace WorkflowLib.Shared.Models.MessageQueues
         /// </summary>
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            return Task.CompletedTask; 
+            return Task.CompletedTask;
         }
 
         /// <summary>
@@ -51,10 +51,10 @@ namespace WorkflowLib.Shared.Models.MessageQueues
         /// </summary>
         public Task StopAsync(CancellationToken cancellationToken)
         {
-            _timer.Dispose(); 
-            _channel.Close(); 
-            _connection.Close(); 
-            return Task.CompletedTask; 
+            _timer.Dispose();
+            _channel.Close();
+            _connection.Close();
+            return Task.CompletedTask;
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace WorkflowLib.Shared.Models.MessageQueues
                     var body = ea.Body.ToArray();
                     var message = Encoding.UTF8.GetString(body);
                     TArg1 inputString = JsonSerializer.Deserialize<TArg1>(message);
-                    _func(inputString); 
+                    _func(inputString);
                 };
                 _channel.BasicConsume(queue: _queueName,
                                     autoAck: true,
@@ -78,7 +78,7 @@ namespace WorkflowLib.Shared.Models.MessageQueues
             }
             catch (System.Exception ex)
             {
-                System.Console.WriteLine($"Exception: {ex}"); 
+                System.Console.WriteLine($"Exception: {ex}");
             }
         }
     }
