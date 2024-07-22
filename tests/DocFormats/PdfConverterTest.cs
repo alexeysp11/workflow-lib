@@ -1,24 +1,24 @@
 using System;
 using System.IO;
-using System.Linq; 
+using System.Linq;
 using System.Reflection;
-using System.Data; 
+using System.Data;
 using Xunit;
-using WorkflowLib.Shared.Office.DocFormats; 
-using WorkflowLib.Shared.Models.Documents; 
-using WorkflowLib.Shared.Models.Documents.Enums; 
+using WorkflowLib.Shared.Office.DocFormats;
+using WorkflowLib.Shared.Models.Documents;
+using WorkflowLib.Shared.Models.Documents.Enums;
 
 namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats
 {
     public class PdfConverterTest
     {
-        private string FolderName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), typeof(PdfConverterTest).ToString().Split('.').Last()); 
+        private string FolderName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), typeof(PdfConverterTest).ToString().Split('.').Last());
 
         [Fact]
         public void TextDocElementsToDocument_CorrectParams_FileExists()
         {
             // Arrange
-            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".pdf"; 
+            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".pdf";
             var elements = new System.Collections.Generic.List<TextDocElement>()
             {
                 new TextDocElement() 
@@ -45,23 +45,23 @@ namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats
                     FontSize = 14, 
                     TextAlignment = TextAlignment.JUSTIFIED
                 }
-            }; 
+            };
 
-            PdfConverter converter = new PdfConverter(); 
-            CreateFolderIfNotExists(FolderName); 
+            PdfConverter converter = new PdfConverter();
+            CreateFolderIfNotExists(FolderName);
 
             // Act
             converter.TextDocElementsToDocument(FolderName, filename, elements);
-            string filepath = Path.Combine(FolderName, filename); 
+            string filepath = Path.Combine(FolderName, filename);
 
             // Assert
-            Assert.True(File.Exists(filepath)); 
+            Assert.True(File.Exists(filepath));
         }
 
         #region Private methods
         private void CreateFolderIfNotExists(string foldername)
         {
-            if (!Directory.Exists(foldername)) Directory.CreateDirectory(foldername); 
+            if (!Directory.Exists(foldername)) Directory.CreateDirectory(foldername);
         }
         #endregion  // Private methods
     }

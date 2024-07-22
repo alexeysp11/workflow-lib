@@ -3,20 +3,20 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Xunit;
-using WorkflowLib.Dynamical; 
+using WorkflowLib.Dynamical;
 
 namespace Cims.Tests.WorkflowLib.Dynamical
 {
     public class DynamicCompilingTest
     {
-        private string FolderName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), typeof(DynamicCompiling).ToString().Split('.').Last()); 
+        private string FolderName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), typeof(DynamicCompiling).ToString().Split('.').Last());
 
         // 
         [Fact]
         public void CompileAndRunCSharpString_CorrectParameters_InstanceCreated()
         {
             // Arrange 
-            DynamicCompiling compiler = new DynamicCompiling(); 
+            DynamicCompiling compiler = new DynamicCompiling();
             var code = @"
 using System;
 using System.Collections.Generic;
@@ -32,14 +32,14 @@ namespace Debuggable
     }
 }
             ";
-            string assemblyName = "TestCompiledAssembly"; 
-            string instanceName = "Debuggable.HelloWorld"; 
+            string assemblyName = "TestCompiledAssembly";
+            string instanceName = "Debuggable.HelloWorld";
 
             // Act 
-            string result = compiler.CompileAndRunCSharpString(code, assemblyName, instanceName); 
+            string result = compiler.CompileAndRunCSharpString(code, assemblyName, instanceName);
 
             // Assert 
-            Assert.True(result == "Hello world"); 
+            Assert.True(result == "Hello world");
         }
     }
 }

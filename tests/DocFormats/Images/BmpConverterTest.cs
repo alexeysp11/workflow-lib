@@ -1,17 +1,17 @@
 using System;
 using System.IO;
-using System.Linq; 
+using System.Linq;
 using System.Reflection;
-using System.Data; 
+using System.Data;
 using Xunit;
-using WorkflowLib.Shared.Office.DocFormats.Images; 
+using WorkflowLib.Shared.Office.DocFormats.Images;
 
 namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats.Images
 {
     public class BmpConverterTest
     {
         private string Text = "Hello,_world! 123;532.52,642'2332\"w342\\432/243^w\n(test&something#1@ok)+$32.5~tt`qwerty\ttabulated\n\nTest text was written!";
-        private string FolderName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), typeof(BmpConverterTest).ToString().Split('.').Last()); 
+        private string FolderName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), typeof(BmpConverterTest).ToString().Split('.').Last());
 
         #region TextToImg
         [Theory]
@@ -25,15 +25,15 @@ namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats.Images
         public void TextToImg_OneOrMoreStringParamsEmpty_ReturnsException(bool isTextEmpty, bool isFoldernameEmpty, bool isFilenameEmpty)
         {
             // Arrange 
-            string text = isTextEmpty ? string.Empty : Text; 
-            string foldername = isFoldernameEmpty ? string.Empty : FolderName; 
-            string filename = isFilenameEmpty ? string.Empty : System.Reflection.MethodBase.GetCurrentMethod().Name + ".bmp"; 
+            string text = isTextEmpty ? string.Empty : Text;
+            string foldername = isFoldernameEmpty ? string.Empty : FolderName;
+            string filename = isFilenameEmpty ? string.Empty : System.Reflection.MethodBase.GetCurrentMethod().Name + ".bmp";
 
-            IImageConverter converter = new BmpConverter(); 
-            if (!string.IsNullOrEmpty(foldername)) CreateFolderIfNotExists(FolderName); 
+            IImageConverter converter = new BmpConverter();
+            if (!string.IsNullOrEmpty(foldername)) CreateFolderIfNotExists(FolderName);
 
             // Act 
-            Action act = () => converter.TextToImg(text, foldername, filename); 
+            Action act = () => converter.TextToImg(text, foldername, filename);
 
             // Assert 
             System.Exception exception = Assert.Throws<System.Exception>(act);
@@ -43,13 +43,13 @@ namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats.Images
         public void TextToImg_IncorrectFoldername_ReturnsException()
         {
             // Arrange 
-            string foldername = "incorrect path"; 
-            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".bmp"; 
+            string foldername = "incorrect path";
+            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".bmp";
 
-            IImageConverter converter = new BmpConverter(); 
+            IImageConverter converter = new BmpConverter();
 
             // Act 
-            Action act = () => converter.TextToImg(Text, foldername, filename); 
+            Action act = () => converter.TextToImg(Text, foldername, filename);
 
             // Assert 
             System.Exception exception = Assert.Throws<System.Exception>(act);
@@ -59,13 +59,13 @@ namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats.Images
         public void TextToImg_IncorrectFileExtenstion_ReturnsException()
         {
             // Arrange 
-            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".jpg"; 
+            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".jpg";
 
-            IImageConverter converter = new BmpConverter(); 
-            CreateFolderIfNotExists(FolderName); 
+            IImageConverter converter = new BmpConverter();
+            CreateFolderIfNotExists(FolderName);
 
             // Act 
-            Action act = () => converter.TextToImg(Text, FolderName, filename); 
+            Action act = () => converter.TextToImg(Text, FolderName, filename);
 
             // Assert 
             System.Exception exception = Assert.Throws<System.Exception>(act);
@@ -75,24 +75,24 @@ namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats.Images
         public void TextToImg_CorrectParameters_FileExists()
         {
             // Arrange
-            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".bmp"; 
+            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".bmp";
 
-            IImageConverter converter = new BmpConverter(); 
-            CreateFolderIfNotExists(FolderName); 
+            IImageConverter converter = new BmpConverter();
+            CreateFolderIfNotExists(FolderName);
 
             // Act
             converter.TextToImg(Text, FolderName, filename);
-            string filepath = Path.Combine(FolderName, filename); 
+            string filepath = Path.Combine(FolderName, filename);
 
             // Assert
-            Assert.True(File.Exists(filepath)); 
+            Assert.True(File.Exists(filepath));
         }
         #endregion  // TextToImg
 
         #region Private methods
         private void CreateFolderIfNotExists(string foldername)
         {
-            if (!Directory.Exists(foldername)) Directory.CreateDirectory(foldername); 
+            if (!Directory.Exists(foldername)) Directory.CreateDirectory(foldername);
         }
         #endregion  // Private methods
     }
