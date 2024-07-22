@@ -1,5 +1,5 @@
-﻿using System; 
-using MeetPlanning.Models; 
+﻿using System;
+using MeetPlanning.Models;
 
 namespace MeetPlanning.Services
 {
@@ -16,7 +16,7 @@ namespace MeetPlanning.Services
         public User GetUser(string username, string password)
         {
             // Call DbConnection. 
-            return new User(); 
+            return new User();
         }
     }
 }

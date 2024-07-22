@@ -1,6 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
-using MeetPlanning.WpfVersion.Controllers; 
+using MeetPlanning.WpfVersion.Controllers;
 
 namespace MeetPlanning.WpfVersion.UserControls
 {
@@ -16,12 +16,12 @@ namespace MeetPlanning.WpfVersion.UserControls
 
         public void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            WpfController.RedirectToLoginPage(); 
+            WpfController.RedirectToLoginPage();
         }
 
         public void CreateAccountBtn_Click(object sender, RoutedEventArgs e)
         {
-            WpfController.RedirectToCreateAccountPage(); 
+            WpfController.RedirectToCreateAccountPage();
         }
     }
 }
