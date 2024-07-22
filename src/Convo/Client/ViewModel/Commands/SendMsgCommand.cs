@@ -1,4 +1,4 @@
-using Chat.Client.ViewModel; 
+using Chat.Client.ViewModel;
 
 namespace Chat.Client.Commands
 {
@@ -8,43 +8,43 @@ namespace Chat.Client.Commands
 
         public SendMsgCommand(MainVM mainVM)
         {
-            _MainVM = mainVM; 
+            _MainVM = mainVM;
         }
 
-        public event System.EventHandler CanExecuteChanged; 
+        public event System.EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
         {
-            bool result = true; 
+            bool result = true;
             try
             {
                 if (this._MainVM.ActiveWindow.UserPage.IsEnabled && 
                     this._MainVM.ActiveWindow.UserPage.Visibility == System.Windows.Visibility.Visible)
                 {
-                    result = true; 
+                    result = true;
                 }
                 else
                 {
-                    result = false; 
+                    result = false;
                 }
             }
             catch (System.Exception e)
             {
-                System.Windows.MessageBox.Show($"Exception inside CommandParameter:\n{e}", "Exception"); 
+                System.Windows.MessageBox.Show($"Exception inside CommandParameter:\n{e}", "Exception");
             }
-            return result; 
+            return result;
         }
 
         public void Execute(object parameter)
         {
-            string parameterString = parameter as string; 
+            string parameterString = parameter as string;
             if (parameterString == "Send")
             {
-                this._MainVM.SendMessage(); 
+                this._MainVM.SendMessage();
             }
             else
             {
-                System.Windows.MessageBox.Show($"Incorrect CommandParameter: {parameterString} inside SendMsgCommand", "Exception"); 
+                System.Windows.MessageBox.Show($"Incorrect CommandParameter: {parameterString} inside SendMsgCommand", "Exception");
             }
         }
     }

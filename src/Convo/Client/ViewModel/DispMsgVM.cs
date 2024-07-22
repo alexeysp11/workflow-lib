@@ -18,16 +18,16 @@ namespace Chat.Client.ViewModel
             }
         }
         
-        private string messageToSend; 
+        private string messageToSend;
         public string MessageToSend 
         {
             get { return messageToSend; } 
             set
             {
-                messageToSend = value; 
+                messageToSend = value;
 
                 // Notify about length of a string. 
-                this._MainVM.SetNumAvailableCharsInMsg(messageToSend.Length); 
+                this._MainVM.SetNumAvailableCharsInMsg(messageToSend.Length);
 
                 OnPropertyChanged("MessageToSend");
             }
@@ -39,7 +39,7 @@ namespace Chat.Client.ViewModel
             get { return charsAvailable; }
             set 
             { 
-                charsAvailable = value; 
+                charsAvailable = value;
                 OnPropertyChanged("CharsAvailable");
             }
         }

@@ -1,13 +1,13 @@
-using System.Net.Sockets; 
-using Chat.Network.Messages; 
+using System.Net.Sockets;
+using Chat.Network.Messages;
 
 namespace Chat.Network.Client 
 {
     public class ChatTcpClient : IProtocolClient
     {
         #region Configuration properties
-        private TcpClient Client { get; set; } = null; 
-        private NetworkStream _NetworkStream { get; set; } = null; 
+        private TcpClient Client { get; set; } = null;
+        private NetworkStream _NetworkStream { get; set; } = null;
 
         public string Ip { get; }
         public string ServerName { get; private set; }
@@ -19,12 +19,12 @@ namespace Chat.Network.Client
         private byte ClientId { get; set; }
         
         private byte MessageHeader { get; set; }
-        private byte[] MessageBytes; 
+        private byte[] MessageBytes;
 
-        private string ResponseString; 
-        private byte[] ResponseBytes; 
+        private string ResponseString;
+        private byte[] ResponseBytes;
 
-        private byte LastMsgId; 
+        private byte LastMsgId;
         #endregion  // Messaging properties
 
         #region Constructors
@@ -34,11 +34,11 @@ namespace Chat.Network.Client
         /// <param name="username">Name of a user</param>
         public ChatTcpClient(string username)
         {
-            this.Ip = "127.0.0.0"; 
-            this.ServerName = "localhost"; 
+            this.Ip = "127.0.0.0";
+            this.ServerName = "localhost";
             this.Port = 13000;
-            this.Username = username; 
-            this.CreateClient(); 
+            this.Username = username;
+            this.CreateClient();
         }
 
         /// <summary>
@@ -51,21 +51,21 @@ namespace Chat.Network.Client
         public ChatTcpClient(string ip, string serverName, int port, string username)
         {
             this.Ip = ip;
-            this.ServerName = serverName; 
+            this.ServerName = serverName;
             this.Port = port;
             this.Username = username;
-            this.CreateClient(); 
+            this.CreateClient();
         }
         #endregion  // Constructors
         
         #region Authentication
         private void CreateClient()
         {
-            this.ClientId = 0; 
-            this.MessageHeader = (byte)(Header.PURPOSE_AUTH | Header.ERROR_NO); 
+            this.ClientId = 0;
+            this.MessageHeader = (byte)(Header.PURPOSE_AUTH | Header.ERROR_NO);
             try
             {
-                this.SendMessage($"User {this.Username} connected"); 
+                this.SendMessage($"User {this.Username} connected");
             }
             catch (System.Exception e)
             {
@@ -86,9 +86,9 @@ namespace Chat.Network.Client
         {
             if (isClientToClient)
             {
-                this.MessageHeader = (byte)(Header.PURPOSE_CTC | Header.ERROR_NO); 
+                this.MessageHeader = (byte)(Header.PURPOSE_CTC | Header.ERROR_NO);
             }
-            this.CreateMsgBytes(message); 
+            this.CreateMsgBytes(message);
 
             try
             {
@@ -99,8 +99,8 @@ namespace Chat.Network.Client
                 this._NetworkStream = this.Client.GetStream();
                 this._NetworkStream.Write(this.MessageBytes, 0, this.MessageBytes.Length);
                 
-                this.ResponseBytes = new byte[1024]; 
-                int msgLength = 0; 
+                this.ResponseBytes = new byte[1024];
+                int msgLength = 0;
                 msgLength = this._NetworkStream.Read(this.ResponseBytes, 0, this.ResponseBytes.Length);
                 if (msgLength > 0)
                 {
@@ -127,18 +127,18 @@ namespace Chat.Network.Client
         {
             if (this.MessageHeader == (byte)(Header.PURPOSE_CTC | Header.ERROR_NO))
             {
-                byte[] text = System.Text.Encoding.ASCII.GetBytes(message); 
-                MessageBytes = new byte[text.Length + 2]; 
-                MessageBytes[0] = this.ClientId; 
-                MessageBytes[1] = this.MessageHeader; 
+                byte[] text = System.Text.Encoding.ASCII.GetBytes(message);
+                MessageBytes = new byte[text.Length + 2];
+                MessageBytes[0] = this.ClientId;
+                MessageBytes[1] = this.MessageHeader;
                 for (int i = 0; i < text.Length; i++)
                 {
-                    MessageBytes[i+2] = text[i]; 
+                    MessageBytes[i+2] = text[i];
                 }
             }
             else if (this.MessageHeader == (byte)(Header.PURPOSE_AUTH | Header.ERROR_NO))
             {
-                MessageBytes = new byte[2] { ClientId, MessageHeader }; 
+                MessageBytes = new byte[2] { ClientId, MessageHeader };
             }
             else if (this.MessageHeader == (byte)(Header.PURPOSE_EXIT | Header.ERROR_NO))
             {
@@ -146,7 +146,7 @@ namespace Chat.Network.Client
             }
             else if (this.MessageHeader == (byte)(Header.PURPOSE_MSGRQST | Header.ERROR_NO))
             {
-                MessageBytes = new byte[3] { ClientId, MessageHeader, LastMsgId }; 
+                MessageBytes = new byte[3] { ClientId, MessageHeader, LastMsgId };
             }
             else if (this.MessageHeader == (byte)(Header.PURPOSE_ERRMSG | Header.ERROR_NO))
             {
@@ -162,27 +162,27 @@ namespace Chat.Network.Client
         #region Getting messages
         public string GetMessages()
         {
-            this.MessageHeader = (byte)(Header.PURPOSE_MSGRQST | Header.ERROR_NO); 
-            this.SendMessage(string.Empty); 
-            string response = this.ResponseString; 
-            return response; 
+            this.MessageHeader = (byte)(Header.PURPOSE_MSGRQST | Header.ERROR_NO);
+            this.SendMessage(string.Empty);
+            string response = this.ResponseString;
+            return response;
         }
 
         private void DecodeResponse(int msgLength)
         {
             if (msgLength == 0)
             {
-                throw new System.Exception("Server did not send response"); 
+                throw new System.Exception("Server did not send response");
             }
 
             if (this.MessageHeader == (byte)(Header.PURPOSE_CTC | Header.ERROR_NO))
             {
-                LastMsgId = ResponseBytes[2]; 
+                LastMsgId = ResponseBytes[2];
             }
             else if (this.MessageHeader == (byte)(Header.PURPOSE_AUTH | Header.ERROR_NO))
             {
-                ClientId = ResponseBytes[0]; 
-                LastMsgId = ResponseBytes[2]; 
+                ClientId = ResponseBytes[0];
+                LastMsgId = ResponseBytes[2];
             }
             else if (this.MessageHeader == (byte)(Header.PURPOSE_EXIT | Header.ERROR_NO))
             {
@@ -193,12 +193,12 @@ namespace Chat.Network.Client
                 if ( (byte)(Header.ERROR_NO) == (this.ResponseBytes[1] & (byte)Header.ERROR_NO) )
                 {
                     int indexTextStarts = 3;
-                    LastMsgId = this.ResponseBytes[2]; 
-                    this.ResponseString = System.Text.Encoding.ASCII.GetString(this.ResponseBytes, indexTextStarts, msgLength - indexTextStarts); 
+                    LastMsgId = this.ResponseBytes[2];
+                    this.ResponseString = System.Text.Encoding.ASCII.GetString(this.ResponseBytes, indexTextStarts, msgLength - indexTextStarts);
                 }
                 else if ( (byte)(Header.ERROR_YES) == (this.ResponseBytes[1] & (byte)Header.ERROR_YES) )
                 {
-                    this.ResponseString = string.Empty; 
+                    this.ResponseString = string.Empty;
                 }
                 else
                 {
@@ -232,11 +232,11 @@ namespace Chat.Network.Client
                 }
                 catch (System.Exception e)
                 {
-                    throw e; 
+                    throw e;
                 }
                 finally
                 {
-                    this.Client = null; 
+                    this.Client = null;
                 }
             }
         }

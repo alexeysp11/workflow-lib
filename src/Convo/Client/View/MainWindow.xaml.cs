@@ -24,11 +24,11 @@ namespace Chat.Client.View
             try
             {
                 InitializeComponent();
-                DataContext = new MainVM(this); 
+                DataContext = new MainVM(this);
             }
             catch (System.Exception e)
             {
-                ExceptionViewer.WatchExceptionMessageBox(e); 
+                ExceptionViewer.WatchExceptionMessageBox(e);
             }
         }
     }

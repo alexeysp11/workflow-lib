@@ -1,4 +1,4 @@
-﻿using Chat.Network.Server; 
+﻿using Chat.Network.Server;
 
 namespace Chat.Server
 {
@@ -12,8 +12,8 @@ namespace Chat.Server
             {
                 try
                 {
-                    IProtocolListener listener = new ChatTcpListener(); 
-                    listener.Listen(); 
+                    IProtocolListener listener = new ChatTcpListener();
+                    listener.Listen();
                 }
                 catch (System.Exception ex)
                 {

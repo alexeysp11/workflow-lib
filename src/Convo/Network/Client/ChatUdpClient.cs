@@ -16,7 +16,7 @@ namespace Chat.Network.Client
 
         public string GetMessages()
         {
-            return string.Empty; 
+            return string.Empty;
         }
 
         public void CloseConnection()

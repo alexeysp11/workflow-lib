@@ -29,7 +29,7 @@ public class ChatAuthService
     }
 
     /// <summary>
-    /// Method for adding the specified user into the database. 
+    /// Method for adding the specified user into the database.
     /// </summary>
     public UserCreationResult AddUser(UserCredentials request)
     {

@@ -5,6 +5,6 @@ namespace Chat.Network.Server
     /// </summary>
     public interface IProtocolListener
     {
-        void Listen(); 
+        void Listen();
     }
 }

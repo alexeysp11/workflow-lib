@@ -35,9 +35,9 @@ namespace Chat.Server.Database
         /// <param name="password">Password of a user</param>
         public UserModel(string name, string email, string password)
         {
-            this.Name = name; 
-            this.Email = email; 
-            this.Password = password; 
+            this.Name = name;
+            this.Email = email;
+            this.Password = password;
         }
         #endregion  // Constructor
 

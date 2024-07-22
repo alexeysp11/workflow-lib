@@ -17,9 +17,9 @@ namespace Chat.Network.Messages
 
         public Message(byte clientId, byte msgId, byte[] textBytes)
         {
-            ClientId = clientId; 
+            ClientId = clientId;
             MsgId = msgId;
-            TextBytes = textBytes; 
+            TextBytes = textBytes;
         }
     }
 }
