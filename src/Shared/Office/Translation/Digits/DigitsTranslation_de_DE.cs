@@ -46,11 +46,11 @@ namespace WorkflowLib.Shared.Office.Translation.Digits
 				throw new ArgumentOutOfRangeException("levelNumber", "Converting a negative levelNumber to ordinal text is not supported");
 
             if (numFmt == "ordinal")
-                return GetOrdinal(levelNumber); 
+                return GetOrdinal(levelNumber);
             if (numFmt == "cardinalText")
-                return GetCardinalText(levelNumber); 
+                return GetCardinalText(levelNumber);
             if (numFmt == "ordinalText")
-                return GetOrdinalText(levelNumber); 
+                return GetOrdinalText(levelNumber);
             return null;
         }
 

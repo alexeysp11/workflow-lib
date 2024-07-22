@@ -1,6 +1,6 @@
 using System;
 using Xunit;
-using WorkflowLib.Shared.FuzzyModules.API; 
+using WorkflowLib.Shared.FuzzyModules.API;
 
 namespace Tests.WorkflowLib.Shared.FuzzyModules.API 
 {
@@ -29,10 +29,10 @@ namespace Tests.WorkflowLib.Shared.FuzzyModules.API
         [InlineData(new double[] { 0.5, 0.8, 0.8, 0.8, 0.5, 0.8, 0.0 }, 2.75)]
         public void MeanOfMaximum_MultipleInputs_OutputEqualsToExpected(double[] mfDegree, double expected)
         {
-            var defuzz = new Defuzzification(mfDegree); 
-            double defuzzValue = defuzz.MeanOfMaximum(); 
+            var defuzz = new Defuzzification(mfDegree);
+            double defuzzValue = defuzz.MeanOfMaximum();
             
-            Assert.Equal(expected, defuzzValue); 
+            Assert.Equal(expected, defuzzValue);
         }
     }
 }

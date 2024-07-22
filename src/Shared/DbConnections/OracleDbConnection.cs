@@ -1,4 +1,4 @@
-using System.Data; 
+using System.Data;
 using Oracle.ManagedDataAccess.Client;
 
 namespace WorkflowLib.Shared.DbConnections
@@ -15,13 +15,13 @@ namespace WorkflowLib.Shared.DbConnections
 
         public OracleDbConnection(string dataSource)
         {
-            DataSource = dataSource; 
+            DataSource = dataSource;
         }
 
         public ICommonDbConnection SetConnString(string connString)
         {
-            ConnString = connString; 
-            return this; 
+            ConnString = connString;
+            return this;
         }
 
         public DataTable ExecuteSqlCommand(string sqlRequest)
@@ -43,7 +43,7 @@ namespace WorkflowLib.Shared.DbConnections
 
         public new string GetSqlFromDataTable(DataTable dt, string tableName)
         {
-            return base.GetSqlFromDataTable(dt, tableName); 
+            return base.GetSqlFromDataTable(dt, tableName);
         }
     }
 }

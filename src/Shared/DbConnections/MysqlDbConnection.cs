@@ -1,4 +1,4 @@
-using System.Data; 
+using System.Data;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
@@ -16,19 +16,19 @@ namespace WorkflowLib.Shared.DbConnections
 
         public MysqlDbConnection(string dataSource)
         {
-            DataSource = dataSource; 
+            DataSource = dataSource;
         }
 
         public ICommonDbConnection SetConnString(string connString)
         {
-            ConnString = connString; 
-            return this; 
+            ConnString = connString;
+            return this;
         }
 
         public DataTable ExecuteSqlCommand(string sqlRequest)
         {
-            DataTable table = new DataTable(); 
-            MySqlConnection connection = null; 
+            DataTable table = new DataTable();
+            MySqlConnection connection = null;
             try
             {
                 connection = new MySqlConnection(string.IsNullOrEmpty(DataSource) ? ConnString : DataSource);
@@ -38,7 +38,7 @@ namespace WorkflowLib.Shared.DbConnections
             }
             catch (System.Exception)
             {
-                throw; 
+                throw;
             }
             finally
             {
@@ -49,16 +49,16 @@ namespace WorkflowLib.Shared.DbConnections
 
         public new string GetSqlFromDataTable(DataTable dt, string tableName)
         {
-            return base.GetSqlFromDataTable(dt, tableName); 
+            return base.GetSqlFromDataTable(dt, tableName);
         }
 
         private DataTable GetDataTable(MySqlDataReader reader)
         {
-            DataTable table = new DataTable(); 
-            if (reader.FieldCount == 0) return table; 
+            DataTable table = new DataTable();
+            if (reader.FieldCount == 0) return table;
             for (int i = 0; i < reader.FieldCount; i++)
             {
-                DataColumn column; 
+                DataColumn column;
                 column = new DataColumn();
                 column.ColumnName = reader.GetName(i);
                 column.ReadOnly = true;
@@ -71,7 +71,7 @@ namespace WorkflowLib.Shared.DbConnections
                     row[i] = reader.GetValue(i).ToString();
                 table.Rows.Add(row);
             }
-            return table; 
+            return table;
         }
     }
 }

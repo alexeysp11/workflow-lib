@@ -1,7 +1,7 @@
-using System; 
-using System.Collections.Generic; 
-using System.Net; 
-using System.Net.Sockets; 
+using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Sockets;
 
 namespace WorkflowLib.NetworkAPIs
 {
@@ -43,14 +43,14 @@ namespace WorkflowLib.NetworkAPIs
         /// <summary>
         /// 
         /// </summary>
-        private byte[] ResponseBytes; 
+        private byte[] ResponseBytes;
 
         #region Constructors
         public TcpListenerWF()
         {
-            this.Ip = IPAddress.Parse("127.0.0.1"); 
-            this.ServerName = "localhost"; 
-            this.Port = 13000; 
+            this.Ip = IPAddress.Parse("127.0.0.1");
+            this.ServerName = "localhost";
+            this.Port = 13000;
             this.Listener = new TcpListener(this.Ip, this.Port);
         }
 
@@ -60,7 +60,7 @@ namespace WorkflowLib.NetworkAPIs
         public TcpListenerWF(string ip, string serverName, int port)
         {
             this.Ip = IPAddress.Parse(ip);
-            this.ServerName = serverName; 
+            this.ServerName = serverName;
             this.Port = port;
             this.Listener = new TcpListener(this.Ip, this.Port);
         }
@@ -82,7 +82,7 @@ namespace WorkflowLib.NetworkAPIs
                     // }
                     // else
                     // {
-                    //     IsNeedToPrintStatus = true; 
+                    //     IsNeedToPrintStatus = true;
                     // }
                     GetMessage();
                 }
@@ -103,23 +103,23 @@ namespace WorkflowLib.NetworkAPIs
         /// </summary>
         private void GetMessage()
         {
-            ReceivedBytes = new byte[256]; 
+            ReceivedBytes = new byte[256];
             try
             {
                 this.Client = this.Listener.AcceptTcpClient();
                 NetworkStream stream = this.Client.GetStream();
                 
-                int msgLength = stream.Read(ReceivedBytes, 0, ReceivedBytes.Length); 
+                int msgLength = stream.Read(ReceivedBytes, 0, ReceivedBytes.Length);
                 
                 this.ProcessReceivedBytes(msgLength);
-                stream.Write(ResponseBytes, 0, ResponseBytes.Length); 
+                stream.Write(ResponseBytes, 0, ResponseBytes.Length);
             }
             catch (System.Exception e)
             {
                 throw e;
             }
-            ReceivedBytes = new byte[1]; 
-            ResponseBytes = new byte[1]; 
+            ReceivedBytes = new byte[1];
+            ResponseBytes = new byte[1];
         }
 
         /// <summary>

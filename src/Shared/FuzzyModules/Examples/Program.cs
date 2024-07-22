@@ -4,8 +4,8 @@
     {
         public static void Main(string[] args)
         {
-            var example = new FoodServiceTip(); 
-            example.Run(); 
+            var example = new FoodServiceTip();
+            example.Run();
         }
     }
 }

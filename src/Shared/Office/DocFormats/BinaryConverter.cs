@@ -1,4 +1,4 @@
-using System.IO; 
+using System.IO;
 
 namespace WorkflowLib.Shared.Office.DocFormats
 {
@@ -12,7 +12,7 @@ namespace WorkflowLib.Shared.Office.DocFormats
         /// </summary>
         public void SaveAsBinaryFile(string filename, byte[] bytes)
         {
-            File.WriteAllBytes(filename, bytes); 
+            File.WriteAllBytes(filename, bytes);
         }
         /// <summary>
         /// Reads all bytes from a specified file.

@@ -1,4 +1,4 @@
-using WorkflowLib.Shared.Models.Documents; 
+using WorkflowLib.Shared.Models.Documents;
 
 namespace WorkflowLib.Shared.Office.DocFormats.Spreadsheets
 {
@@ -15,7 +15,7 @@ namespace WorkflowLib.Shared.Office.DocFormats.Spreadsheets
             string filename, 
             uint worksheetId, 
             string worksheetName, 
-            System.Collections.Generic.List<SpreadsheetElement> elements); 
+            System.Collections.Generic.List<SpreadsheetElement> elements);
         
         /// <summary>
         /// Given a document name, a worksheet name, the name of the first cell in the contiguous range, 
@@ -28,6 +28,6 @@ namespace WorkflowLib.Shared.Office.DocFormats.Spreadsheets
             string worksheetName, 
             string firstCellName, 
             string lastCellName, 
-            string resultCell); 
+            string resultCell);
     }
 }

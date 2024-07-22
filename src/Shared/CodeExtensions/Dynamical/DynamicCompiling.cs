@@ -1,13 +1,13 @@
-using System.IO; 
-using System.Collections; 
-using System.Collections.Generic; 
-using System.Linq; 
-using System.Text; 
-using System.Reflection; 
-using Microsoft.CodeAnalysis; 
-using Microsoft.CodeAnalysis.CSharp; 
-using Microsoft.CodeAnalysis.Emit; 
-using Microsoft.CodeAnalysis.Text; 
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Reflection;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.Emit;
+using Microsoft.CodeAnalysis.Text;
 
 namespace WorkflowLib.Dynamical
 {
@@ -21,15 +21,15 @@ namespace WorkflowLib.Dynamical
         /// </summary>
         public string CompileAndRunCSharpString(string code, string assemblyName, string instanceName)
         {
-            if (string.IsNullOrEmpty(code)) throw new System.Exception("Code could not be null or empty"); 
-            if (string.IsNullOrEmpty(assemblyName)) throw new System.Exception("Assembly name could not be null or empty"); 
+            if (string.IsNullOrEmpty(code)) throw new System.Exception("Code could not be null or empty");
+            if (string.IsNullOrEmpty(assemblyName)) throw new System.Exception("Assembly name could not be null or empty");
 
             (byte[] a, byte[] b) = CreateAssembly(code, assemblyName, instanceName);
             var assembly = Assembly.Load(a, b);
 
             dynamic instance = assembly.CreateInstance(instanceName);
             string result = instance.DoWork();
-            return result; 
+            return result;
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace WorkflowLib.Dynamical
                 var emitOptions = new EmitOptions(
                     debugInformationFormat: DebugInformationFormat.PortablePdb,
                     pdbFilePath: symbolsName);
-                System.Console.WriteLine(emitOptions.PdbFilePath); 
+                System.Console.WriteLine(emitOptions.PdbFilePath);
 
                 EmitResult result = compilation.Emit(
                     peStream: assemblyStream,

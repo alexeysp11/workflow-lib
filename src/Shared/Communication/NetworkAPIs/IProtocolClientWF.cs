@@ -6,6 +6,6 @@ namespace Chat.Network.Client
     public interface IProtocolClientWF
     {
         void SendMessage(string message);
-        void CloseConnection(); 
+        void CloseConnection();
     }
 }
