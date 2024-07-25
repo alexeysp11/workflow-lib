@@ -74,11 +74,6 @@ public class HomeController : Controller
         return View(vacations);
     }
 
-    public IActionResult Managing()
-    {
-        return View();
-    }
-
     public IActionResult NewVacation()
     {
         return View();
