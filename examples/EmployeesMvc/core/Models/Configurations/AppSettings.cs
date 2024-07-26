@@ -63,4 +63,24 @@ public class AppSettings
     /// Languages.
     /// </summary>
     public List<Language> Languages { get; set; }
+
+    /// <summary>
+    /// Get language elements.
+    /// </summary>
+    public List<LanguageElement> GetLanguageElements(string languageName)
+    {
+        var language = Languages.FirstOrDefault(x => x.Name == languageName);
+        if (language == null)
+            throw new System.Exception($"Language '{languageName}' could not be found");
+        return language.Elements;
+    }
+
+    /// <summary>
+    /// Get language elements.
+    /// </summary>
+    public string Translate(string languageName, string key)
+    {
+        var languageElement = GetLanguageElements(languageName).FirstOrDefault(x => x.Key == key);
+        return languageElement?.Value;
+    }
 }
