@@ -1,26 +1,30 @@
+@using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations
 @using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources
+@inject AppSettings _appSettings
 @{
-    ViewData["Title"] = "New Vacation Page";
+    ViewData["Title"] = "New Vacation";
 }
-
-<div class="text-center">
-    <h1 class="display-4">New vacation</h1>
-</div>
 
 @try
 {
-    var jobTitles = System.Enum.GetValues(typeof(JobTitle)); 
-    var departments = System.Enum.GetValues(typeof(Department)); 
+    var jobTitles = System.Enum.GetValues(typeof(JobTitle));
+    var departments = System.Enum.GetValues(typeof(Department));
+
+    var languageName = "English";
+
+    ViewData["Title"] = @_appSettings.Translate(languageName, "NewVacation");
 
     <div class="text-center">
+        <h1 class="display-4">@_appSettings.Translate(languageName, "NewVacation")</h1>
+        
         <form method="post" asp-controller="Home" asp-action="AddNewVaction" role="post"> 
-            <label>Full name: </label>
+            <label>@_appSettings.Translate(languageName, "FullName"): </label>
             <input type="text" placeholder="Enter full name" name="fullName">
-            <label>Begin date: </label>
+            <label>@_appSettings.Translate(languageName, "BeginDate"): </label>
             <input type="date" name="beginDate">
-            <label>End date: </label>
+            <label>@_appSettings.Translate(languageName, "EndDate"): </label>
             <input type="date" name="endDate">
-            <input type="submit" value="Add new vacation" class="btn btn-primary" />
+            <input type="submit" value="@_appSettings.Translate(languageName, "NewVacation.Add")" class="btn btn-primary" />
         </form>
     </div>
 
