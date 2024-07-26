@@ -6,6 +6,6 @@ public interface IVacationGenerator
 {
     List<Vacation> GenerateVacations(
         Employee employee,
-        int[] vacationIntervals,
+        List<int> vacationIntervals,
         System.Func<System.DateTime, System.DateTime, System.DateTime> generateDate);
 }

@@ -15,12 +15,12 @@ public class PipeParams
     /// <summary>
     /// Number of valid vacations, mapped to an employee.
     /// </summary>
-    public int[] VacationIntervals { get; }
+    public List<int> VacationIntervals { get; }
     
     /// <summary>
     /// Default constructor.
     /// </summary>
-    public PipeParams(int employeeQty, int[] vacationIntervals)
+    public PipeParams(int employeeQty, List<int> vacationIntervals)
     {
         EmployeeQty = employeeQty;
         VacationIntervals = vacationIntervals;

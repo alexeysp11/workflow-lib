@@ -21,7 +21,7 @@ public class AppSettings
     /// <summary>
     /// Specifed pattern of vacation intervals.
     /// </summary>
-    public int[] VacationIntervals { get; set; }
+    public List<int> VacationIntervals { get; set; }
     
     /// <summary>
     /// Number of elements generated inside the collection of vacations.
@@ -30,7 +30,7 @@ public class AppSettings
     {
         get 
         {
-            return EmployeeQty * VacationIntervals.Length;
+            return EmployeeQty * VacationIntervals.Count;
         }
     } 
 
