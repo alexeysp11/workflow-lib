@@ -31,14 +31,8 @@
     <div>
         Note: 
         <ul>
-            <li>
-                Make sure that the employee with the specified full name exists in the initial dataset (see, 
-                <a class="text-dark" asp-area="" asp-controller="Home" asp-action="Employees">Employees page</a>).
-                If such user does not exist, contact admins to add the employee.
-            </li>
-            <li>
-                Employee's full name should be exactly the same as specified in the initial dataset.
-            </li>
+            <li>@_appSettings.Translate(languageName, "NewVacation.Note01") <a class="text-dark" asp-area="" asp-controller="Home" asp-action="Employees">@_appSettings.Translate(languageName, "Page.Employees")</a>. @_appSettings.Translate(languageName, "NewVacation.Note02").</li>
+            <li>@_appSettings.Translate(languageName, "NewVacation.Note03").</li>
         <ul>
     </div>
 }
