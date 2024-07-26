@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using WorkflowLib.Examples.EmployeesMvc.Core.Models.Localization;
+
 namespace WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
 
 /// <summary>
@@ -55,4 +58,9 @@ public class AppSettings
     /// String settings.
     /// </summary>
     public StringSettings StringSettings { get; set; }
+    
+    /// <summary>
+    /// Languages.
+    /// </summary>
+    public List<Language> Languages { get; set; }
 }
