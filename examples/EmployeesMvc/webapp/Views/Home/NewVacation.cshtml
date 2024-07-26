@@ -10,7 +10,7 @@
     var jobTitles = System.Enum.GetValues(typeof(JobTitle));
     var departments = System.Enum.GetValues(typeof(Department));
 
-    var languageName = "English";
+    var languageName = "Russian";
 
     ViewData["Title"] = @_appSettings.Translate(languageName, "NewVacation");
 
@@ -19,7 +19,7 @@
         
         <form method="post" asp-controller="Home" asp-action="AddNewVaction" role="post"> 
             <label>@_appSettings.Translate(languageName, "FullName"): </label>
-            <input type="text" placeholder="Enter full name" name="fullName">
+            <input type="text" placeholder="@_appSettings.Translate(languageName, "FullName.Enter")" name="fullName">
             <label>@_appSettings.Translate(languageName, "BeginDate"): </label>
             <input type="date" name="beginDate">
             <label>@_appSettings.Translate(languageName, "EndDate"): </label>
@@ -29,7 +29,7 @@
     </div>
 
     <div>
-        Note: 
+        @_appSettings.Translate(languageName, "Note"): 
         <ul>
             <li>@_appSettings.Translate(languageName, "NewVacation.Note01") <a class="text-dark" asp-area="" asp-controller="Home" asp-action="Employees">@_appSettings.Translate(languageName, "Page.Employees")</a>. @_appSettings.Translate(languageName, "NewVacation.Note02").</li>
             <li>@_appSettings.Translate(languageName, "NewVacation.Note03").</li>
