@@ -14,7 +14,9 @@
 <body>
     @try
     {
-        var languageName = "Russian";
+        var languageName = string.Empty;
+        if (!Context.Request.Cookies.TryGetValue("employeesmvc-lang", out languageName))
+            languageName = "English";
 
         <header>
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -37,11 +39,42 @@
                             </li>
                         </ul>
                         <div class="navbar-nav flex-grow-2" style="text-align: right;">
-                            <select class="form-select" aria-label="Default select example">
-                                <option value="English">English</option>
-                                <option value="Russian">Русский</option>
-                                <option value="German">Deutsch</option>
-                                <option value="Spanish">Español</option>
+                            <select class="form-select" aria-label="Default select example" onchange="changeLanguage(this.value)">
+                                @if (languageName == "English")
+                                {
+                                    <option value="English" selected='selected'>English</option>
+                                }
+                                else
+                                {
+                                    <option value="English">English</option>
+                                }
+                                
+                                @if (languageName == "Russian")
+                                {
+                                    <option value="Russian" selected='selected'>Russian</option>
+                                }
+                                else
+                                {
+                                    <option value="Russian">Russian</option>
+                                }
+                                
+                                @if (languageName == "German")
+                                {
+                                    <option value="German" selected='selected'>German</option>
+                                }
+                                else
+                                {
+                                    <option value="German">German</option>
+                                }
+                                
+                                @if (languageName == "Spanish")
+                                {
+                                    <option value="Spanish" selected='selected'>Spanish</option>
+                                }
+                                else
+                                {
+                                    <option value="Spanish">Spanish</option>
+                                }
                             </select>
                         </div>
                     </div>
@@ -62,6 +95,12 @@
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+        <script>
+            function changeLanguage(lang) {
+                window.location.href = '/Home/SetLanguage?lang=' + lang;
+            }
+        </script>
+
         @await RenderSectionAsync("Scripts", required: false)
     }
     catch (System.Exception ex)

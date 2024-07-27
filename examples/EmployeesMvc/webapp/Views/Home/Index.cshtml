@@ -6,7 +6,9 @@
 
 @try
 {
-    var languageName = "Russian";
+    var languageName = string.Empty;
+    if (!Context.Request.Cookies.TryGetValue("employeesmvc-lang", out languageName))
+        languageName = "English";
 
     ViewData["Title"] = _appSettings.Translate(languageName, "Page.Home");
 
