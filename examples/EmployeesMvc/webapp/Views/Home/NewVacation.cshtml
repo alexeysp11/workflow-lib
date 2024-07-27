@@ -19,23 +19,33 @@
     <div class="text-center">
         <h1 class="display-4">@_appSettings.Translate(languageName, "NewVacation")</h1>
         
-        <form method="post" asp-controller="Home" asp-action="AddNewVaction" role="post"> 
-            <label>@_appSettings.Translate(languageName, "FullName"): </label>
-            <input type="text" placeholder="@_appSettings.Translate(languageName, "FullName.Enter")" name="fullName">
-            <label>@_appSettings.Translate(languageName, "BeginDate"): </label>
-            <input type="date" name="beginDate">
-            <label>@_appSettings.Translate(languageName, "EndDate"): </label>
-            <input type="date" name="endDate">
-            <input type="submit" value="@_appSettings.Translate(languageName, "NewVacation.Add")" class="btn btn-primary" />
+        <form method="post" asp-controller="Home" asp-action="AddNewVaction" role="post">
+            <div class="form-group col-md-4">
+                <label for="fullName">@_appSettings.Translate(languageName, "FullName")</label>
+                <input type="text" class="form-control" id="fullName" name="fullName" placeholder="@_appSettings.Translate(languageName, "FullName.Enter")">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="beginDate">@_appSettings.Translate(languageName, "BeginDate")</label>
+                <input type="date" class="form-control" id="beginDate" name="beginDate" placeholder="@_appSettings.Translate(languageName, "FullName.Enter")">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="endDate">@_appSettings.Translate(languageName, "EndDate")</label>
+                <input type="date" class="form-control" id="endDate" name="endDate" placeholder="@_appSettings.Translate(languageName, "FullName.Enter")">
+            </div>
+            <div class="form-group col-md-4">
+                <br />
+                <input type="submit" value="@_appSettings.Translate(languageName, "NewVacation.Add")" class="btn btn-primary col-md-12" />
+            </div>
         </form>
     </div>
 
     <div>
-        @_appSettings.Translate(languageName, "Note"): 
+        <br />
+        <p>@_appSettings.Translate(languageName, "Note"):</p>
         <ul>
             <li>@_appSettings.Translate(languageName, "NewVacation.Note01"): <a class="text-dark" asp-area="" asp-controller="Home" asp-action="Employees">@_appSettings.Translate(languageName, "Employees")</a>. @_appSettings.Translate(languageName, "NewVacation.Note02").</li>
             <li>@_appSettings.Translate(languageName, "NewVacation.Note03").</li>
-        <ul>
+        </ul>
     </div>
 }
 catch (System.Exception ex)
