@@ -16,7 +16,9 @@
     {
         var languageName = string.Empty;
         if (!Context.Request.Cookies.TryGetValue("employeesmvc-lang", out languageName))
+        {
             languageName = "English";
+        }
 
         <header>
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -51,29 +53,29 @@
                                 
                                 @if (languageName == "Russian")
                                 {
-                                    <option value="Russian" selected='selected'>Russian</option>
+                                    <option value="Russian" selected='selected'>Русский</option>
                                 }
                                 else
                                 {
-                                    <option value="Russian">Russian</option>
+                                    <option value="Russian">Русский</option>
                                 }
                                 
                                 @if (languageName == "German")
                                 {
-                                    <option value="German" selected='selected'>German</option>
+                                    <option value="German" selected='selected'>Deutsch</option>
                                 }
                                 else
                                 {
-                                    <option value="German">German</option>
+                                    <option value="German">Deutsch</option>
                                 }
                                 
                                 @if (languageName == "Spanish")
                                 {
-                                    <option value="Spanish" selected='selected'>Spanish</option>
+                                    <option value="Spanish" selected='selected'>Español</option>
                                 }
                                 else
                                 {
-                                    <option value="Spanish">Spanish</option>
+                                    <option value="Spanish">Español</option>
                                 }
                             </select>
                         </div>
