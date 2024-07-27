@@ -1,35 +1,44 @@
+@using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations
 @using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources
 @model IEnumerable<Employee>
+@inject AppSettings _appSettings
 @{
     ViewData["Title"] = "Employees";
 }
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css" />
 
-<div class="text-center">
-    <h1 class="display-4">Employees</h1>
-</div>
 
 @try
 {
     var jobTitles = System.Enum.GetValues(typeof(JobTitle));
     var departments = System.Enum.GetValues(typeof(Department));
 
+    var languageName = string.Empty;
+    if (!Context.Request.Cookies.TryGetValue("employeesmvc-lang", out languageName))
+        languageName = "English";
+
+    ViewData["Title"] = _appSettings.Translate(languageName, "Employees");
+
+    <div class="text-center">
+        <h1 class="display-4">@_appSettings.Translate(languageName, "Employees")</h1>
+    </div>
+
     if (Model == null)
     {
-        <label>Employees are not generated yet...</label>
+        <label>@_appSettings.Translate(languageName, "Error.DataNotGeneratedYet")</label>
     }
     else
     {
         <table name="tblEmployees" id="tblEmployees" class="table table-bordered table-striped" style="width: 100%">
             <thead>
                 <tr>
-                    <th>Full name</th>
-                    <th>Gender</th>
-                    <th>Job title</th>
-                    <th>Department</th>
-                    <th>Age</th>
-                    <th>Birth date</th>
+                    <th>@_appSettings.Translate(languageName, "FullName")</th>
+                    <th>@_appSettings.Translate(languageName, "Gender")</th>
+                    <th>@_appSettings.Translate(languageName, "JobTitle")</th>
+                    <th>@_appSettings.Translate(languageName, "Department")</th>
+                    <th>@_appSettings.Translate(languageName, "Age")</th>
+                    <th>@_appSettings.Translate(languageName, "BirthDate")</th>
                 </tr>
             </thead>
             <tbody>

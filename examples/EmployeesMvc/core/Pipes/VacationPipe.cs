@@ -20,9 +20,9 @@ public class VacationPipe : AbstractPipe
     }
 
     /// <summary>
-    /// 
+    /// Generate vacations.
     /// </summary>
-    private List<Vacation> GenerateVacations(List<Employee> employees, int[] vacationIntervals)
+    private List<Vacation> GenerateVacations(List<Employee> employees, List<int> vacationIntervals)
     {
         var vacations = new List<Vacation>();
         foreach (var employee in employees)
@@ -35,7 +35,7 @@ public class VacationPipe : AbstractPipe
     }
 
     /// <summary>
-    /// 
+    /// Add vacation.
     /// </summary>
     public static void AddVacation(PipeResult result, string fullName, System.DateTime begin, System.DateTime end)
     {

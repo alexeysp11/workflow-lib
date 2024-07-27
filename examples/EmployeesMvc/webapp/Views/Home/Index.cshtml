@@ -1,14 +1,20 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations
+@inject AppSettings _appSettings
+@{
+    ViewData["Title"] = "Home";
 }
-<div class="text-center">
-    <h1 class="display-4">Employee Management System</h1>
-</div>
 
 @try
 {
+    var languageName = string.Empty;
+    if (!Context.Request.Cookies.TryGetValue("employeesmvc-lang", out languageName))
+        languageName = "English";
+
+    ViewData["Title"] = _appSettings.Translate(languageName, "Page.Home");
+
     <div class="text-center">
-        <p>This app allows you to effectively manage employee information</p>
+        <h1 class="display-4">@_appSettings.Translate(languageName, "EmployeeManagementSystem")</h1>
+        <p>@_appSettings.Translate(languageName, "EmployeeManagementSystem.Description")</p>
     </div>
 }
 catch (System.Exception ex)

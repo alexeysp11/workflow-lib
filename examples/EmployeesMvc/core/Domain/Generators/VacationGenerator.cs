@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
 
 namespace WorkflowLib.Examples.EmployeesMvc.Core.Domain.Generators;
@@ -12,7 +13,7 @@ public class VacationGenerator : IVacationGenerator
     /// </summary>
     public List<Vacation> GenerateVacations(
         Employee employee, 
-        int[] vacationIntervals, 
+        List<int> vacationIntervals, 
         System.Func<System.DateTime, System.DateTime, System.DateTime> generateDate)
     {
         var result = new List<Vacation>();

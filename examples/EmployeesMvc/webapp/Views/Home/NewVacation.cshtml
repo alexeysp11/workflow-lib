@@ -1,41 +1,51 @@
+@using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations
 @using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources
+@inject AppSettings _appSettings
 @{
-    ViewData["Title"] = "New Vacation Page";
+    ViewData["Title"] = "New Vacation";
 }
-
-<div class="text-center">
-    <h1 class="display-4">New vacation</h1>
-</div>
 
 @try
 {
-    var jobTitles = System.Enum.GetValues(typeof(JobTitle)); 
-    var departments = System.Enum.GetValues(typeof(Department)); 
+    var jobTitles = System.Enum.GetValues(typeof(JobTitle));
+    var departments = System.Enum.GetValues(typeof(Department));
+
+    var languageName = string.Empty;
+    if (!Context.Request.Cookies.TryGetValue("employeesmvc-lang", out languageName))
+        languageName = "English";
+
+    ViewData["Title"] = @_appSettings.Translate(languageName, "NewVacation");
 
     <div class="text-center">
-        <form method="post" asp-controller="Home" asp-action="AddNewVaction" role="post"> 
-            <label>Full name: </label>
-            <input type="text" placeholder="Enter full name" name="fullName">
-            <label>Begin date: </label>
-            <input type="date" name="beginDate">
-            <label>End date: </label>
-            <input type="date" name="endDate">
-            <input type="submit" value="Add new vacation" class="btn btn-primary" />
+        <h1 class="display-4">@_appSettings.Translate(languageName, "NewVacation")</h1>
+        
+        <form method="post" asp-controller="Home" asp-action="AddNewVaction" role="post">
+            <div class="form-group col-md-4">
+                <label for="fullName">@_appSettings.Translate(languageName, "FullName")</label>
+                <input type="text" class="form-control" id="fullName" name="fullName" placeholder="@_appSettings.Translate(languageName, "FullName.Enter")">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="beginDate">@_appSettings.Translate(languageName, "BeginDate")</label>
+                <input type="date" class="form-control" id="beginDate" name="beginDate" placeholder="@_appSettings.Translate(languageName, "FullName.Enter")">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="endDate">@_appSettings.Translate(languageName, "EndDate")</label>
+                <input type="date" class="form-control" id="endDate" name="endDate" placeholder="@_appSettings.Translate(languageName, "FullName.Enter")">
+            </div>
+            <div class="form-group col-md-4">
+                <br />
+                <input type="submit" value="@_appSettings.Translate(languageName, "NewVacation.Add")" class="btn btn-primary col-md-12" />
+            </div>
         </form>
     </div>
 
     <div>
-        Note: 
+        <br />
+        <p>@_appSettings.Translate(languageName, "Note"):</p>
         <ul>
-            <li>
-                Make sure that the employee with the specified full name exists in the initial dataset (see, 
-                <a class="text-dark" asp-area="" asp-controller="Home" asp-action="Employees">Employees page</a>).
-                If such user does not exist, contact admins to add the employee.
-            </li>
-            <li>
-                Employee's full name should be exactly the same as specified in the initial dataset.
-            </li>
-        <ul>
+            <li>@_appSettings.Translate(languageName, "NewVacation.Note01"): <a class="text-dark" asp-area="" asp-controller="Home" asp-action="Employees">@_appSettings.Translate(languageName, "Employees")</a>. @_appSettings.Translate(languageName, "NewVacation.Note02").</li>
+            <li>@_appSettings.Translate(languageName, "NewVacation.Note03").</li>
+        </ul>
     </div>
 }
 catch (System.Exception ex)

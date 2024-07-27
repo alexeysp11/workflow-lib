@@ -3,46 +3,52 @@
 @model IEnumerable<Vacation>
 @inject AppSettings _appSettings
 @{
-    ViewData["Title"] = "Vacations Page";
+    ViewData["Title"] = "Vacations";
 }
-
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css" />
-
-<div class="text-center">
-    <h1 class="display-4">Vacations</h1>
-</div>
 
 @try
 {
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css" />
+
     var filterOptionsSettings = _appSettings.StringSettings.FilterOptionsSettings;
     var jobTitles = System.Enum.GetValues(typeof(JobTitle));
     var departments = System.Enum.GetValues(typeof(Department));
 
+    var languageName = string.Empty;
+    if (!Context.Request.Cookies.TryGetValue("employeesmvc-lang", out languageName))
+        languageName = "English";
+
+    ViewData["Title"] = _appSettings.Translate(languageName, "Vacations");
+
+    <div class="text-center">
+        <h1 class="display-4">@_appSettings.Translate(languageName, "Vacations")</h1>
+    </div>
+
     <div>
-        <button class="btn btn-dark dropdown" data-bs-toggle="collapse" data-bs-target="#divVacationFilters">Vacation filters</button>
-        <a class="btn btn-primary" role="button" asp-controller="Home" asp-action="NewVacation">New vacation</a>
+        <button class="btn btn-dark dropdown" data-bs-toggle="collapse" data-bs-target="#divVacationFilters">@_appSettings.Translate(languageName, "VacationFilters")</button>
+        <a class="btn btn-primary" role="button" asp-controller="Home" asp-action="NewVacation">@_appSettings.Translate(languageName, "NewVacation")</a>
 
         <div class="collapse indent" id="divVacationFilters">
             <div class="text-center">
                 <form method="post" asp-controller="Home" asp-action="FilterVacations" role="post">
                     <div class="form-group col-md-4">
-                        <label for="fullName">Full name</label>
-                        <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Enter full name">
+                        <label for="fullName">@_appSettings.Translate(languageName, "FullName")</label>
+                        <input type="text" class="form-control" id="fullName" name="fullName" placeholder="@_appSettings.Translate(languageName, "FullName.Enter")">
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label for="minAge">Minimum age</label>
-                            <input type="text" class="form-control" id="minAge" name="minAge" placeholder="Enter age (min.)"
+                            <label for="minAge">@_appSettings.Translate(languageName, "MinimumAge")</label>
+                            <input type="text" class="form-control" id="minAge" name="minAge" placeholder="@_appSettings.Translate(languageName, "MinimumAge.Enter")"
                                 oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="maxAge">Maximum age</label>
-                            <input type="text" class="form-control" id="maxAge" name="maxAge" placeholder="Enter age (max.)"
+                            <label for="maxAge">@_appSettings.Translate(languageName, "MaximumAge")</label>
+                            <input type="text" class="form-control" id="maxAge" name="maxAge" placeholder="@_appSettings.Translate(languageName, "MaximumAge.Enter")"
                                 oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
                         </div>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="gender">Gender</label>
+                        <label for="gender">@_appSettings.Translate(languageName, "Gender")</label>
                         <select class="form-control" id="gender" name="gender">
                             <option></option>
                             <option>Male</option>
@@ -50,7 +56,7 @@
                         </select>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="jobTitle">Job title</label>
+                        <label for="jobTitle">@_appSettings.Translate(languageName, "JobTitle")</label>
                         <select class="form-control" id="jobTitle" name="jobTitle">
                             <option></option>
                             @foreach (var obj in jobTitles) 
@@ -60,7 +66,7 @@
                         </select>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="department">Department</label>
+                        <label for="department">@_appSettings.Translate(languageName, "Department")</label>
                         <select class="form-control" id="department" name="department">
                             <option></option>
                             @foreach (var obj in departments) 
@@ -71,12 +77,12 @@
                     </div>
 
                     <div class="form-group col-md-4">
-                        <label for="currentFullName">Current employee's full name</label>
-                        <input type="text" class="form-control" id="currentFullName" name="currentFullName" placeholder="Enter full name">
+                        <label for="currentFullName">@_appSettings.Translate(languageName, "FullName.CurrentEmployee")</label>
+                        <input type="text" class="form-control" id="currentFullName" name="currentFullName" placeholder="@_appSettings.Translate(languageName, "FullName.Enter")">
                     </div>
 
                     <div class="form-group col-md-4">
-                        <label for="filterOptions">Filter options</label>
+                        <label for="filterOptions">@_appSettings.Translate(languageName, "FilterOptions")</label>
                         <select class="form-control" id="filterOptions" name="filterOptions">
                             <option>@filterOptionsSettings.FindFilterOptionsShowAllFilteredVacations</option>
                             <option>@filterOptionsSettings.FindFilterOptionsShowIntersections</option>
@@ -86,23 +92,23 @@
 
                     <div class="form-group col-md-4">
                         <br>
-                        <input type="submit" value="Find" class="btn btn-primary col-md-12" />
+                        <input type="submit" value="@_appSettings.Translate(languageName, "Find")" class="btn btn-primary col-md-12" />
                     </div>
                     
                 </form>
             </div>
 
-            <label><b>Filters:</b> @TempData["filterInfoVacations"]</label>
+            <label><b>@_appSettings.Translate(languageName, "Filters"):</b> @TempData["filterInfoVacations"]</label>
             <br>
-            <label><b>Current employee:</b> @TempData["employeeInfoVacations"]</label>
+            <label><b>@_appSettings.Translate(languageName, "CurrentEmployee"):</b> @TempData["employeeInfoVacations"]</label>
             <br>
-            <label><b>Filter options:</b> @TempData["filterOptionsVacations"]</label>
+            <label><b>@_appSettings.Translate(languageName, "FilterOptions"):</b> @TempData["filterOptionsVacations"]</label>
         </div>
     </div>
 
     @if (Model == null)
     {
-        <label>Employees are not generated yet...</label>
+        <label>@_appSettings.Translate(languageName, "Error.DataNotGeneratedYet")</label>
     }
     else
     {
@@ -110,13 +116,13 @@
         <table name="tblVacations" id="tblVacations" class="table table-bordered table-striped" style="width: 100%">
             <thead>
                 <tr>
-                    <th>Full name</th>
-                    <th>Gender</th>
-                    <th>Job title</th>
-                    <th>Department</th>
-                    <th>Age</th>
-                    <th>Begin date</th>
-                    <th>End date</th>
+                    <th>@_appSettings.Translate(languageName, "FullName")</th>
+                    <th>@_appSettings.Translate(languageName, "Gender")</th>
+                    <th>@_appSettings.Translate(languageName, "JobTitle")</th>
+                    <th>@_appSettings.Translate(languageName, "Department")</th>
+                    <th>@_appSettings.Translate(languageName, "Age")</th>
+                    <th>@_appSettings.Translate(languageName, "BeginDate")</th>
+                    <th>@_appSettings.Translate(languageName, "EndDate")</th>
                 </tr>
             </thead>
             <tbody>

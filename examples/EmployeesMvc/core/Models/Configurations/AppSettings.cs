@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using WorkflowLib.Examples.EmployeesMvc.Core.Models.Localization;
+
 namespace WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
 
 /// <summary>
@@ -18,7 +21,7 @@ public class AppSettings
     /// <summary>
     /// Specifed pattern of vacation intervals.
     /// </summary>
-    public int[] VacationIntervals { get; set; }
+    public List<int> VacationIntervals { get; set; }
     
     /// <summary>
     /// Number of elements generated inside the collection of vacations.
@@ -27,7 +30,7 @@ public class AppSettings
     {
         get 
         {
-            return EmployeeQty * VacationIntervals.Length;
+            return EmployeeQty * VacationIntervals.Count;
         }
     } 
 
@@ -55,4 +58,29 @@ public class AppSettings
     /// String settings.
     /// </summary>
     public StringSettings StringSettings { get; set; }
+    
+    /// <summary>
+    /// Languages.
+    /// </summary>
+    public List<Language> Languages { get; set; }
+
+    /// <summary>
+    /// Get language elements.
+    /// </summary>
+    public List<LanguageElement> GetLanguageElements(string languageName)
+    {
+        var language = Languages.FirstOrDefault(x => x.Name == languageName);
+        if (language == null)
+            throw new System.Exception($"Language '{languageName}' could not be found");
+        return language.Elements;
+    }
+
+    /// <summary>
+    /// Get language elements.
+    /// </summary>
+    public string Translate(string languageName, string key)
+    {
+        var languageElement = GetLanguageElements(languageName).FirstOrDefault(x => x.Key == key);
+        return languageElement?.Value;
+    }
 }

@@ -143,6 +143,21 @@ public class HomeController : Controller
         return RedirectToAction("Vacations");
     }
 
+    public IActionResult SetLanguage(string lang)
+    {
+        Response.Cookies.Append(
+            "employeesmvc-lang", 
+            lang, 
+            new CookieOptions
+            {
+                Expires = DateTimeOffset.UtcNow.AddDays(1),
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Strict
+            });
+        return Redirect(Request.Headers["Referer"].ToString());
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
