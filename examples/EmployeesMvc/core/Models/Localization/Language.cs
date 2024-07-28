@@ -13,6 +13,11 @@ public class Language
     public string Name { get; set; }
 
     /// <summary>
+    /// Display name.
+    /// </summary>
+    public string DisplayName { get; set; }
+
+    /// <summary>
     /// Elements.
     /// </summary>
     public List<LanguageElement> Elements { get; set; }
