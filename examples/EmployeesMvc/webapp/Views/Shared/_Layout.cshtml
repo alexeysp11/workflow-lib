@@ -43,22 +43,16 @@
                         <div class="navbar-nav flex-grow-2" style="text-align: right;">
                             <select class="form-select" aria-label="Default select example" onchange="changeLanguage(this.value)">
                                 @{
-                                    var languages = new[]
+                                    var languages = _appSettings.Languages;
+                                    foreach (var language in languages)
                                     {
-                                        new { Key = "English", DispalyName = "English" },
-                                        new { Key = "Russian", DispalyName = "Русский" },
-                                        new { Key = "German", DispalyName = "Deutsch" },
-                                        new { Key = "Spanish", DispalyName = "Español" }
-                                    };
-                                    @foreach (var language in languages)
-                                    {
-                                        if (languageName == language.Key)
+                                        if (languageName == language.Name)
                                         {
-                                            <option value="@language.Key" selected='selected'>@language.DispalyName</option>
+                                            <option value="@language.Name" selected='selected'>@language.DisplayName</option>
                                         }
                                         else
                                         {
-                                            <option value="@language.Key">@language.DispalyName</option>
+                                            <option value="@language.Name">@language.DisplayName</option>
                                         }
                                     }
                                 }
