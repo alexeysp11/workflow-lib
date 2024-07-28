@@ -42,40 +42,25 @@
                         </ul>
                         <div class="navbar-nav flex-grow-2" style="text-align: right;">
                             <select class="form-select" aria-label="Default select example" onchange="changeLanguage(this.value)">
-                                @if (languageName == "English")
-                                {
-                                    <option value="English" selected='selected'>English</option>
-                                }
-                                else
-                                {
-                                    <option value="English">English</option>
-                                }
-                                
-                                @if (languageName == "Russian")
-                                {
-                                    <option value="Russian" selected='selected'>Русский</option>
-                                }
-                                else
-                                {
-                                    <option value="Russian">Русский</option>
-                                }
-                                
-                                @if (languageName == "German")
-                                {
-                                    <option value="German" selected='selected'>Deutsch</option>
-                                }
-                                else
-                                {
-                                    <option value="German">Deutsch</option>
-                                }
-                                
-                                @if (languageName == "Spanish")
-                                {
-                                    <option value="Spanish" selected='selected'>Español</option>
-                                }
-                                else
-                                {
-                                    <option value="Spanish">Español</option>
+                                @{
+                                    var languages = new[]
+                                    {
+                                        new { Key = "English", DispalyName = "English" },
+                                        new { Key = "Russian", DispalyName = "Русский" },
+                                        new { Key = "German", DispalyName = "Deutsch" },
+                                        new { Key = "Spanish", DispalyName = "Español" }
+                                    };
+                                    @foreach (var language in languages)
+                                    {
+                                        if (languageName == language.Key)
+                                        {
+                                            <option value="@language.Key" selected='selected'>@language.DispalyName</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@language.Key">@language.DispalyName</option>
+                                        }
+                                    }
                                 }
                             </select>
                         </div>
