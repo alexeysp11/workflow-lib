@@ -16,7 +16,9 @@
 
     var languageName = string.Empty;
     if (!Context.Request.Cookies.TryGetValue("employeesmvc-lang", out languageName))
+    {
         languageName = "English";
+    }
 
     ViewData["Title"] = _appSettings.Translate(languageName, "Employees");
 
@@ -46,7 +48,9 @@
                 {
                     var age = System.DateTime.Now.Year - obj.BirthDate.Year;
                     if (obj.BirthDate.Month > System.DateTime.Now.Month && obj.BirthDate.Day > System.DateTime.Now.Day)
-                        age -= 1; 
+                    {
+                        age -= 1;
+                    }
                     <tr>
                         <td>@obj.FullName</td>
                         <td>@obj.Gender</td>

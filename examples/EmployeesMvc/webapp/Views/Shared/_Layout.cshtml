@@ -42,40 +42,19 @@
                         </ul>
                         <div class="navbar-nav flex-grow-2" style="text-align: right;">
                             <select class="form-select" aria-label="Default select example" onchange="changeLanguage(this.value)">
-                                @if (languageName == "English")
-                                {
-                                    <option value="English" selected='selected'>English</option>
-                                }
-                                else
-                                {
-                                    <option value="English">English</option>
-                                }
-                                
-                                @if (languageName == "Russian")
-                                {
-                                    <option value="Russian" selected='selected'>Русский</option>
-                                }
-                                else
-                                {
-                                    <option value="Russian">Русский</option>
-                                }
-                                
-                                @if (languageName == "German")
-                                {
-                                    <option value="German" selected='selected'>Deutsch</option>
-                                }
-                                else
-                                {
-                                    <option value="German">Deutsch</option>
-                                }
-                                
-                                @if (languageName == "Spanish")
-                                {
-                                    <option value="Spanish" selected='selected'>Español</option>
-                                }
-                                else
-                                {
-                                    <option value="Spanish">Español</option>
+                                @{
+                                    var languages = _appSettings.Languages;
+                                    foreach (var language in languages)
+                                    {
+                                        if (languageName == language.Name)
+                                        {
+                                            <option value="@language.Name" selected='selected'>@language.DisplayName</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@language.Name">@language.DisplayName</option>
+                                        }
+                                    }
                                 }
                             </select>
                         </div>
