@@ -37,9 +37,10 @@ public class FilteredRepository<TEntity> where TEntity : class
     /// </summary>
     public virtual IEnumerable<TEntity> GetFiltered(string uid)
     {
-        if (string.IsNullOrEmpty(uid)) throw new System.Exception("UID could not be null or empty");
+        if (string.IsNullOrEmpty(uid))
+            throw new System.Exception("UID could not be null or empty");
 
-        IEnumerable<TEntity> list = new List<TEntity>();
+        var list = new List<TEntity>();
         if (filteredDbSet.ContainsKey(uid))
         {
             if (filteredDbSet[uid] != null)
@@ -53,7 +54,8 @@ public class FilteredRepository<TEntity> where TEntity : class
     /// </summary>
     public virtual string InsertFiltered(IEnumerable<TEntity> entities)
     {
-        if (entities == null) throw new System.Exception("List of entities could not be null");
+        if (entities == null)
+            throw new System.Exception("List of entities could not be null");
 
         string uid = string.Empty;
         do 
@@ -83,7 +85,7 @@ public class FilteredRepository<TEntity> where TEntity : class
         aTimer.Enabled = true;
     }
     /// <summary>
-    /// Deletes olde values.
+    /// Deletes old values.
     /// </summary>
     private void OnTimedEvent(object source, System.Timers.ElapsedEventArgs e)
     {

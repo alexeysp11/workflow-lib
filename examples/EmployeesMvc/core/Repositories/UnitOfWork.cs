@@ -8,7 +8,7 @@ using WorkflowLib.Examples.EmployeesMvc.Core.Pipes;
 namespace WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
 
 /// <summary>
-/// Implementation of the 'Unit of work' pattern.
+/// Implementation of the Unit of work pattern.
 /// </summary>
 public class UnitOfWork : IUnitOfWork
 {
@@ -121,7 +121,7 @@ public class UnitOfWork : IUnitOfWork
         if (employees.Count == 0) 
             return;
         
-        // Check if the vacations overlap 
+        // Check if the vacations overlap.
         var vacations = VacationRepository
             .Get(filter: x => x.Employee.FullName == fullName
                             && (
@@ -176,10 +176,15 @@ public class UnitOfWork : IUnitOfWork
     /// </summary>
     private void InsertIntoRepository(PipeResult result)
     {
-        System.Console.WriteLine("Data added into the repository");
         foreach (var employee in result.Employees)
+        {
             EmployeeRepository.Insert(employee);
+        }
         foreach (var vacation in result.Vacations)
+        {
             VacationRepository.Insert(vacation);
+        }
+
+        System.Console.WriteLine("Data added into the repository");
     }
 }

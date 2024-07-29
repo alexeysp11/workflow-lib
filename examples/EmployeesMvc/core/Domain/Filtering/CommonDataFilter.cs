@@ -44,24 +44,8 @@ public class CommonDataFilter : ICommonDataFilter
             if (!System.Int32.TryParse(ageMax, out ageMaxInt)) 
                 throw new System.Exception("Unable to convert string parameter 'ageMax' to integer");
         }
-        return FilterEmployees(fullName, ageMinInt, ageMaxInt, gender, jobTitle, department, filterOptions, getEmployees);
-    }
-
-    /// <summary>
-    /// Applies filter to the employees collection.
-    /// </summary>
-    private IEnumerable<Employee> FilterEmployees(
-        string fullName,
-        int ageMin,
-        int ageMax,
-        string gender,
-        string jobTitle,
-        string department,
-        string filterOptions,
-        Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees)
-    {
-        var dateMin = System.DateTime.Now.AddYears(-ageMax);
-        var dateMax = System.DateTime.Now.AddYears(-ageMin);
+        var dateMin = System.DateTime.Now.AddYears(-ageMaxInt);
+        var dateMax = System.DateTime.Now.AddYears(-ageMinInt);
         return FilterEmployees(fullName, dateMin, dateMax, gender, jobTitle, department, filterOptions, getEmployees);
     }
 
