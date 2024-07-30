@@ -8,7 +8,6 @@
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css" />
 
-
 @try
 {
     var jobTitles = System.Enum.GetValues(typeof(JobTitle));
@@ -24,11 +23,15 @@
 
     <div class="text-center">
         <h1 class="display-4">@_appSettings.Translate(languageName, "Employees")</h1>
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <p class="text-danger">Error message: @TempData["ErrorMessage"]</p>
+        }
     </div>
 
     if (Model == null)
     {
-        <label>@_appSettings.Translate(languageName, "Error.DataNotGeneratedYet")</label>
+        <p class="text-danger">@_appSettings.Translate(languageName, "Error.DataNotGeneratedYet")</p>
     }
     else
     {

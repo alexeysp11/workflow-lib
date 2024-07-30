@@ -1,4 +1,5 @@
 using System.Linq.Expressions;
+using WorkflowLib.Examples.EmployeesMvc.Core.Dto;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
 
 namespace WorkflowLib.Examples.EmployeesMvc.Core.Domain.Filtering;
@@ -6,22 +7,12 @@ namespace WorkflowLib.Examples.EmployeesMvc.Core.Domain.Filtering;
 public interface ICommonDataFilter
 {
     IEnumerable<Employee> FilterEmployees(
-        string fullName,
-        string ageMin,
-        string ageMax,
-        string gender,
-        string jobTitle,
-        string department,
+        EmployeeDto employeeDto,
         string filterOptions,
         Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees);
     
     IEnumerable<Vacation> FilterVacations(
-        string fullName,
-        string ageMin,
-        string ageMax,
-        string gender,
-        string jobTitle,
-        string department,
+        EmployeeDto employeeDto,
         string currentFullName,
         string filterOptions,
         Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees,
