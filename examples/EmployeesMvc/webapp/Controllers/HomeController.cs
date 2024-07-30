@@ -59,7 +59,7 @@ public class HomeController : Controller
         try
         {
             // Restore previously filtered elements.
-            var uidObj = TempData[_tempDataSettings.VacationsUidStr];
+            var uidObj = TempData[_tempDataSettings.VacationsUid];
             if (uidObj != null && !string.IsNullOrEmpty(uidObj.ToString()))
             {
                 var vacationsFiltered = _unitOfWork.GetFilteredVacations(uidObj.ToString()).ToList();
@@ -68,9 +68,9 @@ public class HomeController : Controller
             }
 
             // Set info about filters.
-            TempData[_tempDataSettings.FilterInfoVacationsStr] = _filterOptionsSettings.NoFiltersApplied;
-            TempData[_tempDataSettings.EmployeeInfoVacationsStr] = _filterOptionsSettings.NoFiltersApplied;
-            TempData[_tempDataSettings.FilterOptionsVacationsStr] = _filterOptionsSettings.NoFiltersApplied;
+            TempData[_tempDataSettings.FilterInfoVacations] = _filterOptionsSettings.NoFiltersApplied;
+            TempData[_tempDataSettings.EmployeeInfoVacations] = _filterOptionsSettings.NoFiltersApplied;
+            TempData[_tempDataSettings.FilterOptionsVacations] = _filterOptionsSettings.NoFiltersApplied;
 
             // Get all elements.
             vacations = _unitOfWork.GetVacations();
@@ -129,12 +129,12 @@ public class HomeController : Controller
             string uid = _unitOfWork.InsertFilteredVacations(vacations);
 
             // Store UID and  in views.
-            TempData[_tempDataSettings.VacationsUidStr] = uid;
+            TempData[_tempDataSettings.VacationsUid] = uid;
 
             // Store info about filtering.
-            TempData[_tempDataSettings.FilterInfoVacationsStr] = _filterOptionsSettings.GetFilterOptionsString(fullName, ageMin, ageMax, gender, jobTitle, department);  
-            TempData[_tempDataSettings.EmployeeInfoVacationsStr] = _filterOptionsSettings.GetFilterOptionsString(currentFullName);  
-            TempData[_tempDataSettings.FilterOptionsVacationsStr] = filterOptions;
+            TempData[_tempDataSettings.FilterInfoVacations] = _filterOptionsSettings.GetFilterOptionsString(fullName, ageMin, ageMax, gender, jobTitle, department);  
+            TempData[_tempDataSettings.EmployeeInfoVacations] = _filterOptionsSettings.GetFilterOptionsString(currentFullName);  
+            TempData[_tempDataSettings.FilterOptionsVacations] = filterOptions;
         }
         catch (System.Exception ex)
         {

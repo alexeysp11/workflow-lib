@@ -6,37 +6,37 @@ namespace WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
 public class TempDataSettings
 {
     /// <summary>
-    /// Name of a variable for storing UID of initial dataset of employees.
+    /// Stores UID of initial dataset of employees.
     /// </summary>
-    public string EmployeesUidStr { get; set; }
+    public string EmployeesUid { get; set; }
     
     /// <summary>
-    /// Name of a variable for storing UID of initial dataset of vacations.
+    /// Stores UID of initial dataset of vacations.
     /// </summary>
-    public string VacationsUidStr { get; set; }
+    public string VacationsUid { get; set; }
     
     /// <summary>
-    /// Name of a variable for storing filter info on the Employees page.
+    /// Stores filter info on the Employees page.
     /// </summary>
-    public string FilterInfoEmployeesStr { get; set; }
+    public string FilterInfoEmployees { get; set; }
     
     /// <summary>
-    /// Name of a variable for storing filter info on the Vacations page.
+    /// Stores filter info on the Vacations page.
     /// </summary>
-    public string FilterInfoVacationsStr { get; set; }
+    public string FilterInfoVacations { get; set; }
     
     /// <summary>
-    /// Name of a variable for storing filter info applied for a "current empolyee" on the Vacations page.
+    /// Stores filter info applied for a "current empolyee" on the Vacations page.
     /// </summary>
-    public string EmployeeInfoVacationsStr { get; set; }
+    public string EmployeeInfoVacations { get; set; }
     
     /// <summary>
-    /// Name of a variable for storing filter options on the Employees page.
+    /// Stores filter options on the Employees page.
     /// </summary>
-    public string FilterOptionsEmployeesStr { get; set; }
+    public string FilterOptionsEmployees { get; set; }
     
     /// <summary>
-    /// Name of a variable for storing filter options on the Vacations page.
+    /// Stores filter options on the Vacations page.
     /// </summary>
-    public string FilterOptionsVacationsStr { get; set; }
+    public string FilterOptionsVacations { get; set; }
 }
