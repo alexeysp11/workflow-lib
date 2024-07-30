@@ -90,9 +90,9 @@
                     <div class="form-group col-md-4">
                         <label for="filterOptions">@_appSettings.Translate(languageName, "FilterOptions")</label>
                         <select class="form-control" id="filterOptions" name="filterOptions">
-                            <option>@filterOptionsSettings.FindFilterOptionsShowAllFilteredVacations</option>
-                            <option>@filterOptionsSettings.FindFilterOptionsShowIntersections</option>
-                            <option>@filterOptionsSettings.FindFilterOptionsExcludeIntersections</option>
+                            <option value="@filterOptionsSettings.FindFilterOptionsShowAllFilteredVacations">@_appSettings.Translate(languageName, $"FilterOptions.ShowAllFilteredVacations")</option>
+                            <option value="@filterOptionsSettings.FindFilterOptionsShowIntersections">@_appSettings.Translate(languageName, $"FilterOptions.ShowIntersections")</option>
+                            <option value="@filterOptionsSettings.FindFilterOptionsExcludeIntersections">@_appSettings.Translate(languageName, $"FilterOptions.ExcludeIntersections")</option>
                         </select>
                     </div>
 
