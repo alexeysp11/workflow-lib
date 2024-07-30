@@ -40,7 +40,7 @@ public class FilterOptionsSettings
     /// </summary>
     public string GetFilterOptionsString(string fullName = "", string ageMin = "", string ageMax = "", string gender = "", string jobTitle = "", string department = "")
     {
-        // If no filters applied 
+        // If no filters applied.
         if (string.IsNullOrEmpty(fullName) && string.IsNullOrEmpty(ageMin) 
             && string.IsNullOrEmpty(ageMax) && string.IsNullOrEmpty(gender)
             && string.IsNullOrEmpty(jobTitle) && string.IsNullOrEmpty(department))
