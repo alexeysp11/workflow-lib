@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.Pipes;
-using WorkflowLib.Examples.EmployeesMvc.Core.Domain.Generators;
+using WorkflowLib.Examples.EmployeesMvc.Core.Domain.DatasetGenerators;
 
 namespace WorkflowLib.Examples.EmployeesMvc.Core.Pipes;
 
