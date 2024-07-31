@@ -12,9 +12,7 @@ namespace WorkflowLib.Examples.EmployeesMvc.Controllers;
 
 public class HomeController : Controller
 {
-    private AppSettings _appSettings;
-    private TempDataSettings _tempDataSettings;
-    
+    private readonly AppSettings _appSettings;
     private readonly ILogger<HomeController> _logger;
     private readonly IUnitOfWork _unitOfWork;
     private readonly ICommonDataFilter _commonFilter;
@@ -26,8 +24,6 @@ public class HomeController : Controller
         ICommonDataFilter commonFilter)
     {
         _appSettings = appSettings;
-        _tempDataSettings = _appSettings.StringSettings.TempDataSettings;
-
         _logger = logger;
         _unitOfWork = unitOfWork;
         _commonFilter = commonFilter;
@@ -58,7 +54,7 @@ public class HomeController : Controller
         try
         {
             // Restore previously filtered elements.
-            var uidObj = TempData[_tempDataSettings.VacationsUid];
+            var uidObj = TempData[CacheUidType.Vacations.ToString()];
             if (uidObj != null && !string.IsNullOrEmpty(uidObj.ToString()))
             {
                 var vacationsFiltered = _unitOfWork.GetFilteredVacations(uidObj.ToString()).ToList();
@@ -67,9 +63,9 @@ public class HomeController : Controller
             }
 
             // Set info about filters.
-            TempData[_tempDataSettings.FilterInfoVacations] = FilterOptionType.NoFiltersApplied;
-            TempData[_tempDataSettings.EmployeeInfoVacations] = FilterOptionType.NoFiltersApplied;
-            TempData[_tempDataSettings.FilterOptionsVacations] = FilterOptionType.NoFiltersApplied;
+            TempData[CacheUidType.FilterInfoVacations.ToString()] = FilterOptionType.NoFiltersApplied;
+            TempData[CacheUidType.EmployeeInfoVacations.ToString()] = FilterOptionType.NoFiltersApplied;
+            TempData[CacheUidType.FilterOptionsVacations.ToString()] = FilterOptionType.NoFiltersApplied;
 
             // Get all elements.
             vacations = _unitOfWork.GetVacations();
@@ -128,12 +124,12 @@ public class HomeController : Controller
             string uid = _unitOfWork.InsertFilteredVacations(vacations);
 
             // Store UID and  in views.
-            TempData[_tempDataSettings.VacationsUid] = uid;
+            TempData[CacheUidType.Vacations.ToString()] = uid;
 
             // Store info about filtering.
-            TempData[_tempDataSettings.FilterInfoVacations] = FilterOptionsSettings.GetFilterOptionsString(fullName, ageMin, ageMax, gender, jobTitle, department);  
-            TempData[_tempDataSettings.EmployeeInfoVacations] = FilterOptionsSettings.GetFilterOptionsString(currentFullName);  
-            TempData[_tempDataSettings.FilterOptionsVacations] = filterOptions;
+            TempData[CacheUidType.FilterInfoVacations.ToString()] = FilterOptionsSettings.GetFilterOptionsString(fullName, ageMin, ageMax, gender, jobTitle, department);  
+            TempData[CacheUidType.EmployeeInfoVacations.ToString()] = FilterOptionsSettings.GetFilterOptionsString(currentFullName);  
+            TempData[CacheUidType.FilterOptionsVacations.ToString()] = filterOptions;
         }
         catch (System.Exception ex)
         {
