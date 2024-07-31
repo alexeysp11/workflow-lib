@@ -9,9 +9,4 @@ public class StringSettings
     /// Temporary data settings.
     /// </summary>
     public TempDataSettings TempDataSettings { get; set; }
-
-    /// <summary>
-    /// Filter options settings.
-    /// </summary>
-    public FilterOptionsSettings FilterOptionsSettings { get; set; }
 }

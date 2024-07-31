@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 using WorkflowLib.Examples.EmployeesMvc.Core.Dto;
+using WorkflowLib.Examples.EmployeesMvc.Core.Enums;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
 
@@ -11,12 +12,10 @@ namespace WorkflowLib.Examples.EmployeesMvc.Core.Domain.Filtering;
 public class CommonDataFilter : ICommonDataFilter
 {
     private AppSettings _appSettings;
-    private FilterOptionsSettings _filterOptionsSettings;
 
     public CommonDataFilter(AppSettings appSettings)
     {
         _appSettings = appSettings;
-        _filterOptionsSettings = _appSettings.StringSettings.FilterOptionsSettings;
     }
 
     /// <summary>
@@ -24,7 +23,7 @@ public class CommonDataFilter : ICommonDataFilter
     /// </summary>
     public IEnumerable<Employee> FilterEmployees(
         EmployeeDto employeeDto,
-        string filterOptions,
+        FilterOptionType filterOptions,
         Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees)
     {
         IEnumerable<Employee> result;
@@ -53,7 +52,7 @@ public class CommonDataFilter : ICommonDataFilter
                 result = result.Where(x => x.Department.ToString() == employeeDto.Department);
             
             // Retrive date using exclude filter.
-            if (filterOptions == _filterOptionsSettings.FindFilterOptionsExcludeEmployee)
+            if (filterOptions == FilterOptionType.ExcludeEmployee)
             {
                 var excludeList = getEmployees(x => true);
                 foreach (var item in result)
@@ -70,7 +69,7 @@ public class CommonDataFilter : ICommonDataFilter
     public IEnumerable<Vacation> FilterVacations(
         EmployeeDto employeeDto,
         string currentFullName,
-        string filterOptions,
+        FilterOptionType filterOptions,
         Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees,
         Func<Expression<Func<Vacation, bool>>, List<Vacation>> getVacations)
     {
@@ -94,7 +93,7 @@ public class CommonDataFilter : ICommonDataFilter
         }
         else
         {
-            employees = FilterEmployees(employeeDto, "", getEmployees).ToList();
+            employees = FilterEmployees(employeeDto, FilterOptionType.NoFiltersApplied, getEmployees).ToList();
         }
 
         // Get vacations using filter.
@@ -122,9 +121,9 @@ public class CommonDataFilter : ICommonDataFilter
         }
 
         // Apply filter options.
-        if (filterOptions == _filterOptionsSettings.FindFilterOptionsShowIntersections)
+        if (filterOptions == FilterOptionType.ShowIntersectionsVacations)
             return GetIntersections(vacations, currentFullName);
-        if (filterOptions == _filterOptionsSettings.FindFilterOptionsExcludeIntersections)
+        if (filterOptions == FilterOptionType.ExcludeIntersectionsVacations)
             return ExcludeIntersections(vacations, currentFullName);
         return vacations;
     }

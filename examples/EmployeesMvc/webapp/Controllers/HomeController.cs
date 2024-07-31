@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WorkflowLib.Examples.EmployeesMvc.Core.Domain.Filtering;
 using WorkflowLib.Examples.EmployeesMvc.Core.Dto;
+using WorkflowLib.Examples.EmployeesMvc.Core.Enums;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
@@ -12,7 +13,6 @@ namespace WorkflowLib.Examples.EmployeesMvc.Controllers;
 public class HomeController : Controller
 {
     private AppSettings _appSettings;
-    private FilterOptionsSettings _filterOptionsSettings;
     private TempDataSettings _tempDataSettings;
     
     private readonly ILogger<HomeController> _logger;
@@ -26,7 +26,6 @@ public class HomeController : Controller
         ICommonDataFilter commonFilter)
     {
         _appSettings = appSettings;
-        _filterOptionsSettings = _appSettings.StringSettings.FilterOptionsSettings;
         _tempDataSettings = _appSettings.StringSettings.TempDataSettings;
 
         _logger = logger;
@@ -68,9 +67,9 @@ public class HomeController : Controller
             }
 
             // Set info about filters.
-            TempData[_tempDataSettings.FilterInfoVacations] = _filterOptionsSettings.NoFiltersApplied;
-            TempData[_tempDataSettings.EmployeeInfoVacations] = _filterOptionsSettings.NoFiltersApplied;
-            TempData[_tempDataSettings.FilterOptionsVacations] = _filterOptionsSettings.NoFiltersApplied;
+            TempData[_tempDataSettings.FilterInfoVacations] = FilterOptionType.NoFiltersApplied;
+            TempData[_tempDataSettings.EmployeeInfoVacations] = FilterOptionType.NoFiltersApplied;
+            TempData[_tempDataSettings.FilterOptionsVacations] = FilterOptionType.NoFiltersApplied;
 
             // Get all elements.
             vacations = _unitOfWork.GetVacations();
@@ -97,7 +96,7 @@ public class HomeController : Controller
         string jobTitle,
         string department,
         string currentFullName,
-        string filterOptions)
+        FilterOptionType filterOptions)
     {
         try
         {
@@ -132,8 +131,8 @@ public class HomeController : Controller
             TempData[_tempDataSettings.VacationsUid] = uid;
 
             // Store info about filtering.
-            TempData[_tempDataSettings.FilterInfoVacations] = _filterOptionsSettings.GetFilterOptionsString(fullName, ageMin, ageMax, gender, jobTitle, department);  
-            TempData[_tempDataSettings.EmployeeInfoVacations] = _filterOptionsSettings.GetFilterOptionsString(currentFullName);  
+            TempData[_tempDataSettings.FilterInfoVacations] = FilterOptionsSettings.GetFilterOptionsString(fullName, ageMin, ageMax, gender, jobTitle, department);  
+            TempData[_tempDataSettings.EmployeeInfoVacations] = FilterOptionsSettings.GetFilterOptionsString(currentFullName);  
             TempData[_tempDataSettings.FilterOptionsVacations] = filterOptions;
         }
         catch (System.Exception ex)
