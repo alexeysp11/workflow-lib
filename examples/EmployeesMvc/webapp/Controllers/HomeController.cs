@@ -86,8 +86,8 @@ public class HomeController : Controller
     [Route("/Home")]
     public IActionResult FilterVacations(
         string fullName,
-        string ageMin,
-        string ageMax,
+        int? ageMin,
+        int? ageMax,
         string gender,
         string jobTitle,
         string department,
@@ -97,23 +97,11 @@ public class HomeController : Controller
         try
         {
             // Get filtered data.
-            int ageMinInt = _appSettings.EmployeeMinAge;
-            int ageMaxInt = _appSettings.EmployeeMaxAge;
-            if (!string.IsNullOrEmpty(ageMin))
-            {
-                if (!System.Int32.TryParse(ageMin, out ageMinInt)) 
-                    throw new System.Exception($"Unable to convert string parameter '{nameof(ageMin)}' to integer");
-            }
-            if (!string.IsNullOrEmpty(ageMax))
-            {
-                if (!System.Int32.TryParse(ageMax, out ageMaxInt)) 
-                    throw new System.Exception($"Unable to convert string parameter '{nameof(ageMax)}' to integer");
-            }
             var employeeDto = new EmployeeDto
             {
                 FullName = fullName,
-                AgeMin = ageMinInt,
-                AgeMax = ageMaxInt,
+                AgeMin = ageMin == null ? _appSettings.EmployeeMinAge : (int)ageMin,
+                AgeMax = ageMax == null ? _appSettings.EmployeeMaxAge : (int)ageMax,
                 Gender = gender,
                 JobTitle = jobTitle,
                 Department = department
@@ -128,8 +116,8 @@ public class HomeController : Controller
 
             // Store info about filtering.
             TempData[CacheUidType.EmployeeFullname.ToString()] = fullName;
-            TempData[CacheUidType.EmployeeMinAge.ToString()] = ageMinInt;
-            TempData[CacheUidType.EmployeeMaxAge.ToString()] = ageMaxInt;
+            TempData[CacheUidType.EmployeeMinAge.ToString()] = ageMin;
+            TempData[CacheUidType.EmployeeMaxAge.ToString()] = ageMax;
             TempData[CacheUidType.EmployeeGender.ToString()] = gender;
             TempData[CacheUidType.EmployeeJobTitle.ToString()] = jobTitle;
             TempData[CacheUidType.EmployeeDepartment.ToString()] = department;
