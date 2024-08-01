@@ -38,8 +38,12 @@
             <div class="text-center">
                 <form method="post" asp-controller="Home" asp-action="FilterVacations" role="post">
                     <div class="form-group col-md-4">
-                        <label for="fullName">@_appSettings.Translate(languageName, "FullName")</label>
-                        <input type="text" class="form-control" id="fullName" name="fullName" placeholder="@_appSettings.Translate(languageName, "FullName.Enter")">
+                        @{
+                            var cacheFullname = TempData[CacheUidType.EmployeeFullname.ToString()];
+                            <label for="fullName">@_appSettings.Translate(languageName, "FullName")</label>
+                            <input type="text" class="form-control" id="fullName" name="fullName" placeholder="@_appSettings.Translate(languageName, "FullName.Enter")"
+                                value="@cacheFullname">
+                        }
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
@@ -120,8 +124,12 @@
                     </div>
 
                     <div class="form-group col-md-4">
-                        <label for="currentFullName">@_appSettings.Translate(languageName, "FullName.CurrentEmployee")</label>
-                        <input type="text" class="form-control" id="currentFullName" name="currentFullName" placeholder="@_appSettings.Translate(languageName, "FullName.Enter")">
+                        @{
+                            var cacheCurrentFullname = TempData[CacheUidType.CurrentEmployeeFullname.ToString()];
+                            <label for="currentFullName">@_appSettings.Translate(languageName, "FullName.CurrentEmployee")</label>
+                            <input type="text" class="form-control" id="currentFullName" name="currentFullName" placeholder="@_appSettings.Translate(languageName, "FullName.Enter")"
+                                value="@cacheCurrentFullname">
+                        }
                     </div>
 
                     <div class="form-group col-md-4">
@@ -155,10 +163,6 @@
                     
                 </form>
             </div>
-
-            <label><b>@_appSettings.Translate(languageName, "Filters"):</b> @TempData["filterInfoVacations"]</label>
-            <br>
-            <label><b>@_appSettings.Translate(languageName, "CurrentEmployee"):</b> @TempData["employeeInfoVacations"]</label>
         </div>
     </div>
 
