@@ -127,8 +127,13 @@ public class HomeController : Controller
             TempData[CacheUidType.VacationsUid.ToString()] = uid;
 
             // Store info about filtering.
-            TempData[CacheUidType.FilterInfoVacations.ToString()] = FilterOptionsSettings.GetFilterOptionsString(fullName, ageMin, ageMax, gender, jobTitle, department);  
-            TempData[CacheUidType.EmployeeInfoVacations.ToString()] = FilterOptionsSettings.GetFilterOptionsString(currentFullName);  
+            TempData[CacheUidType.EmployeeFullname.ToString()] = fullName;
+            TempData[CacheUidType.EmployeeMinAge.ToString()] = ageMinInt;
+            TempData[CacheUidType.EmployeeMaxAge.ToString()] = ageMaxInt;
+            TempData[CacheUidType.EmployeeGender.ToString()] = gender;
+            TempData[CacheUidType.EmployeeJobTitle.ToString()] = jobTitle;
+            TempData[CacheUidType.EmployeeDepartment.ToString()] = department;
+            TempData[CacheUidType.CurrentEmployeeFullname.ToString()] = currentFullName;
             TempData[CacheUidType.FilterOptionsVacations.ToString()] = filterOptions;
         }
         catch (System.Exception ex)

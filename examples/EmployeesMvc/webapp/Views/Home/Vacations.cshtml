@@ -56,28 +56,65 @@
                     <div class="form-group col-md-4">
                         <label for="gender">@_appSettings.Translate(languageName, "Gender")</label>
                         <select class="form-control" id="gender" name="gender">
-                            <option></option>
-                            <option value="Male">@_appSettings.Translate(languageName, "Gender.Male")</option>
-                            <option value="Female">@_appSettings.Translate(languageName, "Gender.Female")</option>
+                            @{
+                                var cacheGender = TempData[CacheUidType.EmployeeGender.ToString()];
+                                <option></option>
+                                var genders = new Gender[]
+                                {
+                                    Gender.Male,
+                                    Gender.Female
+                                };
+                                @foreach (var gen in genders)
+                                {
+                                    if (cacheGender != null && gen.ToString() == cacheGender.ToString())
+                                    {
+                                        <option value="@gen" selected='selected'>@_appSettings.Translate(languageName, $"Gender.{gen}")</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@gen">@_appSettings.Translate(languageName, $"Gender.{gen}")</option>
+                                    }
+                                }
+                            }
                         </select>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="jobTitle">@_appSettings.Translate(languageName, "JobTitle")</label>
                         <select class="form-control" id="jobTitle" name="jobTitle">
-                            <option></option>
-                            @foreach (var title in jobTitles) 
-                            {
-                                <option value="@title">@_appSettings.Translate(languageName, $"JobTitle.{title}")</option>
+                            @{
+                                var cacheJobTitle = TempData[CacheUidType.EmployeeJobTitle.ToString()];
+                                <option></option>
+                                @foreach (var title in jobTitles)
+                                {
+                                    if (cacheJobTitle != null && title.ToString() == cacheJobTitle.ToString())
+                                    {
+                                        <option value="@title" selected='selected'>@_appSettings.Translate(languageName, $"JobTitle.{title}")</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@title">@_appSettings.Translate(languageName, $"JobTitle.{title}")</option>
+                                    }
+                                }
                             }
                         </select>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="department">@_appSettings.Translate(languageName, "Department")</label>
                         <select class="form-control" id="department" name="department">
-                            <option></option>
-                            @foreach (var dept in departments) 
-                            {
-                                <option value="@dept">@_appSettings.Translate(languageName, $"Department.{dept}")</option>
+                            @{
+                                var cacheDepartment = TempData[CacheUidType.EmployeeDepartment.ToString()];
+                                <option></option>
+                                @foreach (var dept in departments)
+                                {
+                                    if (cacheDepartment != null && dept.ToString() == cacheDepartment.ToString())
+                                    {
+                                        <option value="@dept" selected='selected'>@_appSettings.Translate(languageName, $"Department.{dept}")</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@dept">@_appSettings.Translate(languageName, $"Department.{dept}")</option>
+                                    }
+                                }
                             }
                         </select>
                     </div>
