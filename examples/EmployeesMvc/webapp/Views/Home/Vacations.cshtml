@@ -34,7 +34,7 @@
         <button class="btn btn-dark dropdown" data-bs-toggle="collapse" data-bs-target="#divVacationFilters">@_appSettings.Translate(languageName, "VacationFilters")</button>
         <a class="btn btn-primary" role="button" asp-controller="Home" asp-action="NewVacation">@_appSettings.Translate(languageName, "NewVacation")</a>
 
-        <div class="collapse indent" id="divVacationFilters">
+        <div class="indent collapse @(TempData[CacheUidType.VacationsUid.ToString()] == null ? "" : "show")" id="divVacationFilters">
             <div class="text-center">
                 <form method="post" asp-controller="Home" asp-action="FilterVacations" role="post">
                     <div class="form-group col-md-4">
@@ -65,9 +65,9 @@
                         <label for="jobTitle">@_appSettings.Translate(languageName, "JobTitle")</label>
                         <select class="form-control" id="jobTitle" name="jobTitle">
                             <option></option>
-                            @foreach (var obj in jobTitles) 
+                            @foreach (var title in jobTitles) 
                             {
-                                <option value="@obj">@_appSettings.Translate(languageName, $"JobTitle.{obj}")</option>
+                                <option value="@title">@_appSettings.Translate(languageName, $"JobTitle.{title}")</option>
                             }
                         </select>
                     </div>
@@ -75,9 +75,9 @@
                         <label for="department">@_appSettings.Translate(languageName, "Department")</label>
                         <select class="form-control" id="department" name="department">
                             <option></option>
-                            @foreach (var obj in departments) 
+                            @foreach (var dept in departments) 
                             {
-                                <option value="@obj">@_appSettings.Translate(languageName, $"Department.{obj}")</option>
+                                <option value="@dept">@_appSettings.Translate(languageName, $"Department.{dept}")</option>
                             }
                         </select>
                     </div>
@@ -90,9 +90,24 @@
                     <div class="form-group col-md-4">
                         <label for="filterOptions">@_appSettings.Translate(languageName, "FilterOptions")</label>
                         <select class="form-control" id="filterOptions" name="filterOptions">
-                            <option value="@FilterOptionType.ShowAllFilteredVacations">@_appSettings.Translate(languageName, $"FilterOptions.ShowAllFilteredVacations")</option>
-                            <option value="@FilterOptionType.ShowIntersectionsVacations">@_appSettings.Translate(languageName, $"FilterOptions.ShowIntersections")</option>
-                            <option value="@FilterOptionType.ExcludeIntersectionsVacations">@_appSettings.Translate(languageName, $"FilterOptions.ExcludeIntersections")</option>
+                            @{
+                                var cacheFilterOption = (FilterOptionType) TempData[CacheUidType.FilterOptionsVacations.ToString()];
+                                var filterOptions = new Dictionary<FilterOptionType, string>();
+                                filterOptions.Add(FilterOptionType.ShowAllFilteredVacations, "FilterOptions.ShowAllFilteredVacations");
+                                filterOptions.Add(FilterOptionType.ShowIntersectionsVacations, "FilterOptions.ShowIntersections");
+                                filterOptions.Add(FilterOptionType.ExcludeIntersectionsVacations, "FilterOptions.ExcludeIntersections");
+                                foreach (var option in filterOptions)
+                                {
+                                    if (option.Key == cacheFilterOption)
+                                    {
+                                        <option value="@option.Key" selected='selected'>@_appSettings.Translate(languageName, option.Value)</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@option.Key">@_appSettings.Translate(languageName, option.Value)</option>
+                                    }
+                                }
+                            }
                         </select>
                     </div>
 
@@ -107,8 +122,6 @@
             <label><b>@_appSettings.Translate(languageName, "Filters"):</b> @TempData["filterInfoVacations"]</label>
             <br>
             <label><b>@_appSettings.Translate(languageName, "CurrentEmployee"):</b> @TempData["employeeInfoVacations"]</label>
-            <br>
-            <label><b>@_appSettings.Translate(languageName, "FilterOptions"):</b> @TempData["filterOptionsVacations"]</label>
         </div>
     </div>
 

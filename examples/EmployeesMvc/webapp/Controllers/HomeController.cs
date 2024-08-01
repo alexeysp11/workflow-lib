@@ -54,7 +54,7 @@ public class HomeController : Controller
         try
         {
             // Restore previously filtered elements.
-            var uidObj = TempData[CacheUidType.Vacations.ToString()];
+            var uidObj = TempData[CacheUidType.VacationsUid.ToString()];
             if (uidObj != null && !string.IsNullOrEmpty(uidObj.ToString()))
             {
                 var vacationsFiltered = _unitOfWork.GetFilteredVacations(uidObj.ToString()).ToList();
@@ -124,7 +124,7 @@ public class HomeController : Controller
             string uid = _unitOfWork.InsertFilteredVacations(vacations);
 
             // Store UID and  in views.
-            TempData[CacheUidType.Vacations.ToString()] = uid;
+            TempData[CacheUidType.VacationsUid.ToString()] = uid;
 
             // Store info about filtering.
             TempData[CacheUidType.FilterInfoVacations.ToString()] = FilterOptionsSettings.GetFilterOptionsString(fullName, ageMin, ageMax, gender, jobTitle, department);  

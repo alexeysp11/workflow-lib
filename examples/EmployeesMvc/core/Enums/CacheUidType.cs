@@ -2,8 +2,8 @@ namespace WorkflowLib.Examples.EmployeesMvc.Core.Enums;
 
 public enum CacheUidType
 {
-    Employees,
-    Vacations,
+    EmployeesUid,
+    VacationsUid,
     FilterInfoEmployees,
     FilterInfoVacations,
     EmployeeInfoVacations,
