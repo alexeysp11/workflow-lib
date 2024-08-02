@@ -6,11 +6,11 @@ namespace WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
 
 public interface IUnitOfWork
 {
+    GenericRepository<Employee> EmployeeRepository { get; }
+    GenericRepository<Vacation> VacationRepository { get; }
     FilteredRepository<Employee> EmployeeRepositoryFiltered { get; }
     FilteredRepository<Vacation> VacationRepositoryFiltered { get; }
 
-    // void Generate();
-    
     void InsertVacation(string fullName, System.DateTime start, System.DateTime end);
 
     List<Employee> GetEmployees(Expression<Func<Employee, bool>> filter = null);
