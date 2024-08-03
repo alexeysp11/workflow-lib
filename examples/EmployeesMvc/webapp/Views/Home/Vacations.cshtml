@@ -1,4 +1,5 @@
 @using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations
+@using WorkflowLib.Examples.EmployeesMvc.Core.Enums
 @using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources
 @model IEnumerable<Vacation>
 @inject AppSettings _appSettings
@@ -10,7 +11,6 @@
 {
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css" />
 
-    var filterOptionsSettings = _appSettings.StringSettings.FilterOptionsSettings;
     var jobTitles = System.Enum.GetValues(typeof(JobTitle));
     var departments = System.Enum.GetValues(typeof(Department));
 
@@ -24,71 +24,141 @@
 
     <div class="text-center">
         <h1 class="display-4">@_appSettings.Translate(languageName, "Vacations")</h1>
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <p class="text-danger">Error message: @TempData["ErrorMessage"]</p>
+        }
     </div>
 
     <div>
         <button class="btn btn-dark dropdown" data-bs-toggle="collapse" data-bs-target="#divVacationFilters">@_appSettings.Translate(languageName, "VacationFilters")</button>
         <a class="btn btn-primary" role="button" asp-controller="Home" asp-action="NewVacation">@_appSettings.Translate(languageName, "NewVacation")</a>
 
-        <div class="collapse indent" id="divVacationFilters">
+        <div class="indent collapse @(TempData[CacheUidType.VacationsUid.ToString()] == null ? "" : "show")" id="divVacationFilters">
             <div class="text-center">
                 <form method="post" asp-controller="Home" asp-action="FilterVacations" role="post">
                     <div class="form-group col-md-4">
-                        <label for="fullName">@_appSettings.Translate(languageName, "FullName")</label>
-                        <input type="text" class="form-control" id="fullName" name="fullName" placeholder="@_appSettings.Translate(languageName, "FullName.Enter")">
+                        @{
+                            var cacheFullname = TempData[CacheUidType.EmployeeFullname.ToString()];
+                            <label for="fullName">@_appSettings.Translate(languageName, "FullName")</label>
+                            <input type="text" class="form-control" id="fullName" name="fullName" placeholder="@_appSettings.Translate(languageName, "FullName.Enter")"
+                                value="@cacheFullname">
+                        }
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="minAge">@_appSettings.Translate(languageName, "MinimumAge")</label>
-                            <input type="text" class="form-control" id="minAge" name="minAge" placeholder="@_appSettings.Translate(languageName, "MinimumAge.Enter")"
-                                oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="maxAge">@_appSettings.Translate(languageName, "MaximumAge")</label>
-                            <input type="text" class="form-control" id="maxAge" name="maxAge" placeholder="@_appSettings.Translate(languageName, "MaximumAge.Enter")"
-                                oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
-                        </div>
+                    <div class="form-group col-md-4">
+                        @{
+                            var cacheAgeMin = TempData[CacheUidType.EmployeeMinAge.ToString()];
+                            <label for="ageMin">@_appSettings.Translate(languageName, "MinimumAge")</label>
+                            <input type="number" class="form-control" id="ageMin" name="ageMin" placeholder="@_appSettings.Translate(languageName, "MinimumAge.Enter")"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"
+                                value="@cacheAgeMin">
+                        }
+                    </div>
+                    <div class="form-group col-md-4">
+                        @{
+                            var cacheAgeMax = TempData[CacheUidType.EmployeeMaxAge.ToString()];
+                            <label for="ageMax">@_appSettings.Translate(languageName, "MaximumAge")</label>
+                            <input type="number" class="form-control" id="ageMax" name="ageMax" placeholder="@_appSettings.Translate(languageName, "MaximumAge.Enter")"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"
+                                value="@cacheAgeMax">
+                        }
                     </div>
                     <div class="form-group col-md-4">
                         <label for="gender">@_appSettings.Translate(languageName, "Gender")</label>
                         <select class="form-control" id="gender" name="gender">
-                            <option></option>
-                            <option value="Male">@_appSettings.Translate(languageName, "Gender.Male")</option>
-                            <option value="Female">@_appSettings.Translate(languageName, "Gender.Female")</option>
+                            @{
+                                var cacheGender = TempData[CacheUidType.EmployeeGender.ToString()];
+                                <option></option>
+                                var genders = new Gender[]
+                                {
+                                    Gender.Male,
+                                    Gender.Female
+                                };
+                                @foreach (var gen in genders)
+                                {
+                                    if (cacheGender != null && gen.ToString() == cacheGender.ToString())
+                                    {
+                                        <option value="@gen" selected='selected'>@_appSettings.Translate(languageName, $"Gender.{gen}")</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@gen">@_appSettings.Translate(languageName, $"Gender.{gen}")</option>
+                                    }
+                                }
+                            }
                         </select>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="jobTitle">@_appSettings.Translate(languageName, "JobTitle")</label>
                         <select class="form-control" id="jobTitle" name="jobTitle">
-                            <option></option>
-                            @foreach (var obj in jobTitles) 
-                            {
-                                <option value="@obj">@_appSettings.Translate(languageName, $"JobTitle.{obj}")</option>
+                            @{
+                                var cacheJobTitle = TempData[CacheUidType.EmployeeJobTitle.ToString()];
+                                <option></option>
+                                @foreach (var title in jobTitles)
+                                {
+                                    if (cacheJobTitle != null && title.ToString() == cacheJobTitle.ToString())
+                                    {
+                                        <option value="@title" selected='selected'>@_appSettings.Translate(languageName, $"JobTitle.{title}")</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@title">@_appSettings.Translate(languageName, $"JobTitle.{title}")</option>
+                                    }
+                                }
                             }
                         </select>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="department">@_appSettings.Translate(languageName, "Department")</label>
                         <select class="form-control" id="department" name="department">
-                            <option></option>
-                            @foreach (var obj in departments) 
-                            {
-                                <option value="@obj">@_appSettings.Translate(languageName, $"Department.{obj}")</option>
+                            @{
+                                var cacheDepartment = TempData[CacheUidType.EmployeeDepartment.ToString()];
+                                <option></option>
+                                @foreach (var dept in departments)
+                                {
+                                    if (cacheDepartment != null && dept.ToString() == cacheDepartment.ToString())
+                                    {
+                                        <option value="@dept" selected='selected'>@_appSettings.Translate(languageName, $"Department.{dept}")</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@dept">@_appSettings.Translate(languageName, $"Department.{dept}")</option>
+                                    }
+                                }
                             }
                         </select>
                     </div>
 
                     <div class="form-group col-md-4">
-                        <label for="currentFullName">@_appSettings.Translate(languageName, "FullName.CurrentEmployee")</label>
-                        <input type="text" class="form-control" id="currentFullName" name="currentFullName" placeholder="@_appSettings.Translate(languageName, "FullName.Enter")">
+                        @{
+                            var cacheCurrentFullname = TempData[CacheUidType.CurrentEmployeeFullname.ToString()];
+                            <label for="currentFullName">@_appSettings.Translate(languageName, "FullName.CurrentEmployee")</label>
+                            <input type="text" class="form-control" id="currentFullName" name="currentFullName" placeholder="@_appSettings.Translate(languageName, "FullName.Enter")"
+                                value="@cacheCurrentFullname">
+                        }
                     </div>
 
                     <div class="form-group col-md-4">
                         <label for="filterOptions">@_appSettings.Translate(languageName, "FilterOptions")</label>
                         <select class="form-control" id="filterOptions" name="filterOptions">
-                            <option>@filterOptionsSettings.FindFilterOptionsShowAllFilteredVacations</option>
-                            <option>@filterOptionsSettings.FindFilterOptionsShowIntersections</option>
-                            <option>@filterOptionsSettings.FindFilterOptionsExcludeIntersections</option>
+                            @{
+                                var cacheFilterOption = (FilterOptionType) TempData[CacheUidType.FilterOptionsVacations.ToString()];
+                                var filterOptions = new Dictionary<FilterOptionType, string>();
+                                filterOptions.Add(FilterOptionType.ShowAllFilteredVacations, "FilterOptions.ShowAllFilteredVacations");
+                                filterOptions.Add(FilterOptionType.ShowIntersectionsVacations, "FilterOptions.ShowIntersections");
+                                filterOptions.Add(FilterOptionType.ExcludeIntersectionsVacations, "FilterOptions.ExcludeIntersections");
+                                foreach (var option in filterOptions)
+                                {
+                                    if (option.Key == cacheFilterOption)
+                                    {
+                                        <option value="@option.Key" selected='selected'>@_appSettings.Translate(languageName, option.Value)</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@option.Key">@_appSettings.Translate(languageName, option.Value)</option>
+                                    }
+                                }
+                            }
                         </select>
                     </div>
 
@@ -99,18 +169,12 @@
                     
                 </form>
             </div>
-
-            <label><b>@_appSettings.Translate(languageName, "Filters"):</b> @TempData["filterInfoVacations"]</label>
-            <br>
-            <label><b>@_appSettings.Translate(languageName, "CurrentEmployee"):</b> @TempData["employeeInfoVacations"]</label>
-            <br>
-            <label><b>@_appSettings.Translate(languageName, "FilterOptions"):</b> @TempData["filterOptionsVacations"]</label>
         </div>
     </div>
 
     @if (Model == null)
     {
-        <label>@_appSettings.Translate(languageName, "Error.DataNotGeneratedYet")</label>
+        <p class="text-danger">@_appSettings.Translate(languageName, "Error.DataNotGeneratedYet")</p>
     }
     else
     {

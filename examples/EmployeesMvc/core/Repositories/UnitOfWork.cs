@@ -2,81 +2,20 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
-using WorkflowLib.Examples.EmployeesMvc.Core.Models.Pipes;
-using WorkflowLib.Examples.EmployeesMvc.Core.Pipes;
 
 namespace WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
 
 /// <summary>
-/// Implementation of the 'Unit of work' pattern.
+/// Implementation of the Unit of work pattern.
 /// </summary>
 public class UnitOfWork : IUnitOfWork
 {
-    private GenericRepository<Employee> employeeRepository;
-    private GenericRepository<Vacation> vacationRepository;
-    private FilteredRepository<Employee> employeeRepositoryFiltered;
-    private FilteredRepository<Vacation> vacationRepositoryFiltered;
     private AppSettings _appSettings;
 
-    /// <summary>
-    /// Repository of the initial dataset of employees.
-    /// </summary>
-    public GenericRepository<Employee> EmployeeRepository
-    {
-        get
-        {
-            if (this.employeeRepository == null)
-            {
-                this.employeeRepository = new GenericRepository<Employee>();
-            }
-            return employeeRepository;
-        }
-    }
-
-    /// <summary>
-    /// Repository of the initial dataset of vacations.
-    /// </summary>
-    public GenericRepository<Vacation> VacationRepository
-    {
-        get
-        {
-            if (this.vacationRepository == null)
-            {
-                this.vacationRepository = new GenericRepository<Vacation>();
-            }
-            return vacationRepository;
-        }
-    }
-
-    /// <summary>
-    /// Repository of the filtered dataset of employees.
-    /// </summary>
-    public FilteredRepository<Employee> EmployeeRepositoryFiltered
-    {
-        get
-        {
-            if (this.employeeRepositoryFiltered == null)
-            {
-                this.employeeRepositoryFiltered = new FilteredRepository<Employee>(_appSettings);
-            }
-            return employeeRepositoryFiltered;
-        }
-    }
-
-    /// <summary>
-    /// Repository of the filtered dataset of vacations.
-    /// </summary>
-    public FilteredRepository<Vacation> VacationRepositoryFiltered
-    {
-        get
-        {
-            if (this.vacationRepositoryFiltered == null)
-            {
-                this.vacationRepositoryFiltered = new FilteredRepository<Vacation>(_appSettings);
-            }
-            return vacationRepositoryFiltered;
-        }
-    }
+    public GenericRepository<Employee> EmployeeRepository { get; }
+    public GenericRepository<Vacation> VacationRepository { get; }
+    public FilteredRepository<Employee> EmployeeRepositoryFiltered { get; }
+    public FilteredRepository<Vacation> VacationRepositoryFiltered { get; }
 
     /// <summary>
     /// Default constructor.
@@ -84,15 +23,11 @@ public class UnitOfWork : IUnitOfWork
     public UnitOfWork(AppSettings appSettings)
     {
         _appSettings = appSettings;
-        
-        var pipeParams = new PipeParams(_appSettings.EmployeeQty, _appSettings.VacationIntervals);
-        var result = new PipeResult(pipeParams);
-        
-        var generatingPipe = new PipeBuilder(_appSettings, InsertIntoRepository)
-            .AddGenerating(typeof(EmployeePipe))
-            .AddGenerating(typeof(VacationPipe))
-            .Build();
-        generatingPipe(result);
+
+        EmployeeRepository = new GenericRepository<Employee>();
+        VacationRepository = new GenericRepository<Vacation>();
+        EmployeeRepositoryFiltered = new FilteredRepository<Employee>(_appSettings);
+        VacationRepositoryFiltered = new FilteredRepository<Vacation>(_appSettings);
     }
 
     /// <summary>
@@ -121,7 +56,7 @@ public class UnitOfWork : IUnitOfWork
         if (employees.Count == 0) 
             return;
         
-        // Check if the vacations overlap 
+        // Check if the vacations overlap.
         var vacations = VacationRepository
             .Get(filter: x => x.Employee.FullName == fullName
                             && (
@@ -169,17 +104,5 @@ public class UnitOfWork : IUnitOfWork
     public IEnumerable<Vacation> GetFilteredVacations(string uid)
     {
         return VacationRepositoryFiltered.GetFiltered(uid);
-    }
-    
-    /// <summary>
-    /// Inserts initial datasets into the repositories.
-    /// </summary>
-    private void InsertIntoRepository(PipeResult result)
-    {
-        System.Console.WriteLine("Data added into the repository");
-        foreach (var employee in result.Employees)
-            EmployeeRepository.Insert(employee);
-        foreach (var vacation in result.Vacations)
-            VacationRepository.Insert(vacation);
     }
 }

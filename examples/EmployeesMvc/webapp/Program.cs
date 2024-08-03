@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Builder;
+using WorkflowLib.Examples.EmployeesMvc.Core.Domain.DatasetGenerators;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
 using WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
 using WorkflowLib.Examples.EmployeesMvc.Core.Domain.Filtering;
@@ -13,9 +15,14 @@ var appsettings = configuration.GetSection("AppSettings").Get<AppSettings>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton(appsettings);
 builder.Services.AddSingleton<IUnitOfWork, UnitOfWork>();
+builder.Services.AddSingleton<DatasetGenerator>();
 builder.Services.AddTransient<ICommonDataFilter, CommonDataFilter>();
 
 var app = builder.Build();
+
+// Initialize datasets.
+var datasetGenerator = app.Services.GetService<DatasetGenerator>();
+datasetGenerator.Initialize();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

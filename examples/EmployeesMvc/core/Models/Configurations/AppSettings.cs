@@ -55,11 +55,6 @@ public class AppSettings
     public int EmployeeFullNameWordsNumber { get; set; }
     
     /// <summary>
-    /// String settings.
-    /// </summary>
-    public StringSettings StringSettings { get; set; }
-    
-    /// <summary>
     /// Languages.
     /// </summary>
     public List<Language> Languages { get; set; }

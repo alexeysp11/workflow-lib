@@ -22,13 +22,13 @@ internal static class SettingsHelper
             {
                 TempDataSettings = new TempDataSettings
                 {
-                    EmployeesUidStr = "employeesUid",
-                    VacationsUidStr = "vacationsUid",
-                    FilterInfoEmployeesStr = "filterInfoEmployees",
-                    FilterInfoVacationsStr = "filterInfoVacations",
-                    EmployeeInfoVacationsStr = "employeeInfoVacations",
-                    FilterOptionsEmployeesStr = "filterOptionsEmployees",
-                    FilterOptionsVacationsStr = "filterOptionsVacations"
+                    EmployeesUid = "employeesUid",
+                    VacationsUid = "vacationsUid",
+                    FilterInfoEmployees = "filterInfoEmployees",
+                    FilterInfoVacations = "filterInfoVacations",
+                    EmployeeInfoVacations = "employeeInfoVacations",
+                    FilterOptionsEmployees = "filterOptionsEmployees",
+                    FilterOptionsVacations = "filterOptionsVacations"
                 },
                 FilterOptionsSettings = new FilterOptionsSettings
                 {
