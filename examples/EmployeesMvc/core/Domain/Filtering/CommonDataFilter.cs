@@ -129,7 +129,7 @@ public class CommonDataFilter : ICommonDataFilter
     }
 
     /// <summary>
-    /// 
+    /// Gets a list of intersections between the specified employee's vacations and the vacations of other employees.
     /// </summary>
     private List<Vacation> GetIntersections(
         List<Vacation> vacations,
@@ -138,33 +138,25 @@ public class CommonDataFilter : ICommonDataFilter
         if (string.IsNullOrEmpty(currentFullName))
             return new List<Vacation>();
         
-        // 
         var filteredVacations = new List<Vacation>();
-        var employeeVacations = vacations.Where(x => x.Employee.FullName.Contains(currentFullName));
-        var otherVacations = vacations.Where(x => !x.Employee.FullName.Contains(currentFullName));
-        filteredVacations.AddRange(employeeVacations);
-        foreach (var vacation in employeeVacations)
+        foreach (var vacation in vacations)
         {
-            // Scenario 1: 
-            // vacation:    |-----|
-            // others:    |-----|
-            // Scenario 2: 
-            // vacation:    |-----|
-            // others:         |-----|
-            // Scenario 3: 
-            // vacation:    |-----|
-            // others:      |-----|
-            var filtered = otherVacations.Where(x => 
-                (x.BeginDate <= vacation.BeginDate && x.EndDate > vacation.BeginDate)
-                || (x.BeginDate < vacation.EndDate && x.BeginDate >= vacation.EndDate)
-                || (x.BeginDate == vacation.BeginDate && x.EndDate == vacation.EndDate));
+            if (!vacation.Employee.FullName.Contains(currentFullName))
+            {
+                continue;
+            }
+            filteredVacations.Add(vacation);
+            var filtered = vacations
+                .Where(x => !x.Employee.FullName.Contains(currentFullName)
+                    && x.BeginDate < vacation.EndDate
+                    && vacation.BeginDate < x.EndDate);
             filteredVacations.AddRange(filtered);
         }
         return filteredVacations;
     }
 
     /// <summary>
-    /// 
+    /// Gets a list of vacations that do not intersect with the specified employee's vacations.
     /// </summary>
     private List<Vacation> ExcludeIntersections(
         List<Vacation> vacations,
@@ -173,14 +165,22 @@ public class CommonDataFilter : ICommonDataFilter
         if (string.IsNullOrEmpty(currentFullName))
             return new List<Vacation>();
 
-        // 
-        var intersections = GetIntersections(vacations, currentFullName);
-        var excludeList = vacations.Where(x => true).ToList();
-        foreach (var intersection in intersections)
+        var excludeList = new List<Vacation>();
+        foreach (var vacation in vacations)
         {
-            excludeList = excludeList.Where(x => 
-                x.Employee.FullName.Contains(currentFullName) 
-                || (x.BeginDate != intersection.BeginDate && x.EndDate != intersection.EndDate)).ToList();
+            if (vacation.Employee.FullName.Contains(currentFullName))
+            {
+                excludeList.Add(vacation);
+                continue;
+            }
+            var hasIntersection = vacations
+                .Where(x => x.Employee.FullName.Contains(currentFullName)
+                    && x.BeginDate < vacation.EndDate && vacation.BeginDate < x.EndDate)
+                .Any();
+            if (!hasIntersection)
+            {
+                excludeList.Add(vacation);
+            }
         }
         return excludeList;
     }
