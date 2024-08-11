@@ -27,41 +27,39 @@ public class CommonDataFilter : ICommonDataFilter
         FilterOptionType filterOptions,
         Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees)
     {
-        IEnumerable<Employee> result;
-        if (!string.IsNullOrEmpty(employeeDto.FullName) && !string.IsNullOrEmpty(employeeDto.Gender)
-            && !string.IsNullOrEmpty(employeeDto.JobTitle) && !string.IsNullOrEmpty(employeeDto.Department))
+        // 1. Build the main filter expression.
+        Expression<Func<Employee, bool>> filterExpression = x => 
+            x.BirthDate >= employeeDto.DateMin && x.BirthDate <= employeeDto.DateMax;
+
+        // 2. Add additional filters based on provided criteria.
+        if (!string.IsNullOrEmpty(employeeDto.FullName))
         {
-            result = getEmployees(x => 
-                x.FullName.Contains(employeeDto.FullName) 
-                && x.Gender.ToString() == employeeDto.Gender
-                && x.BirthDate >= employeeDto.DateMin 
-                && x.BirthDate <= employeeDto.DateMax
-                && x.JobTitle.ToString() == employeeDto.JobTitle 
-                && x.Department.ToString() == employeeDto.Department);
+            filterExpression = filterExpression.AndAlso(x => x.FullName.Contains(employeeDto.FullName));
         }
-        else
+        if (!string.IsNullOrEmpty(employeeDto.Gender))
         {
-            // Retrieve data using the specified filter.
-            result = getEmployees(x => x.BirthDate >= employeeDto.DateMin && x.BirthDate <= employeeDto.DateMax);
-            if (!string.IsNullOrEmpty(employeeDto.FullName))
-                result = result.Where(x => x.FullName.Contains(employeeDto.FullName));
-            if (!string.IsNullOrEmpty(employeeDto.Gender))
-                result = result.Where(x => x.Gender.ToString() == employeeDto.Gender);
-            if (!string.IsNullOrEmpty(employeeDto.JobTitle))
-                result = result.Where(x => x.JobTitle.ToString() == employeeDto.JobTitle);
-            if (!string.IsNullOrEmpty(employeeDto.Department))
-                result = result.Where(x => x.Department.ToString() == employeeDto.Department);
-            
-            // Retrive date using exclude filter.
-            if (filterOptions == FilterOptionType.ExcludeEmployee)
-            {
-                var excludeList = getEmployees(x => true);
-                foreach (var item in result)
-                    excludeList = excludeList.Where(x => x.FullName != item.FullName).ToList();
-                return excludeList;
-            }
+            filterExpression = filterExpression.AndAlso(x => x.Gender.ToString() == employeeDto.Gender);
         }
-        return result;
+        if (!string.IsNullOrEmpty(employeeDto.JobTitle))
+        {
+            filterExpression = filterExpression.AndAlso(x => x.JobTitle.ToString() == employeeDto.JobTitle);
+        }
+        if (!string.IsNullOrEmpty(employeeDto.Department))
+        {
+            filterExpression = filterExpression.AndAlso(x => x.Department.ToString() == employeeDto.Department);
+        }
+
+        // 3. Apply the filter.
+        var filteredEmployees = getEmployees(filterExpression);
+
+        // 4. Handle exclude filter.
+        if (filterOptions == FilterOptionType.ExcludeEmployee)
+        {
+            var allEmployees = getEmployees(x => true);
+            return allEmployees.Except(filteredEmployees);
+        }
+
+        return filteredEmployees;
     }
 
     /// <summary>
