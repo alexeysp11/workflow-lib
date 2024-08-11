@@ -1,6 +1,7 @@
 using System.Linq.Expressions;
 using WorkflowLib.Examples.EmployeesMvc.Core.Dto;
 using WorkflowLib.Examples.EmployeesMvc.Core.Enums;
+using WorkflowLib.Examples.EmployeesMvc.Core.Extensions;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
 
@@ -73,59 +74,46 @@ public class CommonDataFilter : ICommonDataFilter
         Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees,
         Func<Expression<Func<Vacation, bool>>, List<Vacation>> getVacations)
     {
-        var employees = new List<Employee>();
-        var vacations = new List<Vacation>();
-
-        // Get filtered employees.
-        // If all filters are empty and current is not empty, then don't filter employees.
-        // TODO: the following if-statement looks a little bit weird, so try to express the condition above in the more elegant way.
-        if (
-            (
-                string.IsNullOrEmpty(employeeDto.FullName)
-                && employeeDto.AgeMin <= 0
-                && employeeDto.AgeMax <= 0
-                && string.IsNullOrEmpty(employeeDto.Gender)
-                && string.IsNullOrEmpty(employeeDto.JobTitle)
-                && string.IsNullOrEmpty(employeeDto.Department)
-            )
-            && !string.IsNullOrEmpty(currentFullName))
+        if (employeeDto.IsEmpty() && !string.IsNullOrEmpty(currentFullName))
         {
+            return FilterVacationsByCurrentEmployee(currentFullName, getVacations, filterOptions);
         }
-        else
-        {
-            employees = FilterEmployees(employeeDto, FilterOptionType.NoFiltersApplied, getEmployees).ToList();
-        }
+        var employees = FilterEmployees(employeeDto, FilterOptionType.NoFiltersApplied, getEmployees);
+        var vacations = employees.SelectMany(e => getVacations(v => v.Employee.FullName == e.FullName)).ToList();
+        return FilterVacationsByCurrentEmployee(currentFullName, getVacations, filterOptions, vacations);
+    }
 
-        // Get vacations using filter.
-        foreach (var employee in employees)
-        {
-            var vacationsFiltered = getVacations(x => x.Employee.FullName == employee.FullName);
-            vacations.AddRange(vacationsFiltered);
-        }
-
+    /// <summary>
+    /// Filter vacations by current employee name.
+    /// </summary>
+    private IEnumerable<Vacation> FilterVacationsByCurrentEmployee(
+        string currentFullName,
+        Func<Expression<Func<Vacation, bool>>, List<Vacation>> getVacations,
+        FilterOptionType filterOptions,
+        List<Vacation> existingVacations = null)
+    {
         // Get vacations of the current employee.
         if (!string.IsNullOrEmpty(currentFullName))
         {
-            var currentVacations = getVacations(x => x.Employee.FullName.Contains(currentFullName));
-            foreach (var vacation in currentVacations)
+            var currentVacations = getVacations(v => v.Employee.FullName.Contains(currentFullName));
+            if (existingVacations == null)
             {
-                if (vacations.Where(x =>
-                        x.BeginDate == vacation.BeginDate
-                        && x.EndDate == vacation.EndDate
-                        && x.Employee.FullName == vacation.Employee.FullName)
-                    .ToList().Count == 0)
-                {
-                    vacations.Add(vacation);
-                }
+                existingVacations = currentVacations.ToList();
+            }
+            else
+            {
+                // Add current vacations that are not already in the list.
+                existingVacations.AddRange(currentVacations.Where(v => !existingVacations.Any(x =>
+                    x.BeginDate == v.BeginDate && x.EndDate == v.EndDate && x.Employee.FullName == v.Employee.FullName)));
             }
         }
 
         // Apply filter options.
         if (filterOptions == FilterOptionType.ShowIntersectionsVacations)
-            return GetIntersections(vacations, currentFullName);
+            return GetIntersections(existingVacations ?? new List<Vacation>(), currentFullName);
         if (filterOptions == FilterOptionType.ExcludeIntersectionsVacations)
-            return ExcludeIntersections(vacations, currentFullName);
-        return vacations;
+            return ExcludeIntersections(existingVacations ?? new List<Vacation>(), currentFullName);
+        return existingVacations ?? new List<Vacation>();
     }
 
     /// <summary>
