@@ -28,6 +28,11 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
         public AbsenseStatus Status { get; set; }
         
         /// <summary>
+        /// Displays whether employee absence needs to be paid.
+        /// </summary>
+        public bool IsPaid { get; set; }
+        
+        /// <summary>
         /// Actual start date.
         /// </summary>
         public System.DateTime? DateStartActual { get; set; }

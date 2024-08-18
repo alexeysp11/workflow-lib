@@ -7,6 +7,9 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
     /// </summary>
     public enum AbsenseReason
     {
+        [Display(Name = "Illness")]
+        ChronicIllness,
+
         [Display(Name = "Acute illness")]
         AcuteIllness,
 
@@ -27,6 +30,9 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
 
         [Display(Name = "Travel")]
         Travel,
+
+        [Display(Name = "Business trip")]
+        BusinessTrip,
 
         [Display(Name = "Suspension")]
         Suspension,
