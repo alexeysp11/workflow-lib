@@ -155,7 +155,7 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.InitializeDb
                     MiddleName = middleName,
                     LastName = lastName,
                     FullName = fullName,
-                    CRMRoleType = CRMRoleType.Client,
+                    CrmRoleType = CrmRoleType.Client,
                     UserAccount = user
                 };
                 context.Customers.Add(customer);
@@ -178,7 +178,7 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.InitializeDb
                 RegistrationNumber = "RegistrationNumber",
                 HasVatRegistration = true,
                 VatNumber = "VatNumber", 
-                CRMRoleType = CRMRoleType.Supplier,
+                CrmRoleType = CrmRoleType.Supplier,
                 Address = addressString,
                 ShippingAddress = addressString
             };
