@@ -34,14 +34,9 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
         public ICollection<OrganizationItem> SubItems { get; set; }
         
         /// <summary>
-        /// User that is related to the organization item (when the organization item is a job position).
+        /// Collection of employees that are related to the organization item.
         /// </summary>
-        public UserAccount? User { get; set; }
-        
-        /// <summary>
-        /// Collection of users that are related to the organization item (when the organization item is department, group of users etc).
-        /// </summary>
-        public ICollection<UserAccount> Users { get; set; }
+        public ICollection<Employee> Employees { get; set; }
 
         /// <summary>
         /// Address of the organization item.

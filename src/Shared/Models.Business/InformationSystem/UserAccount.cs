@@ -38,6 +38,11 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
         public string? PhotoUrl { get; set; }
 
         /// <summary>
+        /// User groups.
+        /// </summary>
+        public ICollection<UserGroup> UserGroups { get; set; }
+
+        /// <summary>
         /// Status of the user.
         /// </summary>
         public UserStatus Status { get; set; }

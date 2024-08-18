@@ -62,14 +62,14 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
         public System.DateTime? EmployDate { get; set; }
 
         /// <summary>
-        /// User accounts related to the employee.
-        /// </summary>
-        public ICollection<UserAccount> UserAccounts { get; set; }
-
-        /// <summary>
         /// Companies related to the employee.
         /// </summary>
         public ICollection<Company> Companies { get; set; }
+
+        /// <summary>
+        /// Collection of organization items.
+        /// </summary>
+        public ICollection<OrganizationItem> OrganizationItems { get; set; }
 
         /// <summary>
         /// Replacement mode.
