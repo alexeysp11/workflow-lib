@@ -249,7 +249,7 @@ namespace WorkflowLib.Examples.Delivering.Example01
                     MiddleName = middleName,
                     LastName = lastName,
                     FullName = fullName,
-                    CRMRoleType = CRMRoleType.Client,
+                    CrmRoleType = CrmRoleType.Client,
                     UserAccount = user
                 };
                 context.Customers.Add(customer);
@@ -272,7 +272,7 @@ namespace WorkflowLib.Examples.Delivering.Example01
                 RegistrationNumber = "RegistrationNumber",
                 HasVatRegistration = true,
                 VatNumber = "VatNumber", 
-                CRMRoleType = CRMRoleType.Supplier,
+                CrmRoleType = CrmRoleType.Supplier,
                 Address = addressString,
                 ShippingAddress = addressString
             };
