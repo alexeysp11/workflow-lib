@@ -7,31 +7,67 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
     /// </summary>
     public enum AbsenseReason
     {
-        [Display(Name = "Acute illness")]
-        AcuteIllness,
-
-        [Display(Name = "Chronic illness")]
-        ChronicIllness,
-
         [Display(Name = "Skipping")]
         Skipping,
 
-        [Display(Name = "Family emergency")]
-        FamilyEmergency,
+        [Display(Name = "Unpaid time off")]
+        UnpaidTimeOff,
 
-        [Display(Name = "Routine dental appointment")]
-        RoutineDentalAppt,
+        [Display(Name = "Paid time off")]
+        PaidTimeOff,
 
-        [Display(Name = "Preventative medical appointment")]
-        PreventativeMedicalAppt,
+        [Display(Name = "Annual leave")]
+        AnnualLeave,
+
+        [Display(Name = "Family and medical leave")]
+        FamilyMedicalLeave,
+
+        [Display(Name = "Disability leave")]
+        DisabilityLeave,
+
+        [Display(Name = "Sabbatical")]
+        Sabbatical,
+
+        [Display(Name = "Community service")]
+        CommunityService,
+
+        [Display(Name = "Military service")]
+        MilitaryService,
 
         [Display(Name = "Travel")]
         Travel,
 
+        [Display(Name = "Business trip")]
+        BusinessTrip,
+
         [Display(Name = "Suspension")]
         Suspension,
 
+        [Display(Name = "Personal leave")]
+        PersonalLeave,
+
+        [Display(Name = "Bereavement leave")]
+        BereavementLeave,
+
+        [Display(Name = "Jury duty")]
+        JuryDuty,
+
+        [Display(Name = "Health issues")]
+        HealthIssues,
+
+        [Display(Name = "Childcare leave")]
+        ChildcareLeave,
+
         [Display(Name = "Family responsibility")]
-        FamilyResponsibility
+        FamilyResponsibility,
+
+        [Display(Name = "Vacation")]
+        Vacation,
+
+        [Display(Name = "Emergency leave")]
+        EmergencyLeave,
+
+        [Display(Name = "Study leave")]
+        StudyLeave
     }
 }
