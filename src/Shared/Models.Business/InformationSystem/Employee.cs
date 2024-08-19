@@ -32,6 +32,11 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
         public string? FullName { get; set; }
         
         /// <summary>
+        /// Gender of the employee.
+        /// </summary>
+        public GenderType? Gender { get; set; }
+        
+        /// <summary>
         /// Mobile phone of the employee.
         /// </summary>
         public string? MobilePhone { get; set; }
