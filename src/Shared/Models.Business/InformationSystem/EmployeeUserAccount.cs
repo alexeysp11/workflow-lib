@@ -16,10 +16,5 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
         /// User account.
         /// </summary>
         public UserAccount UserAccount { get; set; }
-        
-        /// <summary>
-        /// Create date of the relationship.
-        /// </summary>
-        public System.DateTime? DateCreated { get; set; }
     }
 }
