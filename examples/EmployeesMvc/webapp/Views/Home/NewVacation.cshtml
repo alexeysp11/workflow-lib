@@ -1,14 +1,14 @@
 @using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations
-@using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources
+@using WorkflowLib.Shared.Models.Business.InformationSystem
 @inject AppSettings _appSettings
 @{
-    ViewData["Title"] = "New Vacation";
+    ViewData["Title"] = "New Absense";
 }
 
 @try
 {
-    var jobTitles = System.Enum.GetValues(typeof(JobTitle));
-    var departments = System.Enum.GetValues(typeof(Department));
+    var jobTitles = new List<string>();
+    var departments = new List<string>();
 
     var languageName = string.Empty;
     if (!Context.Request.Cookies.TryGetValue("employeesmvc-lang", out languageName))

@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using Xunit;
 using WorkflowLib.Examples.EmployeesMvc.Core.Domain.Filtering;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
-using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
+using WorkflowLib.Shared.Models.Business.InformationSystem;
 using WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
 
 namespace Tests.WorkflowLib.Examples.EmployeesMvc.Core.Domain.Filtering;
@@ -570,7 +570,7 @@ public class CommonDataFilterTest
         }
         return true;
     }
-    private bool CompareLists(List<Vacation> list1, List<Vacation> list2)
+    private bool CompareLists(List<Absense> list1, List<Absense> list2)
     {
         if (list1.Count != list2.Count) 
             return false;

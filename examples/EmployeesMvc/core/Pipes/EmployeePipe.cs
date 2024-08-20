@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
-using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
+using WorkflowLib.Shared.Models.Business.InformationSystem;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.Pipes;
 using WorkflowLib.Examples.EmployeesMvc.Core.Domain.DatasetGenerators;
 

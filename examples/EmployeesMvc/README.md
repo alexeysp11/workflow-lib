@@ -11,8 +11,8 @@ This project involves creating a software application that can efficiently handl
 3. Request the entry of a "new vacation" for the current employee. The length of the new vacation is not more than 14 days.
 4. Display information about vacation crossings according to the criteria:
     - Crossing vacations with employees of my department. Employees under 30 years of age.
-    - Vacation crossing with female employees not from my department. Age of employees - over 30, but under 50.
-    - Vacation crossing with employees from any department. Employees are over 50 years old.
+    - Absense crossing with female employees not from my department. Age of employees - over 30, but under 50.
+    - Absense crossing with employees from any department. Employees are over 50 years old.
     - Vacations without crossing.
 5. It is desirable to use LINQ, lambda expressions.
 6. It is desirable to choose the most efficient algorithm for determining intersections.

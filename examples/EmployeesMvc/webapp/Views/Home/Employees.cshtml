@@ -1,5 +1,5 @@
 @using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations
-@using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources
+@using WorkflowLib.Shared.Models.Business.InformationSystem
 @model IEnumerable<Employee>
 @inject AppSettings _appSettings
 @{
@@ -10,8 +10,8 @@
 
 @try
 {
-    var jobTitles = System.Enum.GetValues(typeof(JobTitle));
-    var departments = System.Enum.GetValues(typeof(Department));
+    var jobTitles = new List<string>();
+    var departments = new List<string>();
 
     var languageName = string.Empty;
     if (!Context.Request.Cookies.TryGetValue("employeesmvc-lang", out languageName))
@@ -49,18 +49,18 @@
             <tbody>
                 @foreach (var obj in Model)
                 {
-                    var age = System.DateTime.Now.Year - obj.BirthDate.Year;
-                    if (obj.BirthDate.Month > System.DateTime.Now.Month && obj.BirthDate.Day > System.DateTime.Now.Day)
+                    var age = System.DateTime.Now.Year - obj.BirthDate?.Year;
+                    if (obj.BirthDate?.Month > System.DateTime.Now.Month && obj.BirthDate?.Day > System.DateTime.Now.Day)
                     {
                         age -= 1;
                     }
                     <tr>
                         <td>@obj.FullName</td>
                         <td>@_appSettings.Translate(languageName, $"Gender.{obj.Gender}")</td>
-                        <td>@_appSettings.Translate(languageName, $"JobTitle.{obj.JobTitle}")</td>
-                        <td>@_appSettings.Translate(languageName, $"Department.{obj.Department}")</td>
+                        <td>JobTitle</td>
+                        <td>Department</td>
                         <td>@age</td>
-                        <td>@obj.BirthDate.ToString("dd.MM.yyyy")</td>
+                        <td>@obj.BirthDate?.ToString("dd.MM.yyyy")</td>
                     </tr>
                 }
             </tbody>

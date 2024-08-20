@@ -1,7 +1,7 @@
 @using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations
 @using WorkflowLib.Examples.EmployeesMvc.Core.Enums
-@using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources
-@model IEnumerable<Vacation>
+@using WorkflowLib.Shared.Models.Business.InformationSystem
+@model IEnumerable<Absense>
 @inject AppSettings _appSettings
 @{
     ViewData["Title"] = "Vacations";
@@ -11,8 +11,8 @@
 {
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css" />
 
-    var jobTitles = System.Enum.GetValues(typeof(JobTitle));
-    var departments = System.Enum.GetValues(typeof(Department));
+    var jobTitles = new List<string>();
+    var departments = new List<string>();
 
     var languageName = string.Empty;
     if (!Context.Request.Cookies.TryGetValue("employeesmvc-lang", out languageName))
@@ -69,10 +69,10 @@
                             @{
                                 var cacheGender = TempData[CacheUidType.EmployeeGender.ToString()];
                                 <option></option>
-                                var genders = new Gender[]
+                                var genders = new GenderType[]
                                 {
-                                    Gender.Male,
-                                    Gender.Female
+                                    GenderType.Male,
+                                    GenderType.Female
                                 };
                                 @foreach (var gen in genders)
                                 {
@@ -194,19 +194,19 @@
             <tbody>
                 @foreach (var obj in Model)
                 {
-                    var age = System.DateTime.Now.Year - obj.Employee.BirthDate.Year;
-                    if (obj.Employee.BirthDate.Month > System.DateTime.Now.Month && obj.Employee.BirthDate.Day > System.DateTime.Now.Day)
+                    var age = System.DateTime.Now.Year - obj.Employee?.BirthDate?.Year;
+                    if (obj.Employee?.BirthDate?.Month > System.DateTime.Now.Month && obj.Employee?.BirthDate?.Day > System.DateTime.Now.Day)
                     {
                         age -= 1;
                     }
                     <tr>
                         <td>@obj.Employee.FullName</td>
                         <td>@_appSettings.Translate(languageName, $"Gender.{obj.Employee.Gender}")</td>
-                        <td>@_appSettings.Translate(languageName, $"JobTitle.{obj.Employee.JobTitle}")</td>
-                        <td>@_appSettings.Translate(languageName, $"Department.{obj.Employee.Department}")</td>
+                        <td>JobTitle</td>
+                        <td>Department</td>
                         <td>@age</td>
-                        <td>@obj.BeginDate.ToString("dd.MM.yyyy")</td>
-                        <td>@obj.EndDate.ToString("dd.MM.yyyy")</td>
+                        <td>@obj.DateStartActual?.ToString("dd.MM.yyyy")</td>
+                        <td>@obj.DateEndActual?.ToString("dd.MM.yyyy")</td>
                     </tr>
                 }
             </tbody>

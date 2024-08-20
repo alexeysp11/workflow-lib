@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using Xunit;
-using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
+using WorkflowLib.Shared.Models.Business.InformationSystem;
 using WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
 
 namespace Tests.WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
@@ -13,7 +13,7 @@ public class GenericRepositoryTest
     {
         // Arrange 
         var employees = new GenericRepository<Employee>();
-        var vacations = new GenericRepository<Vacation>();
+        var vacations = new GenericRepository<Absense>();
 
         // Act 
         var employeeCollection = employees.Get();
@@ -28,7 +28,7 @@ public class GenericRepositoryTest
     {
         // Arrange 
         var employees = new GenericRepository<Employee>();
-        var vacations = new GenericRepository<Vacation>();
+        var vacations = new GenericRepository<Absense>();
         var employee = new Employee() 
         {
             FullName = "Random FullName", 
@@ -37,7 +37,7 @@ public class GenericRepositoryTest
             Department = Department.Administration, 
             BirthDate = new System.DateTime(1978, 12, 01)
         };
-        var vacation = new Vacation() 
+        var vacation = new Absense() 
         {
             BeginDate = new System.DateTime(2023, 05, 11), 
             EndDate = new System.DateTime(2023, 05, 18), 

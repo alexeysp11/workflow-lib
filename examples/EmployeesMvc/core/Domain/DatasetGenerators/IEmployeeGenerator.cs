@@ -1,4 +1,4 @@
-using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
+using WorkflowLib.Shared.Models.Business.InformationSystem;
 
 namespace WorkflowLib.Examples.EmployeesMvc.Core.Domain.DatasetGenerators;
 

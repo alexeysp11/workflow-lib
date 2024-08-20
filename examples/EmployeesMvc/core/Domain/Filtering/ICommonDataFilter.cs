@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
 using WorkflowLib.Examples.EmployeesMvc.Core.Dto;
 using WorkflowLib.Examples.EmployeesMvc.Core.Enums;
-using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
+using WorkflowLib.Shared.Models.Business.InformationSystem;
 
 namespace WorkflowLib.Examples.EmployeesMvc.Core.Domain.Filtering;
 
@@ -12,10 +12,10 @@ public interface ICommonDataFilter
         FilterOptionType filterOptions,
         Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees);
     
-    IEnumerable<Vacation> FilterVacations(
+    IEnumerable<Absense> FilterVacations(
         EmployeeDto employeeDto,
         string currentFullName,
         FilterOptionType filterOptions,
         Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees,
-        Func<Expression<Func<Vacation, bool>>, List<Vacation>> getVacations);  
+        Func<Expression<Func<Absense, bool>>, List<Absense>> getVacations);  
 }

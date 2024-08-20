@@ -3,7 +3,7 @@ using WorkflowLib.Examples.EmployeesMvc.Core.Dto;
 using WorkflowLib.Examples.EmployeesMvc.Core.Enums;
 using WorkflowLib.Examples.EmployeesMvc.Core.Extensions;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
-using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
+using WorkflowLib.Shared.Models.Business.InformationSystem;
 
 namespace WorkflowLib.Examples.EmployeesMvc.Core.Domain.Filtering;
 
@@ -40,14 +40,14 @@ public class CommonDataFilter : ICommonDataFilter
         {
             filterExpression = filterExpression.AndAlso(x => x.Gender.ToString() == employeeDto.Gender);
         }
-        if (!string.IsNullOrEmpty(employeeDto.JobTitle))
-        {
-            filterExpression = filterExpression.AndAlso(x => x.JobTitle.ToString() == employeeDto.JobTitle);
-        }
-        if (!string.IsNullOrEmpty(employeeDto.Department))
-        {
-            filterExpression = filterExpression.AndAlso(x => x.Department.ToString() == employeeDto.Department);
-        }
+        // if (!string.IsNullOrEmpty(employeeDto.JobTitle))
+        // {
+        //     filterExpression = filterExpression.AndAlso(x => x.JobTitle.ToString() == employeeDto.JobTitle);
+        // }
+        // if (!string.IsNullOrEmpty(employeeDto.Department))
+        // {
+        //     filterExpression = filterExpression.AndAlso(x => x.Department.ToString() == employeeDto.Department);
+        // }
 
         // 3. Apply the filter.
         var filteredEmployees = getEmployees(filterExpression);
@@ -65,12 +65,12 @@ public class CommonDataFilter : ICommonDataFilter
     /// <summary>
     /// Applies filters to the vacation collection.
     /// </summary>
-    public IEnumerable<Vacation> FilterVacations(
+    public IEnumerable<Absense> FilterVacations(
         EmployeeDto employeeDto,
         string currentFullName,
         FilterOptionType filterOptions,
         Func<Expression<Func<Employee, bool>>, List<Employee>> getEmployees,
-        Func<Expression<Func<Vacation, bool>>, List<Vacation>> getVacations)
+        Func<Expression<Func<Absense, bool>>, List<Absense>> getVacations)
     {
         if (employeeDto.IsEmpty() && !string.IsNullOrEmpty(currentFullName))
         {
@@ -84,11 +84,11 @@ public class CommonDataFilter : ICommonDataFilter
     /// <summary>
     /// Filter vacations by current employee name.
     /// </summary>
-    private IEnumerable<Vacation> FilterVacationsByCurrentEmployee(
+    private IEnumerable<Absense> FilterVacationsByCurrentEmployee(
         string currentFullName,
-        Func<Expression<Func<Vacation, bool>>, List<Vacation>> getVacations,
+        Func<Expression<Func<Absense, bool>>, List<Absense>> getVacations,
         FilterOptionType filterOptions,
-        List<Vacation> existingVacations = null)
+        List<Absense> existingVacations = null)
     {
         // Get vacations of the current employee.
         if (!string.IsNullOrEmpty(currentFullName))
@@ -102,29 +102,29 @@ public class CommonDataFilter : ICommonDataFilter
             {
                 // Add current vacations that are not already in the list.
                 existingVacations.AddRange(currentVacations.Where(v => !existingVacations.Any(x =>
-                    x.BeginDate == v.BeginDate && x.EndDate == v.EndDate && x.Employee.FullName == v.Employee.FullName)));
+                    x.DateStartActual == v.DateStartActual && x.DateEndActual == v.DateEndActual && x.Employee.FullName == v.Employee.FullName)));
             }
         }
 
         // Apply filter options.
         if (filterOptions == FilterOptionType.ShowIntersectionsVacations)
-            return GetIntersections(existingVacations ?? new List<Vacation>(), currentFullName);
+            return GetIntersections(existingVacations ?? new List<Absense>(), currentFullName);
         if (filterOptions == FilterOptionType.ExcludeIntersectionsVacations)
-            return ExcludeIntersections(existingVacations ?? new List<Vacation>(), currentFullName);
-        return existingVacations ?? new List<Vacation>();
+            return ExcludeIntersections(existingVacations ?? new List<Absense>(), currentFullName);
+        return existingVacations ?? new List<Absense>();
     }
 
     /// <summary>
     /// Gets a list of intersections between the specified employee's vacations and the vacations of other employees.
     /// </summary>
-    private List<Vacation> GetIntersections(
-        List<Vacation> vacations,
+    private List<Absense> GetIntersections(
+        List<Absense> vacations,
         string currentFullName)
     {
         if (string.IsNullOrEmpty(currentFullName))
-            return new List<Vacation>();
+            return new List<Absense>();
         
-        var filteredVacations = new List<Vacation>();
+        var filteredVacations = new List<Absense>();
         foreach (var vacation in vacations)
         {
             if (!vacation.Employee.FullName.Contains(currentFullName))
@@ -134,8 +134,8 @@ public class CommonDataFilter : ICommonDataFilter
             filteredVacations.Add(vacation);
             var filtered = vacations
                 .Where(x => !x.Employee.FullName.Contains(currentFullName)
-                    && x.BeginDate < vacation.EndDate
-                    && vacation.BeginDate < x.EndDate);
+                    && x.DateStartActual < vacation.DateEndActual
+                    && vacation.DateStartActual < x.DateEndActual);
             filteredVacations.AddRange(filtered);
         }
         return filteredVacations;
@@ -144,14 +144,14 @@ public class CommonDataFilter : ICommonDataFilter
     /// <summary>
     /// Gets a list of vacations that do not intersect with the specified employee's vacations.
     /// </summary>
-    private List<Vacation> ExcludeIntersections(
-        List<Vacation> vacations,
+    private List<Absense> ExcludeIntersections(
+        List<Absense> vacations,
         string currentFullName)
     {
         if (string.IsNullOrEmpty(currentFullName))
-            return new List<Vacation>();
+            return new List<Absense>();
 
-        var excludeList = new List<Vacation>();
+        var excludeList = new List<Absense>();
         foreach (var vacation in vacations)
         {
             if (vacation.Employee.FullName.Contains(currentFullName))
@@ -161,7 +161,7 @@ public class CommonDataFilter : ICommonDataFilter
             }
             var hasIntersection = vacations
                 .Where(x => x.Employee.FullName.Contains(currentFullName)
-                    && x.BeginDate < vacation.EndDate && vacation.BeginDate < x.EndDate)
+                    && x.DateStartActual < vacation.DateEndActual && vacation.DateStartActual < x.DateEndActual)
                 .Any();
             if (!hasIntersection)
             {

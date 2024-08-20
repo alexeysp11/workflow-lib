@@ -1,5 +1,5 @@
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
-using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
+using WorkflowLib.Shared.Models.Business.InformationSystem;
 
 namespace WorkflowLib.Examples.EmployeesMvc.Core.Domain.DatasetGenerators;
 
@@ -31,9 +31,9 @@ public class EmployeeGenerator : IEmployeeGenerator
             var employee = new Employee 
             {
                 FullName = GenerateFullName(),
-                Gender = GenerateEnum<Gender>(),
-                JobTitle = GenerateEnum<JobTitle>(),
-                Department = GenerateEnum<Department>(),
+                Gender = GenerateEnum<GenderType>(),
+                // JobTitle = GenerateEnum<JobTitle>(),
+                // Department = GenerateEnum<Department>(),
                 BirthDate = GenerateBirthDate(generateDate)
             };
             employees.Add(employee);
@@ -63,10 +63,10 @@ public class EmployeeGenerator : IEmployeeGenerator
     /// <summary>
     /// Generic method for generating the employee's properties, knowing specified typed of enum 
     /// </summary>
-    private T GenerateEnum<T>() where T : System.Enum
+    private T GenerateEnum<T>(int startIndex = 0, int shift = 0) where T : System.Enum
     {
         var length = System.Enum.GetNames(typeof(T)).Length;
-        return (T)(object) new Random().Next(1, length + 1);
+        return (T)(object) new Random().Next(startIndex, length + shift);
     }
 
     /// <summary>

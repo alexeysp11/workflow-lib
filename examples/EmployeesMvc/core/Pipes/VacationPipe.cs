@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
-using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
+using WorkflowLib.Shared.Models.Business.InformationSystem;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.Pipes;
 using WorkflowLib.Examples.EmployeesMvc.Core.Domain.DatasetGenerators;
 
@@ -22,9 +22,9 @@ public class VacationPipe : AbstractPipe
     /// <summary>
     /// Generate vacations.
     /// </summary>
-    private List<Vacation> GenerateVacations(List<Employee> employees, List<int> vacationIntervals)
+    private List<Absense> GenerateVacations(List<Employee> employees, List<int> vacationIntervals)
     {
-        var vacations = new List<Vacation>();
+        var vacations = new List<Absense>();
         foreach (var employee in employees)
         {
             IVacationGenerator generator = new VacationGenerator();
@@ -42,19 +42,19 @@ public class VacationPipe : AbstractPipe
         // Get available slots for the employee.
         var slots = result.Vacations
             .Where(x => x.Employee.FullName == fullName 
-                        && x.BeginDate <= begin 
-                        && x.EndDate > begin 
-                        && x.BeginDate < end 
-                        && x.EndDate >= end).ToList();
+                        && x.DateStartActual <= begin 
+                        && x.DateEndActual > begin 
+                        && x.DateStartActual < end 
+                        && x.DateEndActual >= end).ToList();
         if (slots.Count == 0)
             return;
 
         // Generate for the employee.
         var employee = result.Employees.FirstOrDefault(x => x.FullName == fullName);
-        var vacation = new Vacation 
+        var vacation = new Absense
         {
-            BeginDate = begin, 
-            EndDate = end, 
+            DateStartActual = begin,
+            DateEndActual = end,
             Employee = employee
         };
         result.Vacations.Add(vacation);

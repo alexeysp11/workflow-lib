@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
+using WorkflowLib.Shared.Models.Business.InformationSystem;
 
 namespace WorkflowLib.Examples.EmployeesMvc.Core.Domain.DatasetGenerators;
 
@@ -11,12 +11,12 @@ public class VacationGenerator : IVacationGenerator
     /// <summary>
     /// Generates specified number of employees mapped to every employee 
     /// </summary>
-    public List<Vacation> GenerateVacations(
+    public List<Absense> GenerateVacations(
         Employee employee, 
         List<int> vacationIntervals, 
         System.Func<System.DateTime, System.DateTime, System.DateTime> generateDate)
     {
-        var result = new List<Vacation>();
+        var result = new List<Absense>();
         var year = System.DateTime.Now.Year;
         foreach (var interval in vacationIntervals)
         {
@@ -28,10 +28,10 @@ public class VacationGenerator : IVacationGenerator
                 end = start.AddDays(interval);
             }
             while (end.Year != year);
-            var vacation = new Vacation 
+            var vacation = new Absense
             {
-                BeginDate = start, 
-                EndDate = end, 
+                DateStartActual = start,
+                DateEndActual = end,
                 Employee = employee
             };
             result.Add(vacation);
