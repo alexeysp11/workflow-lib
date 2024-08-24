@@ -7,18 +7,18 @@ insert into "Organizations" ("Name", "Description", "Uid", "DateCreated", "Busin
 values ('TechnoSoft', 'A company specializing in software and information technology development', uuid_generate_v4(), now(), 1);
 
 insert into "Organizations" ("Name", "Description", "Uid", "DateCreated", "BusinessEntityStatus")
-values ('Affordable Construction', 'A construction company engaged in environmentally friendly construction', uuid_generate_v4(), now(), 1);
+values ('Affordable Construction', 'A construction company engaged in environmentally friendly construction. The company provides construction services to third-party organizations or sells construction materials, and also helps build infrastructure and equip buildings for the operation of a number of companies.', uuid_generate_v4(), now(), 1);
 
 insert into "Organizations" ("Name", "Description", "Uid", "DateCreated", "BusinessEntityStatus")
-values ('FinanceInvest', 'A financial company providing investment services', uuid_generate_v4(), now(), 1);
+values ('FinanceInvest', 'A financial company providing investment services. The company allows you to calculate the profitability of activities, predict risks and provide a financial forecast for the activities of a company''s contour', uuid_generate_v4(), now(), 1);
 
 insert into "Organizations" ("Name", "Description", "Uid", "DateCreated", "BusinessEntityStatus")
-values ('Media Group', 'A media holding that includes various media resources (TV, radio, Internet)', uuid_generate_v4(), now(), 1);
+values ('Media Group', 'A media holding that includes various media resources (TV, radio, Internet). The company allows you to promote the company''s brand, as well as attract investment and new employees', uuid_generate_v4(), now(), 1);
 
 insert into "Organizations" ("Name", "Description", "Uid", "DateCreated", "BusinessEntityStatus")
-values ('AutoTechCenter', 'A car service center providing a full range of car repair and maintenance services', uuid_generate_v4(), now(), 1);
+values ('AutoTechCenter', 'A car service center providing a full range of car repair and maintenance services, and also delivers building materials, transports employees on business trips, and repairs cars', uuid_generate_v4(), now(), 1);
 
--- Organization items.
+-- Departments.
 insert into "OrganizationItems" ("Name", "Description", "Uid", "DateCreated", "BusinessEntityStatus", "ItemType", "HardDelete", "IsDeleted")
 values ('Sales Department', 'Responsible for promoting and selling the company''s products/services', uuid_generate_v4(), now(), 1, 0, true, false);
 
