@@ -25,51 +25,51 @@ values ('AutoTechCenter', 'A car service center providing a full range of car re
 
 -- Generate Positions (OrganizationItem)
 
--- TechnoSoft CEO
+-- TechnoSoft: CEO
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
 VALUES (uuid_generate_v4(), 'CEO', 'Chief Executive Officer', NOW(), 1, false, true, NULL);
 
--- TechnoSoft Technical Director
+-- TechnoSoft: Technical Director
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
 VALUES (uuid_generate_v4(), 'Technical Director', 'Responsible for software development', NOW(), 1, false, true, NULL);
 
--- TechnoSoft Marketing Director
+-- TechnoSoft: Marketing Director
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
 VALUES (uuid_generate_v4(), 'Marketing Director', 'Responsible for promoting technology products and services', NOW(), 1, false, true, NULL);
 
--- FinanceInvest CEO
+-- FinanceInvest: CEO
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
 VALUES (uuid_generate_v4(), 'CEO', 'Chief Executive Officer', NOW(), 1, false, true, NULL);
 
--- FinanceInvest Investment Director
+-- FinanceInvest: Investment Director
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
 VALUES (uuid_generate_v4(), 'Investment Director', 'Responsible for investment analysis and portfolio management', NOW(), 1, false, true, NULL);
 
--- FinanceInvest Risk Management Director
+-- FinanceInvest: Risk Management Director
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
 VALUES (uuid_generate_v4(), 'Risk Management Director', 'Responsible for risk management', NOW(), 1, false, true, NULL);
 
--- Media Group President
+-- Media Group: President
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
 VALUES (uuid_generate_v4(), 'President', 'Responsible for creating engaging media content', NOW(), 1, false, true, NULL);
 
--- Media Group CEO
+-- Media Group: CEO
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
 VALUES (uuid_generate_v4(), 'CEO', 'Chief Executive Officer', NOW(), 1, false, true, NULL);
 
--- Media Group Creative Director
+-- Media Group: Creative Director
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
 VALUES (uuid_generate_v4(), 'Creative Director', 'Responsible for content development and promotion', NOW(), 1, false, true, NULL);
 
--- AutoTechCenter Director
+-- AutoTechCenter: Director
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
 VALUES (uuid_generate_v4(), 'Director', 'Responsible for managing the car service center', NOW(), 1, false, true, NULL);
 
--- AutoTechCenter Service Manager
+-- AutoTechCenter: Service Manager
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
 VALUES (uuid_generate_v4(), 'Service Manager', 'Responsible for ensuring quality and efficiency of services', NOW(), 1, false, true, NULL);
 
--- AutoTechCenter Logistics Manager
+-- AutoTechCenter: Logistics Manager
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
 VALUES (uuid_generate_v4(), 'Logistics Manager', 'Responsible for efficient delivery of goods and employee transportation', NOW(), 1, false, true, NULL);
 
@@ -77,45 +77,77 @@ VALUES (uuid_generate_v4(), 'Logistics Manager', 'Responsible for efficient deli
 
 -- Generating the Management Committee (OrganizationItem) and its positions.
 
--- Affordable Construction Management Committee (I'll consider it a department)
+-- Affordable Construction: Management Committee (I'll consider it a department)
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
 VALUES (uuid_generate_v4(), 'Management Committee', 'Responsible for overall company management', NOW(), 0, false, true, NULL);
 
--- Affordable Construction Committee Chair
+-- Affordable Construction: Committee Chair
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Chair', 'Leads the Management Committee', NOW(), 1, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee'));
+VALUES (uuid_generate_v4(), 'Chair', 'Leads the Management Committee', NOW(), 1, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee' LIMIT 1));
 
--- Affordable Construction Committee Vice Chair
+-- Affordable Construction: Committee Vice Chair
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Vice Chair', 'Supports the Chair in managing the Committee', NOW(), 1, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee'));
+VALUES (uuid_generate_v4(), 'Vice Chair', 'Supports the Chair in managing the Committee', NOW(), 1, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee' LIMIT 1));
 
--- Affordable Construction Committee Member
+-- Affordable Construction: Committee Member
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Member', 'Contributes to the Management Committee', NOW(), 1, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee'));
+VALUES (uuid_generate_v4(), 'Member', 'Contributes to the Management Committee', NOW(), 1, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee' LIMIT 1));
 
 -----------------------
 
 -- Updating HeadItem in Organization.
 
 -- Update HeadItem for TechnoSoft
-UPDATE "Organizations" SET "HeadItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO') 
+UPDATE "Organizations" SET "HeadItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO' LIMIT 1 OFFSET 0) 
 WHERE "Name" = 'TechnoSoft';
 
 -- Update HeadItem for FinanceInvest
-UPDATE "Organizations" SET "HeadItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO') 
+UPDATE "Organizations" SET "HeadItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO' LIMIT 1 OFFSET 1) 
 WHERE "Name" = 'FinanceInvest';
 
 -- Update HeadItem for Media Group
-UPDATE "Organizations" SET "HeadItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'President') 
+UPDATE "Organizations" SET "HeadItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'President' LIMIT 1) 
 WHERE "Name" = 'Media Group';
 
 -- Update HeadItem for AutoTechCenter
-UPDATE "Organizations" SET "HeadItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director') 
+UPDATE "Organizations" SET "HeadItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director' LIMIT 1) 
 WHERE "Name" = 'AutoTechCenter';
 
 -- Update HeadItem for Affordable Construction
-UPDATE "Organizations" SET "HeadItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee') 
+UPDATE "Organizations" SET "HeadItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee' LIMIT 1) 
 WHERE "Name" = 'Affordable Construction';
+
+-----------------------
+
+-- UPDATE SQL queries to establish dependencies in OrganizationItems for top-managers.
+
+-- Media Group
+UPDATE "OrganizationItems" SET "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'President') 
+WHERE "Id" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO' LIMIT 1 OFFSET 2);
+
+UPDATE "OrganizationItems" SET "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO' LIMIT 1 OFFSET 2) 
+WHERE "Name" = 'Creative Director';
+
+-- TechnoSoft
+UPDATE "OrganizationItems" SET "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO' LIMIT 1 OFFSET 0) 
+WHERE "Name" = 'Technical Director';
+
+UPDATE "OrganizationItems" SET "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO' LIMIT 1 OFFSET 0) 
+WHERE "Name" = 'Marketing Director';
+
+-- FinanceInvest
+UPDATE "OrganizationItems" SET "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO' LIMIT 1 OFFSET 1) 
+WHERE "Name" = 'Investment Director';
+
+UPDATE "OrganizationItems" SET "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO' LIMIT 1 OFFSET 1) 
+WHERE "Name" = 'Risk Management Director';
+
+-- AutoTechCenter
+UPDATE "OrganizationItems" SET "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director' LIMIT 1) 
+WHERE "Name" = 'Service Manager';
+
+UPDATE "OrganizationItems" SET "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director' LIMIT 1) 
+WHERE "Name" = 'Logistics Manager';
 
 -----------------------
 
