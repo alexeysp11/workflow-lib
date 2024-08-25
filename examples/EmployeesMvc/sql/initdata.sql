@@ -6,20 +6,20 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- Organizations.
 
-insert into "Organizations" ("Name", "Description", "Uid", "DateCreated", "BusinessEntityStatus")
-values ('TechnoSoft', 'A company specializing in software and information technology development', uuid_generate_v4(), now(), 1);
+INSERT INTO "Organizations" ("Name", "Description", "Uid", "DateCreated", "BusinessEntityStatus")
+VALUES ('TechnoSoft', 'A company specializing in software and information technology development', uuid_generate_v4(), NOW(), 1);
 
-insert into "Organizations" ("Name", "Description", "Uid", "DateCreated", "BusinessEntityStatus")
-values ('Affordable Construction', 'A construction company engaged in environmentally friendly construction. The company provides construction services to third-party organizations or sells construction materials, and also helps build infrastructure and equip buildings for the operation of a number of companies.', uuid_generate_v4(), now(), 1);
+INSERT INTO "Organizations" ("Name", "Description", "Uid", "DateCreated", "BusinessEntityStatus")
+VALUES ('Affordable Construction', 'A construction company engaged in environmentally friendly construction. The company provides construction services to third-party organizations or sells construction materials, and also helps build infrastructure and equip buildings for the operation of a number of companies.', uuid_generate_v4(), NOW(), 1);
 
-insert into "Organizations" ("Name", "Description", "Uid", "DateCreated", "BusinessEntityStatus")
-values ('FinanceInvest', 'A financial company providing investment services. The company allows you to calculate the profitability of activities, predict risks and provide a financial forecast for the activities of a company''s contour', uuid_generate_v4(), now(), 1);
+INSERT INTO "Organizations" ("Name", "Description", "Uid", "DateCreated", "BusinessEntityStatus")
+VALUES ('FinanceInvest', 'A financial company providing investment services. The company allows you to calculate the profitability of activities, predict risks and provide a financial forecast for the activities of a company''s contour', uuid_generate_v4(), NOW(), 1);
 
-insert into "Organizations" ("Name", "Description", "Uid", "DateCreated", "BusinessEntityStatus")
-values ('Media Group', 'A media holding that includes various media resources (TV, radio, Internet). The company allows you to promote the company''s brand, as well as attract investment and new employees', uuid_generate_v4(), now(), 1);
+INSERT INTO "Organizations" ("Name", "Description", "Uid", "DateCreated", "BusinessEntityStatus")
+VALUES ('Media Group', 'A media holding that includes various media resources (TV, radio, Internet). The company allows you to promote the company''s brand, as well as attract investment and new employees', uuid_generate_v4(), NOW(), 1);
 
-insert into "Organizations" ("Name", "Description", "Uid", "DateCreated", "BusinessEntityStatus")
-values ('AutoTechCenter', 'A car service center providing a full range of car repair and maintenance services, and also delivers building materials, transports employees on business trips, and repairs cars', uuid_generate_v4(), now(), 1);
+INSERT INTO "Organizations" ("Name", "Description", "Uid", "DateCreated", "BusinessEntityStatus")
+VALUES ('AutoTechCenter', 'A car service center providing a full range of car repair and maintenance services, and also delivers building materials, transports employees on business trips, and repairs cars', uuid_generate_v4(), NOW(), 1);
 
 -----------------------
 
