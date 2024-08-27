@@ -151,6 +151,8 @@ WHERE "Name" = 'Logistics Manager';
 
 -----------------------
 
+-- Departments.
+
 -- TechnoSoft
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
 VALUES (uuid_generate_v4(), 'Software Development Department', 'Responsible for developing software', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO' AND "ItemType" = 1 LIMIT 1 OFFSET 0));
@@ -160,6 +162,12 @@ VALUES (uuid_generate_v4(), 'IT Infrastructure Department', 'Responsible for man
 
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
 VALUES (uuid_generate_v4(), 'Marketing and Sales Department', 'Responsible for marketing and sales activities', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO' AND "ItemType" = 1 LIMIT 1 OFFSET 0));
+
+INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
+VALUES (uuid_generate_v4(), 'Quality Assurance Department', 'Responsible for testing software', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO' AND "ItemType" = 1 LIMIT 1 OFFSET 0));
+
+INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
+VALUES (uuid_generate_v4(), 'Project Management Department', 'Responsible for project management', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO' AND "ItemType" = 1 LIMIT 1 OFFSET 0));
 
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
 VALUES (uuid_generate_v4(), 'Research and Development Department', 'Responsible for research and development activities', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO' AND "ItemType" = 1 LIMIT 1 OFFSET 0));
@@ -224,6 +232,282 @@ VALUES (uuid_generate_v4(), 'Logistics Department', 'Responsible for logistics o
 
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
 VALUES (uuid_generate_v4(), 'Customer Service Department', 'Responsible for customer service', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director' AND "ItemType" = 1));
+
+-----------------------
+
+-- Teams.
+
+-- Insert teams into Software Development Department
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    oi."Id", -- Department ID.
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Frontend Development Team',
+    'Team responsible for developing the user interface of the application',
+    1
+FROM "OrganizationItems" oi
+WHERE oi."Name" = 'Software Development Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    oi."Id", -- Department ID.
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Backend Development Team',
+    'Team responsible for developing the server-side logic of the application',
+    1
+FROM "OrganizationItems" oi
+WHERE oi."Name" = 'Software Development Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    oi."Id", -- Department ID.
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Mobile Development Team',
+    'Team responsible for developing mobile applications',
+    1
+FROM "OrganizationItems" oi
+WHERE oi."Name" = 'Software Development Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    oi."Id", -- Department ID.
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'QA Testing Team',
+    'Team responsible for testing the application for bugs and defects',
+    1
+FROM "OrganizationItems" oi
+WHERE oi."Name" = 'Software Development Department';
+
+-- Insert teams into IT Infrastructure Department
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    oi."Id", -- Department ID.
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Network Administration Team',
+    'Team responsible for managing the network infrastructure',
+    1
+FROM "OrganizationItems" oi
+WHERE oi."Name" = 'IT Infrastructure Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    oi."Id", -- Department ID.
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'System Administration Team',
+    'Team responsible for managing the server infrastructure',
+    1
+FROM "OrganizationItems" oi
+WHERE oi."Name" = 'IT Infrastructure Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    oi."Id", -- Department ID.
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Security Team',
+    'Team responsible for securing the network and systems',
+    1
+FROM "OrganizationItems" oi
+WHERE oi."Name" = 'IT Infrastructure Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    oi."Id", -- Department ID.
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Database Administration Team',
+    'Team responsible for managing the databases',
+    1
+FROM "OrganizationItems" oi
+WHERE oi."Name" = 'IT Infrastructure Department';
+
+-- Insert teams into Quality Assurance Department
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    oi."Id", -- Department ID.
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Manual Testing Team',
+    'Team responsible for manually testing the application',
+    1
+FROM "OrganizationItems" oi
+WHERE oi."Name" = 'Quality Assurance Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    oi."Id", -- Department ID.
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Automation Testing Team',
+    'Team responsible for automating the testing process',
+    1
+FROM "OrganizationItems" oi
+WHERE oi."Name" = 'Quality Assurance Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    oi."Id", -- Department ID.
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Performance Testing Team',
+    'Team responsible for testing the application performance',
+    1
+FROM "OrganizationItems" oi
+WHERE oi."Name" = 'Quality Assurance Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    oi."Id", -- Department ID.
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Security Testing Team',
+    'Team responsible for testing the application security',
+    1
+FROM "OrganizationItems" oi
+WHERE oi."Name" = 'Quality Assurance Department';
+
+-- Insert teams into Project Management Department
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    oi."Id", -- Department ID.
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Project Management Team',
+    'Team responsible for managing the project lifecycle',
+    1
+FROM "OrganizationItems" oi
+WHERE oi."Name" = 'Project Management Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    oi."Id", -- Department ID.
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Product Owners Team',
+    'Team responsible for defining the product vision',
+    1
+FROM "OrganizationItems" oi
+WHERE oi."Name" = 'Project Management Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    oi."Id", -- Department ID.
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Scrum Masters Team',
+    'Team responsible for facilitating the scrum process',
+    1
+FROM "OrganizationItems" oi
+WHERE oi."Name" = 'Project Management Department'
+    AND oi."ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO' AND "ItemType" = 1 LIMIT 1 OFFSET 0);
+
+-- Insert teams into Marketing and Sales Department
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    oi."Id", -- Department ID.
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Marketing Team',
+    'Team responsible for developing and executing marketing campaigns',
+    1
+FROM "OrganizationItems" oi
+WHERE oi."Name" = 'Marketing and Sales Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    oi."Id", -- Department ID.
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Sales Team',
+    'Team responsible for generating leads and closing deals',
+    1
+FROM "OrganizationItems" oi
+WHERE oi."Name" = 'Marketing and Sales Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    oi."Id", -- Department ID.
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Content Marketing Team',
+    'Team responsible for creating and distributing content',
+    1
+FROM "OrganizationItems" oi
+WHERE oi."Name" = 'Marketing and Sales Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    oi."Id", -- Department ID.
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Social Media Marketing Team',
+    'Team responsible for managing social media accounts',
+    1
+FROM "OrganizationItems" oi
+WHERE oi."Name" = 'Marketing and Sales Department';
 
 -----------------------
 
