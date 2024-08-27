@@ -17,6 +17,9 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
         EmployeeGroup,
         
         [Display(Name = "Nested structure")]
-        NestedStructure
+        NestedStructure,
+        
+        [Display(Name = "Team")]
+        Team
     }
 }
