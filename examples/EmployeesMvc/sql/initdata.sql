@@ -515,6 +515,118 @@ SELECT
 FROM "OrganizationItems" oi
 WHERE oi."Name" = 'Marketing and Sales Department';
 
+-- Insert teams into "Project Management Department"
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Project Management Department' AND "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee' AND "ItemType" = 0)),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Project Planning Team',
+    'Team responsible for planning projects',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Project Management Department' AND "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee' AND "ItemType" = 0)),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Construction Management Team',
+    'Team responsible for managing construction projects',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Project Management Department' AND "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee' AND "ItemType" = 0)),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Project Coordination Team',
+    'Team responsible for coordinating project activities',
+    1;
+
+-- Insert teams into "Procurement Department"
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Procurement Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Procurement Team',
+    'Team responsible for sourcing and purchasing materials',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Procurement Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Supply Chain Management Team',
+    'Team responsible for managing the supply chain',
+    1;
+
+-- Insert teams into "Quality Control Department"
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Quality Control Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Quality Assurance Team',
+    'Team responsible for ensuring quality standards are met',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Quality Control Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Inspection Team',
+    'Team responsible for inspecting materials and processes',
+    1;
+
+-- Insert teams into "Safety and Environment Department"
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Safety and Environment Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Safety Officer Team',
+    'Team responsible for safety procedures and training',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Safety and Environment Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Environmental Compliance Team',
+    'Team responsible for environmental compliance and monitoring',
+    1;
+
 -- Affordable Construction: Design and Engineering Department.
 
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "BusinessEntityStatus")
@@ -536,8 +648,6 @@ VALUES (uuid_generate_v4(), 'Construction Management Team', 'Construction Manage
 
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "BusinessEntityStatus")
 VALUES (uuid_generate_v4(), 'Project Coordination Team', 'Project Coordination Team', NOW(), 4, FALSE, TRUE, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Construction Management Department'), 1);
-
--- Affordable Construction: Construction Management Department.
 
 -----------------------
 
