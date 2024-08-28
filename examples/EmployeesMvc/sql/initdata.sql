@@ -185,6 +185,9 @@ VALUES (uuid_generate_v4(), 'Risk Management Department', 'Responsible for manag
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
 VALUES (uuid_generate_v4(), 'Financial Analysis Department', 'Responsible for financial analysis', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO' AND "ItemType" = 1 LIMIT 1 OFFSET 1));
 
+INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
+VALUES (uuid_generate_v4(), 'Client Services Department', 'Responsible for client services', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO' AND "ItemType" = 1 LIMIT 1 OFFSET 1));
+
 -- Affordable Construction
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
 VALUES (uuid_generate_v4(), 'Project Management Department', 'Responsible for project management', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee' AND "ItemType" = 0));
@@ -648,6 +651,191 @@ VALUES (uuid_generate_v4(), 'Construction Management Team', 'Construction Manage
 
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "BusinessEntityStatus")
 VALUES (uuid_generate_v4(), 'Project Coordination Team', 'Project Coordination Team', NOW(), 4, FALSE, TRUE, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Construction Management Department'), 1);
+
+-- Insert teams into "Investment Banking Department"
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Investment Banking Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Equity Research Team',
+    'Team responsible for research and analysis of equity markets',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Investment Banking Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Fixed Income Team',
+    'Team responsible for research and analysis of fixed income markets',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Investment Banking Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Alternative Investments Team',
+    'Team responsible for research and analysis of alternative investments',
+    1;
+
+-- Insert teams into "Asset Management Department"
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Asset Management Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Equity Asset Management Team',
+    'Team responsible for managing equity assets',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Asset Management Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Fixed Income Asset Management Team',
+    'Team responsible for managing fixed income assets',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Asset Management Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Alternative Investments Asset Management Team',
+    'Team responsible for managing alternative investments assets',
+    1;
+
+-- Insert teams into "Risk Management Department"
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Risk Management Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Market Risk Management Team',
+    'Team responsible for managing market risk',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Risk Management Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Credit Risk Management Team',
+    'Team responsible for managing credit risk',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Risk Management Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Operational Risk Management Team',
+    'Team responsible for managing operational risk',
+    1;
+
+-- Insert teams into "Financial Reporting Department"
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Financial Reporting Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Financial Reporting Team',
+    'Team responsible for preparing financial reports',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Financial Reporting Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Accounting Team',
+    'Team responsible for accounting operations',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Financial Reporting Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Regulatory Reporting Team',
+    'Team responsible for preparing regulatory reports',
+    1;
+
+-- Insert teams into "Client Services Department"
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Client Services Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Client Relationship Management Team',
+    'Team responsible for managing client relationships',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Client Services Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Client Onboarding Team',
+    'Team responsible for onboarding new clients',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Client Services Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Client Support Team',
+    'Team responsible for providing client support',
+    1;
 
 -----------------------
 
