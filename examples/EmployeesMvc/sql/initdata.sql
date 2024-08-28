@@ -242,6 +242,179 @@ VALUES (uuid_generate_v4(), 'Logistics Department', 'Responsible for logistics o
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
 VALUES (uuid_generate_v4(), 'Customer Service Department', 'Responsible for customer service', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director' AND "ItemType" = 1));
 
+-- Insert teams into "Car Repair and Maintenance Department"
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Car Repair and Maintenance Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Mechanical Repair Team',
+    'Team responsible for mechanical repairs',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Car Repair and Maintenance Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Electrical Repair Team',
+    'Team responsible for electrical repairs',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Car Repair and Maintenance Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Diagnostics Team',
+    'Team responsible for vehicle diagnostics',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Car Repair and Maintenance Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Scheduled Maintenance Team',
+    'Team responsible for scheduled maintenance services',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Car Repair and Maintenance Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Preventive Maintenance Team',
+    'Team responsible for preventive maintenance services',
+    1;
+
+-- Insert teams into "Parts and Accessories Department"
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Parts and Accessories Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Parts Sales Team',
+    'Team responsible for selling parts and accessories',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Parts and Accessories Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Inventory Management Team',
+    'Team responsible for managing parts inventory',
+    1;
+
+-- Insert teams into "Logistics Department"
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Logistics Department' AND "ParentItemId" IS NOT NULL),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Transportation Team',
+    'Team responsible for vehicle transportation',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Logistics Department' AND "ParentItemId" IS NOT NULL),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Delivery Team',
+    'Team responsible for delivery of parts and vehicles',
+    1;
+
+-- Insert teams into "Customer Service Department"
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Customer Service Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Customer Support Team',
+    'Team responsible for providing customer support',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Customer Service Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Service Scheduling Team',
+    'Team responsible for scheduling service appointments',
+    1;
+
+-- Insert teams into "Body Shop Department"
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Body Shop Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Body Repair Team',
+    'Team responsible for repairing body damage',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Body Shop Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Paint Team',
+    'Team responsible for vehicle painting',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Body Shop Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Detailing Team',
+    'Team responsible for vehicle detailing',
+    1;
+
 -----------------------
 
 -- Teams.
