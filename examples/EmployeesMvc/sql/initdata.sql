@@ -224,7 +224,7 @@ INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "I
 VALUES (uuid_generate_v4(), 'Marketing and Sales Department', 'Responsible for marketing and sales activities', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO' AND "ItemType" = 1 LIMIT 1 OFFSET 2));
 
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Content Creation Department', 'Responsible for content creation', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO' AND "ItemType" = 1 LIMIT 1 OFFSET 2));
+VALUES (uuid_generate_v4(), 'Finance and Operations Department', 'Responsible for finance and operation', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO' AND "ItemType" = 1 LIMIT 1 OFFSET 2));
 
 -- AutoTechCenter
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
@@ -835,6 +835,228 @@ SELECT
     uuid_generate_v4(),
     'Client Support Team',
     'Team responsible for providing client support',
+    1;
+
+-- Insert teams into "Television Department"
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Television Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Production Team',
+    'Team responsible for planning and executing television productions',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Television Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Camera Crew',
+    'Team responsible for operating cameras and capturing footage',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Television Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Editing Team',
+    'Team responsible for editing and assembling video content',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Television Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Sound Team',
+    'Team responsible for sound recording, mixing, and editing',
+    1;
+
+-- Insert teams into "Radio Department"
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Radio Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Production Team',
+    'Team responsible for planning and executing radio productions',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Radio Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'On-Air Team',
+    'Team responsible for presenting and hosting radio programs',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Radio Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Editing Team',
+    'Team responsible for editing and assembling audio content',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Radio Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Sound Team',
+    'Team responsible for sound recording, mixing, and editing',
+    1;
+
+-- Insert teams into "Online Media Department"
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Online Media Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Content Creation Team',
+    'Team responsible for creating and producing online content',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Online Media Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Content Editing Team',
+    'Team responsible for editing and proofreading online content',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Online Media Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Social Media Team',
+    'Team responsible for managing social media presence',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Online Media Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'SEO Team',
+    'Team responsible for search engine optimization',
+    1;
+
+-- Insert teams into "Marketing and Sales Department"
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Marketing and Sales Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Marketing Strategy Team',
+    'Team responsible for developing and executing marketing strategies',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Marketing and Sales Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Advertising Sales Team',
+    'Team responsible for selling advertising space',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntit
+yStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Marketing and Sales Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Digital Marketing Team',
+    'Team responsible for digital marketing efforts',
+    1;
+
+-- Insert teams into "Finance and Operations Department"
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Finance and Operations Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Finance Team',
+    'Team responsible for financial management and accounting',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Finance and Operations Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Operations Team',
+    'Team responsible for day-to-day operations and logistics',
+    1;
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Finance and Operations Department' AND "IsDeleted" = FALSE),
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Human Resources Team',
+    'Team responsible for human resource management',
     1;
 
 -----------------------
