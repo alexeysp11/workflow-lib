@@ -2369,6 +2369,318 @@ SELECT
     1
 FROM "OrganizationItems" WHERE "Name" = 'Security Testing Team';
 
+-- Director of Project Management Department
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Director of Project Management Department',
+    'Director role in Project Management Department',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Project Management Department';
+
+-- Project Management Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Project Management Manager',
+    'Manager role in Project Management Department',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Project Management Department';
+
+-- Project Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Project Manager',
+    'Manages projects from start to finish.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Project Management Department';
+
+-- Scrum Master
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Scrum Master',
+    'Facilitates Scrum processes and helps teams succeed.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Project Management Department';
+
+-- Product Owner
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Product Owner',
+    'Represents the voice of the customer and manages the product backlog.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Project Management Department';
+
+-- Project Coordinator
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Project Coordinator',
+    'Provides administrative support for projects.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Project Management Department';
+
+-- Business Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Business Analyst',
+    'Analyzes business needs and translates them into functional requirements.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Project Management Department';
+
+-- Project Coordination Team Leader
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Project Coordination Team Leader',
+    'Leader role in Project Coordination Team',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Project Coordination Team';
+
+-- Project Coordinator
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Project Coordinator',
+    'Provides administrative support for projects.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Project Coordination Team';
+
+-- Project Assistant
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Project Assistant',
+    'Provides general administrative support to project teams.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Project Coordination Team';
+
+-- Project Management Team Leader
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Project Management Team Leader',
+    'Leader role in Project Management Team',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Project Management Team';
+
+-- Project Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Project Manager',
+    'Manages projects from start to finish.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Project Management Team';
+
+-- Senior Project Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Senior Project Manager',
+    'Experienced Project Manager with leadership responsibilities.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Project Management Team';
+
+-- Product Owners Team Leader
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Product Owners Team Leader',
+    'Leader role in Product Owners Team',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Product Owners Team';
+
+-- Product Owner
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Product Owner',
+    'Represents the voice of the customer and manages the product backlog.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Product Owners Team';
+
+-- Product Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Product Manager',
+    'Responsible for the strategic direction of a product.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Product Owners Team';
+
+-- Project Planning Team Leader
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Project Planning Team Leader',
+    'Leader role in Project Planning Team',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Project Planning Team';
+
+-- Project Planner
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Project Planner',
+    'Creates and manages project schedules and plans.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Project Planning Team';
+
+-- Schedule Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Schedule Manager',
+    'Manages project schedules and timelines.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Project Planning Team';
+
+-- Scrum Masters Team Leader
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Scrum Masters Team Leader',
+    'Leader role in Scrum Masters Team',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Scrum Masters Team';
+
+-- Scrum Master
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Scrum Master',
+    'Facilitates Scrum processes and helps teams succeed.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Scrum Masters Team';
+
+-- Agile Coach
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Agile Coach',
+    'Provides guidance and training on Agile methodologies.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Scrum Masters Team';
+
+-- Construction Management Team Leader
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Construction Management Team Leader',
+    'Leader role in Construction Management Team',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Construction Management Team';
+
+-- Construction Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Construction Manager',
+    'Manages construction projects.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Construction Management Team';
+
+-- Project Engineer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Project Engineer',
+    'Provides engineering expertise for construction projects.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Construction Management Team';
+
+-- Site Supervisor
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Site Supervisor',
+    'Supervises construction activities on site.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Construction Management Team';
+
 -----------------------
 
 -- Departments.
