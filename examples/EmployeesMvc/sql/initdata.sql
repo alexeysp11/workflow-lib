@@ -3245,6 +3245,222 @@ SELECT
     1
 FROM "OrganizationItems" WHERE "Name" = 'Alternative Investments Asset Management Team';
 
+-- Chief Risk Officer (CRO)
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Chief Risk Officer (CRO)',
+    'Head of the Risk Management Department',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Risk Management Department';
+
+-- Head of Market Risk Management
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Market Risk Management',
+    'Head of the Market Risk Management Team',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Market Risk Management Team';
+
+-- Senior Market Risk Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Senior Market Risk Analyst',
+    'Experienced analyst assessing market risk.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Market Risk Management Team';
+
+-- Market Risk Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Market Risk Analyst',
+    'Analyzes market risk.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Market Risk Management Team';
+
+-- Quantitative Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Quantitative Analyst',
+    'Develops and applies quantitative models for risk management.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Market Risk Management Team';
+
+-- Risk Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Risk Manager',
+    'Manages market risk.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Market Risk Management Team';
+
+-- Head of Credit Risk Management
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Credit Risk Management',
+    'Head of the Credit Risk Management Team',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Credit Risk Management Team';
+
+-- Senior Credit Risk Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Senior Credit Risk Analyst',
+    'Experienced analyst assessing credit risk.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Credit Risk Management Team';
+
+-- Credit Risk Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Credit Risk Analyst',
+    'Analyzes credit risk.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Credit Risk Management Team';
+
+-- Credit Officer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Credit Officer',
+    'Evaluates creditworthiness of borrowers.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Credit Risk Management Team';
+
+-- Loan Officer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Loan Officer',
+    'Processes and manages loans.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Credit Risk Management Team';
+
+-- Risk Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Risk Manager',
+    'Manages credit risk.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Credit Risk Management Team';
+
+-- Head of Operational Risk Management
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Operational Risk Management',
+    'Head of the Operational Risk Management Team',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Operational Risk Management Team';
+
+-- Senior Operational Risk Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Senior Operational Risk Analyst',
+    'Experienced analyst assessing operational risk.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Operational Risk Management Team';
+
+-- Operational Risk Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Operational Risk Analyst',
+    'Analyzes operational risk.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Operational Risk Management Team';
+
+-- Compliance Officer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Compliance Officer',
+    'Ensures compliance with regulations and policies.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Operational Risk Management Team';
+
+-- Internal Auditor
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Internal Auditor',
+    'Conducts internal audits to assess risk and compliance.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Operational Risk Management Team';
+
+-- Risk Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Risk Manager',
+    'Manages operational risk.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Operational Risk Management Team';
+
 -----------------------
 
 -- Departments.
