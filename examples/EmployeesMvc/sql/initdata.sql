@@ -2981,6 +2981,270 @@ SELECT
     1
 FROM "OrganizationItems" WHERE "Name" = 'Alternative Investments Team';
 
+-- Managing Director, Head of Asset Management
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Managing Director, Head of Asset Management',
+    'Head of the Asset Management Department',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Asset Management Department';
+
+-- Head of Equity Asset Management
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Equity Asset Management',
+    'Head of the Equity Asset Management Team',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Equity Asset Management Team';
+
+-- Senior Portfolio Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Senior Portfolio Manager',
+    'Experienced Portfolio Manager responsible for equity portfolios.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Equity Asset Management Team';
+
+-- Portfolio Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Portfolio Manager',
+    'Manages equity portfolios.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Equity Asset Management Team';
+
+-- Equity Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Equity Analyst',
+    'Conducts research and analysis on equity investments.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Equity Asset Management Team';
+
+-- Research Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Research Analyst',
+    'Provides research support for equity portfolios.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Equity Asset Management Team';
+
+-- Risk Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Risk Analyst',
+    'Analyzes and manages risk in equity portfolios.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Equity Asset Management Team';
+
+-- Head of Fixed Income Asset Management
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Fixed Income Asset Management',
+    'Head of the Fixed Income Asset Management Team',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Fixed Income Asset Management Team';
+
+-- Senior Portfolio Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Senior Portfolio Manager',
+    'Experienced Portfolio Manager responsible for fixed income portfolios.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Fixed Income Asset Management Team';
+
+-- Portfolio Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Portfolio Manager',
+    'Manages fixed income portfolios.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Fixed Income Asset Management Team';
+
+-- Fixed Income Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Fixed Income Analyst',
+    'Conducts research and analysis on fixed income investments.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Fixed Income Asset Management Team';
+
+-- Senior Trader
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Senior Trader',
+    'Experienced trader executing fixed income trades.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Fixed Income Asset Management Team';
+
+-- Trader
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Trader',
+    'Executes fixed income trades.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Fixed Income Asset Management Team';
+
+-- Risk Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Risk Analyst',
+    'Analyzes and manages risk in fixed income portfolios.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Fixed Income Asset Management Team';
+
+-- Head of Alternative Investments Asset Management
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Alternative Investments Asset Management',
+    'Head of the Alternative Investments Asset Management Team',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Alternative Investments Asset Management Team';
+
+-- Senior Portfolio Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Senior Portfolio Manager',
+    'Experienced Portfolio Manager responsible for alternative investments portfolios.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Alternative Investments Asset Management Team';
+
+-- Portfolio Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Portfolio Manager',
+    'Manages alternative investments portfolios.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Alternative Investments Asset Management Team';
+
+-- Alternative Investments Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Alternative Investments Analyst',
+    'Conducts research and analysis on alternative investments.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Alternative Investments Asset Management Team';
+
+-- Hedge Fund Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Hedge Fund Analyst',
+    'Analyzes hedge funds and their strategies.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Alternative Investments Asset Management Team';
+
+-- Private Equity Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Private Equity Analyst',
+    'Analyzes private equity investments and strategies.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Alternative Investments Asset Management Team';
+
+-- Real Estate Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Real Estate Analyst',
+    'Analyzes real estate investments and markets.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Alternative Investments Asset Management Team';
+
+-- Risk Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Risk Analyst',
+    'Analyzes and manages risk in alternative investments portfolios.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Alternative Investments Asset Management Team';
+
 -----------------------
 
 -- Departments.
