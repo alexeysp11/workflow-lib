@@ -936,10 +936,10 @@ SELECT
     'Team responsible for managing operational risk',
     1;
 
--- Insert teams into "Financial Reporting Department"
+-- Insert teams into "Financial Analysis Department"
 INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
 SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Financial Reporting Department' AND "IsDeleted" = FALSE),
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Financial Analysis Department' AND "IsDeleted" = FALSE),
     FALSE,
     TRUE,
     4,
@@ -951,7 +951,7 @@ SELECT
 
 INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
 SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Financial Reporting Department' AND "IsDeleted" = FALSE),
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Financial Analysis Department' AND "IsDeleted" = FALSE),
     FALSE,
     TRUE,
     4,
@@ -963,7 +963,7 @@ SELECT
 
 INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
 SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Financial Reporting Department' AND "IsDeleted" = FALSE),
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Financial Analysis Department' AND "IsDeleted" = FALSE),
     FALSE,
     TRUE,
     4,
@@ -1231,6 +1231,10 @@ SELECT
     'Human Resources Team',
     'Team responsible for human resource management',
     1;
+
+-----------------------
+
+-- Job title.
 
 -----------------------
 
