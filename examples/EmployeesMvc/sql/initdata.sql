@@ -2681,6 +2681,90 @@ SELECT
     1
 FROM "OrganizationItems" WHERE "Name" = 'Construction Management Team';
 
+-- Director of Research and Development Department
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Director of Research and Development Department',
+    'Director role in Research and Development Department',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Research and Development Department';
+
+-- R&D Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'R&D Manager',
+    'Manages research and development activities.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Research and Development Department';
+
+-- Research Scientist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Research Scientist',
+    'Conducts scientific research and experiments.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Research and Development Department';
+
+-- Data Scientist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Data Scientist',
+    'Analyzes and interprets large datasets.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Research and Development Department';
+
+-- Machine Learning Engineer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Machine Learning Engineer',
+    'Develops and implements machine learning models.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Research and Development Department';
+
+-- AI Developer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'AI Developer',
+    'Develops artificial intelligence systems and applications.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Research and Development Department';
+
+-- Software Engineer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Software Engineer',
+    'Develops and maintains software applications.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Research and Development Department';
+
 -----------------------
 
 -- Departments.
