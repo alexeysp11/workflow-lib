@@ -1865,6 +1865,330 @@ SELECT
     1
 FROM "OrganizationItems" WHERE "Name" = 'Database Administration Team';
 
+-- Insert job titles into Marketing and Sales Department
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Director of Marketing and Sales Department',
+    'Head of Marketing and Sales Department.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Marketing and Sales Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Marketing and Sales Manager',
+    'Manages Marketing and Sales teams and activities.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Marketing and Sales Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Marketing Specialist',
+    'Develops and implements marketing campaigns.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Marketing and Sales Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Sales Representative',
+    'Sells products or services to customers.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Marketing and Sales Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Account Manager',
+    'Manages relationships with existing customers.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Marketing and Sales Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Marketing Manager',
+    'Leads the Marketing Team.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Marketing and Sales Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Sales Manager',
+    'Leads the Sales Team.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Marketing and Sales Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Digital Marketing Manager',
+    'Leads the Digital Marketing Team.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Marketing and Sales Department';
+
+-- Insert job titles into Marketing Team
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Marketing Team Leader',
+    'Leads the Marketing Team.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Marketing Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Content Marketing Specialist',
+    'Creates and distributes high-quality content for marketing purposes.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Marketing Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Social Media Marketing Specialist',
+    'Manages social media channels and campaigns.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Marketing Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Email Marketing Specialist',
+    'Develops and implements email marketing campaigns.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Marketing Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'SEO Specialist',
+    'Optimizes website content for search engines.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Marketing Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'SEM Specialist',
+    'Manages search engine marketing campaigns.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Marketing Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Marketing Analyst',
+    'Analyzes marketing data and performance.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Marketing Team';
+
+-- Insert job titles into Sales Team
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Sales Team Leader',
+    'Leads the Sales Team.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Sales Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Sales Representative',
+    'Sells products or services to customers.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Sales Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Account Executive',
+    'Manages relationships with key accounts.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Sales Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Business Development Manager',
+    'Identifies and develops new business opportunities.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Sales Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Sales Engineer',
+    'Provides technical expertise and support to sales teams.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Sales Team';
+
+-- Insert job titles into Content Marketing Team
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Content Marketing Team Leader',
+    'Leads the Content Marketing Team.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Content Marketing Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Content Writer',
+    'Creates written content for various marketing materials.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Content Marketing Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Editor',
+    'Edits and proofreads written content.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Content Marketing Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Copywriter',
+    'Writes persuasive and engaging marketing copy.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Content Marketing Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Content Strategist',
+    'Develops and implements content strategy.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Content Marketing Team';
+
+-- Insert job titles into Social Media Marketing Team
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Social Media Marketing Team Leader',
+    'Leads the Social Media Marketing Team.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Social Media Marketing Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Social Media Manager',
+    'Manages social media channels and campaigns.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Social Media Marketing Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Social Media Specialist',
+    'Creates and distributes social media content.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Social Media Marketing Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Community Manager',
+    'Engages with online communities and builds relationships with customers.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Social Media Marketing Team';
+
 -----------------------
 
 -- Departments.
