@@ -1561,6 +1561,309 @@ SELECT
     1
 FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team';
 
+-- TechnoSoft: IT Infrastructure Department.
+
+-- Insert job titles into IT Infrastructure Department
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department'),
+    FALSE,
+    TRUE,
+    1,
+    'Director of IT Infrastructure Department',
+    'Head of IT Infrastructure Department.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department'),
+    FALSE,
+    TRUE,
+    1,
+    'IT Infrastructure Manager',
+    'Manages IT Infrastructure teams and resources.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department'),
+    FALSE,
+    TRUE,
+    1,
+    'System Administrator',
+    'Administers computer systems and networks.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department'),
+    FALSE,
+    TRUE,
+    1,
+    'Network Administrator',
+    'Administers and manages computer networks.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department'),
+    FALSE,
+    TRUE,
+    1,
+    'Cloud Engineer',
+    'Designs, implements, and manages cloud computing services.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department'),
+    FALSE,
+    TRUE,
+    1,
+    'Security Engineer',
+    'Develops and implements security measures for IT systems.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department'),
+    FALSE,
+    TRUE,
+    1,
+    'Database Administrator',
+    'Administers and manages databases.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department'),
+    FALSE,
+    TRUE,
+    1,
+    'IT Support Specialist',
+    'Provides technical support to users.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department';
+
+-- Insert job titles into Network Administration Team
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Network Administration Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Network Administration Team Leader',
+    'Leads the Network Administration Team.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Network Administration Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Network Administration Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Network Engineer',
+    'Designs, implements, and maintains computer networks.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Network Administration Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Network Administration Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Network Security Engineer',
+    'Develops and implements security measures for computer networks.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Network Administration Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Network Administration Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Network Analyst',
+    'Analyzes and troubleshoots network issues.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Network Administration Team';
+
+-- Insert job titles into System Administration Team
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'System Administration Team'),
+    FALSE,
+    TRUE,
+    1,
+    'System Administration Team Leader',
+    'Leads the System Administration Team.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'System Administration Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'System Administration Team'),
+    FALSE,
+    TRUE,
+    1,
+    'System Administrator',
+    'Administers computer systems and networks.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'System Administration Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'System Administration Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Server Administrator',
+    'Administers and manages servers.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'System Administration Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'System Administration Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Linux Administrator',
+    'Administers and manages Linux systems.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'System Administration Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'System Administration Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Windows Administrator',
+    'Administers and manages Windows systems.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'System Administration Team';
+
+-- Insert job titles into Security Team
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Security Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Security Team Leader',
+    'Leads the Security Team.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Security Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Security Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Security Analyst',
+    'Analyzes security threats and vulnerabilities.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Security Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Security Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Security Architect',
+    'Designs and implements security architectures.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Security Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Security Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Penetration Tester',
+    'Performs penetration testing to identify vulnerabilities.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Security Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Security Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Cybersecurity Analyst',
+    'Analyzes cybersecurity threats and incidents.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Security Team';
+
+-- Insert job titles into Database Administration Team
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Database Administration Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Database Administration Team Leader',
+    'Leads the Database Administration Team.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Database Administration Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Database Administration Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Database Administrator',
+    'Administers and manages databases.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Database Administration Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Database Administration Team'),
+    FALSE,
+    TRUE,
+    1,
+    'SQL Developer',
+    'Develops and maintains SQL databases.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Database Administration Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Database Administration Team'),
+    FALSE,
+    TRUE,
+    1,
+    'NoSQL Developer',
+    'Develops and maintains NoSQL databases.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Database Administration Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Database Administration Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Data Analyst',
+    'Analyzes and interprets data to identify patterns and insights.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Database Administration Team';
 
 -----------------------
 
