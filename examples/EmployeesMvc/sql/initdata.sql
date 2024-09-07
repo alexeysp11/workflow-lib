@@ -1234,7 +1234,333 @@ SELECT
 
 -----------------------
 
--- Job title.
+-- Job titles.
+
+-- TechnoSoft: Software Development Department.
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Software Development Department'),
+    FALSE,
+    TRUE,
+    1,
+    'Director of Software Development Department',
+    'Head of Software Development Department.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Software Development Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Software Development Department'),
+    FALSE,
+    TRUE,
+    1,
+    'Software Development Manager',
+    'Manages Software Development Teams.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Software Development Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Software Development Department'),
+    FALSE,
+    TRUE,
+    1,
+    'Senior Software Developer',
+    'Experienced software developer with advanced skills.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Software Development Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Software Development Department'),
+    FALSE,
+    TRUE,
+    1,
+    'Software Developer',
+    'Develops software applications.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Software Development Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Software Development Department'),
+    FALSE,
+    TRUE,
+    1,
+    'Junior Software Developer',
+    'New software developer with basic skills.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Software Development Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Software Development Department'),
+    FALSE,
+    TRUE,
+    1,
+    'Software Architect',
+    'Designs and architects software systems.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Software Development Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Software Development Department'),
+    FALSE,
+    TRUE,
+    1,
+    'Technical Lead',
+    'Leads a team of software developers.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Software Development Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Software Development Department'),
+    FALSE,
+    TRUE,
+    1,
+    'DevOps Engineer',
+    'Develops and maintains infrastructure and automation.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Software Development Department';
+
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Frontend Development Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Frontend Development Team Leader',
+    'Leads the Frontend Development Team.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Frontend Development Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Frontend Development Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Frontend Developer',
+    'Develops frontend applications and user interfaces.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Frontend Development Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Frontend Development Team'),
+    FALSE,
+    TRUE,
+    1,
+    'UI/UX Designer',
+    'Designs user interfaces and user experiences.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Frontend Development Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Frontend Development Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Web Developer',
+    'Develops websites and web applications.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Frontend Development Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Frontend Development Team'),
+    FALSE,
+    TRUE,
+    1,
+    'JavaScript Developer',
+    'Develops applications using JavaScript.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Frontend Development Team';
+
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Backend Development Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Backend Development Team Leader',
+    'Leads the Backend Development Team.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Backend Development Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Backend Development Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Backend Developer',
+    'Develops backend applications and APIs.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Backend Development Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Backend Development Team'),
+    FALSE,
+    TRUE,
+    1,
+    'API Developer',
+    'Develops APIs for applications.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Backend Development Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Backend Development Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Database Developer',
+    'Develops and manages databases.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Backend Development Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Backend Development Team'),
+    FALSE,
+    TRUE,
+    1,
+    'C# Developer',
+    'Develops applications using C#.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Backend Development Team';
+
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Mobile Development Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Mobile Development Team Leader',
+    'Leads the Mobile Development Team.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Mobile Development Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Mobile Development Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Mobile Developer',
+    'Develops mobile applications.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Mobile Development Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Mobile Development Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Android Developer',
+    'Develops applications for Android.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Mobile Development Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Mobile Development Team'),
+    FALSE,
+    TRUE,
+    1,
+    'iOS Developer',
+    'Develops applications for iOS.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Mobile Development Team';
+
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team'),
+    FALSE,
+    TRUE,
+    1,
+    'QA Testing Team Leader',
+    'Leads the QA Testing Team.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team'),
+    FALSE,
+    TRUE,
+    1,
+    'QA Engineer',
+    'Performs quality assurance and testing tasks.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Senior QA Engineer',
+    'Experienced QA Engineer with advanced skills.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Test Automation Engineer',
+    'Develops and maintains test automation frameworks.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Performance Testing Engineer',
+    'Performs performance testing and analysis.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Security Testing Engineer',
+    'Performs security testing and analysis.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team'),
+    FALSE,
+    TRUE,
+    1,
+    'Manual Tester',
+    'Performs manual testing tasks.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team';
+
 
 -----------------------
 
