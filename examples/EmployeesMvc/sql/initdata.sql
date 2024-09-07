@@ -3461,6 +3461,198 @@ SELECT
     1
 FROM "OrganizationItems" WHERE "Name" = 'Operational Risk Management Team';
 
+-- Chief Financial Officer (CFO)
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Chief Financial Officer (CFO)',
+    'Head of the Financial Analysis Department',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Financial Analysis Department';
+
+-- Head of Financial Reporting
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Financial Reporting',
+    'Head of the Financial Reporting Team',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Financial Reporting Team';
+
+-- Senior Financial Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Senior Financial Analyst',
+    'Experienced analyst responsible for financial reporting.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Financial Reporting Team';
+
+-- Financial Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Financial Analyst',
+    'Analyzes financial data and prepares reports.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Financial Reporting Team';
+
+-- Accountant
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Accountant',
+    'Maintains financial records and prepares financial statements.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Financial Reporting Team';
+
+-- Reporting Specialist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Reporting Specialist',
+    'Specializes in preparing financial reports.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Financial Reporting Team';
+
+-- Head of Accounting
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Accounting',
+    'Head of the Accounting Team',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Accounting Team';
+
+-- Senior Accountant
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Senior Accountant',
+    'Experienced accountant responsible for accounting tasks.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Accounting Team';
+
+-- Accountant
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Accountant',
+    'Maintains financial records and prepares financial statements.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Accounting Team';
+
+-- Bookkeeper
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Bookkeeper',
+    'Records financial transactions and maintains accounting records.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Accounting Team';
+
+-- Financial Controller
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Financial Controller',
+    'Oversees financial operations and reporting.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Accounting Team';
+
+-- Head of Regulatory Reporting
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Regulatory Reporting',
+    'Head of the Regulatory Reporting Team',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Regulatory Reporting Team';
+
+-- Senior Regulatory Reporting Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Senior Regulatory Reporting Analyst',
+    'Experienced analyst preparing regulatory reports.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Regulatory Reporting Team';
+
+-- Regulatory Reporting Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Regulatory Reporting Analyst',
+    'Analyzes financial data and prepares regulatory reports.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Regulatory Reporting Team';
+
+-- Compliance Officer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Compliance Officer',
+    'Ensures compliance with regulations and policies.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Regulatory Reporting Team';
+
+-- Data Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Data Analyst',
+    'Analyzes and interprets financial data for regulatory reporting.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Regulatory Reporting Team';
+
 -----------------------
 
 -- Departments.
