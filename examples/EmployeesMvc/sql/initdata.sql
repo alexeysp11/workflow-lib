@@ -3653,6 +3653,198 @@ SELECT
     1
 FROM "OrganizationItems" WHERE "Name" = 'Regulatory Reporting Team';
 
+-- Head of Client Services
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Client Services',
+    'Head of the Client Services Department',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Client Services Department';
+
+-- Head of Client Relationship Management
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Client Relationship Management',
+    'Head of the Client Relationship Management Team',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Client Relationship Management Team';
+
+-- Senior Client Relationship Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Senior Client Relationship Manager',
+    'Experienced manager responsible for building and maintaining client relationships.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Client Relationship Management Team';
+
+-- Client Relationship Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Client Relationship Manager',
+    'Manages and develops client relationships.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Client Relationship Management Team';
+
+-- Account Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Account Manager',
+    'Manages client accounts and provides service.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Client Relationship Management Team';
+
+-- Client Advisor
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Client Advisor',
+    'Provides advice and support to clients.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Client Relationship Management Team';
+
+-- Head of Client Onboarding
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Client Onboarding',
+    'Head of the Client Onboarding Team',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Client Onboarding Team';
+
+-- Senior Client Onboarding Specialist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Senior Client Onboarding Specialist',
+    'Experienced specialist responsible for onboarding new clients.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Client Onboarding Team';
+
+-- Client Onboarding Specialist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Client Onboarding Specialist',
+    'Onboards new clients and ensures compliance with regulations.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Client Onboarding Team';
+
+-- KYC Specialist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'KYC Specialist',
+    'Verifies client identities and conducts Know Your Customer (KYC) checks.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Client Onboarding Team';
+
+-- AML Specialist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'AML Specialist',
+    'Ensures compliance with Anti-Money Laundering (AML) regulations.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Client Onboarding Team';
+
+-- Head of Client Support
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Client Support',
+    'Head of the Client Support Team',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Client Support Team';
+
+-- Senior Client Support Specialist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Senior Client Support Specialist',
+    'Experienced specialist providing support to clients.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Client Support Team';
+
+-- Client Support Specialist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Client Support Specialist',
+    'Provides support to clients and resolves their issues.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Client Support Team';
+
+-- Service Desk Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Service Desk Analyst',
+    'Provides first-line support to clients.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Client Support Team';
+
+-- Technical Support Specialist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Technical Support Specialist',
+    'Provides technical support to clients.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Client Support Team';
+
 -----------------------
 
 -- Departments.
