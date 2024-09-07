@@ -2189,6 +2189,186 @@ SELECT
     1
 FROM "OrganizationItems" WHERE "Name" = 'Social Media Marketing Team';
 
+-- Director of Quality Assurance Department
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Director of Quality Assurance Department',
+    'Director role in Quality Assurance Department',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Quality Assurance Department';
+
+-- QA Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'QA Manager',
+    'Manager role in Quality Assurance Department',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Quality Assurance Department';
+
+-- QA Lead
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'QA Lead',
+    'Lead role in Quality Assurance Department',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Quality Assurance Department';
+
+-- Manual Testing Team Leader
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Manual Testing Team Leader',
+    'Leader role in Manual Testing Team',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Manual Testing Team';
+
+-- Manual Tester
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Manual Tester',
+    'Performs manual testing tasks.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Manual Testing Team';
+
+-- Test Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Test Analyst',
+    'Analyzes and creates test cases.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Manual Testing Team';
+
+-- Automation Testing Team Leader
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Automation Testing Team Leader',
+    'Leader role in Automation Testing Team',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Automation Testing Team';
+
+-- Test Automation Engineer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Test Automation Engineer',
+    'Develops and maintains automated test scripts.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Automation Testing Team';
+
+-- QA Automation Specialist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'QA Automation Specialist',
+    'Specialist in QA Automation.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Automation Testing Team';
+
+-- Performance Testing Team Leader
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Performance Testing Team Leader',
+    'Leader role in Performance Testing Team',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Performance Testing Team';
+
+-- Performance Testing Engineer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Performance Testing Engineer',
+    'Performs performance testing tasks.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Performance Testing Team';
+
+-- Load Testing Engineer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Load Testing Engineer',
+    'Performs load testing tasks.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Performance Testing Team';
+
+-- Security Testing Team Leader
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Security Testing Team Leader',
+    'Leader role in Security Testing Team',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Security Testing Team';
+
+-- Security Tester
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Security Tester',
+    'Performs security testing tasks.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Security Testing Team';
+
+-- Penetration Tester
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Penetration Tester',
+    'Performs penetration testing tasks.',
+    1
+FROM "OrganizationItems" WHERE "Name" = 'Security Testing Team';
+
 -----------------------
 
 -- Departments.
