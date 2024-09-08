@@ -3845,6 +3845,612 @@ SELECT
     1
 FROM "OrganizationItems" WHERE "Name" = 'Client Support Team';
 
+-- Construction Engineering Department
+
+-- Chief Construction Engineer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Chief Construction Engineer',
+    'Leads the Construction Engineering department, responsible for overall project delivery and engineering expertise.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Construction Engineering Department';
+
+-- Director of Construction Engineering
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Director of Construction Engineering',
+    'Manages the Construction Engineering department, oversees project budgets and timelines.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Construction Engineering Department';
+
+-- Structural Engineering Team
+
+-- Head of Structural Engineering
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Structural Engineering',
+    'Leads the Structural Engineering team, responsible for structural design and analysis.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Structural Engineering Team';
+
+-- Senior Structural Engineer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Senior Structural Engineer',
+    'Experienced structural engineer responsible for complex design calculations and project management.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Structural Engineering Team';
+
+-- Structural Engineer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Structural Engineer',
+    'Performs structural analysis and design, creates drawings and specifications.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Structural Engineering Team';
+
+-- Structural Designer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Structural Designer',
+    'Creates detailed drawings and specifications for structural elements, collaborates with engineers.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Structural Engineering Team';
+
+-- BIM Specialist (Structural)
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'BIM Specialist (Structural)',
+    'Develops and manages structural models in BIM software, collaborates with engineers and designers.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Structural Engineering Team';
+
+-- CAD Technician
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'CAD Technician',
+    'Creates and modifies technical drawings using CAD software, assists engineers and designers.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Structural Engineering Team';
+
+-- Civil Engineering Team
+
+-- Head of Civil Engineering
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Civil Engineering',
+    'Leads the Civil Engineering team, responsible for civil infrastructure design and project management.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Civil Engineering Team';
+
+-- Senior Civil Engineer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Senior Civil Engineer',
+    'Experienced civil engineer responsible for complex design calculations and project management.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Civil Engineering Team';
+
+-- Civil Engineer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Civil Engineer',
+    'Designs and oversees civil infrastructure projects, prepares drawings and specifications.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Civil Engineering Team';
+
+-- Geotechnical Engineer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Geotechnical Engineer',
+    'Conducts geotechnical investigations, analyzes soil conditions, provides recommendations for foundation design.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Civil Engineering Team';
+
+-- Site Engineer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Site Engineer',
+    'Oversees construction activities on site, ensures compliance with plans and specifications.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Civil Engineering Team';
+
+-- Project Manager (Civil)
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Project Manager (Civil)',
+    'Manages civil infrastructure projects, plans and coordinates activities, tracks progress and budget.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Civil Engineering Team';
+
+-- Architectural Design Team
+
+-- Head of Architectural Design
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Architectural Design',
+    'Leads the Architectural Design team, responsible for building design and aesthetics.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Architectural Design Team';
+
+-- Senior Architect
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Senior Architect',
+    'Experienced architect responsible for leading design projects, collaborating with clients and engineers.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Architectural Design Team';
+
+-- Architect
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Architect',
+    'Designs buildings and spaces, prepares architectural drawings and specifications.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Architectural Design Team';
+
+-- Architectural Designer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Architectural Designer',
+    'Develops architectural designs, creates 3D models, prepares presentation drawings.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Architectural Design Team';
+
+-- BIM Specialist (Architectural)
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'BIM Specialist (Architectural)',
+    'Develops and manages architectural models in BIM software, collaborates with architects and engineers.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Architectural Design Team';
+
+-- Landscape Architect
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Landscape Architect',
+    'Designs outdoor spaces, gardens, and landscaping, integrates with building architecture.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Architectural Design Team';
+
+-- Project Planning Team
+
+-- Head of Project Planning
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Project Planning',
+    'Leads the Project Planning team, responsible for project scheduling, budgeting, and resource allocation.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Project Planning Team';
+
+-- Senior Project Planner
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Senior Project Planner',
+    'Experienced project planner responsible for developing and managing complex project schedules.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Project Planning Team';
+
+-- Project Planner
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Project Planner',
+    'Develops and maintains project schedules, tracks progress, and identifies potential delays.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Project Planning Team';
+
+-- Scheduling Specialist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Scheduling Specialist',
+    'Creates and manages project schedules using specialized software, analyzes critical path and dependencies.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Project Planning Team';
+
+-- Cost Estimator
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Cost Estimator',
+    'Develops and analyzes project budgets, identifies cost savings opportunities, and tracks expenses.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Project Planning Team';
+
+-- Project Coordination Team
+
+-- Head of Project Coordination
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Project Coordination',
+    'Leads the Project Coordination team, responsible for communication, documentation, and project administration.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Project Coordination Team';
+
+-- Project Coordinator
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Project Coordinator',
+    'Coordinates project activities, manages communication between stakeholders, tracks progress and deadlines.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Project Coordination Team';
+
+-- Contract Administrator
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Contract Administrator',
+    'Manages project contracts, ensures compliance with terms, resolves contract disputes.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Project Coordination Team';
+
+-- Document Controller
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Document Controller',
+    'Manages project documentation, maintains records, controls access, and ensures document integrity.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Project Coordination Team';
+
+-- Project Assistant
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Project Assistant',
+    'Provides administrative support to project managers and teams, handles tasks, and coordinates communication.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Project Coordination Team';
+
+-- Procurement Department
+
+-- Director of Procurement
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Director of Procurement',
+    'Leads the Procurement department, responsible for overall procurement strategy and supplier management.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Procurement Department';
+
+-- Procurement Team
+
+-- Head of Procurement
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Procurement',
+    'Leads the Procurement team, responsible for sourcing, negotiating, and awarding contracts for goods and services.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Procurement Team';
+
+-- Senior Procurement Specialist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Senior Procurement Specialist',
+    'Experienced procurement specialist responsible for complex sourcing processes, contract negotiations, and supplier management.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Procurement Team';
+
+-- Procurement Specialist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Procurement Specialist',
+    'Conducts sourcing activities, negotiates with suppliers, manages procurement processes.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Procurement Team';
+
+-- Buyer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Buyer',
+    'Places purchase orders, negotiates pricing and terms, manages supplier relationships.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Procurement Team';
+
+-- Sourcing Specialist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Sourcing Specialist',
+    'Identifies and evaluates potential suppliers, conducts market research, and negotiates contracts.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Procurement Team';
+
+-- Procurement Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Procurement Analyst',
+    'Analyzes procurement data, identifies cost savings opportunities, and develops strategies for supplier optimization.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Procurement Team';
+
+-- Supply Chain Management Team
+
+-- Head of Supply Chain Management
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Supply Chain Management',
+    'Leads the Supply Chain Management team, responsible for overall supply chain efficiency and optimization.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Supply Chain Management Team';
+
+-- Supply Chain Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Supply Chain Manager',
+    'Manages the flow of goods and services from suppliers to customers, ensures timely delivery and cost efficiency.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Supply Chain Management Team';
+
+-- Logistics Coordinator
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Logistics Coordinator',
+    'Coordinates the transportation and storage of goods, manages logistics operations, and ensures efficient delivery.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Supply Chain Management Team';
+
+-- Inventory Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Inventory Analyst',
+    'Analyzes inventory levels, forecasts demand, manages stock optimization, and minimizes inventory costs.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Supply Chain Management Team';
+
+-- Supplier Relationship Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Supplier Relationship Manager',
+    'Manages relationships with suppliers, ensures contract compliance, resolves disputes, and builds long-term partnerships.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Supply Chain Management Team';
+
 -----------------------
 
 -- Departments.
