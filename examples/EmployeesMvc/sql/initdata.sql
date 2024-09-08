@@ -4451,6 +4451,340 @@ SELECT
     uuid_generate_v4()
 FROM "OrganizationItems" WHERE "Name" = 'Supply Chain Management Team';
 
+-- Quality Control Department
+
+-- Director of Quality Control
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Director of Quality Control',
+    'Leads the Quality Control department, responsible for ensuring product and process quality.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Quality Control Department';
+
+-- Quality Assurance Team
+
+-- Head of Quality Assurance
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Quality Assurance',
+    'Leads the Quality Assurance team, responsible for developing and implementing quality assurance procedures.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Quality Assurance Team';
+
+-- Senior Quality Assurance Engineer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Senior Quality Assurance Engineer',
+    'Experienced QA engineer responsible for designing and conducting quality assurance tests.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Quality Assurance Team';
+
+-- Quality Assurance Engineer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Quality Assurance Engineer',
+    'Conducts quality assurance tests, analyzes results, and reports defects.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Quality Assurance Team';
+
+-- Quality Control Inspector
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Quality Control Inspector',
+    'Inspects products and processes to ensure compliance with quality standards.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Quality Assurance Team';
+
+-- Lab Technician
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Lab Technician',
+    'Performs laboratory tests on materials and products to ensure quality and compliance.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Quality Assurance Team';
+
+-- Inspection Team
+
+-- Head of Inspection
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Inspection',
+    'Leads the Inspection team, responsible for conducting inspections and ensuring compliance.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Inspection Team';
+
+-- Senior Inspector
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Senior Inspector',
+    'Experienced inspector responsible for conducting complex inspections and leading inspection teams.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Inspection Team';
+
+-- Inspector
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Inspector',
+    'Conducts inspections to ensure compliance with standards, identifies defects, and reports findings.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Inspection Team';
+
+-- Quality Control Supervisor
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Quality Control Supervisor',
+    'Oversees quality control activities, provides guidance to inspectors, and ensures compliance with standards.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Inspection Team';
+
+-- Site Inspector
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Site Inspector',
+    'Conducts inspections on-site, verifies construction progress, and ensures compliance with specifications.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Inspection Team';
+
+-- Safety and Environment Department
+
+-- Director of Safety and Environment
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Director of Safety and Environment',
+    'Leads the Safety and Environment department, responsible for promoting a safe and environmentally responsible workplace.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Safety and Environment Department';
+
+-- Safety Officer Team
+
+-- Head of Safety
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Safety',
+    'Leads the Safety Officer team, responsible for implementing and enforcing safety procedures.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Safety Officer Team';
+
+-- Safety Officer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Safety Officer',
+    'Conducts safety inspections, investigates incidents, and promotes safe work practices.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Safety Officer Team';
+
+-- Safety Supervisor
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Safety Supervisor',
+    'Oversees safety procedures and training, provides guidance to safety officers, and ensures compliance.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Safety Officer Team';
+
+-- Health and Safety Officer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Health and Safety Officer',
+    'Focuses on health and safety issues, conducts risk assessments, and promotes a healthy workplace.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Safety Officer Team';
+
+-- Fire Safety Officer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Fire Safety Officer',
+    'Responsible for fire safety procedures, conducts fire drills, and ensures compliance with fire safety regulations.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Safety Officer Team';
+
+-- Environmental Compliance Team
+
+-- Head of Environmental Compliance
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Environmental Compliance',
+    'Leads the Environmental Compliance team, responsible for ensuring compliance with environmental regulations.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Environmental Compliance Team';
+
+-- Environmental Specialist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Environmental Specialist',
+    'Conducts environmental assessments, monitors pollution levels, and implements environmental management plans.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Environmental Compliance Team';
+
+-- Environmental Officer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Environmental Officer',
+    'Ensures compliance with environmental regulations, conducts audits, and implements environmental programs.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Environmental Compliance Team';
+
+-- Environmental Consultant
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Environmental Consultant',
+    'Provides expert advice on environmental issues, conducts assessments, and recommends solutions.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Environmental Compliance Team';
+
+-- Environmental Engineer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Environmental Engineer',
+    'Applies engineering principles to environmental issues, designs pollution control systems, and implements environmental solutions.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Environmental Compliance Team';
+
+-- Sustainability Specialist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Sustainability Specialist',
+    'Promotes sustainable practices, conducts environmental impact assessments, and develops sustainability programs.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Environmental Compliance Team';
+
 -----------------------
 
 -- Departments.
