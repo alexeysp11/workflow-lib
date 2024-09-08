@@ -5685,6 +5685,666 @@ SELECT
     uuid_generate_v4()
 FROM "OrganizationItems" WHERE "Name" = 'Sound Team';
 
+-- Director of Online Media
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Director of Online Media',
+    'Leads the Online Media department, oversees all digital content creation and distribution.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Online Media Department';
+
+-- Head of Digital Media
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Digital Media',
+    'Responsible for managing digital content strategy, oversees social media and SEO efforts.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Online Media Department';
+
+-- Content Creation Team
+
+-- Head of Content Creation
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Content Creation',
+    'Leads the Content Creation team, responsible for developing and producing high-quality digital content.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Content Creation Team';
+
+-- Content Director
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Content Director',
+    'Oversees the content strategy and production process, ensures content aligns with brand guidelines.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Content Creation Team';
+
+-- Content Writer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Content Writer',
+    'Creates engaging and informative written content for websites, blogs, and social media.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Content Creation Team';
+
+-- Editor
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Editor',
+    'Edits written content for clarity, style, and accuracy, ensures consistency with brand guidelines.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Content Creation Team';
+
+-- Blogger
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Blogger',
+    'Creates and publishes blog posts, shares insights and perspectives, and engages with readers.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Content Creation Team';
+
+-- Photographer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Photographer',
+    'Captures high-quality images for websites, blogs, and social media, ensures visuals align with brand guidelines.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Content Creation Team';
+
+-- Videographer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Videographer',
+    'Creates video content for websites, blogs, and social media, edits videos, and ensures visual quality.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Content Creation Team';
+
+-- Content Editing Team
+
+-- Head of Content Editing
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Content Editing',
+    'Leads the Content Editing team, ensures all content is accurate, consistent, and adheres to brand guidelines.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Content Editing Team';
+
+-- Content Editor
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Content Editor',
+    'Edits written content for clarity, style, and accuracy, ensures consistency with brand guidelines.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Content Editing Team';
+
+-- Content Editor
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Content Editor',
+    'Edits written content for clarity, style, and accuracy, ensures consistency with brand guidelines.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Content Editing Team';
+
+-- Proofreader
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Proofreader',
+    'Checks written content for spelling, grammar, and punctuation errors.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Content Editing Team';
+
+-- Copywriter
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Copywriter',
+    'Creates persuasive and engaging marketing copy for websites, ads, and other materials.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Content Editing Team';
+
+-- Graphic Designer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Graphic Designer',
+    'Creates visual assets for websites, social media, and marketing materials.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Content Editing Team';
+
+-- Web Designer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Web Designer',
+    'Designs and develops websites, ensures usability and functionality, and implements visual elements.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Content Editing Team';
+
+-- Social Media Team
+
+-- Head of Social Media
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Social Media',
+    'Leads the Social Media team, develops and executes social media strategy, and manages online communities.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Social Media Team';
+
+-- Social Media Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Social Media Manager',
+    'Manages social media accounts, creates content, engages with followers, and analyzes performance.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Social Media Team';
+
+-- Social Media Specialist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Social Media Specialist',
+    'Creates and schedules social media content, engages with followers, and analyzes performance.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Social Media Team';
+
+-- Community Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Community Manager',
+    'Engages with online communities, responds to questions, and fosters positive interactions on social media.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Social Media Team';
+
+-- Social Media Content Creator
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Social Media Content Creator',
+    'Creates engaging and visually appealing content for social media platforms.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Social Media Team';
+
+-- SEO Team
+
+-- Head of SEO
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of SEO',
+    'Leads the SEO team, develops and implements SEO strategy, and monitors website performance.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'SEO Team';
+
+-- SEO Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'SEO Manager',
+    'Manages SEO activities, researches keywords, optimizes website content, and analyzes search engine performance.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'SEO Team';
+
+-- SEO Specialist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'SEO Specialist',
+    'Conducts keyword research, optimizes website content, builds backlinks, and analyzes SEO performance.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'SEO Team';
+
+-- SEO Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'SEO Analyst',
+    'Analyzes website traffic, keyword rankings, and SEO performance data, identifies areas for improvement.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'SEO Team';
+
+-- Content Optimization Specialist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Content Optimization Specialist',
+    'Optimizes website content for search engines, researches keywords, and ensures content is relevant and engaging.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'SEO Team';
+
+-- Finance and Operations Department
+
+-- Chief Financial Officer (CFO)
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Chief Financial Officer (CFO)',
+    'Leads the Finance and Operations department, oversees all financial matters and operations.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Finance and Operations Department';
+
+-- Chief Operating Officer (COO)
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Chief Operating Officer (COO)',
+    'Oversees the day-to-day operations of the organization, ensures efficiency and effectiveness.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Finance and Operations Department';
+
+-- Finance Team
+
+-- Head of Finance
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Finance',
+    'Leads the Finance team, manages financial reporting, budgeting, and accounting.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Finance Team';
+
+-- Finance Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Finance Manager',
+    'Oversees daily financial operations, prepares financial reports, and manages budgets.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Finance Team';
+
+-- Accountant
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Accountant',
+    'Maintains financial records, prepares financial statements, and ensures compliance with accounting standards.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Finance Team';
+
+-- Financial Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Financial Analyst',
+    'Analyzes financial data, prepares financial forecasts, and identifies opportunities for cost savings.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Finance Team';
+
+-- Budget Analyst
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Budget Analyst',
+    'Develops and manages budgets, tracks expenses, and identifies areas for budget optimization.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Finance Team';
+
+-- Controller
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Controller',
+    'Oversees the accounting function, ensures financial accuracy and compliance, and prepares financial reports.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Finance Team';
+
+-- Operations Team
+
+-- Head of Operations
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Operations',
+    'Leads the Operations team, manages day-to-day operations, and ensures efficiency and effectiveness.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Operations Team';
+
+-- Operations Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Operations Manager',
+    'Oversees daily operations, coordinates with departments, and ensures smooth workflow.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Operations Team';
+
+-- Project Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Project Manager',
+    'Plans, manages, and executes projects, tracks progress, and ensures project goals are met.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Operations Team';
+
+-- Operations Specialist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Operations Specialist',
+    'Provides support to operations management, handles administrative tasks, and coordinates with departments.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Operations Team';
+
+-- Logistics Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Logistics Manager',
+    'Manages the flow of goods and services, oversees transportation, warehousing, and distribution.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Operations Team';
+
+-- Facilities Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Facilities Manager',
+    'Manages the physical facilities of the organization, oversees maintenance, repairs, and security.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Operations Team';
+
+-- Human Resources Team
+
+-- Head of Human Resources
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Human Resources',
+    'Leads the Human Resources team, manages recruitment, training, compensation, and employee relations.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Human Resources Team';
+
+-- HR Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'HR Manager',
+    'Oversees daily HR operations, manages recruitment, training, and employee relations.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Human Resources Team';
+
+-- HR Specialist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'HR Specialist',
+    'Provides support to HR management, handles administrative tasks, and assists with recruitment, training, and employee relations.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Human Resources Team';
+
+-- Recruitment Specialist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Recruitment Specialist',
+    'Manages the recruitment process, posts job openings, screens candidates, and conducts interviews.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Human Resources Team';
+
+-- Training and Development Specialist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Training and Development Specialist',
+    'Develops and delivers training programs, creates training materials, and assesses training effectiveness.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Human Resources Team';
+
+-- Compensation and Benefits Specialist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Compensation and Benefits Specialist',
+    'Manages employee compensation, benefits, and payroll, ensures compliance with regulations.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Human Resources Team';
+
 -----------------------
 
 -- Departments.
