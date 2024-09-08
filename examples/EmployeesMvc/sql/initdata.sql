@@ -4785,6 +4785,906 @@ SELECT
     uuid_generate_v4()
 FROM "OrganizationItems" WHERE "Name" = 'Environmental Compliance Team';
 
+-- Director of Television
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Director of Television',
+    'Leads the Television department, oversees all television production and programming.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Television Department';
+
+-- Head of Television Programming
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Television Programming',
+    'Responsible for developing and scheduling television programs, manages content creation.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Television Department';
+
+-- Production Team
+
+-- Production Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Production Manager',
+    'Manages the day-to-day operations of television production, oversees budgets and schedules.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Production Team';
+
+-- Executive Producer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Executive Producer',
+    'Oversees the overall creative direction of a television program, manages budgets and talent.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Production Team';
+
+-- Producer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Producer',
+    'Responsible for the overall production of a television program, manages budgets and schedules.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Production Team';
+
+-- Line Producer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Line Producer',
+    'Manages the day-to-day operations of a television shoot, oversees budgets and schedules.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Production Team';
+
+-- Assistant Producer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Assistant Producer',
+    'Provides support to the producer, handles administrative tasks, and coordinates with departments.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Production Team';
+
+-- Scriptwriter
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Scriptwriter',
+    'Writes scripts for television programs, develops characters and storylines.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Production Team';
+
+-- Director
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Director',
+    'Directs the filming of a television program, guides actors and crew, ensures creative vision is realized.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Production Team';
+
+-- Director of Photography
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Director of Photography',
+    'Responsible for the visual style of a television program, oversees camera and lighting.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Production Team';
+
+-- Set Designer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Set Designer',
+    'Designs and creates the sets for a television program, manages props and furniture.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Production Team';
+
+-- Art Director
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Art Director',
+    'Oversees the visual style of a television program, collaborates with set designers and costume designers.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Production Team';
+
+-- Costume Designer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Costume Designer',
+    'Designs and creates costumes for actors in a television program.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Production Team';
+
+-- Camera Crew
+
+-- Head of Camera
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Camera',
+    'Leads the Camera crew, oversees camera operation and lighting.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Camera Crew';
+
+-- Director of Photography
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Director of Photography',
+    'Responsible for the visual style of a television program, oversees camera and lighting.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Camera Crew';
+
+-- Camera Operator
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Camera Operator',
+    'Operates the camera, captures footage according to the director''s vision.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Camera Crew';
+
+-- Gaffer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Gaffer',
+    'Head electrician on set, responsible for lighting design and execution.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Camera Crew';
+
+-- Grip
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Grip',
+    'Handles camera support, rigging, and camera movement, assists with lighting.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Camera Crew';
+
+-- Camera Assistant
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Camera Assistant',
+    'Assists the camera operator, loads film or memory cards, and maintains camera equipment.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Camera Crew';
+
+-- Lighting Technician
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Lighting Technician',
+    'Sets up and operates lighting equipment, creates desired lighting effects on set.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Camera Crew';
+
+-- Editing Team
+
+-- Head of Editing
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Editing',
+    'Leads the Editing team, oversees the post-production process, ensures consistency and quality.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
+
+-- Post-Production Supervisor
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Post-Production Supervisor',
+    'Manages the post-production process, coordinates with editors, sound engineers, and visual effects artists.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
+
+-- Video Editor
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Video Editor',
+    'Edits video footage, assembles scenes, and creates the final television program.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
+
+-- Post-Production Editor
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Post-Production Editor',
+    'Edits video footage, adds special effects, and prepares the final television program for broadcast.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
+
+-- Colorist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Colorist',
+    'Grades and colors video footage, adjusts color balance and saturation.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
+
+-- Graphic Designer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Graphic Designer',
+    'Creates graphics for television programs, designs titles, logos, and visual elements.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
+
+-- VFX Artist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'VFX Artist',
+    'Creates visual effects for television programs, adds special effects, and manipulates images.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
+
+-- Sound Team
+
+-- Head of Sound
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Sound',
+    'Leads the Sound team, oversees sound design, recording, and mixing.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Sound Team';
+
+-- Sound Designer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Sound Designer',
+    'Creates the sound design for a television program, selects sound effects, and composes music.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Sound Team';
+
+-- Sound Mixer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Sound Mixer',
+    'Mixes sound for television programs, balances dialogue, sound effects, and music.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Sound Team';
+
+-- Sound Editor
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Sound Editor',
+    'Edits sound for television programs, cleans up audio, adds sound effects, and prepares sound for mixing.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Sound Team';
+
+-- Foley Artist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Foley Artist',
+    'Creates sound effects for television programs, uses props and objects to simulate sounds.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Sound Team';
+
+-- Music Composer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Music Composer',
+    'Composes music for television programs, writes original scores and arranges existing music.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Sound Team';
+
+-- Radio Department
+
+-- Director of Radio
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Director of Radio',
+    'Leads the Radio department, oversees all radio production and programming.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Radio Department';
+
+-- Head of Radio Programming
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Radio Programming',
+    'Responsible for developing and scheduling radio programs, manages content creation.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Radio Department';
+
+-- Production Team
+
+-- Production Manager
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Production Manager',
+    'Manages the day-to-day operations of radio production, oversees budgets and schedules.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Production Team';
+
+-- Executive Producer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Executive Producer',
+    'Oversees the overall creative direction of a radio program, manages budgets and talent.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Production Team';
+
+-- Producer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Producer',
+    'Responsible for the overall production of a radio program, manages budgets and schedules.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Production Team';
+
+-- Line Producer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Line Producer',
+    'Manages the day-to-day operations of a radio show, oversees budgets and schedules.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Production Team';
+
+-- Assistant Producer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Assistant Producer',
+    'Provides support to the producer, handles administrative tasks, and coordinates with departments.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Production Team';
+
+-- Scriptwriter
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Scriptwriter',
+    'Writes scripts for radio programs, develops storylines and characters.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Production Team';
+
+-- Voice Actor
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Voice Actor',
+    'Provides voice-over for radio programs, narrates, reads commercials, and plays characters.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Production Team';
+
+-- Audio Engineer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Audio Engineer',
+    'Records and mixes audio for radio programs, operates recording equipment, and ensures sound quality.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Production Team';
+
+-- Radio Announcer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Radio Announcer',
+    'Announces programs, reads news and commercials, interacts with listeners.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Production Team';
+
+-- On-Air Team
+
+-- Program Director
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Program Director',
+    'Oversees the programming schedule for a radio station, selects and schedules programs, manages on-air talent.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'On-Air Team';
+
+-- Head of On-Air
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of On-Air',
+    'Manages on-air talent, oversees live broadcasts, ensures program quality and consistency.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'On-Air Team';
+
+-- Radio Host
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Radio Host',
+    'Presents radio programs, interacts with listeners, plays music, and interviews guests.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'On-Air Team';
+
+-- DJ
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'DJ',
+    'Plays music on radio, mixes songs, and interacts with listeners.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'On-Air Team';
+
+-- News Anchor
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'News Anchor',
+    'Reads and presents news on radio, delivers news updates, and interviews guests.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'On-Air Team';
+
+-- Reporter
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Reporter',
+    'Gathers and reports news stories for radio, conducts interviews, and writes news scripts.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'On-Air Team';
+
+-- Commentator
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Commentator',
+    'Provides commentary and analysis on events, sports, or other topics on radio.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'On-Air Team';
+
+-- Editing Team
+
+-- Head of Editing
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Editing',
+    'Leads the Editing team, oversees the post-production process, ensures consistency and quality.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
+
+-- Post-Production Supervisor
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Post-Production Supervisor',
+    'Manages the post-production process, coordinates with editors, sound engineers, and music editors.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
+
+-- Audio Editor
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Audio Editor',
+    'Edits audio recordings for radio programs, cleans up sound, adds effects, and prepares audio for mixing.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
+
+-- Post-Production Engineer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Post-Production Engineer',
+    'Manages audio equipment, processes audio, and ensures technical quality of radio programs.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
+
+-- Music Editor
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Music Editor',
+    'Edits music for radio programs, selects and prepares music tracks, and creates playlists.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
+
+-- Sound Engineer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Sound Engineer',
+    'Records and mixes audio for radio programs, operates recording equipment, and ensures sound quality.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
+
+-- Sound Team
+
+-- Head of Sound
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Sound',
+    'Leads the Sound team, oversees sound design, recording, and mixing.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Sound Team';
+
+-- Sound Designer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Sound Designer',
+    'Creates the sound design for a radio program, selects sound effects, and composes music.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Sound Team';
+
+-- Sound Mixer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Sound Mixer',
+    'Mixes sound for radio programs, balances dialogue, sound effects, and music.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Sound Team';
+
+-- Sound Engineer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Sound Engineer',
+    'Records and mixes audio for radio programs, operates recording equipment, and ensures sound quality.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Sound Team';
+
+-- Foley Artist
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Foley Artist',
+    'Creates sound effects for radio programs, uses props and objects to simulate sounds.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Sound Team';
+
+-- Music Composer
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Music Composer',
+    'Composes music for radio programs, writes original scores and arranges existing music.',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Sound Team';
+
 -----------------------
 
 -- Departments.
