@@ -6345,6 +6345,552 @@ SELECT
     uuid_generate_v4()
 FROM "OrganizationItems" WHERE "Name" = 'Human Resources Team';
 
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Repair and Maintenance',
+    'Head of Repair and Maintenance',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Car Repair and Maintenance Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Service Manager',
+    'Service Manager',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Car Repair and Maintenance Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Mechanical Repairs',
+    'Head of Mechanical Repairs',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Mechanical Repair Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Lead Mechanic',
+    'Lead Mechanic',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Mechanical Repair Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Senior Mechanic',
+    'Senior Mechanic',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Mechanical Repair Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Mechanic',
+    'Mechanic',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Mechanical Repair Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Apprentice Mechanic',
+    'Apprentice Mechanic',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Mechanical Repair Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Engine Specialist',
+    'Engine Specialist',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Mechanical Repair Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Transmission Specialist',
+    'Transmission Specialist',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Mechanical Repair Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Brake Specialist',
+    'Brake Specialist',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Mechanical Repair Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Electrical Repairs',
+    'Head of Electrical Repairs',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Electrical Repair Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Lead Electrician',
+    'Lead Electrician',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Electrical Repair Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Senior Electrician',
+    'Senior Electrician',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Electrical Repair Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Electrician',
+    'Electrician',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Electrical Repair Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Automotive Electrical Technician',
+    'Automotive Electrical Technician',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Electrical Repair Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Electronics Specialist',
+    'Electronics Specialist',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Electrical Repair Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Diagnostics Specialist',
+    'Diagnostics Specialist',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Diagnostics Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Diagnostics',
+    'Head of Diagnostics',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Diagnostics Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Senior Diagnostics Technician',
+    'Senior Diagnostics Technician',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Diagnostics Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Diagnostics Technician',
+    'Diagnostics Technician',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Diagnostics Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Computer Systems Specialist',
+    'Computer Systems Specialist',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Diagnostics Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Scheduled Maintenance',
+    'Head of Scheduled Maintenance',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Scheduled Maintenance Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Lead Technician',
+    'Lead Technician',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Scheduled Maintenance Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Senior Technician',
+    'Senior Technician',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Scheduled Maintenance Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Technician',
+    'Technician',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Scheduled Maintenance Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Service Advisor',
+    'Service Advisor',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Scheduled Maintenance Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Maintenance Specialist',
+    'Maintenance Specialist',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Scheduled Maintenance Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Preventive Maintenance',
+    'Head of Preventive Maintenance',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Preventive Maintenance Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Preventive Maintenance Technician',
+    'Preventive Maintenance Technician',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Preventive Maintenance Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Inspection Specialist',
+    'Inspection Specialist',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Preventive Maintenance Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Parts and Accessories',
+    'Head of Parts and Accessories',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Parts and Accessories Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Parts Manager',
+    'Parts Manager',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Parts and Accessories Department';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Sales Manager',
+    'Sales Manager',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Parts Sales Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Parts Sales',
+    'Head of Parts Sales',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Parts Sales Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Parts Sales Representative',
+    'Parts Sales Representative',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Parts Sales Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Parts Advisor',
+    'Parts Advisor',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Parts Sales Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Counter Salesperson',
+    'Counter Salesperson',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Parts Sales Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Head of Inventory',
+    'Head of Inventory',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Inventory Management Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Inventory Manager',
+    'Inventory Manager',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Inventory Management Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Inventory Specialist',
+    'Inventory Specialist',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Inventory Management Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Warehouse Manager',
+    'Warehouse Manager',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Inventory Management Team';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
+SELECT 
+    "Id",
+    FALSE,
+    TRUE,
+    1,
+    'Stock Controller',
+    'Stock Controller',
+    1,
+    NOW(),
+    uuid_generate_v4()
+FROM "OrganizationItems" WHERE "Name" = 'Inventory Management Team';
+
 -----------------------
 
 -- Departments.
