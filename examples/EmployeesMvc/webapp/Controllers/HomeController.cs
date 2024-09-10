@@ -34,6 +34,11 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult Organizations()
+    {
+        return View();
+    }
+
     public IActionResult Employees()
     {
         IEnumerable<Employee> employees = null;
