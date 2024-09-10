@@ -1,0 +1,22 @@
+@using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations
+@inject AppSettings _appSettings
+@{
+    ViewData["Title"] = "Home";
+}
+
+@try
+{
+    var languageName = string.Empty;
+    if (!Context.Request.Cookies.TryGetValue("employeesmvc-lang", out languageName))
+    {
+        languageName = "English";
+    }
+
+    ViewData["Title"] = _appSettings.Translate(languageName, "JobPositions");
+}
+catch (System.Exception ex)
+{
+    <div class="text-center">
+        <p class="text-danger">Error: @ex.Message</p>
+    </div>
+}
