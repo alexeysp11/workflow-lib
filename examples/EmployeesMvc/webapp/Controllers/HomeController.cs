@@ -34,6 +34,11 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult BriefDescription()
+    {
+        return View();
+    }
+
     public IActionResult Organizations()
     {
         return View();

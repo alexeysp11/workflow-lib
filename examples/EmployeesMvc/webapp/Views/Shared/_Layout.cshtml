@@ -39,6 +39,8 @@
                                     @_appSettings.Translate(languageName, "OrganizationalStructure")
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="BriefDescription">@_appSettings.Translate(languageName, "BriefDescription")</a>
+                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Organizations">@_appSettings.Translate(languageName, "Organizations")</a>
                                     <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Departments">@_appSettings.Translate(languageName, "Departments")</a>
                                     <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Teams">@_appSettings.Translate(languageName, "Teams")</a>
