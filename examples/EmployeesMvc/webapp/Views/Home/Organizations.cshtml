@@ -1,7 +1,12 @@
 @using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations
+@using WorkflowLib.Shared.Models.Business.InformationSystem
+
+@model IEnumerable<Organization>
+
 @inject AppSettings _appSettings
+
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Organizations";
 }
 
 @try
@@ -13,6 +18,49 @@
     }
 
     ViewData["Title"] = _appSettings.Translate(languageName, "Organizations");
+
+    <h1>@ViewData["Title"]</h1>
+    
+    <table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    Head item
+                </th>
+                <th>
+                    Additional
+                </th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @(item.HeadItem != null ? item.HeadItem.Name : string.Empty)
+            </td>
+        </tr>
+    }
+    </tbody>
+    </table>
 }
 catch (System.Exception ex)
 {

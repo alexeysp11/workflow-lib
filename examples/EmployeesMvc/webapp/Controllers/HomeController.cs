@@ -1,11 +1,13 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Examples.EmployeesMvc.Core.Domain.Filtering;
 using WorkflowLib.Examples.EmployeesMvc.Core.Dto;
 using WorkflowLib.Examples.EmployeesMvc.Core.Enums;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
+using WorkflowLib.Examples.EmployeesMvc.Core.DbContexts;
 using WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
 
 namespace WorkflowLib.Examples.EmployeesMvc.Controllers;
@@ -16,17 +18,20 @@ public class HomeController : Controller
     private readonly ILogger<HomeController> _logger;
     private readonly IUnitOfWork _unitOfWork;
     private readonly ICommonDataFilter _commonFilter;
+    private readonly EmployeesMvcDbContext _context;
 
     public HomeController(
         AppSettings appSettings,
         ILogger<HomeController> logger,
         IUnitOfWork unitOfWork,
-        ICommonDataFilter commonFilter)
+        ICommonDataFilter commonFilter,
+        EmployeesMvcDbContext context)
     {
         _appSettings = appSettings;
         _logger = logger;
         _unitOfWork = unitOfWork;
         _commonFilter = commonFilter;
+        _context = context;
     }
 
     public IActionResult Index()
@@ -39,9 +44,9 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Organizations()
+    public async Task<IActionResult> Organizations()
     {
-        return View();
+        return View(await _context.Organizations.Include(x => x.HeadItem).ToListAsync());
     }
 
     public IActionResult Departments()
