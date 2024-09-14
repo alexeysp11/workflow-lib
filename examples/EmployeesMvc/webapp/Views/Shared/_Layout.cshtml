@@ -47,11 +47,14 @@
                                     <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="JobPositions">@_appSettings.Translate(languageName, "JobPositions")</a>
                                 </div>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Employees">@_appSettings.Translate(languageName, "Employees")</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Vacations">@_appSettings.Translate(languageName, "Vacations")</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    HRM
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Employees">@_appSettings.Translate(languageName, "Employees")</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Vacations">@_appSettings.Translate(languageName, "Vacations")</a>
+                                </div>
                             </li>
                         </ul>
                         <div class="navbar-nav flex-grow-2" style="text-align: right;">
