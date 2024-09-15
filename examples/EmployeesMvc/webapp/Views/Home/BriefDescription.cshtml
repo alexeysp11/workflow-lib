@@ -1,7 +1,7 @@
 @using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations
 @inject AppSettings _appSettings
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Brief description";
 }
 
 @try
@@ -13,6 +13,8 @@
     }
 
     ViewData["Title"] = _appSettings.Translate(languageName, "BriefDescription");
+
+    <h1>@ViewData["Title"]</h1>
 }
 catch (System.Exception ex)
 {

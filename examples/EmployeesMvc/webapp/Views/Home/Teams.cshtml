@@ -13,6 +13,8 @@
     }
 
     ViewData["Title"] = _appSettings.Translate(languageName, "Teams");
+
+    <h1>@ViewData["Title"]</h1>
 }
 catch (System.Exception ex)
 {
