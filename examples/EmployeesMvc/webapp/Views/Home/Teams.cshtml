@@ -1,8 +1,15 @@
 @using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations
+@using WorkflowLib.Shared.Models.Business.InformationSystem
+
+@model IEnumerable<OrganizationItem>
+
 @inject AppSettings _appSettings
+
 @{
     ViewData["Title"] = "Home";
 }
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css" />
 
 @try
 {
@@ -17,6 +24,57 @@
     <div class="text-center">
         <h1 class="display-4">@ViewData["Title"]</h1>
     </div>
+    
+    <table name="tblTeams" id="tblTeams" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                @_appSettings.Translate(languageName, "Name")
+            </th>
+            <th>
+                @_appSettings.Translate(languageName, "Description")
+            </th>
+            <th>
+                @_appSettings.Translate(languageName, "Additional")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td></td>
+        </tr>
+    }
+    </tbody>
+    </table>
+    
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
+    <script language="JavaScript" type="text/javascript">
+        $.noConflict();
+        jQuery( document ).ready(function( $ ) {
+            $(document).ready(function() {
+                var table = $('#tblTeams').DataTable({
+                    language: {
+                        url: '//cdn.datatables.net/plug-ins/2.0.8/i18n/en-GB.json',
+                    }
+                });
+            });
+        });
+    </script>
 }
 catch (System.Exception ex)
 {
