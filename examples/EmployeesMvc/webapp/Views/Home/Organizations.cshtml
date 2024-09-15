@@ -25,19 +25,19 @@
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Id)
+                    ID
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Name)
+                    @_appSettings.Translate(languageName, "Name")
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Description)
+                    @_appSettings.Translate(languageName, "Description")
                 </th>
                 <th>
-                    Head item
+                    @_appSettings.Translate(languageName, "HeadItem")
                 </th>
                 <th>
-                    Additional
+                    @_appSettings.Translate(languageName, "Additional")
                 </th>
         </tr>
     </thead>
