@@ -59,9 +59,9 @@ public class HomeController : Controller
         return View(await _context.OrganizationItems.Where(x => x.ItemType == OrganizationItemType.Team).ToListAsync());
     }
 
-    public IActionResult JobPositions()
+    public async Task<IActionResult> JobPositions()
     {
-        return View();
+        return View(await _context.OrganizationItems.Where(x => x.ItemType == OrganizationItemType.JobPosition).ToListAsync());
     }
 
     public IActionResult Employees()
