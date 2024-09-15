@@ -9,6 +9,8 @@
     ViewData["Title"] = "Organizations";
 }
 
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css" />
+
 @try
 {
     var languageName = string.Empty;
@@ -19,26 +21,28 @@
 
     ViewData["Title"] = _appSettings.Translate(languageName, "Organizations");
 
-    <h1>@ViewData["Title"]</h1>
+    <div class="text-center">
+        <h1 class="display-4">@ViewData["Title"]</h1>
+    </div>
     
-    <table class="table">
+    <table name="tblOrganizations" id="tblOrganizations" class="table table-bordered table-striped">
     <thead>
         <tr>
-                <th>
-                    ID
-                </th>
-                <th>
-                    @_appSettings.Translate(languageName, "Name")
-                </th>
-                <th>
-                    @_appSettings.Translate(languageName, "Description")
-                </th>
-                <th>
-                    @_appSettings.Translate(languageName, "HeadItem")
-                </th>
-                <th>
-                    @_appSettings.Translate(languageName, "Additional")
-                </th>
+            <th>
+                ID
+            </th>
+            <th>
+                @_appSettings.Translate(languageName, "Name")
+            </th>
+            <th>
+                @_appSettings.Translate(languageName, "Description")
+            </th>
+            <th>
+                @_appSettings.Translate(languageName, "HeadItem")
+            </th>
+            <th>
+                @_appSettings.Translate(languageName, "Additional")
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -57,10 +61,26 @@
             <td>
                 @(item.HeadItem != null ? item.HeadItem.Name : string.Empty)
             </td>
+            <td></td>
         </tr>
     }
     </tbody>
     </table>
+    
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
+    <script language="JavaScript" type="text/javascript">
+        $.noConflict();
+        jQuery( document ).ready(function( $ ) {
+            $(document).ready(function() {
+                var table = $('#tblOrganizations').DataTable({
+                    language: {
+                        url: '//cdn.datatables.net/plug-ins/2.0.8/i18n/en-GB.json',
+                    }
+                });
+            });
+        });
+    </script>
 }
 catch (System.Exception ex)
 {

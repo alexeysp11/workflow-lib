@@ -19,7 +19,7 @@
     ViewData["Title"] = @_appSettings.Translate(languageName, "NewVacation");
 
     <div class="text-center">
-        <h1 class="display-4">@_appSettings.Translate(languageName, "NewVacation")</h1>
+        <h1 class="display-4">@ViewData["Title"]</h1>
         
         <form method="post" asp-controller="Home" asp-action="AddNewVaction" role="post">
             <div class="form-group col-md-4">

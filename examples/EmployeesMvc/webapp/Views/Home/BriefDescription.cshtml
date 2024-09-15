@@ -13,8 +13,10 @@
     }
 
     ViewData["Title"] = _appSettings.Translate(languageName, "BriefDescription");
-
-    <h1>@ViewData["Title"]</h1>
+    
+    <div class="text-center">
+        <h1 class="display-4">@ViewData["Title"]</h1>
+    </div>
 }
 catch (System.Exception ex)
 {

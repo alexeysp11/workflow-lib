@@ -22,7 +22,7 @@
     ViewData["Title"] = _appSettings.Translate(languageName, "Employees");
 
     <div class="text-center">
-        <h1 class="display-4">@_appSettings.Translate(languageName, "Employees")</h1>
+        <h1 class="display-4">@ViewData["Title"]</h1>
         @if (TempData["ErrorMessage"] != null)
         {
             <p class="text-danger">Error message: @TempData["ErrorMessage"]</p>
