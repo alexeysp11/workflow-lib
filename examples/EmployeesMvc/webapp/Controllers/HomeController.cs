@@ -49,9 +49,9 @@ public class HomeController : Controller
         return View(await _context.Organizations.Include(x => x.HeadItem).ToListAsync());
     }
 
-    public IActionResult Departments()
+    public async Task<IActionResult> Departments()
     {
-        return View();
+        return View(await _context.OrganizationItems.Where(x => x.ItemType == OrganizationItemType.Department).ToListAsync());
     }
 
     public IActionResult Teams()
