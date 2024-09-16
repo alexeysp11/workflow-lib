@@ -30,6 +30,11 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult Notifications()
+    {
+        return View();
+    }
+
     public IActionResult SetLanguage(string lang)
     {
         try

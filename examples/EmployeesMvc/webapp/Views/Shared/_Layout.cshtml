@@ -78,7 +78,7 @@
                             </li>
                         </ul>
                         <div class="navbar-nav flex-grow-2" style="text-align: right;">
-                            <select class="form-select" aria-label="Default select example" onchange="changeLanguage(this.value)">
+                            <select class="form-select" aria-label="Default select example" onchange="changeLanguage(this.value)" style="margin-right:15px;">
                                 @{
                                     var languages = _appSettings.Languages;
                                     foreach (var language in languages)
@@ -94,6 +94,12 @@
                                     }
                                 }
                             </select>
+                            <a type="button" class="btn btn-primary position-relative" asp-area="" asp-controller="Home" asp-action="Notifications">
+                                @_appSettings.Translate(languageName, "Notifications")
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    99+
+                                </span>
+                            </a>
                         </div>
                     </div>
                 </div>
