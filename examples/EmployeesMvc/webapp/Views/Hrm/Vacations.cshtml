@@ -32,11 +32,11 @@
 
     <div>
         <button class="btn btn-dark dropdown" data-bs-toggle="collapse" data-bs-target="#divVacationFilters">@_appSettings.Translate(languageName, "VacationFilters")</button>
-        <a class="btn btn-primary" role="button" asp-controller="Home" asp-action="NewVacation">@_appSettings.Translate(languageName, "NewVacation")</a>
+        <a class="btn btn-primary" role="button" asp-controller="Hrm" asp-action="NewVacation">@_appSettings.Translate(languageName, "NewVacation")</a>
 
         <div class="indent collapse @(TempData[CacheUidType.VacationsUid.ToString()] == null ? "" : "show")" id="divVacationFilters">
             <div class="text-center">
-                <form method="post" asp-controller="Home" asp-action="FilterVacations" role="post">
+                <form method="post" asp-controller="Hrm" asp-action="FilterVacations" role="post">
                     <div class="form-group col-md-4">
                         @{
                             var cacheFullname = TempData[CacheUidType.EmployeeFullname.ToString()];
