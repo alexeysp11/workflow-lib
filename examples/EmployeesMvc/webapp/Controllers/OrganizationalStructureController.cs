@@ -40,16 +40,16 @@ public class OrganizationalStructureController : Controller
 
     public async Task<IActionResult> Departments()
     {
-        return View(await _context.OrganizationItems.Where(x => x.ItemType == OrganizationItemType.Department).ToListAsync());
+        return View(await _context.OrganizationItems.Where(x => x.ItemType == OrganizationItemType.Department).Include(x => x.ParentItem).ToListAsync());
     }
 
     public async Task<IActionResult> Teams()
     {
-        return View(await _context.OrganizationItems.Where(x => x.ItemType == OrganizationItemType.Team).ToListAsync());
+        return View(await _context.OrganizationItems.Where(x => x.ItemType == OrganizationItemType.Team).Include(x => x.ParentItem).ToListAsync());
     }
 
     public async Task<IActionResult> JobPositions()
     {
-        return View(await _context.OrganizationItems.Where(x => x.ItemType == OrganizationItemType.JobPosition).ToListAsync());
+        return View(await _context.OrganizationItems.Where(x => x.ItemType == OrganizationItemType.JobPosition).Include(x => x.ParentItem).ToListAsync());
     }
 }
