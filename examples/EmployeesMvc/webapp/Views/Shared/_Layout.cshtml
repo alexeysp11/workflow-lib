@@ -72,6 +72,8 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" asp-area="" asp-controller="Documents" asp-action="Internal">@_appSettings.Translate(languageName, "Documents.Internal")</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Documents" asp-action="KnowledgeBase">@_appSettings.Translate(languageName, "KnowledgeBase")</a>
                                 </div>
                             </li>
                         </ul>

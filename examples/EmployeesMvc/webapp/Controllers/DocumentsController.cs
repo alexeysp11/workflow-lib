@@ -32,4 +32,9 @@ public class DocumentsController : Controller
     {
         return View();
     }
+    
+    public IActionResult KnowledgeBase()
+    {
+        return View();
+    }
 }
