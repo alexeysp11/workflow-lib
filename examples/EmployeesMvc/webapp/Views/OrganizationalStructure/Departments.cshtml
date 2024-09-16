@@ -38,6 +38,12 @@
                 @_appSettings.Translate(languageName, "Description")
             </th>
             <th>
+                @_appSettings.Translate(languageName, "Organization")
+            </th>
+            <th>
+                @_appSettings.Translate(languageName, "ParentItem")
+            </th>
+            <th>
                 @_appSettings.Translate(languageName, "Additional")
             </th>
         </tr>
@@ -55,6 +61,8 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
+            <td></td>
+            <td></td>
             <td></td>
         </tr>
     }
