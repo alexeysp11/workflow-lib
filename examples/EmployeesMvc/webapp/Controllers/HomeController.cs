@@ -39,31 +39,6 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult BriefDescription()
-    {
-        return View();
-    }
-
-    public async Task<IActionResult> Organizations()
-    {
-        return View(await _context.Organizations.Include(x => x.HeadItem).ToListAsync());
-    }
-
-    public async Task<IActionResult> Departments()
-    {
-        return View(await _context.OrganizationItems.Where(x => x.ItemType == OrganizationItemType.Department).ToListAsync());
-    }
-
-    public async Task<IActionResult> Teams()
-    {
-        return View(await _context.OrganizationItems.Where(x => x.ItemType == OrganizationItemType.Team).ToListAsync());
-    }
-
-    public async Task<IActionResult> JobPositions()
-    {
-        return View(await _context.OrganizationItems.Where(x => x.ItemType == OrganizationItemType.JobPosition).ToListAsync());
-    }
-
     public IActionResult Employees()
     {
         IEnumerable<Employee> employees = null;
