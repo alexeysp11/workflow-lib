@@ -147,4 +147,9 @@ public class HrmController : Controller
         }
         return RedirectToAction("Vacations");
     }
+
+    public IActionResult Hiring()
+    {
+        return View();
+    }
 }
