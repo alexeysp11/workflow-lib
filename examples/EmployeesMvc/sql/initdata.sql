@@ -79,19 +79,19 @@ VALUES (uuid_generate_v4(), 'Logistics Manager', 'Responsible for efficient deli
 
 -- Affordable Construction: Management Committee (I'll consider it a department)
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
-VALUES (uuid_generate_v4(), 'Management Committee', 'Responsible for overall company management', NOW(), 0, false, true, NULL);
+VALUES (uuid_generate_v4(), 'Management Committee (Affordable Construction)', 'Responsible for overall company management', NOW(), 0, false, true, NULL);
 
 -- Affordable Construction: Committee Chair
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Chair', 'Leads the Management Committee', NOW(), 1, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee' LIMIT 1));
+VALUES (uuid_generate_v4(), 'Chair', 'Leads the Management Committee', NOW(), 1, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' LIMIT 1));
 
 -- Affordable Construction: Committee Vice Chair
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Vice Chair', 'Supports the Chair in managing the Committee', NOW(), 1, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee' LIMIT 1));
+VALUES (uuid_generate_v4(), 'Vice Chair', 'Supports the Chair in managing the Committee', NOW(), 1, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' LIMIT 1));
 
 -- Affordable Construction: Committee Member
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Member', 'Contributes to the Management Committee', NOW(), 1, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee' LIMIT 1));
+VALUES (uuid_generate_v4(), 'Member', 'Contributes to the Management Committee', NOW(), 1, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' LIMIT 1));
 
 -----------------------
 
@@ -114,7 +114,7 @@ UPDATE "Organizations" SET "HeadItemId" = (SELECT "Id" FROM "OrganizationItems" 
 WHERE "Name" = 'AutoTechCenter';
 
 -- Update HeadItem for Affordable Construction
-UPDATE "Organizations" SET "HeadItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee' LIMIT 1) 
+UPDATE "Organizations" SET "HeadItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' LIMIT 1) 
 WHERE "Name" = 'Affordable Construction';
 
 -----------------------
@@ -190,25 +190,25 @@ VALUES (uuid_generate_v4(), 'Client Services Department', 'Responsible for clien
 
 -- Affordable Construction
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Project Management Department', 'Responsible for project management', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee' AND "ItemType" = 0));
+VALUES (uuid_generate_v4(), 'Project Management Department', 'Responsible for project management', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' AND "ItemType" = 0));
 
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Construction Management Department', 'Responsible for construction management', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee' AND "ItemType" = 0));
+VALUES (uuid_generate_v4(), 'Construction Management Department', 'Responsible for construction management', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' AND "ItemType" = 0));
 
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Construction Engineering Department', 'Responsible for construction engineering', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee' AND "ItemType" = 0));
+VALUES (uuid_generate_v4(), 'Construction Engineering Department', 'Responsible for construction engineering', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' AND "ItemType" = 0));
 
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Design and Engineering Department', 'Responsible for design and engineering', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee' AND "ItemType" = 0));
+VALUES (uuid_generate_v4(), 'Design and Engineering Department', 'Responsible for design and engineering', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' AND "ItemType" = 0));
 
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Procurement Department', 'Responsible for procurement', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee' AND "ItemType" = 0));
+VALUES (uuid_generate_v4(), 'Procurement Department', 'Responsible for procurement', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' AND "ItemType" = 0));
 
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Quality Control Department', 'Responsible for quality control', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee' AND "ItemType" = 0));
+VALUES (uuid_generate_v4(), 'Quality Control Department', 'Responsible for quality control', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' AND "ItemType" = 0));
 
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Safety and Environment Department', 'Responsible for safety and environment', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee' AND "ItemType" = 0));
+VALUES (uuid_generate_v4(), 'Safety and Environment Department', 'Responsible for safety and environment', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' AND "ItemType" = 0));
 
 -- Media Group
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
@@ -694,7 +694,7 @@ WHERE oi."Name" = 'Marketing and Sales Department';
 -- Insert teams into "Project Management Department"
 INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
 SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Project Management Department' AND "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee' AND "ItemType" = 0)),
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Project Management Department' AND "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' AND "ItemType" = 0)),
     FALSE,
     TRUE,
     4,
@@ -706,7 +706,7 @@ SELECT
 
 INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
 SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Project Management Department' AND "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee' AND "ItemType" = 0)),
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Project Management Department' AND "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' AND "ItemType" = 0)),
     FALSE,
     TRUE,
     4,
@@ -718,7 +718,7 @@ SELECT
 
 INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
 SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Project Management Department' AND "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee' AND "ItemType" = 0)),
+    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Project Management Department' AND "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' AND "ItemType" = 0)),
     FALSE,
     TRUE,
     4,
