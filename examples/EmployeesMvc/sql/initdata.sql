@@ -61,9 +61,9 @@ VALUES (uuid_generate_v4(), 'CEO', 'Chief Executive Officer', NOW(), 1, false, t
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
 VALUES (uuid_generate_v4(), 'Creative Director', 'Responsible for content development and promotion', NOW(), 1, false, true, NULL);
 
--- AutoTechCenter: Director
+-- AutoTechCenter: Director (AutoTechCenter)
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
-VALUES (uuid_generate_v4(), 'Director', 'Responsible for managing the car service center', NOW(), 1, false, true, NULL);
+VALUES (uuid_generate_v4(), 'Director (AutoTechCenter)', 'Responsible for managing the car service center', NOW(), 1, false, true, NULL);
 
 -- AutoTechCenter: Service Manager
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
@@ -110,7 +110,7 @@ UPDATE "Organizations" SET "HeadItemId" = (SELECT "Id" FROM "OrganizationItems" 
 WHERE "Name" = 'Media Group';
 
 -- Update HeadItem for AutoTechCenter
-UPDATE "Organizations" SET "HeadItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director' LIMIT 1) 
+UPDATE "Organizations" SET "HeadItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director (AutoTechCenter)' LIMIT 1) 
 WHERE "Name" = 'AutoTechCenter';
 
 -- Update HeadItem for Affordable Construction
@@ -143,10 +143,10 @@ UPDATE "OrganizationItems" SET "ParentItemId" = (SELECT "Id" FROM "OrganizationI
 WHERE "Name" = 'Risk Management Director';
 
 -- AutoTechCenter
-UPDATE "OrganizationItems" SET "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director' LIMIT 1) 
+UPDATE "OrganizationItems" SET "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director (AutoTechCenter)' LIMIT 1) 
 WHERE "Name" = 'Service Manager';
 
-UPDATE "OrganizationItems" SET "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director' LIMIT 1) 
+UPDATE "OrganizationItems" SET "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director (AutoTechCenter)' LIMIT 1) 
 WHERE "Name" = 'Logistics Manager';
 
 -----------------------
@@ -228,19 +228,19 @@ VALUES (uuid_generate_v4(), 'Finance and Operations Department', 'Responsible fo
 
 -- AutoTechCenter
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Car Repair and Maintenance Department', 'Responsible for car repair and maintenance', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director' AND "ItemType" = 1));
+VALUES (uuid_generate_v4(), 'Car Repair and Maintenance Department', 'Responsible for car repair and maintenance', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director (AutoTechCenter)' AND "ItemType" = 1));
 
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Body Shop Department', 'Responsible for body shop services', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director' AND "ItemType" = 1));
+VALUES (uuid_generate_v4(), 'Body Shop Department', 'Responsible for body shop services', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director (AutoTechCenter)' AND "ItemType" = 1));
 
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Parts and Accessories Department', 'Responsible for selling parts and accessories', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director' AND "ItemType" = 1));
+VALUES (uuid_generate_v4(), 'Parts and Accessories Department', 'Responsible for selling parts and accessories', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director (AutoTechCenter)' AND "ItemType" = 1));
 
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Logistics Department', 'Responsible for logistics operations', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director' AND "ItemType" = 1));
+VALUES (uuid_generate_v4(), 'Logistics Department', 'Responsible for logistics operations', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director (AutoTechCenter)' AND "ItemType" = 1));
 
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Customer Service Department', 'Responsible for customer service', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director' AND "ItemType" = 1));
+VALUES (uuid_generate_v4(), 'Customer Service Department', 'Responsible for customer service', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director (AutoTechCenter)' AND "ItemType" = 1));
 
 -- Insert teams into "Car Repair and Maintenance Department"
 INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
@@ -4906,7 +4906,7 @@ SELECT
     FALSE,
     TRUE,
     1,
-    'Director',
+    'Film director',
     'Directs the filming of a television program, guides actors and crew, ensures creative vision is realized.',
     1,
     NOW(),
