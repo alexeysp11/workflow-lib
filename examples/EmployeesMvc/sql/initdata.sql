@@ -51,7 +51,7 @@ VALUES (uuid_generate_v4(), 'Risk Management Director', 'Responsible for risk ma
 
 -- Media Group: President
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
-VALUES (uuid_generate_v4(), 'President', 'Responsible for creating engaging media content', NOW(), 1, false, true, NULL);
+VALUES (uuid_generate_v4(), 'President (Media Group)', 'Responsible for creating engaging media content', NOW(), 1, false, true, NULL);
 
 -- Media Group: CEO
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
@@ -106,7 +106,7 @@ UPDATE "Organizations" SET "HeadItemId" = (SELECT "Id" FROM "OrganizationItems" 
 WHERE "Name" = 'FinanceInvest';
 
 -- Update HeadItem for Media Group
-UPDATE "Organizations" SET "HeadItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'President' LIMIT 1) 
+UPDATE "Organizations" SET "HeadItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'President (Media Group)' LIMIT 1) 
 WHERE "Name" = 'Media Group';
 
 -- Update HeadItem for AutoTechCenter
@@ -122,7 +122,7 @@ WHERE "Name" = 'Affordable Construction';
 -- UPDATE SQL queries to establish dependencies in OrganizationItems for top-managers.
 
 -- Media Group
-UPDATE "OrganizationItems" SET "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'President') 
+UPDATE "OrganizationItems" SET "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'President (Media Group)') 
 WHERE "Id" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO' LIMIT 1 OFFSET 2);
 
 UPDATE "OrganizationItems" SET "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO' LIMIT 1 OFFSET 2) 
