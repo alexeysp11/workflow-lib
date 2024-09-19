@@ -161,7 +161,7 @@ INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "I
 VALUES (uuid_generate_v4(), 'IT Infrastructure Department', 'Responsible for managing IT infrastructure', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (TechnoSoft)'));
 
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Marketing and Sales Department', 'Responsible for marketing and sales activities', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (TechnoSoft)'));
+VALUES (uuid_generate_v4(), 'Marketing and Sales Department (TechnoSoft)', 'Responsible for marketing and sales activities', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (TechnoSoft)'));
 
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
 VALUES (uuid_generate_v4(), 'Quality Assurance Department', 'Responsible for testing software', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (TechnoSoft)'));
@@ -221,7 +221,7 @@ INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "I
 VALUES (uuid_generate_v4(), 'Online Media Department', 'Responsible for online media production', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (Media Group)'));
 
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Marketing and Sales Department', 'Responsible for marketing and sales activities', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (Media Group)'));
+VALUES (uuid_generate_v4(), 'Marketing and Sales Department (Media Group)', 'Responsible for marketing and sales activities', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (Media Group)'));
 
 INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
 VALUES (uuid_generate_v4(), 'Finance and Operations Department', 'Responsible for finance and operation', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (Media Group)'));
@@ -634,7 +634,7 @@ FROM "OrganizationItems" oi
 WHERE oi."Name" = 'Project Management Department'
     AND oi."ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (TechnoSoft)');
 
--- Insert teams into Marketing and Sales Department
+-- Insert teams into 'Marketing and Sales Department (TechnoSoft)'
 INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
 SELECT 
     oi."Id", -- Department ID.
@@ -643,11 +643,11 @@ SELECT
     4,
     NOW(),
     uuid_generate_v4(),
-    'Marketing Team',
+    'Marketing Team (TechnoSoft, Marketing and Sales Department)',
     'Team responsible for developing and executing marketing campaigns',
     1
 FROM "OrganizationItems" oi
-WHERE oi."Name" = 'Marketing and Sales Department';
+WHERE oi."Name" = 'Marketing and Sales Department (TechnoSoft)';
 
 INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
 SELECT 
@@ -657,11 +657,11 @@ SELECT
     4,
     NOW(),
     uuid_generate_v4(),
-    'Sales Team',
+    'Sales Team (TechnoSoft, Marketing and Sales Department)',
     'Team responsible for generating leads and closing deals',
     1
 FROM "OrganizationItems" oi
-WHERE oi."Name" = 'Marketing and Sales Department';
+WHERE oi."Name" = 'Marketing and Sales Department (TechnoSoft)';
 
 INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
 SELECT 
@@ -671,11 +671,11 @@ SELECT
     4,
     NOW(),
     uuid_generate_v4(),
-    'Content Marketing Team',
+    'Content Marketing Team (TechnoSoft, Marketing and Sales Department)',
     'Team responsible for creating and distributing content',
     1
 FROM "OrganizationItems" oi
-WHERE oi."Name" = 'Marketing and Sales Department';
+WHERE oi."Name" = 'Marketing and Sales Department (TechnoSoft)';
 
 INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
 SELECT 
@@ -685,11 +685,11 @@ SELECT
     4,
     NOW(),
     uuid_generate_v4(),
-    'Social Media Marketing Team',
+    'Social Media Marketing Team (TechnoSoft, Marketing and Sales Department)',
     'Team responsible for managing social media accounts',
     1
 FROM "OrganizationItems" oi
-WHERE oi."Name" = 'Marketing and Sales Department';
+WHERE oi."Name" = 'Marketing and Sales Department (TechnoSoft)';
 
 -- Insert teams into "Project Management Department"
 INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
@@ -1157,43 +1157,62 @@ SELECT
     'Team responsible for search engine optimization',
     1;
 
--- Insert teams into "Marketing and Sales Department"
+-- Insert teams into 'Marketing and Sales Department (Media Group)'
 INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
 SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Marketing and Sales Department' AND "IsDeleted" = FALSE),
+    oi."Id", -- Department ID.
     FALSE,
     TRUE,
     4,
     NOW(),
     uuid_generate_v4(),
-    'Marketing Strategy Team',
-    'Team responsible for developing and executing marketing strategies',
-    1;
+    'Marketing Team (Media Group, Marketing and Sales Department)',
+    'Team responsible for developing and executing marketing campaigns',
+    1
+FROM "OrganizationItems" oi
+WHERE oi."Name" = 'Marketing and Sales Department (Media Group)';
 
 INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
 SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Marketing and Sales Department' AND "IsDeleted" = FALSE),
+    oi."Id", -- Department ID.
     FALSE,
     TRUE,
     4,
     NOW(),
     uuid_generate_v4(),
-    'Advertising Sales Team',
-    'Team responsible for selling advertising space',
-    1;
+    'Sales Team (Media Group, Marketing and Sales Department)',
+    'Team responsible for generating leads and closing deals',
+    1
+FROM "OrganizationItems" oi
+WHERE oi."Name" = 'Marketing and Sales Department (Media Group)';
 
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntit
-yStatus")
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
 SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Marketing and Sales Department' AND "IsDeleted" = FALSE),
+    oi."Id", -- Department ID.
     FALSE,
     TRUE,
     4,
     NOW(),
     uuid_generate_v4(),
-    'Digital Marketing Team',
-    'Team responsible for digital marketing efforts',
-    1;
+    'Content Marketing Team (Media Group, Marketing and Sales Department)',
+    'Team responsible for creating and distributing content',
+    1
+FROM "OrganizationItems" oi
+WHERE oi."Name" = 'Marketing and Sales Department (Media Group)';
+
+INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
+SELECT 
+    oi."Id", -- Department ID.
+    FALSE,
+    TRUE,
+    4,
+    NOW(),
+    uuid_generate_v4(),
+    'Social Media Marketing Team (Media Group, Marketing and Sales Department)',
+    'Team responsible for managing social media accounts',
+    1
+FROM "OrganizationItems" oi
+WHERE oi."Name" = 'Marketing and Sales Department (Media Group)';
 
 -- Insert teams into "Finance and Operations Department"
 INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
@@ -1872,10 +1891,10 @@ SELECT
     FALSE,
     TRUE,
     1,
-    'Director of Marketing and Sales Department',
+    'Director of Marketing and Sales Department' || ' ' || replace(replace("Name", 'Marketing and Sales Department ', ''), ')', ', Marketing and Sales Department)'),
     'Head of Marketing and Sales Department.',
     1
-FROM "OrganizationItems" WHERE "Name" = 'Marketing and Sales Department';
+FROM "OrganizationItems" WHERE "Name" like 'Marketing and Sales Department%';
 
 INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
 SELECT 
@@ -1883,10 +1902,10 @@ SELECT
     FALSE,
     TRUE,
     1,
-    'Marketing and Sales Manager',
+    'Marketing and Sales Manager' || ' ' || replace(replace("Name", 'Marketing and Sales Department ', ''), ')', ', Marketing and Sales Department)'),
     'Manages Marketing and Sales teams and activities.',
     1
-FROM "OrganizationItems" WHERE "Name" = 'Marketing and Sales Department';
+FROM "OrganizationItems" WHERE "Name" like 'Marketing and Sales Department%';
 
 INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
 SELECT 
@@ -1894,10 +1913,10 @@ SELECT
     FALSE,
     TRUE,
     1,
-    'Marketing Specialist',
+    'Marketing Specialist' || ' ' || replace(replace("Name", 'Marketing and Sales Department ', ''), ')', ', Marketing and Sales Department)'),
     'Develops and implements marketing campaigns.',
     1
-FROM "OrganizationItems" WHERE "Name" = 'Marketing and Sales Department';
+FROM "OrganizationItems" WHERE "Name" like 'Marketing and Sales Department%';
 
 INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
 SELECT 
@@ -1905,10 +1924,10 @@ SELECT
     FALSE,
     TRUE,
     1,
-    'Sales Representative',
+    'Sales Representative' || ' ' || replace(replace("Name", 'Marketing and Sales Department ', ''), ')', ', Marketing and Sales Department)'),
     'Sells products or services to customers.',
     1
-FROM "OrganizationItems" WHERE "Name" = 'Marketing and Sales Department';
+FROM "OrganizationItems" WHERE "Name" like 'Marketing and Sales Department%';
 
 INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
 SELECT 
@@ -1916,10 +1935,10 @@ SELECT
     FALSE,
     TRUE,
     1,
-    'Account Manager',
+    'Account Manager' || ' ' || replace(replace("Name", 'Marketing and Sales Department ', ''), ')', ', Marketing and Sales Department)'),
     'Manages relationships with existing customers.',
     1
-FROM "OrganizationItems" WHERE "Name" = 'Marketing and Sales Department';
+FROM "OrganizationItems" WHERE "Name" like 'Marketing and Sales Department%';
 
 INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
 SELECT 
@@ -1927,10 +1946,10 @@ SELECT
     FALSE,
     TRUE,
     1,
-    'Marketing Manager',
+    'Marketing Manager' || ' ' || replace(replace("Name", 'Marketing and Sales Department ', ''), ')', ', Marketing and Sales Department)'),
     'Leads the Marketing Team.',
     1
-FROM "OrganizationItems" WHERE "Name" = 'Marketing and Sales Department';
+FROM "OrganizationItems" WHERE "Name" like 'Marketing and Sales Department%';
 
 INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
 SELECT 
@@ -1938,10 +1957,10 @@ SELECT
     FALSE,
     TRUE,
     1,
-    'Sales Manager',
+    'Sales Manager' || ' ' || replace(replace("Name", 'Marketing and Sales Department ', ''), ')', ', Marketing and Sales Department)'),
     'Leads the Sales Team.',
     1
-FROM "OrganizationItems" WHERE "Name" = 'Marketing and Sales Department';
+FROM "OrganizationItems" WHERE "Name" like 'Marketing and Sales Department%';
 
 INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
 SELECT 
@@ -1949,10 +1968,10 @@ SELECT
     FALSE,
     TRUE,
     1,
-    'Digital Marketing Manager',
+    'Digital Marketing Manager' || ' ' || replace(replace("Name", 'Marketing and Sales Department ', ''), ')', ', Marketing and Sales Department)'),
     'Leads the Digital Marketing Team.',
     1
-FROM "OrganizationItems" WHERE "Name" = 'Marketing and Sales Department';
+FROM "OrganizationItems" WHERE "Name" like 'Marketing and Sales Department%';
 
 -- Insert job titles into Marketing Team
 INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
