@@ -61,7 +61,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            <td></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrganizationName)
+            </td>
             <td>@item.ParentItem?.Name</td>
             <td></td>
         </tr>

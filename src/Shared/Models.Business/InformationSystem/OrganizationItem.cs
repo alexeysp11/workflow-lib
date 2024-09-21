@@ -42,5 +42,10 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
         /// Address of the organization item.
         /// </summary>
         public string? Address { get; set; }
+
+        /// <summary>
+        /// Name of the organization to which the item belongs.
+        /// </summary>
+        public string? OrganizationName { get; set; }
     }
 }
