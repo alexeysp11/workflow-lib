@@ -1,7210 +1,2437 @@
--- Initialize database with data.
+--
+-- PostgreSQL database dump
+--
 
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+-- Dumped from database version 10.13
+-- Dumped by pg_dump version 10.13
 
------------------------
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
 
--- Organizations.
+--
+-- Name: employeesmvc_test; Type: DATABASE; Schema: -; Owner: postgres
+--
 
-INSERT INTO "Organizations" ("Name", "Description", "Uid", "DateCreated", "BusinessEntityStatus")
-VALUES ('TechnoSoft', 'A company specializing in software and information technology development', uuid_generate_v4(), NOW(), 1);
+CREATE DATABASE employeesmvc_test WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'English_United States.1252' LC_CTYPE = 'English_United States.1252';
 
-INSERT INTO "Organizations" ("Name", "Description", "Uid", "DateCreated", "BusinessEntityStatus")
-VALUES ('Affordable Construction', 'A construction company engaged in environmentally friendly construction. The company provides construction services to third-party organizations or sells construction materials, and also helps build infrastructure and equip buildings for the operation of a number of companies.', uuid_generate_v4(), NOW(), 1);
 
-INSERT INTO "Organizations" ("Name", "Description", "Uid", "DateCreated", "BusinessEntityStatus")
-VALUES ('FinanceInvest', 'A financial company providing investment services. The company allows you to calculate the profitability of activities, predict risks and provide a financial forecast for the activities of a company''s contour', uuid_generate_v4(), NOW(), 1);
+ALTER DATABASE employeesmvc_test OWNER TO postgres;
 
-INSERT INTO "Organizations" ("Name", "Description", "Uid", "DateCreated", "BusinessEntityStatus")
-VALUES ('Media Group', 'A media holding that includes various media resources (TV, radio, Internet). The company allows you to promote the company''s brand, as well as attract investment and new employees', uuid_generate_v4(), NOW(), 1);
+\connect employeesmvc_test
 
-INSERT INTO "Organizations" ("Name", "Description", "Uid", "DateCreated", "BusinessEntityStatus")
-VALUES ('AutoTechCenter', 'A car service center providing a full range of car repair and maintenance services, and also delivers building materials, transports employees on business trips, and repairs cars', uuid_generate_v4(), NOW(), 1);
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
 
------------------------
+--
+-- Name: DATABASE employeesmvc_test; Type: COMMENT; Schema: -; Owner: postgres
+--
 
--- Generate Positions (OrganizationItem)
+COMMENT ON DATABASE employeesmvc_test IS 'Test database for EmployeesMvc application';
 
--- TechnoSoft: CEO
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
-VALUES (uuid_generate_v4(), 'CEO (TechnoSoft)', 'Chief Executive Officer', NOW(), 1, false, true, NULL);
 
--- TechnoSoft: Technical Director
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
-VALUES (uuid_generate_v4(), 'Technical Director', 'Responsible for software development', NOW(), 1, false, true, NULL);
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
 
--- TechnoSoft: Marketing Director
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
-VALUES (uuid_generate_v4(), 'Marketing Director', 'Responsible for promoting technology products and services', NOW(), 1, false, true, NULL);
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
--- FinanceInvest: CEO
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
-VALUES (uuid_generate_v4(), 'CEO (FinanceInvest)', 'Chief Executive Officer', NOW(), 1, false, true, NULL);
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
 
--- FinanceInvest: Investment Director
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
-VALUES (uuid_generate_v4(), 'Investment Director', 'Responsible for investment analysis and portfolio management', NOW(), 1, false, true, NULL);
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
--- FinanceInvest: Risk Management Director
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
-VALUES (uuid_generate_v4(), 'Risk Management Director', 'Responsible for risk management', NOW(), 1, false, true, NULL);
 
--- Media Group: President
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
-VALUES (uuid_generate_v4(), 'President (Media Group)', 'Responsible for creating engaging media content', NOW(), 1, false, true, NULL);
+--
+-- Name: uuid-ossp; Type: EXTENSION; Schema: -; Owner: 
+--
 
--- Media Group: CEO
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
-VALUES (uuid_generate_v4(), 'CEO (Media Group)', 'Chief Executive Officer', NOW(), 1, false, true, NULL);
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 
--- Media Group: Creative Director
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
-VALUES (uuid_generate_v4(), 'Creative Director', 'Responsible for content development and promotion', NOW(), 1, false, true, NULL);
 
--- AutoTechCenter: Director (AutoTechCenter)
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
-VALUES (uuid_generate_v4(), 'Director (AutoTechCenter)', 'Responsible for managing the car service center', NOW(), 1, false, true, NULL);
+--
+-- Name: EXTENSION "uuid-ossp"; Type: COMMENT; Schema: -; Owner: 
+--
 
--- AutoTechCenter: Service Manager
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
-VALUES (uuid_generate_v4(), 'Service Manager', 'Responsible for ensuring quality and efficiency of services', NOW(), 1, false, true, NULL);
+COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UUIDs)';
 
--- AutoTechCenter: Logistics Manager
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
-VALUES (uuid_generate_v4(), 'Logistics Manager', 'Responsible for efficient delivery of goods and employee transportation', NOW(), 1, false, true, NULL);
 
------------------------
+SET default_tablespace = '';
 
--- Generating the Management Committee (OrganizationItem) and its positions.
+SET default_with_oids = false;
 
--- Affordable Construction: Management Committee (I'll consider it a department)
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address") 
-VALUES (uuid_generate_v4(), 'Management Committee (Affordable Construction)', 'Responsible for overall company management', NOW(), 0, false, true, NULL);
+--
+-- Name: Absenses; Type: TABLE; Schema: public; Owner: postgres
+--
 
--- Affordable Construction: Committee Chair
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Chair', 'Leads the Management Committee', NOW(), 1, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' LIMIT 1));
+CREATE TABLE public."Absenses" (
+    "Id" bigint NOT NULL,
+    "EmployeeId" bigint,
+    "Reason" integer NOT NULL,
+    "Status" integer NOT NULL,
+    "DateStartActual" timestamp with time zone,
+    "DateEndActual" timestamp with time zone,
+    "DateStartExpected" timestamp with time zone,
+    "DateEndExpected" timestamp with time zone,
+    "Uid" text,
+    "Name" text,
+    "Description" text,
+    "DateCreated" timestamp with time zone,
+    "DateChanged" timestamp with time zone,
+    "BusinessEntityStatus" integer
+);
 
--- Affordable Construction: Committee Vice Chair
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Vice Chair', 'Supports the Chair in managing the Committee', NOW(), 1, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' LIMIT 1));
 
--- Affordable Construction: Committee Member
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Member', 'Contributes to the Management Committee', NOW(), 1, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' LIMIT 1));
+ALTER TABLE public."Absenses" OWNER TO postgres;
+
+--
+-- Name: Absenses_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public."Absenses" ALTER COLUMN "Id" ADD GENERATED BY DEFAULT AS IDENTITY (
+    SEQUENCE NAME public."Absenses_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: Companies; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Companies" (
+    "Id" bigint NOT NULL,
+    "RegistrationNumber" text,
+    "VatNumber" text,
+    "CrmRoleType" integer NOT NULL,
+    "ContactId" bigint,
+    "Address" text,
+    "ShippingAddress" text,
+    "HasVatRegistration" boolean NOT NULL,
+    "Uid" text,
+    "Name" text,
+    "Description" text,
+    "DateCreated" timestamp with time zone,
+    "DateChanged" timestamp with time zone,
+    "BusinessEntityStatus" integer
+);
+
+
+ALTER TABLE public."Companies" OWNER TO postgres;
+
+--
+-- Name: Companies_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public."Companies" ALTER COLUMN "Id" ADD GENERATED BY DEFAULT AS IDENTITY (
+    SEQUENCE NAME public."Companies_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: CompanyContract; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."CompanyContract" (
+    "ContractsId" bigint NOT NULL,
+    "CustomerCompaniesId" bigint NOT NULL
+);
+
+
+ALTER TABLE public."CompanyContract" OWNER TO postgres;
+
+--
+-- Name: CompanyEmployee; Type: TABLE; Schema: public; Owner: postgres
+--
 
------------------------
+CREATE TABLE public."CompanyEmployee" (
+    "CompaniesId" bigint NOT NULL,
+    "EmployeesId" bigint NOT NULL
+);
 
--- Updating HeadItem in Organization.
 
--- Update HeadItem for TechnoSoft
-UPDATE "Organizations" SET "HeadItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (TechnoSoft)') 
-WHERE "Name" = 'TechnoSoft';
+ALTER TABLE public."CompanyEmployee" OWNER TO postgres;
+
+--
+-- Name: Contacts; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Contacts" (
+    "Id" bigint NOT NULL,
+    "MobilePhone" text,
+    "HomePhone" text,
+    "WorkPhone" text,
+    "OfficePhone" text,
+    "Email" text,
+    "OfficeEmail" text,
+    "Uid" text,
+    "Name" text,
+    "Description" text,
+    "DateCreated" timestamp with time zone,
+    "DateChanged" timestamp with time zone,
+    "BusinessEntityStatus" integer
+);
+
+
+ALTER TABLE public."Contacts" OWNER TO postgres;
+
+--
+-- Name: Contacts_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public."Contacts" ALTER COLUMN "Id" ADD GENERATED BY DEFAULT AS IDENTITY (
+    SEQUENCE NAME public."Contacts_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: Contract; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Contract" (
+    "Id" bigint NOT NULL,
+    "ContractType" integer,
+    "Uid" text,
+    "Name" text,
+    "Description" text,
+    "DateCreated" timestamp with time zone,
+    "DateChanged" timestamp with time zone,
+    "BusinessEntityStatus" integer
+);
+
+
+ALTER TABLE public."Contract" OWNER TO postgres;
+
+--
+-- Name: ContractCustomer; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."ContractCustomer" (
+    "ContractsId" bigint NOT NULL,
+    "CustomersId" bigint NOT NULL
+);
+
+
+ALTER TABLE public."ContractCustomer" OWNER TO postgres;
+
+--
+-- Name: ContractEmployee; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."ContractEmployee" (
+    "ContractsId" bigint NOT NULL,
+    "OurEmployeesId" bigint NOT NULL
+);
+
+
+ALTER TABLE public."ContractEmployee" OWNER TO postgres;
+
+--
+-- Name: ContractOrganization; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."ContractOrganization" (
+    "ContractsId" bigint NOT NULL,
+    "OurOrganizationsId" bigint NOT NULL
+);
+
+
+ALTER TABLE public."ContractOrganization" OWNER TO postgres;
+
+--
+-- Name: Contract_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public."Contract" ALTER COLUMN "Id" ADD GENERATED BY DEFAULT AS IDENTITY (
+    SEQUENCE NAME public."Contract_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: Customer; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Customer" (
+    "Id" bigint NOT NULL,
+    "FirstName" text,
+    "MiddleName" text,
+    "LastName" text,
+    "FullName" text,
+    "CrmRoleType" integer NOT NULL,
+    "ContactId" bigint,
+    "UserAccountId" bigint,
+    "CompanyId" bigint,
+    "Uid" text,
+    "Name" text,
+    "Description" text,
+    "DateCreated" timestamp with time zone,
+    "DateChanged" timestamp with time zone,
+    "BusinessEntityStatus" integer
+);
+
+
+ALTER TABLE public."Customer" OWNER TO postgres;
+
+--
+-- Name: Customer_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public."Customer" ALTER COLUMN "Id" ADD GENERATED BY DEFAULT AS IDENTITY (
+    SEQUENCE NAME public."Customer_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: EmployeeOrganizationItem; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."EmployeeOrganizationItem" (
+    "EmployeesId" bigint NOT NULL,
+    "OrganizationItemsId" bigint NOT NULL
+);
+
+
+ALTER TABLE public."EmployeeOrganizationItem" OWNER TO postgres;
+
+--
+-- Name: EmployeeUserAccounts; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."EmployeeUserAccounts" (
+    "Id" bigint NOT NULL,
+    "EmployeeId" bigint NOT NULL,
+    "UserAccountId" bigint NOT NULL,
+    "DateCreated" timestamp with time zone,
+    "Uid" text,
+    "Name" text,
+    "Description" text,
+    "DateChanged" timestamp with time zone,
+    "BusinessEntityStatus" integer
+);
+
+
+ALTER TABLE public."EmployeeUserAccounts" OWNER TO postgres;
+
+--
+-- Name: EmployeeUserAccounts_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public."EmployeeUserAccounts" ALTER COLUMN "Id" ADD GENERATED BY DEFAULT AS IDENTITY (
+    SEQUENCE NAME public."EmployeeUserAccounts_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: Employees; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Employees" (
+    "Id" bigint NOT NULL,
+    "FirstName" text,
+    "MiddleName" text,
+    "LastName" text,
+    "FullName" text,
+    "Gender" integer,
+    "MobilePhone" text,
+    "WorkPhone" text,
+    "Skype" text,
+    "ICQ" text,
+    "BirthDate" timestamp with time zone,
+    "EmployDate" timestamp with time zone,
+    "ReplacementMode" integer NOT NULL,
+    "AuthProviderType" integer NOT NULL,
+    "Locale" text,
+    "Uid" text,
+    "Name" text,
+    "Description" text,
+    "DateCreated" timestamp with time zone,
+    "DateChanged" timestamp with time zone,
+    "BusinessEntityStatus" integer
+);
+
+
+ALTER TABLE public."Employees" OWNER TO postgres;
+
+--
+-- Name: Employees_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public."Employees" ALTER COLUMN "Id" ADD GENERATED BY DEFAULT AS IDENTITY (
+    SEQUENCE NAME public."Employees_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: OrganizationItems; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."OrganizationItems" (
+    "Id" bigint NOT NULL,
+    "ItemType" integer NOT NULL,
+    "IsDeleted" boolean NOT NULL,
+    "HardDelete" boolean NOT NULL,
+    "ParentItemId" bigint,
+    "Address" text,
+    "Uid" text,
+    "Name" text,
+    "Description" text,
+    "DateCreated" timestamp with time zone,
+    "DateChanged" timestamp with time zone,
+    "BusinessEntityStatus" integer
+);
+
+
+ALTER TABLE public."OrganizationItems" OWNER TO postgres;
+
+--
+-- Name: OrganizationItems_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public."OrganizationItems" ALTER COLUMN "Id" ADD GENERATED BY DEFAULT AS IDENTITY (
+    SEQUENCE NAME public."OrganizationItems_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: Organizations; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Organizations" (
+    "Id" bigint NOT NULL,
+    "CompanyId" bigint,
+    "HeadItemId" bigint,
+    "Uid" text,
+    "Name" text,
+    "Description" text,
+    "DateCreated" timestamp with time zone,
+    "DateChanged" timestamp with time zone,
+    "BusinessEntityStatus" integer
+);
+
+
+ALTER TABLE public."Organizations" OWNER TO postgres;
+
+--
+-- Name: Organizations_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public."Organizations" ALTER COLUMN "Id" ADD GENERATED BY DEFAULT AS IDENTITY (
+    SEQUENCE NAME public."Organizations_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: Project; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Project" (
+    "Id" bigint NOT NULL,
+    "IsActive" boolean NOT NULL,
+    "ContractId" bigint NOT NULL,
+    "Location" text,
+    "CompanyId" bigint,
+    "CustomerId" bigint,
+    "GuaranteePeriodInMonths" integer NOT NULL,
+    "ManagerId" bigint,
+    "CompletePercent" integer NOT NULL,
+    "DateStartActual" timestamp with time zone,
+    "DateEndActual" timestamp with time zone,
+    "DateStartExpected" timestamp with time zone,
+    "DateEndExpected" timestamp with time zone,
+    "Uid" text,
+    "Name" text,
+    "Description" text,
+    "DateCreated" timestamp with time zone,
+    "DateChanged" timestamp with time zone,
+    "BusinessEntityStatus" integer
+);
+
+
+ALTER TABLE public."Project" OWNER TO postgres;
+
+--
+-- Name: ProjectPhase; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."ProjectPhase" (
+    "Id" bigint NOT NULL,
+    "ProjectId" bigint,
+    "ProjectPlanItemId" bigint,
+    "Uid" text,
+    "Name" text,
+    "Description" text,
+    "DateCreated" timestamp with time zone,
+    "DateChanged" timestamp with time zone,
+    "BusinessEntityStatus" integer
+);
+
+
+ALTER TABLE public."ProjectPhase" OWNER TO postgres;
+
+--
+-- Name: ProjectPhase_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public."ProjectPhase" ALTER COLUMN "Id" ADD GENERATED BY DEFAULT AS IDENTITY (
+    SEQUENCE NAME public."ProjectPhase_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: ProjectPlanItem; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."ProjectPlanItem" (
+    "Id" bigint NOT NULL,
+    "Priority" integer,
+    "ProjectPlanItemId" bigint,
+    "Uid" text,
+    "Name" text,
+    "Description" text,
+    "DateCreated" timestamp with time zone,
+    "DateChanged" timestamp with time zone,
+    "BusinessEntityStatus" integer
+);
+
+
+ALTER TABLE public."ProjectPlanItem" OWNER TO postgres;
+
+--
+-- Name: ProjectPlanItem_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public."ProjectPlanItem" ALTER COLUMN "Id" ADD GENERATED BY DEFAULT AS IDENTITY (
+    SEQUENCE NAME public."ProjectPlanItem_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: Project_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public."Project" ALTER COLUMN "Id" ADD GENERATED BY DEFAULT AS IDENTITY (
+    SEQUENCE NAME public."Project_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: Risk; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Risk" (
+    "Id" bigint NOT NULL,
+    "Severity" integer NOT NULL,
+    "AuthorCreatedId" bigint,
+    "AuthorChangedId" bigint,
+    "DateResolved" timestamp with time zone,
+    "AuthorResolvedId" bigint,
+    "CommentResolved" text,
+    "Status" integer NOT NULL,
+    "ProjectId" bigint,
+    "Uid" text,
+    "Name" text,
+    "Description" text,
+    "DateCreated" timestamp with time zone,
+    "DateChanged" timestamp with time zone,
+    "BusinessEntityStatus" integer
+);
+
+
+ALTER TABLE public."Risk" OWNER TO postgres;
+
+--
+-- Name: Risk_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public."Risk" ALTER COLUMN "Id" ADD GENERATED BY DEFAULT AS IDENTITY (
+    SEQUENCE NAME public."Risk_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: Skill; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Skill" (
+    "Id" bigint NOT NULL,
+    "EmployeeId" bigint,
+    "Uid" text,
+    "Name" text,
+    "Description" text,
+    "DateCreated" timestamp with time zone,
+    "DateChanged" timestamp with time zone,
+    "BusinessEntityStatus" integer
+);
+
+
+ALTER TABLE public."Skill" OWNER TO postgres;
+
+--
+-- Name: Skill_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public."Skill" ALTER COLUMN "Id" ADD GENERATED BY DEFAULT AS IDENTITY (
+    SEQUENCE NAME public."Skill_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: UserAccountGroups; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."UserAccountGroups" (
+    "Id" bigint NOT NULL,
+    "UserAccountId" bigint NOT NULL,
+    "UserGroupId" bigint NOT NULL,
+    "Uid" text,
+    "Name" text,
+    "Description" text,
+    "DateCreated" timestamp with time zone,
+    "DateChanged" timestamp with time zone,
+    "BusinessEntityStatus" integer
+);
+
+
+ALTER TABLE public."UserAccountGroups" OWNER TO postgres;
+
+--
+-- Name: UserAccountGroups_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public."UserAccountGroups" ALTER COLUMN "Id" ADD GENERATED BY DEFAULT AS IDENTITY (
+    SEQUENCE NAME public."UserAccountGroups_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: UserAccounts; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."UserAccounts" (
+    "Id" bigint NOT NULL,
+    "Login" text NOT NULL,
+    "Email" text,
+    "PhoneNumber" text,
+    "Password" text NOT NULL,
+    "Photo" bytea,
+    "PhotoUrl" text,
+    "Status" integer NOT NULL,
+    "LastSeenDt" timestamp with time zone,
+    "Uid" text,
+    "Name" text,
+    "Description" text,
+    "DateCreated" timestamp with time zone,
+    "DateChanged" timestamp with time zone,
+    "BusinessEntityStatus" integer
+);
+
+
+ALTER TABLE public."UserAccounts" OWNER TO postgres;
+
+--
+-- Name: UserAccounts_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public."UserAccounts" ALTER COLUMN "Id" ADD GENERATED BY DEFAULT AS IDENTITY (
+    SEQUENCE NAME public."UserAccounts_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: UserGroups; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."UserGroups" (
+    "Id" bigint NOT NULL,
+    "IsGroupByDefault" boolean NOT NULL,
+    "IsSystem" boolean NOT NULL,
+    "AuthorCreatedId" bigint,
+    "AuthorChangedId" bigint,
+    "Uid" text,
+    "Name" text,
+    "Description" text,
+    "DateCreated" timestamp with time zone,
+    "DateChanged" timestamp with time zone,
+    "BusinessEntityStatus" integer
+);
+
+
+ALTER TABLE public."UserGroups" OWNER TO postgres;
+
+--
+-- Name: UserGroups_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public."UserGroups" ALTER COLUMN "Id" ADD GENERATED BY DEFAULT AS IDENTITY (
+    SEQUENCE NAME public."UserGroups_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: __EFMigrationsHistory; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL
+);
+
+
+ALTER TABLE public."__EFMigrationsHistory" OWNER TO postgres;
+
+--
+-- Data for Name: Absenses; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- Data for Name: Companies; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- Data for Name: CompanyContract; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- Data for Name: CompanyEmployee; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- Data for Name: Contacts; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- Data for Name: Contract; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- Data for Name: ContractCustomer; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- Data for Name: ContractEmployee; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- Data for Name: ContractOrganization; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- Data for Name: Customer; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- Data for Name: EmployeeOrganizationItem; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- Data for Name: EmployeeUserAccounts; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- Data for Name: Employees; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- Data for Name: OrganizationItems; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (416, 1, false, true, 146, NULL, '914a29ec-f028-46fd-926f-6d3883098bef', 'Hedge Fund Analyst (Alternative Investments Asset Management Team)', 'Analyzes hedge funds and their strategies.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (242, 1, false, true, 102, NULL, 'abaa74ea-a296-4b52-9013-2520b0bf3655', 'Security Team Leader', 'Leads the Security Team.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (243, 1, false, true, 102, NULL, 'ce7fcc1b-7f4c-47b5-80f1-5e32e86e7bcf', 'Security Analyst', 'Analyzes security threats and vulnerabilities.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (244, 1, false, true, 102, NULL, 'e02a2c9c-44f5-41f9-8f96-643374974431', 'Security Architect', 'Designs and implements security architectures.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (246, 1, false, true, 102, NULL, '8b9dc581-2b94-4d6e-9d94-65f409a40eff', 'Cybersecurity Analyst', 'Analyzes cybersecurity threats and incidents.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (204, 1, false, true, 96, NULL, '4f6e0e7d-0427-48c9-9ccf-ea62f4d1cb3a', 'Frontend Development Team Leader', 'Leads the Frontend Development Team.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (205, 1, false, true, 96, NULL, 'aedccdee-779c-48bc-8cce-e5d8174722dc', 'Frontend Developer', 'Develops frontend applications and user interfaces.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (206, 1, false, true, 96, NULL, '52bed49b-c8a4-4062-9434-c3f08a46645a', 'UI/UX Designer', 'Designs user interfaces and user experiences.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (73, 0, false, true, 57, NULL, 'a751ef19-6899-4522-a4fd-8bf63f778054', 'Software Development Department', 'Responsible for developing software', '2024-08-25 01:04:35.281793-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (105, 4, false, true, 104, NULL, '828ba781-7a75-48d7-9e0d-0969918ba5d9', 'Manual Testing Team', 'Team responsible for manually testing the application', '2024-08-26 23:07:40.538524-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (106, 4, false, true, 104, NULL, '343b5c62-b868-499f-bc30-fad7758e0a4f', 'Automation Testing Team', 'Team responsible for automating the testing process', '2024-08-26 23:07:40.538524-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (107, 4, false, true, 104, NULL, 'e41a1df4-ece2-4b8e-b5c7-189a6eb432d9', 'Performance Testing Team', 'Team responsible for testing the application performance', '2024-08-26 23:07:40.538524-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (108, 4, false, true, 104, NULL, 'e4675e9e-7f9d-4233-b7ca-15622866771a', 'Security Testing Team', 'Team responsible for testing the application security', '2024-08-26 23:07:40.538524-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (110, 4, false, true, 81, NULL, 'af20fe5f-2b1c-42e5-b0ad-5a0952ad9ad7', 'Project Management Team (Affordable Construction, Project Management Department)', 'Team responsible for managing the project lifecycle', '2024-08-26 23:10:31.84829-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (112, 4, false, true, 81, NULL, '294b5fbf-9e02-4f8c-afba-b8d8df87944b', 'Product Owners Team (Affordable Construction, Project Management Department)', 'Team responsible for defining the product vision', '2024-08-26 23:10:31.84829-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (114, 4, false, true, 109, NULL, 'd8174785-22cb-4fc3-a48b-eeab0e96166a', 'Scrum Masters Team (TechnoSoft, Project Management Department)', 'Team responsible for facilitating the scrum process', '2024-08-26 23:13:22.446575-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (111, 4, false, true, 109, NULL, '336602e8-9a12-4635-9a44-6a615b8904f3', 'Project Management Team (TechnoSoft, Project Management Department)', 'Team responsible for managing the project lifecycle', '2024-08-26 23:10:31.84829-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (113, 4, false, true, 109, NULL, '01d9653b-6153-47e5-a8dd-063998304c8d', 'Product Owners Team (TechnoSoft, Project Management Department)', 'Team responsible for defining the product vision', '2024-08-26 23:10:31.84829-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (96, 4, false, true, 73, NULL, '2e4598fd-f3ae-4fca-a254-cb8a8f7e2e89', 'Frontend Development Team', 'Team responsible for developing the user interface of the application', '2024-08-26 11:26:24.383711-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (97, 4, false, true, 73, NULL, '6d59602e-fc63-4da2-b733-3f72a67ec6e4', 'Backend Development Team', 'Team responsible for developing the server-side logic of the application', '2024-08-26 11:26:24.383711-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (98, 4, false, true, 73, NULL, 'fdd712dc-a418-437c-ba2b-4dc4d0ee188c', 'Mobile Development Team', 'Team responsible for developing mobile applications', '2024-08-26 11:26:24.383711-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (99, 4, false, true, 73, NULL, 'e3c5bcb0-dcf3-451e-8569-e7ce490e7a57', 'QA Testing Team', 'Team responsible for testing the application for bugs and defects', '2024-08-26 11:26:24.383711-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (100, 4, false, true, 74, NULL, '106c16f8-c29d-4d95-aff8-7788988a688d', 'Network Administration Team', 'Team responsible for managing the network infrastructure', '2024-08-26 11:28:38.148781-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (101, 4, false, true, 74, NULL, '318410c2-dd40-434d-bd50-db2c911df298', 'System Administration Team', 'Team responsible for managing the server infrastructure', '2024-08-26 11:28:38.148781-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (102, 4, false, true, 74, NULL, '2da36fdc-ee22-4608-8604-18dcb1c673b7', 'Security Team', 'Team responsible for securing the network and systems', '2024-08-26 11:28:38.148781-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (103, 4, false, true, 74, NULL, '298b4c53-005a-4617-a0a4-8ebcb9003681', 'Database Administration Team', 'Team responsible for managing the databases', '2024-08-26 11:28:38.148781-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (207, 1, false, true, 96, NULL, 'f8b80697-6b39-4ff4-a4f5-38bdfdcbcf81', 'Web Developer', 'Develops websites and web applications.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (208, 1, false, true, 96, NULL, '1cce8d87-6a8a-460b-b1c5-083ccfa33b48', 'JavaScript Developer', 'Develops applications using JavaScript.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (209, 1, false, true, 97, NULL, '079b9bd6-7cc2-4400-9313-ca7675296131', 'Backend Development Team Leader', 'Leads the Backend Development Team.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (210, 1, false, true, 97, NULL, 'b92caeb5-ed64-4d8c-b196-56af67d1ea87', 'Backend Developer', 'Develops backend applications and APIs.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (125, 4, false, true, 83, NULL, '4b9e2fbf-3688-4ff4-92f5-4220c170f89a', 'Structural Engineering Team', 'Structural Engineering Team', '2024-08-26 23:51:16.530301-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (126, 4, false, true, 83, NULL, '65374ae2-d299-427f-894b-5bced9831f09', 'Civil Engineering Team', 'Civil Engineering Team', '2024-08-26 23:51:16.530301-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (127, 4, false, true, 83, NULL, '74f42c86-9e5b-44df-b202-5f20e61fa867', 'Architectural Design Team', 'Architectural Design Team', '2024-08-26 23:51:16.530301-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (128, 4, false, true, 82, NULL, '7f91be3d-ddb6-486b-b382-85c295326a1c', 'Project Planning Team', 'Project Planning Team', '2024-08-26 23:51:16.530301-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (129, 4, false, true, 82, NULL, 'd1276542-e54d-4a27-8145-1badd0941b41', 'Construction Management Team', 'Construction Management Team', '2024-08-26 23:51:16.530301-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (130, 4, false, true, 82, NULL, '5181dd97-2a91-4830-be83-40cd73f01b73', 'Project Coordination Team', 'Project Coordination Team', '2024-08-26 23:51:16.530301-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (134, 4, false, true, 84, NULL, 'f0a6245b-8328-4bc3-bf72-fe1adc8f87bc', 'Procurement Team', 'Team responsible for sourcing and purchasing materials', '2024-08-28 11:14:58.832347-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (135, 4, false, true, 84, NULL, '29caa3aa-3b3d-447b-ab1e-7ea32cea6b57', 'Supply Chain Management Team', 'Team responsible for managing the supply chain', '2024-08-28 11:14:58.832347-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (118, 4, false, true, 89, NULL, 'bf7edc4c-4fb3-4523-98a1-ab2ce2b1cf10', 'Sales Team (Media Group, Marketing and Sales Department)', 'Team responsible for generating leads and closing deals', '2024-08-26 23:14:41.784932-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (116, 4, false, true, 89, NULL, 'eadb26b4-26c0-46ba-8cfb-0cf69282a069', 'Marketing Team (Media Group, Marketing and Sales Department)', 'Team responsible for developing and executing marketing campaigns', '2024-08-26 23:14:41.784932-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (122, 4, false, true, 89, NULL, 'f7156651-9c87-4c17-91aa-b1ad346cdd07', 'Social Media Marketing Team (Media Group, Marketing and Sales Department)', 'Team responsible for managing social media accounts', '2024-08-26 23:14:41.784932-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (131, 4, false, true, 81, NULL, '7f48b618-8c8c-4b8e-b229-9812bebe2508', 'Project Planning Team (Affordable Construction, Project Management Department)', 'Team responsible for planning projects', '2024-08-28 11:11:28.999415-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (132, 4, false, true, 81, NULL, 'd70e97a9-399a-4620-b541-8e40af70f2bb', 'Construction Management Team (Affordable Construction, Project Management Department)', 'Team responsible for managing construction projects', '2024-08-28 11:11:28.999415-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (133, 4, false, true, 81, NULL, '3ea569fe-dc4a-49ec-881a-22215400eb54', 'Project Coordination Team (Affordable Construction, Project Management Department)', 'Team responsible for coordinating project activities', '2024-08-28 11:11:28.999415-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (136, 4, false, true, 85, NULL, '5fe5b7c1-4cdf-4404-af1d-12a14e307668', 'Quality Assurance Team', 'Team responsible for ensuring quality standards are met', '2024-08-28 11:15:30.195991-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (137, 4, false, true, 85, NULL, 'c6b0877a-b047-4f47-b511-d0726249f376', 'Inspection Team', 'Team responsible for inspecting materials and processes', '2024-08-28 11:15:30.195991-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (138, 4, false, true, 124, NULL, '3a39f9d6-d904-4006-acd7-c3f234a1ae7c', 'Safety Officer Team', 'Team responsible for safety procedures and training', '2024-08-28 11:15:57.836516-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (139, 4, false, true, 124, NULL, '7da25a6f-4dd3-404f-80d6-f3da94761fa5', 'Environmental Compliance Team', 'Team responsible for environmental compliance and monitoring', '2024-08-28 11:15:57.836516-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (141, 4, false, true, 77, NULL, '5d92fb68-f872-4c91-8934-ac210864b6ae', 'Equity Research Team', 'Team responsible for research and analysis of equity markets', '2024-08-28 11:33:23.220196-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (142, 4, false, true, 77, NULL, 'a633ff5a-8049-4185-8f6c-8551f13c5cf4', 'Fixed Income Team', 'Team responsible for research and analysis of fixed income markets', '2024-08-28 11:33:23.220196-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (143, 4, false, true, 77, NULL, 'dc96ae60-51d1-4424-9109-1eeaaf20df7c', 'Alternative Investments Team', 'Team responsible for research and analysis of alternative investments', '2024-08-28 11:33:23.220196-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (144, 4, false, true, 78, NULL, '09174ed6-19aa-4490-bcde-28a42509afbe', 'Equity Asset Management Team', 'Team responsible for managing equity assets', '2024-08-28 11:33:23.220196-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (145, 4, false, true, 78, NULL, 'f9256f75-c298-4e40-85ca-d61d7bcf115b', 'Fixed Income Asset Management Team', 'Team responsible for managing fixed income assets', '2024-08-28 11:33:23.220196-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (146, 4, false, true, 78, NULL, '8534af3f-3733-4355-9654-08cda5e37430', 'Alternative Investments Asset Management Team', 'Team responsible for managing alternative investments assets', '2024-08-28 11:33:23.220196-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (147, 4, false, true, 79, NULL, '7150262e-dc33-4a11-a924-77a6a1ce7c5d', 'Market Risk Management Team', 'Team responsible for managing market risk', '2024-08-28 11:33:23.220196-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (148, 4, false, true, 79, NULL, '06b6e998-a233-4b16-9a0b-96255324b4d4', 'Credit Risk Management Team', 'Team responsible for managing credit risk', '2024-08-28 11:33:23.220196-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (149, 4, false, true, 79, NULL, '8a20cf2c-9e59-48fc-9756-28d45ea7833a', 'Operational Risk Management Team', 'Team responsible for managing operational risk', '2024-08-28 11:33:23.220196-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (211, 1, false, true, 97, NULL, '51ed290b-3b28-499c-975d-2eef041b9dde', 'API Developer', 'Develops APIs for applications.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (212, 1, false, true, 97, NULL, 'b5032c03-1c5b-4238-aa3f-5b38f4c8cb62', 'Database Developer', 'Develops and manages databases.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (213, 1, false, true, 97, NULL, '0116c104-e95b-4848-bb79-2ac28dc31cb0', 'C# Developer', 'Develops applications using C#.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (153, 4, false, true, 140, NULL, 'af842b77-6250-40b6-9580-3fd579c7652b', 'Client Relationship Management Team', 'Team responsible for managing client relationships', '2024-08-28 11:33:23.220196-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (154, 4, false, true, 140, NULL, '5565629b-1227-4dfd-b8f0-536902633b97', 'Client Onboarding Team', 'Team responsible for onboarding new clients', '2024-08-28 11:33:23.220196-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (155, 4, false, true, 140, NULL, '3e5847bb-2275-4f93-bb3c-3746976a0f31', 'Client Support Team', 'Team responsible for providing client support', '2024-08-28 11:33:23.220196-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (158, 4, false, true, 86, NULL, '354147e6-c33b-4437-89f8-9f67d7e0f4f4', 'Camera Crew', 'Team responsible for operating cameras and capturing footage', '2024-08-28 11:40:55.316807-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (162, 4, false, true, 87, NULL, '77d85306-84d9-47a1-8ffe-496c4b44af9a', 'On-Air Team', 'Team responsible for presenting and hosting radio programs', '2024-08-28 11:40:55.316807-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (165, 4, false, true, 88, NULL, 'a236de21-60bc-436b-995c-b781799c6aec', 'Content Creation Team', 'Team responsible for creating and producing online content', '2024-08-28 11:40:55.316807-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (166, 4, false, true, 88, NULL, 'b175522a-417b-41c6-b895-91d6e41b3390', 'Content Editing Team', 'Team responsible for editing and proofreading online content', '2024-08-28 11:40:55.316807-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (167, 4, false, true, 88, NULL, 'dafe450e-5b52-47cd-b265-a7304c5e41ce', 'Social Media Team', 'Team responsible for managing social media presence', '2024-08-28 11:40:55.316807-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (168, 4, false, true, 88, NULL, '67b91bc9-0746-407a-a510-147bd5e80b5b', 'SEO Team', 'Team responsible for search engine optimization', '2024-08-28 11:40:55.316807-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (169, 4, false, true, 156, NULL, 'ff02123f-6c00-4658-8afd-977720745373', 'Finance Team', 'Team responsible for financial management and accounting', '2024-08-28 11:43:09.663092-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (170, 4, false, true, 156, NULL, '485436c4-d952-4ffa-9eda-cc18aea767a0', 'Operations Team', 'Team responsible for day-to-day operations and logistics', '2024-08-28 11:43:09.663092-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (171, 4, false, true, 156, NULL, '7e8ecbd9-589c-4b5a-871a-9c062fbab4cf', 'Human Resources Team', 'Team responsible for human resource management', '2024-08-28 11:43:09.663092-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (214, 1, false, true, 98, NULL, '813a48d2-282e-4842-8e78-07c8ad3a8e9c', 'Mobile Development Team Leader', 'Leads the Mobile Development Team.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (215, 1, false, true, 98, NULL, 'ae3e9f9d-3fc2-4d7f-a32d-016e4edea9f8', 'Mobile Developer', 'Develops mobile applications.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (216, 1, false, true, 98, NULL, '9fd9c634-2a73-450b-acde-681c1c2f8c6c', 'Android Developer', 'Develops applications for Android.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (217, 1, false, true, 98, NULL, 'f5da1afb-13e6-48cb-b2bf-361b627cf1d6', 'iOS Developer', 'Develops applications for iOS.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (218, 1, false, true, 99, NULL, 'eba6bd70-0f55-4c72-bc1f-2517ffc90e89', 'QA Testing Team Leader', 'Leads the QA Testing Team.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (219, 1, false, true, 99, NULL, '3f82362d-b599-49e9-a351-b92fd26d6e35', 'QA Engineer', 'Performs quality assurance and testing tasks.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (220, 1, false, true, 99, NULL, '726db451-9a9c-4889-b8c6-d1872965d1b3', 'Senior QA Engineer', 'Experienced QA Engineer with advanced skills.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (159, 4, false, true, 86, NULL, '3af41a66-9e6a-49c2-9f4c-381e3de3c045', 'Editing Team (Television Department)', 'Team responsible for editing and assembling video content', '2024-08-28 11:40:55.316807-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (163, 4, false, true, 87, NULL, '2ccbd860-a44f-4502-9e12-b30d7b1b2941', 'Editing Team (Radio Department)', 'Team responsible for editing and assembling audio content', '2024-08-28 11:40:55.316807-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (157, 4, false, true, 86, NULL, 'e61cb428-749b-42c3-854c-660e66b19b58', 'Production Team (Television Department)', 'Team responsible for planning and executing television productions', '2024-08-28 11:40:55.316807-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (161, 4, false, true, 87, NULL, '8d5f82c3-2d65-4159-87ce-c2f5eb3b4a20', 'Production Team (Radio Department)', 'Team responsible for planning and executing radio productions', '2024-08-28 11:40:55.316807-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (160, 4, false, true, 86, NULL, '7d3416ae-8b39-4ec9-9e97-1396359e6265', 'Sound Team (Television Department)', 'Team responsible for sound recording, mixing, and editing', '2024-08-28 11:40:55.316807-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (164, 4, false, true, 87, NULL, 'c9121a60-397c-4cdb-b2cc-58f73c9dea44', 'Sound Team (Radio Department)', 'Team responsible for sound recording, mixing, and editing', '2024-08-28 11:40:55.316807-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (179, 4, false, true, 91, NULL, 'e861ff42-51ea-4bdc-b73b-147864bbc936', 'Mechanical Repair Team', 'Team responsible for mechanical repairs', '2024-08-28 11:52:15.992154-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (180, 4, false, true, 91, NULL, '4eadb4bb-9121-4c68-8419-18af10478101', 'Electrical Repair Team', 'Team responsible for electrical repairs', '2024-08-28 11:52:15.992154-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (181, 4, false, true, 91, NULL, 'fe7b1495-15d0-4023-bf35-ebcfc2ccbb54', 'Diagnostics Team', 'Team responsible for vehicle diagnostics', '2024-08-28 11:52:15.992154-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (182, 4, false, true, 91, NULL, 'aa700246-fc1c-47c8-9f05-5f3e1a934860', 'Scheduled Maintenance Team', 'Team responsible for scheduled maintenance services', '2024-08-28 11:52:15.992154-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (183, 4, false, true, 91, NULL, 'c6e1d43d-c367-4889-9da6-66d86ee1e14c', 'Preventive Maintenance Team', 'Team responsible for preventive maintenance services', '2024-08-28 11:52:15.992154-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (184, 4, false, true, 93, NULL, '16a9cd10-25dd-4e3a-b16e-53d59f34e08c', 'Parts Sales Team', 'Team responsible for selling parts and accessories', '2024-08-28 11:52:25.99109-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (185, 4, false, true, 93, NULL, '08d1b795-0ca1-4e9f-87a9-dda06fcd2baf', 'Inventory Management Team', 'Team responsible for managing parts inventory', '2024-08-28 11:52:25.99109-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (186, 4, false, true, 94, NULL, '3592e9e7-b7e5-43e7-beb3-78e716a789da', 'Transportation Team', 'Team responsible for vehicle transportation', '2024-08-28 11:54:31.429231-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (187, 4, false, true, 94, NULL, 'caa276dc-255d-483b-99f7-e9fc9ce80741', 'Delivery Team', 'Team responsible for delivery of parts and vehicles', '2024-08-28 11:54:31.429231-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (188, 4, false, true, 95, NULL, 'd8611fbd-a401-4279-a87d-8912e6c64c94', 'Customer Support Team', 'Team responsible for providing customer support', '2024-08-28 11:55:23.670733-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (189, 4, false, true, 95, NULL, 'bade477c-857b-4453-a196-df1355221ea5', 'Service Scheduling Team', 'Team responsible for scheduling service appointments', '2024-08-28 11:55:23.670733-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (190, 4, false, true, 92, NULL, '906f0710-e423-4a81-b705-91661f1aa831', 'Body Repair Team', 'Team responsible for repairing body damage', '2024-08-28 11:55:33.836089-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (191, 4, false, true, 92, NULL, '4c415f78-4322-4c10-b420-f1658ec885f7', 'Paint Team', 'Team responsible for vehicle painting', '2024-08-28 11:55:33.836089-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (192, 4, false, true, 92, NULL, '63c4a37a-64cc-410f-9cbe-13923f922846', 'Detailing Team', 'Team responsible for vehicle detailing', '2024-08-28 11:55:33.836089-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (193, 4, false, true, 80, NULL, '345e2433-cd66-4cd3-a921-5940a8e38185', 'Financial Reporting Team', 'Team responsible for preparing financial reports', '2024-08-29 21:50:00.443652-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (194, 4, false, true, 80, NULL, '3c114e3a-6844-4ab0-a120-fec7a3a75881', 'Accounting Team', 'Team responsible for accounting operations', '2024-08-29 21:50:00.443652-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (195, 4, false, true, 80, NULL, '07249feb-fb35-460c-9d2f-0c647876eedb', 'Regulatory Reporting Team', 'Team responsible for preparing regulatory reports', '2024-08-29 21:50:00.443652-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (196, 1, false, true, 73, NULL, '9528d428-2453-4fb8-bb8d-e02e0e8038d4', 'Director of Software Development Department', 'Head of Software Development Department.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (197, 1, false, true, 73, NULL, 'b37229e6-c5f2-4f8e-ab4b-06d0bab25084', 'Software Development Manager', 'Manages Software Development Teams.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (223, 1, false, true, 99, NULL, 'c389cd43-27b7-4a56-b84b-198d99ca5193', 'Security Testing Engineer', 'Performs security testing and analysis.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (225, 1, false, true, 74, NULL, 'af5ee557-50ee-41d7-96a5-8b30cd84362d', 'Director of IT Infrastructure Department', 'Head of IT Infrastructure Department.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (226, 1, false, true, 74, NULL, '4d9570df-5aa2-45c0-b8ea-72b572efddbc', 'IT Infrastructure Manager', 'Manages IT Infrastructure teams and resources.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (228, 1, false, true, 74, NULL, 'd90895d5-54a0-46b8-8790-5a5ec30e399e', 'Network Administrator', 'Administers and manages computer networks.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (229, 1, false, true, 74, NULL, 'f55d48cc-cc6a-4738-b25e-404a182d0d40', 'Cloud Engineer', 'Designs, implements, and manages cloud computing services.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (230, 1, false, true, 74, NULL, 'eeaf29d2-305c-4fe2-9534-4f44148044fa', 'Security Engineer', 'Develops and implements security measures for IT systems.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (224, 1, false, true, 99, NULL, '9ddc0213-6854-496c-a75b-eb3df11631f0', 'Manual Tester (QA Testing Team)', 'Performs manual testing tasks.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (348, 1, false, true, 110, NULL, '215ced95-eb4b-4303-a816-82641d924659', 'Project Manager (Affordable Construction, Project Management Department, Project Management Team)', 'Manages projects from start to finish.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (247, 1, false, true, 103, NULL, '4c78b1b1-5e67-4899-86e8-9940af3f26be', 'Database Administration Team Leader', 'Leads the Database Administration Team.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (248, 1, false, true, 103, NULL, '59add38e-d884-4c0d-888a-50594fad3b62', 'Database Administrator', 'Administers and manages databases.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (249, 1, false, true, 103, NULL, '027029c7-d26d-4cde-8ec2-57931cae8c27', 'SQL Developer', 'Develops and maintains SQL databases.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (250, 1, false, true, 103, NULL, 'bb86f742-778e-47e4-9af7-acd86dd8faed', 'NoSQL Developer', 'Develops and maintains NoSQL databases.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (269, 1, false, true, 115, NULL, 'd2af19cc-2d89-4e6c-8136-04ba4aa1ab23', 'Marketing Team Leader', 'Leads the Marketing Team.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (271, 1, false, true, 115, NULL, 'ad407671-f96d-4d14-806f-3e5121185228', 'Content Marketing Specialist', 'Creates and distributes high-quality content for marketing purposes.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (273, 1, false, true, 115, NULL, '5c6e9486-bffe-4342-a42c-0f4adb689525', 'Social Media Marketing Specialist', 'Manages social media channels and campaigns.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (275, 1, false, true, 115, NULL, 'd1fc879d-e2ab-4bda-aeef-9fc162ac6968', 'Email Marketing Specialist', 'Develops and implements email marketing campaigns.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (279, 1, false, true, 115, NULL, 'b842809c-55e4-4270-829b-6d2703ca2791', 'SEM Specialist', 'Manages search engine marketing campaigns.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (281, 1, false, true, 115, NULL, 'a9cc4c65-208c-4865-b7f8-e0832e8f1e53', 'Marketing Analyst', 'Analyzes marketing data and performance.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (283, 1, false, true, 117, NULL, 'b6489616-6c1e-4cdd-adc4-e5fa19c5e140', 'Sales Team Leader', 'Leads the Sales Team.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (285, 1, false, true, 117, NULL, 'e02752d1-9cce-407a-a0d3-dd232ad3b8f1', 'Sales Representative', 'Sells products or services to customers.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (289, 1, false, true, 117, NULL, 'c4456245-fd52-4f82-b4d0-7924870d5a11', 'Business Development Manager', 'Identifies and develops new business opportunities.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (291, 1, false, true, 117, NULL, '2c540773-abc6-4008-8f14-1627e256aee8', 'Sales Engineer', 'Provides technical expertise and support to sales teams.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (90, 0, false, true, 64, NULL, '283aa6a0-dc94-4142-a39b-bbe8c606dd61', 'Content Creation Department', 'Responsible for content creation', '2024-08-25 01:05:10.466079-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (91, 0, false, true, 66, NULL, '63c83cfe-c00a-4f0f-9a83-777c00cfc395', 'Car Repair and Maintenance Department', 'Responsible for car repair and maintenance', '2024-08-25 01:05:21.326365-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (234, 1, false, true, 100, NULL, '4ddb2970-dc51-4ba5-a0e0-5daa506326a8', 'Network Engineer', 'Designs, implements, and maintains computer networks.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (235, 1, false, true, 100, NULL, 'dc9538e6-da4a-418d-94d5-0d936964ae05', 'Network Security Engineer', 'Develops and implements security measures for computer networks.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (236, 1, false, true, 100, NULL, '7d39ba96-c85a-4d2b-8785-4c776082b955', 'Network Analyst', 'Analyzes and troubleshoots network issues.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (237, 1, false, true, 101, NULL, '395315c3-acef-4eb9-b97b-b1b15176eac1', 'System Administration Team Leader', 'Leads the System Administration Team.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (238, 1, false, true, 101, NULL, 'aae8d024-ef47-4941-8c98-7b4c3536b8bf', 'System Administrator', 'Administers computer systems and networks.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (293, 1, false, true, 119, NULL, '5b6ef962-e92e-4f7e-a609-91a82c616106', 'Content Marketing Team Leader', 'Leads the Content Marketing Team.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (259, 1, false, true, 75, NULL, '14c9d193-3706-471e-9d88-3fcbd650b766', 'Sales Representative (TechnoSoft, Marketing and Sales Department)', 'Sells products or services to customers.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (265, 1, false, true, 75, NULL, '403bf047-6502-4115-a1e3-b8ad4bbf43f9', 'Sales Manager (TechnoSoft, Marketing and Sales Department)', 'Leads the Sales Team.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (267, 1, false, true, 75, NULL, 'd236c09a-fb71-40d1-8419-ce8e3a653591', 'Digital Marketing Manager (TechnoSoft, Marketing and Sales Department)', 'Leads the Digital Marketing Team.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (253, 1, false, true, 75, NULL, 'ac7ae989-4468-4b8f-b3aa-09c00be8bc22', 'Director of Marketing and Sales Department (TechnoSoft, Marketing and Sales Department)', 'Head of Marketing and Sales Department.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (257, 1, false, true, 75, NULL, 'ff735d0d-58c8-4c44-b57d-21089995a2f9', 'Marketing Specialist (TechnoSoft, Marketing and Sales Department)', 'Develops and implements marketing campaigns.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (255, 1, false, true, 75, NULL, '6ef92173-1288-422e-a0f6-aecf40b208f9', 'Marketing and Sales Manager (TechnoSoft, Marketing and Sales Department)', 'Manages Marketing and Sales teams and activities.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (287, 1, false, true, 117, NULL, '6ad2e775-d805-4120-87e8-bed5c197d50a', 'Account Executive (TechnoSoft, Marketing and Sales Department, Sales Team)', 'Manages relationships with key accounts.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (288, 1, false, true, 118, NULL, 'a7ed1c00-74f5-4e9c-9c22-4a9f331baed1', 'Account Executive (Media Group, Marketing and Sales Department, Sales Team)', 'Manages relationships with key accounts.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (286, 1, false, true, 118, NULL, '1cf0842c-fb89-4ee9-ac21-6b3ac9b7ab0d', 'Sales Representative (Media Group, Marketing and Sales Department, Sales Team)', 'Sells products or services to customers.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (284, 1, false, true, 118, NULL, '7df41141-032a-4580-b00a-011102d02b06', 'Sales Team Leader (Media Group, Marketing and Sales Department, Sales Team)', 'Leads the Sales Team.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (292, 1, false, true, 118, NULL, '3519f3a1-e9cf-4faa-9c3f-eb2243efd5b2', 'Sales Engineer (Media Group, Marketing and Sales Department, Sales Team)', 'Provides technical expertise and support to sales teams.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (290, 1, false, true, 118, NULL, '9a5a76db-31c1-4447-867f-7a5fe1001b27', 'Business Development Manager (Media Group, Marketing and Sales Department, Sales Team)', 'Identifies and develops new business opportunities.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (294, 1, false, true, 120, NULL, 'edc5532b-1fd8-49b5-b4bd-7a9e93334613', 'Content Marketing Team Leader (Media Group, Marketing and Sales Department, Content Marketing Team)', 'Leads the Content Marketing Team.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (295, 1, false, true, 119, NULL, '6ba3f19b-9333-4af2-a16b-244baf174821', 'Content Writer (TechnoSoft, Marketing and Sales Department, Content Marketing Team)', 'Creates written content for various marketing materials.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (276, 1, false, true, 116, NULL, 'b7594616-fe3b-4f38-a966-fc580c2215b1', 'Email Marketing Specialist (Media Group, Marketing and Sales Department, Marketing Team)', 'Develops and implements email marketing campaigns.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (280, 1, false, true, 116, NULL, '4248c8c7-6385-4cd7-9e56-68c836b3247f', 'SEM Specialist (Media Group, Marketing and Sales Department, Marketing Team)', 'Manages search engine marketing campaigns.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (251, 1, false, true, 103, NULL, '1775291e-d458-446d-8a2e-da952a7afbbd', 'Data Analyst (Database Administration Team)', 'Analyzes and interprets data to identify patterns and insights.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (277, 1, false, true, 115, NULL, '3933a6a1-9a60-46a5-935a-a3564a599821', 'SEO Specialist (TechnoSoft, Marketing and Sales Department, Marketing Team)', 'Optimizes website content for search engines.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (245, 1, false, true, 102, NULL, '18d4575b-6978-42f5-8d3a-971ac04ee23f', 'Penetration Tester (Security Team)', 'Performs penetration testing to identify vulnerabilities.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (312, 1, false, true, 104, NULL, '841fa9f1-7d02-40a7-9e87-d2add8f3333a', 'QA Manager', 'Manager role in Quality Assurance Department', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (313, 1, false, true, 104, NULL, '88855d3e-f107-4517-950a-0a2944ab7aa4', 'QA Lead', 'Lead role in Quality Assurance Department', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (314, 1, false, true, 105, NULL, '73802fdf-50d0-43b6-98c1-7a409a6c6a40', 'Manual Testing Team Leader', 'Leader role in Manual Testing Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (315, 1, false, true, 105, NULL, '03264523-961a-408c-8ae5-37d4519af22a', 'Manual Tester', 'Performs manual testing tasks.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (316, 1, false, true, 105, NULL, '406fbaf3-c7c7-437d-8d29-b1778bbfc733', 'Test Analyst', 'Analyzes and creates test cases.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (317, 1, false, true, 106, NULL, 'b093fcfa-a2e4-4e42-9c70-a195fb8a412f', 'Automation Testing Team Leader', 'Leader role in Automation Testing Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (318, 1, false, true, 106, NULL, 'baf62075-467a-444d-b19f-474e0ef8029f', 'Test Automation Engineer', 'Develops and maintains automated test scripts.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (319, 1, false, true, 106, NULL, '50b1cd4b-52f3-41e0-9120-5b0e525ab6e5', 'QA Automation Specialist', 'Specialist in QA Automation.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (92, 0, false, true, 66, NULL, '20d46ddd-d4ce-43c8-98d7-1d941f24f70b', 'Body Shop Department', 'Responsible for body shop services', '2024-08-25 01:05:21.326365-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (93, 0, false, true, 66, NULL, '82c772d4-58e0-4efa-81b8-2ac722c3d2a3', 'Parts and Accessories Department', 'Responsible for selling parts and accessories', '2024-08-25 01:05:21.326365-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (94, 0, false, true, 66, NULL, 'd7a13ec4-d8b9-474b-94f5-6665af960bad', 'Logistics Department', 'Responsible for logistics operations', '2024-08-25 01:05:21.326365-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (95, 0, false, true, 66, NULL, '40660b9f-8bbd-442b-b6f0-62756ef23667', 'Customer Service Department', 'Responsible for customer service', '2024-08-25 01:05:21.326365-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (104, 0, false, true, 57, NULL, 'a074399b-828f-4889-b047-1f8f1692c71f', 'Quality Assurance Department', 'Responsible for testing software', '2024-08-26 23:07:26.081182-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (301, 1, false, true, 119, NULL, 'cb513aff-94dc-4392-9752-fe3cf11ba2a5', 'Content Strategist', 'Develops and implements content strategy.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (303, 1, false, true, 121, NULL, '26d234e2-4bec-4ff1-936a-815913a30ce4', 'Social Media Marketing Team Leader', 'Leads the Social Media Marketing Team.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (305, 1, false, true, 121, NULL, '6425e5fe-1769-488a-8509-8547bb3eb64c', 'Social Media Manager', 'Manages social media channels and campaigns.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (307, 1, false, true, 121, NULL, '50444d45-c146-409e-90ab-4b65d0994f1d', 'Social Media Specialist', 'Creates and distributes social media content.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (309, 1, false, true, 121, NULL, '09d6d6df-d6b8-48c0-a87d-65c04b6ef81a', 'Community Manager', 'Engages with online communities and builds relationships with customers.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (311, 1, false, true, 104, NULL, '60ca4a3d-46a2-4ba8-9642-ef85994fd0cb', 'Director of Quality Assurance Department', 'Director role in Quality Assurance Department', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (320, 1, false, true, 107, NULL, 'a3cffdcd-099a-47be-8138-323453635734', 'Performance Testing Team Leader', 'Leader role in Performance Testing Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (321, 1, false, true, 107, NULL, 'b0704bb5-29b4-4c9e-9a1f-b941c48cd8f8', 'Performance Testing Engineer', 'Performs performance testing tasks.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (322, 1, false, true, 107, NULL, '57700f97-d7ba-4ffb-bcbc-171dcaf3868f', 'Load Testing Engineer', 'Performs load testing tasks.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (323, 1, false, true, 108, NULL, 'e618fe0d-561e-4852-9ca9-0088f4a25151', 'Security Testing Team Leader', 'Leader role in Security Testing Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (324, 1, false, true, 108, NULL, '64b283d1-750e-45a5-ae04-187aa67eed0c', 'Security Tester', 'Performs security testing tasks.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (341, 1, false, true, 133, NULL, '50c328f9-5e60-475e-998e-2f2ea8024d22', 'Project Coordination Team Leader', 'Leader role in Project Coordination Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (347, 1, false, true, 111, NULL, '9422b67a-1d69-42b2-bde1-e06ed5eb2128', 'Project Management Team Leader', 'Leader role in Project Management Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (349, 1, false, true, 111, NULL, '4860d6ad-938a-4354-95de-3d20bb0b829b', 'Project Manager', 'Manages projects from start to finish.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (351, 1, false, true, 111, NULL, '32cea381-a7f2-4004-9835-90b56193f54f', 'Senior Project Manager', 'Experienced Project Manager with leadership responsibilities.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (353, 1, false, true, 113, NULL, 'f32fe74d-bbff-4ba2-b17e-6c8153bd328b', 'Product Owners Team Leader', 'Leader role in Product Owners Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (355, 1, false, true, 113, NULL, '9f0ef61c-6a24-42b4-a9da-0688f2aa1607', 'Product Owner', 'Represents the voice of the customer and manages the product backlog.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (334, 1, false, true, 81, NULL, '5b4a6d33-1fa1-445c-89a7-a500f79b1111', 'Product Owner (Affordable Construction, Project Management Department)', 'Represents the voice of the customer and manages the product backlog.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (328, 1, false, true, 81, NULL, '0e84a181-20c3-47f1-b64e-cc80a623ce69', 'Project Management Manager (Affordable Construction, Project Management Department)', 'Manager role in Project Management Department', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (326, 1, false, true, 81, NULL, '3bf771ff-69bf-420b-9395-09a0a6649840', 'Director of Project Management Department (Affordable Construction, Project Management Department)', 'Director role in Project Management Department', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (332, 1, false, true, 81, NULL, '983e473e-3fb9-45c1-9fbf-7b22de41422e', 'Scrum Master (Affordable Construction, Project Management Department)', 'Facilitates Scrum processes and helps teams succeed.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (300, 1, false, true, 120, NULL, 'f219e381-540e-40f0-8b3a-19ceeba314b4', 'Copywriter (Media Group, Marketing and Sales Department, Content Marketing Team)', 'Writes persuasive and engaging marketing copy.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (296, 1, false, true, 120, NULL, '668c39c2-e24a-4e08-acbe-011776b403e9', 'Content Writer (Media Group, Marketing and Sales Department, Content Marketing Team)', 'Creates written content for various marketing materials.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (302, 1, false, true, 120, NULL, '2635c199-7da5-48f0-b013-7d994442e7c2', 'Content Strategist (Media Group, Marketing and Sales Department, Content Marketing Team)', 'Develops and implements content strategy.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (298, 1, false, true, 120, NULL, '907ba52c-94ca-45e5-b8ed-2975c52d7c66', 'Editor (Media Group, Marketing and Sales Department, Content Marketing Team)', 'Edits and proofreads written content.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (299, 1, false, true, 119, NULL, '0dda0576-00aa-489f-8e35-78a8069bfde2', 'Copywriter (TechnoSoft, Marketing and Sales Department, Content Marketing Team)', 'Writes persuasive and engaging marketing copy.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (297, 1, false, true, 119, NULL, '6ff8cf6b-39b7-433a-a09f-225a5b3df0a8', 'Editor (TechnoSoft, Marketing and Sales Department, Content Marketing Team)', 'Edits and proofreads written content.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (352, 1, false, true, 112, NULL, '34012d02-50d0-4b7c-9523-851507ca35b7', 'Product Owners Team Leader (Affordable Construction, Project Management Department, Product Owners Team)', 'Leader role in Product Owners Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (354, 1, false, true, 112, NULL, '049cd771-b0d8-464f-8d9a-6928df8209a4', 'Product Owner (Affordable Construction, Project Management Department, Product Owners Team)', 'Represents the voice of the customer and manages the product backlog.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (325, 1, false, true, 108, NULL, '6a897ec9-5c97-4e54-8927-6afd7aad5796', 'Penetration Tester (Security Testing Team)', 'Performs penetration testing tasks.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (340, 1, false, true, 130, NULL, '5d5ab29a-24f8-4116-ab2d-c77057258e68', 'Project Coordination Team Leader (Project Coordination Team)', 'Leader role in Project Coordination Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (350, 1, false, true, 110, NULL, '17bb74e9-c28d-4e07-89dc-cf547742e3ba', 'Senior Project Manager (Affordable Construction, Project Management Department, Project Management Team)', 'Experienced Project Manager with leadership responsibilities.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (75, 0, false, true, 57, NULL, '211f3b64-75a8-4403-aff6-0993fc93f821', 'Marketing and Sales Department (TechnoSoft)', 'Responsible for marketing and sales activities', '2024-08-25 01:04:35.281793-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (89, 0, false, true, 64, NULL, '26106bfa-763a-45a6-a4f7-b881d53f0857', 'Marketing and Sales Department (Media Group)', 'Responsible for marketing and sales activities', '2024-08-25 01:05:10.466079-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (109, 0, false, true, 57, NULL, '69f9dc5d-c5a1-4dde-a284-f091a01bfa4d', 'Project Management Department (TechnoSoft)', 'Responsible for project management', '2024-08-26 23:09:24.210931-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (81, 0, false, true, 69, NULL, 'bb0f837a-57ae-45de-b11c-ffb030111702', 'Project Management Department (Affordable Construction)', 'Responsible for project management', '2024-08-25 01:04:57.779884-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (70, 1, false, true, 69, NULL, '92995388-ec7c-4173-95dc-d0aa4edd1610', 'Chair', 'Leads the Management Committee', '2024-08-24 12:25:55.57331-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (71, 1, false, true, 69, NULL, '42daed5b-2f14-426c-a8b5-d25011242726', 'Vice Chair', 'Supports the Chair in managing the Committee', '2024-08-24 12:25:55.57331-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (357, 1, false, true, 113, NULL, 'b2a49805-80da-49a9-a133-215f1b2a5572', 'Product Manager', 'Responsible for the strategic direction of a product.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (358, 1, false, true, 128, NULL, '297a640f-e4be-4159-a333-e6231dc47290', 'Project Planning Team Leader', 'Leader role in Project Planning Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (362, 1, false, true, 128, NULL, '243d2d77-13cc-41f5-94b3-23a11305ea47', 'Schedule Manager', 'Manages project schedules and timelines.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (304, 1, false, true, 122, NULL, 'd61f6712-f6f7-4dc6-9806-1d8100ecb128', 'Social Media Marketing Team Leader (Media Group, Marketing and Sales Department, Social Media Marketing Team)', 'Leads the Social Media Marketing Team.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (306, 1, false, true, 122, NULL, 'efd8ca65-8071-473c-9d62-add0ecc73ed2', 'Social Media Manager (Media Group, Marketing and Sales Department, Social Media Marketing Team)', 'Manages social media channels and campaigns.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (364, 1, false, true, 114, NULL, '829e103b-5d5b-402c-b2e8-6bcb86be73ca', 'Scrum Masters Team Leader', 'Leader role in Scrum Masters Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (365, 1, false, true, 114, NULL, '111f89c3-211f-4a47-a388-c99af7d4d882', 'Scrum Master', 'Facilitates Scrum processes and helps teams succeed.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (366, 1, false, true, 114, NULL, '80fb8fed-8ad1-45c4-8cbd-dbba6b524779', 'Agile Coach', 'Provides guidance and training on Agile methodologies.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (367, 1, false, true, 129, NULL, '87e0b91e-a821-491c-bc99-a5154e1b0014', 'Construction Manager', 'Manages construction projects.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (369, 1, false, true, 129, NULL, 'd69dfe0f-2e94-4bfb-82ed-fbaecc1b301b', 'Project Engineer', 'Provides engineering expertise for construction projects.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (371, 1, false, true, 129, NULL, '6994e3bd-8976-422b-b0e0-7c5993777ec5', 'Site Supervisor', 'Supervises construction activities on site.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (373, 1, false, true, 76, NULL, '2f66959f-84a4-46b6-b22d-ec0490383658', 'Director of Research and Development Department', 'Director role in Research and Development Department', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (374, 1, false, true, 76, NULL, '1b095a11-b4fe-42ca-8403-c8e3576c21ca', 'R&D Manager', 'Manages research and development activities.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (375, 1, false, true, 76, NULL, '053fa896-daf5-44e1-b8d5-6525b942cc98', 'Research Scientist', 'Conducts scientific research and experiments.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (376, 1, false, true, 76, NULL, 'b59ad2cb-beba-4d94-9c85-92d3f135812c', 'Data Scientist', 'Analyzes and interprets large datasets.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (377, 1, false, true, 76, NULL, 'a12321af-5176-4dfb-b653-70ce98b8b2ac', 'Machine Learning Engineer', 'Develops and implements machine learning models.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (378, 1, false, true, 76, NULL, 'd83de8cd-8c8a-47d4-bd2a-55b8bc7691c2', 'AI Developer', 'Develops artificial intelligence systems and applications.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (379, 1, false, true, 76, NULL, 'd207accb-0c27-40ee-af6a-fe19a8ee64b1', 'Software Engineer', 'Develops and maintains software applications.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (380, 1, false, true, 77, NULL, '277b2226-8cfc-4ffe-ac46-163c5c4a05c4', 'Managing Director, Head of Investment Banking', 'Head of the Investment Banking Department', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (381, 1, false, true, 141, NULL, 'f640cca3-7e71-44e2-89ad-2d14ef6b0f52', 'Head of Equity Research', 'Head of the Equity Research Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (382, 1, false, true, 141, NULL, 'fd730426-cc04-4de1-90ef-f036d7bd241e', 'Senior Equity Analyst', 'Experienced analyst covering specific sectors or companies.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (383, 1, false, true, 141, NULL, 'dd0d8615-1c88-4223-8afb-92930d675927', 'Equity Analyst', 'Conducts research on companies and markets.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (384, 1, false, true, 141, NULL, 'c426d039-8bce-4822-a13f-ef98255f9a3b', 'Research Associate', 'Provides support to Equity Analysts.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (385, 1, false, true, 141, NULL, '8fdc03b0-c8ec-4b8b-8063-0810a85e1588', 'Junior Analyst', 'Entry-level role in Equity Research.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (386, 1, false, true, 142, NULL, '6fde87bc-9e12-4e57-8f29-17757d957443', 'Head of Fixed Income', 'Head of the Fixed Income Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (387, 1, false, true, 142, NULL, 'c7393f3b-5349-43e8-974a-106c828bbd13', 'Senior Fixed Income Analyst', 'Experienced analyst covering fixed income securities.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (388, 1, false, true, 142, NULL, '76ffee67-ce40-40bc-bdf8-3d9330f9f845', 'Fixed Income Analyst', 'Conducts research and analysis on fixed income securities.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (389, 1, false, true, 142, NULL, '0487ff63-75d1-4c55-ae12-76526fb1d8f8', 'Senior Trader', 'Experienced trader executing fixed income trades.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (390, 1, false, true, 142, NULL, 'b046f1c5-e566-4f23-8df7-bc084069bb0d', 'Trader', 'Executes fixed income trades.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (391, 1, false, true, 142, NULL, '8ed2b6f7-75b2-4fd6-bdd5-71fd0cf6a042', 'Portfolio Manager', 'Manages fixed income portfolios.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (392, 1, false, true, 143, NULL, 'e68f74a5-46c8-4dc6-a93c-9bd2ba28f610', 'Head of Alternative Investments', 'Head of the Alternative Investments Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (393, 1, false, true, 143, NULL, 'b9205735-c99c-4247-a32f-f8fd8d011cf9', 'Senior Alternative Investments Analyst', 'Experienced analyst covering alternative investments.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (395, 1, false, true, 143, NULL, '6cf24b8d-6363-49db-89c3-aa0897e48c29', 'Hedge Fund Analyst', 'Analyzes hedge funds and their strategies.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (396, 1, false, true, 143, NULL, 'ef961a08-caa2-4497-b73d-4944249a24c9', 'Private Equity Analyst', 'Analyzes private equity investments and strategies.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (397, 1, false, true, 143, NULL, '4a456c71-cc1f-437a-bd55-d761c65a1846', 'Real Estate Analyst', 'Analyzes real estate investments and markets.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (398, 1, false, true, 78, NULL, 'd4f31124-a278-4d99-83aa-d790bbe898d4', 'Managing Director, Head of Asset Management', 'Head of the Asset Management Department', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (399, 1, false, true, 144, NULL, '7fcfdaae-263e-48e9-aee9-33b8a822f9e2', 'Head of Equity Asset Management', 'Head of the Equity Asset Management Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (403, 1, false, true, 144, NULL, '85e6e18d-b57a-4d2d-ad49-79dd409c6501', 'Research Analyst', 'Provides research support for equity portfolios.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (405, 1, false, true, 145, NULL, '12e3debd-8907-4b79-8576-ee0fde8c5f7d', 'Head of Fixed Income Asset Management', 'Head of the Fixed Income Asset Management Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (406, 1, false, true, 145, NULL, '5ead402b-4cf1-4350-9283-ebcb35bb9f31', 'Senior Portfolio Manager', 'Experienced Portfolio Manager responsible for fixed income portfolios.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (72, 1, false, true, 69, NULL, '1f2bc27b-dd5a-4e53-b2cc-016d2ce32ed0', 'Member', 'Contributes to the Management Committee', '2024-08-24 12:25:55.57331-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (65, 1, false, true, 64, NULL, '9cdec886-e9fe-4fbc-8c21-c0b5db7b3f05', 'Creative Director', 'Responsible for content development and promotion', '2024-08-24 12:25:41.514781-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (420, 1, false, true, 79, NULL, '5da0fdeb-8fd2-42e6-8e3f-972525caa366', 'Chief Risk Officer (CRO)', 'Head of the Risk Management Department', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (421, 1, false, true, 147, NULL, '66fa9108-2863-4b62-9390-d660a39e1a19', 'Head of Market Risk Management', 'Head of the Market Risk Management Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (422, 1, false, true, 147, NULL, '319dc7ee-8036-4b80-b137-b5b97e362ebc', 'Senior Market Risk Analyst', 'Experienced analyst assessing market risk.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (423, 1, false, true, 147, NULL, '59c57402-36bc-47c7-8080-c970ad2bb45a', 'Market Risk Analyst', 'Analyzes market risk.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (424, 1, false, true, 147, NULL, '490e0363-0205-4335-9b79-92aa0263c5b1', 'Quantitative Analyst', 'Develops and applies quantitative models for risk management.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (426, 1, false, true, 148, NULL, 'd158a599-9d50-4bcf-a613-f287245cddf6', 'Head of Credit Risk Management', 'Head of the Credit Risk Management Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (427, 1, false, true, 148, NULL, '4eeaac2e-0b51-4b16-ae2e-fe89e94d2394', 'Senior Credit Risk Analyst', 'Experienced analyst assessing credit risk.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (411, 1, false, true, 145, NULL, '937c0ba7-eec4-45df-9d2b-3b6bd57854af', 'Risk Analyst', 'Analyzes and manages risk in fixed income portfolios.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (412, 1, false, true, 146, NULL, 'db342e3b-728a-4a76-9243-28b86a92c3e5', 'Head of Alternative Investments Asset Management', 'Head of the Alternative Investments Asset Management Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (413, 1, false, true, 146, NULL, '945c0203-7570-45a9-8053-5e6f9034aa93', 'Senior Portfolio Manager (Alternative Investments Asset Management Team)', 'Experienced Portfolio Manager responsible for alternative investments portfolios.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (400, 1, false, true, 144, NULL, 'e8fabf61-9f6d-4364-b37e-0a5b91e5a4ed', 'Senior Portfolio Manager (Equity Asset Management Team)', 'Experienced Portfolio Manager responsible for equity portfolios.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (404, 1, false, true, 144, NULL, '93910c08-cdbb-406e-a3d4-57f064d97b78', 'Risk Analyst (Equity Asset Management Team)', 'Analyzes and manages risk in equity portfolios.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (370, 1, false, true, 132, NULL, 'b2680499-a299-4a18-ae4b-8204de9b9912', 'Project Engineer (Affordable Construction, Project Management Department, Construction Management Team)', 'Provides engineering expertise for construction projects.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (368, 1, false, true, 132, NULL, 'b548bcf7-967c-425c-914b-beefab537d69', 'Construction Manager (Affordable Construction, Project Management Department, Construction Management Team)', 'Manages construction projects.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (410, 1, false, true, 145, NULL, 'b2bf4972-fdbb-4e83-aac6-bcba4756a162', 'Trader (Fixed Income Asset Management Team)', 'Executes fixed income trades.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (409, 1, false, true, 145, NULL, '95ae6a8b-81e0-4426-b45e-ee83ae3adc95', 'Senior Trader (Fixed Income Asset Management Team)', 'Experienced trader executing fixed income trades.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (407, 1, false, true, 145, NULL, 'ff7e1cc6-badd-4acd-861f-1c38adea9e6b', 'Portfolio Manager (Fixed Income Asset Management Team)', 'Manages fixed income portfolios.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (356, 1, false, true, 112, NULL, '0fcf0a04-4656-4652-80e8-d3cb6dfc6915', 'Product Manager (Affordable Construction, Project Management Department, Product Owners Team)', 'Responsible for the strategic direction of a product.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (363, 1, false, true, 131, NULL, '17729854-9569-4061-83c6-79f93018aaa8', 'Schedule Manager (Affordable Construction, Project Management Department, Project Planning Team)', 'Manages project schedules and timelines.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (359, 1, false, true, 131, NULL, '2320200d-c80d-4646-8d2e-d0bdf4b408d3', 'Project Planning Team Leader (Affordable Construction, Project Management Department, Project Planning Team)', 'Leader role in Project Planning Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (428, 1, false, true, 148, NULL, 'e2bae3b8-6bac-4e5f-b499-8360321f815a', 'Credit Risk Analyst', 'Analyzes credit risk.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (429, 1, false, true, 148, NULL, '5dea8c59-ca96-4345-9149-c7e9df698950', 'Credit Officer', 'Evaluates creditworthiness of borrowers.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (430, 1, false, true, 148, NULL, '3d872745-c4f5-4a39-8aaa-4f77d5898013', 'Loan Officer', 'Processes and manages loans.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (432, 1, false, true, 149, NULL, 'a8624802-c0d1-4a22-b19b-d2d272962a94', 'Head of Operational Risk Management', 'Head of the Operational Risk Management Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (433, 1, false, true, 149, NULL, 'e0924b72-8d15-4625-ada0-0cefe8b6370e', 'Senior Operational Risk Analyst', 'Experienced analyst assessing operational risk.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (434, 1, false, true, 149, NULL, '58280343-55c1-49b3-82c8-f052de657e1b', 'Operational Risk Analyst', 'Analyzes operational risk.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (436, 1, false, true, 149, NULL, '088d4fe8-06e7-46a3-b983-0cb854134ed4', 'Internal Auditor', 'Conducts internal audits to assess risk and compliance.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (440, 1, false, true, 193, NULL, '2f4b64f0-8733-455b-ae07-57b6a9639ea4', 'Head of Financial Reporting', 'Head of the Financial Reporting Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (448, 1, false, true, 193, NULL, '0d108e18-357a-40f4-a519-f0d30d2adc10', 'Reporting Specialist', 'Specializes in preparing financial reports.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (450, 1, false, true, 194, NULL, '1d4c1135-2a11-4392-9a8c-2b7db95e83b4', 'Head of Accounting', 'Head of the Accounting Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (452, 1, false, true, 194, NULL, '09dc6ca2-f0b0-4b34-9c8c-dde2d251167d', 'Senior Accountant', 'Experienced accountant responsible for accounting tasks.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (456, 1, false, true, 194, NULL, '1c64bf7f-0883-4980-8117-7f9c3f94b28b', 'Bookkeeper', 'Records financial transactions and maintains accounting records.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (458, 1, false, true, 194, NULL, '50749f49-b886-49b5-a15e-ac4362a012f2', 'Financial Controller', 'Oversees financial operations and reporting.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (58, 1, false, true, 57, NULL, '1bcd4a92-2d45-4049-8dc9-b37872a37ab0', 'Technical Director', 'Responsible for software development', '2024-08-24 12:25:41.514781-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (59, 1, false, true, 57, NULL, '603d5f9e-34db-4d23-a5da-75b357a2a712', 'Marketing Director', 'Responsible for promoting technology products and services', '2024-08-24 12:25:41.514781-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (61, 1, false, true, 60, NULL, '11885b43-d9f7-414d-9e68-2189d0fc59dd', 'Investment Director', 'Responsible for investment analysis and portfolio management', '2024-08-24 12:25:41.514781-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (62, 1, false, true, 60, NULL, '1f997855-34f5-4929-951b-e60983cf0e7b', 'Risk Management Director', 'Responsible for risk management', '2024-08-24 12:25:41.514781-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (123, 0, false, true, 69, NULL, '9d200209-3926-44f4-ad62-69b273af6aa4', 'Construction Engineering Department', 'Responsible for construction engineering', '2024-08-26 23:39:34.176417-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (124, 0, false, true, 69, NULL, 'c4b9904a-8bf6-4ecb-a46d-21e1e55e124f', 'Safety and Environment Department', 'Responsible for safety and environment', '2024-08-26 23:39:41.982333-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (66, 1, false, true, NULL, NULL, '7e0b1521-90e6-4103-855a-e90f74c30224', 'Director (AutoTechCenter)', 'Responsible for managing the car service center', '2024-08-24 12:25:41.514781-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (476, 1, false, true, 154, NULL, '32cf250e-c6f0-48d9-86c1-821f30113efa', 'Senior Client Onboarding Specialist', 'Experienced specialist responsible for onboarding new clients.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (477, 1, false, true, 154, NULL, '10a86b5e-c118-49ab-9e0b-77ee2374bf5b', 'Client Onboarding Specialist', 'Onboards new clients and ensures compliance with regulations.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (478, 1, false, true, 154, NULL, '9311c24e-c4a4-442d-8c9a-3594d61126ae', 'KYC Specialist', 'Verifies client identities and conducts Know Your Customer (KYC) checks.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (479, 1, false, true, 154, NULL, 'b6430084-8989-4c0e-be1e-ff8267b13a9a', 'AML Specialist', 'Ensures compliance with Anti-Money Laundering (AML) regulations.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (460, 1, false, true, 195, NULL, 'a7507d24-e13c-4049-ac88-13fc64a44dc6', 'Head of Regulatory Reporting', 'Head of the Regulatory Reporting Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (485, 1, false, true, 123, NULL, '7d1d96d2-14de-4da3-bf58-c4c6c286353d', 'Chief Construction Engineer', 'Leads the Construction Engineering department, responsible for overall project delivery and engineering expertise.', '2024-09-08 00:22:02.010826-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (486, 1, false, true, 123, NULL, 'c106d6d7-50b7-439f-8384-646ee748efd7', 'Director of Construction Engineering', 'Manages the Construction Engineering department, oversees project budgets and timelines.', '2024-09-08 00:22:06.140369-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (487, 1, false, true, 125, NULL, '99e2cd89-176d-4e95-a680-74ba4d30ffdd', 'Head of Structural Engineering', 'Leads the Structural Engineering team, responsible for structural design and analysis.', '2024-09-08 00:22:27.272092-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (488, 1, false, true, 125, NULL, '511e28a5-391b-49c3-9e95-cd2f39b1ef3e', 'Senior Structural Engineer', 'Experienced structural engineer responsible for complex design calculations and project management.', '2024-09-08 00:22:29.417784-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (489, 1, false, true, 125, NULL, 'b446edbb-3a15-4db4-9699-70a1b0f6282d', 'Structural Engineer', 'Performs structural analysis and design, creates drawings and specifications.', '2024-09-08 00:22:29.417784-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (490, 1, false, true, 125, NULL, 'b1857c55-c906-4499-be6f-a4fed74165af', 'Structural Designer', 'Creates detailed drawings and specifications for structural elements, collaborates with engineers.', '2024-09-08 00:22:29.417784-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (491, 1, false, true, 125, NULL, '07f3f873-81fd-44bc-9411-53a6142b4648', 'BIM Specialist (Structural)', 'Develops and manages structural models in BIM software, collaborates with engineers and designers.', '2024-09-08 00:22:29.417784-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (492, 1, false, true, 125, NULL, 'fa72ef32-39fb-4724-bdf0-a2854f8029dc', 'CAD Technician', 'Creates and modifies technical drawings using CAD software, assists engineers and designers.', '2024-09-08 00:22:29.417784-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (493, 1, false, true, 126, NULL, '3bfd56f2-9418-4a1c-8d6b-e5f055f7c1a0', 'Head of Civil Engineering', 'Leads the Civil Engineering team, responsible for civil infrastructure design and project management.', '2024-09-08 00:22:53.259647-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (494, 1, false, true, 126, NULL, 'f0a0dce2-30e0-4e70-826f-05f033548f28', 'Senior Civil Engineer', 'Experienced civil engineer responsible for complex design calculations and project management.', '2024-09-08 00:22:55.263313-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (495, 1, false, true, 126, NULL, '5f2b438f-9ac6-4853-be56-7a8bd097b21a', 'Civil Engineer', 'Designs and oversees civil infrastructure projects, prepares drawings and specifications.', '2024-09-08 00:22:55.263313-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (496, 1, false, true, 126, NULL, 'b6fb9c8b-f698-411e-bfe8-905f68cd2fad', 'Geotechnical Engineer', 'Conducts geotechnical investigations, analyzes soil conditions, provides recommendations for foundation design.', '2024-09-08 00:22:55.263313-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (497, 1, false, true, 126, NULL, '1b060171-a0e9-4239-bb58-58695e7068c0', 'Site Engineer', 'Oversees construction activities on site, ensures compliance with plans and specifications.', '2024-09-08 00:22:55.263313-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (498, 1, false, true, 126, NULL, 'f97f2092-f51e-43f2-bb0b-99c53114766e', 'Project Manager (Civil)', 'Manages civil infrastructure projects, plans and coordinates activities, tracks progress and budget.', '2024-09-08 00:22:55.263313-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (499, 1, false, true, 127, NULL, 'd164c2e6-90c0-4a2b-82d8-1e28a0849c0f', 'Head of Architectural Design', 'Leads the Architectural Design team, responsible for building design and aesthetics.', '2024-09-08 00:23:15.16166-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (500, 1, false, true, 127, NULL, '1f941532-c1bc-49c8-892c-3c05faa87056', 'Senior Architect', 'Experienced architect responsible for leading design projects, collaborating with clients and engineers.', '2024-09-08 00:23:20.288604-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (501, 1, false, true, 127, NULL, '89b9528d-8e1d-43f1-a7d2-032cb36824d6', 'Architect', 'Designs buildings and spaces, prepares architectural drawings and specifications.', '2024-09-08 00:23:20.288604-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (502, 1, false, true, 127, NULL, '2188f52d-5971-4040-8d5f-a4ffa32cbb2a', 'Architectural Designer', 'Develops architectural designs, creates 3D models, prepares presentation drawings.', '2024-09-08 00:23:20.288604-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (503, 1, false, true, 127, NULL, 'c8c728cd-12e0-4413-9539-70488c925177', 'BIM Specialist (Architectural)', 'Develops and manages architectural models in BIM software, collaborates with architects and engineers.', '2024-09-08 00:23:20.288604-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (504, 1, false, true, 127, NULL, '04101ca1-9e65-4e15-97d3-7981986fd80f', 'Landscape Architect', 'Designs outdoor spaces, gardens, and landscaping, integrates with building architecture.', '2024-09-08 00:23:20.288604-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (505, 1, false, true, 128, NULL, 'bf9d9a38-1a56-407a-95ee-6a61602431b7', 'Head of Project Planning', 'Leads the Project Planning team, responsible for project scheduling, budgeting, and resource allocation.', '2024-09-08 00:23:37.472594-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (462, 1, false, true, 195, NULL, 'eee04365-9bf7-4d4c-ab91-fcf52b20c0f4', 'Senior Regulatory Reporting Analyst', 'Experienced analyst preparing regulatory reports.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (507, 1, false, true, 128, NULL, '667e28c7-44a4-4da5-9de4-1f14ea6ade69', 'Senior Project Planner', 'Experienced project planner responsible for developing and managing complex project schedules.', '2024-09-08 00:23:41.860761-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (464, 1, false, true, 195, NULL, '54df3897-40c2-412a-9201-74695693cce1', 'Regulatory Reporting Analyst', 'Analyzes financial data and prepares regulatory reports.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (509, 1, false, true, 128, NULL, 'e3656a94-16fc-45ea-acbf-5fc1a6c14f7e', 'Project Planner', 'Develops and maintains project schedules, tracks progress, and identifies potential delays.', '2024-09-08 00:23:41.860761-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (63, 1, false, true, NULL, NULL, 'adddaecf-5628-4547-a7a5-f514186e9359', 'President (Media Group)', 'Responsible for creating engaging media content', '2024-08-24 12:25:41.514781-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (64, 1, false, true, 63, NULL, 'a7d1548a-32f7-477e-86de-799cb578c1fc', 'CEO (Media Group)', 'Chief Executive Officer', '2024-08-24 12:25:41.514781-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (513, 1, false, true, 128, NULL, 'e42353a8-88e6-4d41-8451-67be34a6fd69', 'Cost Estimator', 'Develops and analyzes project budgets, identifies cost savings opportunities, and tracks expenses.', '2024-09-08 00:23:41.860761-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (511, 1, false, true, 128, NULL, 'e4cfa94c-9d45-428e-b83c-084650fb6be6', 'Scheduling Specialist (Project Planning Team)', 'Creates and manages project schedules using specialized software, analyzes critical path and dependencies.', '2024-09-08 00:23:41.860761-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (57, 1, false, true, NULL, NULL, '97df33ca-fed1-4862-977e-b4821a4f7913', 'CEO (TechnoSoft)', 'Chief Executive Officer', '2024-08-24 12:25:41.514781-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (60, 1, false, true, NULL, NULL, '906a0d03-0d1f-4709-b747-69764d46a528', 'CEO (FinanceInvest)', 'Chief Executive Officer', '2024-08-24 12:25:41.514781-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (466, 1, false, true, 195, NULL, '9de0e698-46b6-4279-a15a-855087ee5558', 'Compliance Officer', 'Ensures compliance with regulations and policies.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (469, 1, false, true, 140, NULL, '20ac1f52-a60f-4e58-b75b-e47a4f2d04f9', 'Head of Client Services', 'Head of the Client Services Department', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (516, 1, false, true, 133, NULL, '292aaf77-4144-4c13-9f59-9d4589a62cc7', 'Head of Project Coordination', 'Leads the Project Coordination team, responsible for communication, documentation, and project administration.', '2024-09-08 00:24:00.169297-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (470, 1, false, true, 153, NULL, 'f75adf6b-1442-4fdb-9f6e-9f90c2613b77', 'Head of Client Relationship Management', 'Head of the Client Relationship Management Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (518, 1, false, true, 133, NULL, '05c8c626-38f7-4104-96b5-0acf49c86ca1', 'Project Coordinator', 'Coordinates project activities, manages communication between stakeholders, tracks progress and deadlines.', '2024-09-08 00:24:02.007068-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (471, 1, false, true, 153, NULL, '0d043217-9e6d-48ba-b159-00df36f74d2f', 'Senior Client Relationship Manager', 'Experienced manager responsible for building and maintaining client relationships.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (520, 1, false, true, 133, NULL, 'f733e94c-57c7-429d-90f1-ee40dd2fc14e', 'Contract Administrator', 'Manages project contracts, ensures compliance with terms, resolves contract disputes.', '2024-09-08 00:24:02.007068-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (472, 1, false, true, 153, NULL, '4df49b50-3b50-4177-9261-18b913e3eee3', 'Client Relationship Manager', 'Manages and develops client relationships.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (522, 1, false, true, 133, NULL, '51450b0b-d5b5-4e75-b446-fdc2d1eaecf7', 'Document Controller', 'Manages project documentation, maintains records, controls access, and ensures document integrity.', '2024-09-08 00:24:02.007068-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (473, 1, false, true, 153, NULL, '3f98c4d1-09f3-4ab3-9d25-326bc0d97863', 'Account Manager', 'Manages client accounts and provides service.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (524, 1, false, true, 133, NULL, 'c700313d-8723-4d75-a7f5-3bc1788587b6', 'Project Assistant', 'Provides administrative support to project managers and teams, handles tasks, and coordinates communication.', '2024-09-08 00:24:02.007068-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (525, 1, false, true, 84, NULL, '8c1b0e49-3673-45eb-9896-013634f33729', 'Director of Procurement', 'Leads the Procurement department, responsible for overall procurement strategy and supplier management.', '2024-09-08 00:24:24.636505-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (526, 1, false, true, 134, NULL, '70d819ac-a5d3-48ba-800d-24916e3d28de', 'Head of Procurement', 'Leads the Procurement team, responsible for sourcing, negotiating, and awarding contracts for goods and services.', '2024-09-08 00:24:26.683489-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (527, 1, false, true, 134, NULL, '1e381a8d-182b-4759-81a5-4d1d8180803e', 'Senior Procurement Specialist', 'Experienced procurement specialist responsible for complex sourcing processes, contract negotiations, and supplier management.', '2024-09-08 00:24:26.683489-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (528, 1, false, true, 134, NULL, 'e2c672d5-7fc9-4f65-a36e-7ec9aef30a6d', 'Procurement Specialist', 'Conducts sourcing activities, negotiates with suppliers, manages procurement processes.', '2024-09-08 00:24:26.683489-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (529, 1, false, true, 134, NULL, '138aea78-5ceb-4697-bded-d7206cc614b2', 'Buyer', 'Places purchase orders, negotiates pricing and terms, manages supplier relationships.', '2024-09-08 00:24:26.683489-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (530, 1, false, true, 134, NULL, '08fab75d-a3e3-45cb-be38-7507f0325f22', 'Sourcing Specialist', 'Identifies and evaluates potential suppliers, conducts market research, and negotiates contracts.', '2024-09-08 00:24:26.683489-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (531, 1, false, true, 134, NULL, 'd2a2652e-5373-47f5-892d-f46ffa92013f', 'Procurement Analyst', 'Analyzes procurement data, identifies cost savings opportunities, and develops strategies for supplier optimization.', '2024-09-08 00:24:26.683489-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (532, 1, false, true, 135, NULL, 'c134b456-e10a-47da-a5cd-cfb3d6641831', 'Head of Supply Chain Management', 'Leads the Supply Chain Management team, responsible for overall supply chain efficiency and optimization.', '2024-09-08 00:24:54.587196-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (533, 1, false, true, 135, NULL, 'c9e3a3e0-70bc-4d69-847a-81384bf48e16', 'Supply Chain Manager', 'Manages the flow of goods and services from suppliers to customers, ensures timely delivery and cost efficiency.', '2024-09-08 00:24:56.492296-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (535, 1, false, true, 135, NULL, '9b6d2506-b5d0-4635-9b35-0ea017432175', 'Inventory Analyst', 'Analyzes inventory levels, forecasts demand, manages stock optimization, and minimizes inventory costs.', '2024-09-08 00:24:56.492296-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (536, 1, false, true, 135, NULL, 'fa3e349d-e0c0-448d-9ee4-b4b8ba36dc09', 'Supplier Relationship Manager', 'Manages relationships with suppliers, ensures contract compliance, resolves disputes, and builds long-term partnerships.', '2024-09-08 00:24:56.492296-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (537, 1, false, true, 85, NULL, '6edf5bea-3f98-4a83-af89-50d232eb9d6d', 'Director of Quality Control', 'Leads the Quality Control department, responsible for ensuring product and process quality.', '2024-09-08 00:31:09.726149-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (538, 1, false, true, 136, NULL, '6262a95d-e667-452d-bbcd-1038507d537f', 'Head of Quality Assurance', 'Leads the Quality Assurance team, responsible for developing and implementing quality assurance procedures.', '2024-09-08 00:31:37.948577-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (539, 1, false, true, 136, NULL, '5c9aae0a-d550-4c2e-9869-2d17886fae8b', 'Senior Quality Assurance Engineer', 'Experienced QA engineer responsible for designing and conducting quality assurance tests.', '2024-09-08 00:31:39.804172-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (540, 1, false, true, 136, NULL, 'e39f4791-a7a0-4888-8c7d-d74de6fc59d9', 'Quality Assurance Engineer', 'Conducts quality assurance tests, analyzes results, and reports defects.', '2024-09-08 00:31:39.804172-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (541, 1, false, true, 136, NULL, '3e50dc5e-cff4-4280-add8-283fe495b521', 'Quality Control Inspector', 'Inspects products and processes to ensure compliance with quality standards.', '2024-09-08 00:31:39.804172-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (542, 1, false, true, 136, NULL, '5aaf9bca-74b7-4203-bd2b-4fc8f6dbee50', 'Lab Technician', 'Performs laboratory tests on materials and products to ensure quality and compliance.', '2024-09-08 00:31:39.804172-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (543, 1, false, true, 137, NULL, 'e96cd0d5-3ff9-4fcc-aafc-a926a2ef579e', 'Head of Inspection', 'Leads the Inspection team, responsible for conducting inspections and ensuring compliance.', '2024-09-08 00:31:56.305576-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (544, 1, false, true, 137, NULL, 'bedd8ff1-5c5a-41d4-ad0b-499c1f9941d8', 'Senior Inspector', 'Experienced inspector responsible for conducting complex inspections and leading inspection teams.', '2024-09-08 00:31:58.08915-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (545, 1, false, true, 137, NULL, '3e91b5ed-92b3-4d59-a3a7-eb82ccbb625d', 'Inspector', 'Conducts inspections to ensure compliance with standards, identifies defects, and reports findings.', '2024-09-08 00:31:58.08915-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (546, 1, false, true, 137, NULL, 'b6123201-c27a-413a-a6cc-c8a17116fb71', 'Quality Control Supervisor', 'Oversees quality control activities, provides guidance to inspectors, and ensures compliance with standards.', '2024-09-08 00:31:58.08915-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (582, 1, false, true, 157, NULL, 'b8cd5473-7144-4ae8-b9c3-ee6dd1151687', 'Costume Designer', 'Designs and creates costumes for actors in a television program.', '2024-09-08 00:44:55.502361-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (534, 1, false, true, 135, NULL, 'f5cc997a-e771-434a-8040-bc6d993ffe71', 'Logistics Coordinator (Supply Chain Management Team)', 'Coordinates the transportation and storage of goods, manages logistics operations, and ensures efficient delivery.', '2024-09-08 00:24:56.492296-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (474, 1, false, true, 153, NULL, '50afa760-7a99-4a0b-9d8a-38554056fc68', 'Client Advisor', 'Provides advice and support to clients.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (547, 1, false, true, 137, NULL, '158edb53-5df8-4bf8-ab31-c0ed1ed66566', 'Site Inspector', 'Conducts inspections on-site, verifies construction progress, and ensures compliance with specifications.', '2024-09-08 00:31:58.08915-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (548, 1, false, true, 124, NULL, 'f1e31c58-93c9-4468-8dc8-90fa1fa1f143', 'Director of Safety and Environment', 'Leads the Safety and Environment department, responsible for promoting a safe and environmentally responsible workplace.', '2024-09-08 00:32:10.46158-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (549, 1, false, true, 138, NULL, '7766ceef-4cb5-4c1e-a396-4821697ea361', 'Head of Safety', 'Leads the Safety Officer team, responsible for implementing and enforcing safety procedures.', '2024-09-08 00:32:27.210783-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (550, 1, false, true, 138, NULL, '98527055-887d-4517-a83b-7a9b57316073', 'Safety Officer', 'Conducts safety inspections, investigates incidents, and promotes safe work practices.', '2024-09-08 00:32:29.229062-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (551, 1, false, true, 138, NULL, 'a21082ed-2433-4c8f-966c-343f8cb3c895', 'Safety Supervisor', 'Oversees safety procedures and training, provides guidance to safety officers, and ensures compliance.', '2024-09-08 00:32:29.229062-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (552, 1, false, true, 138, NULL, '7337ab86-3b75-46d6-a5b1-2d47ddd671cf', 'Health and Safety Officer', 'Focuses on health and safety issues, conducts risk assessments, and promotes a healthy workplace.', '2024-09-08 00:32:29.229062-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (553, 1, false, true, 138, NULL, 'd6431002-6331-41e1-ba81-d247d7e1d4d8', 'Fire Safety Officer', 'Responsible for fire safety procedures, conducts fire drills, and ensures compliance with fire safety regulations.', '2024-09-08 00:32:29.229062-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (554, 1, false, true, 139, NULL, 'ade9dade-42ec-4414-8d70-a8a5e43fb911', 'Head of Environmental Compliance', 'Leads the Environmental Compliance team, responsible for ensuring compliance with environmental regulations.', '2024-09-08 00:32:49.312855-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (555, 1, false, true, 139, NULL, '50efb06f-b3f7-4459-8ab5-0d0a95499447', 'Environmental Specialist', 'Conducts environmental assessments, monitors pollution levels, and implements environmental management plans.', '2024-09-08 00:32:51.274398-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (556, 1, false, true, 139, NULL, 'b10968e3-afe4-4311-b81d-f74bf16e18fb', 'Environmental Officer', 'Ensures compliance with environmental regulations, conducts audits, and implements environmental programs.', '2024-09-08 00:32:51.274398-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (557, 1, false, true, 139, NULL, 'b7a5d59d-2495-4cbb-8e0a-2a445074c763', 'Environmental Consultant', 'Provides expert advice on environmental issues, conducts assessments, and recommends solutions.', '2024-09-08 00:32:51.274398-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (558, 1, false, true, 139, NULL, '4cb629be-58a1-415d-9709-f504a71e8def', 'Environmental Engineer', 'Applies engineering principles to environmental issues, designs pollution control systems, and implements environmental solutions.', '2024-09-08 00:32:51.274398-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (559, 1, false, true, 139, NULL, '42947a45-119b-430a-8c10-132f32e3c747', 'Sustainability Specialist', 'Promotes sustainable practices, conducts environmental impact assessments, and develops sustainability programs.', '2024-09-08 00:32:51.274398-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (560, 1, false, true, 86, NULL, '23a9a9d2-f823-4860-8d27-042ea8952949', 'Director of Television', 'Leads the Television department, oversees all television production and programming.', '2024-09-08 00:44:16.957157-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (561, 1, false, true, 86, NULL, 'a60ea307-72dd-4d50-affb-0fb65ebd844d', 'Head of Television Programming', 'Responsible for developing and scheduling television programs, manages content creation.', '2024-09-08 00:44:16.957157-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (475, 1, false, true, 154, NULL, 'fe7fe1b8-1f9c-47fb-abe9-0196b4284a1b', 'Head of Client Onboarding', 'Head of the Client Onboarding Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (454, 1, false, true, 194, NULL, '4e4a8d25-2c12-4c89-b465-6c4ae5ff0fc4', 'Accountant (Accounting Team)', 'Maintains financial records and prepares financial statements.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (446, 1, false, true, 193, NULL, '884115e2-8ef0-4daf-bdee-27213d72323a', 'Accountant (Financial Reporting Team)', 'Maintains financial records and prepares financial statements.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (438, 1, false, true, 80, NULL, 'b68375db-64e9-4ce9-adee-cf6b70ab7766', 'Chief Financial Officer (Financial Analysis Department, CFO)', 'Head of the Financial Analysis Department', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (418, 1, false, true, 146, NULL, '5613464c-e557-4937-8883-050078e0380b', 'Real Estate Analyst (Alternative Investments Asset Management Team)', 'Analyzes real estate investments and markets.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (419, 1, false, true, 146, NULL, '4423c6e8-3111-43a3-895e-e543c895867d', 'Risk Analyst (Alternative Investments Asset Management Team)', 'Analyzes and manages risk in alternative investments portfolios.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (417, 1, false, true, 146, NULL, 'ae082c60-721e-4441-b35e-24a81406fa7c', 'Private Equity Analyst (Alternative Investments Asset Management Team)', 'Analyzes private equity investments and strategies.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (435, 1, false, true, 149, NULL, 'e1c983d2-bd63-4abc-b190-c07cfc8a4ab9', 'Compliance Officer (Operational Risk Management Team)', 'Ensures compliance with regulations and policies.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (437, 1, false, true, 149, NULL, 'b3928f99-f7ca-499e-a82a-84dbad2cc28f', 'Risk Manager (Operational Risk Management Team)', 'Manages operational risk.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (468, 1, false, true, 195, NULL, '24e0e423-7ae6-4b27-b378-a4d12449032a', 'Data Analyst (Regulatory Reporting Team)', 'Analyzes and interprets financial data for regulatory reporting.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (425, 1, false, true, 147, NULL, 'f3d34e00-8e22-48f4-aa73-4e5e3bc7b178', 'Risk Manager (Market Risk Management Team)', 'Manages market risk.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (431, 1, false, true, 148, NULL, 'b71a421f-ad49-4bf6-a2e2-0ad3675e7c73', 'Risk Manager (Credit Risk Management Team)', 'Manages credit risk.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (578, 1, false, true, 157, NULL, '98515a6f-6b77-4fa4-b265-08a119c6c6b0', 'Set Designer', 'Designs and creates the sets for a television program, manages props and furniture.', '2024-09-08 00:44:55.502361-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (444, 1, false, true, 193, NULL, '75a96328-9392-4c85-be38-682304b2096e', 'Financial Analyst (Financial Reporting Team)', 'Analyzes financial data and prepares reports.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (580, 1, false, true, 157, NULL, 'ee081bd6-de2b-4be0-8f62-b8f8e08fdb8f', 'Art Director (Television Department, Production Team)', 'Oversees the visual style of a television program, collaborates with set designers and costume designers.', '2024-09-08 00:44:55.502361-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (571, 1, false, true, 161, NULL, 'c64c2bba-1005-4c4c-aba4-bd4267370f6f', 'Assistant Producer (Radio Department, Production Team)', 'Provides support to the producer, handles administrative tasks, and coordinates with departments.', '2024-09-08 00:44:55.502361-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (577, 1, false, true, 161, NULL, '3b7704cb-1505-48b8-ad3a-d46046665a03', 'Director of Photography (Radio Department, Production Team)', 'Responsible for the visual style of a television program, oversees camera and lighting.', '2024-09-08 00:44:55.502361-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (576, 1, false, true, 157, NULL, '808fec59-a1c4-4f31-b207-5feb474d3aca', 'Director of Photography (Television Department, Production Team)', 'Responsible for the visual style of a television program, oversees camera and lighting.', '2024-09-08 00:44:55.502361-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (562, 1, false, true, 157, NULL, 'a171a34a-a343-4b58-be38-bb03a10b3fe7', 'Production Manager (Television Department, Production Team)', 'Manages the day-to-day operations of television production, oversees budgets and schedules.', '2024-09-08 00:44:52.973748-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (584, 1, false, true, 158, NULL, '2ff9d91c-4299-448e-9dc1-314d0998bc4c', 'Head of Camera', 'Leads the Camera crew, oversees camera operation and lighting.', '2024-09-08 00:45:17.193001-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (585, 1, false, true, 158, NULL, '7a8606fd-4cb6-425c-8f19-f3751a2650b2', 'Director of Photography', 'Responsible for the visual style of a television program, oversees camera and lighting.', '2024-09-08 00:45:20.031447-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (586, 1, false, true, 158, NULL, 'c1e34b51-025f-4e5c-8356-c4144d8cba7e', 'Camera Operator', 'Operates the camera, captures footage according to the director''s vision.', '2024-09-08 00:45:20.031447-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (587, 1, false, true, 158, NULL, 'e946e6c9-b57a-45de-93e7-bc33a9ce7dff', 'Gaffer', 'Head electrician on set, responsible for lighting design and execution.', '2024-09-08 00:45:20.031447-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (588, 1, false, true, 158, NULL, '55ce263b-b333-48dc-90ab-11299af09154', 'Grip', 'Handles camera support, rigging, and camera movement, assists with lighting.', '2024-09-08 00:45:20.031447-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (589, 1, false, true, 158, NULL, '9ae5dc7f-8a1e-4788-b9fd-efa95087d2fb', 'Camera Assistant', 'Assists the camera operator, loads film or memory cards, and maintains camera equipment.', '2024-09-08 00:45:20.031447-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (590, 1, false, true, 158, NULL, 'ed4a6a4e-da53-4aac-aa45-fb428ea0c9df', 'Lighting Technician', 'Sets up and operates lighting equipment, creates desired lighting effects on set.', '2024-09-08 00:45:20.031447-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (480, 1, false, true, 155, NULL, 'ebf0dc53-1a7f-4d7c-9df9-a4caa848d226', 'Head of Client Support', 'Head of the Client Support Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (481, 1, false, true, 155, NULL, '88c51537-9313-46e9-a291-a13512c95dd2', 'Senior Client Support Specialist', 'Experienced specialist providing support to clients.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (596, 1, false, true, 163, NULL, '449ce22b-f323-4be7-bfe6-3c20f551ebed', 'Video Editor', 'Edits video footage, assembles scenes, and creates the final television program.', '2024-09-08 00:45:41.268941-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (482, 1, false, true, 155, NULL, 'b1095248-4a23-469e-bfa4-ccb838d20c17', 'Client Support Specialist', 'Provides support to clients and resolves their issues.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (598, 1, false, true, 163, NULL, '93d0a997-e6bf-4a6f-a50d-9486ee9ac76a', 'Post-Production Editor', 'Edits video footage, adds special effects, and prepares the final television program for broadcast.', '2024-09-08 00:45:41.268941-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (600, 1, false, true, 163, NULL, '58ac1964-1aab-4350-93b8-5e57bbfbe024', 'Colorist', 'Grades and colors video footage, adjusts color balance and saturation.', '2024-09-08 00:45:41.268941-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (483, 1, false, true, 155, NULL, '3342ed46-44c4-4928-914d-8e69bcf28c28', 'Service Desk Analyst', 'Provides first-line support to clients.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (484, 1, false, true, 155, NULL, 'a322f15a-e984-4a8d-8446-48a8132537cd', 'Technical Support Specialist', 'Provides technical support to clients.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (604, 1, false, true, 163, NULL, '72f8dc35-e112-4b9c-80f1-fdf4aa2b6a0d', 'VFX Artist', 'Creates visual effects for television programs, adds special effects, and manipulates images.', '2024-09-08 00:45:41.268941-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (605, 1, false, true, 160, NULL, '11215ef9-269d-470e-bb3e-852346cdfc1e', 'Head of Sound', 'Leads the Sound team, oversees sound design, recording, and mixing.', '2024-09-08 00:46:19.813848-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (268, 1, false, true, 89, NULL, '9e35e1ae-353c-4ec5-a233-c63176dabefa', 'Digital Marketing Manager (Media Group, Marketing and Sales Department)', 'Leads the Digital Marketing Team.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (260, 1, false, true, 89, NULL, 'dd908187-f76a-46fa-ba29-912837daaeb7', 'Sales Representative (Media Group, Marketing and Sales Department)', 'Sells products or services to customers.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (266, 1, false, true, 89, NULL, '7006cfc4-cf06-4771-86de-44e5998e69e5', 'Sales Manager (Media Group, Marketing and Sales Department)', 'Leads the Sales Team.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (262, 1, false, true, 89, NULL, 'd686410a-363c-4aa2-9c37-b35db17caf33', 'Account Manager (Media Group, Marketing and Sales Department)', 'Manages relationships with existing customers.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (264, 1, false, true, 89, NULL, '961faffb-8288-472a-96a4-335f6fda3191', 'Marketing Manager (Media Group, Marketing and Sales Department)', 'Leads the Marketing Team.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (254, 1, false, true, 89, NULL, '58f08a26-61da-4290-962b-d312ba310edd', 'Director of Marketing and Sales Department (Media Group, Marketing and Sales Department)', 'Head of Marketing and Sales Department.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (256, 1, false, true, 89, NULL, '0375c735-32b7-454e-b600-16a3c7715ea7', 'Marketing and Sales Manager (Media Group, Marketing and Sales Department)', 'Manages Marketing and Sales teams and activities.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (615, 1, false, true, 160, NULL, '2ade8397-7695-4f0e-a932-087b3ba440bf', 'Music Composer', 'Composes music for television programs, writes original scores and arranges existing music.', '2024-09-08 00:46:21.697482-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (617, 1, false, true, 87, NULL, 'fb3bf448-51f2-4f90-857c-c702f2a72308', 'Director of Radio', 'Leads the Radio department, oversees all radio production and programming.', '2024-09-08 00:46:49.874224-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (618, 1, false, true, 87, NULL, '517464d3-cfaf-4e06-b74b-366163ef0b34', 'Head of Radio Programming', 'Responsible for developing and scheduling radio programs, manages content creation.', '2024-09-08 00:46:57.040467-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (595, 1, false, true, 159, NULL, '4dc5f80b-cade-4f9a-ad1f-973433253dd4', 'Video Editor (Television Department, Editing Team)', 'Edits video footage, assembles scenes, and creates the final television program.', '2024-09-08 00:45:41.268941-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (599, 1, false, true, 159, NULL, '329a857d-1087-4df4-b07f-dd4f88e14f37', 'Colorist (Television Department, Editing Team)', 'Grades and colors video footage, adjusts color balance and saturation.', '2024-09-08 00:45:41.268941-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (594, 1, false, true, 163, NULL, 'e685925f-1c8b-4e86-87f1-1fab31df5d61', 'Post-Production Supervisor (Radio Department, Editing Team)', 'Manages the post-production process, coordinates with editors, sound engineers, and visual effects artists.', '2024-09-08 00:45:41.268941-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (592, 1, false, true, 163, NULL, '3662dc84-eeb2-4c47-b2a3-e8c5a13f0307', 'Head of Editing (Radio Department, Editing Team)', 'Leads the Editing team, oversees the post-production process, ensures consistency and quality.', '2024-09-08 00:45:39.488787-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (602, 1, false, true, 163, NULL, 'e52ccd48-bceb-478b-90ac-1f2c8b99dec2', 'Graphic Designer (Radio Department, Editing Team)', 'Creates graphics for television programs, designs titles, logos, and visual elements.', '2024-09-08 00:45:41.268941-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (583, 1, false, true, 161, NULL, 'f426d6d7-b571-49ed-9741-856bc7b03577', 'Costume Designer (Radio Department, Production Team)', 'Designs and creates costumes for actors in a television program.', '2024-09-08 00:44:55.502361-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (608, 1, false, true, 164, NULL, '0a166bc9-ded6-4b8c-b523-7ea0c0c4a9bb', 'Sound Designer (Radio Department, Sound Team)', 'Creates the sound design for a television program, selects sound effects, and composes music.', '2024-09-08 00:46:21.697482-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (616, 1, false, true, 164, NULL, '3308f5c3-f927-4641-a938-659a7e03f583', 'Music Composer (Radio Department, Sound Team)', 'Composes music for television programs, writes original scores and arranges existing music.', '2024-09-08 00:46:21.697482-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (610, 1, false, true, 164, NULL, '671ca2b3-16ec-4ee4-be2c-18c453bb562a', 'Sound Mixer (Radio Department, Sound Team)', 'Mixes sound for television programs, balances dialogue, sound effects, and music.', '2024-09-08 00:46:21.697482-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (232, 1, false, true, 74, NULL, '396d27e3-32bd-44d1-8f55-bffd87a47308', 'IT Support Specialist', 'Provides technical support to users.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (233, 1, false, true, 100, NULL, 'a343c4ce-4a62-47d7-ae71-ee56e3f562e9', 'Network Administration Team Leader', 'Leads the Network Administration Team.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (221, 1, false, true, 99, NULL, '0b90f59f-afdc-476b-953a-b255f82921c9', 'Test Automation Engineer (QA Testing Team)', 'Develops and maintains test automation frameworks.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (222, 1, false, true, 99, NULL, 'b225d4f7-71ad-45ae-9f39-572c3384916b', 'Performance Testing Engineer (QA Testing Team)', 'Performs performance testing and analysis.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (239, 1, false, true, 101, NULL, 'c789e525-88b6-4640-8cf2-5b57448e6119', 'Server Administrator', 'Administers and manages servers.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (240, 1, false, true, 101, NULL, 'ec2d1a24-cc98-49b9-8367-a1f54326444a', 'Linux Administrator', 'Administers and manages Linux systems.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (631, 1, false, true, 157, NULL, 'a202f6c9-ae74-4342-bf34-74093ff9669d', 'Voice Actor', 'Provides voice-over for radio programs, narrates, reads commercials, and plays characters.', '2024-09-08 00:47:06.684088-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (241, 1, false, true, 101, NULL, '6888c24b-f11d-4023-9ae1-38bd2fe578f3', 'Windows Administrator', 'Administers and manages Windows systems.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (635, 1, false, true, 157, NULL, 'ff80c0f0-52b2-4a5f-b2a8-95a43aabbec1', 'Radio Announcer', 'Announces programs, reads news and commercials, interacts with listeners.', '2024-09-08 00:47:06.684088-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (67, 1, false, true, 66, NULL, 'a002b52d-a04a-4383-b0dd-4960e27d9438', 'Service Manager (AutoTechCenter)', 'Responsible for ensuring quality and efficiency of services', '2024-08-24 12:25:41.514781-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (637, 1, false, true, 162, NULL, 'f19e3463-a46b-41f8-a297-53a5d6cf83e3', 'Program Director', 'Oversees the programming schedule for a radio station, selects and schedules programs, manages on-air talent.', '2024-09-08 00:47:31.260021-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (638, 1, false, true, 162, NULL, '502f0fd2-9c14-46a8-a5e3-12b5782862b5', 'Head of On-Air', 'Manages on-air talent, oversees live broadcasts, ensures program quality and consistency.', '2024-09-08 00:47:31.260021-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (639, 1, false, true, 162, NULL, 'aeb057fc-40d1-43ff-8f7a-57e65de6a7c6', 'Radio Host', 'Presents radio programs, interacts with listeners, plays music, and interviews guests.', '2024-09-08 00:47:31.260021-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (640, 1, false, true, 162, NULL, '203598cd-35de-4964-80bc-3fdd19b9dcc2', 'DJ', 'Plays music on radio, mixes songs, and interacts with listeners.', '2024-09-08 00:47:31.260021-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (641, 1, false, true, 162, NULL, '67b9e01c-96df-410d-80c8-168d15e58f35', 'News Anchor', 'Reads and presents news on radio, delivers news updates, and interviews guests.', '2024-09-08 00:47:31.260021-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (642, 1, false, true, 162, NULL, 'fe69e6b3-355a-476f-b5dc-ad3f2632f5e7', 'Reporter', 'Gathers and reports news stories for radio, conducts interviews, and writes news scripts.', '2024-09-08 00:47:31.260021-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (643, 1, false, true, 162, NULL, '470fb379-47fa-4798-bdde-a34b66590662', 'Commentator', 'Provides commentary and analysis on events, sports, or other topics on radio.', '2024-09-08 00:47:31.260021-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (68, 1, false, true, 66, NULL, 'e6cc5d76-1ef8-444b-8662-6cc60435d6e4', 'Logistics Manager (AutoTechCenter)', 'Responsible for efficient delivery of goods and employee transportation', '2024-08-24 12:25:41.514781-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (140, 0, false, true, 60, NULL, '38bd64db-f256-4c63-ae66-6bbb844b8e5f', 'Client Services Department', 'Responsible for client services', '2024-08-28 11:24:27.003596-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (156, 0, false, true, 64, NULL, '841b7cf6-49c6-4082-9d58-6a52b567fe95', 'Finance and Operations Department', 'Responsible for finance and operation', '2024-08-28 11:36:42.517144-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (653, 1, false, true, 163, NULL, 'df68bd8c-0d81-4b16-a163-69376162ce99', 'Music Editor', 'Edits music for radio programs, selects and prepares music tracks, and creates playlists.', '2024-09-08 00:48:00.24927-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (649, 1, false, true, 163, NULL, 'b5fef615-d6cb-43a5-9543-d5fcfb436ea5', 'Audio Editor (Radio Department, Editing Team)', 'Edits audio recordings for radio programs, cleans up sound, adds effects, and prepares audio for mixing.', '2024-09-08 00:48:00.24927-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (648, 1, false, true, 159, NULL, 'b26f722c-c137-405b-934d-c9b55d6ca525', 'Audio Editor (Television Department, Editing Team)', 'Edits audio recordings for radio programs, cleans up sound, adds effects, and prepares audio for mixing.', '2024-09-08 00:48:00.24927-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (634, 1, false, true, 161, NULL, 'f57a7f79-2fbd-49c4-9465-6392fd798653', 'Audio Engineer (Radio Department, Production Team)', 'Records and mixes audio for radio programs, operates recording equipment, and ensures sound quality.', '2024-09-08 00:47:06.684088-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (633, 1, false, true, 157, NULL, '57e07c1f-7857-43a0-8743-9d26ffc9fb75', 'Audio Engineer (Television Department, Production Team)', 'Records and mixes audio for radio programs, operates recording equipment, and ensures sound quality.', '2024-09-08 00:47:06.684088-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (655, 1, false, true, 163, NULL, '17acb3bf-f38e-444c-ae9b-645254041110', 'Sound Engineer (Radio Department, Editing Team)', 'Records and mixes audio for radio programs, operates recording equipment, and ensures sound quality.', '2024-09-08 00:48:00.24927-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (651, 1, false, true, 163, NULL, '44645ac4-ddb4-4985-bd6a-68f64f04430f', 'Post-Production Engineer (Radio Department, Editing Team)', 'Manages audio equipment, processes audio, and ensures technical quality of radio programs.', '2024-09-08 00:48:00.24927-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (650, 1, false, true, 159, NULL, '3f247394-1f69-4db0-8e44-8651f624063c', 'Post-Production Engineer (Television Department, Editing Team)', 'Manages audio equipment, processes audio, and ensures technical quality of radio programs.', '2024-09-08 00:48:00.24927-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (620, 1, false, true, 161, NULL, '5028105c-3a11-47a2-bae3-c87ce395f0b4', 'Production Manager (Radio Department, Production Team)', 'Manages the day-to-day operations of radio production, oversees budgets and schedules.', '2024-09-08 00:47:02.117179-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (621, 1, false, true, 157, NULL, '92bc8dca-5829-4039-a0bf-c089e313abf6', 'Executive Producer (Television Department, Production Team)', 'Oversees the overall creative direction of a radio program, manages budgets and talent.', '2024-09-08 00:47:06.684088-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (625, 1, false, true, 157, NULL, '134c7688-eada-43a9-b2db-033fc9132008', 'Line Producer (Television Department, Production Team)', 'Manages the day-to-day operations of a radio show, oversees budgets and schedules.', '2024-09-08 00:47:06.684088-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (623, 1, false, true, 157, NULL, '91093308-5589-4511-ae9c-3afb411d2219', 'Producer (Television Department, Production Team)', 'Responsible for the overall production of a radio program, manages budgets and schedules.', '2024-09-08 00:47:06.684088-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (629, 1, false, true, 157, NULL, '9d547e42-5914-45db-b704-416304338947', 'Scriptwriter (Television Department, Production Team)', 'Writes scripts for radio programs, develops storylines and characters.', '2024-09-08 00:47:06.684088-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (263, 1, false, true, 75, NULL, 'c250f710-8aec-4bac-bcaf-dd90b87b2f9a', 'Marketing Manager (TechnoSoft, Marketing and Sales Department)', 'Leads the Marketing Team.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (338, 1, false, true, 81, NULL, '002afedc-8253-4bd2-9b90-690e9ebc5147', 'Business Analyst (Affordable Construction, Project Management Department)', 'Analyzes business needs and translates them into functional requirements.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (658, 1, false, true, 160, NULL, '77079587-4b33-41ae-8ddd-2dec13a22b51', 'Sound Designer', 'Creates the sound design for a radio program, selects sound effects, and composes music.', '2024-09-08 00:48:15.033693-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (394, 1, false, true, 143, NULL, '7d8acbb1-55c7-479f-8a70-aa153d14954e', 'Alternative Investments Analyst (Alternative Investments Team)', 'Conducts research and analysis on alternative investments.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (660, 1, false, true, 160, NULL, '3003f024-e843-44c9-8068-2feda9e33537', 'Sound Mixer', 'Mixes sound for radio programs, balances dialogue, sound effects, and music.', '2024-09-08 00:48:15.033693-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (415, 1, false, true, 146, NULL, '960b8c01-b1d9-49d0-badc-503a94950b59', 'Alternative Investments Analyst (Alternative Investments Asset Management Team)', 'Conducts research and analysis on alternative investments.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (372, 1, false, true, 132, NULL, '8bdf4052-1c2b-435c-9e96-b4937453f313', 'Site Supervisor (Affordable Construction, Project Management Department, Construction Management Team)', 'Supervises construction activities on site.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (227, 1, false, true, 74, NULL, '660781c7-e154-4492-bc56-86ae7a70fc43', 'System Administrator (IT Infrastructure Department)', 'Administers computer systems and networks.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (664, 1, false, true, 160, NULL, 'c128feee-71bd-4b1e-9d9d-54ffe93c4133', 'Foley Artist', 'Creates sound effects for radio programs, uses props and objects to simulate sounds.', '2024-09-08 00:48:15.033693-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (231, 1, false, true, 74, NULL, '25ae8ed4-f685-45c4-a2c6-67d20fe43445', 'Database Administrator (IT Infrastructure Department)', 'Administers and manages databases.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (272, 1, false, true, 116, NULL, '9b5fda1c-e882-4ab4-9a39-cd2ed04ca532', 'Content Marketing Specialist (Media Group, Marketing and Sales Department, Marketing Team)', 'Creates and distributes high-quality content for marketing purposes.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (668, 1, false, true, 88, NULL, 'bb812c8a-db2f-4cf9-b354-a95efe34ba78', 'Director of Online Media', 'Leads the Online Media department, oversees all digital content creation and distribution.', '2024-09-08 00:52:12.959613-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (669, 1, false, true, 88, NULL, 'd2ef4a5b-c5b0-4b00-8d0d-b53699497809', 'Head of Digital Media', 'Responsible for managing digital content strategy, oversees social media and SEO efforts.', '2024-09-08 00:52:12.959613-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (670, 1, false, true, 165, NULL, '0deefd0c-c56a-45b7-bdee-591ba46a306f', 'Head of Content Creation', 'Leads the Content Creation team, responsible for developing and producing high-quality digital content.', '2024-09-08 00:52:27.217204-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (671, 1, false, true, 165, NULL, '288991d3-b169-4074-9c85-f81fce4d9bae', 'Content Director', 'Oversees the content strategy and production process, ensures content aligns with brand guidelines.', '2024-09-08 00:52:27.217204-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (672, 1, false, true, 165, NULL, '0f15375e-4196-444a-8acf-95e75616b92e', 'Content Writer', 'Creates engaging and informative written content for websites, blogs, and social media.', '2024-09-08 00:52:27.217204-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (673, 1, false, true, 165, NULL, '75a7b408-7977-4ba4-bffb-71f7c3757bf8', 'Editor', 'Edits written content for clarity, style, and accuracy, ensures consistency with brand guidelines.', '2024-09-08 00:52:27.217204-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (674, 1, false, true, 165, NULL, 'b80fffd2-c5f4-4e6a-8666-afe69ab408e4', 'Blogger', 'Creates and publishes blog posts, shares insights and perspectives, and engages with readers.', '2024-09-08 00:52:27.217204-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (675, 1, false, true, 165, NULL, '0e3b3e1b-3f85-4c3f-9dd0-5bc8985aca8f', 'Photographer', 'Captures high-quality images for websites, blogs, and social media, ensures visuals align with brand guidelines.', '2024-09-08 00:52:27.217204-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (676, 1, false, true, 165, NULL, '3bef5bca-a192-459f-8767-71930221e139', 'Videographer', 'Creates video content for websites, blogs, and social media, edits videos, and ensures visual quality.', '2024-09-08 00:52:27.217204-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (677, 1, false, true, 166, NULL, 'e28a56ba-ec4b-4d16-8825-dee2d2840ac6', 'Head of Content Editing', 'Leads the Content Editing team, ensures all content is accurate, consistent, and adheres to brand guidelines.', '2024-09-08 00:52:45.122797-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (678, 1, false, true, 166, NULL, 'a847a7f3-a33e-4ae0-8dda-58aa3f22a5fe', 'Content Editor', 'Edits written content for clarity, style, and accuracy, ensures consistency with brand guidelines.', '2024-09-08 00:52:45.122797-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (680, 1, false, true, 166, NULL, '9128bf80-2ede-4830-8bb7-9e8ff402ad89', 'Proofreader', 'Checks written content for spelling, grammar, and punctuation errors.', '2024-09-08 00:52:45.122797-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (681, 1, false, true, 166, NULL, '922acba8-0fc3-4072-b361-e1c90cd86e4d', 'Copywriter', 'Creates persuasive and engaging marketing copy for websites, ads, and other materials.', '2024-09-08 00:52:45.122797-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (682, 1, false, true, 166, NULL, 'f1e48b63-6856-4127-9a1b-0e597acae72e', 'Graphic Designer', 'Creates visual assets for websites, social media, and marketing materials.', '2024-09-08 00:52:45.122797-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (683, 1, false, true, 166, NULL, 'ee452abf-2377-4fe6-aedf-b928b5fb7d6a', 'Web Designer', 'Designs and develops websites, ensures usability and functionality, and implements visual elements.', '2024-09-08 00:52:45.122797-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (684, 1, false, true, 167, NULL, 'b5e5ee00-9848-403d-a8b2-4df53637c09e', 'Head of Social Media', 'Leads the Social Media team, develops and executes social media strategy, and manages online communities.', '2024-09-08 00:52:57.114675-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (688, 1, false, true, 167, NULL, '0417eb54-d96c-470a-a6b9-893937478d5b', 'Social Media Content Creator', 'Creates engaging and visually appealing content for social media platforms.', '2024-09-08 00:52:57.114675-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (689, 1, false, true, 168, NULL, 'e3139ab4-a187-4aa4-bccd-321825032148', 'Head of SEO', 'Leads the SEO team, develops and implements SEO strategy, and monitors website performance.', '2024-09-08 00:53:10.126065-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (690, 1, false, true, 168, NULL, 'd3a919f5-4dfe-474a-bf12-33bd07f2e4a9', 'SEO Manager', 'Manages SEO activities, researches keywords, optimizes website content, and analyzes search engine performance.', '2024-09-08 00:53:10.126065-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (686, 1, false, true, 167, NULL, '59a680bd-ec52-4b83-a38f-d21de2305cdb', 'Social Media Specialist (Social Media Team)', 'Creates and schedules social media content, engages with followers, and analyzes performance.', '2024-09-08 00:52:57.114675-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (685, 1, false, true, 167, NULL, '8830b6e6-f196-4cb3-bcde-9dec7c505fe2', 'Social Media Manager (Social Media Team)', 'Manages social media accounts, creates content, engages with followers, and analyzes performance.', '2024-09-08 00:52:57.114675-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (665, 1, false, true, 164, NULL, 'c2dfaf33-3ebe-4337-bc02-8c0b9b2830f4', 'Foley Artist (Radio Department, Sound Team)', 'Creates sound effects for radio programs, uses props and objects to simulate sounds.', '2024-09-08 00:48:15.033693-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (657, 1, false, true, 164, NULL, 'cba7dab5-3242-4fb4-bcd0-1606d1bfc0a0', 'Head of Sound (Radio Department, Sound Team)', 'Leads the Sound team, oversees sound design, recording, and mixing.', '2024-09-08 00:48:15.033693-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (691, 1, false, true, 168, NULL, '715975fa-f9fb-41f6-b83c-421a4df9d83b', 'SEO Specialist (SEO Team)', 'Conducts keyword research, optimizes website content, builds backlinks, and analyzes SEO performance.', '2024-09-08 00:53:10.126065-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (692, 1, false, true, 168, NULL, '4efbaef5-038f-416f-ac3d-b16aa834e963', 'SEO Analyst', 'Analyzes website traffic, keyword rankings, and SEO performance data, identifies areas for improvement.', '2024-09-08 00:53:10.126065-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (693, 1, false, true, 168, NULL, '723ed908-d374-4b7c-a324-7fdc2c539ab0', 'Content Optimization Specialist', 'Optimizes website content for search engines, researches keywords, and ensures content is relevant and engaging.', '2024-09-08 00:53:10.126065-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (695, 1, false, true, 156, NULL, '4a812290-48b9-47d4-839e-a6d0be0be3ef', 'Chief Operating Officer (COO)', 'Oversees the day-to-day operations of the organization, ensures efficiency and effectiveness.', '2024-09-08 00:53:18.073885-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (696, 1, false, true, 169, NULL, '192375a9-bad1-481d-a952-a5d813902b6d', 'Head of Finance', 'Leads the Finance team, manages financial reporting, budgeting, and accounting.', '2024-09-08 00:53:31.433181-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (697, 1, false, true, 169, NULL, '5c5a41d1-25f0-4afb-8c29-1172293f593f', 'Finance Manager', 'Oversees daily financial operations, prepares financial reports, and manages budgets.', '2024-09-08 00:53:31.433181-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (274, 1, false, true, 116, NULL, '2f75b620-2315-45b0-8af1-a24341736885', 'Social Media Marketing Specialist (Media Group, Marketing and Sales Department, Marketing Team)', 'Manages social media channels and campaigns.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (700, 1, false, true, 169, NULL, '910d227f-30e2-4476-a202-2fc80c8f9e3e', 'Budget Analyst', 'Develops and manages budgets, tracks expenses, and identifies areas for budget optimization.', '2024-09-08 00:53:31.433181-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (701, 1, false, true, 169, NULL, 'f13a67ce-09b5-4aaa-8ae8-0c2b93d8b1d2', 'Controller', 'Oversees the accounting function, ensures financial accuracy and compliance, and prepares financial reports.', '2024-09-08 00:53:31.433181-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (702, 1, false, true, 170, NULL, '929749f0-d1d2-41c4-8551-4a3eb8e9a948', 'Head of Operations', 'Leads the Operations team, manages day-to-day operations, and ensures efficiency and effectiveness.', '2024-09-08 00:53:44.70436-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (703, 1, false, true, 170, NULL, '529d61a2-0e1a-4696-964e-6073880f197b', 'Operations Manager', 'Oversees daily operations, coordinates with departments, and ensures smooth workflow.', '2024-09-08 00:53:44.70436-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (705, 1, false, true, 170, NULL, '13a1ca15-e448-499e-a66c-1e63341e4a57', 'Operations Specialist', 'Provides support to operations management, handles administrative tasks, and coordinates with departments.', '2024-09-08 00:53:44.70436-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (270, 1, false, true, 116, NULL, '74a89f61-f3b7-4a58-8184-586e593484d1', 'Marketing Team Leader (Media Group, Marketing and Sales Department, Marketing Team)', 'Leads the Marketing Team.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (707, 1, false, true, 170, NULL, 'db0c4043-72c0-4c15-92f2-bb43d3cda62f', 'Facilities Manager', 'Manages the physical facilities of the organization, oversees maintenance, repairs, and security.', '2024-09-08 00:53:44.70436-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (708, 1, false, true, 171, NULL, '8a38635c-b6fa-4214-a894-073e2bb79aa3', 'Head of Human Resources', 'Leads the Human Resources team, manages recruitment, training, compensation, and employee relations.', '2024-09-08 00:53:59.744601-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (709, 1, false, true, 171, NULL, '3a5cc4ed-863e-4584-9a88-1ae045665cbd', 'HR Manager', 'Oversees daily HR operations, manages recruitment, training, and employee relations.', '2024-09-08 00:53:59.744601-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (710, 1, false, true, 171, NULL, '3e9ad275-51f9-4ee2-b9b5-ba51c9ec8d8a', 'HR Specialist', 'Provides support to HR management, handles administrative tasks, and assists with recruitment, training, and employee relations.', '2024-09-08 00:53:59.744601-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (711, 1, false, true, 171, NULL, 'd1b17e28-de99-46ea-a2c5-4db11ce40e6c', 'Recruitment Specialist', 'Manages the recruitment process, posts job openings, screens candidates, and conducts interviews.', '2024-09-08 00:53:59.744601-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (712, 1, false, true, 171, NULL, '2e67fb7e-5526-45bc-a2da-a0653ea79ceb', 'Training and Development Specialist', 'Develops and delivers training programs, creates training materials, and assesses training effectiveness.', '2024-09-08 00:53:59.744601-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (713, 1, false, true, 171, NULL, '35fc5fe7-a37b-4a32-9c13-52d1914c63b5', 'Compensation and Benefits Specialist', 'Manages employee compensation, benefits, and payroll, ensures compliance with regulations.', '2024-09-08 00:53:59.744601-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (714, 1, false, true, 91, NULL, '6c4071c7-6aad-4dbb-9d24-5735d63ed99d', 'Head of Repair and Maintenance', 'Head of Repair and Maintenance', '2024-09-08 21:40:31.489834-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (715, 1, false, true, 91, NULL, '4ee4aa26-3756-4ee1-b85f-ef196e20ab84', 'Service Manager', 'Service Manager', '2024-09-08 21:40:33.443566-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (716, 1, false, true, 179, NULL, '855620e7-1bb4-4184-99a4-939f171e0603', 'Head of Mechanical Repairs', 'Head of Mechanical Repairs', '2024-09-08 21:41:02.303364-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (717, 1, false, true, 179, NULL, '099f7fc7-2701-438d-9086-92cb09c5b1fa', 'Lead Mechanic', 'Lead Mechanic', '2024-09-08 21:41:08.151449-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (718, 1, false, true, 179, NULL, 'bf968036-2e39-4995-8d64-3afac5d4d479', 'Senior Mechanic', 'Senior Mechanic', '2024-09-08 21:41:08.151449-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (719, 1, false, true, 179, NULL, 'bb6f1d75-70c7-4838-b664-6b5fb71be338', 'Mechanic', 'Mechanic', '2024-09-08 21:41:08.151449-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (720, 1, false, true, 179, NULL, '44196bd8-5dfd-400e-bb1a-8c921298fd20', 'Apprentice Mechanic', 'Apprentice Mechanic', '2024-09-08 21:41:08.151449-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (721, 1, false, true, 179, NULL, 'de062b68-0dd3-4307-a598-e44a0b511a15', 'Engine Specialist', 'Engine Specialist', '2024-09-08 21:41:08.151449-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (722, 1, false, true, 179, NULL, '60bd010d-aa24-4425-9a2f-6e32e36eabf6', 'Transmission Specialist', 'Transmission Specialist', '2024-09-08 21:41:08.151449-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (723, 1, false, true, 179, NULL, '56c75dc8-6892-48ce-be96-1daac70ae077', 'Brake Specialist', 'Brake Specialist', '2024-09-08 21:41:08.151449-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (724, 1, false, true, 180, NULL, 'd2c24b37-894d-4ac9-aba0-5d7c5e2030f7', 'Head of Electrical Repairs', 'Head of Electrical Repairs', '2024-09-08 21:41:41.983565-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (725, 1, false, true, 180, NULL, '1f0bf6f5-4780-4778-bfcd-0c25495c02c9', 'Lead Electrician', 'Lead Electrician', '2024-09-08 21:41:44.505954-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (726, 1, false, true, 180, NULL, 'b949f3b8-e553-4270-ae70-1a2b7afbf658', 'Senior Electrician', 'Senior Electrician', '2024-09-08 21:41:44.505954-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (727, 1, false, true, 180, NULL, 'e54da085-8a90-475b-9ae3-59427a0b6380', 'Electrician', 'Electrician', '2024-09-08 21:41:44.505954-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (728, 1, false, true, 180, NULL, '989e1643-55fc-496a-898c-74724518bc9e', 'Automotive Electrical Technician', 'Automotive Electrical Technician', '2024-09-08 21:41:44.505954-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (729, 1, false, true, 180, NULL, 'bf4324a5-1078-4870-a466-b0e27b504f51', 'Electronics Specialist', 'Electronics Specialist', '2024-09-08 21:41:44.505954-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (730, 1, false, true, 181, NULL, 'dad150b9-b89b-4a15-bca5-c6c666f1751c', 'Diagnostics Specialist', 'Diagnostics Specialist', '2024-09-08 21:42:03.776182-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (731, 1, false, true, 181, NULL, 'a0c918cf-688b-47e7-800e-d06d7d935a47', 'Head of Diagnostics', 'Head of Diagnostics', '2024-09-08 21:42:05.852149-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (694, 1, false, true, 156, NULL, '447904c4-d715-49a5-9cc5-be8192534f1f', 'Chief Financial Officer (Finance and Operations Department, CFO)', 'Leads the Finance and Operations department, oversees all financial matters and operations.', '2024-09-08 00:53:18.073885-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (704, 1, false, true, 170, NULL, 'bddc5ed3-e57a-4ed0-a1ed-588c847ea4da', 'Project Manager (Operations Team)', 'Plans, manages, and executes projects, tracks progress, and ensures project goals are met.', '2024-09-08 00:53:44.70436-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (699, 1, false, true, 169, NULL, 'e77806f6-df03-4012-93f7-59fc858338f7', 'Financial Analyst (Finance Team)', 'Analyzes financial data, prepares financial forecasts, and identifies opportunities for cost savings.', '2024-09-08 00:53:31.433181-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (732, 1, false, true, 181, NULL, '7785d333-6878-4b6d-8535-a4243f0efe27', 'Senior Diagnostics Technician', 'Senior Diagnostics Technician', '2024-09-08 21:42:05.852149-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (733, 1, false, true, 181, NULL, '1e3fd404-96d3-4b39-8d97-9c4e13f05c5c', 'Diagnostics Technician', 'Diagnostics Technician', '2024-09-08 21:42:05.852149-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (734, 1, false, true, 181, NULL, 'eec713c2-97e2-4512-9681-aaab2f2af526', 'Computer Systems Specialist', 'Computer Systems Specialist', '2024-09-08 21:42:05.852149-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (735, 1, false, true, 182, NULL, '75e3f07c-4749-4cb3-9d19-4cff50d8021f', 'Head of Scheduled Maintenance', 'Head of Scheduled Maintenance', '2024-09-08 21:42:25.077612-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (736, 1, false, true, 182, NULL, '2613e06b-9fee-44e9-b91c-32ed11fc3eee', 'Lead Technician', 'Lead Technician', '2024-09-08 21:42:28.427896-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (737, 1, false, true, 182, NULL, '0503e2bb-2edd-4a83-a294-38f9b26e47ec', 'Senior Technician', 'Senior Technician', '2024-09-08 21:42:28.427896-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (738, 1, false, true, 182, NULL, '038d839b-f7d9-40f9-9720-27d45c9f33e3', 'Technician', 'Technician', '2024-09-08 21:42:28.427896-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (740, 1, false, true, 182, NULL, '25de1b56-5cc6-495a-8cf1-2b8fd5dc973e', 'Maintenance Specialist', 'Maintenance Specialist', '2024-09-08 21:42:28.427896-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (741, 1, false, true, 183, NULL, '51ce7c8a-4a7f-4df2-9ce0-b0f4f819d31d', 'Head of Preventive Maintenance', 'Head of Preventive Maintenance', '2024-09-08 21:42:45.705348-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (742, 1, false, true, 183, NULL, '1ba82e51-f37f-40a7-a79c-bb12b39e2cfd', 'Preventive Maintenance Technician', 'Preventive Maintenance Technician', '2024-09-08 21:42:47.280515-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (743, 1, false, true, 183, NULL, 'e524e636-04f8-4142-89f6-18ef0c7b787f', 'Inspection Specialist', 'Inspection Specialist', '2024-09-08 21:42:47.280515-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (744, 1, false, true, 93, NULL, '7e7c4d91-f0ce-4b4a-a947-ee856e1a43f9', 'Head of Parts and Accessories', 'Head of Parts and Accessories', '2024-09-08 21:43:01.342483-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (745, 1, false, true, 93, NULL, '091b103e-c209-494b-bb75-4a9d0714a3fd', 'Parts Manager', 'Parts Manager', '2024-09-08 21:43:02.876171-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (746, 1, false, true, 184, NULL, '8a59c144-7c13-465d-9932-f12e531b4f0f', 'Sales Manager', 'Sales Manager', '2024-09-08 21:43:22.49931-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (747, 1, false, true, 184, NULL, 'b433bf45-e2d6-4a09-ae6f-21f2231a5418', 'Head of Parts Sales', 'Head of Parts Sales', '2024-09-08 21:43:24.771238-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (748, 1, false, true, 184, NULL, '50073281-2d1e-4e4d-8a33-dcd0d2c03aeb', 'Parts Sales Representative', 'Parts Sales Representative', '2024-09-08 21:43:24.771238-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (749, 1, false, true, 184, NULL, '01f26098-c91c-4f75-9621-fcd53f861510', 'Parts Advisor', 'Parts Advisor', '2024-09-08 21:43:24.771238-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (750, 1, false, true, 184, NULL, '2b856451-929a-453a-a24a-9aaa90422e7c', 'Counter Salesperson', 'Counter Salesperson', '2024-09-08 21:43:24.771238-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (751, 1, false, true, 185, NULL, '69582b34-3917-4524-8dcb-4116c0e65035', 'Head of Inventory', 'Head of Inventory', '2024-09-08 21:43:42.117123-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (752, 1, false, true, 185, NULL, '0cedd4ea-5a49-43ae-906c-dd70e3d3e2d0', 'Inventory Manager', 'Inventory Manager', '2024-09-08 21:43:44.020713-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (753, 1, false, true, 185, NULL, '61d779e3-ea73-41a7-86a3-a324de770652', 'Inventory Specialist', 'Inventory Specialist', '2024-09-08 21:43:44.020713-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (754, 1, false, true, 185, NULL, 'ff298f80-c02b-464d-97c5-0d6630af6e4c', 'Warehouse Manager', 'Warehouse Manager', '2024-09-08 21:43:44.020713-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (755, 1, false, true, 185, NULL, '9b2f31bc-75a5-404e-afce-3dd4da3c428f', 'Stock Controller', 'Stock Controller', '2024-09-08 21:43:44.020713-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (69, 0, false, true, NULL, NULL, 'b64eb39e-dfe3-4d91-9872-1a5db06ca947', 'Management Committee (Affordable Construction)', 'Responsible for overall company management', '2024-08-24 12:25:55.57331-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (757, 1, false, true, 94, NULL, 'b7ad0662-6d71-4a65-a466-d88c07cffc44', 'Head of Logistics', 'Head of Logistics', '2024-09-08 21:52:17.943054-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (759, 1, false, true, 94, NULL, '59cab94b-bb5e-4470-926f-4d3b6de21b4c', 'Logistics Manager', 'Logistics Manager', '2024-09-08 21:52:29.742743-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (760, 1, false, true, 186, NULL, '656f9a2a-5a61-48a5-9225-521524285452', 'Head of Transportation', 'Head of Transportation', '2024-09-08 21:52:52.155992-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (761, 1, false, true, 186, NULL, '49482575-4ab1-4a10-82b8-632a9663bb74', 'Transportation Supervisor', 'Transportation Supervisor', '2024-09-08 21:52:53.987429-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (762, 1, false, true, 186, NULL, '065b1736-6a00-4fb6-9851-60d0f9d961ce', 'Driver', 'Driver', '2024-09-08 21:52:53.987429-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (763, 1, false, true, 186, NULL, '72f3b949-f350-4cb5-be0d-eb2e8c52e6cb', 'Dispatcher', 'Dispatcher', '2024-09-08 21:52:53.987429-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (765, 1, false, true, 187, NULL, '60dcb944-a428-4b79-acb4-8dd64c451b1e', 'Head of Delivery', 'Head of Delivery', '2024-09-08 21:53:13.021144-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (766, 1, false, true, 187, NULL, '051fc231-a551-4116-bbfc-a3afe3ab8f87', 'Delivery Supervisor', 'Delivery Supervisor', '2024-09-08 21:53:17.88697-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (767, 1, false, true, 187, NULL, '569a0bb4-c6dc-4d56-8058-0c579e703bbd', 'Delivery Driver', 'Delivery Driver', '2024-09-08 21:53:17.88697-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (768, 1, false, true, 187, NULL, 'f676ea75-2c30-4581-aa98-6a4ffbfcfeed', 'Delivery Assistant', 'Delivery Assistant', '2024-09-08 21:53:17.88697-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (769, 1, false, true, 187, NULL, 'b857da43-8364-43f4-bb6a-e41290a0954d', 'Delivery Coordinator', 'Delivery Coordinator', '2024-09-08 21:53:17.88697-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (770, 1, false, true, 95, NULL, '592f8c1b-7235-4799-a978-82b5106ce835', 'Head of Customer Service', 'Head of Customer Service', '2024-09-08 21:53:34.943018-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (771, 1, false, true, 95, NULL, '1da762ed-c752-4ff5-80d2-cd653bd70e16', 'Customer Service Manager', 'Customer Service Manager', '2024-09-08 21:53:36.635063-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (772, 1, false, true, 188, NULL, 'c9a02f2e-204e-4f7f-9e9e-afcdba2f74d4', 'Customer Support Supervisor', 'Customer Support Supervisor', '2024-09-08 21:53:55.502653-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (773, 1, false, true, 188, NULL, 'da9d7c42-1a85-41da-bfeb-244c28d53a5b', 'Head of Customer Support', 'Head of Customer Support', '2024-09-08 21:53:57.319122-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (774, 1, false, true, 188, NULL, '05f47a0f-5b64-45b1-9226-dcd85e4d145d', 'Customer Service Representative', 'Customer Service Representative', '2024-09-08 21:53:57.319122-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (776, 1, false, true, 188, NULL, '8b470408-7cb8-4b16-9df9-a0dee295b5b8', 'Complaint Handler', 'Complaint Handler', '2024-09-08 21:53:57.319122-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (777, 1, false, true, 189, NULL, 'cad4130b-ba78-4db8-b17d-48475f75a69c', 'Service Scheduler', 'Service Scheduler', '2024-09-08 21:54:14.7857-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (778, 1, false, true, 189, NULL, 'a052dba1-11c3-4358-8dd6-0fbed9d754a7', 'Head of Service Scheduling', 'Head of Service Scheduling', '2024-09-08 21:54:16.833506-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (779, 1, false, true, 189, NULL, '5293d61f-c8cb-4ca0-b59f-a6c3719a1dce', 'Appointment Coordinator', 'Appointment Coordinator', '2024-09-08 21:54:16.833506-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (574, 1, false, true, 157, NULL, '71ff441c-2f64-4779-8b99-da4b18d0fcf9', 'Film director', 'Directs the filming of a television program, guides actors and crew, ensures creative vision is realized.', '2024-09-08 00:44:55.502361-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (739, 1, false, true, 182, NULL, '0c35c6e8-9003-4fdf-aa78-ebaddb07a70e', 'Service Advisor (Scheduled Maintenance Team)', 'Service Advisor', '2024-09-08 21:42:28.427896-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (258, 1, false, true, 89, NULL, 'c0dc8969-2354-4343-b129-c84786368f7f', 'Marketing Specialist (Media Group, Marketing and Sales Department)', 'Develops and implements marketing campaigns.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (115, 4, false, true, 75, NULL, '98cb59f0-bd01-4291-ab53-f516196d0080', 'Marketing Team (TechnoSoft, Marketing and Sales Department)', 'Team responsible for developing and executing marketing campaigns', '2024-08-26 23:14:41.784932-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (119, 4, false, true, 75, NULL, 'a64bbce5-8bef-41a3-bce3-b426e07569cc', 'Content Marketing Team (TechnoSoft, Marketing and Sales Department)', 'Team responsible for creating and distributing content', '2024-08-26 23:14:41.784932-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (117, 4, false, true, 75, NULL, '060f87ed-8994-48e2-918c-4b96fffa8c52', 'Sales Team (TechnoSoft, Marketing and Sales Department)', 'Team responsible for generating leads and closing deals', '2024-08-26 23:14:41.784932-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (121, 4, false, true, 75, NULL, '54113030-7db3-4aac-9c75-fd34e4f7085d', 'Social Media Marketing Team (TechnoSoft, Marketing and Sales Department)', 'Team responsible for managing social media accounts', '2024-08-26 23:14:41.784932-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (120, 4, false, true, 89, NULL, 'f453d7e5-47d1-43aa-aef2-b2e1e39a7327', 'Content Marketing Team (Media Group, Marketing and Sales Department)', 'Team responsible for creating and distributing content', '2024-08-26 23:14:41.784932-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (282, 1, false, true, 116, NULL, '48cb0c23-b30a-4c47-9435-599dd1f4eb0c', 'Marketing Analyst (Media Group, Marketing and Sales Department, Marketing Team)', 'Analyzes marketing data and performance.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (278, 1, false, true, 116, NULL, 'e699105d-6eaa-4f8d-9f69-ce588a8e89a4', 'SEO Specialist (Media Group, Marketing and Sales Department, Marketing Team)', 'Optimizes website content for search engines.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (361, 1, false, true, 131, NULL, '1f2e6cdc-fbb4-4058-9693-9145e2722dd9', 'Project Planner (Affordable Construction, Project Management Department, Project Planning Team)', 'Creates and manages project schedules and plans.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (346, 1, false, true, 110, NULL, 'eb5641cc-743d-4d26-a913-058ee4a57a52', 'Project Management Team Leader (Affordable Construction, Project Management Department, Project Management Team)', 'Leader role in Project Management Team', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (308, 1, false, true, 122, NULL, 'a50e81cf-5854-4a7d-abf7-eaae85231232', 'Social Media Specialist (Media Group, Marketing and Sales Department, Social Media Marketing Team)', 'Creates and distributes social media content.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (310, 1, false, true, 122, NULL, '8308fc49-948a-4ca7-aa6c-68b682a73013', 'Community Manager (Media Group, Marketing and Sales Department, Social Media Marketing Team)', 'Engages with online communities and builds relationships with customers.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (74, 0, false, true, 57, NULL, 'bbd698e3-18e9-4299-815d-4f63b5c66c16', 'IT Infrastructure Department', 'Responsible for managing IT infrastructure', '2024-08-25 01:04:35.281793-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (76, 0, false, true, 57, NULL, '189c4b35-3e74-4b8d-87b5-eb67ad5944ba', 'Research and Development Department', 'Responsible for research and development activities', '2024-08-25 01:04:35.281793-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (77, 0, false, true, 60, NULL, 'c206494b-bc4f-4df0-afbc-f11f3bff9d06', 'Investment Banking Department', 'Responsible for investment banking activities', '2024-08-25 01:04:46.195471-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (78, 0, false, true, 60, NULL, '02e12cb8-a96f-48d6-ac59-ad37fbac588f', 'Asset Management Department', 'Responsible for managing assets', '2024-08-25 01:04:46.195471-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (79, 0, false, true, 60, NULL, 'd39769bc-7d88-4a75-9add-38e54e2a1abc', 'Risk Management Department', 'Responsible for managing risks', '2024-08-25 01:04:46.195471-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (80, 0, false, true, 60, NULL, 'ce3b8215-185c-4e4e-88d2-b1b6f4167db6', 'Financial Analysis Department', 'Responsible for financial analysis', '2024-08-25 01:04:46.195471-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (82, 0, false, true, 69, NULL, 'fb715ed7-706f-41e3-a624-69d3f7d70ce8', 'Construction Management Department', 'Responsible for construction management', '2024-08-25 01:04:57.779884-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (83, 0, false, true, 69, NULL, 'b444dcc8-bb16-4cea-82ed-2d4d807f129e', 'Design and Engineering Department', 'Responsible for design and engineering', '2024-08-25 01:04:57.779884-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (84, 0, false, true, 69, NULL, '1e4672e1-b98e-418b-8b69-aa4f43a484f6', 'Procurement Department', 'Responsible for procurement', '2024-08-25 01:04:57.779884-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (85, 0, false, true, 69, NULL, '5d30a1f1-3f3f-447e-980e-5c7d12fa0308', 'Quality Control Department', 'Responsible for quality control', '2024-08-25 01:04:57.779884-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (86, 0, false, true, 64, NULL, '32745bda-24f7-4f3c-9f26-0cfdda6f4503', 'Television Department', 'Responsible for television production', '2024-08-25 01:05:10.466079-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (87, 0, false, true, 64, NULL, '08a52f12-7086-4617-9e0b-29e41447b47b', 'Radio Department', 'Responsible for radio production', '2024-08-25 01:05:10.466079-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (88, 0, false, true, 64, NULL, '8a3d73a2-6029-4727-8e16-b498ff56a8a4', 'Online Media Department', 'Responsible for online media production', '2024-08-25 01:05:10.466079-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (581, 1, false, true, 161, NULL, 'ce7a2b12-353d-47cc-869a-4ef5fb2b61b0', 'Art Director (Radio Department, Production Team)', 'Oversees the visual style of a television program, collaborates with set designers and costume designers.', '2024-09-08 00:44:55.502361-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (698, 1, false, true, 169, NULL, '9341db17-8997-4bf5-be8c-91daedd7d7c4', 'Accountant (Finance Team)', 'Maintains financial records, prepares financial statements, and ensures compliance with accounting standards.', '2024-09-08 00:53:31.433181-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (628, 1, false, true, 161, NULL, '73485bc2-ea24-4312-a278-5270b9c97fc3', 'Assistant Producer (Television Department, Production Team)', 'Provides support to the producer, handles administrative tasks, and coordinates with departments.', '2024-09-08 00:47:06.684088-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (612, 1, false, true, 164, NULL, '3007ddbf-f821-4e22-980e-3caa2303af3b', 'Sound Editor (Radio Department, Sound Team)', 'Edits sound for television programs, cleans up audio, adds sound effects, and prepares sound for mixing.', '2024-09-08 00:46:21.697482-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (611, 1, false, true, 160, NULL, 'bb947ac0-0987-44c8-856d-986ed8396aa0', 'Sound Editor (Television Department, Sound Team)', 'Edits sound for television programs, cleans up audio, adds sound effects, and prepares sound for mixing.', '2024-09-08 00:46:21.697482-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (663, 1, false, true, 164, NULL, 'e1631682-94d1-4264-8ed7-bb4b0a564a5d', 'Sound Engineer (Radio Department, Sound Team)', 'Records and mixes audio for radio programs, operates recording equipment, and ensures sound quality.', '2024-09-08 00:48:15.033693-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (662, 1, false, true, 160, NULL, '883d6166-98cd-47d8-aabb-16f526ec1c94', 'Sound Engineer (Television Department, Sound Team)', 'Records and mixes audio for radio programs, operates recording equipment, and ensures sound quality.', '2024-09-08 00:48:15.033693-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (654, 1, false, true, 159, NULL, 'e30a2faa-ce84-4d12-9f5c-40579a032f52', 'Sound Engineer (Television Department, Editing Team)', 'Records and mixes audio for radio programs, operates recording equipment, and ensures sound quality.', '2024-09-08 00:48:00.24927-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (652, 1, false, true, 159, NULL, '6ac97183-1785-4014-a1d7-18a5191b70dd', 'Music Editor (Television Department, Editing Team)', 'Edits music for radio programs, selects and prepares music tracks, and creates playlists.', '2024-09-08 00:48:00.24927-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (601, 1, false, true, 159, NULL, '2e104076-9b26-43e9-adce-351576f20823', 'Graphic Designer (Television Department, Editing Team)', 'Creates graphics for television programs, designs titles, logos, and visual elements.', '2024-09-08 00:45:41.268941-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (597, 1, false, true, 159, NULL, 'bf5e8c62-a3d1-4a1f-9a50-cec09bffe956', 'Post-Production Editor (Television Department, Editing Team)', 'Edits video footage, adds special effects, and prepares the final television program for broadcast.', '2024-09-08 00:45:41.268941-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (593, 1, false, true, 159, NULL, '18c3512d-33bb-4667-b2ad-4eb729f800e4', 'Post-Production Supervisor (Television Department, Editing Team)', 'Manages the post-production process, coordinates with editors, sound engineers, and visual effects artists.', '2024-09-08 00:45:41.268941-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (603, 1, false, true, 159, NULL, '0dc95786-6c88-44e3-9171-be798f579e91', 'VFX Artist (Television Department, Editing Team)', 'Creates visual effects for television programs, adds special effects, and manipulates images.', '2024-09-08 00:45:41.268941-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (591, 1, false, true, 159, NULL, 'a2ddf227-12f6-49ef-90f2-7d9ab65202be', 'Head of Editing (Television Department, Editing Team)', 'Leads the Editing team, oversees the post-production process, ensures consistency and quality.', '2024-09-08 00:45:39.488787-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (414, 1, false, true, 146, NULL, '52b815d0-99c2-4d27-bce0-5101eef61396', 'Portfolio Manager (Alternative Investments Asset Management Team)', 'Manages alternative investments portfolios.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (401, 1, false, true, 144, NULL, '00e5f887-ca7b-4631-824d-96917aa7e634', 'Portfolio Manager (Equity Asset Management Team)', 'Manages equity portfolios.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (402, 1, false, true, 144, NULL, '2d3030fd-2885-4425-9879-4f605814a858', 'Equity Analyst (Equity Asset Management Team)', 'Conducts research and analysis on equity investments.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (408, 1, false, true, 145, NULL, '56fc65ab-c689-4faf-8796-2744b32f4756', 'Fixed Income Analyst (Fixed Income Asset Management Team)', 'Conducts research and analysis on fixed income investments.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (706, 1, false, true, 170, NULL, '8507dfa3-3124-4c90-acd3-cae205b19fe8', 'Logistics Manager (Operations Team)', 'Manages the flow of goods and services, oversees transportation, warehousing, and distribution.', '2024-09-08 00:53:44.70436-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (514, 1, false, true, 131, NULL, '459f0742-1362-4a80-9e6a-2e6b9bc306e7', 'Cost Estimator (Affordable Construction, Project Management Department, Project Planning Team)', 'Develops and analyzes project budgets, identifies cost savings opportunities, and tracks expenses.', '2024-09-08 00:23:41.860761-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (506, 1, false, true, 131, NULL, '7cd999a1-8f04-49ab-a10e-99e5bbe0586c', 'Head of Project Planning (Affordable Construction, Project Management Department, Project Planning Team)', 'Leads the Project Planning team, responsible for project scheduling, budgeting, and resource allocation.', '2024-09-08 00:23:37.472594-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (508, 1, false, true, 131, NULL, 'd531525f-11a6-4980-b87a-b8dc3843bd1a', 'Senior Project Planner (Affordable Construction, Project Management Department, Project Planning Team)', 'Experienced project planner responsible for developing and managing complex project schedules.', '2024-09-08 00:23:41.860761-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (512, 1, false, true, 131, NULL, '737c4fcf-17f3-4b62-9e8c-a95f6686916d', 'Scheduling Specialist (Affordable Construction, Project Management Department, Project Planning Team)', 'Creates and manages project schedules using specialized software, analyzes critical path and dependencies.', '2024-09-08 00:23:41.860761-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (579, 1, false, true, 161, NULL, 'cf0e193d-5cf1-4204-a18d-9a7c429b3089', 'Set Designer (Radio Department, Production Team)', 'Designs and creates the sets for a television program, manages props and furniture.', '2024-09-08 00:44:55.502361-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (573, 1, false, true, 161, NULL, 'f26f81f9-7dd7-46db-ade9-a364ae2b8e74', 'Scriptwriter (Radio Department, Production Team)', 'Writes scripts for television programs, develops characters and storylines.', '2024-09-08 00:44:55.502361-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (575, 1, false, true, 161, NULL, 'c62f7c0c-6f2c-41fb-a9b3-f5fcf745e30a', 'Film director (Radio Department, Production Team)', 'Directs the filming of a television program, guides actors and crew, ensures creative vision is realized.', '2024-09-08 00:44:55.502361-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (624, 1, false, true, 161, NULL, '89328278-9740-486e-9a13-29384e96a9b7', 'Producer (Radio Department, Production Team)', 'Responsible for the overall production of a radio program, manages budgets and schedules.', '2024-09-08 00:47:06.684088-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (636, 1, false, true, 161, NULL, '15aef2b5-4992-4a97-a1c2-4affe4d29437', 'Radio Announcer (Radio Department, Production Team)', 'Announces programs, reads news and commercials, interacts with listeners.', '2024-09-08 00:47:06.684088-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (622, 1, false, true, 161, NULL, 'dcb09fc3-14fc-47cc-8c9b-b498346a75b4', 'Executive Producer (Radio Department, Production Team)', 'Oversees the overall creative direction of a radio program, manages budgets and talent.', '2024-09-08 00:47:06.684088-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (632, 1, false, true, 161, NULL, '67ecef3a-82a3-4ea4-8b0f-bc509c07503e', 'Voice Actor (Radio Department, Production Team)', 'Provides voice-over for radio programs, narrates, reads commercials, and plays characters.', '2024-09-08 00:47:06.684088-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (569, 1, false, true, 161, NULL, 'd094e47a-c42f-432c-8a1d-b0e67cb451b1', 'Line Producer (Radio Department, Production Team)', 'Manages the day-to-day operations of a television shoot, oversees budgets and schedules.', '2024-09-08 00:44:55.502361-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (523, 1, false, true, 130, NULL, '92265bc8-302d-4459-961a-92eef6708799', 'Project Assistant (Project Coordination Team)', 'Provides administrative support to project managers and teams, handles tasks, and coordinates communication.', '2024-09-08 00:24:02.007068-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (519, 1, false, true, 130, NULL, '30f842f2-01aa-4a6e-814d-3002333d401f', 'Contract Administrator (Project Coordination Team)', 'Manages project contracts, ensures compliance with terms, resolves contract disputes.', '2024-09-08 00:24:02.007068-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (517, 1, false, true, 130, NULL, '06299dbb-5b58-4e82-8b25-b702126fb259', 'Project Coordinator (Project Coordination Team)', 'Coordinates project activities, manages communication between stakeholders, tracks progress and deadlines.', '2024-09-08 00:24:02.007068-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (521, 1, false, true, 130, NULL, '0be7c065-2bab-4c6d-a44d-c43d62e80cd7', 'Document Controller (Project Coordination Team)', 'Manages project documentation, maintains records, controls access, and ensures document integrity.', '2024-09-08 00:24:02.007068-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (515, 1, false, true, 130, NULL, 'ecc5a3cc-82e3-488f-b30a-11d570591c8c', 'Head of Project Coordination (Project Coordination Team)', 'Leads the Project Coordination team, responsible for communication, documentation, and project administration.', '2024-09-08 00:24:00.169297-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (198, 1, false, true, 73, NULL, '9cc77c56-605f-4cf4-85c0-7b8305a2b59a', 'Senior Software Developer', 'Experienced software developer with advanced skills.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (199, 1, false, true, 73, NULL, '321abbc0-ead0-4adc-95ed-54b78c28d966', 'Software Developer', 'Develops software applications.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (200, 1, false, true, 73, NULL, '7abc2834-d9aa-4a4a-84a5-6b15edb3f569', 'Junior Software Developer', 'New software developer with basic skills.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (687, 1, false, true, 167, NULL, '6a38afbb-da4b-454c-ad89-0da9d085ff87', 'Community Manager (Social Media Team)', 'Engages with online communities, responds to questions, and fosters positive interactions on social media.', '2024-09-08 00:52:57.114675-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (201, 1, false, true, 73, NULL, '59ebe8c6-8970-4fda-a259-964b84f4835e', 'Software Architect', 'Designs and architects software systems.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (202, 1, false, true, 73, NULL, '6f20811f-18c7-46da-a4ee-b683084e9b21', 'Technical Lead', 'Leads a team of software developers.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (764, 1, false, true, 186, NULL, 'f131b491-9274-46e2-ba26-090f5996b5f2', 'Logistics Coordinator (Transportation Team)', 'Logistics Coordinator', '2024-09-08 21:52:53.987429-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (775, 1, false, true, 188, NULL, '9a5dcc6d-2073-4c36-bce3-c96542777783', 'Service Advisor (Customer Support Team)', 'Service Advisor', '2024-09-08 21:53:57.319122-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (780, 1, false, true, 189, NULL, 'c66fd779-2d99-47f3-ac23-52162ee77ef4', 'Scheduling Specialist (Service Scheduling Team)', 'Scheduling Specialist', '2024-09-08 21:54:16.833506-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (203, 1, false, true, 73, NULL, '4b1b047d-f4bd-4401-98fd-9d659e89be94', 'DevOps Engineer', 'Develops and maintains infrastructure and automation.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (442, 1, false, true, 193, NULL, '231fd65e-01b2-4beb-9f41-0b5eca72afa6', 'Senior Financial Analyst', 'Experienced analyst responsible for financial reporting.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (261, 1, false, true, 75, NULL, '673bd5c3-d0bb-4707-9581-47c8d6edf9b3', 'Account Manager (TechnoSoft, Marketing and Sales Department)', 'Manages relationships with existing customers.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (339, 1, false, true, 109, NULL, '0d1dd856-845f-4731-af1f-60d7f0e9d67b', 'Business Analyst (TechnoSoft, Project Management Department)', 'Analyzes business needs and translates them into functional requirements.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (329, 1, false, true, 109, NULL, '3f8024c8-0897-4ff4-9f7a-2c3524b9401c', 'Project Management Manager (TechnoSoft, Project Management Department)', 'Manager role in Project Management Department', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (327, 1, false, true, 109, NULL, '4d04476f-3c9d-49de-a461-d89c1c465cc9', 'Director of Project Management Department (TechnoSoft, Project Management Department)', 'Director role in Project Management Department', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (333, 1, false, true, 109, NULL, 'd6879ef3-6b92-4d49-9ec5-ede7a2ceb0a5', 'Scrum Master (TechnoSoft, Project Management Department)', 'Facilitates Scrum processes and helps teams succeed.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (335, 1, false, true, 109, NULL, '7852f3e6-9b87-4fcf-84d6-57a997d75517', 'Product Owner (TechnoSoft, Project Management Department)', 'Represents the voice of the customer and manages the product backlog.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (337, 1, false, true, 109, NULL, '003bca6e-2a78-4897-af78-c4450e9c40e1', 'Project Coordinator (TechnoSoft, Project Management Department)', 'Provides administrative support for projects.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (331, 1, false, true, 109, NULL, 'd738b37d-d62c-4253-8f46-f0cf6762c485', 'Project Manager (TechnoSoft, Project Management Department)', 'Manages projects from start to finish.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (330, 1, false, true, 81, NULL, 'b6957a19-ab0d-4a34-92d2-314a75bff32d', 'Project Manager (Affordable Construction, Project Management Department)', 'Manages projects from start to finish.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+INSERT INTO public."OrganizationItems" ("Id", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "Address", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (336, 1, false, true, 81, NULL, 'f240b2b3-2055-43ee-9f87-c58da16c3130', 'Project Coordinator (Affordable Construction, Project Management Department)', 'Provides administrative support for projects.', '2024-09-21 02:36:48.719602-07', NULL, 1);
+
+
+--
+-- Data for Name: Organizations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public."Organizations" ("Id", "CompanyId", "HeadItemId", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (2, NULL, 57, '0f04719d-bb9d-4cee-b679-230c2144ae98', 'TechnoSoft', 'A company specializing in software and information technology development', '2024-08-22 12:09:44.899458-07', NULL, 1);
+INSERT INTO public."Organizations" ("Id", "CompanyId", "HeadItemId", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (4, NULL, 60, '3e56d22e-133e-4d02-a6c8-69fece07c2b1', 'FinanceInvest', 'A financial company providing investment services. The company allows you to calculate the profitability of activities, predict risks and provide a financial forecast for the activities of a company''s contour', '2024-08-22 12:09:44.899458-07', NULL, 1);
+INSERT INTO public."Organizations" ("Id", "CompanyId", "HeadItemId", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (5, NULL, 63, '91c2e7c2-ae47-4e29-bc3e-d09042f29fcb', 'Media Group', 'A media holding that includes various media resources (TV, radio, Internet). The company allows you to promote the company''s brand, as well as attract investment and new employees', '2024-08-22 12:09:44.899458-07', NULL, 1);
+INSERT INTO public."Organizations" ("Id", "CompanyId", "HeadItemId", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (6, NULL, 66, '48612e20-9886-4420-be2c-122e357584dd', 'AutoTechCenter', 'A car service center providing a full range of car repair and maintenance services, and also delivers building materials, transports employees on business trips, and repairs cars', '2024-08-22 12:09:44.899458-07', NULL, 1);
+INSERT INTO public."Organizations" ("Id", "CompanyId", "HeadItemId", "Uid", "Name", "Description", "DateCreated", "DateChanged", "BusinessEntityStatus") VALUES (3, NULL, 69, '7b3147f4-746f-487e-aee7-e44cc6938a6c', 'Affordable Construction', 'A construction company engaged in environmentally friendly construction. The company provides construction services to third-party organizations or sells construction materials, and also helps build infrastructure and equip buildings for the operation of a number of companies.', '2024-08-22 12:09:44.899458-07', NULL, 1);
+
+
+--
+-- Data for Name: Project; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- Data for Name: ProjectPhase; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- Data for Name: ProjectPlanItem; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- Data for Name: Risk; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- Data for Name: Skill; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- Data for Name: UserAccountGroups; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- Data for Name: UserAccounts; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- Data for Name: UserGroups; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- Data for Name: __EFMigrationsHistory; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public."__EFMigrationsHistory" ("MigrationId", "ProductVersion") VALUES ('20240819064601_InitialCreate', '6.0.1');
+
+
+--
+-- Name: Absenses_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Absenses_Id_seq"', 1, false);
+
+
+--
+-- Name: Companies_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Companies_Id_seq"', 1, false);
+
+
+--
+-- Name: Contacts_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Contacts_Id_seq"', 1, false);
+
+
+--
+-- Name: Contract_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Contract_Id_seq"', 1, false);
+
+
+--
+-- Name: Customer_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Customer_Id_seq"', 1, false);
+
+
+--
+-- Name: EmployeeUserAccounts_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."EmployeeUserAccounts_Id_seq"', 1, false);
+
+
+--
+-- Name: Employees_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Employees_Id_seq"', 1, false);
+
+
+--
+-- Name: OrganizationItems_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."OrganizationItems_Id_seq"', 780, true);
+
+
+--
+-- Name: Organizations_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Organizations_Id_seq"', 6, true);
+
+
+--
+-- Name: ProjectPhase_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."ProjectPhase_Id_seq"', 1, false);
+
+
+--
+-- Name: ProjectPlanItem_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."ProjectPlanItem_Id_seq"', 1, false);
+
+
+--
+-- Name: Project_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Project_Id_seq"', 1, false);
+
+
+--
+-- Name: Risk_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Risk_Id_seq"', 1, false);
+
+
+--
+-- Name: Skill_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Skill_Id_seq"', 1, false);
+
+
+--
+-- Name: UserAccountGroups_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."UserAccountGroups_Id_seq"', 1, false);
+
+
+--
+-- Name: UserAccounts_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."UserAccounts_Id_seq"', 1, false);
+
+
+--
+-- Name: UserGroups_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."UserGroups_Id_seq"', 1, false);
+
+
+--
+-- Name: Absenses PK_Absenses; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Absenses"
+    ADD CONSTRAINT "PK_Absenses" PRIMARY KEY ("Id");
+
+
+--
+-- Name: Companies PK_Companies; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Companies"
+    ADD CONSTRAINT "PK_Companies" PRIMARY KEY ("Id");
+
+
+--
+-- Name: CompanyContract PK_CompanyContract; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."CompanyContract"
+    ADD CONSTRAINT "PK_CompanyContract" PRIMARY KEY ("ContractsId", "CustomerCompaniesId");
+
+
+--
+-- Name: CompanyEmployee PK_CompanyEmployee; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."CompanyEmployee"
+    ADD CONSTRAINT "PK_CompanyEmployee" PRIMARY KEY ("CompaniesId", "EmployeesId");
+
+
+--
+-- Name: Contacts PK_Contacts; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Contacts"
+    ADD CONSTRAINT "PK_Contacts" PRIMARY KEY ("Id");
+
+
+--
+-- Name: Contract PK_Contract; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Contract"
+    ADD CONSTRAINT "PK_Contract" PRIMARY KEY ("Id");
+
+
+--
+-- Name: ContractCustomer PK_ContractCustomer; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."ContractCustomer"
+    ADD CONSTRAINT "PK_ContractCustomer" PRIMARY KEY ("ContractsId", "CustomersId");
+
+
+--
+-- Name: ContractEmployee PK_ContractEmployee; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."ContractEmployee"
+    ADD CONSTRAINT "PK_ContractEmployee" PRIMARY KEY ("ContractsId", "OurEmployeesId");
+
+
+--
+-- Name: ContractOrganization PK_ContractOrganization; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."ContractOrganization"
+    ADD CONSTRAINT "PK_ContractOrganization" PRIMARY KEY ("ContractsId", "OurOrganizationsId");
+
+
+--
+-- Name: Customer PK_Customer; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Customer"
+    ADD CONSTRAINT "PK_Customer" PRIMARY KEY ("Id");
+
+
+--
+-- Name: EmployeeOrganizationItem PK_EmployeeOrganizationItem; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."EmployeeOrganizationItem"
+    ADD CONSTRAINT "PK_EmployeeOrganizationItem" PRIMARY KEY ("EmployeesId", "OrganizationItemsId");
+
+
+--
+-- Name: EmployeeUserAccounts PK_EmployeeUserAccounts; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."EmployeeUserAccounts"
+    ADD CONSTRAINT "PK_EmployeeUserAccounts" PRIMARY KEY ("Id");
+
+
+--
+-- Name: Employees PK_Employees; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Employees"
+    ADD CONSTRAINT "PK_Employees" PRIMARY KEY ("Id");
+
+
+--
+-- Name: OrganizationItems PK_OrganizationItems; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."OrganizationItems"
+    ADD CONSTRAINT "PK_OrganizationItems" PRIMARY KEY ("Id");
+
+
+--
+-- Name: Organizations PK_Organizations; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Organizations"
+    ADD CONSTRAINT "PK_Organizations" PRIMARY KEY ("Id");
+
+
+--
+-- Name: Project PK_Project; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Project"
+    ADD CONSTRAINT "PK_Project" PRIMARY KEY ("Id");
+
+
+--
+-- Name: ProjectPhase PK_ProjectPhase; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."ProjectPhase"
+    ADD CONSTRAINT "PK_ProjectPhase" PRIMARY KEY ("Id");
+
+
+--
+-- Name: ProjectPlanItem PK_ProjectPlanItem; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."ProjectPlanItem"
+    ADD CONSTRAINT "PK_ProjectPlanItem" PRIMARY KEY ("Id");
+
+
+--
+-- Name: Risk PK_Risk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Risk"
+    ADD CONSTRAINT "PK_Risk" PRIMARY KEY ("Id");
+
+
+--
+-- Name: Skill PK_Skill; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Skill"
+    ADD CONSTRAINT "PK_Skill" PRIMARY KEY ("Id");
+
+
+--
+-- Name: UserAccountGroups PK_UserAccountGroups; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."UserAccountGroups"
+    ADD CONSTRAINT "PK_UserAccountGroups" PRIMARY KEY ("Id");
+
+
+--
+-- Name: UserAccounts PK_UserAccounts; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."UserAccounts"
+    ADD CONSTRAINT "PK_UserAccounts" PRIMARY KEY ("Id");
+
+
+--
+-- Name: UserGroups PK_UserGroups; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."UserGroups"
+    ADD CONSTRAINT "PK_UserGroups" PRIMARY KEY ("Id");
+
+
+--
+-- Name: __EFMigrationsHistory PK___EFMigrationsHistory; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."__EFMigrationsHistory"
+    ADD CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId");
+
+
+--
+-- Name: IX_Absenses_EmployeeId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_Absenses_EmployeeId" ON public."Absenses" USING btree ("EmployeeId");
+
+
+--
+-- Name: IX_Companies_ContactId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_Companies_ContactId" ON public."Companies" USING btree ("ContactId");
+
+
+--
+-- Name: IX_CompanyContract_CustomerCompaniesId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_CompanyContract_CustomerCompaniesId" ON public."CompanyContract" USING btree ("CustomerCompaniesId");
+
+
+--
+-- Name: IX_CompanyEmployee_EmployeesId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_CompanyEmployee_EmployeesId" ON public."CompanyEmployee" USING btree ("EmployeesId");
+
+
+--
+-- Name: IX_ContractCustomer_CustomersId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_ContractCustomer_CustomersId" ON public."ContractCustomer" USING btree ("CustomersId");
+
+
+--
+-- Name: IX_ContractEmployee_OurEmployeesId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_ContractEmployee_OurEmployeesId" ON public."ContractEmployee" USING btree ("OurEmployeesId");
+
+
+--
+-- Name: IX_ContractOrganization_OurOrganizationsId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_ContractOrganization_OurOrganizationsId" ON public."ContractOrganization" USING btree ("OurOrganizationsId");
+
+
+--
+-- Name: IX_Customer_CompanyId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_Customer_CompanyId" ON public."Customer" USING btree ("CompanyId");
+
+
+--
+-- Name: IX_Customer_ContactId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_Customer_ContactId" ON public."Customer" USING btree ("ContactId");
+
+
+--
+-- Name: IX_Customer_UserAccountId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_Customer_UserAccountId" ON public."Customer" USING btree ("UserAccountId");
+
+
+--
+-- Name: IX_EmployeeOrganizationItem_OrganizationItemsId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_EmployeeOrganizationItem_OrganizationItemsId" ON public."EmployeeOrganizationItem" USING btree ("OrganizationItemsId");
+
+
+--
+-- Name: IX_EmployeeUserAccounts_EmployeeId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_EmployeeUserAccounts_EmployeeId" ON public."EmployeeUserAccounts" USING btree ("EmployeeId");
+
+
+--
+-- Name: IX_EmployeeUserAccounts_UserAccountId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_EmployeeUserAccounts_UserAccountId" ON public."EmployeeUserAccounts" USING btree ("UserAccountId");
+
+
+--
+-- Name: IX_OrganizationItems_ParentItemId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_OrganizationItems_ParentItemId" ON public."OrganizationItems" USING btree ("ParentItemId");
+
+
+--
+-- Name: IX_Organizations_CompanyId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_Organizations_CompanyId" ON public."Organizations" USING btree ("CompanyId");
+
+
+--
+-- Name: IX_Organizations_HeadItemId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_Organizations_HeadItemId" ON public."Organizations" USING btree ("HeadItemId");
+
+
+--
+-- Name: IX_ProjectPhase_ProjectId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_ProjectPhase_ProjectId" ON public."ProjectPhase" USING btree ("ProjectId");
+
+
+--
+-- Name: IX_ProjectPhase_ProjectPlanItemId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_ProjectPhase_ProjectPlanItemId" ON public."ProjectPhase" USING btree ("ProjectPlanItemId");
+
+
+--
+-- Name: IX_ProjectPlanItem_ProjectPlanItemId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_ProjectPlanItem_ProjectPlanItemId" ON public."ProjectPlanItem" USING btree ("ProjectPlanItemId");
+
+
+--
+-- Name: IX_Project_CompanyId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_Project_CompanyId" ON public."Project" USING btree ("CompanyId");
+
+
+--
+-- Name: IX_Project_ContractId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_Project_ContractId" ON public."Project" USING btree ("ContractId");
+
+
+--
+-- Name: IX_Project_CustomerId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_Project_CustomerId" ON public."Project" USING btree ("CustomerId");
+
+
+--
+-- Name: IX_Project_ManagerId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_Project_ManagerId" ON public."Project" USING btree ("ManagerId");
+
+
+--
+-- Name: IX_Risk_AuthorChangedId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_Risk_AuthorChangedId" ON public."Risk" USING btree ("AuthorChangedId");
+
+
+--
+-- Name: IX_Risk_AuthorCreatedId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_Risk_AuthorCreatedId" ON public."Risk" USING btree ("AuthorCreatedId");
+
+
+--
+-- Name: IX_Risk_AuthorResolvedId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_Risk_AuthorResolvedId" ON public."Risk" USING btree ("AuthorResolvedId");
+
+
+--
+-- Name: IX_Risk_ProjectId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_Risk_ProjectId" ON public."Risk" USING btree ("ProjectId");
+
+
+--
+-- Name: IX_Skill_EmployeeId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_Skill_EmployeeId" ON public."Skill" USING btree ("EmployeeId");
+
+
+--
+-- Name: IX_UserAccountGroups_UserAccountId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_UserAccountGroups_UserAccountId" ON public."UserAccountGroups" USING btree ("UserAccountId");
+
+
+--
+-- Name: IX_UserAccountGroups_UserGroupId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_UserAccountGroups_UserGroupId" ON public."UserAccountGroups" USING btree ("UserGroupId");
+
+
+--
+-- Name: IX_UserGroups_AuthorChangedId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_UserGroups_AuthorChangedId" ON public."UserGroups" USING btree ("AuthorChangedId");
+
+
+--
+-- Name: IX_UserGroups_AuthorCreatedId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_UserGroups_AuthorCreatedId" ON public."UserGroups" USING btree ("AuthorCreatedId");
+
+
+--
+-- Name: Absenses FK_Absenses_Employees_EmployeeId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Absenses"
+    ADD CONSTRAINT "FK_Absenses_Employees_EmployeeId" FOREIGN KEY ("EmployeeId") REFERENCES public."Employees"("Id");
+
+
+--
+-- Name: Companies FK_Companies_Contacts_ContactId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Companies"
+    ADD CONSTRAINT "FK_Companies_Contacts_ContactId" FOREIGN KEY ("ContactId") REFERENCES public."Contacts"("Id");
+
+
+--
+-- Name: CompanyContract FK_CompanyContract_Companies_CustomerCompaniesId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."CompanyContract"
+    ADD CONSTRAINT "FK_CompanyContract_Companies_CustomerCompaniesId" FOREIGN KEY ("CustomerCompaniesId") REFERENCES public."Companies"("Id") ON DELETE CASCADE;
+
+
+--
+-- Name: CompanyContract FK_CompanyContract_Contract_ContractsId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."CompanyContract"
+    ADD CONSTRAINT "FK_CompanyContract_Contract_ContractsId" FOREIGN KEY ("ContractsId") REFERENCES public."Contract"("Id") ON DELETE CASCADE;
+
+
+--
+-- Name: CompanyEmployee FK_CompanyEmployee_Companies_CompaniesId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."CompanyEmployee"
+    ADD CONSTRAINT "FK_CompanyEmployee_Companies_CompaniesId" FOREIGN KEY ("CompaniesId") REFERENCES public."Companies"("Id") ON DELETE CASCADE;
+
+
+--
+-- Name: CompanyEmployee FK_CompanyEmployee_Employees_EmployeesId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."CompanyEmployee"
+    ADD CONSTRAINT "FK_CompanyEmployee_Employees_EmployeesId" FOREIGN KEY ("EmployeesId") REFERENCES public."Employees"("Id") ON DELETE CASCADE;
+
+
+--
+-- Name: ContractCustomer FK_ContractCustomer_Contract_ContractsId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."ContractCustomer"
+    ADD CONSTRAINT "FK_ContractCustomer_Contract_ContractsId" FOREIGN KEY ("ContractsId") REFERENCES public."Contract"("Id") ON DELETE CASCADE;
+
+
+--
+-- Name: ContractCustomer FK_ContractCustomer_Customer_CustomersId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."ContractCustomer"
+    ADD CONSTRAINT "FK_ContractCustomer_Customer_CustomersId" FOREIGN KEY ("CustomersId") REFERENCES public."Customer"("Id") ON DELETE CASCADE;
+
+
+--
+-- Name: ContractEmployee FK_ContractEmployee_Contract_ContractsId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."ContractEmployee"
+    ADD CONSTRAINT "FK_ContractEmployee_Contract_ContractsId" FOREIGN KEY ("ContractsId") REFERENCES public."Contract"("Id") ON DELETE CASCADE;
+
+
+--
+-- Name: ContractEmployee FK_ContractEmployee_Employees_OurEmployeesId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."ContractEmployee"
+    ADD CONSTRAINT "FK_ContractEmployee_Employees_OurEmployeesId" FOREIGN KEY ("OurEmployeesId") REFERENCES public."Employees"("Id") ON DELETE CASCADE;
+
+
+--
+-- Name: ContractOrganization FK_ContractOrganization_Contract_ContractsId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."ContractOrganization"
+    ADD CONSTRAINT "FK_ContractOrganization_Contract_ContractsId" FOREIGN KEY ("ContractsId") REFERENCES public."Contract"("Id") ON DELETE CASCADE;
+
+
+--
+-- Name: ContractOrganization FK_ContractOrganization_Organizations_OurOrganizationsId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."ContractOrganization"
+    ADD CONSTRAINT "FK_ContractOrganization_Organizations_OurOrganizationsId" FOREIGN KEY ("OurOrganizationsId") REFERENCES public."Organizations"("Id") ON DELETE CASCADE;
+
+
+--
+-- Name: Customer FK_Customer_Companies_CompanyId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Customer"
+    ADD CONSTRAINT "FK_Customer_Companies_CompanyId" FOREIGN KEY ("CompanyId") REFERENCES public."Companies"("Id");
+
+
+--
+-- Name: Customer FK_Customer_Contacts_ContactId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Customer"
+    ADD CONSTRAINT "FK_Customer_Contacts_ContactId" FOREIGN KEY ("ContactId") REFERENCES public."Contacts"("Id");
+
+
+--
+-- Name: Customer FK_Customer_UserAccounts_UserAccountId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Customer"
+    ADD CONSTRAINT "FK_Customer_UserAccounts_UserAccountId" FOREIGN KEY ("UserAccountId") REFERENCES public."UserAccounts"("Id");
+
+
+--
+-- Name: EmployeeOrganizationItem FK_EmployeeOrganizationItem_Employees_EmployeesId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."EmployeeOrganizationItem"
+    ADD CONSTRAINT "FK_EmployeeOrganizationItem_Employees_EmployeesId" FOREIGN KEY ("EmployeesId") REFERENCES public."Employees"("Id") ON DELETE CASCADE;
+
+
+--
+-- Name: EmployeeOrganizationItem FK_EmployeeOrganizationItem_OrganizationItems_OrganizationItem~; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."EmployeeOrganizationItem"
+    ADD CONSTRAINT "FK_EmployeeOrganizationItem_OrganizationItems_OrganizationItem~" FOREIGN KEY ("OrganizationItemsId") REFERENCES public."OrganizationItems"("Id") ON DELETE CASCADE;
+
+
+--
+-- Name: EmployeeUserAccounts FK_EmployeeUserAccounts_Employees_EmployeeId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."EmployeeUserAccounts"
+    ADD CONSTRAINT "FK_EmployeeUserAccounts_Employees_EmployeeId" FOREIGN KEY ("EmployeeId") REFERENCES public."Employees"("Id") ON DELETE CASCADE;
+
+
+--
+-- Name: EmployeeUserAccounts FK_EmployeeUserAccounts_UserAccounts_UserAccountId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."EmployeeUserAccounts"
+    ADD CONSTRAINT "FK_EmployeeUserAccounts_UserAccounts_UserAccountId" FOREIGN KEY ("UserAccountId") REFERENCES public."UserAccounts"("Id") ON DELETE CASCADE;
+
+
+--
+-- Name: OrganizationItems FK_OrganizationItems_OrganizationItems_ParentItemId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."OrganizationItems"
+    ADD CONSTRAINT "FK_OrganizationItems_OrganizationItems_ParentItemId" FOREIGN KEY ("ParentItemId") REFERENCES public."OrganizationItems"("Id");
+
+
+--
+-- Name: Organizations FK_Organizations_Companies_CompanyId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Organizations"
+    ADD CONSTRAINT "FK_Organizations_Companies_CompanyId" FOREIGN KEY ("CompanyId") REFERENCES public."Companies"("Id");
+
+
+--
+-- Name: Organizations FK_Organizations_OrganizationItems_HeadItemId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Organizations"
+    ADD CONSTRAINT "FK_Organizations_OrganizationItems_HeadItemId" FOREIGN KEY ("HeadItemId") REFERENCES public."OrganizationItems"("Id");
+
+
+--
+-- Name: ProjectPhase FK_ProjectPhase_ProjectPlanItem_ProjectPlanItemId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."ProjectPhase"
+    ADD CONSTRAINT "FK_ProjectPhase_ProjectPlanItem_ProjectPlanItemId" FOREIGN KEY ("ProjectPlanItemId") REFERENCES public."ProjectPlanItem"("Id");
+
+
+--
+-- Name: ProjectPhase FK_ProjectPhase_Project_ProjectId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."ProjectPhase"
+    ADD CONSTRAINT "FK_ProjectPhase_Project_ProjectId" FOREIGN KEY ("ProjectId") REFERENCES public."Project"("Id");
+
+
+--
+-- Name: ProjectPlanItem FK_ProjectPlanItem_ProjectPlanItem_ProjectPlanItemId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."ProjectPlanItem"
+    ADD CONSTRAINT "FK_ProjectPlanItem_ProjectPlanItem_ProjectPlanItemId" FOREIGN KEY ("ProjectPlanItemId") REFERENCES public."ProjectPlanItem"("Id");
+
+
+--
+-- Name: Project FK_Project_Companies_CompanyId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Project"
+    ADD CONSTRAINT "FK_Project_Companies_CompanyId" FOREIGN KEY ("CompanyId") REFERENCES public."Companies"("Id");
+
+
+--
+-- Name: Project FK_Project_Contract_ContractId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Project"
+    ADD CONSTRAINT "FK_Project_Contract_ContractId" FOREIGN KEY ("ContractId") REFERENCES public."Contract"("Id") ON DELETE CASCADE;
+
+
+--
+-- Name: Project FK_Project_Customer_CustomerId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Project"
+    ADD CONSTRAINT "FK_Project_Customer_CustomerId" FOREIGN KEY ("CustomerId") REFERENCES public."Customer"("Id");
+
+
+--
+-- Name: Project FK_Project_Employees_ManagerId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Project"
+    ADD CONSTRAINT "FK_Project_Employees_ManagerId" FOREIGN KEY ("ManagerId") REFERENCES public."Employees"("Id");
+
+
+--
+-- Name: Risk FK_Risk_Employees_AuthorChangedId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Risk"
+    ADD CONSTRAINT "FK_Risk_Employees_AuthorChangedId" FOREIGN KEY ("AuthorChangedId") REFERENCES public."Employees"("Id");
+
+
+--
+-- Name: Risk FK_Risk_Employees_AuthorCreatedId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Risk"
+    ADD CONSTRAINT "FK_Risk_Employees_AuthorCreatedId" FOREIGN KEY ("AuthorCreatedId") REFERENCES public."Employees"("Id");
+
+
+--
+-- Name: Risk FK_Risk_Employees_AuthorResolvedId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Risk"
+    ADD CONSTRAINT "FK_Risk_Employees_AuthorResolvedId" FOREIGN KEY ("AuthorResolvedId") REFERENCES public."Employees"("Id");
+
+
+--
+-- Name: Risk FK_Risk_Project_ProjectId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Risk"
+    ADD CONSTRAINT "FK_Risk_Project_ProjectId" FOREIGN KEY ("ProjectId") REFERENCES public."Project"("Id");
+
+
+--
+-- Name: Skill FK_Skill_Employees_EmployeeId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Skill"
+    ADD CONSTRAINT "FK_Skill_Employees_EmployeeId" FOREIGN KEY ("EmployeeId") REFERENCES public."Employees"("Id");
+
+
+--
+-- Name: UserAccountGroups FK_UserAccountGroups_UserAccounts_UserAccountId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."UserAccountGroups"
+    ADD CONSTRAINT "FK_UserAccountGroups_UserAccounts_UserAccountId" FOREIGN KEY ("UserAccountId") REFERENCES public."UserAccounts"("Id") ON DELETE CASCADE;
+
+
+--
+-- Name: UserAccountGroups FK_UserAccountGroups_UserGroups_UserGroupId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."UserAccountGroups"
+    ADD CONSTRAINT "FK_UserAccountGroups_UserGroups_UserGroupId" FOREIGN KEY ("UserGroupId") REFERENCES public."UserGroups"("Id") ON DELETE CASCADE;
+
+
+--
+-- Name: UserGroups FK_UserGroups_UserAccounts_AuthorChangedId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."UserGroups"
+    ADD CONSTRAINT "FK_UserGroups_UserAccounts_AuthorChangedId" FOREIGN KEY ("AuthorChangedId") REFERENCES public."UserAccounts"("Id");
+
+
+--
+-- Name: UserGroups FK_UserGroups_UserAccounts_AuthorCreatedId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."UserGroups"
+    ADD CONSTRAINT "FK_UserGroups_UserAccounts_AuthorCreatedId" FOREIGN KEY ("AuthorCreatedId") REFERENCES public."UserAccounts"("Id");
+
+
+--
+-- PostgreSQL database dump complete
+--
 
--- Update HeadItem for FinanceInvest
-UPDATE "Organizations" SET "HeadItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (FinanceInvest)') 
-WHERE "Name" = 'FinanceInvest';
-
--- Update HeadItem for Media Group
-UPDATE "Organizations" SET "HeadItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'President (Media Group)' LIMIT 1) 
-WHERE "Name" = 'Media Group';
-
--- Update HeadItem for AutoTechCenter
-UPDATE "Organizations" SET "HeadItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director (AutoTechCenter)' LIMIT 1) 
-WHERE "Name" = 'AutoTechCenter';
-
--- Update HeadItem for Affordable Construction
-UPDATE "Organizations" SET "HeadItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' LIMIT 1) 
-WHERE "Name" = 'Affordable Construction';
-
------------------------
-
--- UPDATE SQL queries to establish dependencies in OrganizationItems for top-managers.
-
--- Media Group
-UPDATE "OrganizationItems" SET "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'President (Media Group)') 
-WHERE "Id" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (Media Group)');
-
-UPDATE "OrganizationItems" SET "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (Media Group)') 
-WHERE "Name" = 'Creative Director';
-
--- TechnoSoft
-UPDATE "OrganizationItems" SET "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (TechnoSoft)') 
-WHERE "Name" = 'Technical Director';
-
-UPDATE "OrganizationItems" SET "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (TechnoSoft)') 
-WHERE "Name" = 'Marketing Director';
-
--- FinanceInvest
-UPDATE "OrganizationItems" SET "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (FinanceInvest)') 
-WHERE "Name" = 'Investment Director';
-
-UPDATE "OrganizationItems" SET "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (FinanceInvest)') 
-WHERE "Name" = 'Risk Management Director';
-
--- AutoTechCenter
-UPDATE "OrganizationItems" SET "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director (AutoTechCenter)' LIMIT 1) 
-WHERE "Name" = 'Service Manager';
-
-UPDATE "OrganizationItems" SET "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director (AutoTechCenter)' LIMIT 1) 
-WHERE "Name" = 'Logistics Manager';
-
------------------------
-
--- Departments.
-
--- TechnoSoft
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Software Development Department', 'Responsible for developing software', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (TechnoSoft)'));
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'IT Infrastructure Department', 'Responsible for managing IT infrastructure', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (TechnoSoft)'));
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Marketing and Sales Department (TechnoSoft)', 'Responsible for marketing and sales activities', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (TechnoSoft)'));
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Quality Assurance Department', 'Responsible for testing software', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (TechnoSoft)'));
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Project Management Department', 'Responsible for project management', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (TechnoSoft)'));
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Research and Development Department', 'Responsible for research and development activities', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (TechnoSoft)'));
-
--- FinanceInvest
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Investment Banking Department', 'Responsible for investment banking activities', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (FinanceInvest)'));
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Asset Management Department', 'Responsible for managing assets', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (FinanceInvest)'));
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId")
-VALUES (uuid_generate_v4(), 'Risk Management Department', 'Responsible for managing risks', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (FinanceInvest)'));
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Financial Analysis Department', 'Responsible for financial analysis', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (FinanceInvest)'));
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Client Services Department', 'Responsible for client services', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (FinanceInvest)'));
-
--- Affordable Construction
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Project Management Department', 'Responsible for project management', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' AND "ItemType" = 0));
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Construction Management Department', 'Responsible for construction management', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' AND "ItemType" = 0));
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Construction Engineering Department', 'Responsible for construction engineering', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' AND "ItemType" = 0));
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Design and Engineering Department', 'Responsible for design and engineering', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' AND "ItemType" = 0));
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Procurement Department', 'Responsible for procurement', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' AND "ItemType" = 0));
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Quality Control Department', 'Responsible for quality control', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' AND "ItemType" = 0));
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Safety and Environment Department', 'Responsible for safety and environment', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' AND "ItemType" = 0));
-
--- Media Group
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Television Department', 'Responsible for television production', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (Media Group)'));
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Radio Department', 'Responsible for radio production', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (Media Group)'));
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Online Media Department', 'Responsible for online media production', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (Media Group)'));
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Marketing and Sales Department (Media Group)', 'Responsible for marketing and sales activities', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (Media Group)'));
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Finance and Operations Department', 'Responsible for finance and operation', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (Media Group)'));
-
--- AutoTechCenter
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Car Repair and Maintenance Department', 'Responsible for car repair and maintenance', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director (AutoTechCenter)'));
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Body Shop Department', 'Responsible for body shop services', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director (AutoTechCenter)'));
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Parts and Accessories Department', 'Responsible for selling parts and accessories', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director (AutoTechCenter)'));
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Logistics Department', 'Responsible for logistics operations', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director (AutoTechCenter)'));
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "Address", "ParentItemId") 
-VALUES (uuid_generate_v4(), 'Customer Service Department', 'Responsible for customer service', NOW(), 0, false, true, NULL, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Director (AutoTechCenter)'));
-
--- Insert teams into "Car Repair and Maintenance Department"
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Car Repair and Maintenance Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Mechanical Repair Team',
-    'Team responsible for mechanical repairs',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Car Repair and Maintenance Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Electrical Repair Team',
-    'Team responsible for electrical repairs',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Car Repair and Maintenance Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Diagnostics Team',
-    'Team responsible for vehicle diagnostics',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Car Repair and Maintenance Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Scheduled Maintenance Team',
-    'Team responsible for scheduled maintenance services',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Car Repair and Maintenance Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Preventive Maintenance Team',
-    'Team responsible for preventive maintenance services',
-    1;
-
--- Insert teams into "Parts and Accessories Department"
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Parts and Accessories Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Parts Sales Team',
-    'Team responsible for selling parts and accessories',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Parts and Accessories Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Inventory Management Team',
-    'Team responsible for managing parts inventory',
-    1;
-
--- Insert teams into "Logistics Department"
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Logistics Department' AND "ParentItemId" IS NOT NULL),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Transportation Team',
-    'Team responsible for vehicle transportation',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Logistics Department' AND "ParentItemId" IS NOT NULL),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Delivery Team',
-    'Team responsible for delivery of parts and vehicles',
-    1;
-
--- Insert teams into "Customer Service Department"
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Customer Service Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Customer Support Team',
-    'Team responsible for providing customer support',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Customer Service Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Service Scheduling Team',
-    'Team responsible for scheduling service appointments',
-    1;
-
--- Insert teams into "Body Shop Department"
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Body Shop Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Body Repair Team',
-    'Team responsible for repairing body damage',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Body Shop Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Paint Team',
-    'Team responsible for vehicle painting',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Body Shop Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Detailing Team',
-    'Team responsible for vehicle detailing',
-    1;
-
------------------------
-
--- Teams.
-
--- Insert teams into Software Development Department
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    oi."Id", -- Department ID.
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Frontend Development Team',
-    'Team responsible for developing the user interface of the application',
-    1
-FROM "OrganizationItems" oi
-WHERE oi."Name" = 'Software Development Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    oi."Id", -- Department ID.
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Backend Development Team',
-    'Team responsible for developing the server-side logic of the application',
-    1
-FROM "OrganizationItems" oi
-WHERE oi."Name" = 'Software Development Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    oi."Id", -- Department ID.
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Mobile Development Team',
-    'Team responsible for developing mobile applications',
-    1
-FROM "OrganizationItems" oi
-WHERE oi."Name" = 'Software Development Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    oi."Id", -- Department ID.
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'QA Testing Team',
-    'Team responsible for testing the application for bugs and defects',
-    1
-FROM "OrganizationItems" oi
-WHERE oi."Name" = 'Software Development Department';
-
--- Insert teams into IT Infrastructure Department
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    oi."Id", -- Department ID.
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Network Administration Team',
-    'Team responsible for managing the network infrastructure',
-    1
-FROM "OrganizationItems" oi
-WHERE oi."Name" = 'IT Infrastructure Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    oi."Id", -- Department ID.
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'System Administration Team',
-    'Team responsible for managing the server infrastructure',
-    1
-FROM "OrganizationItems" oi
-WHERE oi."Name" = 'IT Infrastructure Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    oi."Id", -- Department ID.
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Security Team',
-    'Team responsible for securing the network and systems',
-    1
-FROM "OrganizationItems" oi
-WHERE oi."Name" = 'IT Infrastructure Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    oi."Id", -- Department ID.
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Database Administration Team',
-    'Team responsible for managing the databases',
-    1
-FROM "OrganizationItems" oi
-WHERE oi."Name" = 'IT Infrastructure Department';
-
--- Insert teams into Quality Assurance Department
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    oi."Id", -- Department ID.
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Manual Testing Team',
-    'Team responsible for manually testing the application',
-    1
-FROM "OrganizationItems" oi
-WHERE oi."Name" = 'Quality Assurance Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    oi."Id", -- Department ID.
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Automation Testing Team',
-    'Team responsible for automating the testing process',
-    1
-FROM "OrganizationItems" oi
-WHERE oi."Name" = 'Quality Assurance Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    oi."Id", -- Department ID.
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Performance Testing Team',
-    'Team responsible for testing the application performance',
-    1
-FROM "OrganizationItems" oi
-WHERE oi."Name" = 'Quality Assurance Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    oi."Id", -- Department ID.
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Security Testing Team',
-    'Team responsible for testing the application security',
-    1
-FROM "OrganizationItems" oi
-WHERE oi."Name" = 'Quality Assurance Department';
-
--- Insert teams into Project Management Department
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    oi."Id", -- Department ID.
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Project Management Team',
-    'Team responsible for managing the project lifecycle',
-    1
-FROM "OrganizationItems" oi
-WHERE oi."Name" = 'Project Management Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    oi."Id", -- Department ID.
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Product Owners Team',
-    'Team responsible for defining the product vision',
-    1
-FROM "OrganizationItems" oi
-WHERE oi."Name" = 'Project Management Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    oi."Id", -- Department ID.
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Scrum Masters Team',
-    'Team responsible for facilitating the scrum process',
-    1
-FROM "OrganizationItems" oi
-WHERE oi."Name" = 'Project Management Department'
-    AND oi."ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'CEO (TechnoSoft)');
-
--- Insert teams into 'Marketing and Sales Department (TechnoSoft)'
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    oi."Id", -- Department ID.
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Marketing Team (TechnoSoft, Marketing and Sales Department)',
-    'Team responsible for developing and executing marketing campaigns',
-    1
-FROM "OrganizationItems" oi
-WHERE oi."Name" = 'Marketing and Sales Department (TechnoSoft)';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    oi."Id", -- Department ID.
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Sales Team (TechnoSoft, Marketing and Sales Department)',
-    'Team responsible for generating leads and closing deals',
-    1
-FROM "OrganizationItems" oi
-WHERE oi."Name" = 'Marketing and Sales Department (TechnoSoft)';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    oi."Id", -- Department ID.
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Content Marketing Team (TechnoSoft, Marketing and Sales Department)',
-    'Team responsible for creating and distributing content',
-    1
-FROM "OrganizationItems" oi
-WHERE oi."Name" = 'Marketing and Sales Department (TechnoSoft)';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    oi."Id", -- Department ID.
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Social Media Marketing Team (TechnoSoft, Marketing and Sales Department)',
-    'Team responsible for managing social media accounts',
-    1
-FROM "OrganizationItems" oi
-WHERE oi."Name" = 'Marketing and Sales Department (TechnoSoft)';
-
--- Insert teams into "Project Management Department"
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Project Management Department' AND "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' AND "ItemType" = 0)),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Project Planning Team',
-    'Team responsible for planning projects',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Project Management Department' AND "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' AND "ItemType" = 0)),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Construction Management Team',
-    'Team responsible for managing construction projects',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Project Management Department' AND "ParentItemId" = (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Management Committee (Affordable Construction)' AND "ItemType" = 0)),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Project Coordination Team',
-    'Team responsible for coordinating project activities',
-    1;
-
--- Insert teams into "Procurement Department"
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Procurement Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Procurement Team',
-    'Team responsible for sourcing and purchasing materials',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Procurement Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Supply Chain Management Team',
-    'Team responsible for managing the supply chain',
-    1;
-
--- Insert teams into "Quality Control Department"
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Quality Control Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Quality Assurance Team',
-    'Team responsible for ensuring quality standards are met',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Quality Control Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Inspection Team',
-    'Team responsible for inspecting materials and processes',
-    1;
-
--- Insert teams into "Safety and Environment Department"
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Safety and Environment Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Safety Officer Team',
-    'Team responsible for safety procedures and training',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Safety and Environment Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Environmental Compliance Team',
-    'Team responsible for environmental compliance and monitoring',
-    1;
-
--- Affordable Construction: Design and Engineering Department.
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "BusinessEntityStatus")
-VALUES (uuid_generate_v4(), 'Structural Engineering Team', 'Structural Engineering Team', NOW(), 4, FALSE, TRUE, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Design and Engineering Department'), 1);
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "BusinessEntityStatus")
-VALUES (uuid_generate_v4(), 'Civil Engineering Team', 'Civil Engineering Team', NOW(), 4, FALSE, TRUE, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Design and Engineering Department'), 1);
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "BusinessEntityStatus")
-VALUES (uuid_generate_v4(), 'Architectural Design Team', 'Architectural Design Team', NOW(), 4, FALSE, TRUE, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Design and Engineering Department'), 1);
-
--- Affordable Construction: Construction Management Department.
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "BusinessEntityStatus")
-VALUES (uuid_generate_v4(), 'Project Planning Team', 'Project Planning Team', NOW(), 4, FALSE, TRUE, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Construction Management Department'), 1);
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "BusinessEntityStatus")
-VALUES (uuid_generate_v4(), 'Construction Management Team', 'Construction Management Team', NOW(), 4, FALSE, TRUE, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Construction Management Department'), 1);
-
-INSERT INTO "OrganizationItems" ("Uid", "Name", "Description", "DateCreated", "ItemType", "IsDeleted", "HardDelete", "ParentItemId", "BusinessEntityStatus")
-VALUES (uuid_generate_v4(), 'Project Coordination Team', 'Project Coordination Team', NOW(), 4, FALSE, TRUE, (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Construction Management Department'), 1);
-
--- Insert teams into "Investment Banking Department"
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Investment Banking Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Equity Research Team',
-    'Team responsible for research and analysis of equity markets',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Investment Banking Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Fixed Income Team',
-    'Team responsible for research and analysis of fixed income markets',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Investment Banking Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Alternative Investments Team',
-    'Team responsible for research and analysis of alternative investments',
-    1;
-
--- Insert teams into "Asset Management Department"
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Asset Management Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Equity Asset Management Team',
-    'Team responsible for managing equity assets',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Asset Management Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Fixed Income Asset Management Team',
-    'Team responsible for managing fixed income assets',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Asset Management Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Alternative Investments Asset Management Team',
-    'Team responsible for managing alternative investments assets',
-    1;
-
--- Insert teams into "Risk Management Department"
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Risk Management Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Market Risk Management Team',
-    'Team responsible for managing market risk',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Risk Management Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Credit Risk Management Team',
-    'Team responsible for managing credit risk',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Risk Management Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Operational Risk Management Team',
-    'Team responsible for managing operational risk',
-    1;
-
--- Insert teams into "Financial Analysis Department"
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Financial Analysis Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Financial Reporting Team',
-    'Team responsible for preparing financial reports',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Financial Analysis Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Accounting Team',
-    'Team responsible for accounting operations',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Financial Analysis Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Regulatory Reporting Team',
-    'Team responsible for preparing regulatory reports',
-    1;
-
--- Insert teams into "Client Services Department"
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Client Services Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Client Relationship Management Team',
-    'Team responsible for managing client relationships',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Client Services Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Client Onboarding Team',
-    'Team responsible for onboarding new clients',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Client Services Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Client Support Team',
-    'Team responsible for providing client support',
-    1;
-
--- Insert teams into "Television Department"
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Television Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Production Team',
-    'Team responsible for planning and executing television productions',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Television Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Camera Crew',
-    'Team responsible for operating cameras and capturing footage',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Television Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Editing Team',
-    'Team responsible for editing and assembling video content',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Television Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Sound Team',
-    'Team responsible for sound recording, mixing, and editing',
-    1;
-
--- Insert teams into "Radio Department"
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Radio Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Production Team',
-    'Team responsible for planning and executing radio productions',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Radio Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'On-Air Team',
-    'Team responsible for presenting and hosting radio programs',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Radio Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Editing Team',
-    'Team responsible for editing and assembling audio content',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Radio Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Sound Team',
-    'Team responsible for sound recording, mixing, and editing',
-    1;
-
--- Insert teams into "Online Media Department"
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Online Media Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Content Creation Team',
-    'Team responsible for creating and producing online content',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Online Media Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Content Editing Team',
-    'Team responsible for editing and proofreading online content',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Online Media Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Social Media Team',
-    'Team responsible for managing social media presence',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Online Media Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'SEO Team',
-    'Team responsible for search engine optimization',
-    1;
-
--- Insert teams into 'Marketing and Sales Department (Media Group)'
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    oi."Id", -- Department ID.
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Marketing Team (Media Group, Marketing and Sales Department)',
-    'Team responsible for developing and executing marketing campaigns',
-    1
-FROM "OrganizationItems" oi
-WHERE oi."Name" = 'Marketing and Sales Department (Media Group)';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    oi."Id", -- Department ID.
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Sales Team (Media Group, Marketing and Sales Department)',
-    'Team responsible for generating leads and closing deals',
-    1
-FROM "OrganizationItems" oi
-WHERE oi."Name" = 'Marketing and Sales Department (Media Group)';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    oi."Id", -- Department ID.
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Content Marketing Team (Media Group, Marketing and Sales Department)',
-    'Team responsible for creating and distributing content',
-    1
-FROM "OrganizationItems" oi
-WHERE oi."Name" = 'Marketing and Sales Department (Media Group)';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    oi."Id", -- Department ID.
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Social Media Marketing Team (Media Group, Marketing and Sales Department)',
-    'Team responsible for managing social media accounts',
-    1
-FROM "OrganizationItems" oi
-WHERE oi."Name" = 'Marketing and Sales Department (Media Group)';
-
--- Insert teams into "Finance and Operations Department"
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Finance and Operations Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Finance Team',
-    'Team responsible for financial management and accounting',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Finance and Operations Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Operations Team',
-    'Team responsible for day-to-day operations and logistics',
-    1;
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "DateCreated", "Uid", "Name", "Description", "BusinessEntityStatus")
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Finance and Operations Department' AND "IsDeleted" = FALSE),
-    FALSE,
-    TRUE,
-    4,
-    NOW(),
-    uuid_generate_v4(),
-    'Human Resources Team',
-    'Team responsible for human resource management',
-    1;
-
------------------------
-
--- Job titles.
-
--- TechnoSoft: Software Development Department.
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Software Development Department'),
-    FALSE,
-    TRUE,
-    1,
-    'Director of Software Development Department',
-    'Head of Software Development Department.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Software Development Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Software Development Department'),
-    FALSE,
-    TRUE,
-    1,
-    'Software Development Manager',
-    'Manages Software Development Teams.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Software Development Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Software Development Department'),
-    FALSE,
-    TRUE,
-    1,
-    'Senior Software Developer',
-    'Experienced software developer with advanced skills.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Software Development Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Software Development Department'),
-    FALSE,
-    TRUE,
-    1,
-    'Software Developer',
-    'Develops software applications.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Software Development Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Software Development Department'),
-    FALSE,
-    TRUE,
-    1,
-    'Junior Software Developer',
-    'New software developer with basic skills.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Software Development Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Software Development Department'),
-    FALSE,
-    TRUE,
-    1,
-    'Software Architect',
-    'Designs and architects software systems.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Software Development Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Software Development Department'),
-    FALSE,
-    TRUE,
-    1,
-    'Technical Lead',
-    'Leads a team of software developers.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Software Development Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Software Development Department'),
-    FALSE,
-    TRUE,
-    1,
-    'DevOps Engineer',
-    'Develops and maintains infrastructure and automation.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Software Development Department';
-
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Frontend Development Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Frontend Development Team Leader',
-    'Leads the Frontend Development Team.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Frontend Development Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Frontend Development Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Frontend Developer',
-    'Develops frontend applications and user interfaces.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Frontend Development Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Frontend Development Team'),
-    FALSE,
-    TRUE,
-    1,
-    'UI/UX Designer',
-    'Designs user interfaces and user experiences.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Frontend Development Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Frontend Development Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Web Developer',
-    'Develops websites and web applications.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Frontend Development Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Frontend Development Team'),
-    FALSE,
-    TRUE,
-    1,
-    'JavaScript Developer',
-    'Develops applications using JavaScript.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Frontend Development Team';
-
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Backend Development Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Backend Development Team Leader',
-    'Leads the Backend Development Team.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Backend Development Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Backend Development Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Backend Developer',
-    'Develops backend applications and APIs.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Backend Development Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Backend Development Team'),
-    FALSE,
-    TRUE,
-    1,
-    'API Developer',
-    'Develops APIs for applications.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Backend Development Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Backend Development Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Database Developer',
-    'Develops and manages databases.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Backend Development Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Backend Development Team'),
-    FALSE,
-    TRUE,
-    1,
-    'C# Developer',
-    'Develops applications using C#.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Backend Development Team';
-
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Mobile Development Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Mobile Development Team Leader',
-    'Leads the Mobile Development Team.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Mobile Development Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Mobile Development Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Mobile Developer',
-    'Develops mobile applications.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Mobile Development Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Mobile Development Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Android Developer',
-    'Develops applications for Android.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Mobile Development Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Mobile Development Team'),
-    FALSE,
-    TRUE,
-    1,
-    'iOS Developer',
-    'Develops applications for iOS.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Mobile Development Team';
-
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team'),
-    FALSE,
-    TRUE,
-    1,
-    'QA Testing Team Leader',
-    'Leads the QA Testing Team.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team'),
-    FALSE,
-    TRUE,
-    1,
-    'QA Engineer',
-    'Performs quality assurance and testing tasks.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Senior QA Engineer',
-    'Experienced QA Engineer with advanced skills.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Test Automation Engineer',
-    'Develops and maintains test automation frameworks.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Performance Testing Engineer',
-    'Performs performance testing and analysis.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Security Testing Engineer',
-    'Performs security testing and analysis.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Manual Tester',
-    'Performs manual testing tasks.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'QA Testing Team';
-
--- TechnoSoft: IT Infrastructure Department.
-
--- Insert job titles into IT Infrastructure Department
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department'),
-    FALSE,
-    TRUE,
-    1,
-    'Director of IT Infrastructure Department',
-    'Head of IT Infrastructure Department.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department'),
-    FALSE,
-    TRUE,
-    1,
-    'IT Infrastructure Manager',
-    'Manages IT Infrastructure teams and resources.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department'),
-    FALSE,
-    TRUE,
-    1,
-    'System Administrator',
-    'Administers computer systems and networks.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department'),
-    FALSE,
-    TRUE,
-    1,
-    'Network Administrator',
-    'Administers and manages computer networks.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department'),
-    FALSE,
-    TRUE,
-    1,
-    'Cloud Engineer',
-    'Designs, implements, and manages cloud computing services.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department'),
-    FALSE,
-    TRUE,
-    1,
-    'Security Engineer',
-    'Develops and implements security measures for IT systems.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department'),
-    FALSE,
-    TRUE,
-    1,
-    'Database Administrator',
-    'Administers and manages databases.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department'),
-    FALSE,
-    TRUE,
-    1,
-    'IT Support Specialist',
-    'Provides technical support to users.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'IT Infrastructure Department';
-
--- Insert job titles into Network Administration Team
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Network Administration Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Network Administration Team Leader',
-    'Leads the Network Administration Team.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Network Administration Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Network Administration Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Network Engineer',
-    'Designs, implements, and maintains computer networks.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Network Administration Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Network Administration Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Network Security Engineer',
-    'Develops and implements security measures for computer networks.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Network Administration Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Network Administration Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Network Analyst',
-    'Analyzes and troubleshoots network issues.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Network Administration Team';
-
--- Insert job titles into System Administration Team
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'System Administration Team'),
-    FALSE,
-    TRUE,
-    1,
-    'System Administration Team Leader',
-    'Leads the System Administration Team.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'System Administration Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'System Administration Team'),
-    FALSE,
-    TRUE,
-    1,
-    'System Administrator',
-    'Administers computer systems and networks.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'System Administration Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'System Administration Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Server Administrator',
-    'Administers and manages servers.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'System Administration Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'System Administration Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Linux Administrator',
-    'Administers and manages Linux systems.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'System Administration Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'System Administration Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Windows Administrator',
-    'Administers and manages Windows systems.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'System Administration Team';
-
--- Insert job titles into Security Team
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Security Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Security Team Leader',
-    'Leads the Security Team.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Security Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Security Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Security Analyst',
-    'Analyzes security threats and vulnerabilities.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Security Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Security Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Security Architect',
-    'Designs and implements security architectures.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Security Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Security Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Penetration Tester',
-    'Performs penetration testing to identify vulnerabilities.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Security Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Security Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Cybersecurity Analyst',
-    'Analyzes cybersecurity threats and incidents.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Security Team';
-
--- Insert job titles into Database Administration Team
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Database Administration Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Database Administration Team Leader',
-    'Leads the Database Administration Team.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Database Administration Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Database Administration Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Database Administrator',
-    'Administers and manages databases.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Database Administration Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Database Administration Team'),
-    FALSE,
-    TRUE,
-    1,
-    'SQL Developer',
-    'Develops and maintains SQL databases.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Database Administration Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Database Administration Team'),
-    FALSE,
-    TRUE,
-    1,
-    'NoSQL Developer',
-    'Develops and maintains NoSQL databases.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Database Administration Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    (SELECT "Id" FROM "OrganizationItems" WHERE "Name" = 'Database Administration Team'),
-    FALSE,
-    TRUE,
-    1,
-    'Data Analyst',
-    'Analyzes and interprets data to identify patterns and insights.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Database Administration Team';
-
--- Insert job titles into Marketing and Sales Department
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Director of Marketing and Sales Department' || ' ' || replace(replace("Name", 'Marketing and Sales Department ', ''), ')', ', Marketing and Sales Department)'),
-    'Head of Marketing and Sales Department.',
-    1
-FROM "OrganizationItems" WHERE "Name" like 'Marketing and Sales Department%';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Marketing and Sales Manager' || ' ' || replace(replace("Name", 'Marketing and Sales Department ', ''), ')', ', Marketing and Sales Department)'),
-    'Manages Marketing and Sales teams and activities.',
-    1
-FROM "OrganizationItems" WHERE "Name" like 'Marketing and Sales Department%';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Marketing Specialist' || ' ' || replace(replace("Name", 'Marketing and Sales Department ', ''), ')', ', Marketing and Sales Department)'),
-    'Develops and implements marketing campaigns.',
-    1
-FROM "OrganizationItems" WHERE "Name" like 'Marketing and Sales Department%';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Sales Representative' || ' ' || replace(replace("Name", 'Marketing and Sales Department ', ''), ')', ', Marketing and Sales Department)'),
-    'Sells products or services to customers.',
-    1
-FROM "OrganizationItems" WHERE "Name" like 'Marketing and Sales Department%';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Account Manager' || ' ' || replace(replace("Name", 'Marketing and Sales Department ', ''), ')', ', Marketing and Sales Department)'),
-    'Manages relationships with existing customers.',
-    1
-FROM "OrganizationItems" WHERE "Name" like 'Marketing and Sales Department%';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Marketing Manager' || ' ' || replace(replace("Name", 'Marketing and Sales Department ', ''), ')', ', Marketing and Sales Department)'),
-    'Leads the Marketing Team.',
-    1
-FROM "OrganizationItems" WHERE "Name" like 'Marketing and Sales Department%';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Sales Manager' || ' ' || replace(replace("Name", 'Marketing and Sales Department ', ''), ')', ', Marketing and Sales Department)'),
-    'Leads the Sales Team.',
-    1
-FROM "OrganizationItems" WHERE "Name" like 'Marketing and Sales Department%';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Digital Marketing Manager' || ' ' || replace(replace("Name", 'Marketing and Sales Department ', ''), ')', ', Marketing and Sales Department)'),
-    'Leads the Digital Marketing Team.',
-    1
-FROM "OrganizationItems" WHERE "Name" like 'Marketing and Sales Department%';
-
--- Insert job titles into Marketing Team
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Marketing Team Leader',
-    'Leads the Marketing Team.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Marketing Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Content Marketing Specialist',
-    'Creates and distributes high-quality content for marketing purposes.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Marketing Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Social Media Marketing Specialist',
-    'Manages social media channels and campaigns.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Marketing Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Email Marketing Specialist',
-    'Develops and implements email marketing campaigns.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Marketing Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'SEO Specialist',
-    'Optimizes website content for search engines.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Marketing Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'SEM Specialist',
-    'Manages search engine marketing campaigns.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Marketing Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Marketing Analyst',
-    'Analyzes marketing data and performance.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Marketing Team';
-
--- Insert job titles into Sales Team
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Sales Team Leader',
-    'Leads the Sales Team.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Sales Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Sales Representative',
-    'Sells products or services to customers.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Sales Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Account Executive',
-    'Manages relationships with key accounts.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Sales Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Business Development Manager',
-    'Identifies and develops new business opportunities.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Sales Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Sales Engineer',
-    'Provides technical expertise and support to sales teams.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Sales Team';
-
--- Insert job titles into Content Marketing Team
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Content Marketing Team Leader',
-    'Leads the Content Marketing Team.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Content Marketing Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Content Writer',
-    'Creates written content for various marketing materials.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Content Marketing Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Editor',
-    'Edits and proofreads written content.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Content Marketing Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Copywriter',
-    'Writes persuasive and engaging marketing copy.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Content Marketing Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Content Strategist',
-    'Develops and implements content strategy.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Content Marketing Team';
-
--- Insert job titles into Social Media Marketing Team
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Social Media Marketing Team Leader',
-    'Leads the Social Media Marketing Team.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Social Media Marketing Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Social Media Manager',
-    'Manages social media channels and campaigns.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Social Media Marketing Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Social Media Specialist',
-    'Creates and distributes social media content.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Social Media Marketing Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Community Manager',
-    'Engages with online communities and builds relationships with customers.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Social Media Marketing Team';
-
--- Director of Quality Assurance Department
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Director of Quality Assurance Department',
-    'Director role in Quality Assurance Department',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Quality Assurance Department';
-
--- QA Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'QA Manager',
-    'Manager role in Quality Assurance Department',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Quality Assurance Department';
-
--- QA Lead
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'QA Lead',
-    'Lead role in Quality Assurance Department',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Quality Assurance Department';
-
--- Manual Testing Team Leader
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Manual Testing Team Leader',
-    'Leader role in Manual Testing Team',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Manual Testing Team';
-
--- Manual Tester
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Manual Tester',
-    'Performs manual testing tasks.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Manual Testing Team';
-
--- Test Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Test Analyst',
-    'Analyzes and creates test cases.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Manual Testing Team';
-
--- Automation Testing Team Leader
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Automation Testing Team Leader',
-    'Leader role in Automation Testing Team',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Automation Testing Team';
-
--- Test Automation Engineer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Test Automation Engineer',
-    'Develops and maintains automated test scripts.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Automation Testing Team';
-
--- QA Automation Specialist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'QA Automation Specialist',
-    'Specialist in QA Automation.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Automation Testing Team';
-
--- Performance Testing Team Leader
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Performance Testing Team Leader',
-    'Leader role in Performance Testing Team',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Performance Testing Team';
-
--- Performance Testing Engineer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Performance Testing Engineer',
-    'Performs performance testing tasks.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Performance Testing Team';
-
--- Load Testing Engineer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Load Testing Engineer',
-    'Performs load testing tasks.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Performance Testing Team';
-
--- Security Testing Team Leader
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Security Testing Team Leader',
-    'Leader role in Security Testing Team',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Security Testing Team';
-
--- Security Tester
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Security Tester',
-    'Performs security testing tasks.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Security Testing Team';
-
--- Penetration Tester
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Penetration Tester',
-    'Performs penetration testing tasks.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Security Testing Team';
-
--- Director of Project Management Department
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Director of Project Management Department',
-    'Director role in Project Management Department',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Project Management Department';
-
--- Project Management Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Project Management Manager',
-    'Manager role in Project Management Department',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Project Management Department';
-
--- Project Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Project Manager',
-    'Manages projects from start to finish.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Project Management Department';
-
--- Scrum Master
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Scrum Master',
-    'Facilitates Scrum processes and helps teams succeed.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Project Management Department';
-
--- Product Owner
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Product Owner',
-    'Represents the voice of the customer and manages the product backlog.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Project Management Department';
-
--- Project Coordinator
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Project Coordinator',
-    'Provides administrative support for projects.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Project Management Department';
-
--- Business Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Business Analyst',
-    'Analyzes business needs and translates them into functional requirements.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Project Management Department';
-
--- Project Coordination Team Leader
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Project Coordination Team Leader',
-    'Leader role in Project Coordination Team',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Project Coordination Team';
-
--- Project Coordinator
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Project Coordinator',
-    'Provides administrative support for projects.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Project Coordination Team';
-
--- Project Assistant
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Project Assistant',
-    'Provides general administrative support to project teams.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Project Coordination Team';
-
--- Project Management Team Leader
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Project Management Team Leader',
-    'Leader role in Project Management Team',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Project Management Team';
-
--- Project Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Project Manager',
-    'Manages projects from start to finish.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Project Management Team';
-
--- Senior Project Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Project Manager',
-    'Experienced Project Manager with leadership responsibilities.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Project Management Team';
-
--- Product Owners Team Leader
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Product Owners Team Leader',
-    'Leader role in Product Owners Team',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Product Owners Team';
-
--- Product Owner
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Product Owner',
-    'Represents the voice of the customer and manages the product backlog.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Product Owners Team';
-
--- Product Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Product Manager',
-    'Responsible for the strategic direction of a product.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Product Owners Team';
-
--- Project Planning Team Leader
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Project Planning Team Leader',
-    'Leader role in Project Planning Team',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Project Planning Team';
-
--- Project Planner
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Project Planner',
-    'Creates and manages project schedules and plans.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Project Planning Team';
-
--- Schedule Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Schedule Manager',
-    'Manages project schedules and timelines.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Project Planning Team';
-
--- Scrum Masters Team Leader
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Scrum Masters Team Leader',
-    'Leader role in Scrum Masters Team',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Scrum Masters Team';
-
--- Scrum Master
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Scrum Master',
-    'Facilitates Scrum processes and helps teams succeed.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Scrum Masters Team';
-
--- Agile Coach
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Agile Coach',
-    'Provides guidance and training on Agile methodologies.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Scrum Masters Team';
-
--- Construction Management Team Leader
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Construction Management Team Leader',
-    'Leader role in Construction Management Team',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Construction Management Team';
-
--- Construction Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Construction Manager',
-    'Manages construction projects.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Construction Management Team';
-
--- Project Engineer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Project Engineer',
-    'Provides engineering expertise for construction projects.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Construction Management Team';
-
--- Site Supervisor
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Site Supervisor',
-    'Supervises construction activities on site.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Construction Management Team';
-
--- Director of Research and Development Department
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Director of Research and Development Department',
-    'Director role in Research and Development Department',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Research and Development Department';
-
--- R&D Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'R&D Manager',
-    'Manages research and development activities.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Research and Development Department';
-
--- Research Scientist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Research Scientist',
-    'Conducts scientific research and experiments.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Research and Development Department';
-
--- Data Scientist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Data Scientist',
-    'Analyzes and interprets large datasets.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Research and Development Department';
-
--- Machine Learning Engineer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Machine Learning Engineer',
-    'Develops and implements machine learning models.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Research and Development Department';
-
--- AI Developer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'AI Developer',
-    'Develops artificial intelligence systems and applications.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Research and Development Department';
-
--- Software Engineer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Software Engineer',
-    'Develops and maintains software applications.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Research and Development Department';
-
--- Managing Director, Head of Investment Banking
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Managing Director, Head of Investment Banking',
-    'Head of the Investment Banking Department',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Investment Banking Department';
-
--- Head of Equity Research
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Equity Research',
-    'Head of the Equity Research Team',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Equity Research Team';
-
--- Senior Equity Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Equity Analyst',
-    'Experienced analyst covering specific sectors or companies.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Equity Research Team';
-
--- Equity Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Equity Analyst',
-    'Conducts research on companies and markets.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Equity Research Team';
-
--- Research Associate
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Research Associate',
-    'Provides support to Equity Analysts.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Equity Research Team';
-
--- Junior Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Junior Analyst',
-    'Entry-level role in Equity Research.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Equity Research Team';
-
--- Head of Fixed Income
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Fixed Income',
-    'Head of the Fixed Income Team',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Fixed Income Team';
-
--- Senior Fixed Income Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Fixed Income Analyst',
-    'Experienced analyst covering fixed income securities.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Fixed Income Team';
-
--- Fixed Income Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Fixed Income Analyst',
-    'Conducts research and analysis on fixed income securities.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Fixed Income Team';
-
--- Senior Trader
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Trader',
-    'Experienced trader executing fixed income trades.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Fixed Income Team';
-
--- Trader
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Trader',
-    'Executes fixed income trades.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Fixed Income Team';
-
--- Portfolio Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Portfolio Manager',
-    'Manages fixed income portfolios.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Fixed Income Team';
-
--- Head of Alternative Investments
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Alternative Investments',
-    'Head of the Alternative Investments Team',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Alternative Investments Team';
-
--- Senior Alternative Investments Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Alternative Investments Analyst',
-    'Experienced analyst covering alternative investments.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Alternative Investments Team';
-
--- Alternative Investments Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Alternative Investments Analyst',
-    'Conducts research and analysis on alternative investments.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Alternative Investments Team';
-
--- Hedge Fund Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Hedge Fund Analyst',
-    'Analyzes hedge funds and their strategies.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Alternative Investments Team';
-
--- Private Equity Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Private Equity Analyst',
-    'Analyzes private equity investments and strategies.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Alternative Investments Team';
-
--- Real Estate Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Real Estate Analyst',
-    'Analyzes real estate investments and markets.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Alternative Investments Team';
-
--- Managing Director, Head of Asset Management
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Managing Director, Head of Asset Management',
-    'Head of the Asset Management Department',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Asset Management Department';
-
--- Head of Equity Asset Management
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Equity Asset Management',
-    'Head of the Equity Asset Management Team',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Equity Asset Management Team';
-
--- Senior Portfolio Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Portfolio Manager',
-    'Experienced Portfolio Manager responsible for equity portfolios.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Equity Asset Management Team';
-
--- Portfolio Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Portfolio Manager',
-    'Manages equity portfolios.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Equity Asset Management Team';
-
--- Equity Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Equity Analyst',
-    'Conducts research and analysis on equity investments.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Equity Asset Management Team';
-
--- Research Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Research Analyst',
-    'Provides research support for equity portfolios.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Equity Asset Management Team';
-
--- Risk Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Risk Analyst',
-    'Analyzes and manages risk in equity portfolios.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Equity Asset Management Team';
-
--- Head of Fixed Income Asset Management
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Fixed Income Asset Management',
-    'Head of the Fixed Income Asset Management Team',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Fixed Income Asset Management Team';
-
--- Senior Portfolio Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Portfolio Manager',
-    'Experienced Portfolio Manager responsible for fixed income portfolios.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Fixed Income Asset Management Team';
-
--- Portfolio Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Portfolio Manager',
-    'Manages fixed income portfolios.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Fixed Income Asset Management Team';
-
--- Fixed Income Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Fixed Income Analyst',
-    'Conducts research and analysis on fixed income investments.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Fixed Income Asset Management Team';
-
--- Senior Trader
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Trader',
-    'Experienced trader executing fixed income trades.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Fixed Income Asset Management Team';
-
--- Trader
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Trader',
-    'Executes fixed income trades.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Fixed Income Asset Management Team';
-
--- Risk Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Risk Analyst',
-    'Analyzes and manages risk in fixed income portfolios.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Fixed Income Asset Management Team';
-
--- Head of Alternative Investments Asset Management
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Alternative Investments Asset Management',
-    'Head of the Alternative Investments Asset Management Team',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Alternative Investments Asset Management Team';
-
--- Senior Portfolio Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Portfolio Manager',
-    'Experienced Portfolio Manager responsible for alternative investments portfolios.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Alternative Investments Asset Management Team';
-
--- Portfolio Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Portfolio Manager',
-    'Manages alternative investments portfolios.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Alternative Investments Asset Management Team';
-
--- Alternative Investments Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Alternative Investments Analyst',
-    'Conducts research and analysis on alternative investments.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Alternative Investments Asset Management Team';
-
--- Hedge Fund Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Hedge Fund Analyst',
-    'Analyzes hedge funds and their strategies.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Alternative Investments Asset Management Team';
-
--- Private Equity Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Private Equity Analyst',
-    'Analyzes private equity investments and strategies.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Alternative Investments Asset Management Team';
-
--- Real Estate Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Real Estate Analyst',
-    'Analyzes real estate investments and markets.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Alternative Investments Asset Management Team';
-
--- Risk Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Risk Analyst',
-    'Analyzes and manages risk in alternative investments portfolios.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Alternative Investments Asset Management Team';
-
--- Chief Risk Officer (CRO)
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Chief Risk Officer (CRO)',
-    'Head of the Risk Management Department',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Risk Management Department';
-
--- Head of Market Risk Management
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Market Risk Management',
-    'Head of the Market Risk Management Team',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Market Risk Management Team';
-
--- Senior Market Risk Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Market Risk Analyst',
-    'Experienced analyst assessing market risk.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Market Risk Management Team';
-
--- Market Risk Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Market Risk Analyst',
-    'Analyzes market risk.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Market Risk Management Team';
-
--- Quantitative Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Quantitative Analyst',
-    'Develops and applies quantitative models for risk management.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Market Risk Management Team';
-
--- Risk Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Risk Manager',
-    'Manages market risk.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Market Risk Management Team';
-
--- Head of Credit Risk Management
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Credit Risk Management',
-    'Head of the Credit Risk Management Team',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Credit Risk Management Team';
-
--- Senior Credit Risk Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Credit Risk Analyst',
-    'Experienced analyst assessing credit risk.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Credit Risk Management Team';
-
--- Credit Risk Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Credit Risk Analyst',
-    'Analyzes credit risk.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Credit Risk Management Team';
-
--- Credit Officer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Credit Officer',
-    'Evaluates creditworthiness of borrowers.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Credit Risk Management Team';
-
--- Loan Officer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Loan Officer',
-    'Processes and manages loans.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Credit Risk Management Team';
-
--- Risk Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Risk Manager',
-    'Manages credit risk.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Credit Risk Management Team';
-
--- Head of Operational Risk Management
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Operational Risk Management',
-    'Head of the Operational Risk Management Team',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Operational Risk Management Team';
-
--- Senior Operational Risk Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Operational Risk Analyst',
-    'Experienced analyst assessing operational risk.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Operational Risk Management Team';
-
--- Operational Risk Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Operational Risk Analyst',
-    'Analyzes operational risk.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Operational Risk Management Team';
-
--- Compliance Officer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Compliance Officer',
-    'Ensures compliance with regulations and policies.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Operational Risk Management Team';
-
--- Internal Auditor
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Internal Auditor',
-    'Conducts internal audits to assess risk and compliance.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Operational Risk Management Team';
-
--- Risk Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Risk Manager',
-    'Manages operational risk.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Operational Risk Management Team';
-
--- Chief Financial Officer (CFO)
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Chief Financial Officer (CFO)',
-    'Head of the Financial Analysis Department',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Financial Analysis Department';
-
--- Head of Financial Reporting
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Financial Reporting',
-    'Head of the Financial Reporting Team',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Financial Reporting Team';
-
--- Senior Financial Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Financial Analyst',
-    'Experienced analyst responsible for financial reporting.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Financial Reporting Team';
-
--- Financial Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Financial Analyst',
-    'Analyzes financial data and prepares reports.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Financial Reporting Team';
-
--- Accountant
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Accountant',
-    'Maintains financial records and prepares financial statements.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Financial Reporting Team';
-
--- Reporting Specialist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Reporting Specialist',
-    'Specializes in preparing financial reports.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Financial Reporting Team';
-
--- Head of Accounting
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Accounting',
-    'Head of the Accounting Team',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Accounting Team';
-
--- Senior Accountant
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Accountant',
-    'Experienced accountant responsible for accounting tasks.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Accounting Team';
-
--- Accountant
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Accountant',
-    'Maintains financial records and prepares financial statements.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Accounting Team';
-
--- Bookkeeper
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Bookkeeper',
-    'Records financial transactions and maintains accounting records.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Accounting Team';
-
--- Financial Controller
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Financial Controller',
-    'Oversees financial operations and reporting.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Accounting Team';
-
--- Head of Regulatory Reporting
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Regulatory Reporting',
-    'Head of the Regulatory Reporting Team',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Regulatory Reporting Team';
-
--- Senior Regulatory Reporting Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Regulatory Reporting Analyst',
-    'Experienced analyst preparing regulatory reports.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Regulatory Reporting Team';
-
--- Regulatory Reporting Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Regulatory Reporting Analyst',
-    'Analyzes financial data and prepares regulatory reports.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Regulatory Reporting Team';
-
--- Compliance Officer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Compliance Officer',
-    'Ensures compliance with regulations and policies.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Regulatory Reporting Team';
-
--- Data Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Data Analyst',
-    'Analyzes and interprets financial data for regulatory reporting.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Regulatory Reporting Team';
-
--- Head of Client Services
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Client Services',
-    'Head of the Client Services Department',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Client Services Department';
-
--- Head of Client Relationship Management
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Client Relationship Management',
-    'Head of the Client Relationship Management Team',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Client Relationship Management Team';
-
--- Senior Client Relationship Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Client Relationship Manager',
-    'Experienced manager responsible for building and maintaining client relationships.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Client Relationship Management Team';
-
--- Client Relationship Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Client Relationship Manager',
-    'Manages and develops client relationships.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Client Relationship Management Team';
-
--- Account Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Account Manager',
-    'Manages client accounts and provides service.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Client Relationship Management Team';
-
--- Client Advisor
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Client Advisor',
-    'Provides advice and support to clients.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Client Relationship Management Team';
-
--- Head of Client Onboarding
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Client Onboarding',
-    'Head of the Client Onboarding Team',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Client Onboarding Team';
-
--- Senior Client Onboarding Specialist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Client Onboarding Specialist',
-    'Experienced specialist responsible for onboarding new clients.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Client Onboarding Team';
-
--- Client Onboarding Specialist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Client Onboarding Specialist',
-    'Onboards new clients and ensures compliance with regulations.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Client Onboarding Team';
-
--- KYC Specialist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'KYC Specialist',
-    'Verifies client identities and conducts Know Your Customer (KYC) checks.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Client Onboarding Team';
-
--- AML Specialist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'AML Specialist',
-    'Ensures compliance with Anti-Money Laundering (AML) regulations.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Client Onboarding Team';
-
--- Head of Client Support
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Client Support',
-    'Head of the Client Support Team',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Client Support Team';
-
--- Senior Client Support Specialist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Client Support Specialist',
-    'Experienced specialist providing support to clients.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Client Support Team';
-
--- Client Support Specialist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Client Support Specialist',
-    'Provides support to clients and resolves their issues.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Client Support Team';
-
--- Service Desk Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Service Desk Analyst',
-    'Provides first-line support to clients.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Client Support Team';
-
--- Technical Support Specialist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Technical Support Specialist',
-    'Provides technical support to clients.',
-    1
-FROM "OrganizationItems" WHERE "Name" = 'Client Support Team';
-
--- Construction Engineering Department
-
--- Chief Construction Engineer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Chief Construction Engineer',
-    'Leads the Construction Engineering department, responsible for overall project delivery and engineering expertise.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Construction Engineering Department';
-
--- Director of Construction Engineering
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Director of Construction Engineering',
-    'Manages the Construction Engineering department, oversees project budgets and timelines.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Construction Engineering Department';
-
--- Structural Engineering Team
-
--- Head of Structural Engineering
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Structural Engineering',
-    'Leads the Structural Engineering team, responsible for structural design and analysis.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Structural Engineering Team';
-
--- Senior Structural Engineer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Structural Engineer',
-    'Experienced structural engineer responsible for complex design calculations and project management.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Structural Engineering Team';
-
--- Structural Engineer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Structural Engineer',
-    'Performs structural analysis and design, creates drawings and specifications.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Structural Engineering Team';
-
--- Structural Designer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Structural Designer',
-    'Creates detailed drawings and specifications for structural elements, collaborates with engineers.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Structural Engineering Team';
-
--- BIM Specialist (Structural)
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'BIM Specialist (Structural)',
-    'Develops and manages structural models in BIM software, collaborates with engineers and designers.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Structural Engineering Team';
-
--- CAD Technician
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'CAD Technician',
-    'Creates and modifies technical drawings using CAD software, assists engineers and designers.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Structural Engineering Team';
-
--- Civil Engineering Team
-
--- Head of Civil Engineering
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Civil Engineering',
-    'Leads the Civil Engineering team, responsible for civil infrastructure design and project management.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Civil Engineering Team';
-
--- Senior Civil Engineer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Civil Engineer',
-    'Experienced civil engineer responsible for complex design calculations and project management.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Civil Engineering Team';
-
--- Civil Engineer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Civil Engineer',
-    'Designs and oversees civil infrastructure projects, prepares drawings and specifications.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Civil Engineering Team';
-
--- Geotechnical Engineer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Geotechnical Engineer',
-    'Conducts geotechnical investigations, analyzes soil conditions, provides recommendations for foundation design.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Civil Engineering Team';
-
--- Site Engineer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Site Engineer',
-    'Oversees construction activities on site, ensures compliance with plans and specifications.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Civil Engineering Team';
-
--- Project Manager (Civil)
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Project Manager (Civil)',
-    'Manages civil infrastructure projects, plans and coordinates activities, tracks progress and budget.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Civil Engineering Team';
-
--- Architectural Design Team
-
--- Head of Architectural Design
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Architectural Design',
-    'Leads the Architectural Design team, responsible for building design and aesthetics.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Architectural Design Team';
-
--- Senior Architect
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Architect',
-    'Experienced architect responsible for leading design projects, collaborating with clients and engineers.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Architectural Design Team';
-
--- Architect
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Architect',
-    'Designs buildings and spaces, prepares architectural drawings and specifications.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Architectural Design Team';
-
--- Architectural Designer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Architectural Designer',
-    'Develops architectural designs, creates 3D models, prepares presentation drawings.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Architectural Design Team';
-
--- BIM Specialist (Architectural)
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'BIM Specialist (Architectural)',
-    'Develops and manages architectural models in BIM software, collaborates with architects and engineers.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Architectural Design Team';
-
--- Landscape Architect
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Landscape Architect',
-    'Designs outdoor spaces, gardens, and landscaping, integrates with building architecture.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Architectural Design Team';
-
--- Project Planning Team
-
--- Head of Project Planning
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Project Planning',
-    'Leads the Project Planning team, responsible for project scheduling, budgeting, and resource allocation.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Project Planning Team';
-
--- Senior Project Planner
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Project Planner',
-    'Experienced project planner responsible for developing and managing complex project schedules.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Project Planning Team';
-
--- Project Planner
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Project Planner',
-    'Develops and maintains project schedules, tracks progress, and identifies potential delays.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Project Planning Team';
-
--- Scheduling Specialist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Scheduling Specialist',
-    'Creates and manages project schedules using specialized software, analyzes critical path and dependencies.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Project Planning Team';
-
--- Cost Estimator
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Cost Estimator',
-    'Develops and analyzes project budgets, identifies cost savings opportunities, and tracks expenses.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Project Planning Team';
-
--- Project Coordination Team
-
--- Head of Project Coordination
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Project Coordination',
-    'Leads the Project Coordination team, responsible for communication, documentation, and project administration.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Project Coordination Team';
-
--- Project Coordinator
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Project Coordinator',
-    'Coordinates project activities, manages communication between stakeholders, tracks progress and deadlines.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Project Coordination Team';
-
--- Contract Administrator
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Contract Administrator',
-    'Manages project contracts, ensures compliance with terms, resolves contract disputes.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Project Coordination Team';
-
--- Document Controller
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Document Controller',
-    'Manages project documentation, maintains records, controls access, and ensures document integrity.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Project Coordination Team';
-
--- Project Assistant
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Project Assistant',
-    'Provides administrative support to project managers and teams, handles tasks, and coordinates communication.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Project Coordination Team';
-
--- Procurement Department
-
--- Director of Procurement
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Director of Procurement',
-    'Leads the Procurement department, responsible for overall procurement strategy and supplier management.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Procurement Department';
-
--- Procurement Team
-
--- Head of Procurement
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Procurement',
-    'Leads the Procurement team, responsible for sourcing, negotiating, and awarding contracts for goods and services.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Procurement Team';
-
--- Senior Procurement Specialist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Procurement Specialist',
-    'Experienced procurement specialist responsible for complex sourcing processes, contract negotiations, and supplier management.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Procurement Team';
-
--- Procurement Specialist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Procurement Specialist',
-    'Conducts sourcing activities, negotiates with suppliers, manages procurement processes.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Procurement Team';
-
--- Buyer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Buyer',
-    'Places purchase orders, negotiates pricing and terms, manages supplier relationships.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Procurement Team';
-
--- Sourcing Specialist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Sourcing Specialist',
-    'Identifies and evaluates potential suppliers, conducts market research, and negotiates contracts.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Procurement Team';
-
--- Procurement Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Procurement Analyst',
-    'Analyzes procurement data, identifies cost savings opportunities, and develops strategies for supplier optimization.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Procurement Team';
-
--- Supply Chain Management Team
-
--- Head of Supply Chain Management
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Supply Chain Management',
-    'Leads the Supply Chain Management team, responsible for overall supply chain efficiency and optimization.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Supply Chain Management Team';
-
--- Supply Chain Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Supply Chain Manager',
-    'Manages the flow of goods and services from suppliers to customers, ensures timely delivery and cost efficiency.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Supply Chain Management Team';
-
--- Logistics Coordinator
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Logistics Coordinator',
-    'Coordinates the transportation and storage of goods, manages logistics operations, and ensures efficient delivery.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Supply Chain Management Team';
-
--- Inventory Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Inventory Analyst',
-    'Analyzes inventory levels, forecasts demand, manages stock optimization, and minimizes inventory costs.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Supply Chain Management Team';
-
--- Supplier Relationship Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Supplier Relationship Manager',
-    'Manages relationships with suppliers, ensures contract compliance, resolves disputes, and builds long-term partnerships.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Supply Chain Management Team';
-
--- Quality Control Department
-
--- Director of Quality Control
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Director of Quality Control',
-    'Leads the Quality Control department, responsible for ensuring product and process quality.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Quality Control Department';
-
--- Quality Assurance Team
-
--- Head of Quality Assurance
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Quality Assurance',
-    'Leads the Quality Assurance team, responsible for developing and implementing quality assurance procedures.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Quality Assurance Team';
-
--- Senior Quality Assurance Engineer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Quality Assurance Engineer',
-    'Experienced QA engineer responsible for designing and conducting quality assurance tests.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Quality Assurance Team';
-
--- Quality Assurance Engineer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Quality Assurance Engineer',
-    'Conducts quality assurance tests, analyzes results, and reports defects.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Quality Assurance Team';
-
--- Quality Control Inspector
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Quality Control Inspector',
-    'Inspects products and processes to ensure compliance with quality standards.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Quality Assurance Team';
-
--- Lab Technician
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Lab Technician',
-    'Performs laboratory tests on materials and products to ensure quality and compliance.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Quality Assurance Team';
-
--- Inspection Team
-
--- Head of Inspection
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Inspection',
-    'Leads the Inspection team, responsible for conducting inspections and ensuring compliance.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Inspection Team';
-
--- Senior Inspector
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Inspector',
-    'Experienced inspector responsible for conducting complex inspections and leading inspection teams.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Inspection Team';
-
--- Inspector
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Inspector',
-    'Conducts inspections to ensure compliance with standards, identifies defects, and reports findings.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Inspection Team';
-
--- Quality Control Supervisor
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Quality Control Supervisor',
-    'Oversees quality control activities, provides guidance to inspectors, and ensures compliance with standards.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Inspection Team';
-
--- Site Inspector
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Site Inspector',
-    'Conducts inspections on-site, verifies construction progress, and ensures compliance with specifications.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Inspection Team';
-
--- Safety and Environment Department
-
--- Director of Safety and Environment
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Director of Safety and Environment',
-    'Leads the Safety and Environment department, responsible for promoting a safe and environmentally responsible workplace.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Safety and Environment Department';
-
--- Safety Officer Team
-
--- Head of Safety
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Safety',
-    'Leads the Safety Officer team, responsible for implementing and enforcing safety procedures.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Safety Officer Team';
-
--- Safety Officer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Safety Officer',
-    'Conducts safety inspections, investigates incidents, and promotes safe work practices.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Safety Officer Team';
-
--- Safety Supervisor
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Safety Supervisor',
-    'Oversees safety procedures and training, provides guidance to safety officers, and ensures compliance.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Safety Officer Team';
-
--- Health and Safety Officer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Health and Safety Officer',
-    'Focuses on health and safety issues, conducts risk assessments, and promotes a healthy workplace.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Safety Officer Team';
-
--- Fire Safety Officer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Fire Safety Officer',
-    'Responsible for fire safety procedures, conducts fire drills, and ensures compliance with fire safety regulations.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Safety Officer Team';
-
--- Environmental Compliance Team
-
--- Head of Environmental Compliance
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Environmental Compliance',
-    'Leads the Environmental Compliance team, responsible for ensuring compliance with environmental regulations.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Environmental Compliance Team';
-
--- Environmental Specialist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Environmental Specialist',
-    'Conducts environmental assessments, monitors pollution levels, and implements environmental management plans.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Environmental Compliance Team';
-
--- Environmental Officer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Environmental Officer',
-    'Ensures compliance with environmental regulations, conducts audits, and implements environmental programs.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Environmental Compliance Team';
-
--- Environmental Consultant
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Environmental Consultant',
-    'Provides expert advice on environmental issues, conducts assessments, and recommends solutions.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Environmental Compliance Team';
-
--- Environmental Engineer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Environmental Engineer',
-    'Applies engineering principles to environmental issues, designs pollution control systems, and implements environmental solutions.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Environmental Compliance Team';
-
--- Sustainability Specialist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Sustainability Specialist',
-    'Promotes sustainable practices, conducts environmental impact assessments, and develops sustainability programs.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Environmental Compliance Team';
-
--- Director of Television
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Director of Television',
-    'Leads the Television department, oversees all television production and programming.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Television Department';
-
--- Head of Television Programming
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Television Programming',
-    'Responsible for developing and scheduling television programs, manages content creation.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Television Department';
-
--- Production Team
-
--- Production Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Production Manager',
-    'Manages the day-to-day operations of television production, oversees budgets and schedules.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Production Team';
-
--- Executive Producer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Executive Producer',
-    'Oversees the overall creative direction of a television program, manages budgets and talent.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Production Team';
-
--- Producer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Producer',
-    'Responsible for the overall production of a television program, manages budgets and schedules.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Production Team';
-
--- Line Producer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Line Producer',
-    'Manages the day-to-day operations of a television shoot, oversees budgets and schedules.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Production Team';
-
--- Assistant Producer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Assistant Producer',
-    'Provides support to the producer, handles administrative tasks, and coordinates with departments.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Production Team';
-
--- Scriptwriter
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Scriptwriter',
-    'Writes scripts for television programs, develops characters and storylines.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Production Team';
-
--- Director
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Film director',
-    'Directs the filming of a television program, guides actors and crew, ensures creative vision is realized.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Production Team';
-
--- Director of Photography
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Director of Photography',
-    'Responsible for the visual style of a television program, oversees camera and lighting.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Production Team';
-
--- Set Designer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Set Designer',
-    'Designs and creates the sets for a television program, manages props and furniture.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Production Team';
-
--- Art Director
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Art Director',
-    'Oversees the visual style of a television program, collaborates with set designers and costume designers.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Production Team';
-
--- Costume Designer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Costume Designer',
-    'Designs and creates costumes for actors in a television program.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Production Team';
-
--- Camera Crew
-
--- Head of Camera
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Camera',
-    'Leads the Camera crew, oversees camera operation and lighting.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Camera Crew';
-
--- Director of Photography
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Director of Photography',
-    'Responsible for the visual style of a television program, oversees camera and lighting.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Camera Crew';
-
--- Camera Operator
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Camera Operator',
-    'Operates the camera, captures footage according to the director''s vision.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Camera Crew';
-
--- Gaffer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Gaffer',
-    'Head electrician on set, responsible for lighting design and execution.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Camera Crew';
-
--- Grip
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Grip',
-    'Handles camera support, rigging, and camera movement, assists with lighting.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Camera Crew';
-
--- Camera Assistant
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Camera Assistant',
-    'Assists the camera operator, loads film or memory cards, and maintains camera equipment.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Camera Crew';
-
--- Lighting Technician
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Lighting Technician',
-    'Sets up and operates lighting equipment, creates desired lighting effects on set.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Camera Crew';
-
--- Editing Team
-
--- Head of Editing
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Editing',
-    'Leads the Editing team, oversees the post-production process, ensures consistency and quality.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
-
--- Post-Production Supervisor
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Post-Production Supervisor',
-    'Manages the post-production process, coordinates with editors, sound engineers, and visual effects artists.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
-
--- Video Editor
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Video Editor',
-    'Edits video footage, assembles scenes, and creates the final television program.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
-
--- Post-Production Editor
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Post-Production Editor',
-    'Edits video footage, adds special effects, and prepares the final television program for broadcast.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
-
--- Colorist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Colorist',
-    'Grades and colors video footage, adjusts color balance and saturation.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
-
--- Graphic Designer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Graphic Designer',
-    'Creates graphics for television programs, designs titles, logos, and visual elements.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
-
--- VFX Artist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'VFX Artist',
-    'Creates visual effects for television programs, adds special effects, and manipulates images.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
-
--- Sound Team
-
--- Head of Sound
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Sound',
-    'Leads the Sound team, oversees sound design, recording, and mixing.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Sound Team';
-
--- Sound Designer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Sound Designer',
-    'Creates the sound design for a television program, selects sound effects, and composes music.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Sound Team';
-
--- Sound Mixer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Sound Mixer',
-    'Mixes sound for television programs, balances dialogue, sound effects, and music.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Sound Team';
-
--- Sound Editor
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Sound Editor',
-    'Edits sound for television programs, cleans up audio, adds sound effects, and prepares sound for mixing.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Sound Team';
-
--- Foley Artist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Foley Artist',
-    'Creates sound effects for television programs, uses props and objects to simulate sounds.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Sound Team';
-
--- Music Composer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Music Composer',
-    'Composes music for television programs, writes original scores and arranges existing music.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Sound Team';
-
--- Radio Department
-
--- Director of Radio
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Director of Radio',
-    'Leads the Radio department, oversees all radio production and programming.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Radio Department';
-
--- Head of Radio Programming
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Radio Programming',
-    'Responsible for developing and scheduling radio programs, manages content creation.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Radio Department';
-
--- Production Team
-
--- Production Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Production Manager',
-    'Manages the day-to-day operations of radio production, oversees budgets and schedules.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Production Team';
-
--- Executive Producer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Executive Producer',
-    'Oversees the overall creative direction of a radio program, manages budgets and talent.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Production Team';
-
--- Producer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Producer',
-    'Responsible for the overall production of a radio program, manages budgets and schedules.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Production Team';
-
--- Line Producer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Line Producer',
-    'Manages the day-to-day operations of a radio show, oversees budgets and schedules.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Production Team';
-
--- Assistant Producer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Assistant Producer',
-    'Provides support to the producer, handles administrative tasks, and coordinates with departments.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Production Team';
-
--- Scriptwriter
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Scriptwriter',
-    'Writes scripts for radio programs, develops storylines and characters.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Production Team';
-
--- Voice Actor
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Voice Actor',
-    'Provides voice-over for radio programs, narrates, reads commercials, and plays characters.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Production Team';
-
--- Audio Engineer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Audio Engineer',
-    'Records and mixes audio for radio programs, operates recording equipment, and ensures sound quality.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Production Team';
-
--- Radio Announcer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Radio Announcer',
-    'Announces programs, reads news and commercials, interacts with listeners.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Production Team';
-
--- On-Air Team
-
--- Program Director
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Program Director',
-    'Oversees the programming schedule for a radio station, selects and schedules programs, manages on-air talent.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'On-Air Team';
-
--- Head of On-Air
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of On-Air',
-    'Manages on-air talent, oversees live broadcasts, ensures program quality and consistency.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'On-Air Team';
-
--- Radio Host
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Radio Host',
-    'Presents radio programs, interacts with listeners, plays music, and interviews guests.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'On-Air Team';
-
--- DJ
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'DJ',
-    'Plays music on radio, mixes songs, and interacts with listeners.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'On-Air Team';
-
--- News Anchor
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'News Anchor',
-    'Reads and presents news on radio, delivers news updates, and interviews guests.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'On-Air Team';
-
--- Reporter
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Reporter',
-    'Gathers and reports news stories for radio, conducts interviews, and writes news scripts.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'On-Air Team';
-
--- Commentator
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Commentator',
-    'Provides commentary and analysis on events, sports, or other topics on radio.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'On-Air Team';
-
--- Editing Team
-
--- Head of Editing
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Editing',
-    'Leads the Editing team, oversees the post-production process, ensures consistency and quality.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
-
--- Post-Production Supervisor
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Post-Production Supervisor',
-    'Manages the post-production process, coordinates with editors, sound engineers, and music editors.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
-
--- Audio Editor
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Audio Editor',
-    'Edits audio recordings for radio programs, cleans up sound, adds effects, and prepares audio for mixing.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
-
--- Post-Production Engineer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Post-Production Engineer',
-    'Manages audio equipment, processes audio, and ensures technical quality of radio programs.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
-
--- Music Editor
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Music Editor',
-    'Edits music for radio programs, selects and prepares music tracks, and creates playlists.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
-
--- Sound Engineer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Sound Engineer',
-    'Records and mixes audio for radio programs, operates recording equipment, and ensures sound quality.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Editing Team';
-
--- Sound Team
-
--- Head of Sound
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Sound',
-    'Leads the Sound team, oversees sound design, recording, and mixing.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Sound Team';
-
--- Sound Designer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Sound Designer',
-    'Creates the sound design for a radio program, selects sound effects, and composes music.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Sound Team';
-
--- Sound Mixer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Sound Mixer',
-    'Mixes sound for radio programs, balances dialogue, sound effects, and music.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Sound Team';
-
--- Sound Engineer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Sound Engineer',
-    'Records and mixes audio for radio programs, operates recording equipment, and ensures sound quality.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Sound Team';
-
--- Foley Artist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Foley Artist',
-    'Creates sound effects for radio programs, uses props and objects to simulate sounds.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Sound Team';
-
--- Music Composer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Music Composer',
-    'Composes music for radio programs, writes original scores and arranges existing music.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Sound Team';
-
--- Director of Online Media
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Director of Online Media',
-    'Leads the Online Media department, oversees all digital content creation and distribution.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Online Media Department';
-
--- Head of Digital Media
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Digital Media',
-    'Responsible for managing digital content strategy, oversees social media and SEO efforts.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Online Media Department';
-
--- Content Creation Team
-
--- Head of Content Creation
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Content Creation',
-    'Leads the Content Creation team, responsible for developing and producing high-quality digital content.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Content Creation Team';
-
--- Content Director
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Content Director',
-    'Oversees the content strategy and production process, ensures content aligns with brand guidelines.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Content Creation Team';
-
--- Content Writer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Content Writer',
-    'Creates engaging and informative written content for websites, blogs, and social media.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Content Creation Team';
-
--- Editor
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Editor',
-    'Edits written content for clarity, style, and accuracy, ensures consistency with brand guidelines.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Content Creation Team';
-
--- Blogger
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Blogger',
-    'Creates and publishes blog posts, shares insights and perspectives, and engages with readers.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Content Creation Team';
-
--- Photographer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Photographer',
-    'Captures high-quality images for websites, blogs, and social media, ensures visuals align with brand guidelines.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Content Creation Team';
-
--- Videographer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Videographer',
-    'Creates video content for websites, blogs, and social media, edits videos, and ensures visual quality.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Content Creation Team';
-
--- Content Editing Team
-
--- Head of Content Editing
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Content Editing',
-    'Leads the Content Editing team, ensures all content is accurate, consistent, and adheres to brand guidelines.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Content Editing Team';
-
--- Content Editor
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Content Editor',
-    'Edits written content for clarity, style, and accuracy, ensures consistency with brand guidelines.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Content Editing Team';
-
--- Content Editor
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Content Editor',
-    'Edits written content for clarity, style, and accuracy, ensures consistency with brand guidelines.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Content Editing Team';
-
--- Proofreader
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Proofreader',
-    'Checks written content for spelling, grammar, and punctuation errors.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Content Editing Team';
-
--- Copywriter
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Copywriter',
-    'Creates persuasive and engaging marketing copy for websites, ads, and other materials.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Content Editing Team';
-
--- Graphic Designer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Graphic Designer',
-    'Creates visual assets for websites, social media, and marketing materials.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Content Editing Team';
-
--- Web Designer
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Web Designer',
-    'Designs and develops websites, ensures usability and functionality, and implements visual elements.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Content Editing Team';
-
--- Social Media Team
-
--- Head of Social Media
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Social Media',
-    'Leads the Social Media team, develops and executes social media strategy, and manages online communities.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Social Media Team';
-
--- Social Media Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Social Media Manager',
-    'Manages social media accounts, creates content, engages with followers, and analyzes performance.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Social Media Team';
-
--- Social Media Specialist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Social Media Specialist',
-    'Creates and schedules social media content, engages with followers, and analyzes performance.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Social Media Team';
-
--- Community Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Community Manager',
-    'Engages with online communities, responds to questions, and fosters positive interactions on social media.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Social Media Team';
-
--- Social Media Content Creator
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Social Media Content Creator',
-    'Creates engaging and visually appealing content for social media platforms.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Social Media Team';
-
--- SEO Team
-
--- Head of SEO
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of SEO',
-    'Leads the SEO team, develops and implements SEO strategy, and monitors website performance.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'SEO Team';
-
--- SEO Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'SEO Manager',
-    'Manages SEO activities, researches keywords, optimizes website content, and analyzes search engine performance.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'SEO Team';
-
--- SEO Specialist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'SEO Specialist',
-    'Conducts keyword research, optimizes website content, builds backlinks, and analyzes SEO performance.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'SEO Team';
-
--- SEO Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'SEO Analyst',
-    'Analyzes website traffic, keyword rankings, and SEO performance data, identifies areas for improvement.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'SEO Team';
-
--- Content Optimization Specialist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Content Optimization Specialist',
-    'Optimizes website content for search engines, researches keywords, and ensures content is relevant and engaging.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'SEO Team';
-
--- Finance and Operations Department
-
--- Chief Financial Officer (CFO)
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Chief Financial Officer (CFO)',
-    'Leads the Finance and Operations department, oversees all financial matters and operations.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Finance and Operations Department';
-
--- Chief Operating Officer (COO)
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Chief Operating Officer (COO)',
-    'Oversees the day-to-day operations of the organization, ensures efficiency and effectiveness.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Finance and Operations Department';
-
--- Finance Team
-
--- Head of Finance
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Finance',
-    'Leads the Finance team, manages financial reporting, budgeting, and accounting.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Finance Team';
-
--- Finance Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Finance Manager',
-    'Oversees daily financial operations, prepares financial reports, and manages budgets.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Finance Team';
-
--- Accountant
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Accountant',
-    'Maintains financial records, prepares financial statements, and ensures compliance with accounting standards.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Finance Team';
-
--- Financial Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Financial Analyst',
-    'Analyzes financial data, prepares financial forecasts, and identifies opportunities for cost savings.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Finance Team';
-
--- Budget Analyst
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Budget Analyst',
-    'Develops and manages budgets, tracks expenses, and identifies areas for budget optimization.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Finance Team';
-
--- Controller
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Controller',
-    'Oversees the accounting function, ensures financial accuracy and compliance, and prepares financial reports.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Finance Team';
-
--- Operations Team
-
--- Head of Operations
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Operations',
-    'Leads the Operations team, manages day-to-day operations, and ensures efficiency and effectiveness.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Operations Team';
-
--- Operations Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Operations Manager',
-    'Oversees daily operations, coordinates with departments, and ensures smooth workflow.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Operations Team';
-
--- Project Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Project Manager',
-    'Plans, manages, and executes projects, tracks progress, and ensures project goals are met.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Operations Team';
-
--- Operations Specialist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Operations Specialist',
-    'Provides support to operations management, handles administrative tasks, and coordinates with departments.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Operations Team';
-
--- Logistics Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Logistics Manager',
-    'Manages the flow of goods and services, oversees transportation, warehousing, and distribution.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Operations Team';
-
--- Facilities Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Facilities Manager',
-    'Manages the physical facilities of the organization, oversees maintenance, repairs, and security.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Operations Team';
-
--- Human Resources Team
-
--- Head of Human Resources
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Human Resources',
-    'Leads the Human Resources team, manages recruitment, training, compensation, and employee relations.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Human Resources Team';
-
--- HR Manager
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'HR Manager',
-    'Oversees daily HR operations, manages recruitment, training, and employee relations.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Human Resources Team';
-
--- HR Specialist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'HR Specialist',
-    'Provides support to HR management, handles administrative tasks, and assists with recruitment, training, and employee relations.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Human Resources Team';
-
--- Recruitment Specialist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Recruitment Specialist',
-    'Manages the recruitment process, posts job openings, screens candidates, and conducts interviews.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Human Resources Team';
-
--- Training and Development Specialist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Training and Development Specialist',
-    'Develops and delivers training programs, creates training materials, and assesses training effectiveness.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Human Resources Team';
-
--- Compensation and Benefits Specialist
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Compensation and Benefits Specialist',
-    'Manages employee compensation, benefits, and payroll, ensures compliance with regulations.',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Human Resources Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Repair and Maintenance',
-    'Head of Repair and Maintenance',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Car Repair and Maintenance Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Service Manager',
-    'Service Manager',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Car Repair and Maintenance Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Mechanical Repairs',
-    'Head of Mechanical Repairs',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Mechanical Repair Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Lead Mechanic',
-    'Lead Mechanic',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Mechanical Repair Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Mechanic',
-    'Senior Mechanic',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Mechanical Repair Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Mechanic',
-    'Mechanic',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Mechanical Repair Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Apprentice Mechanic',
-    'Apprentice Mechanic',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Mechanical Repair Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Engine Specialist',
-    'Engine Specialist',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Mechanical Repair Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Transmission Specialist',
-    'Transmission Specialist',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Mechanical Repair Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Brake Specialist',
-    'Brake Specialist',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Mechanical Repair Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Electrical Repairs',
-    'Head of Electrical Repairs',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Electrical Repair Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Lead Electrician',
-    'Lead Electrician',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Electrical Repair Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Electrician',
-    'Senior Electrician',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Electrical Repair Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Electrician',
-    'Electrician',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Electrical Repair Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Automotive Electrical Technician',
-    'Automotive Electrical Technician',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Electrical Repair Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Electronics Specialist',
-    'Electronics Specialist',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Electrical Repair Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Diagnostics Specialist',
-    'Diagnostics Specialist',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Diagnostics Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Diagnostics',
-    'Head of Diagnostics',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Diagnostics Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Diagnostics Technician',
-    'Senior Diagnostics Technician',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Diagnostics Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Diagnostics Technician',
-    'Diagnostics Technician',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Diagnostics Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Computer Systems Specialist',
-    'Computer Systems Specialist',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Diagnostics Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Scheduled Maintenance',
-    'Head of Scheduled Maintenance',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Scheduled Maintenance Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Lead Technician',
-    'Lead Technician',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Scheduled Maintenance Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Senior Technician',
-    'Senior Technician',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Scheduled Maintenance Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Technician',
-    'Technician',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Scheduled Maintenance Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Service Advisor',
-    'Service Advisor',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Scheduled Maintenance Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Maintenance Specialist',
-    'Maintenance Specialist',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Scheduled Maintenance Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Preventive Maintenance',
-    'Head of Preventive Maintenance',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Preventive Maintenance Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Preventive Maintenance Technician',
-    'Preventive Maintenance Technician',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Preventive Maintenance Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Inspection Specialist',
-    'Inspection Specialist',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Preventive Maintenance Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Parts and Accessories',
-    'Head of Parts and Accessories',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Parts and Accessories Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Parts Manager',
-    'Parts Manager',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Parts and Accessories Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Sales Manager',
-    'Sales Manager',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Parts Sales Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Parts Sales',
-    'Head of Parts Sales',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Parts Sales Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Parts Sales Representative',
-    'Parts Sales Representative',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Parts Sales Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Parts Advisor',
-    'Parts Advisor',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Parts Sales Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Counter Salesperson',
-    'Counter Salesperson',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Parts Sales Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Inventory',
-    'Head of Inventory',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Inventory Management Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Inventory Manager',
-    'Inventory Manager',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Inventory Management Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Inventory Specialist',
-    'Inventory Specialist',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Inventory Management Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Warehouse Manager',
-    'Warehouse Manager',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Inventory Management Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Stock Controller',
-    'Stock Controller',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Inventory Management Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Logistics',
-    'Head of Logistics',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Logistics Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Logistics Manager',
-    'Logistics Manager',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Logistics Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Transportation',
-    'Head of Transportation',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Transportation Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Transportation Supervisor',
-    'Transportation Supervisor',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Transportation Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Driver',
-    'Driver',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Transportation Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Dispatcher',
-    'Dispatcher',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Transportation Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Logistics Coordinator',
-    'Logistics Coordinator',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Transportation Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Delivery',
-    'Head of Delivery',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Delivery Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Delivery Supervisor',
-    'Delivery Supervisor',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Delivery Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Delivery Driver',
-    'Delivery Driver',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Delivery Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Delivery Assistant',
-    'Delivery Assistant',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Delivery Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Delivery Coordinator',
-    'Delivery Coordinator',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Delivery Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Customer Service',
-    'Head of Customer Service',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Customer Service Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Customer Service Manager',
-    'Customer Service Manager',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Customer Service Department';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Customer Support Supervisor',
-    'Customer Support Supervisor',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Customer Support Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Customer Support',
-    'Head of Customer Support',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Customer Support Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Customer Service Representative',
-    'Customer Service Representative',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Customer Support Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Service Advisor',
-    'Service Advisor',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Customer Support Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Complaint Handler',
-    'Complaint Handler',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Customer Support Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Service Scheduler',
-    'Service Scheduler',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Service Scheduling Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Head of Service Scheduling',
-    'Head of Service Scheduling',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Service Scheduling Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Appointment Coordinator',
-    'Appointment Coordinator',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Service Scheduling Team';
-
-INSERT INTO "OrganizationItems" ("ParentItemId", "IsDeleted", "HardDelete", "ItemType", "Name", "Description", "BusinessEntityStatus", "DateCreated", "Uid") 
-SELECT 
-    "Id",
-    FALSE,
-    TRUE,
-    1,
-    'Scheduling Specialist',
-    'Scheduling Specialist',
-    1,
-    NOW(),
-    uuid_generate_v4()
-FROM "OrganizationItems" WHERE "Name" = 'Service Scheduling Team';
