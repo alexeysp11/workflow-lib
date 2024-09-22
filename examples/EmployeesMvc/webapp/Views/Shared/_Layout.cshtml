@@ -35,17 +35,17 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">@_appSettings.Translate(languageName, "Page.Home")</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-dark" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle text-dark" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     @_appSettings.Translate(languageName, "OrganizationalStructure")
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" asp-area="" asp-controller="OrganizationalStructure" asp-action="BriefDescription">@_appSettings.Translate(languageName, "BriefDescription")</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="OrganizationalStructure" asp-action="BriefDescription">@_appSettings.Translate(languageName, "BriefDescription")</a></li>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" asp-area="" asp-controller="OrganizationalStructure" asp-action="Organizations">@_appSettings.Translate(languageName, "Organizations")</a>
-                                    <a class="dropdown-item" asp-area="" asp-controller="OrganizationalStructure" asp-action="Departments">@_appSettings.Translate(languageName, "Departments")</a>
-                                    <a class="dropdown-item" asp-area="" asp-controller="OrganizationalStructure" asp-action="Teams">@_appSettings.Translate(languageName, "Teams")</a>
-                                    <a class="dropdown-item" asp-area="" asp-controller="OrganizationalStructure" asp-action="JobPositions">@_appSettings.Translate(languageName, "JobPositions")</a>
-                                </div>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="OrganizationalStructure" asp-action="Organizations">@_appSettings.Translate(languageName, "Organizations")</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="OrganizationalStructure" asp-action="Departments">@_appSettings.Translate(languageName, "Departments")</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="OrganizationalStructure" asp-action="Teams">@_appSettings.Translate(languageName, "Teams")</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="OrganizationalStructure" asp-action="JobPositions">@_appSettings.Translate(languageName, "JobPositions")</a></li>
+                                </ul>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-dark" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -60,10 +60,10 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-dark" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    CRM
+                                    Finance
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" asp-area="" asp-controller="Crm" asp-action="Customers">@_appSettings.Translate(languageName, "Customers")</a>
+                                    <a class="dropdown-item" href="#">Investments</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -75,6 +75,59 @@
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" asp-area="" asp-controller="Documents" asp-action="KnowledgeBase">@_appSettings.Translate(languageName, "KnowledgeBase")</a>
                                 </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    More
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="#">Corporate website</a></li>
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-item dropdown-toggle" role="button">External Communication Service</a>
+                                        <ul class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">File sharing</a>
+                                            <a class="dropdown-item" href="#">Candidate survey</a>
+                                            <a class="dropdown-item" href="#">Client survey</a>
+                                            <a class="dropdown-item" href="#">Client satisfaction survey</a>
+                                            <a class="dropdown-item" href="#">Employee satisfaction survey</a>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-item dropdown-toggle" role="button">Partners</a>
+                                        <ul class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Food delivery</a>
+                                            <a class="dropdown-item" href="#">e-commerce</a>
+                                            <a class="dropdown-item" href="#">Bank</a>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-item dropdown-toggle" role="button">Internal systems</a>
+                                        <ul class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">CRM</a>
+                                            <a class="dropdown-item" href="#">WMS</a>
+                                            <a class="dropdown-item" href="#">Logistics</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">TechSupport</a>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-item dropdown-toggle" role="button">Communication</a>
+                                        <ul class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Convo Web</a>
+                                            <a class="dropdown-item" href="#">MeetPlanning</a>
+                                        </ul>
+                                    </li>
+                                    <div class="dropdown-divider"></div>
+                                    <li><a class="dropdown-item" href="#">Task management</a></li>
+                                    <li><a class="dropdown-item" href="#">HelpDesk</a></li>
+                                    <div class="dropdown-divider"></div>
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-item dropdown-toggle" role="button">Download corporate software</a>
+                                        <ul class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Convo Desktop</a>
+                                        </ul>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                         <div class="navbar-nav flex-grow-2" style="text-align: right;">
@@ -124,6 +177,19 @@
             function changeLanguage(lang) {
                 window.location.href = '/Home/SetLanguage?lang=' + lang;
             }
+
+            $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
+                if (!$(this).next().hasClass('show')) {
+                    $(this).parents('.dropdown-menu').first().find('.show').removeClass('show');
+                }
+                var $subMenu = $(this).next('.dropdown-menu');
+                $subMenu.toggleClass('show');
+
+                $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+                    $('.dropdown-submenu .show').removeClass('show');
+                });
+                return false;
+            });
         </script>
 
         @await RenderSectionAsync("Scripts", required: false)
