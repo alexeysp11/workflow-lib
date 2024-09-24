@@ -6,7 +6,7 @@
 @inject AppSettings _appSettings
 
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Organization Item";
 }
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css" />
@@ -19,13 +19,14 @@
         languageName = "English";
     }
 
-    ViewData["Title"] = _appSettings.Translate(languageName, "JobPositions");
+    var titleString = ViewData["ItemType"] != null ? ViewData["ItemType"].ToString() : string.Empty;
+    ViewData["Title"] = _appSettings.Translate(languageName, titleString);
 
     <div class="text-center">
         <h1 class="display-4">@ViewData["Title"]</h1>
     </div>
     
-    <table name="tblJobPositions" id="tblJobPositions" class="table table-bordered table-striped">
+    <table name="tblTeams" id="tblTeams" class="table table-bordered table-striped">
     <thead>
         <tr>
             <th>
@@ -77,7 +78,7 @@
         $.noConflict();
         jQuery( document ).ready(function( $ ) {
             $(document).ready(function() {
-                var table = $('#tblJobPositions').DataTable({
+                var table = $('#tblTeams').DataTable({
                     language: {
                         url: '//cdn.datatables.net/plug-ins/2.0.8/i18n/en-GB.json',
                     }

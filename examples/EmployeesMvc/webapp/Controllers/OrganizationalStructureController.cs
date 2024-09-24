@@ -38,18 +38,20 @@ public class OrganizationalStructureController : Controller
         return View(await _context.Organizations.Include(x => x.HeadItem).ToListAsync());
     }
 
-    public async Task<IActionResult> Departments()
+    public async Task<IActionResult> OrganizationItems(OrganizationItemType itemType)
     {
-        return View(await _context.OrganizationItems.Where(x => x.ItemType == OrganizationItemType.Department).Include(x => x.ParentItem).ToListAsync());
-    }
-
-    public async Task<IActionResult> Teams()
-    {
-        return View(await _context.OrganizationItems.Where(x => x.ItemType == OrganizationItemType.Team).Include(x => x.ParentItem).ToListAsync());
-    }
-
-    public async Task<IActionResult> JobPositions()
-    {
-        return View(await _context.OrganizationItems.Where(x => x.ItemType == OrganizationItemType.JobPosition).Include(x => x.ParentItem).ToListAsync());
+        switch (itemType)
+        {
+            case OrganizationItemType.Department:
+                ViewData["ItemType"] = "Departments";
+                break;
+            case OrganizationItemType.JobPosition:
+                ViewData["ItemType"] = "JobPositions";
+                break;
+            case OrganizationItemType.Team:
+                ViewData["ItemType"] = "Teams";
+                break;
+        }
+        return View(await _context.OrganizationItems.Where(x => x.ItemType == itemType).Include(x => x.ParentItem).ToListAsync());
     }
 }
