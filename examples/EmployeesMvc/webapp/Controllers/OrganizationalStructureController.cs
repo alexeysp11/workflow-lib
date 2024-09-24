@@ -38,6 +38,11 @@ public class OrganizationalStructureController : Controller
         return View(await _context.Organizations.Include(x => x.HeadItem).ToListAsync());
     }
 
+    public async Task<IActionResult> OrganizationDetails(long organizationId)
+    {
+        return View(await _context.Organizations.Include(x => x.HeadItem).FirstOrDefaultAsync(x => x.Id == organizationId));
+    }
+
     public async Task<IActionResult> OrganizationItems(OrganizationItemType itemType)
     {
         switch (itemType)
