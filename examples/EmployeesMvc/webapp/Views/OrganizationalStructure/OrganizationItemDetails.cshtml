@@ -17,11 +17,10 @@
         languageName = "English";
     }
 
-    var mainTitle = _appSettings.Translate(languageName, "OrganizationItemDetails");
-    ViewData["Title"] = mainTitle + ": " + Model?.Name;
+    ViewData["Title"] = _appSettings.Translate(languageName, "OrganizationItemDetails");
     
     <div class="text-center">
-        <h1 class="display-4">@mainTitle</h1>
+        <h1 class="display-4">@ViewData["Title"]</h1>
 
         <form>
             <fieldset disabled>

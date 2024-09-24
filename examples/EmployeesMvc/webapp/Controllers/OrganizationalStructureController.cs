@@ -38,14 +38,14 @@ public class OrganizationalStructureController : Controller
         return View(await _context.Organizations.Include(x => x.HeadItem).ToListAsync());
     }
 
-    public async Task<IActionResult> OrganizationDetails(long organizationId)
+    public async Task<IActionResult> OrganizationDetails(long id)
     {
-        return View(await _context.Organizations.Include(x => x.HeadItem).FirstOrDefaultAsync(x => x.Id == organizationId));
+        return View(await _context.Organizations.Include(x => x.HeadItem).FirstOrDefaultAsync(x => x.Id == id));
     }
 
-    public async Task<IActionResult> OrganizationItemDetails(long organizationItemId)
+    public async Task<IActionResult> OrganizationItemDetails(long id)
     {
-        return View(await _context.OrganizationItems.Include(x => x.ParentItem).FirstOrDefaultAsync(x => x.Id == organizationItemId));
+        return View(await _context.OrganizationItems.Include(x => x.ParentItem).FirstOrDefaultAsync(x => x.Id == id));
     }
 
     public async Task<IActionResult> OrganizationItems(OrganizationItemType itemType)
