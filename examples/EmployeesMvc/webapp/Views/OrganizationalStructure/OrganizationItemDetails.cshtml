@@ -1,0 +1,45 @@
+@using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations
+@using WorkflowLib.Shared.Models.Business.InformationSystem
+
+@model OrganizationItem
+
+@inject AppSettings _appSettings
+
+@{
+    ViewData["Title"] = "Organization item details";
+}
+
+@try
+{
+    var languageName = string.Empty;
+    if (!Context.Request.Cookies.TryGetValue("employeesmvc-lang", out languageName))
+    {
+        languageName = "English";
+    }
+
+    var mainTitle = _appSettings.Translate(languageName, "OrganizationItemDetails");
+    ViewData["Title"] = mainTitle + ": " + Model?.Name;
+    
+    <div class="text-center">
+        <h1 class="display-4">@mainTitle</h1>
+
+        <form>
+            <fieldset disabled>
+                <div class="form-group">
+                    <label for="disabledTextInput">Name</label>
+                    <input type="text" id="disabledTextInput" class="form-control" placeholder="@Model?.Name">
+                </div>
+                <div class="form-group">
+                    <label for="disabledTextInput">Description</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">@Model?.Description</textarea>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+}
+catch (System.Exception ex)
+{
+    <div class="text-center">
+        <p class="text-danger">Error: @ex.Message</p>
+    </div>
+}

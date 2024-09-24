@@ -66,7 +66,9 @@
                 @Html.DisplayFor(modelItem => item.OrganizationName)
             </td>
             <td>@item.ParentItem?.Name</td>
-            <td></td>
+            <td>
+                <a type="button" class="btn btn-primary btn-sm position-relative" asp-area="" asp-controller="OrganizationalStructure" asp-action="OrganizationItemDetails" asp-route-organizationItemId="@item.Id">Details</a>
+            </td>
         </tr>
     }
     </tbody>
