@@ -34,12 +34,12 @@ public class HrmController : Controller
         _context = context;
     }
 
-    public IActionResult Employees()
+    public async Task<IActionResult> Employees()
     {
         IEnumerable<Employee> employees = null;
         try
         {
-            employees = _unitOfWork.GetEmployees();
+            employees = await _context.Employees.Include(x => x.OrganizationItems).ToListAsync();
         }
         catch (System.Exception ex)
         {
