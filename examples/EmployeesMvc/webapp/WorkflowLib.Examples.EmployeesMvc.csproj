@@ -8,6 +8,7 @@
   
   <ItemGroup>
     <ProjectReference Include="../core/WorkflowLib.Examples.EmployeesMvc.Core.csproj" />
+    <ProjectReference Include="../../../src/Shared/CodeExtensions/WorkflowLib.Shared.CodeExtensions.csproj" />
   </ItemGroup>
 
   <ItemGroup>

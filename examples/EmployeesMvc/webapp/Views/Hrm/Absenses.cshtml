@@ -1,8 +1,12 @@
 @using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations
 @using WorkflowLib.Examples.EmployeesMvc.Core.Enums
+@using WorkflowLib.Extensions
 @using WorkflowLib.Shared.Models.Business.InformationSystem
+
 @model IEnumerable<Absense>
+
 @inject AppSettings _appSettings
+
 @{
     ViewData["Title"] = "Absenses";
 }
@@ -186,6 +190,7 @@
                     <th>@_appSettings.Translate(languageName, "Gender")</th>
                     <th>@_appSettings.Translate(languageName, "OrganizationItem")</th>
                     <th>@_appSettings.Translate(languageName, "Age")</th>
+                    <th>@_appSettings.Translate(languageName, "AbsenseReason")</th>
                     <th>@_appSettings.Translate(languageName, "BeginDate")</th>
                     <th>@_appSettings.Translate(languageName, "EndDate")</th>
                 </tr>
@@ -218,6 +223,7 @@
                             }
                         </td>
                         <td>@age</td>
+                        <td>@obj.Reason.GetDisplayName()</td>
                         <td>@obj.DateStartActual?.ToString("dd.MM.yyyy")</td>
                         <td>@obj.DateEndActual?.ToString("dd.MM.yyyy")</td>
                     </tr>
