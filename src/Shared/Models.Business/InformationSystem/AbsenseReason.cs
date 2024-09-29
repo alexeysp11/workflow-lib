@@ -8,66 +8,66 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
     public enum AbsenseReason
     {
         [Display(Name = "Skipping")]
-        Skipping,
+        Skipping = 0,
 
         [Display(Name = "Unpaid time off")]
-        UnpaidTimeOff,
+        UnpaidTimeOff = 1,
 
         [Display(Name = "Paid time off")]
-        PaidTimeOff,
+        PaidTimeOff = 2,
 
         [Display(Name = "Annual leave")]
-        AnnualLeave,
+        AnnualLeave = 3,
 
         [Display(Name = "Family and medical leave")]
-        FamilyMedicalLeave,
+        FamilyMedicalLeave = 4,
 
         [Display(Name = "Disability leave")]
-        DisabilityLeave,
+        DisabilityLeave = 5,
 
         [Display(Name = "Sabbatical")]
-        Sabbatical,
+        Sabbatical = 6,
 
         [Display(Name = "Community service")]
-        CommunityService,
+        CommunityService = 7,
 
         [Display(Name = "Military service")]
-        MilitaryService,
+        MilitaryService = 8,
 
         [Display(Name = "Travel")]
-        Travel,
+        Travel = 9,
 
         [Display(Name = "Business trip")]
-        BusinessTrip,
+        BusinessTrip = 10,
 
         [Display(Name = "Suspension")]
-        Suspension,
+        Suspension = 11,
 
         [Display(Name = "Personal leave")]
-        PersonalLeave,
+        PersonalLeave = 12,
 
         [Display(Name = "Bereavement leave")]
-        BereavementLeave,
+        BereavementLeave = 13,
 
         [Display(Name = "Jury duty")]
-        JuryDuty,
+        JuryDuty = 14,
 
         [Display(Name = "Health issues")]
-        HealthIssues,
+        HealthIssues = 15,
 
         [Display(Name = "Childcare leave")]
-        ChildcareLeave,
+        ChildcareLeave = 16,
 
         [Display(Name = "Family responsibility")]
-        FamilyResponsibility,
+        FamilyResponsibility = 17,
 
         [Display(Name = "Vacation")]
-        Vacation,
+        Vacation = 18,
 
         [Display(Name = "Emergency leave")]
-        EmergencyLeave,
+        EmergencyLeave = 19,
 
         [Display(Name = "Study leave")]
-        StudyLeave
+        StudyLeave = 20
     }
 }
