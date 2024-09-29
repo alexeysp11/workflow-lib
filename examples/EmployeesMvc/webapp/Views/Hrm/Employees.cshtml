@@ -59,7 +59,21 @@
                     <tr>
                         <td>@obj.FullName</td>
                         <td>@_appSettings.Translate(languageName, $"Gender.{obj.Gender}")</td>
-                        <td>@obj.OrganizationItems?.FirstOrDefault()?.Name</td>
+                        <td>
+                            @{
+                                var organizationItem = obj.OrganizationItems?.FirstOrDefault();
+                                if (organizationItem != null)
+                                {
+                                    <a class="link-dark link-offset-2 link-underline link-underline-opacity-0" asp-area="" asp-controller="OrganizationalStructure" asp-action="OrganizationItemDetails" asp-route-id="@organizationItem.Id">
+                                        @organizationItem.Name
+                                    </a>
+                                }
+                                else
+                                {
+                                    <p>N/A</p>
+                                }
+                            }
+                        </td>
                         <td>@age</td>
                         <td>@obj.BirthDate?.ToString("dd.MM.yyyy")</td>
                     </tr>
