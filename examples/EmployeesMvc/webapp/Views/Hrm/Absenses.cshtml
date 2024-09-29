@@ -4,7 +4,7 @@
 @model IEnumerable<Absense>
 @inject AppSettings _appSettings
 @{
-    ViewData["Title"] = "Vacations";
+    ViewData["Title"] = "Absenses";
 }
 
 @try
@@ -20,7 +20,7 @@
         languageName = "English";
     }
 
-    ViewData["Title"] = _appSettings.Translate(languageName, "Vacations");
+    ViewData["Title"] = _appSettings.Translate(languageName, "Absenses");
 
     <div class="text-center">
         <h1 class="display-4">@ViewData["Title"]</h1>
@@ -31,7 +31,7 @@
     </div>
 
     <div>
-        <button class="btn btn-dark dropdown" data-bs-toggle="collapse" data-bs-target="#divVacationFilters">@_appSettings.Translate(languageName, "VacationFilters")</button>
+        <button class="btn btn-dark dropdown" data-bs-toggle="collapse" data-bs-target="#divVacationFilters">@_appSettings.Translate(languageName, "AbsenseFilters")</button>
         <a class="btn btn-primary" role="button" asp-controller="Hrm" asp-action="NewVacation">@_appSettings.Translate(languageName, "NewVacation")</a>
 
         <div class="indent collapse @(TempData[CacheUidType.VacationsUid.ToString()] == null ? "" : "show")" id="divVacationFilters">

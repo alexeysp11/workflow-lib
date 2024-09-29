@@ -48,7 +48,7 @@ public class HrmController : Controller
         return View(employees);
     }
 
-    public IActionResult Vacations()
+    public IActionResult Absenses()
     {
         IEnumerable<Absense> vacations = null;
         try
@@ -128,7 +128,7 @@ public class HrmController : Controller
         {
             TempData["ErrorMessage"] = ex.Message;
         }
-        return RedirectToAction("Vacations");
+        return RedirectToAction("Absenses");
     }
 
     public IActionResult AddNewVaction(
@@ -145,7 +145,7 @@ public class HrmController : Controller
         {
             TempData["ErrorMessage"] = ex.Message;
         }
-        return RedirectToAction("Vacations");
+        return RedirectToAction("Absenses");
     }
 
     public IActionResult Hiring()
