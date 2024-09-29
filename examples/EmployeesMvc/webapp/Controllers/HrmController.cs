@@ -48,33 +48,40 @@ public class HrmController : Controller
         return View(employees);
     }
 
-    public IActionResult Absenses()
+    public async Task<IActionResult> Absenses()
     {
-        IEnumerable<Absense> vacations = null;
+        IEnumerable<Absense> absenses = null;
         try
         {
             // Restore previously filtered elements.
-            var uidObj = TempData[CacheUidType.VacationsUid.ToString()];
-            if (uidObj != null && !string.IsNullOrEmpty(uidObj.ToString()))
-            {
-                var vacationsFiltered = _unitOfWork.GetFilteredVacations(uidObj.ToString()).ToList();
-                uidObj = string.Empty;
-                return View(vacationsFiltered);
-            }
+            // var uidObj = TempData[CacheUidType.VacationsUid.ToString()];
+            // if (uidObj != null && !string.IsNullOrEmpty(uidObj.ToString()))
+            // {
+            //     var vacationsFiltered = _unitOfWork.GetFilteredVacations(uidObj.ToString()).ToList();
+            //     uidObj = string.Empty;
+            //     return View(vacationsFiltered);
+            // }
 
             // Set info about filters.
             TempData[CacheUidType.FilterInfoVacations.ToString()] = FilterOptionType.NoFiltersApplied;
             TempData[CacheUidType.EmployeeInfoVacations.ToString()] = FilterOptionType.NoFiltersApplied;
             TempData[CacheUidType.FilterOptionsVacations.ToString()] = FilterOptionType.NoFiltersApplied;
 
-            // Get all elements.
-            vacations = _unitOfWork.GetVacations();
+            // Get all elements in a current year.
+            var now = DateTime.Now;
+            var firstDay = new DateTime(now.Year, now.Month, 1, 0, 0, 0, DateTimeKind.Utc);
+            var lastDay = firstDay.AddMonths(1).AddDays(-1);
+            absenses = await _context.Absenses
+                .Where(x => x.DateStartActual >= firstDay && x.DateEndActual <= lastDay)
+                .Include(x => x.Employee)
+                    .ThenInclude(employee => employee.OrganizationItems)
+                .ToListAsync();;
         }
         catch (System.Exception ex)
         {
             TempData["ErrorMessage"] = ex.Message;
         }
-        return View(vacations);
+        return View(absenses);
     }
 
     public IActionResult NewVacation()

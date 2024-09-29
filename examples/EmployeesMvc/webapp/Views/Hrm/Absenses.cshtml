@@ -184,8 +184,7 @@
                 <tr>
                     <th>@_appSettings.Translate(languageName, "FullName")</th>
                     <th>@_appSettings.Translate(languageName, "Gender")</th>
-                    <th>@_appSettings.Translate(languageName, "JobTitle")</th>
-                    <th>@_appSettings.Translate(languageName, "Department")</th>
+                    <th>@_appSettings.Translate(languageName, "OrganizationItem")</th>
                     <th>@_appSettings.Translate(languageName, "Age")</th>
                     <th>@_appSettings.Translate(languageName, "BeginDate")</th>
                     <th>@_appSettings.Translate(languageName, "EndDate")</th>
@@ -194,16 +193,30 @@
             <tbody>
                 @foreach (var obj in Model)
                 {
-                    var age = System.DateTime.Now.Year - obj.Employee?.BirthDate?.Year;
-                    if (obj.Employee?.BirthDate?.Month > System.DateTime.Now.Month && obj.Employee?.BirthDate?.Day > System.DateTime.Now.Day)
+                    var employee = obj.Employee;
+                    var age = System.DateTime.Now.Year - employee?.BirthDate?.Year;
+                    if (employee?.BirthDate?.Month > System.DateTime.Now.Month && employee?.BirthDate?.Day > System.DateTime.Now.Day)
                     {
                         age -= 1;
                     }
                     <tr>
-                        <td>@obj.Employee.FullName</td>
-                        <td>@_appSettings.Translate(languageName, $"Gender.{obj.Employee.Gender}")</td>
-                        <td>JobTitle</td>
-                        <td>Department</td>
+                        <td>@employee?.FullName</td>
+                        <td>@_appSettings.Translate(languageName, $"Gender.{employee?.Gender}")</td>
+                        <td>
+                            @{
+                                var organizationItem = employee?.OrganizationItems?.FirstOrDefault();
+                                if (organizationItem != null)
+                                {
+                                    <a class="link-dark link-offset-2 link-underline link-underline-opacity-0" asp-area="" asp-controller="OrganizationalStructure" asp-action="OrganizationItemDetails" asp-route-id="@organizationItem.Id">
+                                        @organizationItem.Name
+                                    </a>
+                                }
+                                else
+                                {
+                                    <p>N/A</p>
+                                }
+                            }
+                        </td>
                         <td>@age</td>
                         <td>@obj.DateStartActual?.ToString("dd.MM.yyyy")</td>
                         <td>@obj.DateEndActual?.ToString("dd.MM.yyyy")</td>
