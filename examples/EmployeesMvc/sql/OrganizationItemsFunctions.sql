@@ -367,3 +367,32 @@ BEGIN
         org_tree."ParentItemId" IS NULL;
 END;
 $$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION "GetOrganizationByItemId"(aItemId bigint)
+RETURNS TABLE (
+    "Id" bigint,
+    "CompanyId" bigint,
+    "HeadItemId" bigint,
+    "Uid" text,
+    "Name" text,
+    "Description" text,
+    "DateCreated" timestamp with time zone,
+    "DateChanged" timestamp with time zone,
+    "BusinessEntityStatus" integer
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT
+        o."Id",
+        o."CompanyId",
+        o."HeadItemId",
+        o."Uid",
+        o."Name",
+        o."Description",
+        o."DateCreated",
+        o."DateChanged",
+        o."BusinessEntityStatus"
+    FROM "Organizations" o
+    INNER JOIN "GetRootOrganizationItems"(aItemId) oi on o."HeadItemId" = oi."Id";
+END;
+$$ LANGUAGE plpgsql;
