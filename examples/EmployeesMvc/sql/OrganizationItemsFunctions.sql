@@ -58,6 +58,7 @@ RETURNS TABLE (
     "OrganizationName" text
 ) AS $$
 BEGIN
+    RETURN QUERY
     WITH RECURSIVE org_tree AS (
         SELECT
             oi."Id",
@@ -140,6 +141,7 @@ RETURNS TABLE (
     "OrganizationName" text
 ) AS $$
 BEGIN
+    RETURN QUERY
     WITH RECURSIVE org_tree AS (
         SELECT
             oi."Id",
@@ -222,6 +224,7 @@ RETURNS TABLE (
     "OrganizationName" text
 ) AS $$
 BEGIN
+    RETURN QUERY
     WITH RECURSIVE org_tree AS (
         SELECT
             oi."Id",
@@ -304,6 +307,7 @@ RETURNS TABLE (
     "OrganizationName" text
 ) AS $$
 BEGIN
+    RETURN QUERY
     WITH RECURSIVE org_tree AS (
         SELECT
             oi."Id",
