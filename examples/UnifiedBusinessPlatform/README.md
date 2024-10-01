@@ -4,7 +4,7 @@
 
 This project involves creating a software application that can efficiently handle the generation and management of employee vacation data, as well as provide insights into vacation crossings based on specific criteria.
 
-## Requirements  
+## Requirements
 
 1. Generate randomly "employees of the company": 100 user objects (full name, gender, position (listing 10 positions), age).
 2. Randomly generate "vacation schedule": 3 "vacation" objects (start date, end date, user object) with a length of 14,7,7 days for each created user in the current year.
@@ -17,12 +17,12 @@ This project involves creating a software application that can efficiently handl
 5. It is desirable to use LINQ, lambda expressions.
 6. It is desirable to choose the most efficient algorithm for determining intersections.
 
-## Using the application 
+## Using the application
 
-Employees: 
+Employees:
 
 ![employees_nofilter](../../docs/img/examples/UnifiedBusinessPlatform/employees_nofilter.png)
 
-Vacations: 
+Vacations:
 
 ![vacations_nofilter](../../docs/img/examples/UnifiedBusinessPlatform/vacations_nofilter.png)
