@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace WorkflowLib.Examples.EmployeesMvc.Core.Models.Localization;
+namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Localization;
 
 /// <summary>
 /// Language.

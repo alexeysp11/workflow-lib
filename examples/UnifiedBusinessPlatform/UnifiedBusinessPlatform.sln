@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Examples.EmployeesMvc.Core", "core\WorkflowLib.Examples.EmployeesMvc.Core.csproj", "{BE7DED0A-9DAD-4294-88AE-E0CD8BBD9238}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Examples.UnifiedBusinessPlatform.Core", "core\WorkflowLib.Examples.UnifiedBusinessPlatform.Core.csproj", "{BE7DED0A-9DAD-4294-88AE-E0CD8BBD9238}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.WorkflowLib.Examples.EmployeesMvc", "tests\Tests.WorkflowLib.Examples.EmployeesMvc.csproj", "{CE8457F4-5E55-4D0A-8A6B-5BC384848DE8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.WorkflowLib.Examples.UnifiedBusinessPlatform", "tests\Tests.WorkflowLib.Examples.UnifiedBusinessPlatform.csproj", "{CE8457F4-5E55-4D0A-8A6B-5BC384848DE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Examples.EmployeesMvc", "webapp\WorkflowLib.Examples.EmployeesMvc.csproj", "{253B28F7-CB28-4231-B8C2-5BE07BC26453}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Examples.UnifiedBusinessPlatform", "webapp\WorkflowLib.Examples.UnifiedBusinessPlatform.csproj", "{253B28F7-CB28-4231-B8C2-5BE07BC26453}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

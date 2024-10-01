@@ -1,16 +1,16 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Examples.EmployeesMvc.Core.Domain.Filtering;
-using WorkflowLib.Examples.EmployeesMvc.Core.Dto;
-using WorkflowLib.Examples.EmployeesMvc.Core.Enums;
-using WorkflowLib.Examples.EmployeesMvc.Core.Models;
-using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
+using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Domain.Filtering;
+using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Dto;
+using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Enums;
+using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models;
+using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Configurations;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
-using WorkflowLib.Examples.EmployeesMvc.Core.DbContexts;
-using WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
+using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.DbContexts;
+using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Repositories;
 
-namespace WorkflowLib.Examples.EmployeesMvc.Controllers;
+namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Controllers;
 
 public class HrmController : Controller
 {

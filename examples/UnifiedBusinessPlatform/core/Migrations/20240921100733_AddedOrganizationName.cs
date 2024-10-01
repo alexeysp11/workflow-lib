@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace WorkflowLib.Examples.EmployeesMvc.Core.Migrations
+namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Migrations
 {
     public partial class AddedOrganizationName : Migration
     {

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
+using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Configurations;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
+namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Repositories;
 
 /// <summary>
 /// Implementation of the Unit of work pattern.

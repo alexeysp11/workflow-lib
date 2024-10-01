@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Shared.Models.Business.Customers;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.Examples.EmployeesMvc.Core.DbContexts;
+namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.DbContexts;
 
 public class EmployeesMvcDbContext : DbContext
 {

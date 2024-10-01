@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
-using WorkflowLib.Examples.EmployeesMvc.Core.DbContexts;
-using WorkflowLib.Examples.EmployeesMvc.Core.Domain.DatasetGenerators;
-using WorkflowLib.Examples.EmployeesMvc.Core.Domain.Filtering;
-using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
-using WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
+using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.DbContexts;
+using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Domain.DatasetGenerators;
+using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Domain.Filtering;
+using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Configurations;
+using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 

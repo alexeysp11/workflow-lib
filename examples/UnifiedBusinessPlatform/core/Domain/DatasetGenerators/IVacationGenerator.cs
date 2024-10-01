@@ -1,6 +1,6 @@
 using WorkflowLib.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.Examples.EmployeesMvc.Core.Domain.DatasetGenerators;
+namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Domain.DatasetGenerators;
 
 public interface IVacationGenerator
 {

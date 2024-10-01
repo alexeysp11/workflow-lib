@@ -20,7 +20,7 @@ SET row_security = off;
 -- Name: DATABASE employeesmvc_test; Type: COMMENT; Schema: -; Owner: postgres
 --
 
-COMMENT ON DATABASE employeesmvc_test IS 'Test database for EmployeesMvc application';
+COMMENT ON DATABASE employeesmvc_test IS 'Test database for UnifiedBusinessPlatform application';
 
 
 --

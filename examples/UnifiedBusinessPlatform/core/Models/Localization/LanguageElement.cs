@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.EmployeesMvc.Core.Models.Localization;
+namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Localization;
 
 /// <summary>
 /// Element that should be translated.

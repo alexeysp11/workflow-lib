@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
+namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.HumanResources;
 
 /// <summary>
 /// Names of all the departments in the company.

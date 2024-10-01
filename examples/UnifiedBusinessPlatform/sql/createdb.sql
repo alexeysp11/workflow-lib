@@ -5,5 +5,5 @@ CREATE DATABASE employeesmvc_test
     CONNECTION LIMIT = -1;
 
 COMMENT ON DATABASE employeesmvc_test
-    IS 'Test database for EmployeesMvc application';
+    IS 'Test database for UnifiedBusinessPlatform application';
 

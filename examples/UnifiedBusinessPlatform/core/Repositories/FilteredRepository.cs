@@ -1,8 +1,8 @@
 using System.Collections.Concurrent;
-using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
-using WorkflowLib.Examples.EmployeesMvc.Core.Models;
+using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Configurations;
+using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models;
 
-namespace WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
+namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Repositories;
 
 /// <summary>
 /// Allows to interact with the filtered collections.

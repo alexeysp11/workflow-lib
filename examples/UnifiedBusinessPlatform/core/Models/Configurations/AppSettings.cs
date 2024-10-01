@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using WorkflowLib.Examples.EmployeesMvc.Core.Models.Localization;
+using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Localization;
 
-namespace WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
+namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Configurations;
 
 /// <summary>
 /// Class for storing commonly used config values.

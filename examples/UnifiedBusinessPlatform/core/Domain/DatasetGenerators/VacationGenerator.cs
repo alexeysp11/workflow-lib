@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.Examples.EmployeesMvc.Core.Domain.DatasetGenerators;
+namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Domain.DatasetGenerators;
 
 /// <summary>
 /// Randomly generates a set of vacations 

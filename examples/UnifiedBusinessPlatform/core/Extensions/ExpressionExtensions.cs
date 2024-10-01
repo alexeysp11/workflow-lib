@@ -1,6 +1,6 @@
 using System.Linq.Expressions;
 
-namespace WorkflowLib.Examples.EmployeesMvc.Core.Extensions;
+namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Extensions;
 
 public static class ExpressionExtensions
 {

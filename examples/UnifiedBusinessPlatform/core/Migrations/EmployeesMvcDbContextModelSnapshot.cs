@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using WorkflowLib.Examples.EmployeesMvc.Core.DbContexts;
+using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.DbContexts;
 
 #nullable disable
 
-namespace WorkflowLib.Examples.EmployeesMvc.Core.Migrations
+namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Migrations
 {
     [DbContext(typeof(EmployeesMvcDbContext))]
     partial class EmployeesMvcDbContextModelSnapshot : ModelSnapshot

@@ -2,9 +2,9 @@ using System;
 using System.Linq;
 using Xunit;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
-using WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
+using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Repositories;
 
-namespace Tests.WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
+namespace Tests.WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Repositories;
 
 public class GenericRepositoryTest
 {

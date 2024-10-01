@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
-using WorkflowLib.Examples.EmployeesMvc.Core.Models.Pipes;
+using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Configurations;
+using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Pipes;
 
-namespace WorkflowLib.Examples.EmployeesMvc.Core.Pipes;
+namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Pipes;
 
 /// <summary>
 /// Represent an abstract pipe component that is used for composing sequences of the generators of initial datasets 

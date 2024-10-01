@@ -1,11 +1,11 @@
 using System.Linq.Expressions;
-using WorkflowLib.Examples.EmployeesMvc.Core.Dto;
-using WorkflowLib.Examples.EmployeesMvc.Core.Enums;
-using WorkflowLib.Examples.EmployeesMvc.Core.Extensions;
-using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
+using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Dto;
+using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Enums;
+using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Extensions;
+using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Configurations;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.Examples.EmployeesMvc.Core.Domain.Filtering;
+namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Domain.Filtering;
 
 /// <summary>
 /// Class for applying filters against initial datasets.
