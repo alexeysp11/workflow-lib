@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources;
+using WorkflowLib.Shared.Models.Business.InformationSystem;
 
 namespace WorkflowLib.Examples.EmployeesMvc.Core.Models.Pipes;
 
@@ -21,7 +21,7 @@ public class PipeResult
     /// <summary>
     /// Generated dataset of vacations.
     /// </summary>
-    public List<Vacation> Vacations { get; set; }
+    public List<Absense> Vacations { get; set; }
     
     /// <summary>
     /// Default constructor.
@@ -30,6 +30,6 @@ public class PipeResult
     {
         PipeParams = pipeParams;
         Employees = new List<Employee>();
-        Vacations = new List<Vacation>();
+        Vacations = new List<Absense>();
     }
 }

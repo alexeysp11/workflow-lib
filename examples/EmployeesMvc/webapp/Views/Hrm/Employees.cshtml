@@ -1,7 +1,10 @@
 @using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations
-@using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources
+@using WorkflowLib.Shared.Models.Business.InformationSystem
+
 @model IEnumerable<Employee>
+
 @inject AppSettings _appSettings
+
 @{
     ViewData["Title"] = "Employees";
 }
@@ -10,8 +13,8 @@
 
 @try
 {
-    var jobTitles = System.Enum.GetValues(typeof(JobTitle));
-    var departments = System.Enum.GetValues(typeof(Department));
+    var jobTitles = new List<string>();
+    var departments = new List<string>();
 
     var languageName = string.Empty;
     if (!Context.Request.Cookies.TryGetValue("employeesmvc-lang", out languageName))
@@ -22,7 +25,7 @@
     ViewData["Title"] = _appSettings.Translate(languageName, "Employees");
 
     <div class="text-center">
-        <h1 class="display-4">@_appSettings.Translate(languageName, "Employees")</h1>
+        <h1 class="display-4">@ViewData["Title"]</h1>
         @if (TempData["ErrorMessage"] != null)
         {
             <p class="text-danger">Error message: @TempData["ErrorMessage"]</p>
@@ -40,8 +43,7 @@
                 <tr>
                     <th>@_appSettings.Translate(languageName, "FullName")</th>
                     <th>@_appSettings.Translate(languageName, "Gender")</th>
-                    <th>@_appSettings.Translate(languageName, "JobTitle")</th>
-                    <th>@_appSettings.Translate(languageName, "Department")</th>
+                    <th>@_appSettings.Translate(languageName, "OrganizationItem")</th>
                     <th>@_appSettings.Translate(languageName, "Age")</th>
                     <th>@_appSettings.Translate(languageName, "BirthDate")</th>
                 </tr>
@@ -49,18 +51,31 @@
             <tbody>
                 @foreach (var obj in Model)
                 {
-                    var age = System.DateTime.Now.Year - obj.BirthDate.Year;
-                    if (obj.BirthDate.Month > System.DateTime.Now.Month && obj.BirthDate.Day > System.DateTime.Now.Day)
+                    var age = System.DateTime.Now.Year - obj.BirthDate?.Year;
+                    if (obj.BirthDate?.Month > System.DateTime.Now.Month && obj.BirthDate?.Day > System.DateTime.Now.Day)
                     {
                         age -= 1;
                     }
                     <tr>
                         <td>@obj.FullName</td>
                         <td>@_appSettings.Translate(languageName, $"Gender.{obj.Gender}")</td>
-                        <td>@_appSettings.Translate(languageName, $"JobTitle.{obj.JobTitle}")</td>
-                        <td>@_appSettings.Translate(languageName, $"Department.{obj.Department}")</td>
+                        <td>
+                            @{
+                                var organizationItem = obj.OrganizationItems?.FirstOrDefault();
+                                if (organizationItem != null)
+                                {
+                                    <a class="link-dark link-offset-2 link-underline link-underline-opacity-0" asp-area="" asp-controller="OrganizationalStructure" asp-action="OrganizationItemDetails" asp-route-id="@organizationItem.Id">
+                                        @organizationItem.Name
+                                    </a>
+                                }
+                                else
+                                {
+                                    <p>N/A</p>
+                                }
+                            }
+                        </td>
                         <td>@age</td>
-                        <td>@obj.BirthDate.ToString("dd.MM.yyyy")</td>
+                        <td>@obj.BirthDate?.ToString("dd.MM.yyyy")</td>
                     </tr>
                 }
             </tbody>

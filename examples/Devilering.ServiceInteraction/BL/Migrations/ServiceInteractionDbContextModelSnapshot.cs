@@ -355,11 +355,11 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                     b.Property<int?>("BusinessEntityStatus")
                         .HasColumnType("integer");
 
-                    b.Property<int>("CRMRoleType")
-                        .HasColumnType("integer");
-
                     b.Property<long?>("ContactId")
                         .HasColumnType("bigint");
+
+                    b.Property<int>("CrmRoleType")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("DateChanged")
                         .HasColumnType("timestamp with time zone");
@@ -455,14 +455,14 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                     b.Property<int?>("BusinessEntityStatus")
                         .HasColumnType("integer");
 
-                    b.Property<int>("CRMRoleType")
-                        .HasColumnType("integer");
-
                     b.Property<long?>("CompanyId")
                         .HasColumnType("bigint");
 
                     b.Property<long?>("ContactId")
                         .HasColumnType("bigint");
+
+                    b.Property<int>("CrmRoleType")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("DateChanged")
                         .HasColumnType("timestamp with time zone");
@@ -1939,7 +1939,7 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                     b.Property<int?>("BusinessEntityStatus")
                         .HasColumnType("integer");
 
-                    b.Property<long>("CompanyId")
+                    b.Property<long?>("CompanyId")
                         .HasColumnType("bigint");
 
                     b.Property<int>("CompletePercent")
@@ -1948,7 +1948,7 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                     b.Property<long>("ContractId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("CustomerId")
+                    b.Property<long?>("CustomerId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("DateChanged")
@@ -1981,7 +1981,7 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                     b.Property<string>("Location")
                         .HasColumnType("text");
 
-                    b.Property<long>("ManagerId")
+                    b.Property<long?>("ManagerId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Name")
@@ -2175,13 +2175,13 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("AuthorChangedId")
+                    b.Property<long?>("AuthorChangedId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("AuthorCreatedId")
+                    b.Property<long?>("AuthorCreatedId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("AuthorResolvedId")
+                    b.Property<long?>("AuthorResolvedId")
                         .HasColumnType("bigint");
 
                     b.Property<int?>("BusinessEntityStatus")
@@ -3072,9 +3072,7 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                 {
                     b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Company", "Company")
                         .WithMany("Projects")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CompanyId");
 
                     b.HasOne("WorkflowLib.Shared.Models.Business.BusinessDocuments.Contract", "Contract")
                         .WithMany()
@@ -3084,15 +3082,11 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
 
                     b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CustomerId");
 
                     b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", "Manager")
                         .WithMany()
-                        .HasForeignKey("ManagerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ManagerId");
 
                     b.Navigation("Company");
 
@@ -3147,21 +3141,15 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                 {
                     b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", "AuthorChanged")
                         .WithMany()
-                        .HasForeignKey("AuthorChangedId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AuthorChangedId");
 
                     b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", "AuthorCreated")
                         .WithMany()
-                        .HasForeignKey("AuthorCreatedId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AuthorCreatedId");
 
                     b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", "AuthorResolved")
                         .WithMany()
-                        .HasForeignKey("AuthorResolvedId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AuthorResolvedId");
 
                     b.HasOne("WorkflowLib.Shared.Models.Business.Processes.BusinessTask", null)
                         .WithMany("Risks")

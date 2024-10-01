@@ -1,9 +1,9 @@
 namespace WorkflowLib.Shared.Models.Business.Customers
 {
     /// <summary>
-    /// 
+    /// CRM role type.
     /// </summary>
-    public enum CRMRoleType
+    public enum CrmRoleType
     {
         Client,
         Buyer,

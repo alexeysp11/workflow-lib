@@ -1,8 +1,11 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Npgsql.EntityFrameworkCore.PostgreSQL;
+using WorkflowLib.Examples.EmployeesMvc.Core.DbContexts;
 using WorkflowLib.Examples.EmployeesMvc.Core.Domain.DatasetGenerators;
+using WorkflowLib.Examples.EmployeesMvc.Core.Domain.Filtering;
 using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations;
 using WorkflowLib.Examples.EmployeesMvc.Core.Repositories;
-using WorkflowLib.Examples.EmployeesMvc.Core.Domain.Filtering;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +20,8 @@ builder.Services.AddSingleton(appsettings);
 builder.Services.AddSingleton<IUnitOfWork, UnitOfWork>();
 builder.Services.AddSingleton<DatasetGenerator>();
 builder.Services.AddTransient<ICommonDataFilter, CommonDataFilter>();
+builder.Services.AddDbContext<EmployeesMvcDbContext>(
+        options => options.UseNpgsql("User ID=postgres;Password=postgres;Host=localhost;Port=5432;Database=employeesmvc_test;Pooling=true;Integrated Security=true;"));
 
 var app = builder.Build();
 

@@ -1,18 +1,22 @@
 @using WorkflowLib.Examples.EmployeesMvc.Core.Models.Configurations
 @using WorkflowLib.Examples.EmployeesMvc.Core.Enums
-@using WorkflowLib.Examples.EmployeesMvc.Core.Models.HumanResources
-@model IEnumerable<Vacation>
+@using WorkflowLib.Extensions
+@using WorkflowLib.Shared.Models.Business.InformationSystem
+
+@model IEnumerable<Absense>
+
 @inject AppSettings _appSettings
+
 @{
-    ViewData["Title"] = "Vacations";
+    ViewData["Title"] = "Absenses";
 }
 
 @try
 {
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css" />
 
-    var jobTitles = System.Enum.GetValues(typeof(JobTitle));
-    var departments = System.Enum.GetValues(typeof(Department));
+    var jobTitles = new List<string>();
+    var departments = new List<string>();
 
     var languageName = string.Empty;
     if (!Context.Request.Cookies.TryGetValue("employeesmvc-lang", out languageName))
@@ -20,10 +24,10 @@
         languageName = "English";
     }
 
-    ViewData["Title"] = _appSettings.Translate(languageName, "Vacations");
+    ViewData["Title"] = _appSettings.Translate(languageName, "Absenses");
 
     <div class="text-center">
-        <h1 class="display-4">@_appSettings.Translate(languageName, "Vacations")</h1>
+        <h1 class="display-4">@ViewData["Title"]</h1>
         @if (TempData["ErrorMessage"] != null)
         {
             <p class="text-danger">Error message: @TempData["ErrorMessage"]</p>
@@ -31,12 +35,12 @@
     </div>
 
     <div>
-        <button class="btn btn-dark dropdown" data-bs-toggle="collapse" data-bs-target="#divVacationFilters">@_appSettings.Translate(languageName, "VacationFilters")</button>
-        <a class="btn btn-primary" role="button" asp-controller="Home" asp-action="NewVacation">@_appSettings.Translate(languageName, "NewVacation")</a>
+        <button class="btn btn-dark dropdown" data-bs-toggle="collapse" data-bs-target="#divVacationFilters">@_appSettings.Translate(languageName, "AbsenseFilters")</button>
+        <a class="btn btn-primary" role="button" asp-controller="Hrm" asp-action="NewVacation">@_appSettings.Translate(languageName, "NewVacation")</a>
 
         <div class="indent collapse @(TempData[CacheUidType.VacationsUid.ToString()] == null ? "" : "show")" id="divVacationFilters">
             <div class="text-center">
-                <form method="post" asp-controller="Home" asp-action="FilterVacations" role="post">
+                <form method="post" asp-controller="Hrm" asp-action="FilterVacations" role="post">
                     <div class="form-group col-md-4">
                         @{
                             var cacheFullname = TempData[CacheUidType.EmployeeFullname.ToString()];
@@ -69,10 +73,10 @@
                             @{
                                 var cacheGender = TempData[CacheUidType.EmployeeGender.ToString()];
                                 <option></option>
-                                var genders = new Gender[]
+                                var genders = new GenderType[]
                                 {
-                                    Gender.Male,
-                                    Gender.Female
+                                    GenderType.Male,
+                                    GenderType.Female
                                 };
                                 @foreach (var gen in genders)
                                 {
@@ -184,9 +188,9 @@
                 <tr>
                     <th>@_appSettings.Translate(languageName, "FullName")</th>
                     <th>@_appSettings.Translate(languageName, "Gender")</th>
-                    <th>@_appSettings.Translate(languageName, "JobTitle")</th>
-                    <th>@_appSettings.Translate(languageName, "Department")</th>
+                    <th>@_appSettings.Translate(languageName, "OrganizationItem")</th>
                     <th>@_appSettings.Translate(languageName, "Age")</th>
+                    <th>@_appSettings.Translate(languageName, "AbsenseReason")</th>
                     <th>@_appSettings.Translate(languageName, "BeginDate")</th>
                     <th>@_appSettings.Translate(languageName, "EndDate")</th>
                 </tr>
@@ -194,19 +198,34 @@
             <tbody>
                 @foreach (var obj in Model)
                 {
-                    var age = System.DateTime.Now.Year - obj.Employee.BirthDate.Year;
-                    if (obj.Employee.BirthDate.Month > System.DateTime.Now.Month && obj.Employee.BirthDate.Day > System.DateTime.Now.Day)
+                    var employee = obj.Employee;
+                    var age = System.DateTime.Now.Year - employee?.BirthDate?.Year;
+                    if (employee?.BirthDate?.Month > System.DateTime.Now.Month && employee?.BirthDate?.Day > System.DateTime.Now.Day)
                     {
                         age -= 1;
                     }
                     <tr>
-                        <td>@obj.Employee.FullName</td>
-                        <td>@_appSettings.Translate(languageName, $"Gender.{obj.Employee.Gender}")</td>
-                        <td>@_appSettings.Translate(languageName, $"JobTitle.{obj.Employee.JobTitle}")</td>
-                        <td>@_appSettings.Translate(languageName, $"Department.{obj.Employee.Department}")</td>
+                        <td>@employee?.FullName</td>
+                        <td>@_appSettings.Translate(languageName, $"Gender.{employee?.Gender}")</td>
+                        <td>
+                            @{
+                                var organizationItem = employee?.OrganizationItems?.FirstOrDefault();
+                                if (organizationItem != null)
+                                {
+                                    <a class="link-dark link-offset-2 link-underline link-underline-opacity-0" asp-area="" asp-controller="OrganizationalStructure" asp-action="OrganizationItemDetails" asp-route-id="@organizationItem.Id">
+                                        @organizationItem.Name
+                                    </a>
+                                }
+                                else
+                                {
+                                    <p>N/A</p>
+                                }
+                            }
+                        </td>
                         <td>@age</td>
-                        <td>@obj.BeginDate.ToString("dd.MM.yyyy")</td>
-                        <td>@obj.EndDate.ToString("dd.MM.yyyy")</td>
+                        <td>@obj.Reason.GetDisplayName()</td>
+                        <td>@obj.DateStartActual?.ToString("dd.MM.yyyy")</td>
+                        <td>@obj.DateEndActual?.ToString("dd.MM.yyyy")</td>
                     </tr>
                 }
             </tbody>
