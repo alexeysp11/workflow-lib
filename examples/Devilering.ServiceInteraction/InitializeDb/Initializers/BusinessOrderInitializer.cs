@@ -121,17 +121,25 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.InitializeDb
             for (int i = 0; i < userGroupQty; i++)
             {
                 var users = context.UserAccounts.Where(x => x.Id % userGroupQty == i - 1).ToList();
-                var userGroup = new UserGroup
+                foreach (var user in users)
                 {
-                    Uid = System.Guid.NewGuid().ToString(),
-                    Name = userGroupNames[i],
-                    Users = users,
-                    AuthorCreated = admin,
-                    DateCreated = dtnow,
-                    AuthorChanged = admin,
-                    DateChanged = dtnow
-                };
-                context.UserGroups.Add(userGroup);
+                    var userGroup = new UserGroup
+                    {
+                        Uid = System.Guid.NewGuid().ToString(),
+                        Name = userGroupNames[i],
+                        AuthorCreated = admin,
+                        DateCreated = dtnow,
+                        AuthorChanged = admin,
+                        DateChanged = dtnow
+                    };
+                    var userAccountGroup = new UserAccountGroup
+                    {
+                        UserAccount = user,
+                        UserGroup = userGroup
+                    };
+                    context.UserGroups.Add(userGroup);
+                    context.UserAccountGroups.Add(userAccountGroup);
+                }
             }
             context.SaveChanges();
         }
@@ -141,25 +149,25 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.InitializeDb
             using var context = new ServiceInteractionDbContext(_contextOptions);
             if (context.Customers.Count() != 0)
                 return;
-            var usergroup = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "customer");
-            foreach (var user in usergroup.Users)
-            {
-                var firstName = "FirstName" + user.Id;
-                var middleName = "MiddleName" + user.Id;
-                var lastName = "LastName" + user.Id;
-                var fullName = $"{lastName}, {firstName} {middleName}";
-                var customer = new Customer
-                {
-                    Uid = System.Guid.NewGuid().ToString(),
-                    FirstName = firstName,
-                    MiddleName = middleName,
-                    LastName = lastName,
-                    FullName = fullName,
-                    CrmRoleType = CrmRoleType.Client,
-                    UserAccount = user
-                };
-                context.Customers.Add(customer);
-            }
+            var usergroup = context.UserGroups.FirstOrDefault(x => x.Name == "customer");
+            // foreach (var user in usergroup.Users)
+            // {
+            //     var firstName = "FirstName" + user.Id;
+            //     var middleName = "MiddleName" + user.Id;
+            //     var lastName = "LastName" + user.Id;
+            //     var fullName = $"{lastName}, {firstName} {middleName}";
+            //     var customer = new Customer
+            //     {
+            //         Uid = System.Guid.NewGuid().ToString(),
+            //         FirstName = firstName,
+            //         MiddleName = middleName,
+            //         LastName = lastName,
+            //         FullName = fullName,
+            //         CrmRoleType = CrmRoleType.Client,
+            //         UserAccount = user
+            //     };
+            //     context.Customers.Add(customer);
+            // }
             context.SaveChanges();
         }
 
@@ -189,13 +197,12 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.InitializeDb
             // Level 1: head (job position)
             // Level 2: manager (job position)
             // Level 3: departments: couriers, tech support, kitchen employees (department)
-            var managers = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "manager").Users;
+            var managers = context.UserGroups.FirstOrDefault(x => x.Name == "manager");
             var lvl01 = new OrganizationItem
             {
                 Uid = System.Guid.NewGuid().ToString(),
                 Name = $"Head of '{company.Name}'",
                 ItemType = OrganizationItemType.JobPosition,
-                User = managers.First(),
                 Address = company.Address
             };
             context.OrganizationItems.Add(lvl01);
@@ -204,7 +211,6 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.InitializeDb
                 Uid = System.Guid.NewGuid().ToString(),
                 Name = $"Manager of '{company.Name}'",
                 ItemType = OrganizationItemType.JobPosition,
-                User = managers.Last(),
                 Address = company.Address,
                 ParentItem = lvl01
             };
@@ -214,7 +220,6 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.InitializeDb
                 Uid = System.Guid.NewGuid().ToString(),
                 Name = "Couriers",
                 ItemType = OrganizationItemType.Department,
-                Users = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "courier").Users,
                 Address = company.Address,
                 ParentItem = lvl02
             };
@@ -224,7 +229,6 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.InitializeDb
                 Uid = System.Guid.NewGuid().ToString(),
                 Name = "Tech support",
                 ItemType = OrganizationItemType.Department,
-                Users = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "tech support").Users,
                 Address = company.Address,
                 ParentItem = lvl02
             };
@@ -234,7 +238,7 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.InitializeDb
                 Uid = System.Guid.NewGuid().ToString(),
                 Name = "Warehouse employees",
                 ItemType = OrganizationItemType.Department,
-                Users = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "warehouse employee").Users,
+                //Users = context.UserGroups.FirstOrDefault(x => x.Name == "warehouse employee").Users,
                 Address = company.Address,
                 ParentItem = lvl02
             };
@@ -244,7 +248,7 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.InitializeDb
                 Uid = System.Guid.NewGuid().ToString(),
                 Name = "Kitchen employees",
                 ItemType = OrganizationItemType.Department,
-                Users = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "kitchen employee").Users,
+                //Users = context.UserGroups.FirstOrDefault(x => x.Name == "kitchen employee").Users,
                 Address = company.Address,
                 ParentItem = lvl02
             };
@@ -271,39 +275,39 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.InitializeDb
             var rand = new System.Random();
             // Get all user groups that can be associated with a company.
             var usergroups = new List<UserGroup>();
-            usergroups.Add(context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "manager"));
-            usergroups.Add(context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "courier"));
-            usergroups.Add(context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "tech support"));
-            usergroups.Add(context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "warehouse employee"));
-            usergroups.Add(context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == "kitchen employee"));
+            usergroups.Add(context.UserGroups.FirstOrDefault(x => x.Name == "manager"));
+            usergroups.Add(context.UserGroups.FirstOrDefault(x => x.Name == "courier"));
+            usergroups.Add(context.UserGroups.FirstOrDefault(x => x.Name == "tech support"));
+            usergroups.Add(context.UserGroups.FirstOrDefault(x => x.Name == "warehouse employee"));
+            usergroups.Add(context.UserGroups.FirstOrDefault(x => x.Name == "kitchen employee"));
             // In a loop for each user group, enumerate users.
             var company = context.Companies.FirstOrDefault();
             company.Employees = new List<Employee>();
             foreach (var ug in usergroups)
             {
-                foreach (var user in ug.Users)
-                {
-                    // For each user initialize a company employee. 
-                    var firstName = "FirstName" + user.Id;
-                    var middleName = "MiddleName" + user.Id;
-                    var lastName = "LastName" + user.Id;
-                    var fullName = $"{firstName} {middleName} {lastName}";
-                    var employee = new Employee
-                    {
-                        Uid = System.Guid.NewGuid().ToString(),
-                        FirstName = firstName,
-                        MiddleName = middleName,
-                        LastName = lastName,
-                        FullName = fullName,
-                        MobilePhone = "MobilePhone" + user.Id,
-                        WorkPhone = "WorkPhone" + user.Id,
-                        BirthDate = new System.DateTime(rand.Next(1980, 2004), rand.Next(1, 13), rand.Next(1, 28)).ToUniversalTime(),
-                        EmployDate = new System.DateTime(rand.Next(2018, 2023), rand.Next(1, 13), rand.Next(1, 28)).ToUniversalTime(),
-                        UserAccounts = new List<UserAccount> { user },
-                        Companies = new List<Company> { company },
-                    };
-                    context.Employees.Add(employee);
-                }
+                // foreach (var user in ug.Users)
+                // {
+                //     // For each user initialize a company employee. 
+                //     var firstName = "FirstName" + user.Id;
+                //     var middleName = "MiddleName" + user.Id;
+                //     var lastName = "LastName" + user.Id;
+                //     var fullName = $"{firstName} {middleName} {lastName}";
+                //     var employee = new Employee
+                //     {
+                //         Uid = System.Guid.NewGuid().ToString(),
+                //         FirstName = firstName,
+                //         MiddleName = middleName,
+                //         LastName = lastName,
+                //         FullName = fullName,
+                //         MobilePhone = "MobilePhone" + user.Id,
+                //         WorkPhone = "WorkPhone" + user.Id,
+                //         BirthDate = new System.DateTime(rand.Next(1980, 2004), rand.Next(1, 13), rand.Next(1, 28)).ToUniversalTime(),
+                //         EmployDate = new System.DateTime(rand.Next(2018, 2023), rand.Next(1, 13), rand.Next(1, 28)).ToUniversalTime(),
+                //         UserAccounts = new List<UserAccount> { user },
+                //         Companies = new List<Company> { company },
+                //     };
+                //     context.Employees.Add(employee);
+                // }
             }
             context.SaveChanges();
         }

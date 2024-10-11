@@ -95,6 +95,11 @@ public class ServiceInteractionDbContext : DbContext
     public DbSet<UserGroup> UserGroups { get; set; }
 
     /// <summary>
+    /// Gets or sets the DbSet of UserAccountGroup entities in the context.
+    /// </summary>
+    public DbSet<UserAccountGroup> UserAccountGroups { get; set; }
+
+    /// <summary>
     /// Gets or sets the DbSet of Customer entities in the context.
     /// </summary>
     public DbSet<Customer> Customers { get; set; }
