@@ -1,5 +1,5 @@
-using System.Collections.Generic; 
-using WorkflowLib.Examples.BookList.Models; 
+using System.Collections.Generic;
+using WorkflowLib.Examples.BookList.Models;
 
 namespace WorkflowLib.Examples.BookList.Services
 {
@@ -8,18 +8,18 @@ namespace WorkflowLib.Examples.BookList.Services
     /// </summary>
     public interface IDbHelper
     {
-        void CreateTables(); 
+        void CreateTables();
 
-        void Insert(string request); 
-        void Insert(string insertRequest, string checkRequest); 
+        void Insert(string request);
+        void Insert(string insertRequest, string checkRequest);
 
-        void Update(string request); 
+        void Update(string request);
 
-        bool DoesExist(string readRequest); 
+        bool DoesExist(string readRequest);
         void GetInfoAboutUser(string fullname, out string country, 
-            out string city, string password); 
+            out string city, string password);
         
-        List<Book> GetBooksFromDb(string readRequest); 
-        int GetBookId(string bookName); 
+        List<Book> GetBooksFromDb(string readRequest);
+        int GetBookId(string bookName);
     }
 }

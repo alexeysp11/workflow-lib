@@ -1,45 +1,45 @@
-using MeetPlanning.WpfVersion.ViewModels; 
+using MeetPlanning.WpfVersion.ViewModels;
 
 namespace MeetPlanning.WpfVersion.Commands 
 {
     public class RedirectCommand : System.Windows.Input.ICommand 
     {
-        private MainVM MainVM; 
+        private MainVM MainVM;
 
         public RedirectCommand(MainVM mainVm)
         {
-            this.MainVM = mainVm; 
+            this.MainVM = mainVm;
         }
 
-        public event System.EventHandler CanExecuteChanged; 
+        public event System.EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
         {
-            return true; 
+            return true;
         }
 
         public void Execute(object parameter)
         {
-            string parameterString = parameter as string; 
+            string parameterString = parameter as string;
             if (parameterString == "MyAccount")
             {
-                this.MainVM.RedirectToMyAccountPage(); 
+                this.MainVM.RedirectToMyAccountPage();
             }
             else if (parameterString == "Partners")
             {
-                this.MainVM.RedirectToPartnersPage(); 
+                this.MainVM.RedirectToPartnersPage();
             }
             else if (parameterString == "Meetings")
             {
-                this.MainVM.RedirectToMeetingsPage(); 
+                this.MainVM.RedirectToMeetingsPage();
             }
             else if (parameterString == "UpcomingEvents")
             {
-                this.MainVM.RedirectToUpcomingEventsPage(); 
+                this.MainVM.RedirectToUpcomingEventsPage();
             }
             else if (parameterString == "History")
             {
-                this.MainVM.RedirectToHistoryPage(); 
+                this.MainVM.RedirectToHistoryPage();
             }
             else
             {

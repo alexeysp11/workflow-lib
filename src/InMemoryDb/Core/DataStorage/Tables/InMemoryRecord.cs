@@ -8,8 +8,8 @@ namespace WorkflowLib.InMemoryDb.Core.DataStorage.Tables;
 /// </summary>
 public class InMemoryRecord<T> where T : IComparable<T>
 {
-    private ConcurrentDictionary<InMemoryColumn<T>, InMemoryCell<T>> m_values; 
-    private IReadOnlyDictionary<InMemoryColumn<T>, InMemoryCell<T>> m_cachedValues; 
+    private ConcurrentDictionary<InMemoryColumn<T>, InMemoryCell<T>> m_values;
+    private IReadOnlyDictionary<InMemoryColumn<T>, InMemoryCell<T>> m_cachedValues;
 
     public IReadOnlyDictionary<InMemoryColumn<T>, InMemoryCell<T>> Values
     {

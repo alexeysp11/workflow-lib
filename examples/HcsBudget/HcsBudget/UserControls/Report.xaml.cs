@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using WorkflowLib.Examples.HcsBudget.ViewModels; 
+using WorkflowLib.Examples.HcsBudget.ViewModels;
 
 namespace WorkflowLib.Examples.HcsBudget.UserControls
 {
@@ -14,34 +14,34 @@ namespace WorkflowLib.Examples.HcsBudget.UserControls
         {
             InitializeComponent();
 
-            Loaded += (o, e) => GetYears(); 
+            Loaded += (o, e) => GetYears();
         }
 
         private void DefaultBtn_Clicked(object sender, System.EventArgs e)
         {
-            SetDefaultValues(); 
+            SetDefaultValues();
         }
 
         public void GetYears()
         {
-            MainVM mainVM = (MainVM)(this.DataContext); 
-            mainVM.InsertCurrentDateIntoDb(); 
-            List<int> years = mainVM.SelectDistinctYears(); 
+            MainVM mainVM = (MainVM)(this.DataContext);
+            mainVM.InsertCurrentDateIntoDb();
+            List<int> years = mainVM.SelectDistinctYears();
             foreach (int year in years)
             {
                 cbYearFrom.Items.Add(year.ToString());
                 cbYearTo.Items.Add(year.ToString());
-                SetDefaultValues(); 
+                SetDefaultValues();
             }
         }
 
         private void SetDefaultValues()
         {
-            cbMonthFrom.SelectedIndex = 0; 
-            cbMonthTo.SelectedIndex = 11; 
+            cbMonthFrom.SelectedIndex = 0;
+            cbMonthTo.SelectedIndex = 11;
 
-            cbYearFrom.SelectedIndex = 0; 
-            cbYearTo.SelectedIndex = 0; 
+            cbYearFrom.SelectedIndex = 0;
+            cbYearTo.SelectedIndex = 0;
         }
     }
 }

@@ -30,7 +30,7 @@ namespace WorkflowLib.Examples.TechSupport.Common.Models.Customers
         /// <summary>
         /// CRM role type.
         /// </summary>
-        public CRMRoleType CRMRoleType { get; set; }
+        public CrmRoleType CrmRoleType { get; set; }
 
         // /// <summary>
         // /// Contact of the customer.

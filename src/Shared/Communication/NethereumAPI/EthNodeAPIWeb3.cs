@@ -35,9 +35,9 @@ namespace WorkflowLib.NethereumAPI
         /// </summary>
         public EthNodeAPIWeb3(string ethConnectionAddress, bool useEthConnection, string environment)
         {
-            EthConnectionAddress = ethConnectionAddress; 
-            UseEthConnection = useEthConnection; 
-            Environment = environment; 
+            EthConnectionAddress = ethConnectionAddress;
+            UseEthConnection = useEthConnection;
+            Environment = environment;
         }
 
         /// <summary>
@@ -45,17 +45,17 @@ namespace WorkflowLib.NethereumAPI
         /// </summary>
         public Task<decimal> GetBalanceAsync(string address)
         {
-            decimal ethAmount = 0m; 
+            decimal ethAmount = 0m;
             if (string.IsNullOrEmpty(address)) 
-                return Task.FromResult(ethAmount); 
+                return Task.FromResult(ethAmount);
             Task task = Task.Run(async () => 
             {
                 if (UseEthConnection && !string.IsNullOrEmpty(EthConnectionAddress))
                 {
                     // ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
-                    var web3 = new Web3(EthConnectionAddress); 
+                    var web3 = new Web3(EthConnectionAddress);
                     var balance = await web3.Eth.GetBalance.SendRequestAsync(address);
-                    ethAmount = Web3.Convert.FromWei(balance.Value); 
+                    ethAmount = Web3.Convert.FromWei(balance.Value);
                 }
                 else 
                 {
@@ -63,7 +63,7 @@ namespace WorkflowLib.NethereumAPI
                 }
             });
             task.Wait();
-            return Task.FromResult(ethAmount); 
+            return Task.FromResult(ethAmount);
         }
     }
 }

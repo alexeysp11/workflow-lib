@@ -7,6 +7,6 @@ namespace Chat.Network.Client
     {
         void SendMessage(string message, bool isConfig=true);
         string GetMessages();
-        void CloseConnection(); 
+        void CloseConnection();
     }
 }

@@ -1,5 +1,5 @@
-using System; 
-using MeetPlanning.Models; 
+using System;
+using MeetPlanning.Models;
 
 namespace MeetPlanning.Services
 {
@@ -8,7 +8,7 @@ namespace MeetPlanning.Services
         bool IsAuthenticated { get; set; }
 
         void CreateUser(string name, DateTime birthDate, string password, 
-            string nationality, string gender); 
-        User GetUser(string username, string password); 
+            string nationality, string gender);
+        User GetUser(string username, string password);
     }
 }

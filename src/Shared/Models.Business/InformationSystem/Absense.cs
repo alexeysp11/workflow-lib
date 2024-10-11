@@ -8,14 +8,9 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
     public class Absense : BusinessEntityWF, IBusinessEntityWF, ITemporalBusinessEntityWF
     {
         /// <summary>
-        /// ID of the user that is absent.
+        /// Employee that is absent.
         /// </summary>
-        public long UserId { get; set; }
-        
-        /// <summary>
-        /// User account related to the employee that is absent.
-        /// </summary>
-        public UserAccount? User { get; set; }
+        public Employee? Employee { get; set; }
         
         /// <summary>
         /// Reason of the absence.

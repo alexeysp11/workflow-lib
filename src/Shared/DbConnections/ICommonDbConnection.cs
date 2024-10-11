@@ -10,12 +10,12 @@ namespace WorkflowLib.Shared.DbConnections
         /// <summary>
         /// Execute SQL command.
         /// </summary>
-        DataTable ExecuteSqlCommand(string sqlRequest); 
+        DataTable ExecuteSqlCommand(string sqlRequest);
         
         /// <summary>
         /// Gets SQL definition of the DataTable object.
         /// </summary>
-        string GetSqlFromDataTable(DataTable dt, string tableName); 
+        string GetSqlFromDataTable(DataTable dt, string tableName);
 
         /// <summary>
         /// Sets connection string.

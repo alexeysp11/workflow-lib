@@ -1,7 +1,7 @@
 using System;
 using Xunit;
-using WorkflowLib.Shared.FuzzyModules.API; 
-using WorkflowLib.Shared.FuzzyModules.API.Membership; 
+using WorkflowLib.Shared.FuzzyModules.API;
+using WorkflowLib.Shared.FuzzyModules.API.Membership;
 
 namespace Tests.WorkflowLib.Shared.FuzzyModules.API.Membership 
 {
@@ -10,7 +10,7 @@ namespace Tests.WorkflowLib.Shared.FuzzyModules.API.Membership
         [Fact]
         public void Triangular_NullLinguisticVariable_GetException()
         {
-            double[] nodes = new double[] { 0.0, 2.0, 4.0 }; 
+            double[] nodes = new double[] { 0.0, 2.0, 4.0 };
             
             Assert.Throws<Exception>(() => new Triangular(null, nodes));
         }
@@ -21,9 +21,9 @@ namespace Tests.WorkflowLib.Shared.FuzzyModules.API.Membership
         [InlineData(new double[] { 4.0, 2.0, 0.0 })]
         public void Triangular_IncorrectOrderOfArguments_GetException(double[] nodes)
         {
-            LinguisticVariable lingVar = new LinguisticVariable(0, 10, 1); 
+            LinguisticVariable lingVar = new LinguisticVariable(0, 10, 1);
 
-            Assert.Throws<Exception>(() => new Triangular(lingVar, nodes)); 
+            Assert.Throws<Exception>(() => new Triangular(lingVar, nodes));
         }
 
         [Theory]
@@ -31,18 +31,18 @@ namespace Tests.WorkflowLib.Shared.FuzzyModules.API.Membership
         [InlineData(new double[] { 0.0, 2.0, 4.0, 5.0 })]
         public void Triangular_IncorrectNumOfNodes_GetException(double[] nodes)
         {
-            LinguisticVariable lingVar = new LinguisticVariable(0, 10, 1); 
+            LinguisticVariable lingVar = new LinguisticVariable(0, 10, 1);
             
-            Assert.Throws<Exception>(() => new Triangular(lingVar, nodes)); 
+            Assert.Throws<Exception>(() => new Triangular(lingVar, nodes));
         }
 
         [Fact]
         public void Triangular_IncorrectInitOfNodes_GetException()
         {
-            LinguisticVariable lingVar = new LinguisticVariable(0, 10, 1); 
-            double[] nodes = new double[] { 2.0, 2.0, 2.0 }; 
+            LinguisticVariable lingVar = new LinguisticVariable(0, 10, 1);
+            double[] nodes = new double[] { 2.0, 2.0, 2.0 };
             
-            Assert.Throws<Exception>(() => new Triangular(lingVar, nodes)); 
+            Assert.Throws<Exception>(() => new Triangular(lingVar, nodes));
         }
 
         [Theory]
@@ -51,14 +51,14 @@ namespace Tests.WorkflowLib.Shared.FuzzyModules.API.Membership
         public void GetMembershipDegree_InputOutOfRange_GetException(double input)
         {
             // Given
-            LinguisticVariable lingVar = new LinguisticVariable(0, 10, 1); 
-            double[] nodes = new double[] { 2.0, 4.0, 6.0 }; 
+            LinguisticVariable lingVar = new LinguisticVariable(0, 10, 1);
+            double[] nodes = new double[] { 2.0, 4.0, 6.0 };
             
             // When
-            Triangular triangular = new Triangular(lingVar, nodes); 
+            Triangular triangular = new Triangular(lingVar, nodes);
 
             // Then
-            Assert.Throws<Exception>(() => triangular.GetMembershipDegree(input)); 
+            Assert.Throws<Exception>(() => triangular.GetMembershipDegree(input));
         }
 
         [Theory]
@@ -73,15 +73,15 @@ namespace Tests.WorkflowLib.Shared.FuzzyModules.API.Membership
         public void GetMembershipDegree_PassCorrectArgs_ActualEqualsToExpected(double input, double expected)
         {
             // Given
-            LinguisticVariable lingVar = new LinguisticVariable(0, 10, 1); 
-            double[] nodes = new double[] { 2.0, 4.0, 6.0 }; 
+            LinguisticVariable lingVar = new LinguisticVariable(0, 10, 1);
+            double[] nodes = new double[] { 2.0, 4.0, 6.0 };
             
             // When
-            Triangular triangular = new Triangular(lingVar, nodes); 
-            double actual = triangular.GetMembershipDegree(input); 
+            Triangular triangular = new Triangular(lingVar, nodes);
+            double actual = triangular.GetMembershipDegree(input);
             
             // Then
-            Assert.Equal(expected, actual); 
+            Assert.Equal(expected, actual);
         }
 
         [Theory]
@@ -91,14 +91,14 @@ namespace Tests.WorkflowLib.Shared.FuzzyModules.API.Membership
         public void ApplyImplication_ValueOutOfRange_GetException(double ruleValue)
         {
             // Given
-            LinguisticVariable lingVar = new LinguisticVariable(0, 10, 1); 
-            double[] nodes = new double[] { 2.0, 4.0, 6.0 }; 
+            LinguisticVariable lingVar = new LinguisticVariable(0, 10, 1);
+            double[] nodes = new double[] { 2.0, 4.0, 6.0 };
             
             // When
-            Triangular triangular = new Triangular(lingVar, nodes); 
+            Triangular triangular = new Triangular(lingVar, nodes);
 
             // Then
-            Assert.Throws<Exception>(() => triangular.ApplyImplication(ruleValue)); 
+            Assert.Throws<Exception>(() => triangular.ApplyImplication(ruleValue));
         }
     }
 }

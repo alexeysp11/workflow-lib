@@ -5,6 +5,6 @@ namespace WorkflowLib.NetworkAPIs
     /// </summary>
     public interface IProtocolListener
     {
-        void Listen(); 
+        void Listen();
     }
 }

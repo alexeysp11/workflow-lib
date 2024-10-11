@@ -8,15 +8,18 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
     public enum OrganizationItemType
     {
         [Display(Name = "Department")]
-        Department,
+        Department = 0,
         
         [Display(Name = "Job position")]
-        JobPosition,
+        JobPosition = 1,
         
         [Display(Name = "Employee group")]
-        EmployeeGroup,
+        EmployeeGroup = 2,
         
         [Display(Name = "Nested structure")]
-        NestedStructure
+        NestedStructure = 3,
+        
+        [Display(Name = "Team")]
+        Team = 4
     }
 }

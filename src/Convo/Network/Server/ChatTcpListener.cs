@@ -1,8 +1,8 @@
-using System; 
-using System.Collections.Generic; 
-using System.Net; 
-using System.Net.Sockets; 
-using Chat.Network.Messages; 
+using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Sockets;
+using Chat.Network.Messages;
 
 namespace Chat.Network.Server
 {
@@ -17,13 +17,13 @@ namespace Chat.Network.Server
         private int Port { get; }
         
         private byte[] ReceivedBytes;
-        private byte[] ResponseBytes; 
+        private byte[] ResponseBytes;
 
         private Message[] MsgBuf = new Message[10];
 
-        private bool IsNeedToPrintStatus = true; 
+        private bool IsNeedToPrintStatus = true;
 
-        private byte clientId = 0; 
+        private byte clientId = 0;
         private byte ClientId 
         {
             get { return clientId; } 
@@ -31,13 +31,13 @@ namespace Chat.Network.Server
             {
                 if (value > 255)
                 {
-                    value = 0; 
+                    value = 0;
                 }
-                clientId = value; 
+                clientId = value;
             }
         } 
         
-        private byte msgId = 0; 
+        private byte msgId = 0;
         public byte MsgId 
         {
             get { return msgId; }
@@ -45,11 +45,11 @@ namespace Chat.Network.Server
             {
                 if (value > msgId)
                 { 
-                    msgId = value; 
+                    msgId = value;
                 }
                 else if (value > 255)
                 {
-                    msgId = 0; 
+                    msgId = 0;
                 }
             }
         }
@@ -58,16 +58,16 @@ namespace Chat.Network.Server
         #region Constructors
         public ChatTcpListener()
         {
-            this.Ip = IPAddress.Parse("127.0.0.1"); 
-            this.ServerName = "localhost"; 
-            this.Port = 13000; 
+            this.Ip = IPAddress.Parse("127.0.0.1");
+            this.ServerName = "localhost";
+            this.Port = 13000;
             this.Listener = new TcpListener(this.Ip, this.Port);
         }
 
         public ChatTcpListener(string ip, string serverName, int port)
         {
             this.Ip = IPAddress.Parse(ip);
-            this.ServerName = serverName; 
+            this.ServerName = serverName;
             this.Port = port;
             this.Listener = new TcpListener(this.Ip, this.Port);
         }
@@ -87,7 +87,7 @@ namespace Chat.Network.Server
                     }
                     else
                     {
-                        IsNeedToPrintStatus = true; 
+                        IsNeedToPrintStatus = true;
                     }
                     GetMessage();
                 }
@@ -105,23 +105,23 @@ namespace Chat.Network.Server
 
         private void GetMessage()
         {
-            ReceivedBytes = new byte[256]; 
+            ReceivedBytes = new byte[256];
             try
             {
                 this.Client = this.Listener.AcceptTcpClient();
                 NetworkStream stream = this.Client.GetStream();
                 
-                int msgLength = stream.Read(ReceivedBytes, 0, ReceivedBytes.Length); 
+                int msgLength = stream.Read(ReceivedBytes, 0, ReceivedBytes.Length);
                 
                 this.ProcessReceivedBytes(msgLength);
-                stream.Write(ResponseBytes, 0, ResponseBytes.Length); 
+                stream.Write(ResponseBytes, 0, ResponseBytes.Length);
             }
             catch (System.Exception e)
             {
                 throw e;
             }
-            ReceivedBytes = new byte[1]; 
-            ResponseBytes = new byte[1]; 
+            ReceivedBytes = new byte[1];
+            ResponseBytes = new byte[1];
         }
         #endregion  // Listen methods
 
@@ -130,11 +130,11 @@ namespace Chat.Network.Server
         {
             if (ReceivedBytes[1] == (byte)(Header.PURPOSE_CTC | Header.ERROR_NO))
             {
-                this.InsertMessageIntoBuffer(msgLength); 
+                this.InsertMessageIntoBuffer(msgLength);
             }
             else if (ReceivedBytes[1] == (byte)(Header.PURPOSE_AUTH | Header.ERROR_NO))
             {
-                this.AuthenticateClient(); 
+                this.AuthenticateClient();
             }
             else if (ReceivedBytes[1] == (byte)(Header.PURPOSE_EXIT | Header.ERROR_NO))
             {
@@ -142,7 +142,7 @@ namespace Chat.Network.Server
             }
             else if (ReceivedBytes[1] == (byte)(Header.PURPOSE_MSGRQST | Header.ERROR_NO))
             {
-                this.GetMessages(); 
+                this.GetMessages();
             }
             else if (ReceivedBytes[1] == (byte)(Header.PURPOSE_ERRMSG | Header.ERROR_NO))
             {
@@ -150,7 +150,7 @@ namespace Chat.Network.Server
             }
             else
             {
-                this.GetErrorResponse(); 
+                this.GetErrorResponse();
             }
         }
         #endregion  // Bytes processing
@@ -158,10 +158,10 @@ namespace Chat.Network.Server
         #region Authentication
         private void AuthenticateClient()
         {
-            IsNeedToPrintStatus = false; 
-            this.ClientId += 1; 
-            byte header = (byte)(Header.PURPOSE_AUTH | Header.ERROR_NO); 
-            ResponseBytes = new byte[3] { this.ClientId, header, this.MsgId }; 
+            IsNeedToPrintStatus = false;
+            this.ClientId += 1;
+            byte header = (byte)(Header.PURPOSE_AUTH | Header.ERROR_NO);
+            ResponseBytes = new byte[3] { this.ClientId, header, this.MsgId };
         }
         #endregion  // Authentication
 
@@ -169,21 +169,21 @@ namespace Chat.Network.Server
         private void InsertMessageIntoBuffer(int msgLength)
         {
             // Get bytes of a text from the received bytes. 
-            int numConfigBytes = 2; 
-            byte[] textBytes = new byte[msgLength - numConfigBytes]; 
+            int numConfigBytes = 2;
+            byte[] textBytes = new byte[msgLength - numConfigBytes];
             for (int i = 0; i < textBytes.Length; i++)
             {
-                textBytes[i] = ReceivedBytes[i + numConfigBytes]; 
+                textBytes[i] = ReceivedBytes[i + numConfigBytes];
             }
 
             // Add new message to the buffer. 
-            this.MsgId++; 
+            this.MsgId++;
             this.ShiftMsgBuffer();
             this.MsgBuf[0] = new Message(ReceivedBytes[0], this.MsgId, textBytes);
 
             // Create response array. 
-            byte header = (byte)(Header.PURPOSE_CTC | Header.ERROR_NO); 
-            this.ResponseBytes = new byte[3] { ReceivedBytes[0], header, MsgBuf[0].MsgId }; 
+            byte header = (byte)(Header.PURPOSE_CTC | Header.ERROR_NO);
+            this.ResponseBytes = new byte[3] { ReceivedBytes[0], header, MsgBuf[0].MsgId };
             
             System.Console.WriteLine($"{this.MsgBuf[0].MessageString}");
         }
@@ -192,7 +192,7 @@ namespace Chat.Network.Server
         {
             for (int i = MsgBuf.Length - 1; i >= 0 ; i--)
             {
-                MsgBuf[i] = (i == 0) ? MsgBuf[0] : MsgBuf[i-1]; 
+                MsgBuf[i] = (i == 0) ? MsgBuf[0] : MsgBuf[i-1];
             }
         }
         #endregion  // Inserting messages
@@ -203,24 +203,24 @@ namespace Chat.Network.Server
             // Is the client sending correct index inside the request for messages? 
             // Check if there was no messages in the chat (ID of a current message is 
             // equal to zero) and create a response for client that the chat is empty.
-            int index = GetIndexInMsgBuf(ReceivedBytes[2]); 
+            int index = GetIndexInMsgBuf(ReceivedBytes[2]);
             if ((index < 0) || (index > MsgBuf.Length - 1))
             {
-                this.GetErrorResponse(); 
+                this.GetErrorResponse();
             }
             else
             {
-                int numConfigBytes = 3; 
-                byte[] textBytes = GetMsgBytes(index); 
-                this.ResponseBytes = new byte[textBytes.Length + numConfigBytes]; 
-                ResponseBytes[0] = ReceivedBytes[0]; 
+                int numConfigBytes = 3;
+                byte[] textBytes = GetMsgBytes(index);
+                this.ResponseBytes = new byte[textBytes.Length + numConfigBytes];
+                ResponseBytes[0] = ReceivedBytes[0];
                 ResponseBytes[1] = (byte)(Header.PURPOSE_MSGRQST | Header.ERROR_NO);
-                ResponseBytes[2] = MsgId; 
+                ResponseBytes[2] = MsgId;
                 for (int i = 0; i < textBytes.Length; i++)
                 {
-                    ResponseBytes[i + numConfigBytes] = textBytes[i]; 
+                    ResponseBytes[i + numConfigBytes] = textBytes[i];
                 }
-                IsNeedToPrintStatus = false; 
+                IsNeedToPrintStatus = false;
             }
         }
 
@@ -236,36 +236,36 @@ namespace Chat.Network.Server
             }
             else if (MsgId < msgId)
             {
-                return -4; 
+                return -4;
             }
 
             for (int i = 0; i < MsgBuf.Length; i++)
             {
                 if (MsgBuf[i].MsgId == msgId) 
                 {
-                    return i; 
+                    return i;
                 }
             }
-            return -1; 
+            return -1;
         }
 
         private byte[] GetMsgBytes(int index)
         {
-            string msg = string.Empty; 
+            string msg = string.Empty;
             for (int i = index - 1; i >= 0; i--)
             {
                 msg += MsgBuf[i].MessageString;
             }
-            return System.Text.Encoding.ASCII.GetBytes(msg); 
+            return System.Text.Encoding.ASCII.GetBytes(msg);
         }
         #endregion  // Getting messages
 
         #region Error handling 
         private void GetErrorResponse()
         {
-            IsNeedToPrintStatus = false; 
-            byte header = (byte)(Header.PURPOSE_MSGRQST | Header.ERROR_YES); 
-            this.ResponseBytes = new byte[3] { ReceivedBytes[0], header, MsgId }; 
+            IsNeedToPrintStatus = false;
+            byte header = (byte)(Header.PURPOSE_MSGRQST | Header.ERROR_YES);
+            this.ResponseBytes = new byte[3] { ReceivedBytes[0], header, MsgId };
         }
         #endregion  // Error handling 
     }

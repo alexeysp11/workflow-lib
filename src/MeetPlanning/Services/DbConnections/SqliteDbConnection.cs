@@ -1,10 +1,10 @@
-using MeetPlanning.Services; 
+using MeetPlanning.Services;
 
 namespace MeetPlanning.Services.DbConnections
 {
     public class SqliteDbConnection : IDbConnection
     {
-        private string ConnString = ""; 
+        private string ConnString = "";
 
         public SqliteDbConnection()
         {
@@ -13,7 +13,7 @@ namespace MeetPlanning.Services.DbConnections
         
         public SqliteDbConnection(string connString)
         {
-            ConnString = connString; 
+            ConnString = connString;
         }
 
         public void CreateAccount(string username, string birthDate, 

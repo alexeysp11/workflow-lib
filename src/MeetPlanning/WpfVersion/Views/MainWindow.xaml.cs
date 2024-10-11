@@ -1,6 +1,6 @@
 ﻿using System.Windows;
-using MeetPlanning.WpfVersion.Controllers; 
-using MeetPlanning.WpfVersion.ViewModels; 
+using MeetPlanning.WpfVersion.Controllers;
+using MeetPlanning.WpfVersion.ViewModels;
 
 namespace MeetPlanning.WpfVersion.Views
 {
@@ -13,11 +13,11 @@ namespace MeetPlanning.WpfVersion.Views
         {
             InitializeComponent();
 
-            MainVM mainVM = new MainVM(this); 
-            DataContext = mainVM; 
-            WpfController.SetMainVM(mainVM); 
+            MainVM mainVM = new MainVM(this);
+            DataContext = mainVM;
+            WpfController.SetMainVM(mainVM);
 
-            WpfController.RedirectToWelcomePage(); 
+            WpfController.RedirectToWelcomePage();
         }
     }
 }

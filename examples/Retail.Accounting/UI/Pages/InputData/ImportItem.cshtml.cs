@@ -33,23 +33,23 @@ namespace WorkflowLib.Examples.Retail.Accounting.Pages
                 isDocumentIdCorrect)
             {
                 Repository.Instance.InsertImportItem(product_title, quantity, 
-                    item_price, Repository.ImportDocId); 
-                Repository.IsErrorMessageActivatedOnImportItem = false; 
-                _logger.LogInformation($"Added ImportItem (product_title: {product_title}, quantity: {quantity}, item_price: {item_price}) for ImportDocId = {Repository.ImportDocId})"); 
+                    item_price, Repository.ImportDocId);
+                Repository.IsErrorMessageActivatedOnImportItem = false;
+                _logger.LogInformation($"Added ImportItem (product_title: {product_title}, quantity: {quantity}, item_price: {item_price}) for ImportDocId = {Repository.ImportDocId})");
             }
             else
             {
-                Repository.IsErrorMessageActivatedOnImportItem = true; 
+                Repository.IsErrorMessageActivatedOnImportItem = true;
                 Repository.ErrorMessageOnImportItem = Repository.GetErrorMessage("Add", 
-                    "product title, quantity or item price"); 
+                    "product title, quantity or item price");
             }
-            return RedirectToPage(); 
+            return RedirectToPage();
         }
 
         public IActionResult OnPostEditBtn(int item_id, string product_title, 
             float quantity, float item_price)
         {
-            bool isItemIdCorrect = (item_id > 0); 
+            bool isItemIdCorrect = (item_id > 0);
             bool isProductCorrect = (product_title != null && product_title != string.Empty);
             bool isQuantityCorrect = (quantity >= 0);
             bool isPriceCorrect = (item_price >= 0);
@@ -58,39 +58,39 @@ namespace WorkflowLib.Examples.Retail.Accounting.Pages
                 isPriceCorrect)
             {
                 Repository.Instance.UpdateImportItem(item_id, product_title, 
-                    quantity, item_price); 
-                Repository.IsErrorMessageActivatedOnImportItem = false; 
-                _logger.LogInformation($"Edit ImportItem (product_title: {product_title}, quantity: {quantity}, item_price: {item_price})"); 
+                    quantity, item_price);
+                Repository.IsErrorMessageActivatedOnImportItem = false;
+                _logger.LogInformation($"Edit ImportItem (product_title: {product_title}, quantity: {quantity}, item_price: {item_price})");
             }
             else
             {
-                Repository.IsErrorMessageActivatedOnImportItem = true; 
+                Repository.IsErrorMessageActivatedOnImportItem = true;
                 Repository.ErrorMessageOnImportItem = Repository.GetErrorMessage("Edit", 
-                    "item ID, product title, quantity or item price"); 
+                    "item ID, product title, quantity or item price");
             }
-            return RedirectToPage(); 
+            return RedirectToPage();
         }
 
         public IActionResult OnPostDeleteBtn(int item_id)
         {
-            bool isItemIdCorrect = (item_id > 0); 
+            bool isItemIdCorrect = (item_id > 0);
             if (isItemIdCorrect)
             {
                 Repository.Instance.DeleteImportItem(item_id);
-                Repository.IsErrorMessageActivatedOnImportItem = false; 
-                _logger.LogInformation($"Deleted ImportItem with ID: {item_id}"); 
+                Repository.IsErrorMessageActivatedOnImportItem = false;
+                _logger.LogInformation($"Deleted ImportItem with ID: {item_id}");
             }
             else
             {
-                Repository.IsErrorMessageActivatedOnImportItem = true; 
-                Repository.ErrorMessageOnImportItem = Repository.GetErrorMessage("Delete", "item ID"); 
+                Repository.IsErrorMessageActivatedOnImportItem = true;
+                Repository.ErrorMessageOnImportItem = Repository.GetErrorMessage("Delete", "item ID");
             }
-            return RedirectToPage(); 
+            return RedirectToPage();
         }
 
         public void OnPostCloseErrorBtn()
         {
-            Repository.IsErrorMessageActivatedOnImportItem = false; 
+            Repository.IsErrorMessageActivatedOnImportItem = false;
         }
     }
 }

@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using System.IO; 
-using System.Linq; 
+using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
-using WorkflowLib.Shared.Models.Documents; 
+using WorkflowLib.Shared.Models.Documents;
 
 namespace WorkflowLib.Shared.Office.DocFormats.Spreadsheets
 {
@@ -25,16 +25,16 @@ namespace WorkflowLib.Shared.Office.DocFormats.Spreadsheets
             System.Collections.Generic.List<SpreadsheetElement> elements)
         {
             if (!Directory.Exists(foldername)) 
-                throw new System.Exception("Folder does not exist"); 
+                throw new System.Exception("Folder does not exist");
             if (string.IsNullOrEmpty(filename)) 
-                throw new System.Exception("File name could not be null or empty"); 
+                throw new System.Exception("File name could not be null or empty");
             if (filename.Split('.').Last().ToLower() != "xls" && filename.Split('.').Last().ToLower() != "xlsx") 
-                throw new System.Exception("Incorrect file extension"); 
+                throw new System.Exception("Incorrect file extension");
 
             // Read: 
             // https://learn.microsoft.com/en-us/office/open-xml/how-to-calculate-the-sum-of-a-range-of-cells-in-a-spreadsheet-document
             // 
-            string filepath = Path.Combine(foldername, filename); 
+            string filepath = Path.Combine(foldername, filename);
             if (!File.Exists(foldername))
             {
                 using (FileStream fs = File.Create(filepath)) 
@@ -67,7 +67,7 @@ namespace WorkflowLib.Shared.Office.DocFormats.Spreadsheets
             foreach (var element in elements)
             {
                 if (element != null && element.TextDocElement != null)
-                    InsertValue(element.TextDocElement.Content, element.CellName, worksheetId, spreadsheetDocument, worksheetPart); 
+                    InsertValue(element.TextDocElement.Content, element.CellName, worksheetId, spreadsheetDocument, worksheetPart);
             }
             // Save and close the document.
             workbookpart.Workbook.Save();
@@ -93,7 +93,7 @@ namespace WorkflowLib.Shared.Office.DocFormats.Spreadsheets
                 IEnumerable<Sheet> sheets = document.WorkbookPart.Workbook.Descendants<Sheet>().Where(s => s.Name == worksheetName);
                 // If the specified worksheet does not exist.
                 if (sheets.Count() == 0)
-                    return; 
+                    return;
                 WorksheetPart worksheetPart = (WorksheetPart)document.WorkbookPart.GetPartById(sheets.First().Id);
                 Worksheet worksheet = worksheetPart.Worksheet;
 
@@ -115,15 +115,15 @@ namespace WorkflowLib.Shared.Office.DocFormats.Spreadsheets
                             sum += double.Parse(cell.CellValue.Text);
                     }
                 }
-                uint worksheetId = 0; 
+                uint worksheetId = 0;
                 try
                 {
-                    worksheetId = System.UInt32.Parse(sheets.First().Id.Value); 
+                    worksheetId = System.UInt32.Parse(sheets.First().Id.Value);
                 }
                 catch (System.Exception)
                 {
                 }
-                InsertValue(sum.ToString(), resultCell, worksheetId, document, worksheetPart); 
+                InsertValue(sum.ToString(), resultCell, worksheetId, document, worksheetPart);
                 worksheetPart.Worksheet.Save();
             }
         }

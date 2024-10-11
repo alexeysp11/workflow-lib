@@ -23,8 +23,8 @@ namespace WorkflowLib.Examples.HcsBudget.Views
             Loaded += (o, e) => 
             {
                 this.MainVM = ((MainVM)(this.DataContext));
-                LoadParticipants(); 
-                SaveInitialValues(); 
+                LoadParticipants();
+                SaveInitialValues();
             };
         }
 
@@ -39,7 +39,7 @@ namespace WorkflowLib.Examples.HcsBudget.Views
                     {
                         if (item == menuItem) 
                         {
-                            return; 
+                            return;
                         }
                     }
                     this.tvParticipantsTo.Items.Add(menuItem);
@@ -47,7 +47,7 @@ namespace WorkflowLib.Examples.HcsBudget.Views
             }
             catch (System.Exception ex)
             {
-                System.Windows.MessageBox.Show(ex.Message, "Exception"); 
+                System.Windows.MessageBox.Show(ex.Message, "Exception");
             }
         }
 
@@ -58,16 +58,16 @@ namespace WorkflowLib.Examples.HcsBudget.Views
 
         private void SaveBtn_Clicked(object sender, System.EventArgs e)
         {
-            SaveAll(); 
+            SaveAll();
         }
 
         private void CancelBtn_Clicked(object sender, System.EventArgs e)
         {
             try
             {
-                float qty = float.Parse(this.ServiceInput.tbQuantity.Text); 
-                float price = float.Parse(this.ServiceInput.tbPrice.Text); 
-                bool areParticipantsChanged = AreParticipantsChanged(); 
+                float qty = float.Parse(this.ServiceInput.tbQuantity.Text);
+                float price = float.Parse(this.ServiceInput.tbPrice.Text);
+                bool areParticipantsChanged = AreParticipantsChanged();
                 
                 if (InitName == this.ServiceInput.tbService.Text && 
                     AreEqual(InitQuantity, qty, 0.009f) && 
@@ -83,27 +83,27 @@ namespace WorkflowLib.Examples.HcsBudget.Views
             }
             catch (System.Exception ex)
             {
-                System.Windows.MessageBox.Show(ex.Message, "Exception"); 
+                System.Windows.MessageBox.Show(ex.Message, "Exception");
             }
         }
 
         private void LoadParticipants()
         {
-            this.tvParticipantsFrom.ItemsSource = this.MainVM.LoadParticipants(); 
+            this.tvParticipantsFrom.ItemsSource = this.MainVM.LoadParticipants();
         }
 
         private void SaveInitialValues()
         {
             try
             {
-                InitName = this.ServiceInput.tbService.Text; 
+                InitName = this.ServiceInput.tbService.Text;
                 InitQuantity = float.Parse(this.ServiceInput.tbQuantity.Text);
-                InitPrice = float.Parse(this.ServiceInput.tbPrice.Text); 
+                InitPrice = float.Parse(this.ServiceInput.tbPrice.Text);
                 
-                InitParticipants = new List<string>(); 
+                InitParticipants = new List<string>();
                 foreach (var item in this.tvParticipantsTo.Items)
                 {
-                    InitParticipants.Add(item.ToString()); 
+                    InitParticipants.Add(item.ToString());
                 }
             }
             catch (System.Exception e)
@@ -114,11 +114,11 @@ namespace WorkflowLib.Examples.HcsBudget.Views
 
         private void AskToSaveOnCancel()
         {
-            string msg = "Do you want to save changes?"; 
-            var result = System.Windows.MessageBox.Show(msg, "Close window", System.Windows.MessageBoxButton.YesNoCancel); 
+            string msg = "Do you want to save changes?";
+            var result = System.Windows.MessageBox.Show(msg, "Close window", System.Windows.MessageBoxButton.YesNoCancel);
             if (result == System.Windows.MessageBoxResult.Yes)
             {
-                SaveAll(); 
+                SaveAll();
                 this.Close();
             }
             else if (result == System.Windows.MessageBoxResult.No)
@@ -127,49 +127,49 @@ namespace WorkflowLib.Examples.HcsBudget.Views
             }
             else
             {
-                return; 
+                return;
             }
         }
 
         private void SaveAll()
         {
             SaveInitialValues();
-            LoadValueToDataIn(); 
+            LoadValueToDataIn();
         }
 
         private bool AreParticipantsChanged()
         {
-            bool result = false; 
-            var participants = this.tvParticipantsTo.Items; 
-            int length = System.Math.Max(participants.Count, InitParticipants.Count); 
+            bool result = false;
+            var participants = this.tvParticipantsTo.Items;
+            int length = System.Math.Max(participants.Count, InitParticipants.Count);
             for (int i = 0; i < length; i++)
             {
                 try
                 {
                     if (InitParticipants[i] != participants[i])
                     {
-                        result = true; 
-                        break; 
+                        result = true;
+                        break;
                     }
                 }
                 catch (System.Exception)
                 {
-                    result = true; 
-                    break; 
+                    result = true;
+                    break;
                 }
             }
-            return result; 
+            return result;
         }
 
         private void LoadValueToDataIn()
         {
             try
             {
-                var dataIn = this.MainVM.MainWindow.DataIn; 
-                dataIn.ServiceInput.tbService.Text = ServiceInput.tbService.Text; 
-                dataIn.ServiceInput.tbQuantity.Text = (System.Convert.ToSingle(ServiceInput.tbQuantity.Text)).ToString(); 
-                dataIn.ServiceInput.tbPrice.Text = (System.Convert.ToSingle(ServiceInput.tbPrice.Text)).ToString(); 
-                int i = 0; 
+                var dataIn = this.MainVM.MainWindow.DataIn;
+                dataIn.ServiceInput.tbService.Text = ServiceInput.tbService.Text;
+                dataIn.ServiceInput.tbQuantity.Text = (System.Convert.ToSingle(ServiceInput.tbQuantity.Text)).ToString();
+                dataIn.ServiceInput.tbPrice.Text = (System.Convert.ToSingle(ServiceInput.tbPrice.Text)).ToString();
+                int i = 0;
                 foreach (var item in tvParticipantsTo.Items)
                 {
                     if (i == 0)
@@ -178,24 +178,24 @@ namespace WorkflowLib.Examples.HcsBudget.Views
                     }
                     else
                     {
-                        dataIn.tbParticipants.Text += "," + item.ToString(); 
+                        dataIn.tbParticipants.Text += "," + item.ToString();
                     }
-                    i += 1; 
+                    i += 1;
                 }
                 if (tvParticipantsTo.Items.Count == 0)
                 {
-                    dataIn.tbParticipants.Text = string.Empty; 
+                    dataIn.tbParticipants.Text = string.Empty;
                 }
             }
             catch (System.Exception e)
             {
-                System.Windows.MessageBox.Show(e.Message, "Exception"); 
+                System.Windows.MessageBox.Show(e.Message, "Exception");
             }
         }
 
         private bool AreEqual(float float1, float float2, float difference)
         {
-            return System.Math.Abs(float1 - float2) <= difference; 
+            return System.Math.Abs(float1 - float2) <= difference;
         }
     }
 }

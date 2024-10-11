@@ -35,7 +35,7 @@ namespace WorkflowLib.Shared.WpfExtensions.UserControls
             set 
             {
                 SetValue(HeightProperty, value);
-                grBrowse.Height = value; 
+                grBrowse.Height = value;
             }
         }
 
@@ -45,7 +45,7 @@ namespace WorkflowLib.Shared.WpfExtensions.UserControls
             set 
             {
                 SetValue(WidthProperty, value);
-                grBrowse.Width = value; 
+                grBrowse.Width = value;
             }
         }
 
@@ -55,7 +55,7 @@ namespace WorkflowLib.Shared.WpfExtensions.UserControls
             set 
             {
                 SetValue(IsReadOnlyProperty, value);
-                dgrBrowse.IsReadOnly = value; 
+                dgrBrowse.IsReadOnly = value;
             }
         }
 
@@ -65,7 +65,7 @@ namespace WorkflowLib.Shared.WpfExtensions.UserControls
             set 
             {
                 SetValue(AutoGenerateColumnsProperty, value);
-                dgrBrowse.AutoGenerateColumns = value; 
+                dgrBrowse.AutoGenerateColumns = value;
             }
         }
 
@@ -75,7 +75,7 @@ namespace WorkflowLib.Shared.WpfExtensions.UserControls
             set 
             {
                 SetValue(ItemsSourceProperty, value);
-                dgrBrowse.ItemsSource = value; 
+                dgrBrowse.ItemsSource = value;
             }
         }
 
@@ -85,13 +85,13 @@ namespace WorkflowLib.Shared.WpfExtensions.UserControls
 
             Loaded += (o, e) => 
             {
-                grBrowse.Height = this.Height; 
-                grBrowse.Width = this.Width; 
+                grBrowse.Height = this.Height;
+                grBrowse.Width = this.Width;
 
                 dgrBrowse.AutoGenerateColumns = this.AutoGenerateColumns;
                 dgrBrowse.IsReadOnly = this.IsReadOnly;
                 dgrBrowse.ItemsSource = this.ItemsSource;
-            }; 
+            };
         }
 
         private void dgrBrowse_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)

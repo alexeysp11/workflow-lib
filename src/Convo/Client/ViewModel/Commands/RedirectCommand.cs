@@ -1,4 +1,4 @@
-using Chat.Client.ViewModel; 
+using Chat.Client.ViewModel;
 
 namespace Chat.Client.Commands
 {
@@ -8,34 +8,34 @@ namespace Chat.Client.Commands
         
         public RedirectCommand(MainVM mainVM)
         {
-            this._MainVM = mainVM; 
+            this._MainVM = mainVM;
         }
 
-        public event System.EventHandler CanExecuteChanged; 
+        public event System.EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
         {
-            return true; 
+            return true;
         }
 
         public void Execute(object parameter)
         {
-            string parameterString = parameter as string; 
+            string parameterString = parameter as string;
             if (parameterString == "Register")
             {
-                this._MainVM.GoToRegisterPage(); 
+                this._MainVM.GoToRegisterPage();
             }
             else if (parameterString == "Login")
             {
-                this._MainVM.GoToLoginPage(); 
+                this._MainVM.GoToLoginPage();
             }
             else if (parameterString == "WelcomePage")
             {
-                this._MainVM.GoToWelcomePage(); 
+                this._MainVM.GoToWelcomePage();
             }
             else
             {
-                System.Windows.MessageBox.Show($"Incorrect CommandParameter: {parameterString} inside RedirectCommand", "Exception"); 
+                System.Windows.MessageBox.Show($"Incorrect CommandParameter: {parameterString} inside RedirectCommand", "Exception");
             }
         }
     }

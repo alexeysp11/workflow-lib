@@ -13,14 +13,14 @@ namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats.TextBased
 {
     public class TxtConverterTest
     {
-        private string FolderName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), typeof(TxtConverterTest).ToString().Split('.').Last()); 
+        private string FolderName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), typeof(TxtConverterTest).ToString().Split('.').Last());
 
         [Fact]
         public void TextDocElementsToDocument_CorrectParams_FileExists()
         {
             // Arrange
-            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".txt"; 
-            string filepath = Path.Combine(FolderName, filename); 
+            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".txt";
+            string filepath = Path.Combine(FolderName, filename);
             var elements = new List<TextDocElement>()
             {
                 new TextDocElement() 
@@ -47,26 +47,26 @@ namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats.TextBased
                     FontSize = 14, 
                     TextAlignment = TextAlignment.JUSTIFIED
                 }
-            }; 
+            };
 
-            ITextBased converter = new TxtConverter(); 
-            CreateFolderIfNotExists(FolderName); 
+            ITextBased converter = new TxtConverter();
+            CreateFolderIfNotExists(FolderName);
 
             // Act
             converter.TextDocElementsToDocument(FolderName, filename, elements);
 
             // Assert
-            Assert.True(File.Exists(filepath)); 
+            Assert.True(File.Exists(filepath));
         }
 
         [Fact]
         public void ConvertFileToTde_CorrectParams_FileExists()
         {
             // Arrange
-            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".txt"; 
-            string copyFilename = filename.Replace(".txt", "_copy.txt"); 
-            string filepath = Path.Combine(FolderName, filename); 
-            string copyFilePath = Path.Combine(FolderName, copyFilename); 
+            string filename = System.Reflection.MethodBase.GetCurrentMethod().Name + ".txt";
+            string copyFilename = filename.Replace(".txt", "_copy.txt");
+            string filepath = Path.Combine(FolderName, filename);
+            string copyFilePath = Path.Combine(FolderName, copyFilename);
             var elements = new List<TextDocElement>()
             {
                 new TextDocElement() 
@@ -93,26 +93,26 @@ namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats.TextBased
                     FontSize = 14, 
                     TextAlignment = TextAlignment.JUSTIFIED
                 }
-            }; 
+            };
 
-            var converter = new TxtConverter(); 
-            CreateFolderIfNotExists(FolderName); 
+            var converter = new TxtConverter();
+            CreateFolderIfNotExists(FolderName);
 
             // Act
             converter.TextDocElementsToDocument(FolderName, filename, elements);
-            var tmpElements = converter.ConvertFileToTde(FolderName, filename); 
-            converter.TextDocElementsToDocument(FolderName, copyFilename, tmpElements); 
+            var tmpElements = converter.ConvertFileToTde(FolderName, filename);
+            converter.TextDocElementsToDocument(FolderName, copyFilename, tmpElements);
 
             // Assert
-            Assert.True(File.Exists(filepath)); 
-            Assert.True(File.Exists(copyFilePath)); 
-            // Assert.True(File.ReadAllText(filepath).Equals(File.ReadAllText(copyFilePath))); 
+            Assert.True(File.Exists(filepath));
+            Assert.True(File.Exists(copyFilePath));
+            // Assert.True(File.ReadAllText(filepath).Equals(File.ReadAllText(copyFilePath)));
         }
 
         #region Private methods
         private void CreateFolderIfNotExists(string foldername)
         {
-            if (!Directory.Exists(foldername)) Directory.CreateDirectory(foldername); 
+            if (!Directory.Exists(foldername)) Directory.CreateDirectory(foldername);
         }
         #endregion  // Private methods
     }

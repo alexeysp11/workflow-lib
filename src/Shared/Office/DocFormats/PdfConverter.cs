@@ -1,9 +1,9 @@
-using System.IO; 
-using System.Linq; 
-using iText.Kernel.Pdf; 
-using iText.Layout; 
-using iText.Layout.Element; 
-using WorkflowLib.Shared.Models.Documents; 
+using System.IO;
+using System.Linq;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using WorkflowLib.Shared.Models.Documents;
 
 namespace WorkflowLib.Shared.Office.DocFormats
 {
@@ -17,14 +17,14 @@ namespace WorkflowLib.Shared.Office.DocFormats
         /// </summary>
         public void TextDocElementsToDocument(string foldername, string filename, System.Collections.Generic.List<TextDocElement> elements)
         {
-            if (!Directory.Exists(foldername)) throw new System.Exception("Folder name does not exist"); 
-            if (string.IsNullOrEmpty(filename)) throw new System.Exception("File name could not be null or empty"); 
-            if (filename.Split('.').Last().ToLower() != "pdf") throw new System.Exception("Incorrect file extension"); 
+            if (!Directory.Exists(foldername)) throw new System.Exception("Folder name does not exist");
+            if (string.IsNullOrEmpty(filename)) throw new System.Exception("File name could not be null or empty");
+            if (filename.Split('.').Last().ToLower() != "pdf") throw new System.Exception("Incorrect file extension");
 
             // TODO: Check if the following piece of code catches all the possible exceptions! 
             try
             {
-                string filepath = Path.Combine(foldername, filename); 
+                string filepath = Path.Combine(foldername, filename);
                 using (var writer = new PdfWriter(filepath))
                     using (PdfDocument pdf = new PdfDocument(writer))
                     using (Document doc = new Document(pdf))
@@ -33,15 +33,15 @@ namespace WorkflowLib.Shared.Office.DocFormats
                     {
                         Paragraph paragraph = new Paragraph(element.Content)
                             .SetTextAlignment((iText.Layout.Properties.TextAlignment)element.TextAlignment)
-                            .SetFontSize(element.FontSize); 
-                        doc.Add(paragraph); 
+                            .SetFontSize(element.FontSize);
+                        doc.Add(paragraph);
                     }
-                    doc.Close(); 
+                    doc.Close();
                 }
             }
             catch (System.Exception)
             {
-                throw; 
+                throw;
             }
         }
 
@@ -51,10 +51,10 @@ namespace WorkflowLib.Shared.Office.DocFormats
         /// </summary>
         public System.Collections.Generic.List<TextDocElement> ConvertFileToTde(string foldername, string filename)
         {
-            if (!Directory.Exists(foldername)) throw new System.Exception("Folder does not exist"); 
-            if (string.IsNullOrEmpty(filename)) throw new System.Exception("File name could not be null or empty"); 
+            if (!Directory.Exists(foldername)) throw new System.Exception("Folder does not exist");
+            if (string.IsNullOrEmpty(filename)) throw new System.Exception("File name could not be null or empty");
 
-            return ConvertFileToTde(Path.Combine(foldername, filename)); 
+            return ConvertFileToTde(Path.Combine(foldername, filename));
         }
 
         /// <summary>
@@ -62,8 +62,8 @@ namespace WorkflowLib.Shared.Office.DocFormats
         /// </summary>
         public System.Collections.Generic.List<TextDocElement> ConvertFileToTde(string filepath)
         {
-            if (string.IsNullOrEmpty(filepath)) throw new System.Exception("File name could not be null or empty"); 
-            if (!File.Exists(filepath)) throw new System.Exception("File does not exist"); 
+            if (string.IsNullOrEmpty(filepath)) throw new System.Exception("File name could not be null or empty");
+            if (!File.Exists(filepath)) throw new System.Exception("File does not exist");
 
             return ConvertFileToTde(new FileInfo(filepath));
         }
@@ -73,8 +73,8 @@ namespace WorkflowLib.Shared.Office.DocFormats
         /// </summary>
         public System.Collections.Generic.List<TextDocElement> ConvertFileToTde(FileInfo file)
         {
-            string content = System.IO.File.ReadAllText(file.FullName); 
-            if (string.IsNullOrEmpty(content)) throw new System.Exception("File content could not be empty"); 
+            string content = System.IO.File.ReadAllText(file.FullName);
+            if (string.IsNullOrEmpty(content)) throw new System.Exception("File content could not be empty");
 
             return ConvertStringToTde(content);
         }
@@ -84,7 +84,7 @@ namespace WorkflowLib.Shared.Office.DocFormats
         /// </summary>
         public System.Collections.Generic.List<TextDocElement> ConvertStringToTde(string xmlContent)
         {
-            if (string.IsNullOrEmpty(xmlContent)) throw new System.Exception("XML content could not be empty"); 
+            if (string.IsNullOrEmpty(xmlContent)) throw new System.Exception("XML content could not be empty");
 
             // 
 

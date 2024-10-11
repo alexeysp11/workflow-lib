@@ -1,6 +1,6 @@
-using System.IO; 
-using System.Drawing; 
-using System.Linq; 
+using System.IO;
+using System.Drawing;
+using System.Linq;
 
 namespace WorkflowLib.Shared.Office.DocFormats.Images
 {
@@ -24,9 +24,9 @@ namespace WorkflowLib.Shared.Office.DocFormats.Images
 #endif
                 throw new System.NotSupportedException("The method is available only on Windows OS");
             
-            base.CheckText(text); 
-            base.CheckFolderName(foldername); 
-            base.CheckFileName(filename, "bmp"); 
+            base.CheckText(text);
+            base.CheckFolderName(foldername);
+            base.CheckFileName(filename, "bmp");
 
             // 
             MemoryStream ms = new MemoryStream();            
@@ -57,7 +57,7 @@ namespace WorkflowLib.Shared.Office.DocFormats.Images
             textBrush.Dispose();
             drawing.Dispose();
 
-            string filepath = Path.Combine(foldername, filename); 
+            string filepath = Path.Combine(foldername, filename);
             img.Save(filepath, System.Drawing.Imaging.ImageFormat.Bmp);
             img.Dispose();
         }
@@ -67,8 +67,8 @@ namespace WorkflowLib.Shared.Office.DocFormats.Images
         /// </summary>
         public void BinaryToImg(byte[] bytes, string foldername, string filename)
         {
-            base.CheckFolderName(foldername); 
-            base.CheckFileName(filename, "bmp"); 
+            base.CheckFolderName(foldername);
+            base.CheckFileName(filename, "bmp");
 
             // 
         }
@@ -79,10 +79,10 @@ namespace WorkflowLib.Shared.Office.DocFormats.Images
         public byte[] ImgToBinary(string foldername, string filename)
         {
             // 
-            base.CheckFolderName(foldername); 
-            base.CheckFileName(filename, "bin"); 
+            base.CheckFolderName(foldername);
+            base.CheckFileName(filename, "bin");
 
-            return new byte[1]; 
+            return new byte[1];
         }
     }
 }

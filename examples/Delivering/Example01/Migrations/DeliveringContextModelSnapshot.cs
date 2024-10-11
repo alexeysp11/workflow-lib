@@ -340,10 +340,10 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.Property<int?>("BusinessEntityStatus")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CRMRoleType")
+                    b.Property<long?>("ContactId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long?>("ContactId")
+                    b.Property<int>("CrmRoleType")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("DateChanged")
@@ -436,13 +436,13 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.Property<int?>("BusinessEntityStatus")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CRMRoleType")
-                        .HasColumnType("INTEGER");
-
                     b.Property<long?>("CompanyId")
                         .HasColumnType("INTEGER");
 
                     b.Property<long?>("ContactId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CrmRoleType")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("DateChanged")
@@ -1580,7 +1580,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.Property<int?>("BusinessEntityStatus")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("CompanyId")
+                    b.Property<long?>("CompanyId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("CompletePercent")
@@ -1589,7 +1589,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.Property<long>("ContractId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("CustomerId")
+                    b.Property<long?>("CustomerId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("DateChanged")
@@ -1622,7 +1622,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.Property<string>("Location")
                         .HasColumnType("TEXT");
 
-                    b.Property<long>("ManagerId")
+                    b.Property<long?>("ManagerId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
@@ -1806,13 +1806,13 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("AuthorChangedId")
+                    b.Property<long?>("AuthorChangedId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("AuthorCreatedId")
+                    b.Property<long?>("AuthorCreatedId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("AuthorResolvedId")
+                    b.Property<long?>("AuthorResolvedId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("BusinessEntityStatus")
@@ -2426,9 +2426,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                 {
                     b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Company", "Company")
                         .WithMany("Projects")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CompanyId");
 
                     b.HasOne("WorkflowLib.Shared.Models.Business.BusinessDocuments.Contract", "Contract")
                         .WithMany()
@@ -2438,15 +2436,11 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
 
                     b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CustomerId");
 
                     b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", "Manager")
                         .WithMany()
-                        .HasForeignKey("ManagerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ManagerId");
 
                     b.Navigation("Company");
 
@@ -2501,21 +2495,15 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                 {
                     b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", "AuthorChanged")
                         .WithMany()
-                        .HasForeignKey("AuthorChangedId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AuthorChangedId");
 
                     b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", "AuthorCreated")
                         .WithMany()
-                        .HasForeignKey("AuthorCreatedId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AuthorCreatedId");
 
                     b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", "AuthorResolved")
                         .WithMany()
-                        .HasForeignKey("AuthorResolvedId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AuthorResolvedId");
 
                     b.HasOne("WorkflowLib.Shared.Models.Business.Processes.BusinessTask", null)
                         .WithMany("Risks")

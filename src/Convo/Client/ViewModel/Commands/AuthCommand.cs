@@ -1,37 +1,37 @@
-using Chat.Client.ViewModel; 
+using Chat.Client.ViewModel;
 
 namespace Chat.Client.Commands
 {
     public class AuthCommand : System.Windows.Input.ICommand
     {
-        private MainVM _MainVM; 
+        private MainVM _MainVM;
         
         public AuthCommand(MainVM mainVM)
         {
-            _MainVM = mainVM; 
+            _MainVM = mainVM;
         }
 
-        public event System.EventHandler CanExecuteChanged; 
+        public event System.EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
         {
-            return true; 
+            return true;
         }
 
         public void Execute(object parameter)
         {
-            string parameterString = parameter as string; 
+            string parameterString = parameter as string;
             if (parameterString == "Registration")
             {
-                this._MainVM.SubmitRegistration(); 
+                this._MainVM.SubmitRegistration();
             }
             else if (parameterString == "Login")
             {
-                this._MainVM.SubmitLogin(); 
+                this._MainVM.SubmitLogin();
             }
             else
             {
-                System.Windows.MessageBox.Show($"Incorrect CommandParameter: {parameterString}"); 
+                System.Windows.MessageBox.Show($"Incorrect CommandParameter: {parameterString}");
             }
         }
     }

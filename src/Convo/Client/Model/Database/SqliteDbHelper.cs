@@ -1,6 +1,6 @@
-using System.Collections.Generic; 
+using System.Collections.Generic;
 using Microsoft.Data.Sqlite;
-using Chat.Client.Xml; 
+using Chat.Client.Xml;
 
 namespace Chat.Client.Database
 {
@@ -16,10 +16,10 @@ namespace Chat.Client.Database
         /// Request for creating the User table 
         /// </summary>
         private string CreateUserTableRequest = @"CREATE TABLE IF NOT EXISTS Users(
-            Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
-            Name TEXT, 
-            Email TEXT, 
-            Password TEXT)"; 
+            Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+            Name TEXT,
+            Email TEXT,
+            Password TEXT)";
 
         private string absolutePathToDb;
         public string AbsolutePathToDb
@@ -32,7 +32,7 @@ namespace Chat.Client.Database
         #region Constructors
         static SqliteDbHelper()
         {
-            Instance = new SqliteDbHelper(); 
+            Instance = new SqliteDbHelper();
         }
 
         private SqliteDbHelper() { }
@@ -47,12 +47,12 @@ namespace Chat.Client.Database
         {
             try
             {
-                DatabasePath pathObj = XmlHelper.FromXmlFile<DatabasePath>(path); 
-                this.AbsolutePathToDb = pathObj.AbsolutePath; 
+                DatabasePath pathObj = XmlHelper.FromXmlFile<DatabasePath>(path);
+                this.AbsolutePathToDb = pathObj.AbsolutePath;
             }
-            catch (System.Exception e)
+            catch (System.Exception ex)
             {
-                throw e;
+                throw ex;
             }
         }
         #endregion  // Getting path
@@ -60,7 +60,7 @@ namespace Chat.Client.Database
         #region Methods for User table
         public void CreateUserTable()
         {
-            var connectionStringBuilder = new SqliteConnectionStringBuilder(); 
+            var connectionStringBuilder = new SqliteConnectionStringBuilder();
             connectionStringBuilder.DataSource = this.AbsolutePathToDb;
             connectionStringBuilder.Mode = SqliteOpenMode.ReadWriteCreate;
 
@@ -68,17 +68,17 @@ namespace Chat.Client.Database
             {
                 try
                 {
-                    connection.Open(); 
+                    connection.Open();
                     if (System.IO.File.Exists(connectionStringBuilder.DataSource))
                     {
-                        var tableCmd = connection.CreateCommand(); 
-                        tableCmd.CommandText = CreateUserTableRequest; 
-                        tableCmd.ExecuteNonQuery(); 
+                        var tableCmd = connection.CreateCommand();
+                        tableCmd.CommandText = CreateUserTableRequest;
+                        tableCmd.ExecuteNonQuery();
                     }
                 }
-                catch (System.Exception e)
+                catch (System.Exception ex)
                 {
-                    throw e; 
+                    throw ex;
                 }
             }
         }
@@ -87,27 +87,27 @@ namespace Chat.Client.Database
         {
             if (user == null)
             {
-                throw new System.ArgumentNullException(nameof(user), "User should not be null"); 
+                throw new System.ArgumentNullException(nameof(user), "User should not be null");
             }
 
             try
             {
                 if (!System.IO.File.Exists(this.AbsolutePathToDb))
                 {
-                    throw new System.Exception($"Exception while inserting data into database. File {this.AbsolutePathToDb} does not exist"); 
+                    throw new System.Exception($"Exception while inserting data into database. File {this.AbsolutePathToDb} does not exist");
                 }
                 if (this.IsAuthenticated(user))
                 {
                     throw new System.ArgumentException($"User {user.Name} already exists in the database");
                 }
             }
-            catch (System.Exception e)
+            catch (System.Exception ex)
             {
-                throw e;
+                throw ex;
             }
             
             string insertRequest = $@"INSERT INTO Users (Name, Email, Password)
-                VALUES ('{user.Name}', '{user.Email}', '{user.Password}')"; 
+                VALUES ('{user.Name}', '{user.Email}', '{user.Password}')";
 
             var connectionStringBuilder = new SqliteConnectionStringBuilder();
             connectionStringBuilder.DataSource = this.AbsolutePathToDb;
@@ -118,15 +118,15 @@ namespace Chat.Client.Database
                     connection.Open();
                     using (var transaction = connection.BeginTransaction())
                     {
-                        var insertCmd = connection.CreateCommand(); 
+                        var insertCmd = connection.CreateCommand();
                         insertCmd.CommandText = insertRequest;      // SQL command. 
                         insertCmd.ExecuteNonQuery();                // Execute SQL command. 
                         transaction.Commit();                       // Commit changes. 
                     }
                 }
-                catch (System.Exception e)
+                catch (System.Exception ex)
                 {
-                    throw e;
+                    throw ex;
                 }
             }
         }
@@ -143,11 +143,11 @@ namespace Chat.Client.Database
         {
             if (user == null)
             {
-                throw new System.ArgumentNullException(nameof(user), "User should not be null"); 
+                throw new System.ArgumentNullException(nameof(user), "User should not be null");
             }
             if (!System.IO.File.Exists(this.AbsolutePathToDb))
             {
-                throw new System.Exception($"Exception while getting data from database. File {this.AbsolutePathToDb} does not exist"); 
+                throw new System.Exception($"Exception while getting data from database. File {this.AbsolutePathToDb} does not exist");
             }
 
             string request = $@"SELECT Name, Password FROM Users";
@@ -173,12 +173,12 @@ namespace Chat.Client.Database
                         }
                     }
                 }
-                catch (System.Exception e)
+                catch (System.Exception ex)
                 {
-                    throw e;
+                    throw ex;
                 }
             }
-            return false; 
+            return false;
         }
         #endregion  // Methods for User table
     }

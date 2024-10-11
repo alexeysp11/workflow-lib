@@ -249,7 +249,7 @@ namespace WorkflowLib.Examples.Delivering.Example01
                     MiddleName = middleName,
                     LastName = lastName,
                     FullName = fullName,
-                    CRMRoleType = CRMRoleType.Client,
+                    CrmRoleType = CrmRoleType.Client,
                     UserAccount = user
                 };
                 context.Customers.Add(customer);
@@ -272,7 +272,7 @@ namespace WorkflowLib.Examples.Delivering.Example01
                 RegistrationNumber = "RegistrationNumber",
                 HasVatRegistration = true,
                 VatNumber = "VatNumber", 
-                CRMRoleType = CRMRoleType.Supplier,
+                CrmRoleType = CrmRoleType.Supplier,
                 Address = addressString,
                 ShippingAddress = addressString
             };
@@ -555,7 +555,7 @@ namespace WorkflowLib.Examples.Delivering.Example01
             int recipeId = 1;
             var sbRecipeName = new StringBuilder();
             var sbInstruction = new StringBuilder();
-            var ingredientIds = (from ingredient in context.Ingredients select ingredient.IngredientProduct.Id).ToList(); 
+            var ingredientIds = (from ingredient in context.Ingredients select ingredient.IngredientProduct.Id).ToList();
             foreach (var p in context.Products.Where(x => !ingredientIds.Any(i => i == x.Id)))
             {
                 sbInstruction.Append("Instruction #").Append(recipeId.ToString());
