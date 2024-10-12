@@ -1,8 +1,8 @@
-# workflow-auth
+# AuthenticationService
 
 [English](README.md) | [Русский](README.ru.md)
 
-`workflow-auth` - это сервис аутентификации и выдачи сессионных токенов. 
+`AuthenticationService` - это сервис аутентификации и выдачи сессионных токенов. 
 
 Сервис аутентификации отвечает за проверку личности пользователей, пытающихся получить доступ к клиентскому приложению.
 Это включает проверку учетных данных пользователя, таких как адрес электронной почты и пароль, а также обеспечение безопасного доступа к функциям и функциям приложения.
@@ -53,7 +53,6 @@
 cd C:\PathToProj\your-project
 cd ..
 git clone https://github.com/alexeysp11/workflow-lib.git
-git clone https://github.com/alexeysp11/workflow-auth.git
 cd your-project
 ```
 

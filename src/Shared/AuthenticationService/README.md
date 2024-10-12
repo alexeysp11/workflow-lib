@@ -1,8 +1,8 @@
-# workflow-auth
+# AuthenticationService
 
 [English](README.md) | [Русский](README.ru.md)
 
-`workflow-auth` is a service for authentication and getting session tokens.
+`AuthenticationService` is a service for authentication and getting session tokens.
 
 The authentication service is responsible for verifying the identity of users attempting to access the client app. 
 This includes validating user credentials, such as email address and password, and providing secure access to the app's features and functionality.
@@ -54,7 +54,6 @@ In order to get this library, execute the following operations on the command li
 cd C:\PathToProj\your-project
 cd ..
 git clone https://github.com/alexeysp11/workflow-lib.git
-git clone https://github.com/alexeysp11/workflow-auth.git
 cd your-project
 ```
 
