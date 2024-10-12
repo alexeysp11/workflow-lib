@@ -1,0 +1,28 @@
+name: Build Solution
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0'
+
+      - name: Restore dependencies
+        run: dotnet restore src/Shared/WorkflowLib.Shared.sln
+
+      - name: Build the solution
+        run: dotnet build src/Shared/WorkflowLib.Shared.sln --configuration Release --no-restore
