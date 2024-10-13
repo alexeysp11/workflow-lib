@@ -74,7 +74,7 @@ public class KitchenBLController : IImplicitService
         catch (System.Exception ex)
         {
             m_loggingDAL.AddDbgLog(sourceName, ex.ToString());
-            throw ex;
+            throw;
         }
     }
 }
