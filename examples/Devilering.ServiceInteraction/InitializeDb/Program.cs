@@ -16,10 +16,6 @@ IHost _host = Host.CreateDefaultBuilder().ConfigureServices(
                     b => b.MigrationsAssembly("WorkflowLib.Examples.Delivering.ServiceInteraction.BL"))
                 .Options;
         });
-        
-        // 
-        services.AddSingleton<ConfigResolver>();
-        services.AddSingleton<BusinessOrderInitializer>();
     }).Build();
 
 var app = _host.Services.GetRequiredService<IStartupInstance>();
