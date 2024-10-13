@@ -14,10 +14,12 @@ namespace WorkflowLib.NethereumAPI
         /// Address of the API node for retrieving ETH data 
         /// </summary>
         private string EthConnectionAddress { get; set; }
+
         /// <summary>
         /// Shows if connection with ETH node should be established or just imitated 
         /// </summary>
         private bool UseEthConnection { get; set; }
+        
         /// <summary>
         /// Shows if the application is running in production or test mode. 
         /// If it is running in test mode, communication with ETH node will be imitated
@@ -30,6 +32,7 @@ namespace WorkflowLib.NethereumAPI
         public EthNodeAPIWeb3() : this("", true, "production")
         {
         }
+        
         /// <summary>
         /// Constructor of EthNodeAPIWeb3 
         /// </summary>
