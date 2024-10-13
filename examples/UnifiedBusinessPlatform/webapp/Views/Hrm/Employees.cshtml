@@ -1,0 +1,105 @@
+@using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Configurations
+@using WorkflowLib.Shared.Models.Business.InformationSystem
+
+@model IEnumerable<Employee>
+
+@inject AppSettings _appSettings
+
+@{
+    ViewData["Title"] = "Employees";
+}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css" />
+
+@try
+{
+    var jobTitles = new List<string>();
+    var departments = new List<string>();
+
+    var languageName = string.Empty;
+    if (!Context.Request.Cookies.TryGetValue("employeesmvc-lang", out languageName))
+    {
+        languageName = "English";
+    }
+
+    ViewData["Title"] = _appSettings.Translate(languageName, "Employees");
+
+    <div class="text-center">
+        <h1 class="display-4">@ViewData["Title"]</h1>
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <p class="text-danger">Error message: @TempData["ErrorMessage"]</p>
+        }
+    </div>
+
+    if (Model == null)
+    {
+        <p class="text-danger">@_appSettings.Translate(languageName, "Error.DataNotGeneratedYet")</p>
+    }
+    else
+    {
+        <table name="tblEmployees" id="tblEmployees" class="table table-bordered table-striped" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>@_appSettings.Translate(languageName, "FullName")</th>
+                    <th>@_appSettings.Translate(languageName, "Gender")</th>
+                    <th>@_appSettings.Translate(languageName, "OrganizationItem")</th>
+                    <th>@_appSettings.Translate(languageName, "Age")</th>
+                    <th>@_appSettings.Translate(languageName, "BirthDate")</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model)
+                {
+                    var age = System.DateTime.Now.Year - obj.BirthDate?.Year;
+                    if (obj.BirthDate?.Month > System.DateTime.Now.Month && obj.BirthDate?.Day > System.DateTime.Now.Day)
+                    {
+                        age -= 1;
+                    }
+                    <tr>
+                        <td>@obj.FullName</td>
+                        <td>@_appSettings.Translate(languageName, $"Gender.{obj.Gender}")</td>
+                        <td>
+                            @{
+                                var organizationItem = obj.OrganizationItems?.FirstOrDefault();
+                                if (organizationItem != null)
+                                {
+                                    <a class="link-dark link-offset-2 link-underline link-underline-opacity-0" asp-area="" asp-controller="OrganizationalStructure" asp-action="OrganizationItemDetails" asp-route-id="@organizationItem.Id">
+                                        @organizationItem.Name
+                                    </a>
+                                }
+                                else
+                                {
+                                    <p>N/A</p>
+                                }
+                            }
+                        </td>
+                        <td>@age</td>
+                        <td>@obj.BirthDate?.ToString("dd.MM.yyyy")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
+        <script language="JavaScript" type="text/javascript">
+            $.noConflict();
+            jQuery( document ).ready(function( $ ) {
+                $(document).ready(function() {
+                    var table = $('#tblEmployees').DataTable({
+                        language: {
+                            url: '//cdn.datatables.net/plug-ins/2.0.8/i18n/en-GB.json',
+                        }
+                    });
+                });
+            });
+        </script>
+    }
+}
+catch (System.Exception ex)
+{
+    <div class="text-center">
+        <p class="text-danger">Error: @ex.Message</p>
+    </div>
+}

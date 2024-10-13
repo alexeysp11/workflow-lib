@@ -32,6 +32,11 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
         public string? FullName { get; set; }
         
         /// <summary>
+        /// Gender of the employee.
+        /// </summary>
+        public GenderType? Gender { get; set; }
+        
+        /// <summary>
         /// Mobile phone of the employee.
         /// </summary>
         public string? MobilePhone { get; set; }
@@ -62,14 +67,14 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
         public System.DateTime? EmployDate { get; set; }
 
         /// <summary>
-        /// User accounts related to the employee.
-        /// </summary>
-        public ICollection<UserAccount> UserAccounts { get; set; }
-
-        /// <summary>
         /// Companies related to the employee.
         /// </summary>
         public ICollection<Company> Companies { get; set; }
+
+        /// <summary>
+        /// Collection of organization items.
+        /// </summary>
+        public ICollection<OrganizationItem> OrganizationItems { get; set; }
 
         /// <summary>
         /// Replacement mode.

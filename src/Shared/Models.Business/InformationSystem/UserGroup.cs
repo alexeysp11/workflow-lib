@@ -19,11 +19,6 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
         public bool IsSystem { get; set; }
         
         /// <summary>
-        /// Users of the user group.
-        /// </summary>
-        public ICollection<UserAccount> Users { get; set; }
-        
-        /// <summary>
         /// User that created the user group.
         /// </summary>
         public UserAccount? AuthorCreated { get; set; }

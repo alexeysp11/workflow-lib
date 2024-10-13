@@ -97,6 +97,21 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                     b.ToTable("ContractOrganization");
                 });
 
+            modelBuilder.Entity("EmployeeOrganizationItem", b =>
+                {
+                    b.Property<long>("EmployeesId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("OrganizationItemsId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("EmployeesId", "OrganizationItemsId");
+
+                    b.HasIndex("OrganizationItemsId");
+
+                    b.ToTable("EmployeeOrganizationItem");
+                });
+
             modelBuilder.Entity("WorkflowLib.Shared.Models.Business.BusinessDocuments.BusinessTaskDeliveryOrder", b =>
                 {
                     b.Property<long>("Id")
@@ -355,11 +370,11 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                     b.Property<int?>("BusinessEntityStatus")
                         .HasColumnType("integer");
 
-                    b.Property<int>("CRMRoleType")
-                        .HasColumnType("integer");
-
                     b.Property<long?>("ContactId")
                         .HasColumnType("bigint");
+
+                    b.Property<int>("CrmRoleType")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("DateChanged")
                         .HasColumnType("timestamp with time zone");
@@ -455,14 +470,14 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                     b.Property<int?>("BusinessEntityStatus")
                         .HasColumnType("integer");
 
-                    b.Property<int>("CRMRoleType")
-                        .HasColumnType("integer");
-
                     b.Property<long?>("CompanyId")
                         .HasColumnType("bigint");
 
                     b.Property<long?>("ContactId")
                         .HasColumnType("bigint");
+
+                    b.Property<int>("CrmRoleType")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("DateChanged")
                         .HasColumnType("timestamp with time zone");
@@ -629,6 +644,9 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                     b.Property<string>("FullName")
                         .HasColumnType("text");
 
+                    b.Property<int?>("Gender")
+                        .HasColumnType("integer");
+
                     b.Property<string>("ICQ")
                         .HasColumnType("text");
 
@@ -740,20 +758,18 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
+                    b.Property<string>("OrganizationName")
+                        .HasColumnType("text");
+
                     b.Property<long?>("ParentItemId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Uid")
                         .HasColumnType("text");
 
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ParentItemId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("OrganizationItems");
                 });
@@ -817,9 +833,6 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("text");
 
-                    b.Property<long?>("EmployeeId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime?>("LastSeenDt")
                         .HasColumnType("timestamp with time zone");
 
@@ -829,9 +842,6 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("text");
-
-                    b.Property<long?>("OrganizationItemId")
-                        .HasColumnType("bigint");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -852,18 +862,50 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                     b.Property<string>("Uid")
                         .HasColumnType("text");
 
-                    b.Property<long?>("UserGroupId")
+                    b.HasKey("Id");
+
+                    b.ToTable("UserAccounts");
+                });
+
+            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.UserAccountGroup", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<int?>("BusinessEntityStatus")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("DateChanged")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Uid")
+                        .HasColumnType("text");
+
+                    b.Property<long>("UserAccountId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("UserGroupId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("OrganizationItemId");
+                    b.HasIndex("UserAccountId");
 
                     b.HasIndex("UserGroupId");
 
-                    b.ToTable("UserAccounts");
+                    b.ToTable("UserAccountGroups");
                 });
 
             modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.UserGroup", b =>
@@ -1939,7 +1981,7 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                     b.Property<int?>("BusinessEntityStatus")
                         .HasColumnType("integer");
 
-                    b.Property<long>("CompanyId")
+                    b.Property<long?>("CompanyId")
                         .HasColumnType("bigint");
 
                     b.Property<int>("CompletePercent")
@@ -1948,7 +1990,7 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                     b.Property<long>("ContractId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("CustomerId")
+                    b.Property<long?>("CustomerId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("DateChanged")
@@ -1981,7 +2023,7 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                     b.Property<string>("Location")
                         .HasColumnType("text");
 
-                    b.Property<long>("ManagerId")
+                    b.Property<long?>("ManagerId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Name")
@@ -2175,13 +2217,13 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("AuthorChangedId")
+                    b.Property<long?>("AuthorChangedId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("AuthorCreatedId")
+                    b.Property<long?>("AuthorCreatedId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("AuthorResolvedId")
+                    b.Property<long?>("AuthorResolvedId")
                         .HasColumnType("bigint");
 
                     b.Property<int?>("BusinessEntityStatus")
@@ -2572,6 +2614,21 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("EmployeeOrganizationItem", b =>
+                {
+                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", null)
+                        .WithMany()
+                        .HasForeignKey("EmployeesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.OrganizationItem", null)
+                        .WithMany()
+                        .HasForeignKey("OrganizationItemsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("WorkflowLib.Shared.Models.Business.BusinessDocuments.BusinessTaskDeliveryOrder", b =>
                 {
                     b.HasOne("WorkflowLib.Shared.Models.Business.Processes.BusinessTask", "BusinessTask")
@@ -2662,13 +2719,7 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                         .WithMany("SubItems")
                         .HasForeignKey("ParentItemId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.UserAccount", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
                     b.Navigation("ParentItem");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.Skill", b =>
@@ -2678,19 +2729,23 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                         .HasForeignKey("EmployeeId");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.UserAccount", b =>
+            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.UserAccountGroup", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", null)
-                        .WithMany("UserAccounts")
-                        .HasForeignKey("EmployeeId");
+                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.UserAccount", "UserAccount")
+                        .WithMany()
+                        .HasForeignKey("UserAccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.OrganizationItem", null)
-                        .WithMany("Users")
-                        .HasForeignKey("OrganizationItemId");
+                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.UserGroup", "UserGroup")
+                        .WithMany()
+                        .HasForeignKey("UserGroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.UserGroup", null)
-                        .WithMany("Users")
-                        .HasForeignKey("UserGroupId");
+                    b.Navigation("UserAccount");
+
+                    b.Navigation("UserGroup");
                 });
 
             modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.UserGroup", b =>
@@ -3072,9 +3127,7 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                 {
                     b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Company", "Company")
                         .WithMany("Projects")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CompanyId");
 
                     b.HasOne("WorkflowLib.Shared.Models.Business.BusinessDocuments.Contract", "Contract")
                         .WithMany()
@@ -3084,15 +3137,11 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
 
                     b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CustomerId");
 
                     b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", "Manager")
                         .WithMany()
-                        .HasForeignKey("ManagerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ManagerId");
 
                     b.Navigation("Company");
 
@@ -3147,21 +3196,15 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
                 {
                     b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", "AuthorChanged")
                         .WithMany()
-                        .HasForeignKey("AuthorChangedId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AuthorChangedId");
 
                     b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", "AuthorCreated")
                         .WithMany()
-                        .HasForeignKey("AuthorCreatedId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AuthorCreatedId");
 
                     b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", "AuthorResolved")
                         .WithMany()
-                        .HasForeignKey("AuthorResolvedId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AuthorResolvedId");
 
                     b.HasOne("WorkflowLib.Shared.Models.Business.Processes.BusinessTask", null)
                         .WithMany("Risks")
@@ -3276,20 +3319,11 @@ namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
             modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", b =>
                 {
                     b.Navigation("Skills");
-
-                    b.Navigation("UserAccounts");
                 });
 
             modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.OrganizationItem", b =>
                 {
                     b.Navigation("SubItems");
-
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.UserGroup", b =>
-                {
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Processes.BusinessDiagram", b =>

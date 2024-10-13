@@ -3,7 +3,7 @@ namespace WorkflowLib.Examples.TechSupport.Common.Models.Customers
     /// <summary>
     /// 
     /// </summary>
-    public enum CRMRoleType
+    public enum CrmRoleType
     {
         Client,
         Buyer,

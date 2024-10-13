@@ -7,7 +7,7 @@ There are several components that "communicate" with each other, as shown in the
 ![ServiceInteraction](../../docs/img/examples/ServiceInteraction.png)
 
 Regarding communication between components, several points can be highlighted:
-- The components communicate not directly, but through the [ServiceDiscoveryBpm](../../../src/ServiceDiscoveryBpm/README.md) library.
+- The components communicate not directly, but through the [ServiceDiscoveryBpm](../../../src/Shared/ServiceDiscoveryBpm/README.md) library.
 - Details of communication with the database are implemented on the side of the application that implements the business logic.
 
 There are several types of client applications:
