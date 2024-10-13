@@ -40,9 +40,6 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
         [Display(Name = "Business trip")]
         BusinessTrip = 10,
 
-        [Display(Name = "Business trip")]
-        BusinessTrip,
-
         [Display(Name = "Suspension")]
         Suspension = 11,
 
