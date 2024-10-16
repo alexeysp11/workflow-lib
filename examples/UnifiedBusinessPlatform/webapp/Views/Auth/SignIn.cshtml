@@ -1,6 +1,6 @@
 @using WorkflowLib.Examples.UnifiedBusinessPlatform.ViewModels;
 
-@model LoginViewModel;
+@model SignInViewModel;
 
 @{
     ViewData["Title"] = "Sign In";
@@ -23,7 +23,7 @@
                     <label asp-for="Password" class="control-label"></label>
                     <input asp-for="Password" class="form-control" placeholder="Password" />
                     <span asp-validation-for="Password" class="text-danger"></span>
-                </div>    
+                </div>
                 <div class="form-group">
                     <input type="submit" value="@ViewData["Title"]" class="btn btn-primary" />
                 </div>

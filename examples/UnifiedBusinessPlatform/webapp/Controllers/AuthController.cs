@@ -11,7 +11,7 @@ public class Auth : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> SignIn(LoginViewModel model)
+    public async Task<IActionResult> SignIn(SignInViewModel model)
     {
         if (ModelState.IsValid)
         {

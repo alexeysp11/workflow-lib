@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WorkflowLib.Examples.UnifiedBusinessPlatform.ViewModels;
 
-public class LoginViewModel
+public class SignInViewModel
 {
     [Key]
     public int UserId { get; set; }
