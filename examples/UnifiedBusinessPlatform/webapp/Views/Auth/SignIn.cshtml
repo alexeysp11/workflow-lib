@@ -1,0 +1,39 @@
+@using WorkflowLib.Examples.UnifiedBusinessPlatform.ViewModels;
+
+@model LoginViewModel;
+
+@{
+    ViewData["Title"] = "Sign In";
+}
+
+@try
+{
+    <h1>@ViewData["Title"]</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="SignIn" asp-controller="Auth">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Username" class="control-label"></label>
+                    <input asp-for="Username" class="form-control" placeholder="Name" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="form-control" placeholder="Password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>    
+                <div class="form-group">
+                    <input type="submit" value="@ViewData["Title"]" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+}
+catch (System.Exception ex)
+{
+    <div class="text-center">
+        <p class="text-danger">Error: @ex.Message</p>
+    </div>
+}
