@@ -16,12 +16,13 @@ var appsettings = configuration.GetSection("AppSettings").Get<AppSettings>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Add classes.
 builder.Services.AddSingleton(appsettings);
 builder.Services.AddSingleton<IUnitOfWork, UnitOfWork>();
 builder.Services.AddSingleton<DatasetGenerator>();
 builder.Services.AddTransient<ICommonDataFilter, CommonDataFilter>();
-builder.Services.AddDbContext<EmployeesMvcDbContext>(
-        options => options.UseNpgsql("User ID=postgres;Password=postgres;Host=localhost;Port=5432;Database=employeesmvc_test;Pooling=true;Integrated Security=true;"));
+builder.Services.AddDbContext<EmployeesMvcDbContext>(options => options.UseNpgsql(appsettings.ConnectionString));
 
 var app = builder.Build();
 
