@@ -1,10 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
+using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.DbContexts;
 using WorkflowLib.Examples.UnifiedBusinessPlatform.ViewModels;
+using WorkflowLib.Shared.Models.Business.InformationSystem;
 
 namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Controllers;
 
-public class Auth : Controller
+public class AuthController : Controller
 {
+    private readonly EmployeesMvcDbContext _context;
+
+    public AuthController(EmployeesMvcDbContext context)
+    {
+        _context = context;
+    }
+
     public IActionResult SignIn()
     {
         return View();
@@ -15,15 +24,11 @@ public class Auth : Controller
     {
         if (ModelState.IsValid)
         {
-            // var User = from m in _context.SignIn select m;
-            // User = User.Where(s => s.username.Contains(model.username));
-            // if (User.Count() != 0)
-            // {
-            //     if (User.First().password == model.password)
-            //     {
-            //         return RedirectToAction("Success");
-            //     }
-            // }
+            var user = _context.UserAccounts.FirstOrDefault(x => x.Login == model.Username && x.Password == model.Password);
+            if (user != null)
+            {
+                return RedirectToAction("Index", "Home", null);
+            }
         }
         return RedirectToAction("SignIn");
     }
