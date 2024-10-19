@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Domain.Filtering;
@@ -12,6 +13,7 @@ using WorkflowLib.Shared.Models.Business.InformationSystem;
 
 namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Controllers;
 
+[Authorize]
 public class HrmController : Controller
 {
     private readonly AppSettings _appSettings;

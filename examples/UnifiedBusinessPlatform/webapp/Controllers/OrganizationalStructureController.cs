@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Domain.Filtering;
@@ -12,6 +13,7 @@ using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Repositories;
 
 namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Controllers;
 
+[Authorize]
 public class OrganizationalStructureController : Controller
 {
     private readonly AppSettings _appSettings;
@@ -28,6 +30,7 @@ public class OrganizationalStructureController : Controller
         _context = context;
     }
 
+    [AllowAnonymous]
     public IActionResult BriefDescription()
     {
         return View();
