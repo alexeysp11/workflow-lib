@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.DbContexts;
 using WorkflowLib.Examples.UnifiedBusinessPlatform.ViewModels;
@@ -17,12 +18,18 @@ public class AuthController : Controller
         _context = context;
     }
 
+    [AllowAnonymous]
     public IActionResult SignIn()
     {
+        if (User.Identity.IsAuthenticated)
+        {
+            return RedirectToAction("Index", "Home", null);
+        }
         return View();
     }
 
     [HttpPost]
+    [AllowAnonymous]
     public async Task<IActionResult> SignIn(SignInViewModel model)
     {
         if (ModelState.IsValid)
@@ -55,6 +62,7 @@ public class AuthController : Controller
         return RedirectToAction("SignIn");
     }
 
+    [Authorize]
     public async Task<ActionResult> SignOut()
     {
         await HttpContext.SignOutAsync();
