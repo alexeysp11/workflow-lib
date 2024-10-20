@@ -85,7 +85,7 @@
                             }
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-dark" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    More
+                                    @_appSettings.Translate(languageName, "More")
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <li><a class="dropdown-item" href="#">Corporate website</a></li>
@@ -145,13 +145,13 @@
                             @if (User.Identity.IsAuthenticated)
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="SignOut">Sign Out</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="SignOut">@_appSettings.Translate(languageName, "SignOut")</a>
                                 </li>
                             }
                             else
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="SignIn">Sign In</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="SignIn">@_appSettings.Translate(languageName, "SignIn")</a>
                                 </li>
                             }
                         </ul>

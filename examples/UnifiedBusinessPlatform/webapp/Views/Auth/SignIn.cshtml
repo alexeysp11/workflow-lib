@@ -1,6 +1,9 @@
-@using WorkflowLib.Examples.UnifiedBusinessPlatform.ViewModels;
+@using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Configurations
+@using WorkflowLib.Examples.UnifiedBusinessPlatform.ViewModels
 
 @model SignInViewModel;
+
+@inject AppSettings _appSettings
 
 @{
     ViewData["Title"] = "Sign In";
@@ -8,6 +11,14 @@
 
 @try
 {
+    var languageName = string.Empty;
+    if (!Context.Request.Cookies.TryGetValue("employeesmvc-lang", out languageName))
+    {
+        languageName = "English";
+    }
+    
+    ViewData["Title"] = _appSettings.Translate(languageName, "SignIn");
+
     <h1>@ViewData["Title"]</h1>
     <hr />
     <div class="row">
