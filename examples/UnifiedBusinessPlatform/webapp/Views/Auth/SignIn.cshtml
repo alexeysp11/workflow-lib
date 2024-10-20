@@ -18,6 +18,8 @@
     }
     
     ViewData["Title"] = _appSettings.Translate(languageName, "SignIn");
+    var usernameLabelText = _appSettings.Translate(languageName, "UserAccount.Username");
+    var passwordLabelText = _appSettings.Translate(languageName, "UserAccount.Password");
 
     <h1>@ViewData["Title"]</h1>
     <hr />
@@ -26,13 +28,13 @@
             <form asp-action="SignIn" asp-controller="Auth">
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="Username" class="control-label"></label>
-                    <input asp-for="Username" class="form-control" placeholder="Name" />
+                    <label asp-for="Username" class="control-label">@usernameLabelText</label>
+                    <input asp-for="Username" class="form-control" placeholder="@usernameLabelText" />
                     <span asp-validation-for="Username" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Password" class="control-label"></label>
-                    <input type="password" asp-for="Password" class="form-control" placeholder="Password" />
+                    <label asp-for="Password" class="control-label">@passwordLabelText</label>
+                    <input type="password" asp-for="Password" class="form-control" placeholder="@passwordLabelText" />
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
                 <div class="form-group">
