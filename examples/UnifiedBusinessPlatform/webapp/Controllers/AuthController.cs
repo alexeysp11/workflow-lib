@@ -35,7 +35,11 @@ public class AuthController : Controller
         if (ModelState.IsValid)
         {
             var user = _context.UserAccounts.FirstOrDefault(x => x.Login == model.Username && x.Password == model.Password);
-            if (user != null)
+            if (user == null)
+            {
+                TempData["ErrorMessage"] = "Incorrect username or password";
+            }
+            else
             {
                 var claims = new List<Claim>
                 {
