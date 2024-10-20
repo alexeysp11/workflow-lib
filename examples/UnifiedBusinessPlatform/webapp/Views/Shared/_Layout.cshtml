@@ -88,6 +88,13 @@
                                     @_appSettings.Translate(languageName, "More")
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <li class="nav-item">
+                                            <a class="dropdown-item" asp-area="" asp-controller="Auth" asp-action="MyAccount">@_appSettings.Translate(languageName, "MyAccount")</a>
+                                        </li>
+                                        <div class="dropdown-divider"></div>
+                                    }
                                     <li><a class="dropdown-item" href="#">Corporate website</a></li>
                                     <li class="dropdown-submenu">
                                         <a class="dropdown-item dropdown-toggle" role="button">External Communication Service</a>

@@ -68,4 +68,10 @@ public class AuthController : Controller
         await HttpContext.SignOutAsync();
         return RedirectToAction("Index", "Home");
     }
+
+    [Authorize]
+    public async Task<ActionResult> MyAccount()
+    {
+        return View();
+    }
 }
