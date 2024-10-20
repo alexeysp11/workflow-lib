@@ -1,4 +1,7 @@
 @using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Configurations
+@using WorkflowLib.Shared.Models.Business.InformationSystem
+
+@model EmployeeUserAccount
 
 @inject AppSettings _appSettings
 
@@ -8,6 +11,27 @@
 
 @try
 {
+    if (TempData["ErrorMessage"] != null)
+    {
+        throw new System.Exception(TempData["ErrorMessage"].ToString());
+    }
+
+    var userAccount = Model?.UserAccount;
+    if (userAccount == null)
+    {
+        throw new System.Exception("Model does not contain related user account");
+    }
+    var employee = Model?.Employee;
+    if (employee == null)
+    {
+        throw new System.Exception("Model does not contain related employee");
+    }
+    var organizationItems = employee.OrganizationItems;
+    if (organizationItems == null || !organizationItems.Any())
+    {
+        throw new System.Exception("Model does not contain organization items for the related employee");
+    }
+
     var languageName = string.Empty;
     if (!Context.Request.Cookies.TryGetValue("employeesmvc-lang", out languageName))
     {
@@ -18,11 +42,22 @@
     
     <div class="text-center">
         <h1 class="display-4">@ViewData["Title"]</h1>
+        <p>FirstName: @employee.FirstName</p>
+        <p>MiddleName: @employee.MiddleName</p>
+        <p>LastName: @employee.LastName</p>
+        <p>FullName: @employee.FullName</p>
+        <p>BirthDate: @employee.BirthDate</p>
+        <p>Gender: @employee.Gender</p>
+        <p>Login: @userAccount.Login</p>
+        <p>Email: @userAccount.Email</p>
+        <p>MobilePhone: @employee.MobilePhone</p>
+        <p>WorkPhone: @employee.WorkPhone</p>
+        <p>EmployDate: @employee.EmployDate</p>
     </div>
 }
 catch (System.Exception ex)
 {
     <div class="text-center">
-        <p class="text-danger">Error: @ex.Message</p>
+        <p class="text-danger">Error: @ex.Message. Please, contact your system administrator</p>
     </div>
 }

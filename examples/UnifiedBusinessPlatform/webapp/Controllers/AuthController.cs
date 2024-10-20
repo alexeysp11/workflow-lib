@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.DbContexts;
 using WorkflowLib.Examples.UnifiedBusinessPlatform.ViewModels;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
@@ -43,8 +44,9 @@ public class AuthController : Controller
             {
                 var claims = new List<Claim>
                 {
+                    new Claim("UserAccountId", user.Id.ToString()),
                     new Claim(ClaimTypes.Name, user.Login),
-                    new Claim("Email", user.Email),
+                    new Claim(ClaimTypes.Email, user.Email),
                     new Claim(ClaimTypes.Role, "User"),
                 };
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -76,6 +78,21 @@ public class AuthController : Controller
     [Authorize]
     public async Task<ActionResult> MyAccount()
     {
-        return View();
+        if (long.TryParse(User.Claims.FirstOrDefault(c => c.Type == "UserAccountId")?.Value, out long userId) && userId > 0)
+        {
+            var result = _context.EmployeeUserAccounts
+                .Where(x => x.UserAccount != null && x.UserAccount.Id == userId)
+                .Where(x => x.Employee != null)
+                .Include(x => x.UserAccount)
+                .Include(x => x.Employee)
+                    .ThenInclude(x => x.OrganizationItems)
+                .FirstOrDefault();
+            return View(result);
+        }
+        else
+        {
+            TempData["ErrorMessage"] = "User account ID not saved";
+        }
+        return View(null);
     }
 }
