@@ -80,13 +80,25 @@ public class AuthController : Controller
     {
         if (long.TryParse(User.Claims.FirstOrDefault(c => c.Type == "UserAccountId")?.Value, out long userId) && userId > 0)
         {
-            var result = _context.EmployeeUserAccounts
+            var employeeUserAccount = _context.EmployeeUserAccounts
                 .Where(x => x.UserAccount != null && x.UserAccount.Id == userId)
                 .Where(x => x.Employee != null)
                 .Include(x => x.UserAccount)
                 .Include(x => x.Employee)
                     .ThenInclude(x => x.OrganizationItems)
                 .FirstOrDefault();
+            var userAccountGroups = _context.UserAccountGroups
+                .Where(x => x.UserAccount != null && x.UserAccount.Id == userId)
+                .Where(x => x.UserGroup != null)
+                .Include(x => x.UserAccount)
+                .Include(x => x.UserGroup)
+                .ToList();
+            var result = new UserAccountViewModel
+            {
+                UserAccountId = userId,
+                EmployeeUserAccount = employeeUserAccount,
+                UserAccountGroups = userAccountGroups
+            };
             return View(result);
         }
         else

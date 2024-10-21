@@ -1,7 +1,8 @@
 @using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Configurations
+@using WorkflowLib.Examples.UnifiedBusinessPlatform.ViewModels
 @using WorkflowLib.Shared.Models.Business.InformationSystem
 
-@model EmployeeUserAccount
+@model UserAccountViewModel
 
 @inject AppSettings _appSettings
 
@@ -16,12 +17,13 @@
         throw new System.Exception(TempData["ErrorMessage"].ToString());
     }
 
-    var userAccount = Model?.UserAccount;
+    var userId = Model?.UserAccountId;
+    var userAccount = Model?.EmployeeUserAccount?.UserAccount;
     if (userAccount == null)
     {
         throw new System.Exception("Model does not contain related user account");
     }
-    var employee = Model?.Employee;
+    var employee = Model?.EmployeeUserAccount?.Employee;
     if (employee == null)
     {
         throw new System.Exception("Model does not contain related employee");
@@ -31,6 +33,15 @@
     {
         throw new System.Exception("Model does not contain organization items for the related employee");
     }
+    if (Model?.UserAccountGroups == null)
+    {
+        throw new System.Exception("Model does not contain user account groups for the related user");
+    }
+    var userGroups = Model?.UserAccountGroups
+        .Where(x => x.UserAccount != null && x.UserAccount.Id == userId)
+        .Where(x => x.UserGroup != null)
+        .Select(x => x.UserGroup)
+        .ToList();
 
     var languageName = string.Empty;
     if (!Context.Request.Cookies.TryGetValue("employeesmvc-lang", out languageName))
@@ -94,6 +105,12 @@
                     <td>OrganizationItems</td>
                     <td>
                         @Html.Raw(string.Join(", ", organizationItems.Select(x => $"<a href=\"/OrganizationalStructure/OrganizationItemDetails/{x.Id}\">{x.Name}</a>").ToArray()))
+                    </td>
+                </tr>
+                <tr>
+                    <td>UserGroups</td>
+                    <td>
+                        @Html.Raw(string.Join(", ", userGroups.Select(x => x.Name).ToArray()))
                     </td>
                 </tr>
                 <tr>
