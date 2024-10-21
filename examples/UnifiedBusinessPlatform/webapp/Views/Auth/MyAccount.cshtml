@@ -42,17 +42,66 @@
     
     <div class="text-center">
         <h1 class="display-4">@ViewData["Title"]</h1>
-        <p>FirstName: @employee.FirstName</p>
-        <p>MiddleName: @employee.MiddleName</p>
-        <p>LastName: @employee.LastName</p>
-        <p>FullName: @employee.FullName</p>
-        <p>BirthDate: @employee.BirthDate</p>
-        <p>Gender: @employee.Gender</p>
-        <p>Login: @userAccount.Login</p>
-        <p>Email: @userAccount.Email</p>
-        <p>MobilePhone: @employee.MobilePhone</p>
-        <p>WorkPhone: @employee.WorkPhone</p>
-        <p>EmployDate: @employee.EmployDate</p>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>FirstName</td>
+                    <td>@employee.FirstName</td>
+                </tr>
+                <tr>
+                    <td>MiddleName</td>
+                    <td>@employee.MiddleName</td>
+                </tr>
+                <tr>
+                    <td>LastName</td>
+                    <td>@employee.LastName</td>
+                </tr>
+                <tr>
+                    <td>FullName</td>
+                    <td>@employee.FullName</td>
+                </tr>
+                <tr>
+                    <td>BirthDate</td>
+                    <td>@employee.BirthDate</td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td>@employee.Gender</td>
+                </tr>
+                <tr>
+                    <td>Login</td>
+                    <td>@userAccount.Login</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>@userAccount.Email</td>
+                </tr>
+                <tr>
+                    <td>MobilePhone</td>
+                    <td>@employee.MobilePhone</td>
+                </tr>
+                <tr>
+                    <td>WorkPhone</td>
+                    <td>@employee.WorkPhone</td>
+                </tr>
+                <tr>
+                    <td>OrganizationItems</td>
+                    <td>
+                        @Html.Raw(string.Join(", ", organizationItems.Select(x => $"<a href=\"/OrganizationalStructure/OrganizationItemDetails/{x.Id}\">{x.Name}</a>").ToArray()))
+                    </td>
+                </tr>
+                <tr>
+                    <td>EmployDate</td>
+                    <td>@employee.EmployDate</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 }
 catch (System.Exception ex)
