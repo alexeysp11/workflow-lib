@@ -56,37 +56,37 @@
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Parameter</th>
-                    <th>Value</th>
+                    <th>@_appSettings.Translate(languageName, "Parameter")</th>
+                    <th>@_appSettings.Translate(languageName, "Value")</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>FirstName</td>
+                    <td>@_appSettings.Translate(languageName, "FirstName")</td>
                     <td>@employee.FirstName</td>
                 </tr>
                 <tr>
-                    <td>MiddleName</td>
+                    <td>@_appSettings.Translate(languageName, "MiddleName")</td>
                     <td>@employee.MiddleName</td>
                 </tr>
                 <tr>
-                    <td>LastName</td>
+                    <td>@_appSettings.Translate(languageName, "LastName")</td>
                     <td>@employee.LastName</td>
                 </tr>
                 <tr>
-                    <td>FullName</td>
+                    <td>@_appSettings.Translate(languageName, "FullName")</td>
                     <td>@employee.FullName</td>
                 </tr>
                 <tr>
-                    <td>BirthDate</td>
+                    <td>@_appSettings.Translate(languageName, "BirthDate")</td>
                     <td>@employee.BirthDate</td>
                 </tr>
                 <tr>
-                    <td>Gender</td>
+                    <td>@_appSettings.Translate(languageName, "Gender")</td>
                     <td>@employee.Gender</td>
                 </tr>
                 <tr>
-                    <td>Login</td>
+                    <td>@_appSettings.Translate(languageName, "UserAccount.Username")</td>
                     <td>@userAccount.Login</td>
                 </tr>
                 <tr>
@@ -94,27 +94,27 @@
                     <td>@userAccount.Email</td>
                 </tr>
                 <tr>
-                    <td>MobilePhone</td>
+                    <td>@_appSettings.Translate(languageName, "MobilePhone")</td>
                     <td>@employee.MobilePhone</td>
                 </tr>
                 <tr>
-                    <td>WorkPhone</td>
+                    <td>@_appSettings.Translate(languageName, "WorkPhone")</td>
                     <td>@employee.WorkPhone</td>
                 </tr>
                 <tr>
-                    <td>OrganizationItems</td>
+                    <td>@_appSettings.Translate(languageName, "OrganizationItem")</td>
                     <td>
                         @Html.Raw(string.Join(", ", organizationItems.Select(x => $"<a href=\"/OrganizationalStructure/OrganizationItemDetails/{x.Id}\">{x.Name}</a>").ToArray()))
                     </td>
                 </tr>
                 <tr>
-                    <td>UserGroups</td>
+                    <td>@_appSettings.Translate(languageName, "UserGroup")</td>
                     <td>
                         @Html.Raw(string.Join(", ", userGroups.Select(x => x.Name).ToArray()))
                     </td>
                 </tr>
                 <tr>
-                    <td>EmployDate</td>
+                    <td>@_appSettings.Translate(languageName, "EmployDate")</td>
                     <td>@employee.EmployDate</td>
                 </tr>
             </tbody>
