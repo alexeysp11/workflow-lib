@@ -1,3 +1,4 @@
+@using System.Globalization
 @using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Configurations
 @using WorkflowLib.Examples.UnifiedBusinessPlatform.ViewModels
 @using WorkflowLib.Shared.Models.Business.InformationSystem
@@ -49,6 +50,23 @@
         languageName = "English";
     }
 
+    CultureInfo datesCultureInfo;
+    switch (languageName)
+    {
+        case "Russian":
+            datesCultureInfo = new CultureInfo("ru-RU");
+            break;
+        case "German":
+            datesCultureInfo = new CultureInfo("de-DE");
+            break;
+        case "Spanish":
+            datesCultureInfo = new CultureInfo("es-ES");
+            break;
+        default:
+            datesCultureInfo = new CultureInfo("en-US");
+            break;
+    }
+
     ViewData["Title"] = _appSettings.Translate(languageName, "MyAccount");
     
     <div class="text-center">
@@ -79,7 +97,7 @@
                 </tr>
                 <tr>
                     <td>@_appSettings.Translate(languageName, "BirthDate")</td>
-                    <td>@employee.BirthDate</td>
+                    <td>@employee.BirthDate?.ToString(datesCultureInfo.DateTimeFormat.ShortDatePattern)</td>
                 </tr>
                 <tr>
                     <td>@_appSettings.Translate(languageName, "Gender")</td>
@@ -115,7 +133,7 @@
                 </tr>
                 <tr>
                     <td>@_appSettings.Translate(languageName, "EmployDate")</td>
-                    <td>@employee.EmployDate</td>
+                    <td>@employee.EmployDate?.ToString(datesCultureInfo.DateTimeFormat.ShortDatePattern)</td>
                 </tr>
             </tbody>
         </table>
