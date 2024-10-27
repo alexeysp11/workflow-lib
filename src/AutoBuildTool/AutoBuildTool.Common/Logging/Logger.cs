@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Logging;
 
-namespace BuildAutomationTool.Logging
+namespace AutoBuildTool.Logging
 {
     /// <summary>
     /// .

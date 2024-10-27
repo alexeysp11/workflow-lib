@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BuildAutomationTool.Common\BuildAutomationTool.Common.csproj" />
+    <ProjectReference Include="..\AutoBuildTool.Common\AutoBuildTool.Common.csproj" />
   </ItemGroup>
 
 </Project>

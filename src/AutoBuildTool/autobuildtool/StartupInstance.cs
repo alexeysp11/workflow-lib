@@ -1,6 +1,6 @@
-using BuildAutomationTool.Managers;
+using AutoBuildTool.Managers;
 
-namespace BuildAutomationTool;
+namespace AutoBuildTool;
 
 /// <summary>
 /// Class for standardized launch of an application instance.

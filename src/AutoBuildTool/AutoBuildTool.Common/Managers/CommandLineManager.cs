@@ -1,8 +1,8 @@
-using BuildAutomationTool.Logging;
+using AutoBuildTool.Logging;
 using System.Diagnostics;
 using System.Linq;
 
-namespace BuildAutomationTool.Managers
+namespace AutoBuildTool.Managers
 {
     /// <summary>
     /// .

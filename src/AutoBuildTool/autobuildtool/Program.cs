@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
-using BuildAutomationTool.Managers;
-using BuildAutomationTool.Models;
-using BuildAutomationTool.Logging;
+using AutoBuildTool.Managers;
+using AutoBuildTool.Models;
+using AutoBuildTool.Logging;
 
-namespace BuildAutomationTool;
+namespace AutoBuildTool;
 
 public class Program
 {

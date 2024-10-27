@@ -1,4 +1,4 @@
-# BuildAutomationTool
+# AutoBuildTool
 
 [English](README.md) | [Русский](README.ru.md)
 

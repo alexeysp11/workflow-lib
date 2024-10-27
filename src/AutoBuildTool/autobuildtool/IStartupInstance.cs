@@ -1,4 +1,4 @@
-namespace BuildAutomationTool;
+namespace AutoBuildTool;
 
 /// <summary>
 /// Interface for standardized launch of an application instance.

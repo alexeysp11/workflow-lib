@@ -1,7 +1,7 @@
-﻿using BuildAutomationTool.Managers;
-using BuildAutomationTool.Logging;
+﻿using AutoBuildTool.Managers;
+using AutoBuildTool.Logging;
 
-namespace BuildAutomationTool.NetFramework
+namespace AutoBuildTool.NetFramework
 {
     public class Program
     {
@@ -15,7 +15,7 @@ namespace BuildAutomationTool.NetFramework
 
             // Run command.
             logger.LogMessage("Build started");
-            var command = "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\MSBuild.exe C:\\Users\\User\\Documents\\proj\\BuildAutomationTool\\data\\ComPortComms\\ComPortComms.sln";
+            var command = "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\MSBuild.exe C:\\Users\\User\\Documents\\proj\\AutoBuildTool\\data\\ComPortComms\\ComPortComms.sln";
             logger.LogMessage("command: " + command);
             commandLineManager.RunCommandPrompt(command);
 

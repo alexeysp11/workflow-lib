@@ -1,8 +1,8 @@
-using BuildAutomationTool.Models;
-using BuildAutomationTool.Logging;
+using AutoBuildTool.Models;
+using AutoBuildTool.Logging;
 using Microsoft.Extensions.Logging;
 
-namespace BuildAutomationTool.Managers
+namespace AutoBuildTool.Managers
 {
     /// <summary>
     /// .
