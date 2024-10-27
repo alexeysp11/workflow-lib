@@ -3,9 +3,9 @@ using System.Collections.Generic;
 namespace AutoBuildTool.Common.Models
 {
     /// <summary>
-    /// Build automation tool config settings.
+    /// Config settings for the AutoBuildTool application.
     /// </summary>
-    public class BuildAutomationToolSettings
+    public class AutoBuildToolSettings
     {
         /// <summary>
         /// Projects to build.

@@ -9,19 +9,19 @@ namespace AutoBuildTool.Console.Managers
     /// </summary>
     public class ProjectManager
     {
-        private BuildAutomationToolSettings _settings;
+        private AutoBuildToolSettings _settings;
         private Logger _logger;
         private CommandLineManager _commandLineManager;
         private GitManager _gitManager;
 
         public ProjectManager(
-            BuildAutomationToolSettings settings,
+            AutoBuildToolSettings settings,
             Logger logger,
             CommandLineManager commandLineManager,
             GitManager gitManager)
         {
             if (settings == null)
-                throw new System.ArgumentNullException(nameof(settings), "BuildAutomationToolSettings could not be null");
+                throw new System.ArgumentNullException(nameof(settings), "AutoBuildToolSettings could not be null");
             
             _settings = settings;
 

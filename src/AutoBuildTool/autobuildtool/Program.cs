@@ -1,9 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Configuration;
-using AutoBuildTool.Console.Managers;
+﻿using AutoBuildTool.Console.Managers;
 using AutoBuildTool.Common.Models;
 using AutoBuildTool.Console.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Configuration;
 
 namespace AutoBuildTool;
 
@@ -36,7 +36,7 @@ public class Program
 
         // Configuration settings.
         var appsettingsConfig = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-        var appSettings = appsettingsConfig.GetSection("BuildAutomationToolSettings").Get<BuildAutomationToolSettings>();
+        var appSettings = appsettingsConfig.GetSection("AutoBuildToolSettings").Get<AutoBuildToolSettings>();
         services.AddSingleton(appSettings);
     }
 }
