@@ -1,8 +1,8 @@
-using AutoBuildTool.Models;
-using AutoBuildTool.Logging;
+using AutoBuildTool.Common.Models;
+using AutoBuildTool.Console.Logging;
 using Microsoft.Extensions.Logging;
 
-namespace AutoBuildTool.Managers
+namespace AutoBuildTool.Console.Managers
 {
     /// <summary>
     /// .

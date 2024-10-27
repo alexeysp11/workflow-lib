@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AutoBuildTool.Common\AutoBuildTool.Common.csproj" />
+    <ProjectReference Include="..\AutoBuildTool.Console\AutoBuildTool.Console.csproj" />
   </ItemGroup>
 
 </Project>

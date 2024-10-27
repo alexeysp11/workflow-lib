@@ -1,8 +1,8 @@
-using AutoBuildTool.Logging;
+using AutoBuildTool.Console.Logging;
 using System.Diagnostics;
 using System.Linq;
 
-namespace AutoBuildTool.Managers
+namespace AutoBuildTool.Console.Managers
 {
     /// <summary>
     /// .

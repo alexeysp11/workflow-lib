@@ -1,4 +1,4 @@
-using AutoBuildTool.Managers;
+using AutoBuildTool.Console.Managers;
 
 namespace AutoBuildTool;
 

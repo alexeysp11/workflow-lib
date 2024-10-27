@@ -1,4 +1,4 @@
-namespace CodeDocUpdateService;
+namespace AutoBuildTool.CodeDocUpdateService;
 
 public class Worker : BackgroundService
 {

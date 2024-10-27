@@ -1,7 +1,7 @@
 ﻿{
   "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
-    "CodeDocUpdateService": {
+    "AutoBuildTool.CodeDocUpdateService": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "environmentVariables": {

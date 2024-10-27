@@ -74,8 +74,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AutoBuildTool.Common">
-      <HintPath>..\AutoBuildTool.Common\bin\Debug\netstandard2.0\AutoBuildTool.Common.dll</HintPath>
+    <Reference Include="AutoBuildTool.Console">
+      <HintPath>..\AutoBuildTool.Console\bin\Debug\netstandard2.0\AutoBuildTool.Console.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

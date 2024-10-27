@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
-using AutoBuildTool.Managers;
-using AutoBuildTool.Models;
-using AutoBuildTool.Logging;
+using AutoBuildTool.Console.Managers;
+using AutoBuildTool.Common.Models;
+using AutoBuildTool.Console.Logging;
 
 namespace AutoBuildTool;
 

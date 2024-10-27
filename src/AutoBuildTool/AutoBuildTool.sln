@@ -5,11 +5,13 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "autobuildtool", "autobuildtool\autobuildtool.csproj", "{F4547570-F18A-48FC-A549-E74C74CDDDA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoBuildTool.Common", "AutoBuildTool.Common\AutoBuildTool.Common.csproj", "{B7C4C31F-1FC7-435C-9C0D-31D48B56DF01}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoBuildTool.Console", "AutoBuildTool.Console\AutoBuildTool.Console.csproj", "{B7C4C31F-1FC7-435C-9C0D-31D48B56DF01}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoBuildTool.NetFramework", "AutoBuildTool.NetFramework\AutoBuildTool.NetFramework.csproj", "{AB1FB1A2-0034-4B17-97EA-8DC237B12DF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeDocUpdateService", "CodeDocUpdateService\CodeDocUpdateService.csproj", "{8B02E901-70C0-4F3C-8832-CA587CA7EA09}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoBuildTool.CodeDocUpdateService", "AutoBuildTool.CodeDocUpdateService\AutoBuildTool.CodeDocUpdateService.csproj", "{8B02E901-70C0-4F3C-8832-CA587CA7EA09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoBuildTool.Common", "AutoBuildTool.Common\AutoBuildTool.Common.csproj", "{1723A046-E877-489D-99F6-EFC3FDDE7089}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,5 +38,9 @@ Global
 		{8B02E901-70C0-4F3C-8832-CA587CA7EA09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B02E901-70C0-4F3C-8832-CA587CA7EA09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B02E901-70C0-4F3C-8832-CA587CA7EA09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1723A046-E877-489D-99F6-EFC3FDDE7089}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1723A046-E877-489D-99F6-EFC3FDDE7089}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1723A046-E877-489D-99F6-EFC3FDDE7089}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1723A046-E877-489D-99F6-EFC3FDDE7089}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

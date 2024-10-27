@@ -1,5 +1,5 @@
-﻿using AutoBuildTool.Managers;
-using AutoBuildTool.Logging;
+﻿using AutoBuildTool.Console.Managers;
+using AutoBuildTool.Console.Logging;
 
 namespace AutoBuildTool.NetFramework
 {

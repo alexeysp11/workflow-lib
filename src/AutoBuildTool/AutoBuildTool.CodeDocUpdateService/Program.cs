@@ -1,4 +1,4 @@
-using CodeDocUpdateService;
+using AutoBuildTool.CodeDocUpdateService;
 
 var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddHostedService<Worker>();

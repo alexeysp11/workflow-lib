@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace AutoBuildTool.Models
+namespace AutoBuildTool.Common.Models
 {
     /// <summary>
     /// Build automation tool config settings.

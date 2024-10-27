@@ -1,4 +1,4 @@
-namespace AutoBuildTool.Models
+namespace AutoBuildTool.Common.Models
 {
     /// <summary>
     /// Project to build
