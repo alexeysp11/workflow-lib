@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildAutomationTool.Common"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildAutomationTool.NetFramework", "BuildAutomationTool.NetFramework\BuildAutomationTool.NetFramework.csproj", "{AB1FB1A2-0034-4B17-97EA-8DC237B12DF4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeDocUpdateService", "CodeDocUpdateService\CodeDocUpdateService.csproj", "{8B02E901-70C0-4F3C-8832-CA587CA7EA09}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{AB1FB1A2-0034-4B17-97EA-8DC237B12DF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB1FB1A2-0034-4B17-97EA-8DC237B12DF4}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{AB1FB1A2-0034-4B17-97EA-8DC237B12DF4}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{8B02E901-70C0-4F3C-8832-CA587CA7EA09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B02E901-70C0-4F3C-8832-CA587CA7EA09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B02E901-70C0-4F3C-8832-CA587CA7EA09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B02E901-70C0-4F3C-8832-CA587CA7EA09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
