@@ -4,7 +4,7 @@
 
 Service for processing the time of last user activity.
 
-![SystemOverview](../img/SystemOverview.png)
+![SystemOverview](../../img/Convo/SystemOverview.png)
 
 ## Description 
 

@@ -4,7 +4,7 @@
 
 Client-server application can be implemented using different topologies: **star topology** and **tree structured topology**. 
 
-![Topologies](img/Network/Topologies.png)
+![Topologies](../img/Convo/Network/Topologies.png)
 
 Using **star topology** we just implement one instance of *server side app* and one instance of *client side app*. 
 *Client* can run on multiple computers, and *server* can only run on a single computer. 
@@ -19,12 +19,12 @@ In this project we are going to implement **star topology**.
 
 As we know, **communication between client and server** can be performed the following way: a client application sends messages to a server via the network to request the server for performing a specific task. 
 
-![ClientServerCommunication](img/Network/ClientServerCommunication.png)
+![ClientServerCommunication](../img/Convo/Network/ClientServerCommunication.png)
 
 In this project we can use databases both on client and server: *local database* stores information about the users on a particular computer for authentication, server-side database stores all information. 
 
-![DatabasesOnClientAndServer](img/Network/DatabasesOnClientAndServer.png)
+![DatabasesOnClientAndServer](../img/Convo/Network/DatabasesOnClientAndServer.png)
 
 Diagram that shows *request processing sequence* is presented below: 
 
-![RequestsToServer](img/Network/RequestsToServer.png)
+![RequestsToServer](../img/Convo/Network/RequestsToServer.png)

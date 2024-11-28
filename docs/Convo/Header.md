@@ -11,7 +11,7 @@ There is several reasons why communication between **client** and **server** can
 
 So **header** is shown below: 
 
-![HEAD byte](img/Network/HEAD.png)
+![HEAD byte](../img/Convo/Network/HEAD.png)
 
 **PURPOSE** is responsible for what the client makes request to the server: 
 - **CTC** (*Client-to-client*): `0`; 

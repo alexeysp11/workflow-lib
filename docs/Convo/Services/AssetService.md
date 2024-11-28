@@ -4,7 +4,7 @@
 
 A service that is responsible for working with files (storing, processing, receiving and sending).
 
-![SystemOverview](../img/SystemOverview.png)
+![SystemOverview](../../img/Convo/SystemOverview.png)
 
 ## Description 
 

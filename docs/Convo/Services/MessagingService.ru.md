@@ -4,7 +4,7 @@
 
 Сервис обработки сообщений.
 
-![SystemOverview](../img/SystemOverview.png)
+![SystemOverview](../../img/Convo/SystemOverview.png)
 
 ## Описание 
 

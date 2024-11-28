@@ -49,4 +49,4 @@ How to calculate the size of a database?
 
 Service communication diagram:
 
-![SystemOverview](img/SystemOverview.png)
+![SystemOverview](../img/Convo/SystemOverview.png)

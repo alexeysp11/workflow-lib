@@ -4,6 +4,6 @@
 
 Сервис обработки времени последней активности пользователей.
 
-![SystemOverview](../img/SystemOverview.png)
+![SystemOverview](../../img/Convo/SystemOverview.png)
 
 ## Описание 

@@ -4,7 +4,7 @@
 
 Service for processing messages.
 
-![SystemOverview](../img/SystemOverview.png)
+![SystemOverview](../../img/Convo/SystemOverview.png)
 
 ## Description  
 
