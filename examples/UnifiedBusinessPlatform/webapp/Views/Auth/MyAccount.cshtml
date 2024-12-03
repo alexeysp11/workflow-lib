@@ -1,0 +1,147 @@
+@using System.Globalization
+@using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Configurations
+@using WorkflowLib.Examples.UnifiedBusinessPlatform.ViewModels
+@using WorkflowLib.Shared.Models.Business.InformationSystem
+
+@model UserAccountViewModel
+
+@inject AppSettings _appSettings
+
+@{
+    ViewData["Title"] = "My Account";
+}
+
+@try
+{
+    if (TempData["ErrorMessage"] != null)
+    {
+        throw new System.Exception(TempData["ErrorMessage"].ToString());
+    }
+
+    var userId = Model?.UserAccountId;
+    var userAccount = Model?.EmployeeUserAccount?.UserAccount;
+    if (userAccount == null)
+    {
+        throw new System.Exception("Model does not contain related user account");
+    }
+    var employee = Model?.EmployeeUserAccount?.Employee;
+    if (employee == null)
+    {
+        throw new System.Exception("Model does not contain related employee");
+    }
+    var organizationItems = employee.OrganizationItems;
+    if (organizationItems == null || !organizationItems.Any())
+    {
+        throw new System.Exception("Model does not contain organization items for the related employee");
+    }
+    if (Model?.UserAccountGroups == null)
+    {
+        throw new System.Exception("Model does not contain user account groups for the related user");
+    }
+    var userGroups = Model?.UserAccountGroups
+        .Where(x => x.UserAccount != null && x.UserAccount.Id == userId)
+        .Where(x => x.UserGroup != null)
+        .Select(x => x.UserGroup)
+        .ToList();
+
+    var languageName = string.Empty;
+    if (!Context.Request.Cookies.TryGetValue("employeesmvc-lang", out languageName))
+    {
+        languageName = "English";
+    }
+
+    CultureInfo datesCultureInfo;
+    switch (languageName)
+    {
+        case "Russian":
+            datesCultureInfo = new CultureInfo("ru-RU");
+            break;
+        case "German":
+            datesCultureInfo = new CultureInfo("de-DE");
+            break;
+        case "Spanish":
+            datesCultureInfo = new CultureInfo("es-ES");
+            break;
+        default:
+            datesCultureInfo = new CultureInfo("en-US");
+            break;
+    }
+
+    ViewData["Title"] = _appSettings.Translate(languageName, "MyAccount");
+    
+    <div class="text-center">
+        <h1 class="display-4">@ViewData["Title"]</h1>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>@_appSettings.Translate(languageName, "Parameter")</th>
+                    <th>@_appSettings.Translate(languageName, "Value")</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@_appSettings.Translate(languageName, "FirstName")</td>
+                    <td>@employee.FirstName</td>
+                </tr>
+                <tr>
+                    <td>@_appSettings.Translate(languageName, "MiddleName")</td>
+                    <td>@employee.MiddleName</td>
+                </tr>
+                <tr>
+                    <td>@_appSettings.Translate(languageName, "LastName")</td>
+                    <td>@employee.LastName</td>
+                </tr>
+                <tr>
+                    <td>@_appSettings.Translate(languageName, "FullName")</td>
+                    <td>@employee.FullName</td>
+                </tr>
+                <tr>
+                    <td>@_appSettings.Translate(languageName, "BirthDate")</td>
+                    <td>@employee.BirthDate?.ToString(datesCultureInfo.DateTimeFormat.ShortDatePattern)</td>
+                </tr>
+                <tr>
+                    <td>@_appSettings.Translate(languageName, "Gender")</td>
+                    <td>@employee.Gender</td>
+                </tr>
+                <tr>
+                    <td>@_appSettings.Translate(languageName, "UserAccount.Username")</td>
+                    <td>@userAccount.Login</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>@userAccount.Email</td>
+                </tr>
+                <tr>
+                    <td>@_appSettings.Translate(languageName, "MobilePhone")</td>
+                    <td>@employee.MobilePhone</td>
+                </tr>
+                <tr>
+                    <td>@_appSettings.Translate(languageName, "WorkPhone")</td>
+                    <td>@employee.WorkPhone</td>
+                </tr>
+                <tr>
+                    <td>@_appSettings.Translate(languageName, "OrganizationItem")</td>
+                    <td>
+                        @Html.Raw(string.Join(", ", organizationItems.Select(x => $"<a href=\"/OrganizationalStructure/OrganizationItemDetails/{x.Id}\">{x.Name}</a>").ToArray()))
+                    </td>
+                </tr>
+                <tr>
+                    <td>@_appSettings.Translate(languageName, "UserGroup")</td>
+                    <td>
+                        @Html.Raw(string.Join(", ", userGroups.Select(x => x.Name).ToArray()))
+                    </td>
+                </tr>
+                <tr>
+                    <td>@_appSettings.Translate(languageName, "EmployDate")</td>
+                    <td>@employee.EmployDate?.ToString(datesCultureInfo.DateTimeFormat.ShortDatePattern)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}
+catch (System.Exception ex)
+{
+    <div class="text-center">
+        <p class="text-danger">Error: @ex.Message. Please, contact your system administrator</p>
+    </div>
+}

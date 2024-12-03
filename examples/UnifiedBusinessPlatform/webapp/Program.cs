@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
@@ -16,12 +17,20 @@ var appsettings = configuration.GetSection("AppSettings").Get<AppSettings>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+        options.SlidingExpiration = true;
+        options.LoginPath = "/Auth/SignIn";
+    });
+
+// Add classes.
 builder.Services.AddSingleton(appsettings);
 builder.Services.AddSingleton<IUnitOfWork, UnitOfWork>();
 builder.Services.AddSingleton<DatasetGenerator>();
 builder.Services.AddTransient<ICommonDataFilter, CommonDataFilter>();
-builder.Services.AddDbContext<EmployeesMvcDbContext>(
-        options => options.UseNpgsql("User ID=postgres;Password=postgres;Host=localhost;Port=5432;Database=employeesmvc_test;Pooling=true;Integrated Security=true;"));
+builder.Services.AddDbContext<EmployeesMvcDbContext>(options => options.UseNpgsql(appsettings.ConnectionString));
 
 var app = builder.Build();
 
@@ -39,6 +48,9 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseRouting();
 

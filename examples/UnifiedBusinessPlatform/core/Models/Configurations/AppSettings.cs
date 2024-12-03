@@ -9,6 +9,11 @@ namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Configuration
 public class AppSettings
 {
     /// <summary>
+    /// Connection string.
+    /// </summary>
+    public string ConnectionString { get; set; }
+
+    /// <summary>
     /// Interval for deleting filtered datasets.
     /// </summary>
     public int DbSetCollectorInterval { get; set; }
