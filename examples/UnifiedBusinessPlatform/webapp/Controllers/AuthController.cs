@@ -33,37 +33,44 @@ public class AuthController : Controller
     [AllowAnonymous]
     public async Task<IActionResult> SignIn(SignInViewModel model)
     {
-        if (ModelState.IsValid)
+        try
         {
-            var user = _context.UserAccounts.FirstOrDefault(x => x.Login == model.Username && x.Password == model.Password);
-            if (user == null)
+            if (ModelState.IsValid)
             {
-                TempData["ErrorMessage"] = "Incorrect username or password";
-            }
-            else
-            {
-                var claims = new List<Claim>
+                var user = _context.UserAccounts.FirstOrDefault(x => x.Login == model.Username && x.Password == model.Password);
+                if (user == null)
                 {
-                    new Claim("UserAccountId", user.Id.ToString()),
-                    new Claim(ClaimTypes.Name, user.Login),
-                    new Claim(ClaimTypes.Email, user.Email),
-                    new Claim(ClaimTypes.Role, "User"),
-                };
-                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                var authProperties = new AuthenticationProperties
+                    TempData["ErrorMessage"] = "Incorrect username or password";
+                }
+                else
                 {
-                    AllowRefresh = true,
-                    ExpiresUtc = DateTimeOffset.UtcNow.AddHours(12),
-                    IsPersistent = true
-                };
+                    var claims = new List<Claim>
+                    {
+                        new Claim("UserAccountId", user.Id.ToString()),
+                        new Claim(ClaimTypes.Name, user.Login),
+                        new Claim(ClaimTypes.Email, user.Email),
+                        new Claim(ClaimTypes.Role, "User"),
+                    };
+                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var authProperties = new AuthenticationProperties
+                    {
+                        AllowRefresh = true,
+                        ExpiresUtc = DateTimeOffset.UtcNow.AddHours(12),
+                        IsPersistent = true
+                    };
 
-                await HttpContext.SignInAsync(
-                    CookieAuthenticationDefaults.AuthenticationScheme, 
-                    new ClaimsPrincipal(claimsIdentity), 
-                    authProperties);
+                    await HttpContext.SignInAsync(
+                        CookieAuthenticationDefaults.AuthenticationScheme, 
+                        new ClaimsPrincipal(claimsIdentity), 
+                        authProperties);
 
-                return RedirectToAction("Index", "Home", null);
+                    return RedirectToAction("Index", "Home", null);
+                }
             }
+        }
+        catch (System.Exception ex)
+        {
+            TempData["ErrorMessage"] = ex.Message;
         }
         return RedirectToAction("SignIn");
     }
@@ -78,32 +85,39 @@ public class AuthController : Controller
     [Authorize]
     public async Task<ActionResult> MyAccount()
     {
-        if (long.TryParse(User.Claims.FirstOrDefault(c => c.Type == "UserAccountId")?.Value, out long userId) && userId > 0)
+        try
         {
-            var employeeUserAccount = _context.EmployeeUserAccounts
-                .Where(x => x.UserAccount != null && x.UserAccount.Id == userId)
-                .Where(x => x.Employee != null)
-                .Include(x => x.UserAccount)
-                .Include(x => x.Employee)
-                    .ThenInclude(x => x.OrganizationItems)
-                .FirstOrDefault();
-            var userAccountGroups = _context.UserAccountGroups
-                .Where(x => x.UserAccount != null && x.UserAccount.Id == userId)
-                .Where(x => x.UserGroup != null)
-                .Include(x => x.UserAccount)
-                .Include(x => x.UserGroup)
-                .ToList();
-            var result = new UserAccountViewModel
+            if (long.TryParse(User.Claims.FirstOrDefault(c => c.Type == "UserAccountId")?.Value, out long userId) && userId > 0)
             {
-                UserAccountId = userId,
-                EmployeeUserAccount = employeeUserAccount,
-                UserAccountGroups = userAccountGroups
-            };
-            return View(result);
+                var employeeUserAccount = _context.EmployeeUserAccounts
+                    .Where(x => x.UserAccount != null && x.UserAccount.Id == userId)
+                    .Where(x => x.Employee != null)
+                    .Include(x => x.UserAccount)
+                    .Include(x => x.Employee)
+                        .ThenInclude(x => x.OrganizationItems)
+                    .FirstOrDefault();
+                var userAccountGroups = _context.UserAccountGroups
+                    .Where(x => x.UserAccount != null && x.UserAccount.Id == userId)
+                    .Where(x => x.UserGroup != null)
+                    .Include(x => x.UserAccount)
+                    .Include(x => x.UserGroup)
+                    .ToList();
+                var result = new UserAccountViewModel
+                {
+                    UserAccountId = userId,
+                    EmployeeUserAccount = employeeUserAccount,
+                    UserAccountGroups = userAccountGroups
+                };
+                return View(result);
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "User account ID not saved";
+            }
         }
-        else
+        catch (System.Exception ex)
         {
-            TempData["ErrorMessage"] = "User account ID not saved";
+            TempData["ErrorMessage"] = ex.Message;
         }
         return View(null);
     }
