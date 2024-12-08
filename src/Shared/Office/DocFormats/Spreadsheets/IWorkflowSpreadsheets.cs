@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using WorkflowLib.Shared.Models.Documents;
 
 namespace WorkflowLib.Shared.Office.DocFormats.Spreadsheets
@@ -5,17 +6,17 @@ namespace WorkflowLib.Shared.Office.DocFormats.Spreadsheets
     /// <summary>
     /// Interface for using spreadsheets.
     /// </summary>
-    public interface ISpreadsheets 
+    public interface IWorkflowSpreadsheets
     {
         /// <summary>
         /// Method for converting a list of SpreadsheetElement into spreadsheet document.
         /// </summary>
         void SpreadsheetElementsToDocument(
-            string foldername, 
-            string filename, 
-            uint worksheetId, 
-            string worksheetName, 
-            System.Collections.Generic.List<SpreadsheetElement> elements);
+            string foldername,
+            string filename,
+            uint worksheetId,
+            string worksheetName,
+            List<SpreadsheetElement> elements);
         
         /// <summary>
         /// Given a document name, a worksheet name, the name of the first cell in the contiguous range, 
@@ -24,10 +25,10 @@ namespace WorkflowLib.Shared.Office.DocFormats.Spreadsheets
         /// Note: All cells in the contiguous range must contain numbers.
         /// </summary>
         void CalculateSumOfCellRange(
-            string docName, 
-            string worksheetName, 
-            string firstCellName, 
-            string lastCellName, 
+            string docName,
+            string worksheetName,
+            string firstCellName,
+            string lastCellName,
             string resultCell);
     }
 }

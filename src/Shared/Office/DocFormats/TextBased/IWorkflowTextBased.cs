@@ -7,7 +7,7 @@ namespace WorkflowLib.Shared.Office.DocFormats.TextBased
     /// <summary>
     /// Interface for using text based documents.
     /// </summary>
-    public interface ITextBased 
+    public interface IWorkflowTextBased 
     {
         /// <summary>
         /// Method for converting a list of TextDocElement into text-based document.

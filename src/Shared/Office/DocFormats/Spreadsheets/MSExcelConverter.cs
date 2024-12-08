@@ -12,17 +12,17 @@ namespace WorkflowLib.Shared.Office.DocFormats.Spreadsheets
     /// <summary>
     /// Class for using MS Excel (MS Excel converter).
     /// </summary>
-    public class MSExcelConverter : WorkflowLib.Shared.Office.DocFormats.Spreadsheets.ISpreadsheets
+    public class MSExcelConverter : IWorkflowSpreadsheets
     {
         /// <summary>
         /// Method for converting a list of SpreadsheetElement into Excel document.
         /// </summary>
         public void SpreadsheetElementsToDocument(
-            string foldername, 
-            string filename, 
-            uint worksheetId, 
+            string foldername,
+            string filename,
+            uint worksheetId,
             string worksheetName,
-            System.Collections.Generic.List<SpreadsheetElement> elements)
+            List<SpreadsheetElement> elements)
         {
             if (!Directory.Exists(foldername)) 
                 throw new System.Exception("Folder does not exist");
@@ -67,7 +67,9 @@ namespace WorkflowLib.Shared.Office.DocFormats.Spreadsheets
             foreach (var element in elements)
             {
                 if (element != null && element.TextDocElement != null)
+                {
                     InsertValue(element.TextDocElement.Content, element.CellName, worksheetId, spreadsheetDocument, worksheetPart);
+                }
             }
             // Save and close the document.
             workbookpart.Workbook.Save();
@@ -81,19 +83,21 @@ namespace WorkflowLib.Shared.Office.DocFormats.Spreadsheets
         /// Note: All cells in the contiguous range must contain numbers.
         /// </summary>
         public void CalculateSumOfCellRange(
-            string docName, 
-            string worksheetName, 
-            string firstCellName, 
-            string lastCellName, 
+            string docName,
+            string worksheetName,
+            string firstCellName,
+            string lastCellName,
             string resultCell)
         {
             // Open the document for editing.
             using (SpreadsheetDocument document = SpreadsheetDocument.Open(docName, true))
             {
                 IEnumerable<Sheet> sheets = document.WorkbookPart.Workbook.Descendants<Sheet>().Where(s => s.Name == worksheetName);
+                
                 // If the specified worksheet does not exist.
                 if (sheets.Count() == 0)
                     return;
+                
                 WorksheetPart worksheetPart = (WorksheetPart)document.WorkbookPart.GetPartById(sheets.First().Id);
                 Worksheet worksheet = worksheetPart.Worksheet;
 
@@ -112,7 +116,9 @@ namespace WorkflowLib.Shared.Office.DocFormats.Spreadsheets
                     {
                         string columnName = GetColumnName(cell.CellReference.Value);
                         if (CompareColumn(columnName, firstColumn) >= 0 && CompareColumn(columnName, lastColumn) <= 0)
+                        {
                             sum += double.Parse(cell.CellValue.Text);
+                        }
                     }
                 }
                 uint worksheetId = 0;
@@ -132,13 +138,14 @@ namespace WorkflowLib.Shared.Office.DocFormats.Spreadsheets
         /// 
         /// </summary>
         private void InsertValue(
-            string resultString, 
-            string resultCell, 
-            uint worksheetId, 
-            SpreadsheetDocument document, 
+            string resultString,
+            string resultCell,
+            uint worksheetId,
+            SpreadsheetDocument document,
             WorksheetPart worksheetPart)
         {
             Cell result = InsertCellInWorksheet(GetColumnName(resultCell), GetRowIndex(resultCell), (int)worksheetId, worksheetPart);
+            
             result.CellValue = new CellValue(resultString);
             result.DataType = new EnumValue<CellValues>(CellValues.String);
         }
@@ -187,7 +194,9 @@ namespace WorkflowLib.Shared.Office.DocFormats.Spreadsheets
             // If the worksheet does not contain a row with the specified row index, insert one.
             Row row;
             if (sheetData.Elements<Row>().Where(r => r.RowIndex == rowIndex).Count() != 0)
+            {
                 row = sheetData.Elements<Row>().Where(r => r.RowIndex == rowIndex).First();
+            }
             else
             {
                 row = new Row() { RowIndex = rowIndex };
