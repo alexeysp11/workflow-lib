@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,11 +26,11 @@ namespace WorkflowLib.Shared.Office.DocFormats.Spreadsheets
             List<SpreadsheetElement> elements)
         {
             if (!Directory.Exists(foldername)) 
-                throw new System.Exception("Folder does not exist");
+                throw new Exception("Folder does not exist");
             if (string.IsNullOrEmpty(filename)) 
-                throw new System.Exception("File name could not be null or empty");
+                throw new Exception("File name could not be null or empty");
             if (filename.Split('.').Last().ToLower() != "xls" && filename.Split('.').Last().ToLower() != "xlsx") 
-                throw new System.Exception("Incorrect file extension");
+                throw new Exception("Incorrect file extension");
 
             // Read: 
             // https://learn.microsoft.com/en-us/office/open-xml/how-to-calculate-the-sum-of-a-range-of-cells-in-a-spreadsheet-document
@@ -126,7 +127,7 @@ namespace WorkflowLib.Shared.Office.DocFormats.Spreadsheets
                 {
                     worksheetId = System.UInt32.Parse(sheets.First().Id.Value);
                 }
-                catch (System.Exception)
+                catch (Exception)
                 {
                 }
                 InsertValue(sum.ToString(), resultCell, worksheetId, document, worksheetPart);

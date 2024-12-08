@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,11 +21,11 @@ namespace WorkflowLib.Shared.Office.DocFormats
         public void TextDocElementsToDocument(string foldername, string filename, List<TextDocElement> elements)
         {
             if (!Directory.Exists(foldername))
-                throw new System.Exception("Folder name does not exist");
+                throw new Exception("Folder name does not exist");
             if (string.IsNullOrEmpty(filename))
-                throw new System.Exception("File name could not be null or empty");
+                throw new Exception("File name could not be null or empty");
             if (filename.Split('.').Last().ToLower() != "pdf")
-                throw new System.Exception("Incorrect file extension");
+                throw new Exception("Incorrect file extension");
 
             // TODO: Check if the following piece of code catches all the possible exceptions! 
             try
@@ -44,7 +45,7 @@ namespace WorkflowLib.Shared.Office.DocFormats
                     doc.Close();
                 }
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 throw;
             }
@@ -57,9 +58,9 @@ namespace WorkflowLib.Shared.Office.DocFormats
         public List<TextDocElement> ConvertFileToTde(string foldername, string filename)
         {
             if (!Directory.Exists(foldername))
-                throw new System.Exception("Folder does not exist");
+                throw new Exception("Folder does not exist");
             if (string.IsNullOrEmpty(filename))
-                throw new System.Exception("File name could not be null or empty");
+                throw new Exception("File name could not be null or empty");
 
             return ConvertFileToTde(Path.Combine(foldername, filename));
         }
@@ -70,9 +71,9 @@ namespace WorkflowLib.Shared.Office.DocFormats
         public List<TextDocElement> ConvertFileToTde(string filepath)
         {
             if (string.IsNullOrEmpty(filepath))
-                throw new System.Exception("File name could not be null or empty");
+                throw new Exception("File name could not be null or empty");
             if (!File.Exists(filepath))
-                throw new System.Exception("File does not exist");
+                throw new Exception("File does not exist");
 
             return ConvertFileToTde(new FileInfo(filepath));
         }
@@ -84,7 +85,7 @@ namespace WorkflowLib.Shared.Office.DocFormats
         {
             string content = System.IO.File.ReadAllText(file.FullName);
             if (string.IsNullOrEmpty(content))
-                throw new System.Exception("File content could not be empty");
+                throw new Exception("File content could not be empty");
 
             return ConvertStringToTde(content);
         }
@@ -95,7 +96,7 @@ namespace WorkflowLib.Shared.Office.DocFormats
         public List<TextDocElement> ConvertStringToTde(string xmlContent)
         {
             if (string.IsNullOrEmpty(xmlContent))
-                throw new System.Exception("XML content could not be empty");
+                throw new Exception("XML content could not be empty");
 
             // 
 
