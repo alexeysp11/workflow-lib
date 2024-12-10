@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Shared.Models.Business.Customers;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
+using WorkflowLib.Shared.Models.Business.Languages;
 
 namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.DbContexts;
 
@@ -20,4 +21,7 @@ public class EmployeesMvcDbContext : DbContext
     public DbSet<Contact> Contacts { get; set; }
 
     public DbSet<Absense> Absenses { get; set; }
+
+    public DbSet<LanguageKey> LanguageKeys { get; set; }
+    public DbSet<LanguageKeyValuePair> LanguageKeyValuePairs { get; set; }
 }
