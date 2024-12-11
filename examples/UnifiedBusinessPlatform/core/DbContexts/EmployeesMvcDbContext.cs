@@ -24,4 +24,5 @@ public class EmployeesMvcDbContext : DbContext
 
     public DbSet<LanguageKey> LanguageKeys { get; set; }
     public DbSet<LanguageKeyValuePair> LanguageKeyValuePairs { get; set; }
+    public DbSet<LanguageKeyForm> LanguageKeyForms { get; set; }
 }
