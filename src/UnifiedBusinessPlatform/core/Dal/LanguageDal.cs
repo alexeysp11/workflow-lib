@@ -17,12 +17,14 @@ namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Dal
         public static Dictionary<string, string> GetLanguageKvpByFormName(
             EmployeesMvcDbContext context,
             LanguageType languageType,
-            string formName)
+            string formName,
+            string applicationUid)
         {
             List<LanguageKeyValuePair> languageKvpList = context.LanguageKeyValuePairs
-                .FromSqlRaw("select * from public.\"GetLanguageKvpByFormName\"(@LanguageType, @FormName)", 
+                .FromSqlRaw("select * from public.\"GetLanguageKvpByFormName\"(@LanguageType, @FormName, @ApplicationUid)", 
                     new NpgsqlParameter("LanguageType", (int)languageType),
-                    new NpgsqlParameter("FormName", formName))
+                    new NpgsqlParameter("FormName", formName),
+                    new NpgsqlParameter("ApplicationUid", applicationUid))
                 .ToList();
             
             var result = new Dictionary<string, string>();
