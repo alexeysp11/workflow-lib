@@ -380,6 +380,50 @@ VALUES
     ('Documents.Internal', 'Documentación interna', 5),
     ('KnowledgeBase', 'Base de conocimientos', 5);
 
+-- Inert into public."LanguageKeyForms"
+
+INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
+VALUES 
+    ('MyAccount', 'Auth/MyAccount', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Parameter', 'Auth/MyAccount', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Value', 'Auth/MyAccount', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('FirstName', 'Auth/MyAccount', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('MiddleName', 'Auth/MyAccount', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('LastName', 'Auth/MyAccount', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('FullName', 'Auth/MyAccount', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('BirthDate', 'Auth/MyAccount', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Gender', 'Auth/MyAccount', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('UserAccount.Username', 'Auth/MyAccount', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('MobilePhone', 'Auth/MyAccount', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('WorkPhone', 'Auth/MyAccount', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('OrganizationItem', 'Auth/MyAccount', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('UserGroup', 'Auth/MyAccount', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('EmployDate', 'Auth/MyAccount', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+
+INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
+VALUES 
+    ('SignIn', 'Auth/SignIn', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('UserAccount.Username', 'Auth/SignIn', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('UserAccount.Password', 'Auth/SignIn', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+
+INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
+VALUES 
+    ('Documents.Internal', 'Documents/Internal', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+
+INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
+VALUES 
+    ('KnowledgeBase', 'Documents/KnowledgeBase', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+
+INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
+VALUES 
+    ('Page.Home', 'Home/Index', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('EmployeeManagementSystem', 'Home/Index', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('EmployeeManagementSystem.Description', 'Home/Index', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+
+INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
+VALUES 
+    ('Notifications', 'Home/Notifications', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+
 -- A set of functions to simplify working with languages.
 
 CREATE OR REPLACE FUNCTION "GetLanguageKvpByFormName"(aLanguageType int, aFormName varchar(100), aApplicationUid varchar(255))
