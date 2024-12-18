@@ -7,7 +7,7 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <ProjectReference Include="../core/WorkflowLib.Examples.UnifiedBusinessPlatform.Core.csproj" />
+    <ProjectReference Include="../core/WorkflowLib.UnifiedBusinessPlatform.Core.csproj" />
     <ProjectReference Include="../../../src/Shared/CodeExtensions/WorkflowLib.Shared.CodeExtensions.csproj" />
   </ItemGroup>
 

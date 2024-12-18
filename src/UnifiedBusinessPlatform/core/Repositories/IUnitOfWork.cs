@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Repositories;
+namespace WorkflowLib.UnifiedBusinessPlatform.Core.Repositories;
 
 public interface IUnitOfWork
 {

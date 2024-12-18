@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.Examples.UnifiedBusinessPlatform.ViewModels;
+namespace WorkflowLib.UnifiedBusinessPlatform.ViewModels;
 
 public class UserAccountViewModel
 {

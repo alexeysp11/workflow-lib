@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.UnifiedBusinessPlatform.DbInit;
+namespace WorkflowLib.UnifiedBusinessPlatform.DbInit;
 
 /// <summary>
 /// Class for standardized launch of an application instance.

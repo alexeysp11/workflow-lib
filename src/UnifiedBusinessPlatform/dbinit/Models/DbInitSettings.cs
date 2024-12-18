@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.UnifiedBusinessPlatform.DbInit.Models;
+namespace WorkflowLib.UnifiedBusinessPlatform.DbInit.Models;
 
 public class DbInitSettings
 {

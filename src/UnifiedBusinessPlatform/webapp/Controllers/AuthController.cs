@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.DbContexts;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.ViewModels;
+using WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts;
+using WorkflowLib.UnifiedBusinessPlatform.ViewModels;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Controllers;
+namespace WorkflowLib.UnifiedBusinessPlatform.Controllers;
 
 public class AuthController : Controller
 {

@@ -1,9 +1,9 @@
 using System;
 using Xunit;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Repositories;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Repositories;
 
-namespace Tests.WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Repositories;
+namespace Tests.WorkflowLib.UnifiedBusinessPlatform.Core.Repositories;
 
 public class FilteredRepositoryTest
 {

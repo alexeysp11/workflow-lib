@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Xunit;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Domain.Filtering;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Configurations;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Domain.Filtering;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Repositories;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Repositories;
 
-namespace Tests.WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Domain.Filtering;
+namespace Tests.WorkflowLib.UnifiedBusinessPlatform.Core.Domain.Filtering;
 
 public class CommonDataFilterTest
 {

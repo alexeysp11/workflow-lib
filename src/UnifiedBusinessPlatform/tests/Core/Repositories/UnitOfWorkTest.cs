@@ -1,10 +1,10 @@
 using System.Linq;
 using Xunit;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Configurations;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Repositories;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Repositories;
 
-namespace Tests.WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Repositories;
+namespace Tests.WorkflowLib.UnifiedBusinessPlatform.Core.Repositories;
 
 public class UnitOfWorkTest
 {

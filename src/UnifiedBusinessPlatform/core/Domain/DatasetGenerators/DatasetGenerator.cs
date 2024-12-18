@@ -1,11 +1,11 @@
 using System.Linq;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Configurations;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Pipes;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Pipes;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Repositories;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Pipes;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Pipes;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Repositories;
 
-namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Domain.DatasetGenerators;
+namespace WorkflowLib.UnifiedBusinessPlatform.Core.Domain.DatasetGenerators;
 
 /// <summary>
 /// Class for initializing datasets.

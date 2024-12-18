@@ -1,6 +1,6 @@
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Configurations;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations;
 
-namespace Tests.WorkflowLib.Examples.UnifiedBusinessPlatform;
+namespace Tests.WorkflowLib.UnifiedBusinessPlatform;
 
 internal static class SettingsHelper
 {

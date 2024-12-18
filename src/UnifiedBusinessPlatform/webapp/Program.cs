@@ -2,11 +2,11 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.DbContexts;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Domain.DatasetGenerators;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Domain.Filtering;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Configurations;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Repositories;
+using WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Domain.DatasetGenerators;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Domain.Filtering;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 

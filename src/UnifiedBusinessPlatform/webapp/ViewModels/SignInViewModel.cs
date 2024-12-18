@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WorkflowLib.Examples.UnifiedBusinessPlatform.ViewModels;
+namespace WorkflowLib.UnifiedBusinessPlatform.ViewModels;
 
 public class SignInViewModel
 {

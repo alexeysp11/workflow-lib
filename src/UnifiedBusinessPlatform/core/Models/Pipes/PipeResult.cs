@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Pipes;
+namespace WorkflowLib.UnifiedBusinessPlatform.Core.Models.Pipes;
 
 /// <summary>
 /// Represents all the generated collections.

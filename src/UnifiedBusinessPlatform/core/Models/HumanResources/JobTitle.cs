@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.HumanResources;
+namespace WorkflowLib.UnifiedBusinessPlatform.Core.Models.HumanResources;
 
 /// <summary>
 /// Job titles used in the company.

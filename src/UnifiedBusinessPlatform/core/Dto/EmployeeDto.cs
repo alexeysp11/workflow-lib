@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Dto;
+namespace WorkflowLib.UnifiedBusinessPlatform.Core.Dto;
 
 public class EmployeeDto
 {

@@ -2,16 +2,16 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Domain.Filtering;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Dto;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Enums;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Configurations;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Domain.Filtering;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Dto;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Enums;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Models;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.DbContexts;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Repositories;
+using WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Repositories;
 
-namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Controllers;
+namespace WorkflowLib.UnifiedBusinessPlatform.Controllers;
 
 public class HomeController : Controller
 {

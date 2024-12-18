@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.DbInit.Models;
+using WorkflowLib.UnifiedBusinessPlatform.DbInit.Models;
 
-namespace WorkflowLib.Examples.UnifiedBusinessPlatform.DbInit;
+namespace WorkflowLib.UnifiedBusinessPlatform.DbInit;
 
 public class Program
 {

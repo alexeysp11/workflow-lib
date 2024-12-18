@@ -1,9 +1,9 @@
 using System.Linq.Expressions;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Dto;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Enums;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Dto;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Enums;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Domain.Filtering;
+namespace WorkflowLib.UnifiedBusinessPlatform.Core.Domain.Filtering;
 
 public interface ICommonDataFilter
 {

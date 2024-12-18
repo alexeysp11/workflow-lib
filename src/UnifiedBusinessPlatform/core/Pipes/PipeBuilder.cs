@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Configurations;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Models.Pipes;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Pipes;
 
-namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Pipes;
+namespace WorkflowLib.UnifiedBusinessPlatform.Core.Pipes;
 
 /// <summary>
 /// Builds the sequence of the generators of initial datasets.

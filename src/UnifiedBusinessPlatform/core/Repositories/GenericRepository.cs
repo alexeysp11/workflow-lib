@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Repositories;
+namespace WorkflowLib.UnifiedBusinessPlatform.Core.Repositories;
 
 /// <summary>
 /// Allows to interact with the initial collections.

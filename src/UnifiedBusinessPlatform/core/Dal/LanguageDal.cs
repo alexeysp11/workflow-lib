@@ -2,9 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using System.Collections.Generic;
 using WorkflowLib.Shared.Models.Business.Languages;
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.DbContexts;
+using WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts;
 
-namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Dal
+namespace WorkflowLib.UnifiedBusinessPlatform.Core.Dal
 {
     /// <summary>
     /// A class that provides general functionality for working with databases in the context of languages.

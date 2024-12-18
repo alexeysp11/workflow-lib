@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Enums;
+namespace WorkflowLib.UnifiedBusinessPlatform.Core.Enums;
 
 public enum CacheUidType
 {

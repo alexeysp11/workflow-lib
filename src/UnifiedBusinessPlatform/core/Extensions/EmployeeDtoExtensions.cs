@@ -1,6 +1,6 @@
-using WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Dto;
+using WorkflowLib.UnifiedBusinessPlatform.Core.Dto;
 
-namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Extensions;
+namespace WorkflowLib.UnifiedBusinessPlatform.Core.Extensions;
 
 public static class EmployeeDtoExtensions
 {

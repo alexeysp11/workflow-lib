@@ -1,6 +1,6 @@
 using WorkflowLib.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.Domain.DatasetGenerators;
+namespace WorkflowLib.UnifiedBusinessPlatform.Core.Domain.DatasetGenerators;
 
 public interface IEmployeeGenerator
 {

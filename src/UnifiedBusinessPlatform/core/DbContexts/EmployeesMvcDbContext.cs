@@ -3,7 +3,7 @@ using WorkflowLib.Shared.Models.Business.Customers;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
 using WorkflowLib.Shared.Models.Business.Languages;
 
-namespace WorkflowLib.Examples.UnifiedBusinessPlatform.Core.DbContexts;
+namespace WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts;
 
 public class EmployeesMvcDbContext : DbContext
 {
