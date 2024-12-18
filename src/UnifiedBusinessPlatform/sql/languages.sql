@@ -380,7 +380,7 @@ VALUES
     ('Documents.Internal', 'Documentación interna', 5),
     ('KnowledgeBase', 'Base de conocimientos', 5);
 
--- Inert into public."LanguageKeyForms"
+-- Insert data into public."LanguageKeyForms"
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
 VALUES 
