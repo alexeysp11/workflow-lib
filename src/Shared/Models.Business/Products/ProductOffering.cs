@@ -6,7 +6,7 @@ namespace WorkflowLib.Shared.Models.Business.Products
     /// <summary>
     /// Product offering.
     /// </summary>
-    public class ProductOffering : WfBusinessEntity, IWfBusinessEntity, ITemporalWfBusinessEntity
+    public class ProductOffering : WfBusinessEntity, IWfBusinessEntity, ITemporalBusinessEntity
     {
         /// <summary>
         /// Supplier (comany).

@@ -1,9 +1,9 @@
 namespace WorkflowLib.Shared.Models.Business
 {
     /// <summary>
-    /// Business entity in the workflow-lib.
+    /// Interface that represents a business entity which could be sent.
     /// </summary>
-    public interface ISendableWfBusinessEntity : IWfBusinessEntity
+    public interface ISendableBusinessEntity : IWfBusinessEntity
     {
         /// <summary>
         /// Date the business entity was sent.

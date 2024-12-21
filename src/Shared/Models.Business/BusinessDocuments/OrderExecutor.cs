@@ -7,7 +7,7 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
     /// <summary>
     /// Associate table between any executor and order.
     /// </summary>
-    public class OrderExecutor : WfBusinessEntity, IWfBusinessEntity, ITemporalWfBusinessEntity
+    public class OrderExecutor : WfBusinessEntity, IWfBusinessEntity, ITemporalBusinessEntity
     {
         /// <summary>
         /// Executor UID of the order.

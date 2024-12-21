@@ -5,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
     /// <summary>
     /// Absence of an employee.
     /// </summary>
-    public class Absense : WfBusinessEntity, IWfBusinessEntity, ITemporalWfBusinessEntity
+    public class Absense : WfBusinessEntity, IWfBusinessEntity, ITemporalBusinessEntity
     {
         /// <summary>
         /// Employee that is absent.

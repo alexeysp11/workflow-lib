@@ -5,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
     /// <summary>
     /// Replacement.
     /// </summary>
-    public class Replacement : WfBusinessEntity, IWfBusinessEntity, ITemporalWfBusinessEntity
+    public class Replacement : WfBusinessEntity, IWfBusinessEntity, ITemporalBusinessEntity
     {
         /// <summary>
         /// The number of working days for which the replacement mechanism must be completed 

@@ -7,7 +7,7 @@ namespace WorkflowLib.Shared.Models.Business.Customers
     /// <summary>
     /// Message to the customer.
     /// </summary>
-    public class MessageToCustomer : WfBusinessEntity, IWfBusinessEntity, ISendableWfBusinessEntity, IReceivableWfBusinessEntity
+    public class MessageToCustomer : WfBusinessEntity, IWfBusinessEntity, ISendableBusinessEntity, IReceivableBusinessEntity
     {
         /// <summary>
         /// Subject of the message.
