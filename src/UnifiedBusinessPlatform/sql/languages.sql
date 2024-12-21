@@ -424,6 +424,135 @@ INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "Date
 VALUES 
     ('Notifications', 'Home/Notifications', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
+INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
+VALUES 
+    ('Absenses', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('AbsenseFilters', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('AbsenseReason', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('BeginDate', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('EndDate', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('FullName', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('FullName.Enter', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('OrganizationItem', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('BirthDate', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Age', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('MinimumAge', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('MinimumAge.Enter', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('MaximumAge', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('MaximumAge.Enter', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Gender', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Gender.Male', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Gender.Female', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('JobTitle', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('JobTitle.ChiefExecutiveOfficer', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('JobTitle.VicePresident', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('JobTitle.Director', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('JobTitle.HRManager', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('JobTitle.ProjectManager', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('JobTitle.FrontendDeveloper', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('JobTitle.BackendDeveloper', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('JobTitle.FullstackDeveloper', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('JobTitle.DevelopmentLead', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('JobTitle.QAEngineer', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Department', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Department.ERPDevelopment', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Department.HRMDevelopment', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Department.CRMDevelopment', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Department.HR', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Department.Administration', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('FullName.CurrentEmployee', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('FilterOptions', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('FilterOptions.ShowAllFilteredVacations', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('FilterOptions.ShowIntersections', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('FilterOptions.ExcludeIntersections', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Find', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Error.DataNotGeneratedYet', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('NewVacation', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+
+INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
+VALUES 
+    ('Employees', 'Hrm/Employees', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('FullName', 'Hrm/Employees', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Gender', 'Hrm/Employees', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Gender.Male', 'Hrm/Employees', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Gender.Female', 'Hrm/Employees', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('OrganizationItem', 'Hrm/Employees', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Age', 'Hrm/Employees', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('BirthDate', 'Hrm/Employees', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Error.DataNotGeneratedYet', 'Hrm/Employees', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+
+INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
+VALUES 
+    ('Employees', 'Hrm/NewVacation', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('NewVacation', 'Hrm/NewVacation', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('NewVacation.Add', 'Hrm/NewVacation', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('FullName', 'Hrm/NewVacation', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('FullName.Enter', 'Hrm/NewVacation', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('BeginDate', 'Hrm/NewVacation', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('BeginDate.Enter', 'Hrm/NewVacation', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('EndDate', 'Hrm/NewVacation', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('EndDate.Enter', 'Hrm/NewVacation', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Note', 'Hrm/NewVacation', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('NewVacation.Note01', 'Hrm/NewVacation', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('NewVacation.Note02', 'Hrm/NewVacation', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('NewVacation.Note03', 'Hrm/NewVacation', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+
+INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
+VALUES 
+    ('Hiring', 'Hrm/Hiring', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+
+INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
+VALUES 
+    ('BriefDescription', 'OrganizationalStructure/BriefDescription', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+
+INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
+VALUES 
+    ('OrganizationDetails', 'OrganizationalStructure/OrganizationDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+
+INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
+VALUES 
+    ('OrganizationItemDetails', 'OrganizationalStructure/OrganizationItemDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+
+INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
+VALUES 
+    ('Departments', 'OrganizationalStructure/OrganizationItems', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('JobPositions', 'OrganizationalStructure/OrganizationItems', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Teams', 'OrganizationalStructure/OrganizationItems', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Name', 'OrganizationalStructure/OrganizationItems', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Description', 'OrganizationalStructure/OrganizationItems', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Organization', 'OrganizationalStructure/OrganizationItems', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('ParentItem', 'OrganizationalStructure/OrganizationItems', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Additional', 'OrganizationalStructure/OrganizationItems', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+
+INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
+VALUES 
+    ('Organizations', 'OrganizationalStructure/Organizations', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Name', 'OrganizationalStructure/Organizations', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Description', 'OrganizationalStructure/Organizations', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Organization', 'OrganizationalStructure/Organizations', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Additional', 'OrganizationalStructure/Organizations', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+
+INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
+VALUES 
+    ('Page.Home', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('OrganizationalStructure', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('BriefDescription', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Organization', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Departments', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Teams', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('JobPositions', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Employees', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Absenses', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Hiring', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Documents', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Documents.Internal', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('KnowledgeBase', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('More', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('MyAccount', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('SignIn', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('SignOut', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Notifications', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+
 -- A set of functions to simplify working with languages.
 
 CREATE OR REPLACE FUNCTION "GetLanguageKvpByFormName"(aLanguageType int, aFormName varchar(100), aApplicationUid varchar(255))
