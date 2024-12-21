@@ -8,7 +8,7 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
     /// <summary>
     /// Order.
     /// </summary>
-    public class Order : BusinessEntityWF, IBusinessEntityWF, ITemporalBusinessEntityWF
+    public class Order : WfBusinessEntity, IWfBusinessEntity, ITemporalWfBusinessEntity
     {
         /// <summary>
         /// Number of the order.

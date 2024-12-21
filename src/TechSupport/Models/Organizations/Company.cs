@@ -9,7 +9,7 @@ namespace WorkflowLib.Shared.Models.Business.Customers
     /// <summary>
     /// Company (usually related to the customer).
     /// </summary>
-    public class Company : BusinessEntityWF, IBusinessEntityWF
+    public class Company : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Registration number of the company.

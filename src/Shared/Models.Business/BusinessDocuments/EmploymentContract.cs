@@ -10,7 +10,7 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
     /// <summary>
     /// Employment contract.
     /// </summary>
-    public class EmploymentContract : BusinessEntityWF, IBusinessEntityWF, ITemporalBusinessEntityWF
+    public class EmploymentContract : WfBusinessEntity, IWfBusinessEntity, ITemporalWfBusinessEntity
     {
         /// <summary>
         /// Contract ID.

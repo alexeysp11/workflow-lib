@@ -1,3 +1,5 @@
+using WorkflowLib.Shared.Models.Business.WfAppInfo;
+
 namespace WorkflowLib.Shared.Models.Business.Languages
 {
     /// <summary>
@@ -18,12 +20,17 @@ namespace WorkflowLib.Shared.Models.Business.Languages
         /// <summary>
         /// Name of the form or view.
         /// </summary>
-        public string FormName { get; set; }
+        public string? FormName { get; set; }
         
         /// <summary>
         /// UID of the application.
         /// </summary>
         public string? ApplicationUid { get; set; }
+        
+        /// <summary>
+        /// Information about the application form.
+        /// </summary>
+        public WfApplicationForm? WfApplicationForm { get; set; }
         
         /// <summary>
         /// The date when the business entity was created.

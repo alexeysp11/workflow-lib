@@ -7,7 +7,7 @@ namespace WorkflowLib.Shared.Models.Business.SocialCommunication
     /// <summary>
     /// Photo.
     /// </summary>
-    public class Photo : BusinessEntityWF, IBusinessEntityWF
+    public class Photo : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Date added.

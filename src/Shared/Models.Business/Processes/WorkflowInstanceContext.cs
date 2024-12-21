@@ -6,7 +6,7 @@ namespace WorkflowLib.Shared.Models.Business.Processes
     /// An abstract class that stores the process context (it is intended to implement this class 
     /// for a specific business process at the client application level).
     /// </summary>
-    public abstract class WorkflowInstanceContext : BusinessEntityWF, IBusinessEntityWF
+    public abstract class WorkflowInstanceContext : WfBusinessEntity, IWfBusinessEntity
     {
     }
 }

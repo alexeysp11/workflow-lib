@@ -5,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.Products
     /// <summary>
     /// Project phase.
     /// </summary>
-    public class ProjectPhase : BusinessEntityWF, IBusinessEntityWF
+    public class ProjectPhase : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Project.

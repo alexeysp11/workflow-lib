@@ -5,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.SocialCommunication
     /// <summary>
     /// Channel in a chat app.
     /// </summary>
-    public class Channel : BusinessEntityWF, IBusinessEntityWF
+    public class Channel : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Title of a channel.

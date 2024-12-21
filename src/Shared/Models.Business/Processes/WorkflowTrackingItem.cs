@@ -6,7 +6,7 @@ namespace WorkflowLib.Shared.Models.Business.Processes
     /// <summary>
     /// Represents an item used for tracking the progress of a workflow instance.
     /// </summary>
-    public class WorkflowTrackingItem : BusinessEntityWF, IBusinessEntityWF
+    public class WorkflowTrackingItem : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Gets or sets the workflow instance associated with this tracking item.

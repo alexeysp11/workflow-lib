@@ -5,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.Processes
     /// <summary>
     /// Incident.
     /// </summary>
-    public class Incident : BusinessEntityWF, IBusinessEntityWF
+    public class Incident : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Incident type.

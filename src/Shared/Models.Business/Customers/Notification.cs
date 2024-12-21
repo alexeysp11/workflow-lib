@@ -5,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.Customers
     /// <summary>
     /// Notification.
     /// </summary>
-    public class Notification : BusinessEntityWF, IBusinessEntityWF, ISendableBusinessEntityWF, IReceivableBusinessEntityWF
+    public class Notification : WfBusinessEntity, IWfBusinessEntity, ISendableWfBusinessEntity, IReceivableWfBusinessEntity
     {
         /// <summary>
         /// Date the business entity was sent.

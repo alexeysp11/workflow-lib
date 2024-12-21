@@ -7,7 +7,7 @@ namespace WorkflowLib.Shared.Models.Business.Cooking
     /// <summary>
     /// Associate table that connects a recipe and cooking operation.
     /// </summary>
-    public class RecipeCookingOperation : BusinessTask, IBusinessEntityWF
+    public class RecipeCookingOperation : BusinessTask, IWfBusinessEntity
     {
         /// <summary>
         /// Recipe.

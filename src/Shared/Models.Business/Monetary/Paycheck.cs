@@ -6,7 +6,7 @@ namespace WorkflowLib.Shared.Models.Business.Monetary
     /// <summary>
     /// Paycheck.
     /// </summary>
-    public class Paycheck : BusinessEntityWF, IBusinessEntityWF, ITemporalBusinessEntityWF
+    public class Paycheck : WfBusinessEntity, IWfBusinessEntity, ITemporalWfBusinessEntity
     {
         /// <summary>
         /// Date.

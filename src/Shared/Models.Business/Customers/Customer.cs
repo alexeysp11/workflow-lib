@@ -8,7 +8,7 @@ namespace WorkflowLib.Shared.Models.Business.Customers
     /// <summary>
     /// Customer.
     /// </summary>
-    public class Customer : BusinessEntityWF, IBusinessEntityWF
+    public class Customer : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// First name of the customer.

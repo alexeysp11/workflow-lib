@@ -5,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
     /// <summary>
     /// Non-complete clause.
     /// </summary>
-    public class NonCompeteClause : BusinessEntityWF, IBusinessEntityWF, ITemporalBusinessEntityWF
+    public class NonCompeteClause : WfBusinessEntity, IWfBusinessEntity, ITemporalWfBusinessEntity
     {
         /// <summary>
         /// Geographic area.

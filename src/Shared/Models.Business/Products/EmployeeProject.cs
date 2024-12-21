@@ -5,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.Products
     /// <summary>
     /// Associate table between project and employee.
     /// </summary>
-    public class EmployeeProject : BusinessEntityWF, IBusinessEntityWF, ITemporalBusinessEntityWF
+    public class EmployeeProject : WfBusinessEntity, IWfBusinessEntity, ITemporalWfBusinessEntity
     {
         /// <summary>
         /// 

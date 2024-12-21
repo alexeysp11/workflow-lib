@@ -9,7 +9,7 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
     /// <summary>
     /// Employee.
     /// </summary>
-    public class Employee : BusinessEntityWF, IBusinessEntityWF
+    public class Employee : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// First name of the employee.

@@ -8,7 +8,7 @@ namespace WorkflowLib.Shared.Models.Business.Responsibilities
     /// <summary>
     /// Employee responsibility.
     /// </summary>
-    public class EmployeeResponsibility : BusinessEntityWF, IBusinessEntityWF
+    public class EmployeeResponsibility : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Project.

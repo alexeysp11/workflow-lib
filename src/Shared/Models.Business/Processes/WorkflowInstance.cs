@@ -9,7 +9,7 @@ namespace WorkflowLib.Shared.Models.Business.Processes
     /// <summary>
     /// A specific entity (workflow instance) that implements a business process.
     /// </summary>
-    public class WorkflowInstance : BusinessEntityWF, IBusinessEntityWF, ITemporalBusinessEntityWF
+    public class WorkflowInstance : WfBusinessEntity, IWfBusinessEntity, ITemporalWfBusinessEntity
     {
         /// <summary>
         /// Gets or sets the business process associated with this workflow instance.

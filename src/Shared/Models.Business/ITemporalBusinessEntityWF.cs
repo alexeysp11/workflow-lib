@@ -1,6 +1,6 @@
 namespace WorkflowLib.Shared.Models.Business
 {
-    public interface ITemporalBusinessEntityWF : IBusinessEntityWF
+    public interface ITemporalWfBusinessEntity : IWfBusinessEntity
     {
         /// <summary>
         /// Actual start date.

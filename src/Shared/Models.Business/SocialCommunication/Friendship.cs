@@ -6,7 +6,7 @@ namespace WorkflowLib.Shared.Models.Business.SocialCommunication
     /// <summary>
     /// User/Friend.
     /// </summary>
-    public class Friendship : BusinessEntityWF, IBusinessEntityWF
+    public class Friendship : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Requester ID.

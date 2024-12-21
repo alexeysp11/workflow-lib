@@ -5,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
     /// <summary>
     /// Offer.
     /// </summary>
-    public class Offer : BusinessEntityWF, IBusinessEntityWF, ISendableBusinessEntityWF
+    public class Offer : WfBusinessEntity, IWfBusinessEntity, ISendableWfBusinessEntity
     {
         /// <summary>
         /// 

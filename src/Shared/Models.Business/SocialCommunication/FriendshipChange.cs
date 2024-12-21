@@ -5,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.SocialCommunication
     /// <summary>
     /// Friendship change.
     /// </summary>
-    public class FriendshipChange : BusinessEntityWF, IBusinessEntityWF
+    public class FriendshipChange : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// 

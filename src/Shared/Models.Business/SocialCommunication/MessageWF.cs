@@ -8,7 +8,7 @@ namespace WorkflowLib.Shared.Models.Business.SocialCommunication
     /// <summary>
     /// Respresents a message that is specific for the workflow-lib.
     /// </summary>
-    public class MessageWF : BusinessEntityWF, IBusinessEntityWF, ISendableBusinessEntityWF, IReceivableBusinessEntityWF
+    public class MessageWF : WfBusinessEntity, IWfBusinessEntity, ISendableWfBusinessEntity, IReceivableWfBusinessEntity
     {
         /// <summary>
         /// Category of a message.

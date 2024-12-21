@@ -6,7 +6,7 @@ namespace WorkflowLib.Shared.Models.Business.Products
     /// <summary>
     /// Product.
     /// </summary>
-    public class Product : BusinessEntityWF, IBusinessEntityWF, ICloneable
+    public class Product : WfBusinessEntity, IWfBusinessEntity, ICloneable
     {
         /// <summary>
         /// Price of the product.
