@@ -1,6 +1,10 @@
 @using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations
+@using WorkflowLib.UnifiedBusinessPlatform.Core.Dal
+@using WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts
+@using WorkflowLib.UnifiedBusinessPlatform.Core.Extensions
 
 @inject AppSettings _appSettings
+@inject EmployeesMvcDbContext _context
 
 @{
     ViewData["Title"] = "Brief description";
@@ -8,13 +12,22 @@
 
 @try
 {
+    string formName = "Documents/Internal";
+    string applicationUid = "d7b0eb60-190e-439d-89e1-c78594ac7f0c";
+
     var languageName = string.Empty;
     if (!Context.Request.Cookies.TryGetValue("employeesmvc-lang", out languageName))
     {
         languageName = "English";
     }
 
-    ViewData["Title"] = _appSettings.Translate(languageName, "Documents.Internal");
+    Dictionary<string, string> translations = LanguageDal.GetLanguageKvpByFormName(
+        _context,
+        UbpEnumExtensions.GetLanguageTypeEnum(languageName),
+        formName,
+        applicationUid);
+
+    ViewData["Title"] = translations["Documents.Internal"];
     
     <div class="text-center">
         <h1 class="display-4">@ViewData["Title"]</h1>
