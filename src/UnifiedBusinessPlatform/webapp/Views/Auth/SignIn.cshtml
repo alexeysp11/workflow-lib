@@ -1,9 +1,13 @@
 @using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations
+@using WorkflowLib.UnifiedBusinessPlatform.Core.Dal
+@using WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts
+@using WorkflowLib.UnifiedBusinessPlatform.Core.Extensions
 @using WorkflowLib.UnifiedBusinessPlatform.ViewModels
 
 @model SignInViewModel;
 
 @inject AppSettings _appSettings
+@inject EmployeesMvcDbContext _context
 
 @{
     ViewData["Title"] = "Sign In";
@@ -11,15 +15,24 @@
 
 @try
 {
+    string formName = "Auth/SignIn";
+    string applicationUid = "d7b0eb60-190e-439d-89e1-c78594ac7f0c";
+
     var languageName = string.Empty;
     if (!Context.Request.Cookies.TryGetValue("employeesmvc-lang", out languageName))
     {
         languageName = "English";
     }
     
-    ViewData["Title"] = _appSettings.Translate(languageName, "SignIn");
-    var usernameLabelText = _appSettings.Translate(languageName, "UserAccount.Username");
-    var passwordLabelText = _appSettings.Translate(languageName, "UserAccount.Password");
+    Dictionary<string, string> translations = LanguageDal.GetLanguageKvpByFormName(
+        _context,
+        UbpEnumExtensions.GetLanguageTypeEnum(languageName),
+        formName,
+        applicationUid);
+    
+    ViewData["Title"] = translations["SignIn"];
+    var usernameLabelText = translations["UserAccount.Username"];
+    var passwordLabelText = translations["UserAccount.Password"];
 
     <h1>@ViewData["Title"]</h1>
     <hr />

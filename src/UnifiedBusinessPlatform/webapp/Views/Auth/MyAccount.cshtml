@@ -1,9 +1,13 @@
 @using System.Globalization
 @using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations
+@using WorkflowLib.UnifiedBusinessPlatform.Core.Dal
+@using WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts
+@using WorkflowLib.UnifiedBusinessPlatform.Core.Extensions
 @using WorkflowLib.UnifiedBusinessPlatform.ViewModels
 @using WorkflowLib.Shared.Models.Business.InformationSystem
 
 @model UserAccountViewModel
+@inject EmployeesMvcDbContext _context
 
 @inject AppSettings _appSettings
 
@@ -43,13 +47,22 @@
         .Where(x => x.UserGroup != null)
         .Select(x => x.UserGroup)
         .ToList();
+    
+    string formName = "Auth/MyAccount";
+    string applicationUid = "d7b0eb60-190e-439d-89e1-c78594ac7f0c";
 
     var languageName = string.Empty;
     if (!Context.Request.Cookies.TryGetValue("employeesmvc-lang", out languageName))
     {
         languageName = "English";
     }
-
+    
+    Dictionary<string, string> translations = LanguageDal.GetLanguageKvpByFormName(
+        _context,
+        UbpEnumExtensions.GetLanguageTypeEnum(languageName),
+        formName,
+        applicationUid);
+    
     CultureInfo datesCultureInfo;
     switch (languageName)
     {
@@ -67,44 +80,44 @@
             break;
     }
 
-    ViewData["Title"] = _appSettings.Translate(languageName, "MyAccount");
+    ViewData["Title"] = translations["MyAccount"];
     
     <div class="text-center">
         <h1 class="display-4">@ViewData["Title"]</h1>
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>@_appSettings.Translate(languageName, "Parameter")</th>
-                    <th>@_appSettings.Translate(languageName, "Value")</th>
+                    <th>@translations["Parameter"]</th>
+                    <th>@translations["Value"]</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>@_appSettings.Translate(languageName, "FirstName")</td>
+                    <td>@translations["FirstName"]</td>
                     <td>@employee.FirstName</td>
                 </tr>
                 <tr>
-                    <td>@_appSettings.Translate(languageName, "MiddleName")</td>
+                    <td>@translations["MiddleName"]</td>
                     <td>@employee.MiddleName</td>
                 </tr>
                 <tr>
-                    <td>@_appSettings.Translate(languageName, "LastName")</td>
+                    <td>@translations["LastName"]</td>
                     <td>@employee.LastName</td>
                 </tr>
                 <tr>
-                    <td>@_appSettings.Translate(languageName, "FullName")</td>
+                    <td>@translations["FullName"]</td>
                     <td>@employee.FullName</td>
                 </tr>
                 <tr>
-                    <td>@_appSettings.Translate(languageName, "BirthDate")</td>
+                    <td>@translations["BirthDate"]</td>
                     <td>@employee.BirthDate?.ToString(datesCultureInfo.DateTimeFormat.ShortDatePattern)</td>
                 </tr>
                 <tr>
-                    <td>@_appSettings.Translate(languageName, "Gender")</td>
+                    <td>@translations["Gender"]</td>
                     <td>@employee.Gender</td>
                 </tr>
                 <tr>
-                    <td>@_appSettings.Translate(languageName, "UserAccount.Username")</td>
+                    <td>@translations["UserAccount.Username"]</td>
                     <td>@userAccount.Login</td>
                 </tr>
                 <tr>
@@ -112,27 +125,27 @@
                     <td>@userAccount.Email</td>
                 </tr>
                 <tr>
-                    <td>@_appSettings.Translate(languageName, "MobilePhone")</td>
+                    <td>@translations["MobilePhone"]</td>
                     <td>@employee.MobilePhone</td>
                 </tr>
                 <tr>
-                    <td>@_appSettings.Translate(languageName, "WorkPhone")</td>
+                    <td>@translations["WorkPhone"]</td>
                     <td>@employee.WorkPhone</td>
                 </tr>
                 <tr>
-                    <td>@_appSettings.Translate(languageName, "OrganizationItem")</td>
+                    <td>@translations["OrganizationItem"]</td>
                     <td>
                         @Html.Raw(string.Join(", ", organizationItems.Select(x => $"<a href=\"/OrganizationalStructure/OrganizationItemDetails/{x.Id}\">{x.Name}</a>").ToArray()))
                     </td>
                 </tr>
                 <tr>
-                    <td>@_appSettings.Translate(languageName, "UserGroup")</td>
+                    <td>@translations["UserGroup"]</td>
                     <td>
                         @Html.Raw(string.Join(", ", userGroups.Select(x => x.Name).ToArray()))
                     </td>
                 </tr>
                 <tr>
-                    <td>@_appSettings.Translate(languageName, "EmployDate")</td>
+                    <td>@translations["EmployDate"]</td>
                     <td>@employee.EmployDate?.ToString(datesCultureInfo.DateTimeFormat.ShortDatePattern)</td>
                 </tr>
             </tbody>
