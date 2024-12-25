@@ -530,6 +530,7 @@ VALUES
     ('Name', 'OrganizationalStructure/Organizations', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('Description', 'OrganizationalStructure/Organizations', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('Organization', 'OrganizationalStructure/Organizations', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('HeadItem', 'OrganizationalStructure/Organizations', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('Additional', 'OrganizationalStructure/Organizations', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
