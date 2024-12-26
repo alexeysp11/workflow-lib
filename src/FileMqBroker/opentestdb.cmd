@@ -1,0 +1,1 @@
+"tools\sqlite3\sqlite3.exe" "data\db\test.db"
