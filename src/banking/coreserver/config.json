@@ -1,0 +1,30 @@
+{
+    "CoreServerSettings": {
+        "ServerAddress": "http://127.0.0.1:8080/banking/",
+        "Environment": "test",
+
+        "AtmUid": ["v1", "v2"],
+        "EftposUid": ["v1", "v2"], 
+
+        "HttpPathsAtm": [
+            "/pin/enter/", 
+            "/pin/change/",
+            "/balance/get/",
+            "/cash/deposit/",
+            "/cash/withdraw/",
+            "/transfer/tobankaccount/",
+            "/transfer/tophonenumber/",
+            "/transfer/fps/"
+        ], 
+        "HttpPathsEftpos": [
+            "/pin/enter/",
+            "/transfer/"
+        ], 
+        "HttpPathsDbg": [
+            "/dbg/", 
+            "/test/"
+        ], 
+
+        "PrintWebPaths": false
+    }
+}
