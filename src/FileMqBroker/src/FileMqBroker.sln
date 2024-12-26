@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileMqBroker.BackendService", "FileMqBroker.BackendService\FileMqBroker.BackendService.csproj", "{C4B10661-4B40-489F-9AC6-432B70100D09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileMqBroker.HttpService", "FileMqBroker.HttpService\FileMqBroker.HttpService.csproj", "{5E052ABC-8CBF-4810-BB37-B74C3DF39880}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileMqBroker.MqLibrary", "FileMqBroker.MqLibrary\FileMqBroker.MqLibrary.csproj", "{017B6314-0C56-4FB8-9343-38727C95ADB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileMqBroker.Tests.MqLibrary", "FileMqBroker.Tests.MqLibrary\FileMqBroker.Tests.MqLibrary.csproj", "{27F60AE4-53B5-43B3-A472-39FEF264AACF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileMqBroker.MqLibrary.LoadTesting", "FileMqBroker.MqLibrary.LoadTesting\FileMqBroker.MqLibrary.LoadTesting.csproj", "{B0EFF3C5-19E0-4E89-B3BE-60D3F3E2CE52}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C4B10661-4B40-489F-9AC6-432B70100D09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4B10661-4B40-489F-9AC6-432B70100D09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4B10661-4B40-489F-9AC6-432B70100D09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4B10661-4B40-489F-9AC6-432B70100D09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E052ABC-8CBF-4810-BB37-B74C3DF39880}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E052ABC-8CBF-4810-BB37-B74C3DF39880}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E052ABC-8CBF-4810-BB37-B74C3DF39880}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E052ABC-8CBF-4810-BB37-B74C3DF39880}.Release|Any CPU.Build.0 = Release|Any CPU
+		{017B6314-0C56-4FB8-9343-38727C95ADB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{017B6314-0C56-4FB8-9343-38727C95ADB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{017B6314-0C56-4FB8-9343-38727C95ADB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{017B6314-0C56-4FB8-9343-38727C95ADB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27F60AE4-53B5-43B3-A472-39FEF264AACF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27F60AE4-53B5-43B3-A472-39FEF264AACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27F60AE4-53B5-43B3-A472-39FEF264AACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27F60AE4-53B5-43B3-A472-39FEF264AACF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0EFF3C5-19E0-4E89-B3BE-60D3F3E2CE52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0EFF3C5-19E0-4E89-B3BE-60D3F3E2CE52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0EFF3C5-19E0-4E89-B3BE-60D3F3E2CE52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0EFF3C5-19E0-4E89-B3BE-60D3F3E2CE52}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
