@@ -1,9 +1,13 @@
 @using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations
 @using WorkflowLib.Shared.Models.Business.InformationSystem
+@using WorkflowLib.UnifiedBusinessPlatform.Core.Dal
+@using WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts
+@using WorkflowLib.UnifiedBusinessPlatform.Core.Extensions
 
 @model IEnumerable<OrganizationItem>
 
 @inject AppSettings _appSettings
+@inject EmployeesMvcDbContext _context
 
 @{
     ViewData["Title"] = "Organization Item";
@@ -13,14 +17,23 @@
 
 @try
 {
+    string formName = "OrganizationalStructure/OrganizationItems";
+    string applicationUid = "d7b0eb60-190e-439d-89e1-c78594ac7f0c";
+
     var languageName = string.Empty;
     if (!Context.Request.Cookies.TryGetValue("employeesmvc-lang", out languageName))
     {
         languageName = "English";
     }
+    
+    Dictionary<string, string> translations = LanguageDal.GetLanguageKvpByFormName(
+        _context,
+        UbpEnumExtensions.GetLanguageTypeEnum(languageName),
+        formName,
+        applicationUid);
 
     var titleString = ViewData["ItemType"] != null ? ViewData["ItemType"].ToString() : string.Empty;
-    ViewData["Title"] = _appSettings.Translate(languageName, titleString);
+    ViewData["Title"] = translations[titleString];
 
     <div class="text-center">
         <h1 class="display-4">@ViewData["Title"]</h1>
@@ -33,19 +46,19 @@
                 ID
             </th>
             <th>
-                @_appSettings.Translate(languageName, "Name")
+                @translations["Name"]
             </th>
             <th>
-                @_appSettings.Translate(languageName, "Description")
+                @translations["Description"]
             </th>
             <th>
-                @_appSettings.Translate(languageName, "Organization")
+                @translations["Organization"]
             </th>
             <th>
-                @_appSettings.Translate(languageName, "ParentItem")
+                @translations["ParentItem"]
             </th>
             <th>
-                @_appSettings.Translate(languageName, "Additional")
+                @translations["Additional"]
             </th>
         </tr>
     </thead>
