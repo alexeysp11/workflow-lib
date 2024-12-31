@@ -95,6 +95,9 @@ VALUES
     ('FilterOptions.ShowIntersections', 'Show intersections', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('FilterOptions.ExcludeIntersections', 'Exclude intersections', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Error.DataNotGeneratedYet', 'Data not generated yet...', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('Finance', 'Finance', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('Investments', 'Investments', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('InvestmentsDescribe', 'Plan your budget, track expenses and investments, generate financial reports', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('More', 'More', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('MobilePhone', 'Mobile Phone', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('WorkPhone', 'Work Phone', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
@@ -198,6 +201,9 @@ VALUES
     ('FilterOptions.ShowIntersections', 'Показать пересечения', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('FilterOptions.ExcludeIntersections', 'Скрыть пересечения', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Error.DataNotGeneratedYet', 'Данные ещё не сгенерированы...', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('Finance', 'Финансы', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('Investments', 'Инвестиции', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('InvestmentsDescribe', 'Планируйте бюджет, отслеживайте затраты и инвестиции, формируйте финансовые отчеты', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('More', 'Больше', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('MobilePhone', 'Мобильный телефон', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('WorkPhone', 'Рабочий телефон', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
@@ -301,6 +307,9 @@ VALUES
     ('FilterOptions.ShowIntersections', 'Schnittpunkte anzeigen', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('FilterOptions.ExcludeIntersections', 'Schnittpunkte ausblenden', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Error.DataNotGeneratedYet', 'Daten noch nicht generiert...', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('Finance', 'Finanzen', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('Investments', 'Investitionen', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('InvestmentsDescribe', 'Planen Sie Ihr Budget, verfolgen Sie Kosten und Investitionen und erstellen Sie Finanzberichte', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('More', 'Mehr', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('MobilePhone', 'Mobiltelefon', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('WorkPhone', 'Arbeitstelefon', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
@@ -404,6 +413,9 @@ VALUES
     ('FilterOptions.ShowIntersections', 'Mostrar intersecciones', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('FilterOptions.ExcludeIntersections', 'Ocultar intersecciones', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Error.DataNotGeneratedYet', 'Datos aún no generados...', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('Finance', 'Finanzas', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('Investments', 'Inversiones', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('InvestmentsDescribe', 'Planifique su presupuesto, realice un seguimiento de costos e inversiones, genere informes financieros', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('More', 'Más', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('MobilePhone', 'Teléfono móvil', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('WorkPhone', 'Teléfono del trabajo', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
@@ -575,6 +587,12 @@ VALUES
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
 VALUES 
+    ('Finance', 'Finance/Investments', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('InvestmentsDescribe', 'Finance/Investments', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Investments', 'Finance/Investments', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+
+INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
+VALUES 
     ('Page.Home', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('OrganizationalStructure', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('BriefDescription', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
@@ -589,6 +607,8 @@ VALUES
     ('Documents', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('Documents.Internal', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('KnowledgeBase', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Finance', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Investments', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('More', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('MyAccount', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('SignIn', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
