@@ -39,6 +39,7 @@
 
     <div class="text-center">
         <h1 class="display-4">@ViewData["Title"]</h1>
+        <p>@translations["EmployeesDescribe"]</p>
         @if (TempData["ErrorMessage"] != null)
         {
             <p class="text-danger">Error message: @TempData["ErrorMessage"]</p>
