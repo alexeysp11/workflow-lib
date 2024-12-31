@@ -97,6 +97,7 @@ VALUES
     ('WorkPhone', 'Work Phone', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Documents', 'Documents', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Documents.Internal', 'Internal documentation', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('Documents.Internal.Describe', 'Centralized storage of all internal company documents. Quick search and convenient access to the necessary materials', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('KnowledgeBase', 'Knowledge base', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c');
 
 INSERT INTO public."LanguageKeyValuePairs" ("Key", "Value", "LanguageType", "ApplicationUid")
@@ -196,6 +197,7 @@ VALUES
     ('WorkPhone', 'Рабочий телефон', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Documents', 'Документы', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Documents.Internal', 'Внутренняя документация', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('Documents.Internal.Describe', 'Централизованное хранилище всех внутренних документов компании. Быстрый поиск и удобный доступ к необходимым материалам', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('KnowledgeBase', 'База знаний', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c');
 
 INSERT INTO public."LanguageKeyValuePairs" ("Key", "Value", "LanguageType", "ApplicationUid")
@@ -295,6 +297,7 @@ VALUES
     ('WorkPhone', 'Arbeitstelefon', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Documents', 'Unterlagen', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Documents.Internal', 'Interne Unterlagen', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('Documents.Internal.Describe', 'Zentralisierte Speicherung aller unternehmensinternen Dokumente. Schnelle Suche und bequemer Zugriff auf benötigte Materialien', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('KnowledgeBase', 'Wissensdatenbank', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c');
 
 INSERT INTO public."LanguageKeyValuePairs" ("Key", "Value", "LanguageType", "ApplicationUid")
@@ -394,6 +397,7 @@ VALUES
     ('WorkPhone', 'Teléfono del trabajo', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Documents', 'Documentos', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Documents.Internal', 'Documentación interna', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('Documents.Internal.Describe', 'Almacenamiento centralizado de todos los documentos internos de la empresa. Búsqueda rápida y acceso conveniente a los materiales necesarios.', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('KnowledgeBase', 'Base de conocimientos', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c');
 
 -- Insert data into public."LanguageKeyForms"
@@ -425,6 +429,7 @@ VALUES
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
 VALUES 
     ('Documents.Internal', 'Documents/Internal', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+    ('Documents.Internal.Describe', 'Documents/Internal', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
 VALUES 
