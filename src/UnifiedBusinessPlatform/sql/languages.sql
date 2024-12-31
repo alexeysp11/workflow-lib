@@ -23,6 +23,7 @@ VALUES
     ('Additional', 'Additional', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('OrganizationalStructure', 'Organizational structure', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('BriefDescription', 'Brief description', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('BriefDescriptionOrganizationalStructure', 'Brief description of the organizational structure', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Employees', 'Employees', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Hiring', 'Hiring specialists', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Customers', 'Customers', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
@@ -120,6 +121,7 @@ VALUES
     ('Additional', 'Дополнительно', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('OrganizationalStructure', 'Организационная структура', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('BriefDescription', 'Краткое описание', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('BriefDescriptionOrganizationalStructure', 'Краткое описание организационной структуры', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Employees', 'Сотрудники', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Hiring', 'Найм специалистов', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Customers', 'Потребители', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
@@ -217,6 +219,7 @@ VALUES
     ('Additional', 'Zusätzlich', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('OrganizationalStructure', 'Organisatorische Struktur', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('BriefDescription', 'Kurzbeschreibung', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('BriefDescriptionOrganizationalStructure', 'Kurze Beschreibung der Organisationsstruktur', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Employees', 'Mitarbeiter', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Hiring', 'Spezialisten einstellen', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Customers', 'Kunden', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
@@ -314,6 +317,7 @@ VALUES
     ('Additional', 'Adicional', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('OrganizationalStructure', 'Estructura organizacional', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('BriefDescription', 'Breve descripción', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('BriefDescriptionOrganizationalStructure', 'Breve descripción de la estructura organizacional', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Employees', 'Empleados', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Hiring', 'Contratar especialistas', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Customers', 'Clientes', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
@@ -513,7 +517,8 @@ VALUES
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
 VALUES 
-    ('BriefDescription', 'OrganizationalStructure/BriefDescription', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+    ('BriefDescription', 'OrganizationalStructure/BriefDescription', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('BriefDescriptionOrganizationalStructure', 'OrganizationalStructure/BriefDescription', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
 VALUES 
@@ -548,6 +553,7 @@ VALUES
     ('Page.Home', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('OrganizationalStructure', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('BriefDescription', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('BriefDescriptionOrganizationalStructure', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('Organization', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('Departments', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('Teams', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
