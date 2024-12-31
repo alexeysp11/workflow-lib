@@ -7,6 +7,7 @@ VALUES
     ('UnifiedBusinessPlatform', 'Unified Business Platform', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('UnifiedBusinessPlatform.Description', 'Welcome to the unified platform for managing your company. Here you will find a general overview of data, notifications and links to key sections', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Notifications', 'Notifications', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('NotificationsDescribe', 'Receive timely notifications about important events and changes in the system, without missing anything important. Manage your notifications to stay up to date with all company events that may interest you', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Page.Home', 'Home', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('MyAccount', 'My Account', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('SignIn', 'Sign In', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
@@ -109,6 +110,7 @@ VALUES
     ('UnifiedBusinessPlatform', 'Единая бизнес-платформа', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('UnifiedBusinessPlatform.Description', 'Добро пожаловать в единую платформу управления компанией. Здесь вы найдете общую сводку данных, уведомления и ссылки на ключевые разделы', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Notifications', 'Уведомления', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('NotificationsDescribe', 'Получайте своевременные уведомления о важных событиях и изменениях в системе, не пропуская ничего важного. Управляйте вашими уведомлениями, чтобы быть в курсе всех событий компании, которые могут вас интересовать', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Page.Home', 'Главная', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('MyAccount', 'Мой аккаунт', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('SignIn', 'Войти', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
@@ -211,6 +213,7 @@ VALUES
     ('UnifiedBusinessPlatform', 'Einheitliche Geschäftsplattform', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('UnifiedBusinessPlatform.Description', 'Willkommen auf der einheitlichen Geschäftsplattform. Hier finden Sie eine allgemeine Zusammenfassung der Daten, Hinweise und Links zu wichtigen Abschnitten', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Notifications', 'Benachrichtigungen', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('NotificationsDescribe', 'Erhalten Sie zeitnahe Benachrichtigungen über wichtige Ereignisse und Änderungen im System, ohne etwas Wichtiges zu verpassen. Verwalten Sie Ihre Benachrichtigungen, um über alle Unternehmensereignisse, die Sie interessieren könnten, auf dem Laufenden zu bleiben', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Page.Home', 'Startseite', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('MyAccount', 'Mein Konto', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('SignIn', 'Einloggen', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
@@ -313,6 +316,7 @@ VALUES
     ('UnifiedBusinessPlatform', 'Plataforma empresarial unificada', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('UnifiedBusinessPlatform.Description', 'Bienvenido a la plataforma unificada de gestión de empresas. Aquí encontrará un resumen general de datos, avisos y enlaces a secciones clave', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Notifications', 'Notificaciones', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('NotificationsDescribe', 'Reciba notificaciones oportunas sobre eventos importantes y cambios en el sistema, sin perderse nada importante. Gestiona tus notificaciones para estar al día de todos los eventos de la empresa que puedan interesarte', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Page.Home', 'Inicio', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('MyAccount', 'Mi cuenta', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('SignIn', 'Iniciar sesión', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
@@ -454,6 +458,7 @@ VALUES
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
 VALUES 
     ('Notifications', 'Home/Notifications', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+    ('NotificationsDescribe', 'Home/Notifications', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
 VALUES 
