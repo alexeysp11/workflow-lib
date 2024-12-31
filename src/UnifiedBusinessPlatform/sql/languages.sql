@@ -24,6 +24,7 @@ VALUES
     ('OrganizationalStructure', 'Organizational structure', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('BriefDescription', 'Brief description', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('BriefDescriptionOrganizationalStructure', 'Brief description of the organizational structure', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('BriefDescriptionOrganizationalStructureDescribe', 'Find the information you need about your company''s organizational structure, including hierarchy, contacts, and responsibilities.', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Employees', 'Employees', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Hiring', 'Hiring specialists', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Customers', 'Customers', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
@@ -122,6 +123,7 @@ VALUES
     ('OrganizationalStructure', 'Организационная структура', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('BriefDescription', 'Краткое описание', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('BriefDescriptionOrganizationalStructure', 'Краткое описание организационной структуры', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('BriefDescriptionOrganizationalStructureDescribe', 'Найдите нужную информацию об организационной структуре вашей компании, включая иерархию, контакты и обязанности', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Employees', 'Сотрудники', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Hiring', 'Найм специалистов', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Customers', 'Потребители', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
@@ -220,6 +222,7 @@ VALUES
     ('OrganizationalStructure', 'Organisatorische Struktur', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('BriefDescription', 'Kurzbeschreibung', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('BriefDescriptionOrganizationalStructure', 'Kurze Beschreibung der Organisationsstruktur', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('BriefDescriptionOrganizationalStructureDescribe', 'Finden Sie die Informationen, die Sie über die Organisationsstruktur Ihres Unternehmens benötigen, einschließlich Hierarchie, Kontakte und Verantwortlichkeiten', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Employees', 'Mitarbeiter', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Hiring', 'Spezialisten einstellen', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Customers', 'Kunden', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
@@ -318,6 +321,7 @@ VALUES
     ('OrganizationalStructure', 'Estructura organizacional', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('BriefDescription', 'Breve descripción', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('BriefDescriptionOrganizationalStructure', 'Breve descripción de la estructura organizacional', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('BriefDescriptionOrganizationalStructureDescribe', 'Encuentre la información que necesita sobre la estructura organizacional de su empresa, incluida la jerarquía, los contactos y las responsabilidades.', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Employees', 'Empleados', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Hiring', 'Contratar especialistas', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Customers', 'Clientes', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
@@ -519,6 +523,7 @@ INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "Date
 VALUES 
     ('BriefDescription', 'OrganizationalStructure/BriefDescription', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('BriefDescriptionOrganizationalStructure', 'OrganizationalStructure/BriefDescription', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+    ('BriefDescriptionOrganizationalStructureDescribe', 'OrganizationalStructure/BriefDescription', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
 VALUES 

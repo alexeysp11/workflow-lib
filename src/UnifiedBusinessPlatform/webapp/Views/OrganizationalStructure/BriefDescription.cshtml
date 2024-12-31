@@ -27,10 +27,11 @@
         formName,
         applicationUid);
 
-    ViewData["Title"] = translations["BriefDescriptionOrganizationalStructure"];
+    ViewData["Title"] = translations["BriefDescription"];
     
     <div class="text-center">
         <h1 class="display-4">@ViewData["Title"]</h1>
+        <p>@translations["BriefDescriptionOrganizationalStructureDescribe"]</p>
     </div>
 }
 catch (System.Exception ex)
