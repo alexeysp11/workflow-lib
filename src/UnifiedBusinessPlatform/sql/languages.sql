@@ -4,6 +4,8 @@ INSERT INTO public."LanguageKeyValuePairs" ("Key", "Value", "LanguageType", "App
 VALUES
     ('EmployeeManagementSystem', 'Employee Management System', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('EmployeeManagementSystem.Description', 'This app allows you to effectively manage employee information', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('UnifiedBusinessPlatform', 'Unified Business Platform', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('UnifiedBusinessPlatform.Description', 'Welcome to the unified platform for managing your company. Here you will find a general overview of data, notifications and links to key sections', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Notifications', 'Notifications', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Page.Home', 'Home', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('MyAccount', 'My Account', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
@@ -99,6 +101,8 @@ INSERT INTO public."LanguageKeyValuePairs" ("Key", "Value", "LanguageType", "App
 VALUES
     ('EmployeeManagementSystem', 'Система управления персоналом', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('EmployeeManagementSystem.Description', 'Данное приложение позволяет эффективно управлять информацией о сотрудниках', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('UnifiedBusinessPlatform', 'Единая бизнес-платформа', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('UnifiedBusinessPlatform.Description', 'Добро пожаловать в единую платформу управления компанией. Здесь вы найдете общую сводку данных, уведомления и ссылки на ключевые разделы', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Notifications', 'Уведомления', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Page.Home', 'Главная', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('MyAccount', 'Мой аккаунт', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
@@ -192,8 +196,10 @@ VALUES
 
 INSERT INTO public."LanguageKeyValuePairs" ("Key", "Value", "LanguageType", "ApplicationUid")
 VALUES
-    ('EmployeeManagementSystem', 'Mitarbeiterverwaltungssystem', 4),
+    ('EmployeeManagementSystem', 'Mitarbeiterverwaltungssystem', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('EmployeeManagementSystem.Description', 'Mit dieser App können Sie Mitarbeiterinformationen effektiv verwalten', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('UnifiedBusinessPlatform', 'Einheitliche Geschäftsplattform', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('UnifiedBusinessPlatform.Description', 'Willkommen auf der einheitlichen Geschäftsplattform. Hier finden Sie eine allgemeine Zusammenfassung der Daten, Hinweise und Links zu wichtigen Abschnitten', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Notifications', 'Benachrichtigungen', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Page.Home', 'Startseite', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('MyAccount', 'Mein Konto', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
@@ -289,6 +295,8 @@ INSERT INTO public."LanguageKeyValuePairs" ("Key", "Value", "LanguageType", "App
 VALUES
     ('EmployeeManagementSystem', 'Sistema de gestión de empleados', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('EmployeeManagementSystem.Description', 'Esta aplicación le permite administrar de manera efectiva la información de los empleados', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('UnifiedBusinessPlatform', 'Plataforma empresarial unificada', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('UnifiedBusinessPlatform.Description', 'Bienvenido a la plataforma unificada de gestión de empresas. Aquí encontrará un resumen general de datos, avisos y enlaces a secciones clave', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Notifications', 'Notificaciones', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Page.Home', 'Inicio', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('MyAccount', 'Mi cuenta', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
@@ -418,7 +426,9 @@ INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "Date
 VALUES 
     ('Page.Home', 'Home/Index', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('EmployeeManagementSystem', 'Home/Index', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
-    ('EmployeeManagementSystem.Description', 'Home/Index', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+    ('EmployeeManagementSystem.Description', 'Home/Index', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('UnifiedBusinessPlatform', 'Home/Index', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('UnifiedBusinessPlatform.Description', 'Home/Index', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
 VALUES 
