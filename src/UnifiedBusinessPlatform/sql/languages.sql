@@ -559,11 +559,15 @@ VALUES
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
 VALUES 
-    ('OrganizationDetails', 'OrganizationalStructure/OrganizationDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+    ('OrganizationDetails', 'OrganizationalStructure/OrganizationDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Name', 'OrganizationalStructure/OrganizationDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Description', 'OrganizationalStructure/OrganizationDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
 VALUES 
-    ('OrganizationItemDetails', 'OrganizationalStructure/OrganizationItemDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+    ('OrganizationItemDetails', 'OrganizationalStructure/OrganizationItemDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Name', 'OrganizationalStructure/OrganizationItemDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Description', 'OrganizationalStructure/OrganizationItemDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
 VALUES 
