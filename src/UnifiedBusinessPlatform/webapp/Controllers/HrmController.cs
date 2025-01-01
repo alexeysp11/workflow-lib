@@ -50,6 +50,20 @@ public class HrmController : Controller
         return View(employees);
     }
 
+    public async Task<IActionResult> EmployeeDetails(long id)
+    {
+        Employee employee = null;
+        try
+        {
+            employee = await _context.Employees.Include(x => x.OrganizationItems).FirstOrDefaultAsync(x => x.Id == id);
+        }
+        catch (System.Exception ex)
+        {
+            TempData["ErrorMessage"] = ex.Message;
+        }
+        return View(employee);
+    }
+
     public async Task<IActionResult> Absenses()
     {
         IEnumerable<Absense> absenses = null;

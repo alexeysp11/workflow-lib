@@ -71,7 +71,11 @@
                         age -= 1;
                     }
                     <tr>
-                        <td>@obj.FullName</td>
+                        <td>
+                            <a class="link-dark link-offset-2 link-underline link-underline-opacity-0" asp-area="" asp-controller="Hrm" asp-action="EmployeeDetails" asp-route-id="@obj.Id">
+                                @obj.FullName
+                            </a>
+                        </td>
                         <td>@translations[$"Gender.{obj.Gender}"]</td>
                         <td>
                             @{

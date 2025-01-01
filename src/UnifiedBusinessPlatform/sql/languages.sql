@@ -28,6 +28,7 @@ VALUES
     ('BriefDescriptionOrganizationalStructureDescribe', 'Find the information you need about your company''s organizational structure, including hierarchy, contacts, and responsibilities.', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Employees', 'Employees', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('EmployeesDescribe', 'A complete list of company employees with the ability to view and edit personal information, positions and contact details. Managers and HR specialists can maintain and record employment contracts and personnel transfers', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('EmployeeDetails', 'Employee Details', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Hiring', 'Hiring specialists', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('HiringDescribe', 'Post jobs, track candidates, conduct interviews, and manage the hiring process from start to finish', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Customers', 'Customers', 2, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
@@ -134,6 +135,7 @@ VALUES
     ('BriefDescriptionOrganizationalStructureDescribe', 'Найдите нужную информацию об организационной структуре вашей компании, включая иерархию, контакты и обязанности', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Employees', 'Сотрудники', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('EmployeesDescribe', 'Полный список сотрудников компании с возможностью просмотра и редактирования личной информации, должностей и контактных данных. Для руководителей и HR-специалистов доступно ведение и учет трудовых договоров и кадровых перемещений', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('EmployeeDetails', 'Сведения о сотруднике', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Hiring', 'Найм специалистов', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('HiringDescribe', 'Публикуйте вакансии, отслеживайте кандидатов, проводите собеседования и управляйте процессом найма от начала до конца', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Customers', 'Потребители', 3, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
@@ -240,6 +242,7 @@ VALUES
     ('BriefDescriptionOrganizationalStructureDescribe', 'Finden Sie die Informationen, die Sie über die Organisationsstruktur Ihres Unternehmens benötigen, einschließlich Hierarchie, Kontakte und Verantwortlichkeiten', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Employees', 'Mitarbeiter', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('EmployeesDescribe', 'Eine vollständige Liste der Mitarbeiter des Unternehmens mit der Möglichkeit, persönliche Informationen, Positionen und Kontaktdaten anzuzeigen und zu bearbeiten. Management- und Personalfachkräfte können Arbeitsverträge und Personalbewegungen pflegen und erfassen', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('EmployeeDetails', 'Mitarbeiterinformationen', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Hiring', 'Spezialisten einstellen', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('HiringDescribe', 'Veröffentlichen Sie Stellenangebote, verfolgen Sie Kandidaten, führen Sie Vorstellungsgespräche und verwalten Sie den Einstellungsprozess von Anfang bis Ende', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Customers', 'Kunden', 4, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
@@ -346,6 +349,7 @@ VALUES
     ('BriefDescriptionOrganizationalStructureDescribe', 'Encuentre la información que necesita sobre la estructura organizacional de su empresa, incluida la jerarquía, los contactos y las responsabilidades.', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Employees', 'Empleados', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('EmployeesDescribe', 'Una lista completa de los empleados de la empresa con la capacidad de ver y editar información personal, puestos y datos de contacto. Los especialistas en gestión y recursos humanos pueden mantener y registrar contratos laborales y movimientos de personal.', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
+    ('EmployeeDetails', 'Información del empleado', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Hiring', 'Contratar especialistas', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('HiringDescribe', 'Publique ofertas de trabajo, realice un seguimiento de los candidatos, realice entrevistas y gestione el proceso de contratación de principio a fin.', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
     ('Customers', 'Clientes', 5, 'd7b0eb60-190e-439d-89e1-c78594ac7f0c'),
@@ -529,6 +533,18 @@ VALUES
     ('Age', 'Hrm/Employees', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('BirthDate', 'Hrm/Employees', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('Error.DataNotGeneratedYet', 'Hrm/Employees', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+
+INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
+VALUES 
+    ('EmployeeDetails', 'Hrm/EmployeeDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('FullName', 'Hrm/EmployeeDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Gender', 'Hrm/EmployeeDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Gender.Male', 'Hrm/EmployeeDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Gender.Female', 'Hrm/EmployeeDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('OrganizationItem', 'Hrm/EmployeeDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Age', 'Hrm/EmployeeDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('BirthDate', 'Hrm/EmployeeDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Error.DataNotGeneratedYet', 'Hrm/EmployeeDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
 VALUES 
