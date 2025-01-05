@@ -25,7 +25,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.LoginPath = "/Auth/SignIn";
     });
 
-// Add classes.
+// Add dependencies.
 builder.Services.AddSingleton(appsettings);
 builder.Services.AddSingleton<IUnitOfWork, UnitOfWork>();
 builder.Services.AddSingleton<DatasetGenerator>();

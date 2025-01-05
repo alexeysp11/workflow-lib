@@ -1,6 +1,10 @@
 ﻿@using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations
+@using WorkflowLib.UnifiedBusinessPlatform.Core.Dal
+@using WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts
+@using WorkflowLib.UnifiedBusinessPlatform.Core.Extensions
 
 @inject AppSettings _appSettings
+@inject EmployeesMvcDbContext _context
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,11 +20,20 @@
 <body>
     @try
     {
+        string formName = "_Layout";
+        string applicationUid = "d7b0eb60-190e-439d-89e1-c78594ac7f0c";
+
         var languageName = string.Empty;
         if (!Context.Request.Cookies.TryGetValue("employeesmvc-lang", out languageName))
         {
             languageName = "English";
         }
+        
+        Dictionary<string, string> translations = LanguageDal.GetLanguageKvpByFormName(
+            _context,
+            UbpEnumExtensions.GetLanguageTypeEnum(languageName),
+            formName,
+            applicationUid);
 
         <header>
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -33,21 +46,21 @@
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">@_appSettings.Translate(languageName, "Page.Home")</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">@translations["Page.Home"]</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-dark" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    @_appSettings.Translate(languageName, "OrganizationalStructure")
+                                    @translations["OrganizationalStructure"]
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="OrganizationalStructure" asp-action="BriefDescription">@_appSettings.Translate(languageName, "BriefDescription")</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="OrganizationalStructure" asp-action="BriefDescription">@translations["BriefDescription"]</a></li>
                                     @if (User.Identity.IsAuthenticated)
                                     {
                                         <div class="dropdown-divider"></div>
-                                        <li><a class="dropdown-item" asp-area="" asp-controller="OrganizationalStructure" asp-action="Organizations">@_appSettings.Translate(languageName, "Organizations")</a></li>
-                                        <li><a class="dropdown-item" asp-area="" asp-controller="OrganizationalStructure" asp-action="OrganizationItems" asp-route-itemType="0">@_appSettings.Translate(languageName, "Departments")</a></li>
-                                        <li><a class="dropdown-item" asp-area="" asp-controller="OrganizationalStructure" asp-action="OrganizationItems" asp-route-itemType="4">@_appSettings.Translate(languageName, "Teams")</a></li>
-                                        <li><a class="dropdown-item" asp-area="" asp-controller="OrganizationalStructure" asp-action="OrganizationItems" asp-route-itemType="1">@_appSettings.Translate(languageName, "JobPositions")</a></li>
+                                        <li><a class="dropdown-item" asp-area="" asp-controller="OrganizationalStructure" asp-action="Organizations">@translations["Organizations"]</a></li>
+                                        <li><a class="dropdown-item" asp-area="" asp-controller="OrganizationalStructure" asp-action="OrganizationItems" asp-route-itemType="0">@translations["Departments"]</a></li>
+                                        <li><a class="dropdown-item" asp-area="" asp-controller="OrganizationalStructure" asp-action="OrganizationItems" asp-route-itemType="4">@translations["Teams"]</a></li>
+                                        <li><a class="dropdown-item" asp-area="" asp-controller="OrganizationalStructure" asp-action="OrganizationItems" asp-route-itemType="1">@translations["JobPositions"]</a></li>
                                     }
                                 </ul>
                             </li>
@@ -58,10 +71,10 @@
                                         HRM
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" asp-area="" asp-controller="Hrm" asp-action="Employees">@_appSettings.Translate(languageName, "Employees")</a>
-                                        <a class="dropdown-item" asp-area="" asp-controller="Hrm" asp-action="Absenses">@_appSettings.Translate(languageName, "Absenses")</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Hrm" asp-action="Employees">@translations["Employees"]</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Hrm" asp-action="Absenses">@translations["Absenses"]</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" asp-area="" asp-controller="Hrm" asp-action="Hiring">@_appSettings.Translate(languageName, "Hiring")</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Hrm" asp-action="Hiring">@translations["Hiring"]</a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
@@ -74,24 +87,24 @@
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle text-dark" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        @_appSettings.Translate(languageName, "Documents")
+                                        @translations["Documents"]
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" asp-area="" asp-controller="Documents" asp-action="Internal">@_appSettings.Translate(languageName, "Documents.Internal")</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Documents" asp-action="Internal">@translations["Documents.Internal"]</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" asp-area="" asp-controller="Documents" asp-action="KnowledgeBase">@_appSettings.Translate(languageName, "KnowledgeBase")</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Documents" asp-action="KnowledgeBase">@translations["KnowledgeBase"]</a>
                                     </div>
                                 </li>
                             }
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-dark" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    @_appSettings.Translate(languageName, "More")
+                                    @translations["More"]
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     @if (User.Identity.IsAuthenticated)
                                     {
                                         <li class="nav-item">
-                                            <a class="dropdown-item" asp-area="" asp-controller="Auth" asp-action="MyAccount">@_appSettings.Translate(languageName, "MyAccount")</a>
+                                            <a class="dropdown-item" asp-area="" asp-controller="Auth" asp-action="MyAccount">@translations["MyAccount"]</a>
                                         </li>
                                         <div class="dropdown-divider"></div>
                                     }
@@ -152,13 +165,13 @@
                             @if (User.Identity.IsAuthenticated)
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="SignOut">@_appSettings.Translate(languageName, "SignOut")</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="SignOut">@translations["SignOut"]</a>
                                 </li>
                             }
                             else
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="SignIn">@_appSettings.Translate(languageName, "SignIn")</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="SignIn">@translations["SignIn"]</a>
                                 </li>
                             }
                         </ul>
@@ -182,7 +195,7 @@
                             @if (User.Identity.IsAuthenticated)
                             {
                                 <a type="button" class="btn btn-primary position-relative" asp-area="" asp-controller="Home" asp-action="Notifications">
-                                    @_appSettings.Translate(languageName, "Notifications")
+                                    @translations["Notifications"]
                                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                         99+
                                     </span>

@@ -618,6 +618,7 @@ VALUES
     ('BriefDescription', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('BriefDescriptionOrganizationalStructure', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('Organization', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
+    ('Organizations', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('Departments', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('Teams', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('JobPositions', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
