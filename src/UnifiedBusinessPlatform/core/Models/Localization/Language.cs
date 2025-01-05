@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace WorkflowLib.UnifiedBusinessPlatform.Core.Models.Localization;
 
 /// <summary>
@@ -16,9 +14,4 @@ public class Language
     /// Display name.
     /// </summary>
     public string DisplayName { get; set; }
-
-    /// <summary>
-    /// Elements.
-    /// </summary>
-    public List<LanguageElement> Elements { get; set; }
 }
