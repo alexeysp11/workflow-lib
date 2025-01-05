@@ -22,7 +22,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Dal
             string applicationUid)
         {
             List<LanguageKeyValuePair> languageKvpList = context.LanguageKeyValuePairs
-                .FromSqlRaw("select * from public.\"GetLanguageKvpByFormName\"(@LanguageType, @FormName, @ApplicationUid)", 
+                .FromSqlRaw("SELECT DISTINCT * FROM public.\"GetLanguageKvpByFormName\"(@LanguageType, @FormName, @ApplicationUid)", 
                     new NpgsqlParameter("LanguageType", (int)languageType),
                     new NpgsqlParameter("FormName", formName),
                     new NpgsqlParameter("ApplicationUid", applicationUid))
@@ -31,7 +31,10 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Dal
             var result = new Dictionary<string, string>();
             foreach (var kvp in languageKvpList)
             {
-                result.Add(kvp.Key, kvp.Value);
+                if (!result.ContainsKey(kvp.Key))
+                {
+                    result.Add(kvp.Key, kvp.Value);
+                }
             }
             return result;
         }
@@ -44,6 +47,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Dal
         {
             return context.LanguageKeys
                 .Where(x => x.BusinessEntityStatus == BusinessEntityStatus.Active)
+                .Distinct()
                 .ToList();
         }
     }
