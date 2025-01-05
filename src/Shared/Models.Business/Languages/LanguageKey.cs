@@ -1,3 +1,5 @@
+using WorkflowLib.Shared.Models.Business;
+
 namespace WorkflowLib.Shared.Models.Business.Languages
 {
     /// <summary>
@@ -24,5 +26,10 @@ namespace WorkflowLib.Shared.Models.Business.Languages
         /// Language type.
         /// </summary>
         public LanguageType LanguageType { get; set; }
+        
+        /// <summary>
+        /// Business entity status.
+        /// </summary>
+        public BusinessEntityStatus BusinessEntityStatus { get; set; }
     }
 }
