@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Localization;
 
 namespace WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations;
 
@@ -58,9 +57,4 @@ public class AppSettings
     /// Number of parts that the fullname consists of.
     /// </summary>
     public int EmployeeFullNameWordsNumber { get; set; }
-    
-    /// <summary>
-    /// Languages.
-    /// </summary>
-    public List<Language> Languages { get; set; }
 }
