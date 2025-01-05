@@ -1,9 +1,8 @@
-﻿@using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations
+﻿@using WorkflowLib.Shared.Models.Business.Languages
 @using WorkflowLib.UnifiedBusinessPlatform.Core.Dal
 @using WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts
 @using WorkflowLib.UnifiedBusinessPlatform.Core.Extensions
 
-@inject AppSettings _appSettings
 @inject EmployeesMvcDbContext _context
 
 <!DOCTYPE html>
@@ -79,10 +78,10 @@
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle text-dark" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Finance
+                                        @translations["Finance"]
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" asp-area="" asp-controller="Finance" asp-action="Investments">Investments</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Finance" asp-action="Investments">@translations["Investments"]</a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
@@ -178,16 +177,16 @@
                         <div class="navbar-nav flex-grow-2" style="text-align: right;">
                             <select class="form-select" aria-label="Default select example" onchange="changeLanguage(this.value)" style="margin-right:15px;">
                                 @{
-                                    var languages = _appSettings.Languages;
-                                    foreach (var language in languages)
+                                    List<LanguageKey> languages = LanguageDal.GetAvailableLanguages(_context);
+                                    foreach (LanguageKey language in languages)
                                     {
-                                        if (languageName == language.Name)
+                                        if (languageName == language.Key)
                                         {
-                                            <option value="@language.Name" selected='selected'>@language.DisplayName</option>
+                                            <option value="@language.Key" selected='selected'>@language.Endonym</option>
                                         }
                                         else
                                         {
-                                            <option value="@language.Name">@language.DisplayName</option>
+                                            <option value="@language.Key">@language.Endonym</option>
                                         }
                                     }
                                 }

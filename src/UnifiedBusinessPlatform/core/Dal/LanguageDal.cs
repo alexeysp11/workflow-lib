@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using System.Collections.Generic;
+using WorkflowLib.Shared.Models.Business;
 using WorkflowLib.Shared.Models.Business.Languages;
 using WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts;
 
@@ -33,6 +34,17 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Dal
                 result.Add(kvp.Key, kvp.Value);
             }
             return result;
+        }
+
+        /// <summary>
+        /// Get a collection of available languages.
+        /// </summary>
+        public static List<LanguageKey> GetAvailableLanguages(
+            EmployeesMvcDbContext context)
+        {
+            return context.LanguageKeys
+                .Where(x => x.BusinessEntityStatus == BusinessEntityStatus.Active)
+                .ToList();
         }
     }
 }

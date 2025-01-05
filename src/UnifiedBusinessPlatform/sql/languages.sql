@@ -431,7 +431,7 @@ VALUES
 -- Insert data into public."LanguageKeyForms"
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
-VALUES 
+VALUES
     ('MyAccount', 'Auth/MyAccount', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('Parameter', 'Auth/MyAccount', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('Value', 'Auth/MyAccount', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
@@ -449,22 +449,22 @@ VALUES
     ('EmployDate', 'Auth/MyAccount', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
-VALUES 
+VALUES
     ('SignIn', 'Auth/SignIn', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('UserAccount.Username', 'Auth/SignIn', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('UserAccount.Password', 'Auth/SignIn', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
-VALUES 
+VALUES
     ('Documents.Internal', 'Documents/Internal', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
     ('Documents.Internal.Describe', 'Documents/Internal', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
-VALUES 
+VALUES
     ('KnowledgeBase', 'Documents/KnowledgeBase', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
-VALUES 
+VALUES
     ('Page.Home', 'Home/Index', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('EmployeeManagementSystem', 'Home/Index', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('EmployeeManagementSystem.Description', 'Home/Index', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
@@ -472,12 +472,12 @@ VALUES
     ('UnifiedBusinessPlatform.Description', 'Home/Index', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
-VALUES 
+VALUES
     ('Notifications', 'Home/Notifications', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
     ('NotificationsDescribe', 'Home/Notifications', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
-VALUES 
+VALUES
     ('Absenses', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('AbsenseFilters', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('AbsenseReason', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
@@ -522,7 +522,7 @@ VALUES
     ('NewVacation', 'Hrm/Absenses', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
-VALUES 
+VALUES
     ('Employees', 'Hrm/Employees', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('EmployeesDescribe', 'Hrm/Employees', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('FullName', 'Hrm/Employees', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
@@ -535,7 +535,7 @@ VALUES
     ('Error.DataNotGeneratedYet', 'Hrm/Employees', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
-VALUES 
+VALUES
     ('EmployeeDetails', 'Hrm/EmployeeDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('FullName', 'Hrm/EmployeeDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('Gender', 'Hrm/EmployeeDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
@@ -547,7 +547,7 @@ VALUES
     ('Error.DataNotGeneratedYet', 'Hrm/EmployeeDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
-VALUES 
+VALUES
     ('Employees', 'Hrm/NewVacation', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('NewVacation', 'Hrm/NewVacation', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('NewVacation.Add', 'Hrm/NewVacation', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
@@ -563,30 +563,30 @@ VALUES
     ('NewVacation.Note03', 'Hrm/NewVacation', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
-VALUES 
+VALUES
     ('Hiring', 'Hrm/Hiring', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
     ('HiringDescribe', 'Hrm/Hiring', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
-VALUES 
+VALUES
     ('BriefDescription', 'OrganizationalStructure/BriefDescription', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('BriefDescriptionOrganizationalStructure', 'OrganizationalStructure/BriefDescription', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
     ('BriefDescriptionOrganizationalStructureDescribe', 'OrganizationalStructure/BriefDescription', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
-VALUES 
+VALUES
     ('OrganizationDetails', 'OrganizationalStructure/OrganizationDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('Name', 'OrganizationalStructure/OrganizationDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('Description', 'OrganizationalStructure/OrganizationDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
-VALUES 
+VALUES
     ('OrganizationItemDetails', 'OrganizationalStructure/OrganizationItemDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('Name', 'OrganizationalStructure/OrganizationItemDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('Description', 'OrganizationalStructure/OrganizationItemDetails', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
-VALUES 
+VALUES
     ('Departments', 'OrganizationalStructure/OrganizationItems', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('JobPositions', 'OrganizationalStructure/OrganizationItems', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('Teams', 'OrganizationalStructure/OrganizationItems', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
@@ -597,7 +597,7 @@ VALUES
     ('Additional', 'OrganizationalStructure/OrganizationItems', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
-VALUES 
+VALUES
     ('Organizations', 'OrganizationalStructure/Organizations', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('Name', 'OrganizationalStructure/Organizations', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('Description', 'OrganizationalStructure/Organizations', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
@@ -606,13 +606,13 @@ VALUES
     ('Additional', 'OrganizationalStructure/Organizations', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
-VALUES 
+VALUES
     ('Finance', 'Finance/Investments', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('InvestmentsDescribe', 'Finance/Investments', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('Investments', 'Finance/Investments', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
-VALUES 
+VALUES
     ('Page.Home', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('OrganizationalStructure', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('BriefDescription', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
@@ -635,6 +635,13 @@ VALUES
     ('SignIn', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('SignOut', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('Notifications', '_Layout', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+
+INSERT INTO public."LanguageKeys"("Key", "Endonym", "LanguageType", "BusinessEntityStatus")
+VALUES
+    ('English', 'English', 2, 1),
+    ('Russian', 'Русский', 3, 1),
+    ('German', 'Deutsch', 4, 1),
+    ('Spanish', 'Español', 5, 1);
 
 -- A set of functions to simplify working with languages.
 
