@@ -1,5 +1,4 @@
 @using System.Globalization
-@using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations
 @using WorkflowLib.UnifiedBusinessPlatform.Core.Dal
 @using WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts
 @using WorkflowLib.UnifiedBusinessPlatform.Core.Extensions
@@ -7,9 +6,8 @@
 @using WorkflowLib.Shared.Models.Business.InformationSystem
 
 @model UserAccountViewModel
-@inject EmployeesMvcDbContext _context
 
-@inject AppSettings _appSettings
+@inject EmployeesMvcDbContext _context
 
 @{
     ViewData["Title"] = "My Account";
