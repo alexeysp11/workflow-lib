@@ -1,7 +1,7 @@
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
 
-namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.Forms;
+namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.TestForms;
 
 public class frmTestForm : BaseForm
 {

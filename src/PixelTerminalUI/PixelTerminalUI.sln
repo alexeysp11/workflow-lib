@@ -15,13 +15,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.PixelTerminalUI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.PixelTerminalUI.WebApiServer", "WorkflowLib.PixelTerminalUI.WebApiServer\WorkflowLib.PixelTerminalUI.WebApiServer.csproj", "{3E3269EB-CD71-4318-A9E3-BC07CB12D81D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Shared.Models", "..\Shared\Models\WorkflowLib.Shared.Models.csproj", "{B7944427-7381-D209-DA3E-0FBEA11BD434}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Shared.Models.Business", "..\Shared\Models.Business\WorkflowLib.Shared.Models.Business.csproj", "{4E8D0C56-C7E3-3156-C722-62964140B831}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{429392D8-65D0-4EC8-AACE-FD1C167EDD6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -48,5 +49,16 @@ Global
 		{3E3269EB-CD71-4318-A9E3-BC07CB12D81D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E3269EB-CD71-4318-A9E3-BC07CB12D81D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E3269EB-CD71-4318-A9E3-BC07CB12D81D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7944427-7381-D209-DA3E-0FBEA11BD434}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7944427-7381-D209-DA3E-0FBEA11BD434}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7944427-7381-D209-DA3E-0FBEA11BD434}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7944427-7381-D209-DA3E-0FBEA11BD434}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E8D0C56-C7E3-3156-C722-62964140B831}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E8D0C56-C7E3-3156-C722-62964140B831}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E8D0C56-C7E3-3156-C722-62964140B831}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E8D0C56-C7E3-3156-C722-62964140B831}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
