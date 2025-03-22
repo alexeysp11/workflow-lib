@@ -116,9 +116,11 @@ public class frmTestForm : BaseForm
         {
             switch (txtValue1.Value)
             {
+                case "":
                 case "-n":
                     txtValue1.Value = "";
                     return false;
+
                 case "-b":
                     SessionInfo.CurrentForm = ParentForm;
                     return true;

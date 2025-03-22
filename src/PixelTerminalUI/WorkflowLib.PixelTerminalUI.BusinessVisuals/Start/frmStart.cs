@@ -1,4 +1,4 @@
-using WorkflowLib.PixelTerminalUI.BusinessVisuals.Menu;
+using WorkflowLib.PixelTerminalUI.BusinessVisuals.Auth;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
 
@@ -54,10 +54,11 @@ public class frmStart : BaseForm
             {
                 case "":
                 case "-n":
-                    ShowForm(new frmMenu());
+                    ShowForm(new frmLogin());
                     break;
 
                 case "-q":
+                case "-b":
                     ShowInformation("Are you sure to exit the application?");
                     break;
             }

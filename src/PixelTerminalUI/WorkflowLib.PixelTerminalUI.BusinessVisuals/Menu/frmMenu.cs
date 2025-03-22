@@ -109,8 +109,12 @@ public class frmMenu : BaseForm
             {
                 case "":
                 case "-n":
-                case "-b":
                     return false;
+
+                case "-q":
+                case "-b":
+                    ShowInformation("Are you sure to exit the application?");
+                    break;
 
                 default:
                     string menuFullPath = GetMenuFullPath(txtUserInput.Value);
