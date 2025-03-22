@@ -244,4 +244,13 @@ public abstract class BaseForm
             SessionInfo.CurrentForm.Show();
         }
     }
+
+    public void ShowForm(BaseForm form)
+    {
+        SessionInfo.CurrentForm = form;
+        form.SessionInfo = SessionInfo;
+        form.ParentForm = this;
+        form.Init();
+        form.Show();
+    }
 }

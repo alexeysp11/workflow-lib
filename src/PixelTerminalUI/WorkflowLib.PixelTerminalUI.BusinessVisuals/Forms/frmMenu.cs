@@ -135,12 +135,7 @@ public class frmMenu : BaseForm
         {
             case "/1":
                 // Test form.
-                var frmTestForm = new frmTestForm();
-                SessionInfo.CurrentForm = frmTestForm;
-                frmTestForm.SessionInfo = SessionInfo;
-                frmTestForm.ParentForm = this;
-                frmTestForm.Init();
-                frmTestForm.Show();
+                ShowForm(new frmTestForm());
                 return true;
             
             case "/2/1":
@@ -235,9 +230,9 @@ public class frmMenu : BaseForm
         {
             return path;
         }
-        if (path.StartsWith('.'))
+        if (path.StartsWith("./"))
         {
-            return _currentMenuPath + path.Substring(1);
+            return _currentMenuPath + path.Substring(2);
         }
         else
         {
