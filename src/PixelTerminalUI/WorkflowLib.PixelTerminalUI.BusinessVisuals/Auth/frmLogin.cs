@@ -17,11 +17,12 @@ public class frmLogin : BaseForm
 
     public frmLogin() : base()
     {
-        Name = nameof(frmLogin);
     }
     
     protected override void InitializeComponent()
     {
+        Name = nameof(frmLogin);
+
         lblHeader = new TextControl();
         lblHeader.Name = nameof(lblHeader);
         lblHeader.Top = 0;

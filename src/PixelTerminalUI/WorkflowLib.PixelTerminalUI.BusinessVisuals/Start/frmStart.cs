@@ -13,11 +13,12 @@ public class frmStart : BaseForm
 
     public frmStart() : base()
     {
-        Name = nameof(frmStart);
     }
     
     protected override void InitializeComponent()
     {
+        Name = nameof(frmStart);
+        
         lblWelcome = new TextControl();
         lblWelcome.Name = nameof(lblWelcome);
         lblWelcome.Top = 4;

@@ -2,9 +2,81 @@
 
 [English](README.md) | [Русский](README.ru.md)
 
-Если ваш проект уже использует TCP и хорошо протестирован, то использование `IHostedService` с TCP будет более быстрым решением для доработки. Это позволит вам сохранить существующую инфраструктуру и минимизировать риски, связанные с изменениями.
+## Примеры использования
 
-Однако, если в будущем вы планируете масштабировать сервис и хотите обеспечить возможность обработки запросов без необходимости поддерживать постоянное соединение, тогда стоит рассмотреть использование gRPC или WebAPI. Эти технологии предлагают более высокоуровневые абстракции, которые упрощают разработку, тестирование и поддержку.
+Визуализация формы и её элементов производится на стороне сервера. Также возможно определить методы для обработки пользовательского ввода.
+
+Пример формы представлен ниже:
+
+```C#
+public class frmStart : BaseForm
+{
+    private TextControl? lblWelcome;
+    private TextControl? lblAppName;
+
+    private TextEditControl? txtUserInput;
+
+    public frmStart() : base()
+    {
+    }
+    
+    protected override void InitializeComponent()
+    {
+        Name = nameof(frmStart);
+        
+        lblWelcome = new TextControl();
+        lblWelcome.Name = nameof(lblWelcome);
+        lblWelcome.Top = 4;
+        lblWelcome.Left = 0;
+        lblWelcome.EntireLine = true;
+        lblWelcome.HorizontalAlignment = HorizontalAlignment.Center;
+        lblWelcome.Value = "WELCOME TO";
+        Controls.Add(lblWelcome);
+
+        lblAppName = new TextControl();
+        lblAppName.Name = nameof(lblAppName);
+        lblAppName.Top = 5;
+        lblAppName.Left = 0;
+        lblAppName.EntireLine = true;
+        lblAppName.HorizontalAlignment = HorizontalAlignment.Center;
+        lblAppName.Value = "PIXEL TERMINAL UI";
+        Controls.Add(lblAppName);
+
+        txtUserInput = new TextEditControl();
+        txtUserInput.Name = nameof(txtUserInput);
+        txtUserInput.Top = 14;
+        txtUserInput.Left = 0;
+        txtUserInput.EntireLine = true;
+        txtUserInput.Hint = "PRESS ENTER TO CONTINUE";
+        txtUserInput.EnterValidation = txtUserInput_EnterValidation;
+        Controls.Add(txtUserInput);
+    }
+
+    private bool txtUserInput_EnterValidation()
+    {
+        try
+        {
+            switch (txtUserInput.Value)
+            {
+                case "":
+                case "-n":
+                    ShowForm(new frmLogin());
+                    break;
+
+                case "-q":
+                case "-b":
+                    ShowInformation("Are you sure to exit the application?");
+                    break;
+            }
+        }
+        finally
+        {
+            txtUserInput.Value = "";
+        }
+        return true;
+    }
+}
+```
 
 ## Архитектура
 
@@ -25,6 +97,7 @@
     - [ ] Существует набор спецсимволов:
         - `-n`: далее.
         - `-b`: назад.
+        - `-q`: выйти.
         - `-h`: помощь.
         - `-i`: информация.
     - [x] В процессе обработки запроса сервис формирует и отправляет некую текстовую информацию в виде двумерного массива символов заданного размера (например, 26 в ширину и 16-18 в высоту).
