@@ -1,3 +1,4 @@
+using System.Text;
 using WorkflowLib.PixelTerminalUI.BusinessVisuals.Menu;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
@@ -6,6 +7,13 @@ namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.Auth;
 
 public class frmLogin : BaseForm
 {
+    internal class DatabaseInfo
+    {
+        internal string? Name { get; set; }
+        internal string? Description { get; set; }
+        internal string? ConnectionString { get; set; }
+    }
+
     private TextControl? lblHeader;
     private TextControl? lblOperationName;
     private TextControl? lblDatabase;
@@ -15,8 +23,13 @@ public class frmLogin : BaseForm
     private TextControl? lblPassword;
     private TextEditControl? txtPassword;
 
+    private Dictionary<int, DatabaseInfo> _databaseInfoDictionary;
+
     public frmLogin() : base()
     {
+        _databaseInfoDictionary = new Dictionary<int, DatabaseInfo>();
+        _databaseInfoDictionary.Add(0, new DatabaseInfo { Name = "IN MEMORY DB" });
+        _databaseInfoDictionary.Add(1, new DatabaseInfo { Name = "POSTGRESQL" });
     }
     
     protected override void InitializeComponent()
@@ -101,7 +114,12 @@ public class frmLogin : BaseForm
             {
                 case "":
                 case "-n":
-                    ShowInformation("0. IN MEMORY DB\n1. POSTGRESQL");
+                    var sb = new StringBuilder();
+                    foreach (var item in _databaseInfoDictionary)
+                    {
+                        sb.AppendLine($"{item.Key}. {item.Value.Name}");
+                    }
+                    ShowInformation(sb.ToString());
                     txtDatabase.Value = "";
                     break;
 
@@ -112,6 +130,13 @@ public class frmLogin : BaseForm
 
                 case "0":
                 case "1":
+                    int databaseIndex = Convert.ToInt32(txtDatabase.Value);
+                    DatabaseInfo? database = _databaseInfoDictionary[databaseIndex];
+                    if (database == null)
+                    {
+                        throw new Exception("Incorrect index of the database: " + databaseIndex);
+                    }
+                    txtDatabase.Value = $"{databaseIndex} - {database.Name}";
                     FocusedEditControl = txtUsername;
                     return true;
             }
