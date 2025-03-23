@@ -6,6 +6,8 @@ namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.Menu;
 
 public class frmMenu : BaseForm
 {
+    protected string CurrentMenuPath;
+
     protected TextControl? lblHeader;
     protected TextControl? lblOperationName;
     protected TextControl? lblMenu01;
@@ -18,10 +20,7 @@ public class frmMenu : BaseForm
     protected TextControl? lblMenu08;
     protected TextControl? lblMenu09;
     protected TextControl? lblMenu00;
-    
     protected TextEditControl? txtUserInput;
-
-    protected string _currentMenuPath;
 
     public frmMenu() : base()
     {
@@ -31,7 +30,7 @@ public class frmMenu : BaseForm
     {
         Name = nameof(frmMenu);
 
-        _currentMenuPath = "/";
+        CurrentMenuPath = "/";
 
         lblHeader = new TextControl();
         lblHeader.Name = nameof(lblHeader);
@@ -48,7 +47,7 @@ public class frmMenu : BaseForm
         lblOperationName.Top = 1;
         lblOperationName.Left = 0;
         lblOperationName.EntireLine = true;
-        lblOperationName.Value = "MENU";
+        lblOperationName.Value = "MAIN MENU";
         Controls.Add(lblOperationName);
         
         lblMenu01 = new TextControl();
@@ -113,7 +112,7 @@ public class frmMenu : BaseForm
 
                 case "-q":
                 case "-b":
-                    ShowInformation("Are you sure to exit the application?");
+                    GoBack();
                     break;
 
                 default:
@@ -212,18 +211,22 @@ public class frmMenu : BaseForm
         {
             case "/2":
                 // Users.
+                ShowForm(new frmMenuUsers { CurrentMenuPath = "/2" });
                 return true;
             
             case "/3":
                 // Applications.
+                ShowForm(new frmMenuApplications { CurrentMenuPath = "/3" });
                 return true;
             
             case "/4":
                 // Configuration variables.
+                ShowForm(new frmMenuConfigVariables { CurrentMenuPath = "/4" });
                 return true;
             
             case "/5":
                 // Tasks.
+                ShowForm(new frmMenuTasks { CurrentMenuPath = "/5" });
                 return true;
         }
         return false;
@@ -237,11 +240,16 @@ public class frmMenu : BaseForm
         }
         if (path.StartsWith("./"))
         {
-            return _currentMenuPath + path.Substring(2);
+            return CurrentMenuPath + path.Substring(2);
         }
         else
         {
-            return !path.Contains('/') ? _currentMenuPath + path : throw new Exception("Relative path should start with '.'");
+            return !path.Contains('/') ? CurrentMenuPath + path : throw new Exception("Relative path should start with '.'");
         }
+    }
+
+    protected virtual void GoBack()
+    {
+        ShowInformation("Are you sure to exit the application?");
     }
 }
