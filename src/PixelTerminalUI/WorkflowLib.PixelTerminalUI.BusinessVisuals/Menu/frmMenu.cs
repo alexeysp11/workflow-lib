@@ -1,4 +1,8 @@
+using WorkflowLib.PixelTerminalUI.BusinessVisuals.Applications;
+using WorkflowLib.PixelTerminalUI.BusinessVisuals.ConfigVariables;
 using WorkflowLib.PixelTerminalUI.BusinessVisuals.TestForms;
+using WorkflowLib.PixelTerminalUI.BusinessVisuals.Tasks;
+using WorkflowLib.PixelTerminalUI.BusinessVisuals.Users;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
 
@@ -144,62 +148,77 @@ public class frmMenu : BaseForm
             
             case "/2/1":
                 // Users. Search
+                ShowForm(new frmUsersSearch());
                 return true;
             
             case "/2/2":
                 // Users. Access rights
+                ShowForm(new frmUsersAccessRights());
                 return true;
             
             case "/2/3":
                 // Users. Edit
+                ShowForm(new frmUsersEdit());
                 return true;
             
             case "/3/1":
                 // Applications. Search
+                ShowForm(new frmAppsSearch());
                 return true;
             
             case "/3/2":
                 // Applications. Access rights
+                ShowForm(new frmAppsAccessRights());
                 return true;
             
             case "/3/3":
                 // Applications. Menu
+                ShowForm(new frmAppsMenu());
                 return true;
             
             case "/3/4":
                 // Applications. Deploy
+                ShowForm(new frmAppsDeploy());
                 return true;
             
             case "/3/5":
                 // Applications. Local DB copy
+                ShowForm(new frmAppsLocalDbCopy());
                 return true;
             
             case "/3/6":
                 // Applications. Release
+                ShowForm(new frmAppsRelease());
                 return true;
             
             case "/3/7":
                 // Applications. Services
+                ShowForm(new frmAppsServices());
                 return true;
             
             case "/4/1":
                 // Configuration variables. Common
+                ShowForm(new frmConfigVariablesCommon());
                 return true;
             
             case "/4/2":
                 // Configuration variables. Applications
+                ShowForm(new frmConfigVariablesApps());
                 return true;
             
             case "/5/1":
                 // Tasks. Search/Edit
+                ShowForm(new frmTasksSearchEdit());
                 return true;
             
             case "/5/2":
                 // Tasks. Set responsible employee
+                ShowForm(new frmTasksSetResponsibleEmployee());
                 return true;
             
             case "/5/3":
                 // Tasks. Cancel
+                ShowForm(new frmTasksCancel());
                 return true;
         }
         return false;
@@ -211,22 +230,22 @@ public class frmMenu : BaseForm
         {
             case "/2":
                 // Users.
-                ShowForm(new frmMenuUsers { CurrentMenuPath = "/2" });
+                ShowForm(new frmMenuUsers { CurrentMenuPath = "/2/" });
                 return true;
             
             case "/3":
                 // Applications.
-                ShowForm(new frmMenuApplications { CurrentMenuPath = "/3" });
+                ShowForm(new frmMenuApplications { CurrentMenuPath = "/3/" });
                 return true;
             
             case "/4":
                 // Configuration variables.
-                ShowForm(new frmMenuConfigVariables { CurrentMenuPath = "/4" });
+                ShowForm(new frmMenuConfigVariables { CurrentMenuPath = "/4/" });
                 return true;
             
             case "/5":
                 // Tasks.
-                ShowForm(new frmMenuTasks { CurrentMenuPath = "/5" });
+                ShowForm(new frmMenuTasks { CurrentMenuPath = "/5/" });
                 return true;
         }
         return false;
