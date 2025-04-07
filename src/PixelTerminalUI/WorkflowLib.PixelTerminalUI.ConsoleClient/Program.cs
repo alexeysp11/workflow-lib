@@ -56,6 +56,11 @@ class Program
 
     static async Task RunTcpAsync(string serverIp, int port)
     {
+        // Start position of the console.
+        Console.WriteLine();
+        int startCursorLeft = Console.CursorLeft;
+        int startCursorTop = Console.CursorTop;
+
         using (TcpClient client = new TcpClient(serverIp, port))
         {
             NetworkStream stream = client.GetStream();
@@ -63,6 +68,8 @@ class Program
             while (true)
             {
                 // Response.
+                Console.CursorLeft = startCursorLeft;
+                Console.CursorTop = startCursorTop;
                 byte[] responseData = new byte[1024];
                 int bytesRead = await stream.ReadAsync(responseData, 0, responseData.Length);
                 string responseMessage = Encoding.UTF8.GetString(responseData, 0, bytesRead);
