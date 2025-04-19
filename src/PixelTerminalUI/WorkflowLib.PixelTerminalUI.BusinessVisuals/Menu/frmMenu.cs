@@ -114,7 +114,6 @@ public class frmMenu : BaseForm
                 case "-n":
                     return false;
 
-                case "-q":
                 case "-b":
                     GoBack();
                     break;
@@ -294,6 +293,6 @@ public class frmMenu : BaseForm
 
     protected virtual void GoBack()
     {
-        ShowInformation("Are you sure to exit the application?");
+        ShowExitAppForm();
     }
 }

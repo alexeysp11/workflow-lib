@@ -56,6 +56,7 @@ public class TextEditControl : TextControl
             Value = "";
             return true;
         }
+        CheckSpecialChars();
         if (EnterValidation != null)
         {
             return EnterValidation();
@@ -137,6 +138,25 @@ public class TextEditControl : TextControl
                 SessionInfo.DisplayedInfo[lastRowIndex, i] = $"{ch}";
                 i += 1;
             }
+        }
+    }
+
+    private void CheckSpecialChars()
+    {
+        switch (Value)
+        {
+            case "-q":
+                // Exit the application.
+                Form?.ShowExitAppForm();
+                break;
+            
+            case "-m":
+                // Go to the main menu.
+                break;
+            
+            case "-c":
+                // Settings.
+                break;
         }
     }
 }

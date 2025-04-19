@@ -7,8 +7,8 @@ namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Forms
         public string? Header { get; set; }
         public string? Message { get; set; }
 
-        private TextControl? lblHeader;
-        private TextEditControl? txtConfirmation;
+        protected TextControl? lblHeader;
+        protected TextEditControl? txtConfirmation;
 
         public frmDisplayMessage() : base()
         {
@@ -59,13 +59,13 @@ namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Forms
             txtConfirmation.Top = Height - 3;
             txtConfirmation.Left = 0;
             txtConfirmation.EntireLine = false;
-            txtConfirmation.Width = 2;
+            txtConfirmation.Width = 10;
             txtConfirmation.Hint = "PRESS ENTER TO CONTINUE";
             txtConfirmation.EnterValidation = txtConfirmation_EnterValidation;
             Controls.Add(txtConfirmation);
         }
 
-        private bool txtConfirmation_EnterValidation()
+        protected virtual bool txtConfirmation_EnterValidation()
         {
             switch (txtConfirmation.Value)
             {

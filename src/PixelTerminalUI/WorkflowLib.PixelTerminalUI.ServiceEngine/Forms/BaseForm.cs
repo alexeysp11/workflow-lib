@@ -176,6 +176,24 @@ public abstract class BaseForm
         }
     }
 
+    public void ShowExitAppForm()
+    {
+        try
+        {
+            var frmDisplayMessage = new frmExitApp();
+            frmDisplayMessage.Header = "EXIT APPLICATION";
+            frmDisplayMessage.Message = "Are you sure to exit the application?";
+            frmDisplayMessage.SessionInfo = SessionInfo;
+            frmDisplayMessage.ParentForm = this;
+            frmDisplayMessage.Init();
+            frmDisplayMessage.Show();
+        }
+        catch (Exception ex)
+        {
+            ShowError(ex.Message);
+        }
+    }
+
     private void ConfigureControls(List<TextControl> sortedControls)
     {
         if (sortedControls == null)
