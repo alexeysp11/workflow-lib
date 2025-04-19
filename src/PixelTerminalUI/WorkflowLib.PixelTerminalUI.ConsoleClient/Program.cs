@@ -96,6 +96,7 @@ class Program
         {
             httpClient.Timeout = TimeSpan.FromMinutes(25);
 
+            bool askForEnter = true;
             SessionInfoDto? sessionInfoDto = null;
             if (!string.IsNullOrEmpty(sessionUid))
             {
@@ -103,6 +104,7 @@ class Program
                 {
                     SessionUid = sessionUid
                 };
+                askForEnter = false;
             }
 
             // Start position of the console.
@@ -115,11 +117,15 @@ class Program
                 // Request.
                 if (sessionInfoDto != null)
                 {
-                    string userInput = ConsoleHelper.EnterLine(
-                        hint: "Enter data:",
-                        emptyStringReplacement: "-n",
-                        beforeInputString: ">>>",
-                        maxInputCharNumber: sessionInfoDto?.UserInputWdith);
+                    string userInput = "";
+                    if (askForEnter)
+                    {
+                        userInput = ConsoleHelper.EnterLine(
+                            hint: "Enter data:",
+                            emptyStringReplacement: "-n",
+                            beforeInputString: ">>>",
+                            maxInputCharNumber: sessionInfoDto?.UserInputWdith);
+                    }
                     sessionInfoDto.UserInput = userInput;
                     sessionInfoDto.DisplayedInfo = string.Empty;
                     sessionInfoDto.SavedDisplayedInfo = string.Empty;
@@ -133,6 +139,11 @@ class Program
                 Console.CursorTop = startCursorTop;
                 Console.WriteLine("Session UID: " + sessionInfoDto?.SessionUid);
                 ConsoleHelper.WriteStringInColor(sessionInfoDto?.DisplayedInfo);
+                if (sessionInfoDto?.FinishUserSession == true)
+                {
+                    break;
+                }
+                askForEnter = true;
             }
         }
     }

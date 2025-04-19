@@ -20,7 +20,10 @@ namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Forms
                 case "y":
                 case "yes":
                     // Finish user session.
-                    break;
+                    txtConfirmation.Value = "";
+                    SessionInfo.FinishUserSession = true;
+                    ShowInformation("The user session has been terminated!");
+                    return true;
             }
             txtConfirmation.Value = "";
             return false;

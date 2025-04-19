@@ -33,6 +33,11 @@ public class MenuFormResolver
     {
         SessionInfo.UserInput = userInput;
         SessionInfo.UserInputProcessed = false;
+        if (SessionInfo.FinishUserSession)
+        {
+            SessionInfo.CurrentForm = SessionInfo.CurrentForm.ParentForm;
+        }
+        SessionInfo.FinishUserSession = false;
         SessionInfo.CurrentForm.Show();
     }
 
