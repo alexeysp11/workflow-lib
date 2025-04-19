@@ -143,22 +143,22 @@ public abstract class BaseForm
 
     protected abstract void InitializeComponent();
 
-    public void ShowInformation(string message, BaseForm? parentForm = null)
+    public void ShowInformation(string message)
     {
-        ShowMessageForm("INFORMATION", message, parentForm);
+        ShowMessageForm("INFORMATION", message);
     }
 
-    public void ShowError(string message, BaseForm? parentForm = null)
+    public void ShowError(string message)
     {
-        ShowMessageForm("ERROR", message, parentForm);
+        ShowMessageForm("ERROR", message);
     }
 
-    public void ShowWarning(string message, BaseForm? parentForm = null)
+    public void ShowWarning(string message)
     {
-        ShowMessageForm("WARNING", message, parentForm);
+        ShowMessageForm("WARNING", message);
     }
 
-    public void ShowMessageForm(string header, string message, BaseForm? parentForm = null)
+    public void ShowMessageForm(string header, string message)
     {
         try
         {
@@ -166,7 +166,7 @@ public abstract class BaseForm
             frmDisplayMessage.Header = header;
             frmDisplayMessage.Message = message;
             frmDisplayMessage.SessionInfo = SessionInfo;
-            frmDisplayMessage.ParentForm = parentForm ?? this;
+            frmDisplayMessage.ParentForm = this;
             frmDisplayMessage.Init();
             frmDisplayMessage.Show();
         }
