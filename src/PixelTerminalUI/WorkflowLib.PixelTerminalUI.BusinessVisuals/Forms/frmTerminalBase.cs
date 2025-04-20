@@ -1,3 +1,4 @@
+using WorkflowLib.PixelTerminalUI.BusinessVisuals.Info;
 using WorkflowLib.PixelTerminalUI.BusinessVisuals.Menu;
 using WorkflowLib.PixelTerminalUI.BusinessVisuals.Settings;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
@@ -8,17 +9,23 @@ public abstract class frmTerminalBase : BaseForm
 {
     public frmTerminalBase() : base()
     {
-        ShowMainMenu = ShowMainMenu_Clicked;
-        ShowSettings = ShowSettings_Clicked;
+        ShowMainMenu = OnShowMainMenu;
+        ShowSettings = OnShowSettings;
+        ShowHelpForEntireApp = OnShowHelpForEntireApp;
     }
 
-    private void ShowMainMenu_Clicked()
+    private void OnShowMainMenu()
     {
         ShowForm(new frmMenu());
     }
 
-    private void ShowSettings_Clicked()
+    private void OnShowSettings()
     {
         ShowForm(new frmSettings { Header = "SETTINGS" });
+    }
+
+    private void OnShowHelpForEntireApp()
+    {
+        ShowForm(new frmHelpForEntireApp { Header = "INFO ABOUT THE APP" });
     }
 }

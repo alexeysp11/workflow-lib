@@ -165,6 +165,14 @@ public class TextEditControl : TextControl
                     Form?.ShowSettings();
                 }
                 break;
+
+            case "-h":
+                // Help/information (for the entire app).
+                if (Form?.ShowHelpForEntireApp != null)
+                {
+                    Form?.ShowHelpForEntireApp();
+                }
+                break;
         }
     }
 }

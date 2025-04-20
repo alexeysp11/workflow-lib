@@ -1,4 +1,4 @@
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
+﻿using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
 
 namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
@@ -14,14 +14,40 @@ public abstract class BaseForm
 
     public BaseForm? ParentForm { get; set; }
 
+    /// <summary>
+    /// Collection of controls on the current form.
+    /// </summary>
     public List<TextControl> Controls { get; set; }
+
+    /// <summary>
+    /// The control of type <see cref="TextEditControl"/> that currently has input focus.
+    /// </summary>
     public TextEditControl FocusedEditControl { get; set; }
 
+    /// <summary>
+    /// Validation of form controls and properties performed before the form is displayed.
+    /// </summary>
     public Func<bool>? ShowValidation { get; set; }
+
+    /// <summary>
+    /// Validation of the form that is performed before exiting the form.
+    /// </summary>
     public Func<bool>? FormValidation { get; set; }
 
+    /// <summary>
+    /// Go to the main menu.
+    /// </summary>
     public Action? ShowMainMenu { get; set; }
+
+    /// <summary>
+    /// Show settings page.
+    /// </summary>
     public Action? ShowSettings { get; set; }
+
+    /// <summary>
+    /// Show help/information page (for the entire app).
+    /// </summary>
+    public Action? ShowHelpForEntireApp { get; set; }
 
     public BaseForm()
     {
@@ -32,6 +58,9 @@ public abstract class BaseForm
         Controls = new List<TextControl>();
     }
 
+    /// <summary>
+    /// Initialize this form.
+    /// </summary>
     public virtual void Init()
     {
         Height = SessionInfo?.FormHeight ?? 0;
@@ -42,6 +71,9 @@ public abstract class BaseForm
         InitializeComponent();
     }
 
+    /// <summary>
+    /// Display the form on the user's screen.
+    /// </summary>
     public virtual void Show()
     {
         try
@@ -108,7 +140,12 @@ public abstract class BaseForm
             ShowError(ex.Message);
         }
     }
-    
+
+    /// <summary>
+    /// Validation of form controls and properties performed before the form is displayed.
+    /// </summary>
+    /// <returns>true if the validation was performed correctly; otherwise false</returns>
+    /// <exception cref="Exception">Occurs when a control or form property was initialized incorrectly</exception>
     public virtual bool OnShowValidation()
     {
         if (ShowValidation != null)
@@ -144,6 +181,9 @@ public abstract class BaseForm
         MenuCode = menuCode;
     }
 
+    /// <summary>
+    /// Initialize the components on the form.
+    /// </summary>
     protected abstract void InitializeComponent();
 
     public void ShowInformation(string message)
@@ -179,6 +219,9 @@ public abstract class BaseForm
         }
     }
 
+    /// <summary>
+    /// Display the page before exiting the application.
+    /// </summary>
     public void ShowExitAppForm()
     {
         try
@@ -307,6 +350,10 @@ public abstract class BaseForm
         }
     }
 
+    /// <summary>
+    /// Configures and displays the form..
+    /// </summary>
+    /// <param name="form">An instance of the created form that needs to be displayed</param>
     public void ShowForm(BaseForm form)
     {
         SessionInfo.CurrentForm = form;
