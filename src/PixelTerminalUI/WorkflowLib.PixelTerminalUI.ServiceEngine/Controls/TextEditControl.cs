@@ -160,6 +160,10 @@ public class TextEditControl : TextControl
             
             case "-c":
                 // Settings.
+                if (Form?.ShowSettings != null)
+                {
+                    Form?.ShowSettings();
+                }
                 break;
         }
     }

@@ -19,7 +19,9 @@ public abstract class BaseForm
 
     public Func<bool>? ShowValidation { get; set; }
     public Func<bool>? FormValidation { get; set; }
+
     public Action? ShowMainMenu { get; set; }
+    public Action? ShowSettings { get; set; }
 
     public BaseForm()
     {
@@ -261,6 +263,47 @@ public abstract class BaseForm
         else
         {
             SessionInfo.CurrentForm.Show();
+        }
+    }
+
+    protected void GetLinesFromMessage(string message, ref List<string> result)
+    {
+        var lines = message.Replace("\r\n", "\n").Replace("\r", "\n").Split('\n');
+        foreach (var line in lines)
+        {
+            if (line.Length <= Width)
+            {
+                result.Add(line);
+            }
+            else
+            {
+                string restLine = line;
+                while (true)
+                {
+                    if (string.IsNullOrEmpty(restLine))
+                    {
+                        break;
+                    }
+                    int lineLength = 0;
+                    var words = restLine.Split(' ').ToList();
+                    foreach (string word in words)
+                    {
+                        if (lineLength + word.Length + 1 <= Width)
+                        {
+                            lineLength += word.Length + 1;
+                            continue;
+                        }
+                        if (lineLength == 0)
+                        {
+                            lineLength = Width;
+                        }
+                        break;
+                    }
+                    int endIndex = lineLength > restLine.Length ? restLine.Length : lineLength;
+                    result.Add(restLine.Substring(0, endIndex));
+                    restLine = restLine.Substring(endIndex);
+                }
+            }
         }
     }
 
