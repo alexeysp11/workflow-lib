@@ -19,6 +19,7 @@ public abstract class BaseForm
 
     public Func<bool>? ShowValidation { get; set; }
     public Func<bool>? FormValidation { get; set; }
+    public Action? ShowMainMenu { get; set; }
 
     public BaseForm()
     {

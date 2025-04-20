@@ -152,6 +152,10 @@ public class TextEditControl : TextControl
             
             case "-m":
                 // Go to the main menu.
+                if (Form?.ShowMainMenu != null)
+                {
+                    Form?.ShowMainMenu();
+                }
                 break;
             
             case "-c":

@@ -1,9 +1,9 @@
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
+using WorkflowLib.PixelTerminalUI.BusinessVisuals.Forms;
 
 namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.Applications;
 
-public class frmAppsMenu : BaseForm
+public class frmAppsMenu : frmTerminalBase
 {
     private TextControl? lblHeader;
     private TextControl? lblOperationName;

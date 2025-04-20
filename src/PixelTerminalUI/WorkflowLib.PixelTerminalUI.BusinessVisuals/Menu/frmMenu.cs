@@ -1,14 +1,14 @@
 using WorkflowLib.PixelTerminalUI.BusinessVisuals.Applications;
 using WorkflowLib.PixelTerminalUI.BusinessVisuals.ConfigVariables;
+using WorkflowLib.PixelTerminalUI.BusinessVisuals.Forms;
 using WorkflowLib.PixelTerminalUI.BusinessVisuals.TestForms;
 using WorkflowLib.PixelTerminalUI.BusinessVisuals.Tasks;
 using WorkflowLib.PixelTerminalUI.BusinessVisuals.Users;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
 
 namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.Menu;
 
-public class frmMenu : BaseForm
+public class frmMenu : frmTerminalBase
 {
     protected string CurrentMenuPath;
 

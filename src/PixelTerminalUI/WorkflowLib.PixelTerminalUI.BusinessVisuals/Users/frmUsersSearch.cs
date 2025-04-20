@@ -1,9 +1,9 @@
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
+using WorkflowLib.PixelTerminalUI.BusinessVisuals.Forms;
 
 namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.Users;
 
-public class frmUsersSearch : BaseForm
+public class frmUsersSearch : frmTerminalBase
 {
     private TextControl? lblHeader;
     private TextControl? lblOperationName;
