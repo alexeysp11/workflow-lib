@@ -5,6 +5,7 @@ public class TextEditControl : TextControl
     public bool Required { get; set; }
     public string EmptyEnterSymbol { get; set; }
     public string? Hint { get; set; }
+    public string? DefaultValue {  get; set; }
 
     /// <summary>
     /// Validating user input.
@@ -12,7 +13,7 @@ public class TextEditControl : TextControl
     public Func<bool>? EnterValidation { get; set; }
 
     /// <summary>
-    /// Display the control information form.
+    /// Display the control information.
     /// </summary>
     public Action ShowInfoAboutControl { get; set; }
 
@@ -76,7 +77,10 @@ public class TextEditControl : TextControl
             Value = "";
             return true;
         }
-        CheckSpecialChars();
+        if (ValidateSpecialChars())
+        {
+            return true;
+        }
         if (EnterValidation != null)
         {
             return EnterValidation();
@@ -161,13 +165,18 @@ public class TextEditControl : TextControl
         }
     }
 
-    private void CheckSpecialChars()
+    /// <summary>
+    /// Validation of special characters.
+    /// </summary>
+    /// <returns>true if special characters validation was performed; otherwise false</returns>
+    private bool ValidateSpecialChars()
     {
         switch (Value)
         {
             case "-q":
                 // Exit the application.
                 Form?.ShowExitAppForm();
+                Value = "";
                 break;
             
             case "-m":
@@ -176,6 +185,7 @@ public class TextEditControl : TextControl
                 {
                     Form?.ShowMainMenu();
                 }
+                Value = "";
                 break;
             
             case "-c":
@@ -184,6 +194,7 @@ public class TextEditControl : TextControl
                 {
                     Form?.ShowSettings();
                 }
+                Value = "";
                 break;
 
             case "-h":
@@ -192,6 +203,7 @@ public class TextEditControl : TextControl
                 {
                     Form?.ShowHelpForEntireApp();
                 }
+                Value = "";
                 break;
 
             case "-i":
@@ -200,7 +212,17 @@ public class TextEditControl : TextControl
                 {
                     ShowInfoAboutControl();
                 }
+                Value = "";
                 break;
+
+            case "-r":
+                // Reload the current control with the default value.
+                Value = DefaultValue ?? "";
+                break;
+
+            default:
+                return false;
         }
+        return true;
     }
 }
