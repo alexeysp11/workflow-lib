@@ -5,7 +5,17 @@ public class TextEditControl : TextControl
     public bool Required { get; set; }
     public string EmptyEnterSymbol { get; set; }
     public string? Hint { get; set; }
+    public string? DefaultValue {  get; set; }
+
+    /// <summary>
+    /// Validating user input.
+    /// </summary>
     public Func<bool>? EnterValidation { get; set; }
+
+    /// <summary>
+    /// Display the control information.
+    /// </summary>
+    public Action ShowInfoAboutControl { get; set; }
 
     public TextEditControl? NextEditControl { get; set; }
     public TextEditControl? PreviousEditControl { get; set; }
@@ -17,6 +27,9 @@ public class TextEditControl : TextControl
         EmptyEnterSymbol = ".";
     }
 
+    /// <summary>
+    /// Show current control.
+    /// </summary>
     public override void Show()
     {
         if (!OnShowValidation())
@@ -32,6 +45,10 @@ public class TextEditControl : TextControl
         AddControlToForm();
     }
 
+    /// <summary>
+    /// Validation performed during control display.
+    /// </summary>
+    /// <returns>true if the validation was performed correctly; otherwise false</returns>
     public override bool OnShowValidation()
     {
         if (!base.OnShowValidation())
@@ -41,6 +58,10 @@ public class TextEditControl : TextControl
         return Required;
     }
 
+    /// <summary>
+    /// Validation performed during user input processing.
+    /// </summary>
+    /// <returns>true if the validation was performed correctly; otherwise false</returns>
     public virtual bool OnEnterValidation()
     {
         if (Value == null)
@@ -54,6 +75,10 @@ public class TextEditControl : TextControl
                 Form.ShowWarning($"Entered string is too long.\nAcceptable string:\n\n{Value.Substring(0, Width)}");
             }
             Value = "";
+            return true;
+        }
+        if (ValidateSpecialChars())
+        {
             return true;
         }
         if (EnterValidation != null)
@@ -138,5 +163,66 @@ public class TextEditControl : TextControl
                 i += 1;
             }
         }
+    }
+
+    /// <summary>
+    /// Validation of special characters.
+    /// </summary>
+    /// <returns>true if special characters validation was performed; otherwise false</returns>
+    private bool ValidateSpecialChars()
+    {
+        switch (Value)
+        {
+            case "-q":
+                // Exit the application.
+                Form?.ShowExitAppForm();
+                Value = "";
+                break;
+            
+            case "-m":
+                // Go to the main menu.
+                if (Form?.ShowMainMenu != null)
+                {
+                    Form?.ShowMainMenu();
+                }
+                Value = "";
+                break;
+            
+            case "-c":
+                // Settings.
+                if (Form?.ShowSettings != null)
+                {
+                    Form?.ShowSettings();
+                }
+                Value = "";
+                break;
+
+            case "-h":
+                // Help/information (for the entire app).
+                if (Form?.ShowHelpForEntireApp != null)
+                {
+                    Form?.ShowHelpForEntireApp();
+                }
+                Value = "";
+                break;
+
+            case "-i":
+                // Help/information about the current control.
+                if (ShowInfoAboutControl != null)
+                {
+                    ShowInfoAboutControl();
+                }
+                Value = "";
+                break;
+
+            case "-r":
+                // Reload the current control with the default value.
+                Value = DefaultValue ?? "";
+                break;
+
+            default:
+                return false;
+        }
+        return true;
     }
 }

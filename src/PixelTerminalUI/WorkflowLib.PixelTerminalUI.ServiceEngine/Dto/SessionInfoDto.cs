@@ -14,6 +14,7 @@ public class SessionInfoDto
     public string UserLogin { get; set; }
     public string? UserInput { get; set; }
     public int UserInputWdith { get; set; }
+    public bool FinishUserSession { get; set; }
 
     public SessionInfoDto()
     {
@@ -40,5 +41,6 @@ public class SessionInfoDto
         UserLogin = sessionInfo.UserLogin;
         UserInput = sessionInfo.UserInput;
         UserInputWdith = sessionInfo.CurrentForm?.FocusedEditControl?.Width ?? sessionInfo.FormWidth;
+        FinishUserSession = sessionInfo.FinishUserSession;
     }
 }

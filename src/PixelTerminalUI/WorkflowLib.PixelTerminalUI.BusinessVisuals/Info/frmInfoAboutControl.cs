@@ -1,18 +1,18 @@
-﻿using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
+﻿using WorkflowLib.PixelTerminalUI.BusinessVisuals.Forms;
+using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
 
-namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Forms
+namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.Info
 {
-    public class frmDisplayMessage : BaseForm
+    public class frmInfoAboutControl : frmTerminalBase
     {
         public string? Header { get; set; }
-        public string? Message { get; set; }
 
-        protected TextControl? lblHeader;
-        protected TextEditControl? txtConfirmation;
+        private TextControl? lblHeader;
+        private TextEditControl? txtConfirmation;
 
-        public frmDisplayMessage() : base()
+        public frmInfoAboutControl()
         {
-            Name = nameof(frmDisplayMessage);
+            Name = nameof(frmInfoAboutControl);
         }
 
         protected override void InitializeComponent()
@@ -34,25 +34,6 @@ namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Forms
                 top += 1;
             }
 
-            // Display the message.
-            if (string.IsNullOrEmpty(Message))
-            {
-                throw new Exception($"Failed to show form '{Name}': parameter {nameof(Message)} should be assigned");
-            }
-            List<string> lines = new List<string>();
-            GetLinesFromMessage(Message, ref lines);
-            foreach (var line in lines)
-            {
-                var lblLine = new TextControl();
-                lblLine.Name = "lblLine" + top;
-                lblLine.Top = top;
-                lblLine.Left = 0;
-                lblLine.EntireLine = true;
-                lblLine.Value = line;
-                Controls.Add(lblLine);
-                top += 1;
-            }
-
             // Confirmation control.
             txtConfirmation = new TextEditControl();
             txtConfirmation.Name = nameof(txtConfirmation);
@@ -65,7 +46,7 @@ namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Forms
             Controls.Add(txtConfirmation);
         }
 
-        protected virtual bool txtConfirmation_EnterValidation()
+        private bool txtConfirmation_EnterValidation()
         {
             switch (txtConfirmation.Value)
             {

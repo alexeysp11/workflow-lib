@@ -1,14 +1,15 @@
 using WorkflowLib.PixelTerminalUI.BusinessVisuals.Applications;
 using WorkflowLib.PixelTerminalUI.BusinessVisuals.ConfigVariables;
+using WorkflowLib.PixelTerminalUI.BusinessVisuals.Forms;
 using WorkflowLib.PixelTerminalUI.BusinessVisuals.TestForms;
 using WorkflowLib.PixelTerminalUI.BusinessVisuals.Tasks;
 using WorkflowLib.PixelTerminalUI.BusinessVisuals.Users;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
+using WorkflowLib.PixelTerminalUI.BusinessVisuals.Info;
 
 namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.Menu;
 
-public class frmMenu : BaseForm
+public class frmMenu : frmTerminalBase
 {
     protected string CurrentMenuPath;
 
@@ -101,6 +102,7 @@ public class frmMenu : BaseForm
         txtUserInput.EntireLine = true;
         txtUserInput.Hint = "ENTER MENU";
         txtUserInput.EnterValidation = txtUserInput_EnterValidation;
+        txtUserInput.ShowInfoAboutControl = txtUserInput_ShowInfoAboutControl;
         Controls.Add(txtUserInput);
     }
 
@@ -114,7 +116,6 @@ public class frmMenu : BaseForm
                 case "-n":
                     return false;
 
-                case "-q":
                 case "-b":
                     GoBack();
                     break;
@@ -137,86 +138,107 @@ public class frmMenu : BaseForm
         return true;
     }
 
+    protected void txtUserInput_ShowInfoAboutControl()
+    {
+        ShowForm(new frmInfoAboutControl { Header = "INFO ABOUT CONTROL" });
+    }
+
     private bool GetFormByFullPath(string fullPath)
     {
         switch (fullPath)
         {
             case "/1":
+            case "/1/":
                 // Test form.
                 ShowForm(new frmTestForm());
                 return true;
             
             case "/2/1":
+            case "/2/1/":
                 // Users. Search
                 ShowForm(new frmUsersSearch());
                 return true;
             
             case "/2/2":
+            case "/2/2/":
                 // Users. Access rights
                 ShowForm(new frmUsersAccessRights());
                 return true;
             
             case "/2/3":
+            case "/2/3/":
                 // Users. Edit
                 ShowForm(new frmUsersEdit());
                 return true;
             
             case "/3/1":
+            case "/3/1/":
                 // Applications. Search
                 ShowForm(new frmAppsSearch());
                 return true;
             
             case "/3/2":
+            case "/3/2/":
                 // Applications. Access rights
                 ShowForm(new frmAppsAccessRights());
                 return true;
             
             case "/3/3":
+            case "/3/3/":
                 // Applications. Menu
                 ShowForm(new frmAppsMenu());
                 return true;
             
             case "/3/4":
+            case "/3/4/":
                 // Applications. Deploy
                 ShowForm(new frmAppsDeploy());
                 return true;
             
             case "/3/5":
+            case "/3/5/":
                 // Applications. Local DB copy
                 ShowForm(new frmAppsLocalDbCopy());
                 return true;
             
             case "/3/6":
+            case "/3/6/":
                 // Applications. Release
                 ShowForm(new frmAppsRelease());
                 return true;
             
             case "/3/7":
+            case "/3/7/":
                 // Applications. Services
                 ShowForm(new frmAppsServices());
                 return true;
             
             case "/4/1":
+            case "/4/1/":
                 // Configuration variables. Common
                 ShowForm(new frmConfigVariablesCommon());
                 return true;
             
             case "/4/2":
+            case "/4/2/":
                 // Configuration variables. Applications
                 ShowForm(new frmConfigVariablesApps());
                 return true;
             
             case "/5/1":
+            case "/5/1/":
                 // Tasks. Search/Edit
                 ShowForm(new frmTasksSearchEdit());
                 return true;
             
             case "/5/2":
+            case "/5/2/":
                 // Tasks. Set responsible employee
                 ShowForm(new frmTasksSetResponsibleEmployee());
                 return true;
             
             case "/5/3":
+            case "/5/3/":
                 // Tasks. Cancel
                 ShowForm(new frmTasksCancel());
                 return true;
@@ -228,22 +250,31 @@ public class frmMenu : BaseForm
     {
         switch (fullPath)
         {
+            case "/":
+                // Main menu.
+                ShowForm(CurrentMenuPath == "/" ? this : new frmMenu());
+                return true;
+            
             case "/2":
+            case "/2/":
                 // Users.
                 ShowForm(new frmMenuUsers { CurrentMenuPath = "/2/" });
                 return true;
             
             case "/3":
+            case "/3/":
                 // Applications.
                 ShowForm(new frmMenuApplications { CurrentMenuPath = "/3/" });
                 return true;
             
             case "/4":
+            case "/4/":
                 // Configuration variables.
                 ShowForm(new frmMenuConfigVariables { CurrentMenuPath = "/4/" });
                 return true;
             
             case "/5":
+            case "/5/":
                 // Tasks.
                 ShowForm(new frmMenuTasks { CurrentMenuPath = "/5/" });
                 return true;
@@ -269,6 +300,6 @@ public class frmMenu : BaseForm
 
     protected virtual void GoBack()
     {
-        ShowInformation("Are you sure to exit the application?");
+        ShowExitAppForm();
     }
 }

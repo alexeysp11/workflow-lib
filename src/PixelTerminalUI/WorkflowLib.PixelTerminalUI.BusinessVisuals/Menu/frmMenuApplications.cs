@@ -93,6 +93,7 @@ public class frmMenuApplications : frmMenu
         txtUserInput.EntireLine = true;
         txtUserInput.Hint = "ENTER MENU";
         txtUserInput.EnterValidation = txtUserInput_EnterValidation;
+        txtUserInput.ShowInfoAboutControl = txtUserInput_ShowInfoAboutControl;
         Controls.Add(txtUserInput);
     }
 

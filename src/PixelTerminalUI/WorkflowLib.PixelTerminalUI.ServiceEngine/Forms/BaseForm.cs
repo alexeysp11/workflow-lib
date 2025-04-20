@@ -1,4 +1,4 @@
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
+﻿using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
 
 namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
@@ -14,11 +14,40 @@ public abstract class BaseForm
 
     public BaseForm? ParentForm { get; set; }
 
+    /// <summary>
+    /// Collection of controls on the current form.
+    /// </summary>
     public List<TextControl> Controls { get; set; }
+
+    /// <summary>
+    /// The control of type <see cref="TextEditControl"/> that currently has input focus.
+    /// </summary>
     public TextEditControl FocusedEditControl { get; set; }
 
+    /// <summary>
+    /// Validation of form controls and properties performed before the form is displayed.
+    /// </summary>
     public Func<bool>? ShowValidation { get; set; }
+
+    /// <summary>
+    /// Validation of the form that is performed before exiting the form.
+    /// </summary>
     public Func<bool>? FormValidation { get; set; }
+
+    /// <summary>
+    /// Go to the main menu.
+    /// </summary>
+    public Action? ShowMainMenu { get; set; }
+
+    /// <summary>
+    /// Show settings page.
+    /// </summary>
+    public Action? ShowSettings { get; set; }
+
+    /// <summary>
+    /// Show help/information page (for the entire app).
+    /// </summary>
+    public Action? ShowHelpForEntireApp { get; set; }
 
     public BaseForm()
     {
@@ -29,6 +58,9 @@ public abstract class BaseForm
         Controls = new List<TextControl>();
     }
 
+    /// <summary>
+    /// Initialize this form.
+    /// </summary>
     public virtual void Init()
     {
         Height = SessionInfo?.FormHeight ?? 0;
@@ -39,6 +71,9 @@ public abstract class BaseForm
         InitializeComponent();
     }
 
+    /// <summary>
+    /// Display the form on the user's screen.
+    /// </summary>
     public virtual void Show()
     {
         try
@@ -105,7 +140,12 @@ public abstract class BaseForm
             ShowError(ex.Message);
         }
     }
-    
+
+    /// <summary>
+    /// Validation of form controls and properties performed before the form is displayed.
+    /// </summary>
+    /// <returns>true if the validation was performed correctly; otherwise false</returns>
+    /// <exception cref="Exception">Occurs when a control or form property was initialized incorrectly</exception>
     public virtual bool OnShowValidation()
     {
         if (ShowValidation != null)
@@ -141,6 +181,9 @@ public abstract class BaseForm
         MenuCode = menuCode;
     }
 
+    /// <summary>
+    /// Initialize the components on the form.
+    /// </summary>
     protected abstract void InitializeComponent();
 
     public void ShowInformation(string message)
@@ -165,6 +208,27 @@ public abstract class BaseForm
             var frmDisplayMessage = new frmDisplayMessage();
             frmDisplayMessage.Header = header;
             frmDisplayMessage.Message = message;
+            frmDisplayMessage.SessionInfo = SessionInfo;
+            frmDisplayMessage.ParentForm = this;
+            frmDisplayMessage.Init();
+            frmDisplayMessage.Show();
+        }
+        catch (Exception ex)
+        {
+            ShowError(ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// Display the page before exiting the application.
+    /// </summary>
+    public void ShowExitAppForm()
+    {
+        try
+        {
+            var frmDisplayMessage = new frmExitApp();
+            frmDisplayMessage.Header = "EXIT APPLICATION";
+            frmDisplayMessage.Message = "Are you sure to exit the application?";
             frmDisplayMessage.SessionInfo = SessionInfo;
             frmDisplayMessage.ParentForm = this;
             frmDisplayMessage.Init();
@@ -245,6 +309,51 @@ public abstract class BaseForm
         }
     }
 
+    protected void GetLinesFromMessage(string message, ref List<string> result)
+    {
+        var lines = message.Replace("\r\n", "\n").Replace("\r", "\n").Split('\n');
+        foreach (var line in lines)
+        {
+            if (line.Length <= Width)
+            {
+                result.Add(line);
+            }
+            else
+            {
+                string restLine = line;
+                while (true)
+                {
+                    if (string.IsNullOrEmpty(restLine))
+                    {
+                        break;
+                    }
+                    int lineLength = 0;
+                    var words = restLine.Split(' ').ToList();
+                    foreach (string word in words)
+                    {
+                        if (lineLength + word.Length + 1 <= Width)
+                        {
+                            lineLength += word.Length + 1;
+                            continue;
+                        }
+                        if (lineLength == 0)
+                        {
+                            lineLength = Width;
+                        }
+                        break;
+                    }
+                    int endIndex = lineLength > restLine.Length ? restLine.Length : lineLength;
+                    result.Add(restLine.Substring(0, endIndex));
+                    restLine = restLine.Substring(endIndex);
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Configures and displays the form..
+    /// </summary>
+    /// <param name="form">An instance of the created form that needs to be displayed</param>
     public void ShowForm(BaseForm form)
     {
         SessionInfo.CurrentForm = form;

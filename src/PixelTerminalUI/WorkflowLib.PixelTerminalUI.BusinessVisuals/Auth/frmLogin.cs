@@ -1,11 +1,11 @@
 using System.Text;
 using WorkflowLib.PixelTerminalUI.BusinessVisuals.Menu;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
+using WorkflowLib.PixelTerminalUI.BusinessVisuals.Forms;
 
 namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.Auth;
 
-public class frmLogin : BaseForm
+public class frmLogin : frmTerminalBase
 {
     internal class DatabaseInfo
     {
@@ -199,7 +199,7 @@ public class frmLogin : BaseForm
                     return false;
 
                 default:
-                    ShowForm(new frmMenu());
+                    ShowMainMenu();
                     return true;
             }
         }

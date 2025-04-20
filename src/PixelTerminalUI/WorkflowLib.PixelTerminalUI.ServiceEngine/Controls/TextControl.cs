@@ -42,6 +42,9 @@ public class TextControl
         HorizontalAlignment = HorizontalAlignment.Left;
     }
 
+    /// <summary>
+    /// Show current control.
+    /// </summary>
     public virtual void Show()
     {
         if (!OnShowValidation())

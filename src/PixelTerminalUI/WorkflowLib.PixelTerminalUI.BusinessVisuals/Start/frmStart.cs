@@ -1,10 +1,10 @@
 using WorkflowLib.PixelTerminalUI.BusinessVisuals.Auth;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
+using WorkflowLib.PixelTerminalUI.BusinessVisuals.Forms;
 
 namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.Start;
 
-public class frmStart : BaseForm
+public class frmStart : frmTerminalBase
 {
     private TextControl? lblWelcome;
     private TextControl? lblAppName;
