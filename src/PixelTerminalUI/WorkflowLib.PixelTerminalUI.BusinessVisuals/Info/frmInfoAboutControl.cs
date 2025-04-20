@@ -3,16 +3,16 @@ using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
 
 namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.Info
 {
-    public class frmHelpForEntireApp : frmTerminalBase
+    public class frmInfoAboutControl : frmTerminalBase
     {
         public string? Header { get; set; }
 
         private TextControl? lblHeader;
         private TextEditControl? txtConfirmation;
 
-        public frmHelpForEntireApp()
+        public frmInfoAboutControl()
         {
-            Name = nameof(frmHelpForEntireApp);
+            Name = nameof(frmInfoAboutControl);
         }
 
         protected override void InitializeComponent()

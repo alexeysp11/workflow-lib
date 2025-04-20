@@ -5,7 +5,16 @@ public class TextEditControl : TextControl
     public bool Required { get; set; }
     public string EmptyEnterSymbol { get; set; }
     public string? Hint { get; set; }
+
+    /// <summary>
+    /// Validating user input.
+    /// </summary>
     public Func<bool>? EnterValidation { get; set; }
+
+    /// <summary>
+    /// Display the control information form.
+    /// </summary>
+    public Action ShowInfoAboutControl { get; set; }
 
     public TextEditControl? NextEditControl { get; set; }
     public TextEditControl? PreviousEditControl { get; set; }
@@ -17,6 +26,9 @@ public class TextEditControl : TextControl
         EmptyEnterSymbol = ".";
     }
 
+    /// <summary>
+    /// Show current control.
+    /// </summary>
     public override void Show()
     {
         if (!OnShowValidation())
@@ -32,6 +44,10 @@ public class TextEditControl : TextControl
         AddControlToForm();
     }
 
+    /// <summary>
+    /// Validation performed during control display.
+    /// </summary>
+    /// <returns>true if the validation was performed correctly; otherwise false</returns>
     public override bool OnShowValidation()
     {
         if (!base.OnShowValidation())
@@ -41,6 +57,10 @@ public class TextEditControl : TextControl
         return Required;
     }
 
+    /// <summary>
+    /// Validation performed during user input processing.
+    /// </summary>
+    /// <returns>true if the validation was performed correctly; otherwise false</returns>
     public virtual bool OnEnterValidation()
     {
         if (Value == null)
@@ -171,6 +191,14 @@ public class TextEditControl : TextControl
                 if (Form?.ShowHelpForEntireApp != null)
                 {
                     Form?.ShowHelpForEntireApp();
+                }
+                break;
+
+            case "-i":
+                // Help/information about the current control.
+                if (ShowInfoAboutControl != null)
+                {
+                    ShowInfoAboutControl();
                 }
                 break;
         }

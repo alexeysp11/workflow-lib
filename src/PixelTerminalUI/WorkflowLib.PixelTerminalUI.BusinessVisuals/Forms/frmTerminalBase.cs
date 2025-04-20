@@ -26,6 +26,6 @@ public abstract class frmTerminalBase : BaseForm
 
     private void OnShowHelpForEntireApp()
     {
-        ShowForm(new frmHelpForEntireApp { Header = "INFO ABOUT THE APP" });
+        ShowForm(new frmInfoAboutEntireApp { Header = "INFO ABOUT THE APP" });
     }
 }

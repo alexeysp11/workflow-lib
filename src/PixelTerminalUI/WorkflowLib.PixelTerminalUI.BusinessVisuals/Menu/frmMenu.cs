@@ -5,6 +5,7 @@ using WorkflowLib.PixelTerminalUI.BusinessVisuals.TestForms;
 using WorkflowLib.PixelTerminalUI.BusinessVisuals.Tasks;
 using WorkflowLib.PixelTerminalUI.BusinessVisuals.Users;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
+using WorkflowLib.PixelTerminalUI.BusinessVisuals.Info;
 
 namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.Menu;
 
@@ -101,6 +102,7 @@ public class frmMenu : frmTerminalBase
         txtUserInput.EntireLine = true;
         txtUserInput.Hint = "ENTER MENU";
         txtUserInput.EnterValidation = txtUserInput_EnterValidation;
+        txtUserInput.ShowInfoAboutControl = txtUserInput_ShowInfoAboutControl;
         Controls.Add(txtUserInput);
     }
 
@@ -134,6 +136,11 @@ public class frmMenu : frmTerminalBase
             txtUserInput.Value = "";
         }
         return true;
+    }
+
+    protected void txtUserInput_ShowInfoAboutControl()
+    {
+        ShowForm(new frmInfoAboutControl { Header = "INFO ABOUT CONTROL" });
     }
 
     private bool GetFormByFullPath(string fullPath)
