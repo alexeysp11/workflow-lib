@@ -3,11 +3,11 @@
 /// <summary>
 /// The form that opens when <see cref="Controls.ComboEditControl"/> is used.
 /// </summary>
-public class frmComboEdit : frmDisplayMessage
+public class ComboEditForm : DisplayMessageForm
 {
-    public frmComboEdit() : base()
+    public ComboEditForm() : base()
     {
-        Name = nameof(frmComboEdit);
+        Name = nameof(ComboEditForm);
     }
 
     protected override void InitializeComponent()

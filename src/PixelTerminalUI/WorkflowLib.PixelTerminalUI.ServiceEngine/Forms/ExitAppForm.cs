@@ -1,6 +1,9 @@
 ﻿namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
 
-public class frmExitApp : frmDisplayMessage
+/// <summary>
+/// The form displayed before exiting the application.
+/// </summary>
+public class ExitAppForm : DisplayMessageForm
 {
     protected override bool txtConfirmation_EnterValidation()
     {

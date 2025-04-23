@@ -226,7 +226,7 @@ public abstract class BaseForm
     {
         try
         {
-            var frmDisplayMessage = new frmDisplayMessage();
+            var frmDisplayMessage = new DisplayMessageForm();
             frmDisplayMessage.Header = header;
             frmDisplayMessage.Message = message;
             frmDisplayMessage.SessionInfo = SessionInfo;
@@ -247,7 +247,7 @@ public abstract class BaseForm
     {
         try
         {
-            var frmDisplayMessage = new frmExitApp();
+            var frmDisplayMessage = new ExitAppForm();
             frmDisplayMessage.Header = "EXIT APPLICATION";
             frmDisplayMessage.Message = "Are you sure to exit the application?";
             frmDisplayMessage.SessionInfo = SessionInfo;
