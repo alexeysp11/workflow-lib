@@ -3,28 +3,92 @@ using WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
 
 namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
 
+/// <summary>
+/// Text field to display.
+/// </summary>
 public class TextControl
 {
+    /// <summary>
+    /// Name of the control.
+    /// </summary>
     public string Name { get; set; }
+
+    /// <summary>
+    /// The control position from the left edge of the form.
+    /// </summary>
     public int Left { get; set; }
+
+    /// <summary>
+    /// The control position from the top edge of the form.
+    /// </summary>
     public int Top { get; set; }
+
+    /// <summary>
+    /// Width of the control measured in number of characters.
+    /// </summary>
     public int Width { get; set; }
+
+    /// <summary>
+    /// Height of the control.
+    /// </summary>
     public int Height { get; set; }
+
+    /// <summary>
+    /// Determines whether the control takes up the entire line.
+    /// </summary>
     public bool EntireLine { get; set; }
+
+    /// <summary>
+    /// Displayed value of the control.
+    /// </summary>
     public string Value { get; set; }
+
+    /// <summary>
+    /// Determines whether the control is visible.
+    /// </summary>
     public bool Visible { get; set; }
+
+    /// <summary>
+    /// Determines whether the control will be inverted.
+    /// For example, if the main background of the form is white and the font color is black,
+    /// then the control background will be black and its font color will be white.
+    /// </summary>
     public bool Inverted { get; set; }
+
+    /// <summary>
+    /// Determines whether the control could be edited.
+    /// </summary>
     public bool Editable { get; set; }
 
+    /// <summary>
+    /// The horizontal alignment applied to the control (for example, <see cref="HorizontalAlignment.Left"/>,
+    /// <see cref="HorizontalAlignment.Center"/>, or <see cref="HorizontalAlignment.Right"/>).
+    /// </summary>
     public HorizontalAlignment HorizontalAlignment { get; set; }
 
+    /// <summary>
+    /// Delegate for validation performed when the control is shown.
+    /// </summary>
     public Func<bool>? ShowValidation { get; set; }
 
+    /// <summary>
+    /// The form to which this control belongs.
+    /// </summary>
     public BaseForm? Form { get; set; }
-    
+
+    /// <summary>
+    /// Information required to process the user session.
+    /// </summary>
     public SessionInfo? SessionInfo => Form?.SessionInfo;
 
+    /// <summary>
+    /// The next control on the form.
+    /// </summary>
     public TextControl? PreviousControl { get; set; }
+
+    /// <summary>
+    /// The previous control on the form.
+    /// </summary>
     public TextControl? NextControl { get; set; }
 
     public TextControl()
@@ -55,6 +119,10 @@ public class TextControl
         AddControlToForm();
     }
 
+    /// <summary>
+    /// Validation performed during control display.
+    /// </summary>
+    /// <returns>true if the validation was performed correctly; otherwise false</returns>
     public virtual bool OnShowValidation()
     {
         if (ShowValidation != null)
@@ -101,6 +169,9 @@ public class TextControl
         return true;
     }
 
+    /// <summary>
+    /// Method for adding control to form.
+    /// </summary>
     public virtual void AddControlToForm()
     {
         int width = 0;
