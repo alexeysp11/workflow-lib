@@ -14,4 +14,9 @@ public class ComboEditControl : TextEditControl
     /// Show additional information about options to select.
     /// </summary>
     public bool ShowItemsAdditionalInfo { get; set; }
+
+    /// <summary>
+    /// Determines whether two or more items can be selected from the provided list.
+    /// </summary>
+    public bool MultiSelectEnabled { get; set; }
 }

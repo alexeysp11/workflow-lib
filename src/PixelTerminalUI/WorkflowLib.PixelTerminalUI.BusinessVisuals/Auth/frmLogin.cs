@@ -17,7 +17,7 @@ public class frmLogin : frmTerminalBase
     private TextControl? lblHeader;
     private TextControl? lblOperationName;
     private TextControl? lblDatabase;
-    private TextEditControl? txtDatabase;
+    private ComboEditControl? cmbDatabase;
     private TextControl? lblUsername;
     private TextEditControl? txtUsername;
     private TextControl? lblPassword;
@@ -62,14 +62,14 @@ public class frmLogin : frmTerminalBase
         lblDatabase.Value = "DATABASE:";
         Controls.Add(lblDatabase);
 
-        txtDatabase = new TextEditControl();
-        txtDatabase.Name = nameof(txtDatabase);
-        txtDatabase.Top = 4;
-        txtDatabase.Left = 0;
-        txtDatabase.EntireLine = true;
-        txtDatabase.Hint = "SELECT DATABASE";
-        txtDatabase.EnterValidation = txtDatabase_EnterValidation;
-        Controls.Add(txtDatabase);
+        cmbDatabase = new ComboEditControl();
+        cmbDatabase.Name = nameof(cmbDatabase);
+        cmbDatabase.Top = 4;
+        cmbDatabase.Left = 0;
+        cmbDatabase.EntireLine = true;
+        cmbDatabase.Hint = "SELECT DATABASE";
+        cmbDatabase.EnterValidation = cmbDatabase_EnterValidation;
+        Controls.Add(cmbDatabase);
 
         lblUsername = new TextControl();
         lblUsername.Name = nameof(lblUsername);
@@ -106,11 +106,11 @@ public class frmLogin : frmTerminalBase
         Controls.Add(txtPassword);
     }
 
-    private bool txtDatabase_EnterValidation()
+    private bool cmbDatabase_EnterValidation()
     {
         try
         {
-            switch (txtDatabase.Value)
+            switch (cmbDatabase.Value)
             {
                 case "":
                 case "-n":
@@ -120,23 +120,23 @@ public class frmLogin : frmTerminalBase
                         sb.AppendLine($"{item.Key}. {item.Value.Name}");
                     }
                     ShowInformation(sb.ToString());
-                    txtDatabase.Value = "";
+                    cmbDatabase.Value = "";
                     break;
 
                 case "-b":
                     SessionInfo.CurrentForm = ParentForm;
-                    txtDatabase.Value = "";
+                    cmbDatabase.Value = "";
                     return false;
 
                 case "0":
                 case "1":
-                    int databaseIndex = Convert.ToInt32(txtDatabase.Value);
+                    int databaseIndex = Convert.ToInt32(cmbDatabase.Value);
                     DatabaseInfo? database = _databaseInfoDictionary[databaseIndex];
                     if (database == null)
                     {
                         throw new Exception("Incorrect index of the database: " + databaseIndex);
                     }
-                    txtDatabase.Value = $"{databaseIndex} - {database.Name}";
+                    cmbDatabase.Value = $"{databaseIndex} - {database.Name}";
                     FocusedEditControl = txtUsername;
                     return true;
             }
@@ -144,7 +144,7 @@ public class frmLogin : frmTerminalBase
         catch (Exception ex)
         {
             ShowError(ex.Message);
-            FocusedEditControl = txtDatabase;
+            FocusedEditControl = cmbDatabase;
             return false;
         }
         return true;
@@ -163,7 +163,7 @@ public class frmLogin : frmTerminalBase
                     return false;
 
                 case "-b":
-                    FocusedEditControl = txtDatabase;
+                    FocusedEditControl = cmbDatabase;
                     txtUsername.Value = "";
                     return false;
 
