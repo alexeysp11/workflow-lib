@@ -34,15 +34,15 @@ public class TextEditControl : TextControl
     /// <summary>
     /// Display the control information.
     /// </summary>
-    public Action ShowInfoAboutControl { get; set; }
+    public Action? ShowInfoAboutControl { get; set; }
 
     /// <summary>
-    /// The next text input field.
+    /// The next text input field which is used for displaying controls.
     /// </summary>
     public TextEditControl? NextEditControl { get; set; }
 
     /// <summary>
-    /// The previous text input field.
+    /// The previous text input field which is used for displaying controls.
     /// </summary>
     public TextEditControl? PreviousEditControl { get; set; }
 

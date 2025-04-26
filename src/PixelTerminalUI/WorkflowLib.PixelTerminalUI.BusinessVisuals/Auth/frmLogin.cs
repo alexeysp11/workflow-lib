@@ -68,7 +68,10 @@ public class frmLogin : frmTerminalBase
         cmbDatabase.Left = 0;
         cmbDatabase.EntireLine = true;
         cmbDatabase.Hint = "SELECT DATABASE";
-        cmbDatabase.EnterValidation = cmbDatabase_EnterValidation;
+        cmbDatabase.NextNavigateForm = this;
+        cmbDatabase.NextNavigateControl = txtUsername;
+        cmbDatabase.PreviousNavigateForm = ParentForm;
+        cmbDatabase.ComboOptions = GetDatabaseComboOptions();
         Controls.Add(cmbDatabase);
 
         lblUsername = new TextControl();
@@ -104,50 +107,11 @@ public class frmLogin : frmTerminalBase
         txtPassword.Hint = "ENTER PASSWORD";
         txtPassword.EnterValidation = txtPassword_EnterValidation;
         Controls.Add(txtPassword);
-    }
 
-    private bool cmbDatabase_EnterValidation()
-    {
-        try
-        {
-            switch (cmbDatabase.Value)
-            {
-                case "":
-                case "-n":
-                    var sb = new StringBuilder();
-                    foreach (var item in _databaseInfoDictionary)
-                    {
-                        sb.AppendLine($"{item.Key}. {item.Value.Name}");
-                    }
-                    ShowInformation(sb.ToString());
-                    cmbDatabase.Value = "";
-                    break;
-
-                case "-b":
-                    SessionInfo.CurrentForm = ParentForm;
-                    cmbDatabase.Value = "";
-                    return false;
-
-                case "0":
-                case "1":
-                    int databaseIndex = Convert.ToInt32(cmbDatabase.Value);
-                    DatabaseInfo? database = _databaseInfoDictionary[databaseIndex];
-                    if (database == null)
-                    {
-                        throw new Exception("Incorrect index of the database: " + databaseIndex);
-                    }
-                    cmbDatabase.Value = $"{databaseIndex} - {database.Name}";
-                    FocusedEditControl = txtUsername;
-                    return true;
-            }
-        }
-        catch (Exception ex)
-        {
-            ShowError(ex.Message);
-            FocusedEditControl = cmbDatabase;
-            return false;
-        }
-        return true;
+        // Navigation settings.
+        cmbDatabase.NextNavigateForm = this;
+        cmbDatabase.NextNavigateControl = txtUsername;
+        cmbDatabase.PreviousNavigateForm = ParentForm;
     }
 
     private bool txtUsername_EnterValidation()
@@ -210,5 +174,22 @@ public class frmLogin : frmTerminalBase
             return false;
         }
         return true;
+    }
+
+    /// <summary>
+    /// Get database options available for selection.
+    /// </summary>
+    /// <returns></returns>
+    private Dictionary<int, string> GetDatabaseComboOptions()
+    {
+        var result = new Dictionary<int, string>();
+        foreach (var infoKvp in _databaseInfoDictionary)
+        {
+            if (!string.IsNullOrEmpty(infoKvp.Value.Name))
+            {
+                result.Add(infoKvp.Key, infoKvp.Value.Name);
+            }
+        }
+        return result;
     }
 }
