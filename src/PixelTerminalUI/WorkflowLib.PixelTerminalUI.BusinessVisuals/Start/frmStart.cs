@@ -58,9 +58,8 @@ public class frmStart : frmTerminalBase
                     ShowForm(new frmLogin());
                     break;
 
-                case "-q":
                 case "-b":
-                    ShowInformation("Are you sure to exit the application?");
+                    ShowExitAppForm();
                     break;
             }
         }
