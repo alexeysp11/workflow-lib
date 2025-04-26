@@ -97,6 +97,11 @@ public class ComboEditControl : TextEditControl
     {
         try
         {
+            if (ComboOptions == null || !ComboOptions.Any())
+            {
+                throw new Exception("No combo options were configured for the control.");
+            }
+
             switch (Value)
             {
                 case "":
