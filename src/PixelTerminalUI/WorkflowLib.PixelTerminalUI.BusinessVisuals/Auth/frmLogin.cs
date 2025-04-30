@@ -1,5 +1,3 @@
-using System.Text;
-using WorkflowLib.PixelTerminalUI.BusinessVisuals.Menu;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
 using WorkflowLib.PixelTerminalUI.BusinessVisuals.Forms;
 
@@ -72,7 +70,7 @@ public class frmLogin : frmTerminalBase
         cmbDatabase.NextNavigateControl = txtUsername;
         cmbDatabase.PreviousNavigateForm = ParentForm;
         cmbDatabase.ShowOnlyFormInput = true;
-        cmbDatabase.MaxDisplayedOptions = 10;
+        cmbDatabase.MaxDisplayedOptions = 12;
         cmbDatabase.ComboOptions = GetDatabaseComboOptions();
         Controls.Add(cmbDatabase);
 

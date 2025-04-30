@@ -33,9 +33,29 @@ public class ComboEditForm : DisplayMessageForm
     /// </summary>
     public Action<TextEditControl> GoBackSelected { get; set; }
 
+    /// <summary>
+    /// Index of the current page of elements.
+    /// </summary>
+    private int _currentPageIndex;
+
+    /// <summary>
+    /// Maximum index of the current page of elements.
+    /// </summary>
+    private int _maxPageIndex;
+
+    /// <summary>
+    /// Minimum index of the current page of elements.
+    /// </summary>
+    private int _minPageIndex;
+
+    private TextControl? lblNavigation;
+
     public ComboEditForm() : base()
     {
         Name = nameof(ComboEditForm);
+
+        _minPageIndex = 1;
+        _currentPageIndex = _minPageIndex;
     }
 
     protected override void InitializeComponent()
@@ -45,34 +65,71 @@ public class ComboEditForm : DisplayMessageForm
 
     protected override bool txtConfirmation_EnterValidation()
     {
-        switch (txtConfirmation.Value)
+        try
         {
-            case "":
-            case "-n":
-                // Scroll forward through the selection options.
-                break;
+            switch (txtConfirmation.Value)
+            {
+                case "":
+                case "-n":
+                    // Scroll forward through the selection options.
+                    if (_maxPageIndex == _minPageIndex)
+                    {
+                        break;
+                    }
+                    if (_currentPageIndex >= _maxPageIndex)
+                    {
+                        _currentPageIndex = _minPageIndex;
+                    }
+                    else
+                    {
+                        _currentPageIndex += 1;
+                    }
+                    PrintComboOptions();
+                    break;
 
-            case "-b":
-                // Scroll back through the selection options.
-                break;
+                case "-b":
+                    // Scroll back through the selection options.
+                    if (_maxPageIndex == _minPageIndex)
+                    {
+                        break;
+                    }
+                    if (_currentPageIndex <= _minPageIndex)
+                    {
+                        _currentPageIndex = _minPageIndex;
+                    }
+                    else
+                    {
+                        _currentPageIndex -= 1;
+                    }
+                    PrintComboOptions();
+                    break;
 
-            case "-x":
-                // Cancel selection and go back to the previous control.
-                if (GoBackSelected != null)
-                {
-                    GoBackSelected(txtConfirmation);
-                }
-                return true;
+                case "-x":
+                    // Cancel selection and go back to the previous control.
+                    if (GoBackSelected != null)
+                    {
+                        GoBackSelected(txtConfirmation);
+                    }
+                    return true;
 
-            default:
-                // Try parse and process user input.
-                if (OptionSelected != null)
-                {
-                    OptionSelected(txtConfirmation);
-                }
-                break;
+                default:
+                    // Try parse and process user input.
+                    if (OptionSelected != null)
+                    {
+                        OptionSelected(txtConfirmation);
+                    }
+                    return true;
+            }
         }
-        txtConfirmation.Value = "";
+        catch (Exception ex)
+        {
+            ShowError(ex.Message);
+            return false;
+        }
+        finally
+        {
+            txtConfirmation.Value = "";
+        }
         return false;
     }
 
@@ -82,14 +139,24 @@ public class ComboEditForm : DisplayMessageForm
     /// <remarks>The maximum number of options displayed on the selection form is set by <see cref="MaxDisplayedOptions"/></remarks>
     private void PrintComboOptions()
     {
+        // Validations.
         if (ComboOptions == null || !ComboOptions.Any())
         {
             throw new Exception("Combo options could not be null or empty");
         }
+        if (_currentPageIndex <= 0)
+        {
+            throw new Exception("Current page index should be greater than zero");
+        }
+
+        // Calculations.
+        _maxPageIndex = (ComboOptions.Count / MaxDisplayedOptions) + (ComboOptions.Count % MaxDisplayedOptions == 0 ? 0 : 1);
+        int skipQty = (_currentPageIndex - 1) * MaxDisplayedOptions;
 
         // Set new value of the displayed message.
         var sb = new StringBuilder();
-        foreach (var item in ComboOptions)
+        var displayedComboOptions = ComboOptions.Skip(skipQty).Take(MaxDisplayedOptions).ToList();
+        foreach (var item in displayedComboOptions)
         {
             sb.AppendLine($"{item.Key}. {item.Value}");
         }
@@ -124,6 +191,17 @@ public class ComboEditForm : DisplayMessageForm
             Controls.Add(lblHeader);
             top += 1;
         }
+
+        // Display navigation label.
+        lblNavigation = new TextControl();
+        lblNavigation.Name = nameof(lblNavigation);
+        lblNavigation.Top = top;
+        lblNavigation.Left = 0;
+        lblNavigation.EntireLine = true;
+        lblNavigation.HorizontalAlignment = HorizontalAlignment.Right;
+        lblNavigation.Value = $"{_currentPageIndex} of {_maxPageIndex}";
+        Controls.Add(lblNavigation);
+        top += 1;
 
         // Display the message.
         if (string.IsNullOrEmpty(Message))
