@@ -43,7 +43,7 @@ public abstract class BaseForm
     /// <summary>
     /// The control of type <see cref="TextEditControl"/> that currently has input focus.
     /// </summary>
-    public TextEditControl FocusedEditControl { get; set; }
+    public TextEditControl? FocusedEditControl { get; set; }
 
     /// <summary>
     /// Validation of form controls and properties performed before the form is displayed.

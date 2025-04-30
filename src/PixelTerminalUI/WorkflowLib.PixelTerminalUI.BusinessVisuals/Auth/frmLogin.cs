@@ -71,6 +71,8 @@ public class frmLogin : frmTerminalBase
         cmbDatabase.NextNavigateForm = this;
         cmbDatabase.NextNavigateControl = txtUsername;
         cmbDatabase.PreviousNavigateForm = ParentForm;
+        cmbDatabase.ShowOnlyFormInput = true;
+        cmbDatabase.MaxDisplayedOptions = 10;
         cmbDatabase.ComboOptions = GetDatabaseComboOptions();
         Controls.Add(cmbDatabase);
 

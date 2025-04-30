@@ -61,6 +61,11 @@ public class ComboEditControl : TextEditControl
     public BaseForm? PreviousNavigateForm {  get; set; }
 
     /// <summary>
+    /// The maximum number of options displayed on the selection form.
+    /// </summary>
+    public int MaxDisplayedOptions { get; set; }
+
+    /// <summary>
     /// A form displayed to select a possible option.
     /// </summary>
     private ComboEditForm? _comboEditForm;
@@ -79,17 +84,16 @@ public class ComboEditControl : TextEditControl
     public override void Show()
     {
         base.Show();
-        if (SessionInfo.CurrentForm == Form && _comboEditForm == null)
+        if (SessionInfo?.CurrentForm == Form && Form?.FocusedEditControl == this)
         {
-            _comboEditForm = new ComboEditForm
+            if (_comboEditForm == null)
             {
-                Header = string.IsNullOrEmpty(Header) ? Hint : Header
-            };
-        }
-        if (ShowOnlyFormInput)
-        {
-            Form?.ShowInformation("SELECT DATABASE");
-            //Form?.ShowForm(_comboEditForm);
+                CreateComboEditForm();
+            }
+            if (ShowOnlyFormInput)
+            {
+                Form?.ShowForm(_comboEditForm);
+            }
         }
     }
 
@@ -110,41 +114,20 @@ public class ComboEditControl : TextEditControl
             {
                 case "":
                 case "-n":
-                    var sb = new StringBuilder();
-                    foreach (var item in ComboOptions)
+                    if (_comboEditForm == null)
                     {
-                        sb.AppendLine($"{item.Key}. {item.Value}");
+                        CreateComboEditForm();
                     }
-                    Form?.ShowInformation(sb.ToString());
+                    Form?.ShowForm(_comboEditForm);
                     Value = "";
                     break;
 
                 case "-b":
-                    if (PreviousNavigateForm != null)
-                    {
-                        SessionInfo.CurrentForm = PreviousNavigateForm;
-                        if (PreviousNavigateControl != null)
-                        {
-                            PreviousNavigateForm.FocusedEditControl = PreviousNavigateControl;
-                        }
-                    }
-                    Value = "";
+                    OnGoBackSelected(this);
                     return false;
 
                 default:
-                    if (!int.TryParse(Value, out int selectedIndex) || !ComboOptions.ContainsKey(selectedIndex))
-                    {
-                        throw new Exception("Incorrect index: " + Value);
-                    }
-                    Value = $"{selectedIndex} - {ComboOptions[selectedIndex]}";
-                    if (NextNavigateForm != null)
-                    {
-                        SessionInfo.CurrentForm = NextNavigateForm;
-                        if (NextNavigateControl != null)
-                        {
-                            NextNavigateForm.FocusedEditControl = NextNavigateControl;
-                        }
-                    }
+                    OnOptionSelected(this);
                     return true;
             }
         }
@@ -156,5 +139,63 @@ public class ComboEditControl : TextEditControl
             return false;
         }
         return true;
+    }
+
+    /// <summary>
+    /// Create combo edit form.
+    /// </summary>
+    private void CreateComboEditForm()
+    {
+        _comboEditForm = new ComboEditForm
+        {
+            Header = string.IsNullOrEmpty(Header) ? Hint : Header,
+            ComboOptions = ComboOptions,
+            MaxDisplayedOptions = MaxDisplayedOptions,
+            OptionSelected = OnOptionSelected,
+            GoBackSelected = OnGoBackSelected
+        };
+    }
+
+    /// <summary>
+    /// Processing user input.
+    /// </summary>
+    /// <param name="textEditControl">A control that contains user input</param>
+    private void OnOptionSelected(TextEditControl textEditControl)
+    {
+        if (!int.TryParse(textEditControl.Value, out int selectedIndex) || !ComboOptions.ContainsKey(selectedIndex))
+        {
+            throw new Exception("Incorrect index: " + textEditControl.Value);
+        }
+
+        // Display user input on the control.
+        textEditControl.Value = $"{selectedIndex} - {ComboOptions[selectedIndex]}";
+        Value = textEditControl.Value;
+        
+        // Go to the next control.
+        if (NextNavigateForm != null)
+        {
+            SessionInfo.CurrentForm = NextNavigateForm;
+            if (NextNavigateControl != null)
+            {
+                NextNavigateForm.FocusedEditControl = NextNavigateControl;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Navigate back.
+    /// </summary>
+    private void OnGoBackSelected(TextEditControl textEditControl)
+    {
+        if (PreviousNavigateForm != null)
+        {
+            SessionInfo.CurrentForm = PreviousNavigateForm;
+            if (PreviousNavigateControl != null)
+            {
+                PreviousNavigateForm.FocusedEditControl = PreviousNavigateControl;
+            }
+        }
+        textEditControl.Value = "";
+        Value = "";
     }
 }
