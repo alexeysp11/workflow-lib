@@ -1,10 +1,29 @@
 namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
 
+/// <summary>
+/// Text input field.
+/// </summary>
 public class TextEditControl : TextControl
 {
+    /// <summary>
+    /// Determines whether user input is required for the control.
+    /// </summary>
     public bool Required { get; set; }
+
+    /// <summary>
+    /// The character displayed in place of the empty input (for example, if the empty symbol is ".",
+    /// then "VALUE...." may be displayed for the control).
+    /// </summary>
     public string EmptyEnterSymbol { get; set; }
+
+    /// <summary>
+    /// A hint displayed at the bottom of a form to indicate which control is expecting user input.
+    /// </summary>
     public string? Hint { get; set; }
+
+    /// <summary>
+    /// Default value of the control.
+    /// </summary>
     public string? DefaultValue {  get; set; }
 
     /// <summary>
@@ -15,9 +34,16 @@ public class TextEditControl : TextControl
     /// <summary>
     /// Display the control information.
     /// </summary>
-    public Action ShowInfoAboutControl { get; set; }
+    public Action? ShowInfoAboutControl { get; set; }
 
+    /// <summary>
+    /// The next text input field which is used for displaying controls.
+    /// </summary>
     public TextEditControl? NextEditControl { get; set; }
+
+    /// <summary>
+    /// The previous text input field which is used for displaying controls.
+    /// </summary>
     public TextEditControl? PreviousEditControl { get; set; }
 
     public TextEditControl() : base()
@@ -88,6 +114,9 @@ public class TextEditControl : TextControl
         return true;
     }
 
+    /// <summary>
+    /// Getting and processing user input.
+    /// </summary>
     public void GetUserInput()
     {
         if (SessionInfo?.UserInputProcessed == false)
@@ -103,6 +132,9 @@ public class TextEditControl : TextControl
         }
     }
 
+    /// <summary>
+    /// Method for adding control to form.
+    /// </summary>
     public override void AddControlToForm()
     {
         int width = 0;

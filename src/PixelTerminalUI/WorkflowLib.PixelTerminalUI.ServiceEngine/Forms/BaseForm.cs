@@ -3,15 +3,36 @@ using WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
 
 namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
 
+/// <summary>
+/// Base implementation of the form.
+/// </summary>
 public abstract class BaseForm
 {
+    /// <summary>
+    /// Name of the form.
+    /// </summary>
     public string Name { get; set; }
+
     public string MenuCode { get; set; }
+
+    /// <summary>
+    /// Height of the form.
+    /// </summary>
     public int Height { get; set; }
+
+    /// <summary>
+    /// Width of the form.
+    /// </summary>
     public int Width { get; set; }
 
+    /// <summary>
+    /// Information required to process the user session.
+    /// </summary>
     public SessionInfo? SessionInfo { get; set; }
 
+    /// <summary>
+    /// The parent form from which this form was created.
+    /// </summary>
     public BaseForm? ParentForm { get; set; }
 
     /// <summary>
@@ -22,7 +43,7 @@ public abstract class BaseForm
     /// <summary>
     /// The control of type <see cref="TextEditControl"/> that currently has input focus.
     /// </summary>
-    public TextEditControl FocusedEditControl { get; set; }
+    public TextEditControl? FocusedEditControl { get; set; }
 
     /// <summary>
     /// Validation of form controls and properties performed before the form is displayed.
@@ -109,7 +130,7 @@ public abstract class BaseForm
                     .FirstOrDefault();
             }
 
-            TextEditControl currentEditControl = null;
+            TextEditControl? currentEditControl = null;
             while (true)
             {
                 if (currentEditControl == FocusedEditControl)
@@ -205,7 +226,7 @@ public abstract class BaseForm
     {
         try
         {
-            var frmDisplayMessage = new frmDisplayMessage();
+            var frmDisplayMessage = new DisplayMessageForm();
             frmDisplayMessage.Header = header;
             frmDisplayMessage.Message = message;
             frmDisplayMessage.SessionInfo = SessionInfo;
@@ -226,7 +247,7 @@ public abstract class BaseForm
     {
         try
         {
-            var frmDisplayMessage = new frmExitApp();
+            var frmDisplayMessage = new ExitAppForm();
             frmDisplayMessage.Header = "EXIT APPLICATION";
             frmDisplayMessage.Message = "Are you sure to exit the application?";
             frmDisplayMessage.SessionInfo = SessionInfo;
@@ -299,13 +320,13 @@ public abstract class BaseForm
 
         control.GetUserInput();
         control = FocusedEditControl;
-        if (SessionInfo.CurrentForm == this && control != null)
+        if (SessionInfo?.CurrentForm == this && control != null)
         {
             control.Show();
         }
         else
         {
-            SessionInfo.CurrentForm.Show();
+            SessionInfo?.CurrentForm?.Show();
         }
     }
 

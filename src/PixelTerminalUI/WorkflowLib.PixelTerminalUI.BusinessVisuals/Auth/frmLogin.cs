@@ -1,5 +1,3 @@
-using System.Text;
-using WorkflowLib.PixelTerminalUI.BusinessVisuals.Menu;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
 using WorkflowLib.PixelTerminalUI.BusinessVisuals.Forms;
 
@@ -7,6 +5,9 @@ namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.Auth;
 
 public class frmLogin : frmTerminalBase
 {
+    /// <summary>
+    /// Information about databases.
+    /// </summary>
     internal class DatabaseInfo
     {
         internal string? Name { get; set; }
@@ -17,7 +18,7 @@ public class frmLogin : frmTerminalBase
     private TextControl? lblHeader;
     private TextControl? lblOperationName;
     private TextControl? lblDatabase;
-    private TextEditControl? txtDatabase;
+    private ComboEditControl? cmbDatabase;
     private TextControl? lblUsername;
     private TextEditControl? txtUsername;
     private TextControl? lblPassword;
@@ -29,7 +30,10 @@ public class frmLogin : frmTerminalBase
     {
         _databaseInfoDictionary = new Dictionary<int, DatabaseInfo>();
         _databaseInfoDictionary.Add(0, new DatabaseInfo { Name = "IN MEMORY DB" });
-        _databaseInfoDictionary.Add(1, new DatabaseInfo { Name = "POSTGRESQL" });
+        _databaseInfoDictionary.Add(1, new DatabaseInfo { Name = "PG-01" });
+        _databaseInfoDictionary.Add(2, new DatabaseInfo { Name = "PG-02" });
+        _databaseInfoDictionary.Add(3, new DatabaseInfo { Name = "PG-03" });
+        _databaseInfoDictionary.Add(4, new DatabaseInfo { Name = "SQLITE-01" });
     }
     
     protected override void InitializeComponent()
@@ -62,14 +66,19 @@ public class frmLogin : frmTerminalBase
         lblDatabase.Value = "DATABASE:";
         Controls.Add(lblDatabase);
 
-        txtDatabase = new TextEditControl();
-        txtDatabase.Name = nameof(txtDatabase);
-        txtDatabase.Top = 4;
-        txtDatabase.Left = 0;
-        txtDatabase.EntireLine = true;
-        txtDatabase.Hint = "SELECT DATABASE";
-        txtDatabase.EnterValidation = txtDatabase_EnterValidation;
-        Controls.Add(txtDatabase);
+        cmbDatabase = new ComboEditControl();
+        cmbDatabase.Name = nameof(cmbDatabase);
+        cmbDatabase.Top = 4;
+        cmbDatabase.Left = 0;
+        cmbDatabase.EntireLine = true;
+        cmbDatabase.Hint = "SELECT DATABASE";
+        cmbDatabase.NextNavigateForm = this;
+        cmbDatabase.NextNavigateControl = txtUsername;
+        cmbDatabase.PreviousNavigateForm = ParentForm;
+        cmbDatabase.ShowOnlyFormInput = true;
+        cmbDatabase.MaxDisplayedOptions = 12;
+        cmbDatabase.ComboOptions = GetDatabaseComboOptions();
+        Controls.Add(cmbDatabase);
 
         lblUsername = new TextControl();
         lblUsername.Name = nameof(lblUsername);
@@ -104,50 +113,11 @@ public class frmLogin : frmTerminalBase
         txtPassword.Hint = "ENTER PASSWORD";
         txtPassword.EnterValidation = txtPassword_EnterValidation;
         Controls.Add(txtPassword);
-    }
 
-    private bool txtDatabase_EnterValidation()
-    {
-        try
-        {
-            switch (txtDatabase.Value)
-            {
-                case "":
-                case "-n":
-                    var sb = new StringBuilder();
-                    foreach (var item in _databaseInfoDictionary)
-                    {
-                        sb.AppendLine($"{item.Key}. {item.Value.Name}");
-                    }
-                    ShowInformation(sb.ToString());
-                    txtDatabase.Value = "";
-                    break;
-
-                case "-b":
-                    SessionInfo.CurrentForm = ParentForm;
-                    txtDatabase.Value = "";
-                    return false;
-
-                case "0":
-                case "1":
-                    int databaseIndex = Convert.ToInt32(txtDatabase.Value);
-                    DatabaseInfo? database = _databaseInfoDictionary[databaseIndex];
-                    if (database == null)
-                    {
-                        throw new Exception("Incorrect index of the database: " + databaseIndex);
-                    }
-                    txtDatabase.Value = $"{databaseIndex} - {database.Name}";
-                    FocusedEditControl = txtUsername;
-                    return true;
-            }
-        }
-        catch (Exception ex)
-        {
-            ShowError(ex.Message);
-            FocusedEditControl = txtDatabase;
-            return false;
-        }
-        return true;
+        // Navigation settings.
+        cmbDatabase.NextNavigateForm = this;
+        cmbDatabase.NextNavigateControl = txtUsername;
+        cmbDatabase.PreviousNavigateForm = ParentForm;
     }
 
     private bool txtUsername_EnterValidation()
@@ -163,7 +133,7 @@ public class frmLogin : frmTerminalBase
                     return false;
 
                 case "-b":
-                    FocusedEditControl = txtDatabase;
+                    FocusedEditControl = cmbDatabase;
                     txtUsername.Value = "";
                     return false;
 
@@ -210,5 +180,22 @@ public class frmLogin : frmTerminalBase
             return false;
         }
         return true;
+    }
+
+    /// <summary>
+    /// Get database options available for selection.
+    /// </summary>
+    /// <returns></returns>
+    private Dictionary<int, string> GetDatabaseComboOptions()
+    {
+        var result = new Dictionary<int, string>();
+        foreach (var infoKvp in _databaseInfoDictionary)
+        {
+            if (!string.IsNullOrEmpty(infoKvp.Value.Name))
+            {
+                result.Add(infoKvp.Key, infoKvp.Value.Name);
+            }
+        }
+        return result;
     }
 }

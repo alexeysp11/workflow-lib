@@ -2,6 +2,9 @@ using WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
 
 namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
 
+/// <summary>
+/// Information required to process the user session.
+/// </summary>
 public class SessionInfo
 {
     public long SessionId { get; set; }
@@ -19,6 +22,9 @@ public class SessionInfo
     public bool UserInputProcessed { get; set; }
     public bool FinishUserSession { get; set; }
 
+    /// <summary>
+    /// The currently displayed form.
+    /// </summary>
     public BaseForm? CurrentForm { get; set; }
 
     public void AssignEmptyDisplayedInfo(DisplayedInfoType displayedInfoType = DisplayedInfoType.Current)
