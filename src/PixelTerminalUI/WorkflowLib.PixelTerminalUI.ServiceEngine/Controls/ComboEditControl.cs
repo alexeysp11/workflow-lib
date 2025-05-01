@@ -1,5 +1,4 @@
-﻿using System.Text;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
+﻿using WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
 
 namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
 
@@ -72,6 +71,8 @@ public class ComboEditControl : TextEditControl
 
     public ComboEditControl() : base()
     {
+        SelectedIndexes = new List<int>();
+
         ShowOnlyFormInput = false;
         ShowItemsAdditionalInfo = false;
         MultiSelectEnabled = false;
@@ -126,6 +127,18 @@ public class ComboEditControl : TextEditControl
                     OnGoBackSelected(this);
                     return false;
 
+                case "-s":
+                    // Save selected options and go next.
+                    if (MultiSelectEnabled)
+                    {
+                        OnGoNextSelected();
+                    }
+                    else
+                    {
+                        throw new Exception("You can save selected options only if MultiSelectEnabled is set for the control");
+                    }
+                    break;
+
                 default:
                     OnOptionSelected(this);
                     return true;
@@ -151,8 +164,10 @@ public class ComboEditControl : TextEditControl
             Header = string.IsNullOrEmpty(Header) ? Hint : Header,
             ComboOptions = ComboOptions,
             MaxDisplayedOptions = MaxDisplayedOptions,
+            MultiSelectEnabled = MultiSelectEnabled,
             OptionSelected = OnOptionSelected,
-            GoBackSelected = OnGoBackSelected
+            GoBackSelected = OnGoBackSelected,
+            GoNextSelected = OnGoNextSelected
         };
     }
 
@@ -168,10 +183,28 @@ public class ComboEditControl : TextEditControl
         }
 
         // Display user input on the control.
-        textEditControl.Value = $"{selectedIndex} - {ComboOptions[selectedIndex]}";
-        Value = textEditControl.Value;
-        
+        SelectedIndexes?.Add(selectedIndex);
+        textEditControl.Value = MultiSelectEnabled && SelectedIndexes?.Count > 1
+            ? "MULTIPLE"
+            : $"{selectedIndex} - {ComboOptions[selectedIndex]}";
+        if (textEditControl != this)
+        {
+            Value = textEditControl.Value;
+        }
+
         // Go to the next control.
+        if (!MultiSelectEnabled)
+        {
+            OnGoNextSelected();
+        }
+    }
+
+    private void OnGoNextSelected()
+    {
+        if (SelectedIndexes.Count == 0)
+        {
+            throw new Exception("Select at least one item");
+        }
         if (NextNavigateForm != null)
         {
             SessionInfo.CurrentForm = NextNavigateForm;

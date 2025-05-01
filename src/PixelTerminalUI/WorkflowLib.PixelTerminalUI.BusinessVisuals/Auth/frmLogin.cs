@@ -27,7 +27,10 @@ public class frmLogin : frmTerminalBase
     {
         _databaseInfoDictionary = new Dictionary<int, DatabaseInfo>();
         _databaseInfoDictionary.Add(0, new DatabaseInfo { Name = "IN MEMORY DB" });
-        _databaseInfoDictionary.Add(1, new DatabaseInfo { Name = "POSTGRESQL" });
+        _databaseInfoDictionary.Add(1, new DatabaseInfo { Name = "PG-01" });
+        _databaseInfoDictionary.Add(2, new DatabaseInfo { Name = "PG-02" });
+        _databaseInfoDictionary.Add(3, new DatabaseInfo { Name = "PG-03" });
+        _databaseInfoDictionary.Add(4, new DatabaseInfo { Name = "SQLITE-01" });
     }
     
     protected override void InitializeComponent()

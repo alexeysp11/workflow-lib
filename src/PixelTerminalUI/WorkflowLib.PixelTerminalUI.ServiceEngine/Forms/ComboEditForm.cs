@@ -29,6 +29,12 @@ public class ComboEditForm : DisplayMessageForm
     public Action<TextEditControl> OptionSelected { get; set; }
 
     /// <summary>
+    /// Navigate next.
+    /// </summary>
+    /// <remarks>This delegate is available only if <see cref="MultiSelectEnabled"/> is set</remarks>
+    public Action GoNextSelected { get; set; }
+
+    /// <summary>
     /// Navigate back.
     /// </summary>
     public Action<TextEditControl> GoBackSelected { get; set; }
@@ -102,6 +108,21 @@ public class ComboEditForm : DisplayMessageForm
                         _currentPageIndex -= 1;
                     }
                     PrintComboOptions();
+                    break;
+
+                case "-s":
+                    // Save selected options and go next.
+                    if (MultiSelectEnabled)
+                    {
+                        if (GoNextSelected != null)
+                        {
+                            GoNextSelected();
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception("You can save selected options only if MultiSelectEnabled is set for the control");
+                    }
                     break;
 
                 case "-x":
