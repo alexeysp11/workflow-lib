@@ -5,6 +5,9 @@ namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.Auth;
 
 public class frmLogin : frmTerminalBase
 {
+    /// <summary>
+    /// Information about databases.
+    /// </summary>
     internal class DatabaseInfo
     {
         internal string? Name { get; set; }

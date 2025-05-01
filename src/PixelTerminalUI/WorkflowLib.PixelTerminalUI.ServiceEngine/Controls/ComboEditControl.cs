@@ -18,11 +18,6 @@ public class ComboEditControl : TextEditControl
     public bool ShowOnlyFormInput { get; set; }
 
     /// <summary>
-    /// Show additional information about options to select.
-    /// </summary>
-    public bool ShowItemsAdditionalInfo { get; set; }
-
-    /// <summary>
     /// Determines whether two or more items can be selected from the provided list.
     /// </summary>
     public bool MultiSelectEnabled { get; set; }
@@ -74,7 +69,6 @@ public class ComboEditControl : TextEditControl
         SelectedIndexes = new List<int>();
 
         ShowOnlyFormInput = false;
-        ShowItemsAdditionalInfo = false;
         MultiSelectEnabled = false;
         EnterValidation = OnComboEnterValidation;
     }
