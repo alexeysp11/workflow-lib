@@ -28,11 +28,11 @@ app.UseHttpsRedirection();
 
 app.MapPost("/pixelterminalui/go", (SessionInfoDto? sessionInfoDto, [FromServices] AppSettings appSettings) =>
 {
-    MenuFormResolver menuFormResolver = null;
+    MenuFormResolver? menuFormResolver = null;
 
     // Session check.
     if (sessionInfoDto == null
-        || (menuFormResolver = MemoryResolver.GetMenuFormResolver(sessionInfoDto?.SessionUid)) == null)
+        || (menuFormResolver = MemoryResolver.GetMenuFormResolver(sessionInfoDto?.SessionUid ?? "")) == null)
     {
         // Create resolver and session.
         menuFormResolver = new MenuFormResolver(appSettings);
@@ -41,8 +41,6 @@ app.MapPost("/pixelterminalui/go", (SessionInfoDto? sessionInfoDto, [FromService
         MemoryResolver.SaveMenuFormResolver(sessionInfo.SessionUid, menuFormResolver);
         return new SessionInfoDto(sessionInfo);
     }
-
-    // Authentication check.
 
     // Process user input.
     string userInput = sessionInfoDto?.UserInput ?? "-n";

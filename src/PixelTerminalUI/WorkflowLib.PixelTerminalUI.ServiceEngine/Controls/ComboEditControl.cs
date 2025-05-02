@@ -95,7 +95,7 @@ public class ComboEditControl : TextEditControl
     /// <summary>
     /// Validation performed during user input processing.
     /// </summary>
-    /// <returns>true if the validation was performed correctly; otherwise false</returns>
+    /// <returns>true if the validation was performed correctly; otherwise, false</returns>
     private bool OnComboEnterValidation()
     {
         try

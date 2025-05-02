@@ -3,6 +3,9 @@ using WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
 
 namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Dto;
 
+/// <summary>
+/// Information required to process the user session (DTO).
+/// </summary>
 public class SessionInfoDto
 {
     public string SessionUid { get; set; }
@@ -18,6 +21,9 @@ public class SessionInfoDto
 
     public SessionInfoDto()
     {
+        SessionUid = string.Empty;
+        UserLogin = string.Empty;
+        DisplayedInfo = string.Empty;
     }
 
     public SessionInfoDto(SessionInfo sessionInfo)

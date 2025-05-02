@@ -5,7 +5,7 @@ namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Resolvers;
 
 public class MenuFormResolver
 {
-    public SessionInfo SessionInfo { get; set; }
+    public SessionInfo? SessionInfo { get; set; }
     
     private AppSettings _appSettings;
 
@@ -41,6 +41,9 @@ public class MenuFormResolver
         SessionInfo.CurrentForm.Show();
     }
 
+    /// <summary>
+    /// Start a new user session.
+    /// </summary>
     public void Start()
     {
         try
@@ -50,7 +53,12 @@ public class MenuFormResolver
             form.SessionInfo = SessionInfo;
             form.SessionInfo.UserInputProcessed = true;
 
-            form.FillFormAttributes(_appSettings?.MenuCode);
+            if (form.FormParameters == null)
+            {
+                form.FormParameters = new FormParameters();
+            }
+
+            form.FillFormAttributes(_appSettings?.MenuCode ?? "");
             form.Init();
             form.Show();
 
@@ -62,17 +70,25 @@ public class MenuFormResolver
         }
     }
 
+    /// <summary>
+    /// Create the form dynamically using the type name specified in appsettings file.
+    /// </summary>
+    /// <returns>Created form of type <see cref="BaseForm"/></returns>
     private BaseForm CreateForm()
     {
-        string typeName = _appSettings?.InitialFormTypeName;
+        string? typeName = _appSettings?.InitialFormTypeName;
 
         if (string.IsNullOrEmpty(typeName))
         {
             throw new Exception($"Could not create the form of type '{typeName}': type name is not specified in the appsettings");
         }
 
-        Type type = Type.GetType(typeName, true);
-        object instance = Activator.CreateInstance(type);
+        Type? type = Type.GetType(typeName, true);
+        if (type == null)
+        {
+            throw new Exception($"Could not create the form of type '{typeName}': type is not acquired");
+        }
+        object? instance = Activator.CreateInstance(type);
         if (instance == null)
         {
             throw new Exception($"Could not create the form of type '{typeName}': type name is not found for the selected menu");
