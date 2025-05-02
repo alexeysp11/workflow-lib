@@ -3,7 +3,7 @@
 /// <summary>
 /// The form displayed before exiting the application.
 /// </summary>
-public class ExitAppForm : DisplayMessageForm
+public class ExitAppForm : SimpleMessageForm
 {
     protected override bool txtConfirmation_EnterValidation()
     {

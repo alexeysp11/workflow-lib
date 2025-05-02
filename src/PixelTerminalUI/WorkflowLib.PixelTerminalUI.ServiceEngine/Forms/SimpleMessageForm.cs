@@ -5,7 +5,7 @@ namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
 /// <summary>
 /// Form for displaying a message.
 /// </summary>
-public class DisplayMessageForm : BaseForm
+public class SimpleMessageForm : BaseForm
 {
     /// <summary>
     /// The title displayed at the top of the form.
@@ -21,9 +21,9 @@ public class DisplayMessageForm : BaseForm
 
     protected TextEditControl? txtConfirmation;
 
-    public DisplayMessageForm() : base()
+    public SimpleMessageForm() : base()
     {
-        Name = nameof(DisplayMessageForm);
+        Name = nameof(SimpleMessageForm);
     }
 
     protected override void InitializeComponent()

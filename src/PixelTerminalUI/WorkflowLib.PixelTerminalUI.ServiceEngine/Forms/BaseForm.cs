@@ -231,7 +231,7 @@ public abstract class BaseForm
     {
         try
         {
-            var frmDisplayMessage = new DisplayMessageForm();
+            var frmDisplayMessage = new SimpleMessageForm();
             frmDisplayMessage.Header = header;
             frmDisplayMessage.Message = message;
             frmDisplayMessage.SessionInfo = SessionInfo;
