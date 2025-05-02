@@ -1,4 +1,5 @@
 ﻿using WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
+using WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
 
 namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
 
@@ -62,6 +63,18 @@ public class PasswordEditControl : TextEditControl
     public PasswordEditControl()
     {
         EnterValidation = OnPasswordEntered;
+    }
+
+    /// <summary>
+    /// Show current control.
+    /// </summary>
+    public override void Show()
+    {
+        base.Show();
+        if (SessionInfo?.CurrentForm == Form && Form?.FocusedEditControl == this)
+        {
+            SessionInfo.IsPasswordInputNeeded = true;
+        }
     }
 
     /// <summary>

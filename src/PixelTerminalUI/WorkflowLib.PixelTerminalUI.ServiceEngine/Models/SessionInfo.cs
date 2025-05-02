@@ -21,6 +21,7 @@ public class SessionInfo
     public string? UserInput { get; set; }
     public bool UserInputProcessed { get; set; }
     public bool FinishUserSession { get; set; }
+    public bool IsPasswordInputNeeded { get; set; }
 
     /// <summary>
     /// The currently displayed form.

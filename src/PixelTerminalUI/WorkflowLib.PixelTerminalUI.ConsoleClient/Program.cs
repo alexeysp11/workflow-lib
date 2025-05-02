@@ -120,11 +120,18 @@ class Program
                     string userInput = "";
                     if (askForEnter)
                     {
-                        userInput = ConsoleHelper.EnterLine(
-                            hint: "Enter data:",
-                            emptyStringReplacement: "-n",
-                            beforeInputString: ">>>",
-                            maxInputCharNumber: sessionInfoDto?.UserInputWdith);
+                        if (sessionInfoDto?.IsPasswordInputNeeded == true)
+                        {
+                            userInput = ConsoleHelper.GetPassword(hint: "Enter password:", beforeInputString: ">>>");
+                        }
+                        else
+                        {
+                            userInput = ConsoleHelper.EnterLine(
+                                hint: "Enter data:",
+                                emptyStringReplacement: "-n",
+                                beforeInputString: ">>>",
+                                maxInputCharNumber: sessionInfoDto?.UserInputWdith);
+                        }
                     }
                     sessionInfoDto.UserInput = userInput;
                     sessionInfoDto.DisplayedInfo = string.Empty;
