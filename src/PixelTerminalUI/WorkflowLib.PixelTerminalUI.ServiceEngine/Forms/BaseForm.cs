@@ -212,21 +212,38 @@ public abstract class BaseForm
     /// </summary>
     protected abstract void InitializeComponent();
 
+    /// <summary>
+    /// Show a form to display information messages.
+    /// </summary>
+    /// <param name="message">Message to display</param>
     public void ShowInformation(string message)
     {
         ShowMessageForm("INFORMATION", message);
     }
 
+    /// <summary>
+    /// Show a form to display errors.
+    /// </summary>
+    /// <param name="message">Message to display</param>
     public void ShowError(string message)
     {
         ShowMessageForm("ERROR", message);
     }
 
+    /// <summary>
+    /// Show a form to display warnings.
+    /// </summary>
+    /// <param name="message">Message to display</param>
     public void ShowWarning(string message)
     {
         ShowMessageForm("WARNING", message);
     }
 
+    /// <summary>
+    /// Show <see cref="SimpleMessageForm"/> to display messages.
+    /// </summary>
+    /// <param name="header">Header of the form</param>
+    /// <param name="message">Message to display</param>
     public void ShowMessageForm(string header, string message)
     {
         try
@@ -236,6 +253,31 @@ public abstract class BaseForm
             frmDisplayMessage.Message = message;
             frmDisplayMessage.SessionInfo = SessionInfo;
             frmDisplayMessage.ParentForm = this;
+            frmDisplayMessage.Init();
+            frmDisplayMessage.Show();
+        }
+        catch (Exception ex)
+        {
+            ShowError(ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// Show <see cref="ScrollMessageForm"/> to display long messages.
+    /// </summary>
+    /// <param name="header">Header of the form</param>
+    /// <param name="message">Message to display</param>
+    /// <param name="maxDisplayedLines">Maximum number of message lines to display on screen</param>
+    public void ShowScrollMessageForm(string header, string message, int maxDisplayedLines = 12)
+    {
+        try
+        {
+            var frmDisplayMessage = new ScrollMessageForm();
+            frmDisplayMessage.Header = header;
+            frmDisplayMessage.Message = message;
+            frmDisplayMessage.SessionInfo = SessionInfo;
+            frmDisplayMessage.ParentForm = this;
+            frmDisplayMessage.MaxDisplayedLines = maxDisplayedLines;
             frmDisplayMessage.Init();
             frmDisplayMessage.Show();
         }
@@ -382,11 +424,18 @@ public abstract class BaseForm
     /// <param name="form">An instance of the created form that needs to be displayed</param>
     public void ShowForm(BaseForm form)
     {
-        SessionInfo.CurrentForm = form;
-        form.FormParameters = FormParameters ?? new FormParameters();
-        form.SessionInfo = SessionInfo;
-        form.ParentForm = this;
-        form.Init();
-        form.Show();
+        try
+        {
+            SessionInfo.CurrentForm = form;
+            form.FormParameters = FormParameters ?? new FormParameters();
+            form.SessionInfo = SessionInfo;
+            form.ParentForm = this;
+            form.Init();
+            form.Show();
+        }
+        catch (Exception ex)
+        {
+            ShowError(ex.Message);
+        }
     }
 }
