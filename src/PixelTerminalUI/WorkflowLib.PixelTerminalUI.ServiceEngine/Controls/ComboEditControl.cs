@@ -193,6 +193,9 @@ public class ComboEditControl : TextEditControl
         }
     }
 
+    /// <summary>
+    /// Navigate next.
+    /// </summary>
     private void OnGoNextSelected()
     {
         if (SelectedIndexes.Count == 0)
