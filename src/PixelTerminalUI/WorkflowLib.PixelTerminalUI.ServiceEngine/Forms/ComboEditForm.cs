@@ -26,18 +26,18 @@ public class ComboEditForm : DisplayMessageForm
     /// <summary>
     /// Processing user input.
     /// </summary>
-    public Action<TextEditControl> OptionSelected { get; set; }
+    public Action<TextEditControl>? OptionSelected { get; set; }
 
     /// <summary>
     /// Navigate next.
     /// </summary>
     /// <remarks>This delegate is available only if <see cref="MultiSelectEnabled"/> is set</remarks>
-    public Action GoNextSelected { get; set; }
+    public Action? GoNextSelected { get; set; }
 
     /// <summary>
     /// Navigate back.
     /// </summary>
-    public Action<TextEditControl> GoBackSelected { get; set; }
+    public Action<TextEditControl>? GoBackSelected { get; set; }
 
     /// <summary>
     /// Index of the current page of elements.

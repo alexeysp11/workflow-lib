@@ -122,7 +122,7 @@ public class TextControl
     /// <summary>
     /// Validation performed during control display.
     /// </summary>
-    /// <returns>true if the validation was performed correctly; otherwise false</returns>
+    /// <returns>true if the validation was performed correctly; otherwise, false</returns>
     public virtual bool OnShowValidation()
     {
         if (ShowValidation != null)

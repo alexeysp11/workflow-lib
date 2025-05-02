@@ -70,6 +70,11 @@ public abstract class BaseForm
     /// </summary>
     public Action? ShowHelpForEntireApp { get; set; }
 
+    /// <summary>
+    /// Parameters and variables stored on the form at runtime.
+    /// </summary>
+    public FormParameters? FormParameters { get; set; }
+
     public BaseForm()
     {
         Name = "";
@@ -165,7 +170,7 @@ public abstract class BaseForm
     /// <summary>
     /// Validation of form controls and properties performed before the form is displayed.
     /// </summary>
-    /// <returns>true if the validation was performed correctly; otherwise false</returns>
+    /// <returns>true if the validation was performed correctly; otherwise, false</returns>
     /// <exception cref="Exception">Occurs when a control or form property was initialized incorrectly</exception>
     public virtual bool OnShowValidation()
     {
@@ -378,6 +383,7 @@ public abstract class BaseForm
     public void ShowForm(BaseForm form)
     {
         SessionInfo.CurrentForm = form;
+        form.FormParameters = FormParameters ?? new FormParameters();
         form.SessionInfo = SessionInfo;
         form.ParentForm = this;
         form.Init();

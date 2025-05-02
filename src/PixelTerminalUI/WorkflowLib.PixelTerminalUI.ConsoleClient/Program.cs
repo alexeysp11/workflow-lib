@@ -138,7 +138,7 @@ class Program
                 Console.CursorLeft = startCursorLeft;
                 Console.CursorTop = startCursorTop;
                 Console.WriteLine("Session UID: " + sessionInfoDto?.SessionUid);
-                ConsoleHelper.WriteStringInColor(sessionInfoDto?.DisplayedInfo);
+                ConsoleHelper.WriteStringInColor(sessionInfoDto?.DisplayedInfo ?? "");
                 if (sessionInfoDto?.FinishUserSession == true)
                 {
                     break;

@@ -74,7 +74,7 @@ public class TextEditControl : TextControl
     /// <summary>
     /// Validation performed during control display.
     /// </summary>
-    /// <returns>true if the validation was performed correctly; otherwise false</returns>
+    /// <returns>true if the validation was performed correctly; otherwise, false</returns>
     public override bool OnShowValidation()
     {
         if (!base.OnShowValidation())
@@ -87,7 +87,7 @@ public class TextEditControl : TextControl
     /// <summary>
     /// Validation performed during user input processing.
     /// </summary>
-    /// <returns>true if the validation was performed correctly; otherwise false</returns>
+    /// <returns>true if the validation was performed correctly; otherwise, false</returns>
     public virtual bool OnEnterValidation()
     {
         if (Value == null)
@@ -200,7 +200,7 @@ public class TextEditControl : TextControl
     /// <summary>
     /// Validation of special characters.
     /// </summary>
-    /// <returns>true if special characters validation was performed; otherwise false</returns>
+    /// <returns>true if special characters validation was performed; otherwise, false</returns>
     private bool ValidateSpecialChars()
     {
         switch (Value)
