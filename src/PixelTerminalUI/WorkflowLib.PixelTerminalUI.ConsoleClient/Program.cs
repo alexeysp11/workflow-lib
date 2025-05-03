@@ -122,7 +122,7 @@ class Program
                     {
                         if (sessionInfoDto?.IsPasswordInputNeeded == true)
                         {
-                            userInput = ConsoleHelper.GetPassword(hint: "Enter password:", beforeInputString: ">>>");
+                            userInput = ConsoleHelper.GetPassword(hint: "Enter data:", beforeInputString: ">>>");
                         }
                         else
                         {
