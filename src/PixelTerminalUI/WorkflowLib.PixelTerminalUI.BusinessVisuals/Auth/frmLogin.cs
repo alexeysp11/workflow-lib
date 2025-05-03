@@ -22,7 +22,7 @@ public class frmLogin : frmTerminalBase
     private TextControl? lblUsername;
     private TextEditControl? txtUsername;
     private TextControl? lblPassword;
-    private TextEditControl? txtPassword;
+    private PasswordEditControl? txtPassword;
 
     private Dictionary<int, DatabaseInfo> _databaseInfoDictionary;
 
@@ -105,13 +105,18 @@ public class frmLogin : frmTerminalBase
         lblPassword.Value = "PASSWORD:";
         Controls.Add(lblPassword);
 
-        txtPassword = new TextEditControl();
+        txtPassword = new PasswordEditControl();
         txtPassword.Name = nameof(txtPassword);
         txtPassword.Top = 10;
         txtPassword.Left = 0;
         txtPassword.EntireLine = true;
         txtPassword.Hint = "ENTER PASSWORD";
-        txtPassword.EnterValidation = txtPassword_EnterValidation;
+        txtPassword.PreviousNavigateForm = this;
+        txtPassword.PreviousNavigateControl = txtUsername;
+        txtPassword.ValidationFailedMessage = "Incorrect username or password";
+        txtPassword.UsernameEditControl = txtUsername;
+        txtPassword.ShowMainMenuOnSuccess = true;
+        txtPassword.ValidatePassword = OnValidatePassword;
         Controls.Add(txtPassword);
 
         // Navigation settings.
@@ -151,33 +156,17 @@ public class frmLogin : frmTerminalBase
         return true;
     }
 
-    private bool txtPassword_EnterValidation()
+    /// <summary>
+    /// Validate username and password.
+    /// </summary>
+    /// <param name="username">Entered username</param>
+    /// <param name="password">Entered password</param>
+    /// <returns>true if username and password are validated; otherwise, false</returns>
+    private bool OnValidatePassword(string username, string password)
     {
-        try
+        if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
         {
-            switch (txtPassword.Value)
-            {
-                case "":
-                case "-n":
-                    FocusedEditControl = txtPassword;
-                    txtPassword.Value = "";
-                    return false;
-
-                case "-b":
-                    FocusedEditControl = txtUsername;
-                    txtPassword.Value = "";
-                    return false;
-
-                default:
-                    ShowMainMenu();
-                    return true;
-            }
-        }
-        catch (Exception ex)
-        {
-            ShowError(ex.Message);
-            FocusedEditControl = txtPassword;
-            return false;
+            throw new Exception("Username and password should be specified");
         }
         return true;
     }

@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System.Runtime.InteropServices;
+using System.Security;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace WorkflowLib.PixelTerminalUI.ConsoleAdapter.Helpers;
@@ -101,6 +103,7 @@ public static class ConsoleHelper
         while (true)
         {
             // Write hint.
+            ClearPreviousInput();
             if (!string.IsNullOrEmpty(hint))
             {
                 ConsoleColor currentForeground = Console.ForegroundColor;
@@ -117,12 +120,7 @@ public static class ConsoleHelper
                 Console.Write($"{beforeInputString} ");
             }
 
-            // Clear previous input.
-            int startCursorLeft = Console.CursorLeft;
-            int startCursorTop = Console.CursorTop;
-            Console.Write(new string(' ', Console.WindowWidth));
-            Console.CursorLeft = startCursorLeft;
-            Console.CursorTop = startCursorTop;
+            ClearPreviousInput();
 
             // Read input.
             string input = Console.ReadLine() ?? "";
@@ -147,5 +145,78 @@ public static class ConsoleHelper
             }
         }
         return result;
+    }
+
+    /// <summary>
+    /// Get password from console.
+    /// </summary>
+    /// <returns>Entered password</returns>
+    public static string GetPassword(string? hint = null, string? beforeInputString = null)
+    {
+        ClearPreviousInput();
+        if (!string.IsNullOrEmpty(hint))
+        {
+            Console.WriteLine(hint);
+        }
+        if (!string.IsNullOrEmpty(beforeInputString))
+        {
+            Console.Write(beforeInputString + " ");
+        }
+        ClearPreviousInput();
+
+        var pwd = new SecureString();
+        while (true)
+        {
+            ConsoleKeyInfo i = Console.ReadKey(true);
+            if (i.Key == ConsoleKey.Enter)
+            {
+                break;
+            }
+            else if (i.Key == ConsoleKey.Backspace)
+            {
+                if (pwd.Length > 0)
+                {
+                    pwd.RemoveAt(pwd.Length - 1);
+                    Console.Write("\b \b");
+                }
+            }
+            else if (!char.IsControl(i.KeyChar))
+            {
+                pwd.AppendChar(i.KeyChar);
+                Console.Write("*");
+            }
+        }
+        return MarshalToString(pwd);
+    }
+
+    private static void ClearPreviousInput()
+    {
+        int startCursorLeft = Console.CursorLeft;
+        int startCursorTop = Console.CursorTop;
+        Console.Write(new string(' ', Console.WindowWidth));
+        Console.CursorLeft = startCursorLeft;
+        Console.CursorTop = startCursorTop;
+    }
+
+    private static string MarshalToString(SecureString sstr)
+    {
+        if (sstr == null || sstr.Length == 0)
+        {
+            return string.Empty;
+        }
+        IntPtr intPtr = IntPtr.Zero;
+        string empty = string.Empty;
+        try
+        {
+            intPtr = Marshal.SecureStringToGlobalAllocUnicode(sstr);
+            return Marshal.PtrToStringUni(intPtr);
+        }
+        finally
+        {
+            if (intPtr != IntPtr.Zero)
+            {
+                Marshal.ZeroFreeGlobalAllocUnicode(intPtr);
+            }
+        }
     }
 }
