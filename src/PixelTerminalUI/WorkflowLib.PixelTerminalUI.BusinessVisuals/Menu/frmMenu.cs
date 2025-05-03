@@ -11,7 +11,7 @@ namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.Menu;
 
 public class frmMenu : frmTerminalBase
 {
-    protected string CurrentMenuPath;
+    protected string? CurrentMenuPath;
 
     protected TextControl? lblHeader;
     protected TextControl? lblOperationName;

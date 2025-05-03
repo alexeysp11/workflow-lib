@@ -146,6 +146,9 @@ public class PasswordEditControl : TextEditControl
         Username = UsernameEditControl?.Value;
         Password = Value;
         Value = new string('*', Value.Length);
+
+        SessionInfo.UserLogin = Username;
+        SessionInfo.UserPassword = Password;
     }
 
     /// <summary>
