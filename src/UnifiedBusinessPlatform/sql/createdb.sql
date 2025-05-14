@@ -1,9 +1,9 @@
-CREATE DATABASE employeesmvc_test
+CREATE DATABASE "pg-tst-ubp"
     WITH 
     OWNER = postgres
     ENCODING = 'UTF8'
     CONNECTION LIMIT = -1;
 
-COMMENT ON DATABASE employeesmvc_test
+COMMENT ON DATABASE "pg-tst-ubp"
     IS 'Test database for UnifiedBusinessPlatform application';
 

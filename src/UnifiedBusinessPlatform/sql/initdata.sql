@@ -17,10 +17,10 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: DATABASE employeesmvc_test; Type: COMMENT; Schema: -; Owner: postgres
+-- Name: DATABASE "pg-tst-ubp"; Type: COMMENT; Schema: -; Owner: postgres
 --
 
-COMMENT ON DATABASE employeesmvc_test IS 'Test database for UnifiedBusinessPlatform application';
+COMMENT ON DATABASE "pg-tst-ubp" IS 'Test database for UnifiedBusinessPlatform application';
 
 
 --
