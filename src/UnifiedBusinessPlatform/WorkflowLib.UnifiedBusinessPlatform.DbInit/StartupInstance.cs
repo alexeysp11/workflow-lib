@@ -99,11 +99,6 @@ public class StartupInstance : IStartupInstance
         }
     }
 
-    private void CheckActionsDefinitions()
-    {
-        // 
-    }
-
     /// <summary>
     /// Read SQL from the specified file path.
     /// </summary>
