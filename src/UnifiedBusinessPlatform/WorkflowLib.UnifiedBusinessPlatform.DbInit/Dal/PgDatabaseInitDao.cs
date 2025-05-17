@@ -1,4 +1,7 @@
-﻿namespace WorkflowLib.UnifiedBusinessPlatform.DbInit.Dal
+﻿using Dapper;
+using Npgsql;
+
+namespace WorkflowLib.UnifiedBusinessPlatform.DbInit.Dal
 {
     /// <summary>
     /// DAO for initializing postgres database for UnifiedBusinessPlatform.
@@ -8,71 +11,35 @@
         /// <summary>
         /// Check if the database exists.
         /// </summary>
-        /// <param name="connectionString"></param>
-        /// <returns></returns>
-        internal static bool CheckDbExists(string connectionString)
+        /// <param name="connectionString">Connection string</param>
+        /// <param name="sql">SQL query to execute</param>
+        /// <returns>true if the database exists; otherwise, false</returns>
+        internal static bool CheckDbExists(string connectionString, string sql)
         {
-            return true;
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                string? databaseName = connection.ExecuteScalar<string?>(sql);
+                return !string.IsNullOrEmpty(databaseName);
+            }
         }
 
         /// <summary>
-        /// Create database.
+        /// Execute SQL query.
         /// </summary>
-        /// <param name="connectionString"></param>
-        internal static void CreateDb(string connectionString)
+        /// <param name="connectionString">Connection string</param>
+        /// <param name="sql">SQL query to execute</param>
+        internal static void ExecuteSqlQuery(string connectionString, string sql)
         {
-            // 
-        }
-
-        /// <summary>
-        /// Initialize general data.
-        /// </summary>
-        /// <param name="connectionString"></param>
-        internal static void InitData(string connectionString)
-        {
-            // 
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Execute(sql);
+            }
         }
 
         /// <summary>
         /// Apply EF Core migrations.
         /// </summary>
         internal static void EfCoreMigrations()
-        {
-            // 
-        }
-
-        /// <summary>
-        /// Update functions for organization items.
-        /// </summary>
-        /// <param name="connectionString"></param>
-        internal static void OrganizationItemsFunctions(string connectionString)
-        {
-            // 
-        }
-
-        /// <summary>
-        /// Create user accounts.
-        /// </summary>
-        /// <param name="connectionString"></param>
-        internal static void UserAccounts(string connectionString)
-        {
-            // 
-        }
-
-        /// <summary>
-        /// Create an absence list.
-        /// </summary>
-        /// <param name="connectionString"></param>
-        internal static void Absenses(string connectionString)
-        {
-            // 
-        }
-
-        /// <summary>
-        /// Create a language list.
-        /// </summary>
-        /// <param name="connectionString"></param>
-        internal static void Languages(string connectionString)
         {
             // 
         }
