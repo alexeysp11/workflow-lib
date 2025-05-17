@@ -13,13 +13,13 @@ public class StartupInstance : IStartupInstance
         Console.WriteLine("Initializing the database...");
 
         // Sequence of the actions:
-        // - createdb.sql
-        // - initdata.sql
+        // - CreateDb.sql
+        // - InitData.sql
         // - EF Core migrations
         // - OrganizationItemsFunctions.sql
-        // - useraccounts.sql
-        // - absenses.sql
-        // - languages.sql
+        // - UserAccounts.sql
+        // - Absenses.sql
+        // - Languages.sql
     }
 
     private void CheckActionsDefinitions()
