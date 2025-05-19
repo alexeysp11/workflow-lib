@@ -7,7 +7,7 @@ namespace WorkflowLib.Shared.Models.Business.Cooking
     /// <summary>
     /// Associate table that connects a order ingredient and cooking operation.
     /// </summary>
-    public class OrderIngredientCookingOperation : BusinessTask, IBusinessEntityWF
+    public class OrderIngredientCookingOperation : BusinessTask, IWfBusinessEntity
     {
         /// <summary>
         /// Order ingredient.

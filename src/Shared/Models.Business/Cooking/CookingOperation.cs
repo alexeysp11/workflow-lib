@@ -9,7 +9,7 @@ namespace WorkflowLib.Shared.Models.Business.Cooking
     /// <summary>
     /// Cooking operation.
     /// </summary>
-    public class CookingOperation : BusinessTask, IBusinessEntityWF
+    public class CookingOperation : BusinessTask, IWfBusinessEntity
     {
         /// <summary>
         /// Initial orders.

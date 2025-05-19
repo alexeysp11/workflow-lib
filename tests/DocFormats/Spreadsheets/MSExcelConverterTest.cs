@@ -46,7 +46,7 @@ namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats.Spreadsheets
                 }
             };
 
-            ISpreadsheets converter = new MSExcelConverter();
+            IWorkflowSpreadsheets converter = new MSExcelConverter();
             CreateFolderIfNotExists(FolderName);
 
             // Act
@@ -94,7 +94,7 @@ namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats.Spreadsheets
                 }
             };
 
-            ISpreadsheets converter = new MSExcelConverter();
+            IWorkflowSpreadsheets converter = new MSExcelConverter();
             CreateFolderIfNotExists(FolderName);
 
             // Act

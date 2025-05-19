@@ -7,7 +7,7 @@ namespace WorkflowLib.Shared.Models.Business.Products
     /// <summary>
     /// Project plan item.
     /// </summary>
-    public class ProjectPlanItem : BusinessEntityWF, IBusinessEntityWF
+    public class ProjectPlanItem : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Priority.

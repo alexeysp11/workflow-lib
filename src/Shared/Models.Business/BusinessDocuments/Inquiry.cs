@@ -7,7 +7,7 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
     /// <summary>
     /// Inquiry.
     /// </summary>
-    public class Inquiry : BusinessEntityWF, IBusinessEntityWF, IReceivableBusinessEntityWF
+    public class Inquiry : WfBusinessEntity, IWfBusinessEntity, IReceivableBusinessEntity
     {
         /// <summary>
         /// Timestamp when the inquiry was closed.

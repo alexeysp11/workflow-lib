@@ -10,7 +10,7 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
     /// <summary>
     /// Delivery order.
     /// </summary>
-    public class DeliveryOrder : Order, IBusinessEntityWF
+    public class DeliveryOrder : Order, IWfBusinessEntity
     {
         /// <summary>
         /// Parent delivery order.

@@ -6,7 +6,7 @@ namespace WorkflowLib.Shared.Models.Business.RiskManagement
     /// <summary>
     /// Risk.
     /// </summary>
-    public class Risk : BusinessEntityWF, IBusinessEntityWF
+    public class Risk : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Risk severity.

@@ -7,7 +7,7 @@ namespace WorkflowLib.Shared.Models.Business.Products
     /// <summary>
     /// 
     /// </summary>
-    public class InitialOrderIngredient : BusinessEntityWF, IBusinessEntityWF
+    public class InitialOrderIngredient : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Ingredient.

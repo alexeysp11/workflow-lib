@@ -5,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.Monetary
     /// <summary>
     /// Pay rate.
     /// </summary>
-    public class PayRate : BusinessEntityWF, IBusinessEntityWF
+    public class PayRate : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Boolean variable that shows if this is a base rate.

@@ -9,7 +9,7 @@ namespace WorkflowLib.Shared.Models.Business.Delivery
     /// Model for transferring products from warehouse to kitchen 
     /// (shipping point, destination, start time, end time, products, ingredients).
     /// </summary>
-    public class DeliveryWh2Kitchen : DeliveryOperation, IBusinessEntityWF
+    public class DeliveryWh2Kitchen : DeliveryOperation, IWfBusinessEntity
     {
         /// <summary>
         /// Initial orders.

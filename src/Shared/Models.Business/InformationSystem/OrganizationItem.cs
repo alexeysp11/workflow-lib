@@ -6,7 +6,7 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
     /// <summary>
     /// Organization item.
     /// </summary>
-    public class OrganizationItem : BusinessEntityWF, IBusinessEntityWF
+    public class OrganizationItem : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Type of the organization item.

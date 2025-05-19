@@ -9,7 +9,7 @@ namespace WorkflowLib.Shared.Models.Business.Delivery
     /// Model for transferring a finished order from the kitchen to the warehouse 
     /// (shipping point, destination, start time, end time, products, order number, generated order QR code).
     /// </summary>
-    public class DeliveryKitchen2Wh : DeliveryOperation, IBusinessEntityWF
+    public class DeliveryKitchen2Wh : DeliveryOperation, IWfBusinessEntity
     {
         /// <summary>
         /// Generated QR code attached to the order.

@@ -10,7 +10,7 @@ namespace WorkflowLib.Shared.Models.Business.Products
     /// <summary>
     /// Project.
     /// </summary>
-    public class Project : BusinessEntityWF, IBusinessEntityWF, ITemporalBusinessEntityWF
+    public class Project : WfBusinessEntity, IWfBusinessEntity, ITemporalBusinessEntity
     {
         /// <summary>
         /// Boolean variable that shows if the project is active.

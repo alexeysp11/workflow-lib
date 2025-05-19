@@ -6,7 +6,7 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
     /// <summary>
     /// Warehouse.
     /// </summary>
-    public class Warehouse : BusinessEntityWF, IBusinessEntityWF
+    public class Warehouse : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Organization item related to the warehouse.

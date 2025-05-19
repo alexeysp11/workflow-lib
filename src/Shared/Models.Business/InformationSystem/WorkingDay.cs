@@ -7,7 +7,7 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
     /// <summary>
     /// Working day.
     /// </summary>
-    public class WorkingDay : BusinessEntityWF, IBusinessEntityWF
+    public class WorkingDay : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Date.

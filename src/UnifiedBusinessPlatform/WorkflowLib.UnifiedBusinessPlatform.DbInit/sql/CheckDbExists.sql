@@ -1,0 +1,1 @@
+﻿SELECT DATNAME FROM pg_catalog.pg_database WHERE DATNAME = 'pg-tst-ubp'
