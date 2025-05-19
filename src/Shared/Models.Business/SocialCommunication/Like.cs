@@ -6,7 +6,7 @@ namespace WorkflowLib.Shared.Models.Business.SocialCommunication
     /// <summary>
     /// Like.
     /// </summary>
-    public class Like : BusinessEntityWF, IBusinessEntityWF
+    public class Like : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Liker.

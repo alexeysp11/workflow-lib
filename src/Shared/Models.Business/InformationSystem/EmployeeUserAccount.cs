@@ -5,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
     /// <summary>
     /// Intermediate table between Employee and UserAccount.
     /// </summary>
-    public class EmployeeUserAccount : BusinessEntityWF, IBusinessEntityWF
+    public class EmployeeUserAccount : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Employee.

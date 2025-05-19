@@ -8,7 +8,7 @@ namespace WorkflowLib.Shared.Models.Business.Delivery
     /// <summary>
     /// Delivery operation.
     /// </summary>
-    public class DeliveryOperation : BusinessTask, IBusinessEntityWF
+    public class DeliveryOperation : BusinessTask, IWfBusinessEntity
     {
         /// <summary>
         /// Number of the order.

@@ -5,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.Monetary
     /// <summary>
     /// Payment.
     /// </summary>
-    public class Payment : BusinessEntityWF, IBusinessEntityWF
+    public class Payment : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Payer.

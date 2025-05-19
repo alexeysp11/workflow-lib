@@ -6,7 +6,7 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
     /// <summary>
     /// User group.
     /// </summary>
-    public class UserGroup : BusinessEntityWF, IBusinessEntityWF
+    public class UserGroup : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Is it a group by default for the new user

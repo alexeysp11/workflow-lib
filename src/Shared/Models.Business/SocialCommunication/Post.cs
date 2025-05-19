@@ -6,7 +6,7 @@ namespace WorkflowLib.Shared.Models.Business.SocialCommunication
     /// <summary>
     /// Post.
     /// </summary>
-    public class Post : BusinessEntityWF, IBusinessEntityWF
+    public class Post : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Content text.

@@ -14,6 +14,7 @@ namespace WorkflowLib.Shared.Office.DocFormats
         {
             File.WriteAllBytes(filename, bytes);
         }
+        
         /// <summary>
         /// Reads all bytes from a specified file.
         /// </summary>

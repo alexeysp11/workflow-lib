@@ -6,7 +6,7 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
     /// <summary>
     /// Associate table between business task and delivery order.
     /// </summary>
-    public class BusinessTaskDeliveryOrder : BusinessEntityWF, IBusinessEntityWF
+    public class BusinessTaskDeliveryOrder : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Business task.
