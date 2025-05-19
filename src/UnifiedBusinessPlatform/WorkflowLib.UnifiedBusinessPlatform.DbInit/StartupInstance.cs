@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts;
 using WorkflowLib.UnifiedBusinessPlatform.DbInit.Dal;
 using WorkflowLib.UnifiedBusinessPlatform.DbInit.Models;
 
@@ -13,9 +15,15 @@ public class StartupInstance : IStartupInstance
     /// </summary>
     private DbInitSettings _settings;
 
-    public StartupInstance(DbInitSettings settings)
+    /// <summary>
+    /// Database context.
+    /// </summary>
+    private EmployeesMvcDbContext _dbContext;
+
+    public StartupInstance(DbInitSettings settings, EmployeesMvcDbContext dbContext)
     {
         _settings = settings;
+        _dbContext = dbContext;
     }
 
     /// <summary>
@@ -67,6 +75,7 @@ public class StartupInstance : IStartupInstance
                 if (!string.IsNullOrEmpty(action.ProjFile))
                 {
                     Console.WriteLine($"{action.ProjFile}");
+                    ApplyEfCoreMigrations(_dbContext);
                     continue;
                 }
 
@@ -107,5 +116,14 @@ public class StartupInstance : IStartupInstance
     private static string ReadSqlFromFile(string filepath)
     {
         return File.ReadAllText(filepath);
+    }
+
+    /// <summary>
+    /// Apply EF Core migrations
+    /// </summary>
+    /// <param name="dbContext">Database context</param>
+    private static void ApplyEfCoreMigrations(EmployeesMvcDbContext dbContext)
+    {
+        dbContext.Database.Migrate();
     }
 }

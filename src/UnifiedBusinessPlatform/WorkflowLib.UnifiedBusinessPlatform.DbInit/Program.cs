@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using WorkflowLib.UnifiedBusinessPlatform.DbInit.Models;
+using WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace WorkflowLib.UnifiedBusinessPlatform.DbInit;
 
@@ -28,7 +30,8 @@ public class Program
 
         // Configuration settings.
         var appsettingsConfig = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-        var appSettings = appsettingsConfig.GetSection("DbInitSettings").Get<DbInitSettings>();
-        services.AddSingleton(appSettings);
+        var appsettings = appsettingsConfig.GetSection("DbInitSettings").Get<DbInitSettings>();
+        services.AddSingleton(appsettings);
+        services.AddDbContext<EmployeesMvcDbContext>(options => options.UseNpgsql(appsettings.ConnectionString));
     }
 }

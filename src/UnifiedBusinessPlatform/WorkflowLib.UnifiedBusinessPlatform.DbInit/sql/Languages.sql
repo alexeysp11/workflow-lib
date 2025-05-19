@@ -520,7 +520,7 @@ VALUES
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
 VALUES
-    ('Documents.Internal', 'Documents/Internal', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+    ('Documents.Internal', 'Documents/Internal', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('Documents.Internal.Describe', 'Documents/Internal', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
@@ -537,7 +537,7 @@ VALUES
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
 VALUES
-    ('Notifications', 'Home/Notifications', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+    ('Notifications', 'Home/Notifications', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('NotificationsDescribe', 'Home/Notifications', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
@@ -628,13 +628,13 @@ VALUES
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
 VALUES
-    ('Hiring', 'Hrm/Hiring', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+    ('Hiring', 'Hrm/Hiring', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('HiringDescribe', 'Hrm/Hiring', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")
 VALUES
     ('BriefDescription', 'OrganizationalStructure/BriefDescription', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
-    ('BriefDescriptionOrganizationalStructure', 'OrganizationalStructure/BriefDescription', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
+    ('BriefDescriptionOrganizationalStructure', 'OrganizationalStructure/BriefDescription', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1),
     ('BriefDescriptionOrganizationalStructureDescribe', 'OrganizationalStructure/BriefDescription', 'd7b0eb60-190e-439d-89e1-c78594ac7f0c', now(), now(), 1);
 
 INSERT INTO public."LanguageKeyForms"("Key", "FormName", "ApplicationUid", "DateCreated", "DateChanged", "BusinessEntityStatus")

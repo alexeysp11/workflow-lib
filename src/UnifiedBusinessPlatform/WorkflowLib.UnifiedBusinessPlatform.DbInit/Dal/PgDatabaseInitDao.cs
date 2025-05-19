@@ -32,16 +32,8 @@ namespace WorkflowLib.UnifiedBusinessPlatform.DbInit.Dal
         {
             using (var connection = new NpgsqlConnection(connectionString))
             {
-                connection.Execute(sql);
+                connection.Execute(sql, commandTimeout: 600);
             }
-        }
-
-        /// <summary>
-        /// Apply EF Core migrations.
-        /// </summary>
-        internal static void EfCoreMigrations()
-        {
-            // 
         }
     }
 }
