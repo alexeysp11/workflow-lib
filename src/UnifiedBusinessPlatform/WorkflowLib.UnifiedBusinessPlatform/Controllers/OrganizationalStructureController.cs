@@ -18,12 +18,12 @@ public class OrganizationalStructureController : Controller
 {
     private readonly AppSettings _appSettings;
     private readonly ILogger<OrganizationalStructureController> _logger;
-    private readonly EmployeesMvcDbContext _context;
+    private readonly UbpDbContext _context;
 
     public OrganizationalStructureController(
         AppSettings appSettings,
         ILogger<OrganizationalStructureController> logger,
-        EmployeesMvcDbContext context)
+        UbpDbContext context)
     {
         _appSettings = appSettings;
         _logger = logger;

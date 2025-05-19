@@ -16,7 +16,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Dal
         /// Get a collection of labels for visual components from the database to implement language support.
         /// </summary>
         public static Dictionary<string, string> GetLanguageKvpByFormName(
-            EmployeesMvcDbContext context,
+            UbpDbContext context,
             LanguageType languageType,
             string formName,
             string applicationUid)
@@ -43,7 +43,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Dal
         /// Get a collection of available languages.
         /// </summary>
         public static List<LanguageKey> GetAvailableLanguages(
-            EmployeesMvcDbContext context)
+            UbpDbContext context)
         {
             return context.LanguageKeys
                 .Where(x => x.BusinessEntityStatus == BusinessEntityStatus.Active)

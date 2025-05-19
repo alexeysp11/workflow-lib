@@ -17,12 +17,12 @@ public class DocumentsController : Controller
 {
     private readonly AppSettings _appSettings;
     private readonly ILogger<DocumentsController> _logger;
-    private readonly EmployeesMvcDbContext _context;
+    private readonly UbpDbContext _context;
 
     public DocumentsController(
         AppSettings appSettings,
         ILogger<DocumentsController> logger,
-        EmployeesMvcDbContext context)
+        UbpDbContext context)
     {
         _appSettings = appSettings;
         _logger = logger;

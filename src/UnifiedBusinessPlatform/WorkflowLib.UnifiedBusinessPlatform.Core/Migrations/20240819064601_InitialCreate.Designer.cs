@@ -11,7 +11,7 @@ using WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts;
 
 namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
 {
-    [DbContext(typeof(EmployeesMvcDbContext))]
+    [DbContext(typeof(UbpDbContext))]
     [Migration("20240819064601_InitialCreate")]
     partial class InitialCreate
     {

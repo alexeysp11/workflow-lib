@@ -18,9 +18,9 @@ public class StartupInstance : IStartupInstance
     /// <summary>
     /// Database context.
     /// </summary>
-    private EmployeesMvcDbContext _dbContext;
+    private UbpDbContext _dbContext;
 
-    public StartupInstance(DbInitSettings settings, EmployeesMvcDbContext dbContext)
+    public StartupInstance(DbInitSettings settings, UbpDbContext dbContext)
     {
         _settings = settings;
         _dbContext = dbContext;
@@ -122,7 +122,7 @@ public class StartupInstance : IStartupInstance
     /// Apply EF Core migrations
     /// </summary>
     /// <param name="dbContext">Database context</param>
-    private static void ApplyEfCoreMigrations(EmployeesMvcDbContext dbContext)
+    private static void ApplyEfCoreMigrations(UbpDbContext dbContext)
     {
         dbContext.Database.Migrate();
     }

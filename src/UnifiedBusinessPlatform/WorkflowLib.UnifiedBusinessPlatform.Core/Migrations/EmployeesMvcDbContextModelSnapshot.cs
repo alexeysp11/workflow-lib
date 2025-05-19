@@ -10,7 +10,7 @@ using WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts;
 
 namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
 {
-    [DbContext(typeof(EmployeesMvcDbContext))]
+    [DbContext(typeof(UbpDbContext))]
     partial class EmployeesMvcDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

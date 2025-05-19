@@ -20,14 +20,14 @@ public class HrmController : Controller
     private readonly ILogger<HrmController> _logger;
     private readonly IUnitOfWork _unitOfWork;
     private readonly ICommonDataFilter _commonFilter;
-    private readonly EmployeesMvcDbContext _context;
+    private readonly UbpDbContext _context;
 
     public HrmController(
         AppSettings appSettings,
         ILogger<HrmController> logger,
         IUnitOfWork unitOfWork,
         ICommonDataFilter commonFilter,
-        EmployeesMvcDbContext context)
+        UbpDbContext context)
     {
         _appSettings = appSettings;
         _logger = logger;

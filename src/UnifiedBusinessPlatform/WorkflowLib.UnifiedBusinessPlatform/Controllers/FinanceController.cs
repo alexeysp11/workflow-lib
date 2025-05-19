@@ -17,12 +17,12 @@ public class FinanceController : Controller
 {
     private readonly AppSettings _appSettings;
     private readonly ILogger<FinanceController> _logger;
-    private readonly EmployeesMvcDbContext _context;
+    private readonly UbpDbContext _context;
 
     public FinanceController(
         AppSettings appSettings,
         ILogger<FinanceController> logger,
-        EmployeesMvcDbContext context)
+        UbpDbContext context)
     {
         _appSettings = appSettings;
         _logger = logger;

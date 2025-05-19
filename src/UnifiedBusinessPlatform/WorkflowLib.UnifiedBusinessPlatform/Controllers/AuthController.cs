@@ -12,9 +12,9 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Controllers;
 
 public class AuthController : Controller
 {
-    private readonly EmployeesMvcDbContext _context;
+    private readonly UbpDbContext _context;
 
-    public AuthController(EmployeesMvcDbContext context)
+    public AuthController(UbpDbContext context)
     {
         _context = context;
     }

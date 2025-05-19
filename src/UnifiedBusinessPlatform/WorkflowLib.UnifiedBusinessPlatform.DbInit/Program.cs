@@ -32,6 +32,6 @@ public class Program
         var appsettingsConfig = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
         var appsettings = appsettingsConfig.GetSection("DbInitSettings").Get<DbInitSettings>();
         services.AddSingleton(appsettings);
-        services.AddDbContext<EmployeesMvcDbContext>(options => options.UseNpgsql(appsettings.ConnectionString));
+        services.AddDbContext<UbpDbContext>(options => options.UseNpgsql(appsettings.ConnectionString));
     }
 }

@@ -30,7 +30,7 @@ builder.Services.AddSingleton(appsettings);
 builder.Services.AddSingleton<IUnitOfWork, UnitOfWork>();
 builder.Services.AddSingleton<DatasetGenerator>();
 builder.Services.AddTransient<ICommonDataFilter, CommonDataFilter>();
-builder.Services.AddDbContext<EmployeesMvcDbContext>(options => options.UseNpgsql(appsettings.ConnectionString));
+builder.Services.AddDbContext<UbpDbContext>(options => options.UseNpgsql(appsettings.ConnectionString));
 
 var app = builder.Build();
 

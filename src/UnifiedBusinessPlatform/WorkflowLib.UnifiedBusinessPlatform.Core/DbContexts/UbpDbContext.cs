@@ -5,9 +5,12 @@ using WorkflowLib.Shared.Models.Business.Languages;
 
 namespace WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts;
 
-public class EmployeesMvcDbContext : DbContext
+/// <summary>
+/// Database context of the UnifiedBusinessPlatform.
+/// </summary>
+public class UbpDbContext : DbContext
 {
-    public EmployeesMvcDbContext(DbContextOptions<EmployeesMvcDbContext> options) : base(options) { }
+    public UbpDbContext(DbContextOptions<UbpDbContext> options) : base(options) { }
 
     public DbSet<UserAccount> UserAccounts { get; set; }
     public DbSet<UserGroup> UserGroups { get; set; }
