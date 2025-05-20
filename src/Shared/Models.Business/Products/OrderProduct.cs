@@ -1,5 +1,6 @@
 using WorkflowLib.Shared.Models.Business;
 using WorkflowLib.Shared.Models.Business.BusinessDocuments;
+using WorkflowLib.Shared.Models.Business.Packing;
 
 namespace WorkflowLib.Shared.Models.Business.Products
 {
@@ -9,6 +10,11 @@ namespace WorkflowLib.Shared.Models.Business.Products
     public class OrderProduct : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
+        /// Code of the order product.
+        /// </summary>
+        public string? Code { get; set; }
+
+        /// <summary>
         /// Product.
         /// </summary>
         public Product? Product { get; set; }
@@ -17,6 +23,21 @@ namespace WorkflowLib.Shared.Models.Business.Products
         /// Order.
         /// </summary>
         public Order? Order { get; set; }
+        
+        /// <summary>
+        /// Container.
+        /// </summary>
+        public Container? Container { get; set; }
+        
+        /// <summary>
+        /// Tray.
+        /// </summary>
+        public Tray? Tray { get; set; }
+        
+        /// <summary>
+        /// Lot.
+        /// </summary>
+        public Lot? Lot { get; set; }
         
         /// <summary>
         /// Quantity.

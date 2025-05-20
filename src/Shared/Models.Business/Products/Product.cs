@@ -9,6 +9,11 @@ namespace WorkflowLib.Shared.Models.Business.Products
     public class Product : WfBusinessEntity, IWfBusinessEntity, ICloneable
     {
         /// <summary>
+        /// Code of the product.
+        /// </summary>
+        public string? Code { get; set; }
+
+        /// <summary>
         /// Price of the product.
         /// </summary>
         public decimal Price { get; set; }

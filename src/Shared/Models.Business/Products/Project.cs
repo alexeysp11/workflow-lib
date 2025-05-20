@@ -13,6 +13,11 @@ namespace WorkflowLib.Shared.Models.Business.Products
     public class Project : WfBusinessEntity, IWfBusinessEntity, ITemporalBusinessEntity
     {
         /// <summary>
+        /// Number of the project.
+        /// </summary>
+        public string? Number { get; set; }
+
+        /// <summary>
         /// Boolean variable that shows if the project is active.
         /// </summary>
         public bool IsActive { get; set; }

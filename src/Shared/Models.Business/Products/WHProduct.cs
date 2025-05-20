@@ -9,6 +9,11 @@ namespace WorkflowLib.Shared.Models.Business.Products
     public class WHProduct : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
+        /// Code of the warehouse product.
+        /// </summary>
+        public string? Code { get; set; }
+
+        /// <summary>
         /// Product.
         /// </summary>
         public Product? Product { get; set; }
