@@ -1,6 +1,6 @@
 using WorkflowLib.Shared.Models.Business;
 
-namespace WorkflowLib.Shared.Models.Business.Products
+namespace WorkflowLib.Shared.Models.Business.Projects
 {
     /// <summary>
     /// Project phase.

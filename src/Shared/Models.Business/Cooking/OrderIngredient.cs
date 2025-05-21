@@ -1,13 +1,12 @@
 using WorkflowLib.Shared.Models.Business;
 using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.Shared.Models.Business.Products;
 
-namespace WorkflowLib.Shared.Models.Business.Products
+namespace WorkflowLib.Shared.Models.Business.Cooking
 {
     /// <summary>
-    /// 
+    /// Order ingredient.
     /// </summary>
-    public class InitialOrderIngredient : WfBusinessEntity, IWfBusinessEntity
+    public class OrderIngredient : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Ingredient.
@@ -15,14 +14,9 @@ namespace WorkflowLib.Shared.Models.Business.Products
         public Ingredient? Ingredient { get; set; }
         
         /// <summary>
-        /// Initial order.
+        /// Order.
         /// </summary>
-        public InitialOrder? InitialOrder { get; set; }
-        
-        /// <summary>
-        /// Initial order product.
-        /// </summary>
-        public InitialOrderProduct? InitialOrderProduct { get; set; }
+        public Order? Order { get; set; }
         
         /// <summary>
         /// Quantity.

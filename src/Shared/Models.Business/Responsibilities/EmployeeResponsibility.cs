@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using WorkflowLib.Shared.Models.Business;
-using WorkflowLib.Shared.Models.Business.Products;
+using WorkflowLib.Shared.Models.Business.Projects;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
 
 namespace WorkflowLib.Shared.Models.Business.Responsibilities

@@ -1,6 +1,6 @@
 using WorkflowLib.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.Shared.Models.Business.Products
+namespace WorkflowLib.Shared.Models.Business.Projects
 {
     /// <summary>
     /// Associate table between project and employee.
