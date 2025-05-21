@@ -5,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
     /// </summary>
     public enum EmploymentContractStatus
     {
-        Active,
-        Delete
+        Active = 0,
+        Delete = 1
     }
 }

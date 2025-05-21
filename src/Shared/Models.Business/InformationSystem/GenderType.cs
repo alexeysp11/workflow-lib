@@ -5,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
     /// </summary>
     public enum GenderType
     {
-        Male,
-        Female
+        Male = 0,
+        Female = 1
     }
 }

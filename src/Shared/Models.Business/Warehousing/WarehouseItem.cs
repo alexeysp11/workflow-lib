@@ -1,22 +1,27 @@
-using System.Collections.Generic;
 using WorkflowLib.Shared.Models.Business;
+using WorkflowLib.Shared.Models.Business.Products;
 
-namespace WorkflowLib.Shared.Models.Business.Products
+namespace WorkflowLib.Shared.Models.Business.Warehousing
 {
     /// <summary>
-    /// Warehouse product.
+    /// Warehouse item.
     /// </summary>
-    public class WHProduct : WfBusinessEntity, IWfBusinessEntity, IExpirableProduct
+    public class WarehouseItem : WfBusinessEntity, IWfBusinessEntity, IExpirableProduct
     {
         /// <summary>
-        /// Code of the warehouse product.
+        /// Code of the warehouse item.
         /// </summary>
         public string? Code { get; set; }
 
         /// <summary>
-        /// Serial number of the warehouse product.
+        /// Warehouse.
         /// </summary>
-        public string? SerialNumber { get; set; }
+        public Warehouse? Warehouse { get; set; }
+
+        /// <summary>
+        /// Warehouse product.
+        /// </summary>
+        public WHProduct? WHProduct { get; set; }
 
         /// <summary>
         /// Product.
@@ -24,19 +29,9 @@ namespace WorkflowLib.Shared.Models.Business.Products
         public Product? Product { get; set; }
 
         /// <summary>
-        /// Quantity of the product.
+        /// Warehouse item status.
         /// </summary>
-        public int Quantity { get; set; }
-
-        /// <summary>
-        /// Minimal allowed quantity of the product.
-        /// </summary>
-        public int MinQuantity { get; set; }
-
-        /// <summary>
-        /// Maximal allowed quantity of the product.
-        /// </summary>
-        public int MaxQuantity { get; set; }
+        public WarehouseItemStatus WarehouseItemStatus { get; set; }
         
         /// <summary>
         /// Production date.

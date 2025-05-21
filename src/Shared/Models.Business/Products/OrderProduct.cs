@@ -7,7 +7,7 @@ namespace WorkflowLib.Shared.Models.Business.Products
     /// <summary>
     /// Order product.
     /// </summary>
-    public class OrderProduct : WfBusinessEntity, IWfBusinessEntity
+    public class OrderProduct : WfBusinessEntity, IWfBusinessEntity, IExpirableProduct
     {
         /// <summary>
         /// Code of the order product.
@@ -43,5 +43,20 @@ namespace WorkflowLib.Shared.Models.Business.Products
         /// Quantity.
         /// </summary>
         public int Quantity { get; set; }
+        
+        /// <summary>
+        /// Production date.
+        /// </summary>
+        public System.DateTime? DateProduction { get; set; }
+        
+        /// <summary>
+        /// Packaging date.
+        /// </summary>
+        public System.DateTime? DatePackaging { get; set; }
+        
+        /// <summary>
+        /// Expiration date.
+        /// </summary>
+        public System.DateTime? DateExpiration { get; set; }
     }
 }
