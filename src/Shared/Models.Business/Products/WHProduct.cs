@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using WorkflowLib.Shared.Models.Business;
+using WorkflowLib.Shared.Models.Business.MeasurementUnits;
 
 namespace WorkflowLib.Shared.Models.Business.Products
 {
     /// <summary>
-    /// Warehouse product.
+    /// Description of the product stored in the warehouse.
+    /// Includes characteristics (e.g. weight, dimensions, expiration date, manufacturer).
+    /// Necessary for product identification, management of their characteristics and traceability.
     /// </summary>
     public class WHProduct : WfBusinessEntity, IWfBusinessEntity, IExpirableProduct
     {
@@ -37,6 +40,26 @@ namespace WorkflowLib.Shared.Models.Business.Products
         /// Maximal allowed quantity of the product.
         /// </summary>
         public int MaxQuantity { get; set; }
+
+        /// <summary>
+        /// Weight of the product.
+        /// </summary>
+        public decimal? Weight { get; set; }
+
+        /// <summary>
+        /// Minimal allowed weight of the product.
+        /// </summary>
+        public decimal? MinWeight { get; set; }
+
+        /// <summary>
+        /// Maximal allowed weight of the product.
+        /// </summary>
+        public decimal? MaxWeight { get; set; }
+
+        /// <summary>
+        /// Weight unit.
+        /// </summary>
+        public WeightUnit? WeightUnit { get; set; }
         
         /// <summary>
         /// Production date.
