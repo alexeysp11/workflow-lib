@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace WorkflowLib.Shared.Models.Business.InformationSystem
 {
     /// <summary>

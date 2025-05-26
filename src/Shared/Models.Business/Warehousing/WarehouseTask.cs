@@ -1,22 +1,26 @@
-namespace WorkflowLib.Shared.Models.Business.Warehousing
+﻿namespace WorkflowLib.Shared.Models.Business.Warehousing
 {
     /// <summary>
-    /// A record of the amount of a product in a specific location.
-    /// Displays the current stock balance of the product in the warehouse.
-    /// Used for planning, control, and inventory management.
+    /// A specific task that must be completed in the warehouse (e.g., receiving goods, placing goods, assembling an order).
+    /// May be associated with the movement of goods.
     /// </summary>
-    public class StockTaking : WfBusinessEntity, IWfBusinessEntity, ITemporalBusinessEntity
+    public class WarehouseTask : WfBusinessEntity, IWfBusinessEntity, ITemporalBusinessEntity
     {
         /// <summary>
-        /// Warehouse task.
+        /// Number of the warehouse order.
         /// </summary>
-        public WarehouseTask? WarehouseTask { get; set; }
-        
+        public string Number { get; set; }
+
+        /// <summary>
+        /// Warehouse.
+        /// </summary>
+        public Warehouse? Warehouse { get; set; }
+
         /// <summary>
         /// Warehouse order type.
         /// </summary>
         public WarehouseOrder? WarehouseOrder { get; set; }
-
+        
         /// <summary>
         /// Actual start date.
         /// </summary>
