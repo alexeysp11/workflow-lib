@@ -5,15 +5,15 @@ using WorkflowLib.Shared.Models.Business.MeasurementUnits;
 namespace WorkflowLib.Shared.Models.Business.Packing
 {
     /// <summary>
-    /// A physical container in which a product is stored or moved (e.g. a box, pallet, barrel).
-    /// Can contain multiple units or batches of a product.
+    /// A small movable container, often used to store and move individual items or small batches within a warehouse. 
+    /// May be of standardized size and used in conveyor systems.
     /// </summary>
-    public class Container : WfBusinessEntity, IWfBusinessEntity
+    public class Tray : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
-        /// Serial shipping container code.
+        /// Code of the tray.
         /// </summary>
-        public string Sscc { get; set; }
+        public string Code { get; set; }
 
         /// <summary>
         /// Description of the type of packaging (e.g. box, pallet, crate).
