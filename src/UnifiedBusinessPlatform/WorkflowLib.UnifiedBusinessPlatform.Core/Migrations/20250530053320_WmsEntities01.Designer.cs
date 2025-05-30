@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts;
@@ -11,9 +12,10 @@ using WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts;
 namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
 {
     [DbContext(typeof(UbpDbContext))]
-    partial class EmployeesMvcDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250530053320_WmsEntities01")]
+    partial class WmsEntities01
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
