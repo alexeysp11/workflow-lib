@@ -1,7 +1,7 @@
 namespace WorkflowLib.Shared.Models.Business.InformationSystem
 {
     /// <summary>
-    /// Establishes a dependency between the UserAccount and UserGroup classes.
+    /// Establishes a dependency between the <see cref="UserAccount"/> and <see cref="UserGroup"/> classes.
     /// </summary>
     public class UserAccountGroup : WfBusinessEntity, IWfBusinessEntity
     {
