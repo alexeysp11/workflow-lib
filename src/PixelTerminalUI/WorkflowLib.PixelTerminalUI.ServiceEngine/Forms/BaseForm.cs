@@ -13,6 +13,9 @@ public abstract class BaseForm
     /// </summary>
     public string Name { get; set; }
 
+    /// <summary>
+    /// Menu code.
+    /// </summary>
     public string MenuCode { get; set; }
 
     /// <summary>

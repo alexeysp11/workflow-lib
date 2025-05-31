@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../WorkflowLib.PixelTerminalUI.ServiceEngine/WorkflowLib.PixelTerminalUI.ServiceEngine.csproj" />
+    <ProjectReference Include="..\WorkflowLib.PixelTerminalUI.Dal\WorkflowLib.PixelTerminalUI.Dal.csproj" />
   </ItemGroup>
 
 </Project>
