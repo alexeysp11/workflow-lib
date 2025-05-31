@@ -136,4 +136,4 @@
 
 ### Интеграция с базами данных
 
-- Для того, чтобы не создавать тестовые данные для данного приложения с нуля, можно использовать скрипты, уже созданные в рамках проекта `UnifiedBusinessPlatform`.
+- Для того, чтобы не создавать тестовые данные для данного приложения с нуля, можно использовать скрипты, уже созданные в рамках проекта `UnifiedBusinessPlatform` (см. [WorkflowLib.UnifiedBusinessPlatform.DbInit](../../UnifiedBusinessPlatform/WorkflowLib.UnifiedBusinessPlatform.DbInit)).
