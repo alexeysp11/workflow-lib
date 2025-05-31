@@ -2,6 +2,7 @@ using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
 using WorkflowLib.PixelTerminalUI.BusinessVisuals.Forms;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
 using WorkflowLib.PixelTerminalUI.Dal.Auth;
+using WorkflowLib.Shared.Models.Business.InformationSystem;
 
 namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.Auth;
 
@@ -166,7 +167,7 @@ public class frmLogin : frmTerminalBase
             // Check credentials.
             string connectionString = databaseInfo?.ConnectionString
                 ?? throw new Exception($"Connection string is not specified for the selected database: '{databaseInfo?.Index} - {databaseInfo?.Name}'");
-            var userAccount = AuthDao.GetUserAccount(connectionString, username, password);
+            UserAccount? userAccount = AuthDao.GetUserAccount(connectionString, username, password);
             if (userAccount == null)
             {
                 return false;

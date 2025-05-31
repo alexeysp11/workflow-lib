@@ -6,6 +6,13 @@ namespace WorkflowLib.PixelTerminalUI.Dal.Auth
 {
     public static class AuthDao
     {
+        /// <summary>
+        /// Get user account.
+        /// </summary>
+        /// <param name="connectionString">Connection string.</param>
+        /// <param name="username">Username</param>
+        /// <param name="password">Password</param>
+        /// <returns>Object of user account</returns>
         public static UserAccount? GetUserAccount(
             string connectionString,
             string username,
