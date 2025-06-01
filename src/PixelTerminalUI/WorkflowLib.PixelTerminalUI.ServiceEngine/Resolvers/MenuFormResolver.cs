@@ -25,6 +25,7 @@ public class MenuFormResolver
         SessionInfo.FormHeight = formHeight;
         SessionInfo.FormWidth = formWidth;
         SessionInfo.DisplayBorders = true;
+        SessionInfo.AppSettings = _appSettings;
         SessionInfo.AssignEmptyDisplayedInfo();
         return SessionInfo;
     }
