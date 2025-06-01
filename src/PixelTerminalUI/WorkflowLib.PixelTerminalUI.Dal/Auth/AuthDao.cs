@@ -4,6 +4,9 @@ using WorkflowLib.Shared.Models.Business.InformationSystem;
 
 namespace WorkflowLib.PixelTerminalUI.Dal.Auth
 {
+    /// <summary>
+    /// DAO for authentication operations.
+    /// </summary>
     public static class AuthDao
     {
         /// <summary>
