@@ -8,7 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Get configurations.
 var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production";
 var configuration = new ConfigurationBuilder().AddJsonFile($"appsettings.{environment}.json").Build();
-var appsettings = configuration.GetSection("AppSettings").Get<AppSettings>() ?? new AppSettings();
+var appsettings = configuration.GetSection("AppSettings").Get<AppSettings>()
+    ?? throw new Exception($"Could not initialize {nameof(AppSettings)}");
 
 // Add dependencies.
 builder.Services.AddSingleton(appsettings);

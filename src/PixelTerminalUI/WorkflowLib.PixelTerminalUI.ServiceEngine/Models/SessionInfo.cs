@@ -1,4 +1,5 @@
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
+using WorkflowLib.Shared.Models.Business.InformationSystem;
 
 namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
 
@@ -28,6 +29,21 @@ public class SessionInfo
     /// The currently displayed form.
     /// </summary>
     public BaseForm? CurrentForm { get; set; }
+
+    /// <summary>
+    /// Application settings.
+    /// </summary>
+    public AppSettings? AppSettings { get; set; }
+    
+    /// <summary>
+    /// Info about the database that was selected during authentication.
+    /// </summary>
+    public DatabaseInfo? DatabaseInfo { get; set; }
+
+    /// <summary>
+    /// User account that was validated during authentication.
+    /// </summary>
+    public UserAccount? UserAccount { get; set; }
 
     public void AssignEmptyDisplayedInfo(DisplayedInfoType displayedInfoType = DisplayedInfoType.Current)
     {

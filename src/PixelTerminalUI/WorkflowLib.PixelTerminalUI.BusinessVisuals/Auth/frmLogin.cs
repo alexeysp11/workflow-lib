@@ -1,20 +1,13 @@
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
 using WorkflowLib.PixelTerminalUI.BusinessVisuals.Forms;
+using WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
+using WorkflowLib.PixelTerminalUI.Dal.Auth;
+using WorkflowLib.Shared.Models.Business.InformationSystem;
 
 namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.Auth;
 
 public class frmLogin : frmTerminalBase
 {
-    /// <summary>
-    /// Information about databases.
-    /// </summary>
-    internal class DatabaseInfo
-    {
-        internal string? Name { get; set; }
-        internal string? Description { get; set; }
-        internal string? ConnectionString { get; set; }
-    }
-
     private TextControl? lblHeader;
     private TextControl? lblOperationName;
     private TextControl? lblDatabase;
@@ -24,16 +17,8 @@ public class frmLogin : frmTerminalBase
     private TextControl? lblPassword;
     private PasswordEditControl? txtPassword;
 
-    private Dictionary<int, DatabaseInfo> _databaseInfoDictionary;
-
     public frmLogin() : base()
     {
-        _databaseInfoDictionary = new Dictionary<int, DatabaseInfo>();
-        _databaseInfoDictionary.Add(0, new DatabaseInfo { Name = "IN MEMORY DB" });
-        _databaseInfoDictionary.Add(1, new DatabaseInfo { Name = "PG-01" });
-        _databaseInfoDictionary.Add(2, new DatabaseInfo { Name = "PG-02" });
-        _databaseInfoDictionary.Add(3, new DatabaseInfo { Name = "PG-03" });
-        _databaseInfoDictionary.Add(4, new DatabaseInfo { Name = "SQLITE-01" });
     }
     
     protected override void InitializeComponent()
@@ -168,6 +153,31 @@ public class frmLogin : frmTerminalBase
         {
             throw new Exception("Username and password should be specified");
         }
+
+        // Get database info.
+        int? selectedIndex = cmbDatabase?.SelectedIndexes?.FirstOrDefault()
+            ?? throw new Exception("Could not validate username and password: selected database index is not specified");
+        List<DatabaseInfo>? databaseInfoList = SessionInfo?.AppSettings?.DatabaseInfoList
+            ?? throw new Exception("Database info is not initialized");
+        DatabaseInfo? databaseInfo = databaseInfoList.FirstOrDefault(x => x.Index == selectedIndex)
+            ?? throw new Exception("Database info is not found");
+
+        if (databaseInfo.NeedConnection != false)
+        {
+            // Check credentials.
+            string connectionString = databaseInfo?.ConnectionString
+                ?? throw new Exception($"Connection string is not specified for the selected database: '{databaseInfo?.Index} - {databaseInfo?.Name}'");
+            UserAccount? userAccount = AuthDao.GetUserAccount(connectionString, username, password);
+            if (userAccount == null)
+            {
+                return false;
+            }
+
+            // Save validated info.
+            SessionInfo.UserAccount = userAccount;
+            SessionInfo.DatabaseInfo = databaseInfo;
+        }
+
         return true;
     }
 
@@ -177,12 +187,15 @@ public class frmLogin : frmTerminalBase
     /// <returns></returns>
     private Dictionary<int, string> GetDatabaseComboOptions()
     {
+        List<DatabaseInfo>? databaseInfoList = SessionInfo?.AppSettings?.DatabaseInfoList
+            ?? throw new Exception("Database info is not initialized");
+
         var result = new Dictionary<int, string>();
-        foreach (var infoKvp in _databaseInfoDictionary)
+        foreach (var databaseInfo in databaseInfoList)
         {
-            if (!string.IsNullOrEmpty(infoKvp.Value.Name))
+            if (!string.IsNullOrEmpty(databaseInfo.Name))
             {
-                result.Add(infoKvp.Key, infoKvp.Value.Name);
+                result.Add(databaseInfo.Index, databaseInfo.Name);
             }
         }
         return result;
