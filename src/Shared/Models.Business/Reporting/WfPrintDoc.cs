@@ -1,5 +1,11 @@
+using System.Data;
+using System.Text.Json;
+
 namespace WorkflowLib.Shared.Models.Business.Reporting
 {
+    /// <summary>
+    /// Export format.
+    /// </summary>
     public enum WfExportFormat
     {
         None = 0,
@@ -9,6 +15,9 @@ namespace WorkflowLib.Shared.Models.Business.Reporting
         Html = 4
     }
 
+    /// <summary>
+    /// Report status.
+    /// </summary>
     public enum WfReportStatus
     {
         None = 0,
@@ -19,6 +28,9 @@ namespace WorkflowLib.Shared.Models.Business.Reporting
         Failed = 5
     }
 
+    /// <summary>
+    /// The main object of a printed document.
+    /// </summary>
     public class WfPrintDoc : WfBusinessEntity, IWfBusinessEntity
     {
         public WfPrinter? Printer { get; set; }
@@ -42,6 +54,9 @@ namespace WorkflowLib.Shared.Models.Business.Reporting
         }
     }
 
+    /// <summary>
+    /// Report template description.
+    /// </summary>
     public class WfPrintDocLayout : WfBusinessEntity, IWfBusinessEntity
     {
         public string? Layout { get; set; }
@@ -59,35 +74,54 @@ namespace WorkflowLib.Shared.Models.Business.Reporting
         public int? BorderBottom { get; set; }
     }
 
+    /// <summary>
+    /// Printer object.
+    /// </summary>
     public class WfPrinter : WfBusinessEntity, IWfBusinessEntity
     {
-        public Location? Location { get; set; }
+        public WfPrinterLocation? PrinterLocation { get; set; }
     }
 
+    /// <summary>
+    /// Location of the printer.
+    /// </summary>
+    public class WfPrinterLocation : WfBusinessEntity, IWfBusinessEntity
+    {
+        /// <summary>
+        /// Number of the location.
+        /// </summary>
+        public string Number { get; set; }
+
+        /// <summary>
+        /// Address of the location.
+        /// </summary>
+        public string Address { get; set; }
+
+        /// <summary>
+        /// Determines whether the location is virtual.
+        /// </summary>
+        public bool IsVirtual { get; set; }
+    }
+
+    /// <summary>
+    /// Container for report data.
+    /// </summary>
     public class WfReportData
     {
-        public Guid Id { get; set; }
+        public Guid Guid { get; set; }
         public Dictionary<string, object> Parameters { get; set; }
         public DataTable DataTable { get; set; }
     }
 
+    /// <summary>
+    /// Report interface.
+    /// </summary>
     public interface IWfReport
     {
         WfPrintDoc? PrintDoc { get; set; }
 
         void Generate();
-        void Export(ExportFormat format);
+        void Export(WfExportFormat format);
         void Print();
-    }
-
-    public interface IWfPrintService
-    {
-        void PrintReport(IWfReport report);
-        void ExportReport(IWfReport report, ExportFormat format);
-    }
-
-    public interface IWfReportGenerationService
-    {
-        IWfReport GenerateReport(WfPrintDocLayout layout, WfReportData data);
     }
 }

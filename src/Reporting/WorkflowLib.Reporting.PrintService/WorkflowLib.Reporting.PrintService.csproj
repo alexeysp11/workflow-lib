@@ -10,4 +10,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../Shared/Models.Business/WorkflowLib.Shared.Models.Business.csproj" />
+  </ItemGroup>
+
 </Project>
