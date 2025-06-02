@@ -30,6 +30,6 @@
         /// <summary>
         /// Determines whether the location is virtual.
         /// </summary>
-        public bool IsVirtual { get; set; }
+        public bool? IsVirtual { get; set; }
     }
 }
