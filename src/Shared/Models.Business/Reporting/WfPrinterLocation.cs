@@ -8,7 +8,7 @@ namespace WorkflowLib.Shared.Models.Business.Reporting
         /// <summary>
         /// Number of the location.
         /// </summary>
-        public string Number { get; set; }
+        public string? Number { get; set; }
 
         /// <summary>
         /// Address of the location.
