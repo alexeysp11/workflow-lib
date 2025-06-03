@@ -26,5 +26,10 @@
         /// Zone.
         /// </summary>
         public Zone? Zone { get; set; }
+
+        /// <summary>
+        /// Determines whether the location is virtual.
+        /// </summary>
+        public bool? IsVirtual { get; set; }
     }
 }
