@@ -38,7 +38,7 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
         /// <summary>
         /// Status of the user.
         /// </summary>
-        public UserStatus Status { get; set; }
+        public UserStatus? Status { get; set; }
 
         /// <summary>
         /// Timestamp when the user was online the last time.

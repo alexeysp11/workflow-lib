@@ -162,5 +162,10 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts
         /// Cooking operations.
         /// </summary>
         public DbSet<CookingOperation> CookingOperations { get; set; }
+
+        /// <summary>
+        /// Employee user accounts.
+        /// </summary>
+        public DbSet<EmployeeUserAccount> EmployeeUserAccounts { get; set; }
     }
 }

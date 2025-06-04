@@ -8,11 +8,11 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
         /// <summary>
         /// Employee.
         /// </summary>
-        public Employee Employee { get; set; }
+        public Employee? Employee { get; set; }
 
         /// <summary>
         /// User account.
         /// </summary>
-        public UserAccount UserAccount { get; set; }
+        public UserAccount? UserAccount { get; set; }
     }
 }
