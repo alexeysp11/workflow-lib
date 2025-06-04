@@ -8,7 +8,6 @@ using WorkflowLib.Shared.Models.Business.Monetary;
 using WorkflowLib.Shared.Models.Business.Products;
 using WorkflowLib.Shared.Models.Business.Processes;
 using WorkflowLib.Shared.Models.Business.SocialCommunication;
-using WorkflowLib.ECommerce.FoodDelivery.Core.Models;
 
 namespace WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts
 {
@@ -163,15 +162,5 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts
         /// Cooking operations.
         /// </summary>
         public DbSet<CookingOperation> CookingOperations { get; set; }
-
-        /// <summary>
-        /// Model for transferring products from warehouse to kitchen.
-        /// </summary>
-        public DbSet<DeliveryWh2Kitchen> DeliveriesWh2Kitchen { get; set; }
-
-        /// <summary>
-        /// Model for transferring products from kitchen to warehouse.
-        /// </summary>
-        public DbSet<DeliveryKitchen2Wh> DeliveriesKitchen2Wh { get; set; }
     }
 }

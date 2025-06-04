@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Shared.Models.Network;
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
+using WorkflowLib.ECommerce.FoodDelivery.Core.Models;
 
 namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
 {
@@ -29,7 +29,8 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
 
             // Check if a delivery has already been made from the warehouse to the kitchen.
             // Run this step only if delivery has NOT taken place.
-            var deliveryWh2Kitchen = context.DeliveriesWh2Kitchen.FirstOrDefault();
+            var deliveryWh2Kitchen = context.DeliveryOperations
+                .FirstOrDefault(x => x.DeliveryOperationType == FoodDeliveryType.Wh2Kitchen.ToString());
             if (deliveryWh2Kitchen != null)
             {
                 return false;
