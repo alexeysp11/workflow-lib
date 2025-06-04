@@ -7,19 +7,25 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
     /// </summary>
     public enum OrderStatus
     {
+        [Display(Name = "Deleted")]
+        Deleted = -1,
+
+        [Display(Name = "None")]
+        None = 0,
+
         [Display(Name = "Requested")]
-        Requested,
+        Requested = 1,
 
         [Display(Name = "In process")]
-        InProcess,
+        InProcess = 2,
 
         [Display(Name = "Ready to deliver")]
-        ReadyToDeliver,
+        ReadyToDeliver = 3,
 
         [Display(Name = "Delivered")]
-        Delivered,
+        Delivered = 4,
 
         [Display(Name = "Finished")]
-        Finished
+        Finished = 5
     }
 }

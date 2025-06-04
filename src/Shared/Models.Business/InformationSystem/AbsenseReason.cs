@@ -7,6 +7,9 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
     /// </summary>
     public enum AbsenseReason
     {
+        [Display(Name = "Not Selected")]
+        None = -1,
+
         [Display(Name = "Skipping")]
         Skipping = 0,
 

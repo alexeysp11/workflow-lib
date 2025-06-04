@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
 {
     /// <summary>
@@ -5,7 +7,13 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
     /// </summary>
     public enum EmploymentContractStatus
     {
+        [Display(Name = "Active")]
         Active = 0,
-        Delete = 1
+
+        [Display(Name = "Delete")]
+        Delete = 1,
+
+        [Display(Name = "Pending")]
+        Pending = 2
     }
 }

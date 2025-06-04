@@ -7,34 +7,37 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
     /// </summary>
     public enum EmployeeBenefitType
     {
+        [Display(Name = "Not Selected")]
+        None = 0,
+
         [Display(Name = "Child Care")]
-        ChildCare,
+        ChildCare = 1,
 
         [Display(Name = "Health Insurance")]
-        HealthInsurance,
+        HealthInsurance = 2,
 
         [Display(Name = "Dental Insurance")]
-        DentalInsurance,
+        DentalInsurance = 3,
 
         [Display(Name = "Life Insurance")]
-        LifeInsurance,
+        LifeInsurance = 4,
 
         [Display(Name = "Retirement Plan")]
-        RetirementPlan,
+        RetirementPlan = 5,
 
         [Display(Name = "Vision Care")]
-        VisionCare,
+        VisionCare = 6,
 
         [Display(Name = "Fitness")]
-        Fitness,
+        Fitness = 7,
 
         [Display(Name = "Paid Vacation Leave")]
-        PaidVacationLeave,
+        PaidVacationLeave = 8,
 
         [Display(Name = "Personal Leave")]
-        PersonalLeave,
+        PersonalLeave = 9,
 
         [Display(Name = "Sick Leave")]
-        SickLeave
+        SickLeave = 10
     }
 }

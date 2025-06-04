@@ -5,8 +5,9 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
     /// </summary>
     public enum OrderExecutorImportance
     {
-        Responsible,
-        Signatory,
-        Executor
+        None = 0,
+        Responsible = 1,
+        Signatory = 2,
+        Executor = 3
     }
 }

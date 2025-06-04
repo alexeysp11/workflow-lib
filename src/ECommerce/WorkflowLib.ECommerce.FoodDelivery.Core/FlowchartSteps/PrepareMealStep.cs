@@ -15,7 +15,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
         /// Constructor by default.
         /// </summary>
         public PrepareMealStep(
-            DbContextOptions<DeliveringDbContext> contextOptions) 
+            DbContextOptions<DeliveringDbContext> contextOptions)
         {
             _contextOptions = contextOptions;
         }

@@ -7,88 +7,91 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
     /// </summary>
     public enum EmploymentTerminationReason
     {
+        [Display(Name = "Not Selected")]
+        None = 0,
+
         [Display(Name = "Poor Quality Of Work")]
-        PoorQualityOfWork,
+        PoorQualityOfWork = 1,
 
         [Display(Name = "Interpersonal Conflicts")]
-        InterpersonalConflicts,
+        InterpersonalConflicts = 2,
 
         [Display(Name = "Medical Reasons")]
-        MedicalReasons,
+        MedicalReasons = 3,
 
         [Display(Name = "Difficult Work Schedule/Environment")]
-        DifficultWorkScheduleEnvironment,
+        DifficultWorkScheduleEnvironment = 4,
 
         [Display(Name = "Difficult Work Schedule/Environment")]
-        JobDissatisfaction,
+        JobDissatisfaction = 5,
 
         [Display(Name = "Mental Illness")]
-        MentalIllness,
+        MentalIllness = 6,
 
         [Display(Name = "Performance")]
-        Performance,
+        Performance = 7,
 
         [Display(Name = "Dependability")]
-        Dependability,
+        Dependability = 8,
 
         [Display(Name = "Transportation Issue")]
-        TransportationIssue,
+        TransportationIssue = 9,
 
         [Display(Name = "Begin A New Job")]
-        BeginNewJob,
+        BeginNewJob = 10,
 
         [Display(Name = "Family Issues")]
-        FamilyIssues,
+        FamilyIssues = 11,
 
         [Display(Name = "Low Salary")]
-        LowSalary,
+        LowSalary = 12,
 
         [Display(Name = "Fear")]
-        Fear,
+        Fear = 13,
 
         [Display(Name = "Lack Supervision")]
-        LackSupervision,
+        LackSupervision = 14,
 
         [Display(Name = "Substance Abuse")]
-        SubstanceAbuse,
+        SubstanceAbuse = 15,
 
         [Display(Name = "Mutual Agreement")]
-        MutualAgreement,
+        MutualAgreement = 16,
 
         [Display(Name = "Layoff")]
-        Layoff,
+        Layoff = 17,
 
         [Display(Name = "Furlough")]
-        Furlough,
+        Furlough = 18,
 
         [Display(Name = "Job Elimination")]
-        JobElimination,
+        JobElimination = 19,
 
         [Display(Name = "Reduction In Force")]
-        ReductionInForce,
+        ReductionInForce = 20,
 
         [Display(Name = "Retirement")]
-        Retirement,
+        Retirement = 21,
 
         [Display(Name = "Lockout")]
-        Lockout,
+        Lockout = 22,
 
         [Display(Name = "Expired Employment Contract")]
-        ExpiredEmploymentContract,
+        ExpiredEmploymentContract = 23,
 
         [Display(Name = "End Of Seasonal Employment")]
-        EndOfSeasonalEmployment,
+        EndOfSeasonalEmployment = 24,
 
         [Display(Name = "Military Call-Up")]
-        MilitaryCallUp,
+        MilitaryCallUp = 25,
 
         [Display(Name = "Job Abondonment")]
-        JobAbondonment,
+        JobAbondonment = 26,
 
         [Display(Name = "Employee Initiated Strike")]
-        EmployeeInitiatedStrike,
+        EmployeeInitiatedStrike = 27,
 
         [Display(Name = "Other Reasons")]
-        OtherReasons
+        OtherReasons = 28
     }
 }
