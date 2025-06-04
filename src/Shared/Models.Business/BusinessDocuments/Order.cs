@@ -70,6 +70,7 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
         /// <summary>
         /// Payments made within the order.
         /// </summary>
+        [Obsolete("It's better to use OrderPayment object")]
         public ICollection<Payment> Payments { get; set; }
         
         /// <summary>

@@ -16,21 +16,25 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
         /// <summary>
         /// Customers.
         /// </summary>
-        public ICollection<Customer> Customers { get; private set; }
+        [Obsolete("It's better to use CustomerContract object")]
+        public ICollection<Customer> Customers { get; set; }
 
         /// <summary>
         /// Our employees.
         /// </summary>
-        public ICollection<Employee> OurEmployees { get; private set; }
+        [Obsolete("It's better to use EmployeeContract object")]
+        public ICollection<Employee> OurEmployees { get; set; }
 
         /// <summary>
         /// Companies that could be considered as customers.
         /// </summary>
-        public ICollection<Company> CustomerCompanies { get; private set; }
+        [Obsolete("It's better to use CompanyContract object")]
+        public ICollection<Company> CustomerCompanies { get; set; }
 
         /// <summary>
         /// Our organizations.
         /// </summary>
-        public ICollection<Organization> OurOrganizations { get; private set; }
+        [Obsolete("It's better to use OrganizationContract object")]
+        public ICollection<Organization> OurOrganizations { get; set; }
     }
 }

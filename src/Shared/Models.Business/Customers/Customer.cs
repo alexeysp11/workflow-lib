@@ -51,6 +51,7 @@ namespace WorkflowLib.Shared.Models.Business.Customers
         /// <summary>
         /// Contracts.
         /// </summary>
+        [Obsolete("It's better to use CustomerContract object")]
         public ICollection<Contract> Contracts { get; private set; }
     }
 }

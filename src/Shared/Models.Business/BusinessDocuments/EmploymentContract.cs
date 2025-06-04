@@ -48,16 +48,19 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
         /// <summary>
         /// Employee responsibilities.
         /// </summary>
+        [Obsolete("It's better to use EmploymentContractResponsibility object")]
         public ICollection<EmployeeResponsibility> EmployeeResponsibilities { get; set; }
 
         /// <summary>
         /// Employer responsibilities.
         /// </summary>
+        [Obsolete("It's better to use EmploymentContractResponsibility object")]
         public ICollection<EmployerResponsibility> EmployerResponsibilities { get; set; }
         
         /// <summary>
         /// Employee benifits.
         /// </summary>
+        [Obsolete("It's better to use EmploymentContractBenefit object")]
         public ICollection<EmployeeBenefit> EmployeeBenifits { get; set; }
         
         /// <summary>
@@ -73,15 +76,15 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
         /// <summary>
         /// Status of the employment contract.
         /// </summary>
-        public EmploymentContractStatus Status { get; set; }
+        public EmploymentContractStatus? Status { get; set; }
 
         /// <summary>
-        /// Internal termination reasons.
+        /// Internal termination reason.
         /// </summary>
-        public ICollection<EmploymentTerminationReason> InternalTerminationReasons { get; set; }
+        public EmploymentTerminationReason? InternalTerminationReason { get; set; }
 
         /// <summary>
-        /// Official termination reasons.
+        /// Official termination reason.
         /// </summary>
         public EmploymentTerminationReason? OfficialTerminationReason { get; set; }
         

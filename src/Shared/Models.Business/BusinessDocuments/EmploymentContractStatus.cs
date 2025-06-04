@@ -7,6 +7,9 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
     /// </summary>
     public enum EmploymentContractStatus
     {
+        [Display(Name = "Not Selected")]
+        None = -1,
+
         [Display(Name = "Active")]
         Active = 0,
 

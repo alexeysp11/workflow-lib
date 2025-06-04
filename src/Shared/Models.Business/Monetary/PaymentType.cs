@@ -7,10 +7,13 @@ namespace WorkflowLib.Shared.Models.Business.Monetary
     /// </summary>
     public enum PaymentType
     {
+        [Display(Name = "Not Selected")]
+        None = -1,
+
         [Display(Name = "Card")]
-        Card,
+        Card = 0,
 
         [Display(Name = "QR code")]
-        QrCode
+        QrCode = 1
     }
 }

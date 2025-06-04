@@ -70,15 +70,17 @@ namespace WorkflowLib.Shared.Models.Business.Processes
         /// Business process state.
         /// </summary>
         public BusinessProcessState? BusinessProcessState { get; set; }
-        
+
         /// <summary>
         /// Collection of risks related to the business task.
         /// </summary>
+        [Obsolete("It's better to use BusinessTaskRisk object")]
         public ICollection<Risk> Risks { get; set; }
 
         /// <summary>
         /// Collection of comments associated with the task.
         /// </summary>
+        [Obsolete("It's better to use BusinessTaskComment object")]
         public ICollection<Comment> Comments { get; set; }
 
         /// <summary>

@@ -3,6 +3,7 @@ using WorkflowLib.Shared.Models.Business.BusinessDocuments;
 using WorkflowLib.Shared.Models.Business.Monetary;
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
 using WorkflowLib.Extensions;
+using WorkflowLib.Shared.Models.Business.Customers;
 
 namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
 {
@@ -32,13 +33,13 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
             System.Console.WriteLine("MakeOrderStep.Start: begin");
             
             using var context = new FoodDeliveryDbContext(_contextOptions);
-            
-            var customer = context.Customers.Include(x => x.UserAccount).FirstOrDefault(x => x.UserAccount != null);
+
+            Customer? customer = context.Customers.Include(x => x.UserAccount).FirstOrDefault(x => x.UserAccount != null);
             if (customer == null)
                 throw new System.Exception("Specified customer does not exist in the database");
             if (customer.UserAccount == null)
                 throw new System.Exception("Specified user account does not exist in the database");
-            var productIds = context.Products.Take(3).Select(x => x.Id).ToList();
+            List<long> productIds = context.Products.Take(3).Select(x => x.Id).ToList();
             
             var model = new InitialOrder()
             {
@@ -55,7 +56,6 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
             //{
             //    RequestObject = model
             //});
-            
             //System.Console.WriteLine($"response: {response}");
             System.Console.WriteLine("MakeOrderStep.Start: end");
             

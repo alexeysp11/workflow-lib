@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Shared.CodeExte
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.ECommerce.FoodDelivery.WebApi", "WorkflowLib.ECommerce.FoodDelivery.WebApi\WorkflowLib.ECommerce.FoodDelivery.WebApi.csproj", "{20B3EAD7-E193-4339-A740-B3E6E03764C4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{3A4ED49D-0720-6A96-1D9D-F327394D687B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A4ED49D-0720-6A96-1D9D-F327394D687B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A4ED49D-0720-6A96-1D9D-F327394D687B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20B3EAD7-E193-4339-A740-B3E6E03764C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20B3EAD7-E193-4339-A740-B3E6E03764C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20B3EAD7-E193-4339-A740-B3E6E03764C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20B3EAD7-E193-4339-A740-B3E6E03764C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

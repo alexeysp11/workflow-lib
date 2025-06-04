@@ -39,7 +39,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
             
             System.Console.WriteLine("ConfirmStore2WhStep.Start: begin");
 
-            // Unload a delivery order that has a parent and is an internal delivery order.
+            // Get a delivery order that has a parent and is an internal delivery order.
             var deliveryOrder = context.DeliveryOrders
                 .FirstOrDefault(x => x.ParentDeliveryOrder != null 
                     && x.OrderExecutorType == OrderExecutorType.Employee
