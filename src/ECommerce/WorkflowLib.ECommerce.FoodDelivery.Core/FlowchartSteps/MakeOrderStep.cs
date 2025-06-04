@@ -11,14 +11,14 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
     /// </summary>
     public class MakeOrderStep : IFlowchartStep
     {
-        private DbContextOptions<DeliveringDbContext> _contextOptions { get; set; }
+        private DbContextOptions<FoodDeliveryDbContext> _contextOptions { get; set; }
         //private CustomerClientController _customerClientController { get; set; }
 
         /// <summary>
         /// Constructor by default.
         /// </summary>
         public MakeOrderStep(
-            DbContextOptions<DeliveringDbContext> contextOptions)
+            DbContextOptions<FoodDeliveryDbContext> contextOptions)
         {
             _contextOptions = contextOptions;
             //_customerClientController = customerClientController;
@@ -31,7 +31,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
         {
             System.Console.WriteLine("MakeOrderStep.Start: begin");
             
-            using var context = new DeliveringDbContext(_contextOptions);
+            using var context = new FoodDeliveryDbContext(_contextOptions);
             
             var customer = context.Customers.Include(x => x.UserAccount).FirstOrDefault(x => x.UserAccount != null);
             if (customer == null)

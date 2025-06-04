@@ -11,13 +11,13 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
     /// </summary>
     public class ConfirmStore2WhStep : IFlowchartStep
     {
-        private DbContextOptions<DeliveringDbContext> _contextOptions { get; set; }
+        private DbContextOptions<FoodDeliveryDbContext> _contextOptions { get; set; }
 
         /// <summary>
         /// Constructor by default.
         /// </summary>
         public ConfirmStore2WhStep(
-            DbContextOptions<DeliveringDbContext> contextOptions)
+            DbContextOptions<FoodDeliveryDbContext> contextOptions)
         {
             _contextOptions = contextOptions;
         }
@@ -27,7 +27,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
         /// </summary>
         public bool Start()
         {
-            using var context = new DeliveringDbContext(_contextOptions);
+            using var context = new FoodDeliveryDbContext(_contextOptions);
             
             // Check if a delivery has already been made from the warehouse to the kitchen.
             // Run this step only if delivery has NOT taken place.

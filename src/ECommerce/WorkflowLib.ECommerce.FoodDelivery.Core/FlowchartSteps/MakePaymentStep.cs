@@ -10,14 +10,14 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
     /// </summary>
     public class MakePaymentStep : IFlowchartStep
     {
-        private DbContextOptions<DeliveringDbContext> _contextOptions { get; set; }
+        private DbContextOptions<FoodDeliveryDbContext> _contextOptions { get; set; }
         //private CustomerClientController _customerClientController { get; set; }
 
         /// <summary>
         /// Constructor by default.
         /// </summary>
         public MakePaymentStep(
-            DbContextOptions<DeliveringDbContext> contextOptions)
+            DbContextOptions<FoodDeliveryDbContext> contextOptions)
         {
             _contextOptions = contextOptions;
             //_customerClientController = customerClientController;
@@ -30,7 +30,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
         {
             System.Console.WriteLine("MakePaymentStep.Start: begin");
             
-            using var context = new DeliveringDbContext(_contextOptions);
+            using var context = new FoodDeliveryDbContext(_contextOptions);
 
             // Check integrity of data.
             var payment = context.Payments.FirstOrDefault();

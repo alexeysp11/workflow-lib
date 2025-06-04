@@ -8,13 +8,13 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
     /// </summary>
     public class Kitchen2WhStep : IFlowchartStep
     {
-        private DbContextOptions<DeliveringDbContext> _contextOptions { get; set; }
+        private DbContextOptions<FoodDeliveryDbContext> _contextOptions { get; set; }
 
         /// <summary>
         /// Constructor by default.
         /// </summary>
         public Kitchen2WhStep(
-            DbContextOptions<DeliveringDbContext> contextOptions)
+            DbContextOptions<FoodDeliveryDbContext> contextOptions)
         {
             _contextOptions = contextOptions;
         }
@@ -26,7 +26,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
         {
             System.Console.WriteLine("Kitchen2WhStep.Start: begin");
 
-            using var context = new DeliveringDbContext(_contextOptions);
+            using var context = new FoodDeliveryDbContext(_contextOptions);
             
             // Unload a delivery order that has a parent and is an internal delivery order.
             var model = context.DeliveryOrders.FirstOrDefault(x => x.ParentDeliveryOrder == null);

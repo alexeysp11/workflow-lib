@@ -15,9 +15,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts
     /// <summary>
     /// Database context that allows you to work with entities from the database and store them as regular collections.
     /// </summary>
-    public class DeliveringDbContext : DbContext
+    public class FoodDeliveryDbContext : DbContext
     {
-        public DeliveringDbContext(DbContextOptions<DeliveringDbContext> options) : base(options) { }
+        public FoodDeliveryDbContext(DbContextOptions<FoodDeliveryDbContext> options) : base(options) { }
 
         /// <summary>
         /// User accounts.
