@@ -45,7 +45,7 @@ namespace WorkflowLib.Shared.Models.Business.Products
         /// <summary>
         /// Date.
         /// </summary>
-        public System.DateTime? Date { get; set; }
+        public DateTime? Date { get; set; }
         
         /// <summary>
         /// Old quantity.

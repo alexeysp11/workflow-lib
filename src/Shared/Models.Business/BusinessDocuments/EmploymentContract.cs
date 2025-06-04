@@ -11,11 +11,6 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
     public class EmploymentContract : WfBusinessEntity, IWfBusinessEntity, ITemporalBusinessEntity
     {
         /// <summary>
-        /// Contract ID.
-        /// </summary>
-        public long ContractId { get; set; }
-
-        /// <summary>
         /// Contract.
         /// </summary>
         public Contract? Contract { get; set; }
@@ -23,7 +18,7 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
         /// <summary>
         /// Employment contract type.
         /// </summary>
-        public EmploymentContractType EmploymentContractType { get; set; }
+        public EmploymentContractType? EmploymentContractType { get; set; }
 
         /// <summary>
         /// Expired employment contract.
@@ -91,21 +86,21 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
         /// <summary>
         /// Actual start date.
         /// </summary>
-        public System.DateTime? DateStartActual { get; set; }
+        public DateTime? DateStartActual { get; set; }
         
         /// <summary>
         /// Actual end date.
         /// </summary>
-        public System.DateTime? DateEndActual { get; set; }
+        public DateTime? DateEndActual { get; set; }
         
         /// <summary>
         /// Expected start date.
         /// </summary>
-        public System.DateTime? DateStartExpected { get; set; }
+        public DateTime? DateStartExpected { get; set; }
         
         /// <summary>
         /// Expected end date.
         /// </summary>
-        public System.DateTime? DateEndExpected { get; set; }
+        public DateTime? DateEndExpected { get; set; }
     }
 }

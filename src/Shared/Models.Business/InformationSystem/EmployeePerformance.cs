@@ -23,6 +23,6 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
         /// <summary>
         /// Performance date.
         /// </summary>
-        public System.DateTime PerformanceDate { get; set; }
+        public DateTime PerformanceDate { get; set; }
     }
 }

@@ -43,6 +43,6 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
         /// <summary>
         /// Timestamp when the user was online the last time.
         /// </summary>
-        public System.DateTime? LastSeenDt { get; set; }
+        public DateTime? LastSeenDt { get; set; }
     }
 }

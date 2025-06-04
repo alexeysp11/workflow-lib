@@ -30,7 +30,7 @@ namespace WorkflowLib.Shared.Models.Business.Monetary
         /// <summary>
         /// Date of the payment.
         /// </summary>
-        public System.DateTime? Date { get; private set; }
+        public DateTime? Date { get; private set; }
 
         /// <summary>
         /// Payment type.

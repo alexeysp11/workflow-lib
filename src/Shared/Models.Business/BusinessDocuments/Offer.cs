@@ -35,17 +35,17 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
         /// <summary>
         /// 
         /// </summary>
-        public System.DateTime? DateLastRevised { get; private set; }
+        public DateTime? DateLastRevised { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public System.DateTime? DateApproved { get; private set; }
+        public DateTime? DateApproved { get; private set; }
 
         /// <summary>
         /// Date the business entity was sent.
         /// </summary>
-        public System.DateTime? DateSent { get; set; }
+        public DateTime? DateSent { get; set; }
 
         /// <summary>
         /// 

@@ -8,6 +8,6 @@ namespace WorkflowLib.Shared.Models.Business
         /// <summary>
         /// Date the business entity was sent.
         /// </summary>
-        System.DateTime? DateSent { get; set; }
+        DateTime? DateSent { get; set; }
     }
 }

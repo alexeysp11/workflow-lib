@@ -48,7 +48,7 @@ namespace WorkflowLib.Shared.Models.Business.SocialCommunication
         /// <summary>
         /// Date the business entity was sent.
         /// </summary>
-        public System.DateTime? DateSent { get; set; }
+        public DateTime? DateSent { get; set; }
 
         /// <summary>
         /// Sender ID.
@@ -63,7 +63,7 @@ namespace WorkflowLib.Shared.Models.Business.SocialCommunication
         /// <summary>
         /// Date the business entity was received.
         /// </summary>
-        public System.DateTime? DateReceived { get; set; }
+        public DateTime? DateReceived { get; set; }
         
         /// <summary>
         /// Collection of recipient IDs.

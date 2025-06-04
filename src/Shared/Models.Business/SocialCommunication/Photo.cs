@@ -12,7 +12,7 @@ namespace WorkflowLib.Shared.Models.Business.SocialCommunication
         /// <summary>
         /// Date added.
         /// </summary>
-        public System.DateTime DateAdded { get; set; }
+        public DateTime DateAdded { get; set; }
         
         /// <summary>
         /// Boolean variable that shows whether this is a main photo of the user account.

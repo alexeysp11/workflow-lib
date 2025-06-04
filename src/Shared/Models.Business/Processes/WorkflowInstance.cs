@@ -25,22 +25,22 @@ namespace WorkflowLib.Shared.Models.Business.Processes
         /// <summary>
         /// Actual start date.
         /// </summary>
-        public System.DateTime? DateStartActual { get; set; }
+        public DateTime? DateStartActual { get; set; }
         
         /// <summary>
         /// Actual end date.
         /// </summary>
-        public System.DateTime? DateEndActual { get; set; }
+        public DateTime? DateEndActual { get; set; }
         
         /// <summary>
         /// Expected start date.
         /// </summary>
-        public System.DateTime? DateStartExpected { get; set; }
+        public DateTime? DateStartExpected { get; set; }
         
         /// <summary>
         /// Expected end date.
         /// </summary>
-        public System.DateTime? DateEndExpected { get; set; }
+        public DateTime? DateEndExpected { get; set; }
 
         /// <summary>
         /// Initiator.

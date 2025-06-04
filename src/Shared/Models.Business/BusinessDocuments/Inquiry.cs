@@ -11,12 +11,12 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
         /// <summary>
         /// Timestamp when the inquiry was closed.
         /// </summary>
-        public System.DateTime? DateClosed { get; private set; }
+        public DateTime? DateClosed { get; private set; }
 
         /// <summary>
         /// Date the business entity was received.
         /// </summary>
-        public System.DateTime? DateReceived { get; set; }
+        public DateTime? DateReceived { get; set; }
 
         /// <summary>
         /// 

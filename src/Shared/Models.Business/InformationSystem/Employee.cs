@@ -56,12 +56,12 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
         /// <summary>
         /// Bith date of the employee.
         /// </summary>
-        public System.DateTime? BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
 
         /// <summary>
         /// Employment date.
         /// </summary>
-        public System.DateTime? EmployDate { get; set; }
+        public DateTime? EmployDate { get; set; }
 
         /// <summary>
         /// Companies related to the employee.

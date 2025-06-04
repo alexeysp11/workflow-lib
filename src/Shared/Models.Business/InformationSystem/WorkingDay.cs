@@ -10,7 +10,7 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
         /// <summary>
         /// Date.
         /// </summary>
-        public System.DateTime? Date { get; set; }
+        public DateTime? Date { get; set; }
 
         /// <summary>
         /// Working day option.

@@ -10,7 +10,7 @@ namespace WorkflowLib.Shared.Models.Business.SocialCommunication
         /// <summary>
         /// 
         /// </summary>
-        public System.DateTime? Date { get; set; }
+        public DateTime? Date { get; set; }
 
         /// <summary>
         /// 
