@@ -8,7 +8,6 @@ namespace WorkflowLib.Shared.Models.Network
     /// </summary>
     public class ApiOperation
     {
-        #region Validating endpoint applications
         /// <summary>
         /// Client application UID.
         /// </summary>
@@ -23,9 +22,7 @@ namespace WorkflowLib.Shared.Models.Network
         /// Application UID, to which the request will be redirected.
         /// </summary>
         public string RedirectToAppUid { get; set; }
-        #endregion  // Validating endpoint applications
         
-        #region Method names
         /// <summary>
         /// Name of the method that should be executed to perform the operation.
         /// </summary>
@@ -36,9 +33,7 @@ namespace WorkflowLib.Shared.Models.Network
         /// (contextual name of the operation, e.g. "adding two values").
         /// </summary>
         public string MethodDescription { get; set; }
-        #endregion  // Method names
 
-        #region Messages between client and server 
         /// <summary>
         /// String representation of JSON object that is sent as a request to the server.
         /// </summary>
@@ -73,7 +68,6 @@ namespace WorkflowLib.Shared.Models.Network
         /// Additional information about the status of the operation.
         /// </summary>
         public string StatusDescription { get; set; }
-        #endregion  // Messages between client and server 
 
         /// <summary>
         /// Start time of the operation.

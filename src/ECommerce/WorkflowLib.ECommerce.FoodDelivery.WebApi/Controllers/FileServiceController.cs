@@ -18,7 +18,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             try
             {
                 // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
+                InitialOrder? model = apiOperation.RequestObject as InitialOrder;
                 
                 // Update DB.
                 System.Console.WriteLine("FileServiceController.GenerateQrCode: cache");
