@@ -1,13 +1,29 @@
+using Microsoft.EntityFrameworkCore;
+using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
+using WorkflowLib.ECommerce.FoodDelivery.Core.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Get configurations.
+var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production";
+var configuration = new ConfigurationBuilder().AddJsonFile($"appsettings.{environment}.json").Build();
+var appsettings = configuration.GetSection("AppSettings").Get<AppSettings>()
+    ?? throw new Exception($"Cannot start the application: '{nameof(AppSettings)}' section is not specified in the config file");
+if (string.IsNullOrEmpty(appsettings.ConnectionString))
+{
+    throw new Exception($"Cannot start the application: connection string is not initialized");
+}
 
+// Add services to the container.
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+// Add dependencies.
+builder.Services.AddSingleton(appsettings);
+builder.Services.AddDbContext<FoodDeliveryDbContext>(options => options.UseNpgsql(appsettings.ConnectionString));
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
