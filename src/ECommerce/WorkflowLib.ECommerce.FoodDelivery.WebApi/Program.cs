@@ -19,11 +19,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
-
 // Add dependencies.
 builder.Services.AddSingleton(appsettings);
 builder.Services.AddDbContext<FoodDeliveryDbContext>(options => options.UseNpgsql(appsettings.ConnectionString));
+
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
