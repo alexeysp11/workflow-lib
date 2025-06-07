@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Shared.Models.Network;
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
+using WorkflowLib.Shared.Models.Business.BusinessDocuments;
+using WorkflowLib.ECommerce.FoodDelivery.Core.Dal;
 
 namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
 {
@@ -30,14 +32,14 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
             using var context = new FoodDeliveryDbContext(_contextOptions);
 
             // Unload a delivery order that has a parent and is an internal delivery order.
-            var model = context.DeliveryOrders.FirstOrDefault(x => x.ParentDeliveryOrder == null);
-            if (model == null)
+            DeliveryOrder? devileryOrder = FoodDeliveryDao.GetDeliveryOrderByNumber(context, "");
+            if (devileryOrder == null)
                 throw new System.Exception("Delivery order could not be null");
 
             // 
             //string response = new WarehouseClientController(_contextOptions).Wh2KitchenExecute(new ApiOperation
             //{
-            //    RequestObject = model
+            //    RequestObject = devileryOrder
             //});
             //System.Console.WriteLine($"response: {response}");
             System.Console.WriteLine("Wh2KitchenStep.Start: end");

@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Extensions;
 using WorkflowLib.Shared.Models.Business.Monetary;
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
+using WorkflowLib.Shared.Models.Business.BusinessDocuments;
 
 namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
 {
@@ -33,10 +34,10 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
             using var context = new FoodDeliveryDbContext(_contextOptions);
 
             // Check integrity of data.
-            var payment = context.Payments.FirstOrDefault();
+            Payment? payment = context.Payments.FirstOrDefault();
             if (payment == null)
                 throw new System.Exception("Payment could not be found in the database");
-            var deliveryOrder = context.DeliveryOrders.FirstOrDefault();
+            DeliveryOrder? deliveryOrder = context.DeliveryOrders.FirstOrDefault();
             if (deliveryOrder == null 
                 || (deliveryOrder != null && deliveryOrder.Payments == null) 
                 || (deliveryOrder != null && deliveryOrder.Payments != null && !deliveryOrder.Payments.Contains(payment)))

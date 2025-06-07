@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using WorkflowLib.ECommerce.FoodDelivery.Core.Dal;
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
 using WorkflowLib.ECommerce.FoodDelivery.Core.Models;
 
@@ -29,8 +30,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
 
             // Check if a delivery has already been made from the warehouse to the kitchen.
             // Run this step only if delivery has NOT taken place.
-            var deliveryWh2Kitchen = context.DeliveryOperations
-                .FirstOrDefault(x => x.DeliveryOperationType == FoodDeliveryType.Wh2Kitchen.ToString());
+            var deliveryWh2Kitchen = FoodDeliveryDao.GetDeliveryOperation(context, FoodDeliveryType.Wh2Kitchen.ToString());
             if (deliveryWh2Kitchen != null)
             {
                 return false;
@@ -40,9 +40,10 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
 
             // When a warehouse employee receives a BusinessTask to request a delivery from the store to the warehouse, 
             // his active tasks are simply downloaded to them.
-            // When a warehouse employee on the client "closes" the BusinessTask task to request delivery from the store to the warehouse, 
-            // the DeliveryOrder object is passed to the backend.
-            var model = context.DeliveryOrders.FirstOrDefault(x => x.ParentDeliveryOrder != null);
+            // When a warehouse employee on the client "closes" the BusinessTask task to request delivery from the store
+            // to the warehouse, the DeliveryOrder object is passed to the backend.
+            var model = FoodDeliveryDao.GetDeliveryOrderByNumber(context, "");
+            
             //string response = new WarehouseClientController(_contextOptions).RequestStore2WhRespond(new ApiOperation
             //{
             //    RequestObject = model

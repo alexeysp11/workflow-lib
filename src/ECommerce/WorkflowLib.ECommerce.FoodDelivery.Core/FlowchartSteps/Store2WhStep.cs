@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
 using WorkflowLib.Shared.Models.Business.BusinessDocuments;
 using WorkflowLib.ECommerce.FoodDelivery.Core.Models;
+using WorkflowLib.ECommerce.FoodDelivery.Core.Dal;
 
 namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
 {
@@ -27,11 +28,10 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
         public bool Start()
         {
             using var context = new FoodDeliveryDbContext(_contextOptions);
-            
+
             // Check if a delivery has already been made from the warehouse to the kitchen.
             // Run this step only if delivery has NOT taken place.
-            var deliveryWh2Kitchen = context.DeliveryOperations
-                .FirstOrDefault(x => x.DeliveryOperationType == FoodDeliveryType.Wh2Kitchen.ToString());
+            var deliveryWh2Kitchen = FoodDeliveryDao.GetDeliveryOperation(context, FoodDeliveryType.Wh2Kitchen.ToString());
             if (deliveryWh2Kitchen != null)
             {
                 return false;
@@ -47,22 +47,20 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
             // Check whether there were enough ingredients in the order preprocessing step.
 
             // Unload a delivery order that has a parent and is an internal delivery order.
-            DeliveryOrder? model = context.DeliveryOrders
-                .FirstOrDefault(x => x.ParentDeliveryOrder != null 
-                    && x.OrderExecutorType == OrderExecutorType.Employee
-                    && x.OrderCustomerType == OrderCustomerType.Employee);
-            if (model == null)
+            DeliveryOrder? deliveryOrder = FoodDeliveryDao.GetInternalDeliveryOrder(context);
+            if (deliveryOrder == null)
+            {
                 throw new System.Exception("Delivery order could not be null");
+            }
             
             // For the received order, you need to set prices for products and attach a photo/scan of the receipt to the task 
             // (the last one has not yet been implemented).
-            var totalPrice = context.DeliveryOrderProducts
-                .Where(x => x.DeliveryOrder.Id == model.Id)
-                .Sum(x => (float)x.Product.Price * x.Quantity);
-            if (totalPrice == null)
+            float? totalPrice = FoodDeliveryDao.GetDeliveryOrderTotalPrice(context, deliveryOrder.Id);
+            if (!totalPrice.HasValue)
+            {
                 throw new System.Exception("Calculated total price of the products within the delivery order could not be null");
-            model.ProductsPrice = (decimal)totalPrice;
-            context.SaveChanges();
+            }
+            FoodDeliveryDao.UpdateDeliveryOrderTotalPrice(context, deliveryOrder, (decimal)totalPrice);
 
             // 
             //string response = new CourierClientController(_contextOptions).Store2WhExecute(new ApiOperation
