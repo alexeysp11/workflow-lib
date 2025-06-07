@@ -8,6 +8,8 @@ using WorkflowLib.Shared.Models.Business.Monetary;
 using WorkflowLib.Shared.Models.Business.Products;
 using WorkflowLib.Shared.Models.Business.Processes;
 using WorkflowLib.Shared.Models.Business.SocialCommunication;
+using WorkflowLib.Shared.Models.Business.Packing;
+using WorkflowLib.Shared.Models.Business.MeasurementUnits;
 
 namespace WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts
 {
@@ -64,6 +66,26 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts
         public DbSet<BusinessTask> BusinessTasks { get; set; }
 
         /// <summary>
+        /// Business diagrams.
+        /// </summary>
+        public DbSet<BusinessDiagram> BusinessDiagrams { get; set; }
+
+        /// <summary>
+        /// Business diagram elements.
+        /// </summary>
+        public DbSet<BusinessDiagramElement> BusinessDiagramElements { get; set; }
+
+        /// <summary>
+        /// Business processes.
+        /// </summary>
+        public DbSet<BusinessProcess> BusinessProcesses { get; set; }
+
+        /// <summary>
+        /// Business process states.
+        /// </summary>
+        public DbSet<BusinessProcessState> BusinessProcessStates { get; set; }
+
+        /// <summary>
         /// Comments.
         /// </summary>
         public DbSet<Comment> Comments { get; set; }
@@ -112,6 +134,36 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts
         /// Delivery methods.
         /// </summary>
         public DbSet<DeliveryMethod> DeliveryMethods { get; set; }
+
+        /// <summary>
+        /// Containers.
+        /// </summary>
+        public DbSet<Container> Containers { get; set; }
+
+        /// <summary>
+        /// Lots.
+        /// </summary>
+        public DbSet<Lot> Lots { get; set; }
+
+        /// <summary>
+        /// Trays.
+        /// </summary>
+        public DbSet<Tray> Trays { get; set; }
+
+        /// <summary>
+        /// Pack types.
+        /// </summary>
+        public DbSet<PackType> PackTypes { get; set; }
+
+        /// <summary>
+        /// Pack type materials.
+        /// </summary>
+        public DbSet<PackTypeMaterial> PackTypeMaterials { get; set; }
+
+        /// <summary>
+        /// Weight units.
+        /// </summary>
+        public DbSet<WeightUnit> WeightUnits { get; set; }
 
         /// <summary>
         /// Payments.
