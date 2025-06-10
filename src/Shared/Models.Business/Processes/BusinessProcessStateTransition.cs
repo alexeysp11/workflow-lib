@@ -5,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.Processes
     /// <summary>
     /// Represents a transition between states of a business process with workflow functionality.
     /// </summary>
-    public class BusinessProcessStateTransition : BusinessEntityWF, IBusinessEntityWF
+    public class BusinessProcessStateTransition : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Gets or sets the associated business process.

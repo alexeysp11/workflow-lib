@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using WorkflowLib.Shared.Models.Business;
 
 namespace WorkflowLib.Shared.Models.Business.Delivery
 {

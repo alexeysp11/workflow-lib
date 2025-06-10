@@ -1,11 +1,9 @@
-using WorkflowLib.Shared.Models.Business;
-
 namespace WorkflowLib.Shared.Models.Business.Delivery
 {
     /// <summary>
     /// Delivery method
     /// </summary>
-    public class DeliveryMethod : BusinessEntityWF, IBusinessEntityWF
+    public class DeliveryMethod : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Type of the delivery method.

@@ -5,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business
     /// </summary>
     public enum BusinessEntityStatus
     {
-        Delete,
-        Active
+        Delete = 0,
+        Active = 1
     }
 }

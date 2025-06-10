@@ -1,11 +1,9 @@
-using System.Collections.Generic;
-
 namespace WorkflowLib.Shared.Models.Business.InformationSystem
 {
     /// <summary>
     /// Employee performance.
     /// </summary>
-    public class EmployeePerformance : BusinessEntityWF, IBusinessEntityWF
+    public class EmployeePerformance : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Managers who rated employee performance.

@@ -1,11 +1,9 @@
-using WorkflowLib.Shared.Models.Business;
-
 namespace WorkflowLib.Shared.Models.Business.InformationSystem
 {
     /// <summary>
-    /// Intermediate table between Employee and UserAccount.
+    /// Intermediate table between <see cref="Employee"/> and <see cref="UserAccount"/>.
     /// </summary>
-    public class EmployeeUserAccount : BusinessEntityWF, IBusinessEntityWF
+    public class EmployeeUserAccount : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Employee.

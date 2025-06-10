@@ -1,0 +1,6 @@
+{
+    "EftposSettings": {
+        "ServerAddress": "http://localhost:8081/banking/", 
+        "EftposInfo": "TEST-EFTPOS INFO. ADDRESS: 58, TEST STR., SKU: 094"
+    }
+}

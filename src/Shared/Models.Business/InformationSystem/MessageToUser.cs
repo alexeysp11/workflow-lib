@@ -1,11 +1,9 @@
-using System.Collections.Generic;
-
 namespace WorkflowLib.Shared.Models.Business.InformationSystem
 {
     /// <summary>
     /// Message to user.
     /// </summary>
-    public class MessageToUser : BusinessEntityWF, IBusinessEntityWF, ISendableBusinessEntityWF, IReceivableBusinessEntityWF
+    public class MessageToUser : WfBusinessEntity, IWfBusinessEntity, ISendableBusinessEntity, IReceivableBusinessEntity
     {
         /// <summary>
         /// Subect.

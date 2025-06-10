@@ -1,13 +1,11 @@
-using WorkflowLib.Shared.Models.Business;
 using WorkflowLib.Shared.Models.Business.Processes;
-using WorkflowLib.Shared.Models.Business.Products;
 
 namespace WorkflowLib.Shared.Models.Business.Cooking
 {
     /// <summary>
     /// Associate table that connects a recipe and cooking operation.
     /// </summary>
-    public class RecipeCookingOperation : BusinessTask, IBusinessEntityWF
+    public class RecipeCookingOperation : BusinessTask, IWfBusinessEntity
     {
         /// <summary>
         /// Recipe.

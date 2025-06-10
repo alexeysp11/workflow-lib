@@ -5,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.Processes
     /// <summary>
     /// Provides a many-to-many relationship between objects of the BusinessProcessState and EndpointCall classes.
     /// </summary>
-    public class BPStateEndpointCall : BusinessEntityWF, IBusinessEntityWF
+    public class BPStateEndpointCall : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Gets or sets the associated business process state transition.

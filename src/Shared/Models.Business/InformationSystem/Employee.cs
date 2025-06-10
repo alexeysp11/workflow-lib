@@ -1,15 +1,12 @@
-using System.Collections.Generic;
-using WorkflowLib.Shared.Models.Business;
 using WorkflowLib.Shared.Models.Business.BusinessDocuments;
 using WorkflowLib.Shared.Models.Business.Customers;
-using WorkflowLib.Shared.Models.Business.Products;
 
 namespace WorkflowLib.Shared.Models.Business.InformationSystem
 {
     /// <summary>
     /// Employee.
     /// </summary>
-    public class Employee : BusinessEntityWF, IBusinessEntityWF
+    public class Employee : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// First name of the employee.

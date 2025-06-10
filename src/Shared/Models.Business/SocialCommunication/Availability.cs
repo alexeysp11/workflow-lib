@@ -5,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.SocialCommunication
     /// <summary>
     /// 
     /// </summary>
-    public class Availability : BusinessEntityWF, IBusinessEntityWF
+    public class Availability : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// 

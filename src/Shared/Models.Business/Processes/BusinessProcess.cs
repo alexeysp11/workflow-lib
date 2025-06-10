@@ -6,7 +6,7 @@ namespace WorkflowLib.Shared.Models.Business.Processes
     /// <summary>
     /// General description of the business process (for example, candidate selection).
     /// </summary>
-    public class BusinessProcess : BusinessEntityWF, IBusinessEntityWF
+    public class BusinessProcess : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// The diagram associated with the business process.
