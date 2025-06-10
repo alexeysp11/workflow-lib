@@ -11,7 +11,7 @@ namespace WorkflowLib.Shared.Models.Business.Packing
         /// <summary>
         /// Code of the pack type.
         /// </summary>
-        public string Code { get; set; }
+        public string? Code { get; set; }
 
         /// <summary>
         /// Weight of the pack type.
