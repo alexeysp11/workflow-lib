@@ -10,12 +10,12 @@
         /// <summary>
         /// Number of the location.
         /// </summary>
-        public string Number { get; set; }
+        public string? Number { get; set; }
 
         /// <summary>
         /// Load capacity of the location.
         /// </summary>
-        public int LoadCapacity { get; set; }
+        public int? LoadCapacity { get; set; }
 
         /// <summary>
         /// Location type.

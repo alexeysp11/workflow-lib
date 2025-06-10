@@ -9,7 +9,7 @@ namespace WorkflowLib.Shared.Models.Business.Packing
         /// <summary>
         /// Code of the tray.
         /// </summary>
-        public string Code { get; set; }
+        public string? Code { get; set; }
 
         /// <summary>
         /// Description of the type of packaging (e.g. box, pallet, crate).

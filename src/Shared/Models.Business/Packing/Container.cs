@@ -9,7 +9,7 @@ namespace WorkflowLib.Shared.Models.Business.Packing
         /// <summary>
         /// Serial shipping container code.
         /// </summary>
-        public string Sscc { get; set; }
+        public string? Sscc { get; set; }
 
         /// <summary>
         /// Description of the type of packaging (e.g. box, pallet, crate).
