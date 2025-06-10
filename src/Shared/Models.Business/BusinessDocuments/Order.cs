@@ -1,14 +1,11 @@
-using System.Collections.Generic;
-using WorkflowLib.Shared.Models.Business;
 using WorkflowLib.Shared.Models.Business.Monetary;
-using WorkflowLib.Shared.Models.Business.Products;
 
 namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
 {
     /// <summary>
     /// Order.
     /// </summary>
-    public class Order : BusinessEntityWF, IBusinessEntityWF, ITemporalBusinessEntityWF
+    public class Order : WfBusinessEntity, IWfBusinessEntity, ITemporalBusinessEntity
     {
         /// <summary>
         /// Number of the order.

@@ -1,11 +1,9 @@
-using WorkflowLib.Shared.Models.Business;
-
 namespace WorkflowLib.Shared.Models.Business.Products
 {
     /// <summary>
     /// Product attribute.
     /// </summary>
-    public class ProductAttribute : BusinessEntityWF, IBusinessEntityWF
+    public class ProductAttribute : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Product.

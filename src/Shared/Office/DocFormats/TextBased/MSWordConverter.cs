@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
@@ -10,16 +11,19 @@ namespace WorkflowLib.Shared.Office.DocFormats.TextBased
     /// <summary>
     /// Class for using MS Word (MS Word converter)
     /// </summary>
-    public class MSWordConverter : ITextBased
+    public class MSWordConverter : IWorkflowTextBased
     {
         /// <summary>
         /// Method for converting a list of TextDocElement into MS Word document.
         /// </summary>
         public void TextDocElementsToDocument(string foldername, string filename, List<TextDocElement> elements)
         {
-            if (!Directory.Exists(foldername)) throw new System.Exception("Folder does not exist");
-            if (string.IsNullOrEmpty(filename)) throw new System.Exception("File name could not be null or empty");
-            if (filename.Split('.').Last().ToLower() != "doc" && filename.Split('.').Last().ToLower() != "docx") throw new System.Exception("Incorrect file extension");
+            if (!Directory.Exists(foldername))
+                throw new Exception("Folder does not exist");
+            if (string.IsNullOrEmpty(filename))
+                throw new Exception("File name could not be null or empty");
+            if (filename.Split('.').Last().ToLower() != "doc" && filename.Split('.').Last().ToLower() != "docx")
+                throw new Exception("Incorrect file extension");
 
             string filepath = Path.Combine(foldername, filename);
             if (!File.Exists(foldername)) 
@@ -28,6 +32,7 @@ namespace WorkflowLib.Shared.Office.DocFormats.TextBased
                 {
                 }
             }
+
             using (WordprocessingDocument doc = WordprocessingDocument.Open(filepath, true))
             {
                 MainDocumentPart mainPart = doc.AddMainDocumentPart();

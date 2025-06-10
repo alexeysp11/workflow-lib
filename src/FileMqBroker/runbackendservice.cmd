@@ -1,0 +1,1 @@
+dotnet run --project backendservice\src\FileMqBroker.BackendService.csproj

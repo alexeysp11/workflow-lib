@@ -1,13 +1,20 @@
-using System;
-using WorkflowLib.Shared.Models.Business;
-
 namespace WorkflowLib.Shared.Models.Business.Products
 {
     /// <summary>
     /// Product.
     /// </summary>
-    public class Product : BusinessEntityWF, IBusinessEntityWF, ICloneable
+    public class Product : WfBusinessEntity, IWfBusinessEntity, ICloneable
     {
+        /// <summary>
+        /// Code of the product.
+        /// </summary>
+        public string? Code { get; set; }
+        
+        /// <summary>
+        /// Serial number of the product.
+        /// </summary>
+        public string? SerialNumber { get; set; }
+
         /// <summary>
         /// Price of the product.
         /// </summary>
@@ -32,6 +39,11 @@ namespace WorkflowLib.Shared.Models.Business.Products
         /// Picture description of the product.
         /// </summary>
         public string? PictureDescription { get; set; }
+
+        /// <summary>
+        /// The number of days until the product expires.
+        /// </summary>
+        public int? DaysToExpiration { get; set; }
 
         public Product Clone() { return (Product)this.MemberwiseClone(); }
         object ICloneable.Clone() { return Clone(); }

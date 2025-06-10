@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using WorkflowLib.Shared.Models.Business;
 using WorkflowLib.Shared.Models.Business.BusinessDocuments;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
 
@@ -8,7 +6,7 @@ namespace WorkflowLib.Shared.Models.Business.Customers
     /// <summary>
     /// Customer.
     /// </summary>
-    public class Customer : BusinessEntityWF, IBusinessEntityWF
+    public class Customer : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// First name of the customer.

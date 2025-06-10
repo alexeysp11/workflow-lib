@@ -6,7 +6,7 @@ namespace WorkflowLib.Shared.Models.Business.Processes
     /// <summary>
     /// Workflow instance member.
     /// </summary>
-    public class WorkflowInstanceMember : BusinessEntityWF, IBusinessEntityWF
+    public class WorkflowInstanceMember : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Workflow instance.

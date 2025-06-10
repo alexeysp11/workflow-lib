@@ -5,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.SocialCommunication
     /// <summary>
     /// Chatroom/User.
     /// </summary>
-    public class ChatroomUser : BusinessEntityWF, IBusinessEntityWF
+    public class ChatroomUser : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Chatroom ID.

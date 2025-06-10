@@ -5,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.Processes
     /// <summary>
     /// Allows you to connect business diagram elements.
     /// </summary>
-    public class BDEConnector : BusinessEntityWF, IBusinessEntityWF
+    public class BDEConnector : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Start business diagram element.

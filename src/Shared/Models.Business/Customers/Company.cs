@@ -1,7 +1,5 @@
-using System.Collections.Generic;
-using WorkflowLib.Shared.Models.Business;
 using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.Shared.Models.Business.Products;
+using WorkflowLib.Shared.Models.Business.Projects;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
 
 namespace WorkflowLib.Shared.Models.Business.Customers
@@ -9,7 +7,7 @@ namespace WorkflowLib.Shared.Models.Business.Customers
     /// <summary>
     /// Company (usually related to the customer).
     /// </summary>
-    public class Company : BusinessEntityWF, IBusinessEntityWF
+    public class Company : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Registration number of the company.

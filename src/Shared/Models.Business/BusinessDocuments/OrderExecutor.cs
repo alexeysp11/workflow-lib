@@ -1,13 +1,9 @@
-using WorkflowLib.Shared.Models.Business;
-using WorkflowLib.Shared.Models.Business.Customers;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
-
 namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
 {
     /// <summary>
     /// Associate table between any executor and order.
     /// </summary>
-    public class OrderExecutor : BusinessEntityWF, IBusinessEntityWF, ITemporalBusinessEntityWF
+    public class OrderExecutor : WfBusinessEntity, IWfBusinessEntity, ITemporalBusinessEntity
     {
         /// <summary>
         /// Executor UID of the order.
