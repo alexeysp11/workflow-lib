@@ -9,7 +9,7 @@ namespace WorkflowLib.Shared.Models.Business.Processes
     /// <summary>
     /// Actual business task that was assigned to a specific employee.
     /// </summary>
-    public class BusinessTask : BusinessEntityWF, IBusinessEntityWF, ITemporalBusinessEntityWF
+    public class BusinessTask : WfBusinessEntity, IWfBusinessEntity, ITemporalBusinessEntity
     {
         /// <summary>
         /// Subject.

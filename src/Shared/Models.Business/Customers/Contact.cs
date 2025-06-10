@@ -1,11 +1,9 @@
-using WorkflowLib.Shared.Models.Business;
-
 namespace WorkflowLib.Shared.Models.Business.Customers
 {
     /// <summary>
     /// Contact.
     /// </summary>
-    public class Contact : BusinessEntityWF, IBusinessEntityWF
+    public class Contact : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Mobile phone.

@@ -6,7 +6,7 @@ namespace WorkflowLib.Shared.Models.Business.Processes
     /// <summary>
     /// Business process diagram
     /// </summary>
-    public class BusinessDiagram : BusinessEntityWF, IBusinessEntityWF
+    public class BusinessDiagram : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Collection of business diagram elements.

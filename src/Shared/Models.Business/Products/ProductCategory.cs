@@ -1,12 +1,9 @@
-using System.Collections.Generic;
-using WorkflowLib.Shared.Models.Business;
-
 namespace WorkflowLib.Shared.Models.Business.Products
 {
     /// <summary>
     /// Product category.
     /// </summary>
-    public class ProductCategory : BusinessEntityWF, IBusinessEntityWF
+    public class ProductCategory : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Products.

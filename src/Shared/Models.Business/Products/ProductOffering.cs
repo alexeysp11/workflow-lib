@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using WorkflowLib.Shared.Models.Business.Customers;
 
 namespace WorkflowLib.Shared.Models.Business.Products
@@ -6,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.Products
     /// <summary>
     /// Product offering.
     /// </summary>
-    public class ProductOffering : BusinessEntityWF, IBusinessEntityWF, ITemporalBusinessEntityWF
+    public class ProductOffering : WfBusinessEntity, IWfBusinessEntity, ITemporalBusinessEntity
     {
         /// <summary>
         /// Supplier (comany).

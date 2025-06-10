@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using WorkflowLib.Shared.Models.Business;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
 
 namespace WorkflowLib.Shared.Models.Business.Customers
@@ -7,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.Customers
     /// <summary>
     /// Message to the customer.
     /// </summary>
-    public class MessageToCustomer : BusinessEntityWF, IBusinessEntityWF, ISendableBusinessEntityWF, IReceivableBusinessEntityWF
+    public class MessageToCustomer : WfBusinessEntity, IWfBusinessEntity, ISendableBusinessEntity, IReceivableBusinessEntity
     {
         /// <summary>
         /// Subject of the message.

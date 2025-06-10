@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using WorkflowLib.Shared.Models.Business;
 using WorkflowLib.Shared.Models.Business.Customers;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
 
@@ -8,7 +6,7 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
     /// <summary>
     /// Contract.
     /// </summary>
-    public class Contract : BusinessEntityWF, IBusinessEntityWF
+    public class Contract : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Contract type.

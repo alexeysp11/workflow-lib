@@ -5,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.Processes
     /// </summary>
     public enum WorkflowTrackingItemStatus
     {
-        Active,
-        Delete
+        Active = 0,
+        Delete = 1
     }
 }

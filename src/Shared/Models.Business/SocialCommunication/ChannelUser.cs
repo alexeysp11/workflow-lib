@@ -5,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.SocialCommunication
     /// <summary>
     /// Channel/User.
     /// </summary>
-    public class ChannelUser : BusinessEntityWF, IBusinessEntityWF
+    public class ChannelUser : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Channel ID.

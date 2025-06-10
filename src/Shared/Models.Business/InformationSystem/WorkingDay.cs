@@ -1,13 +1,11 @@
-using WorkflowLib.Shared.Models.Business;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
-using WorkflowLib.Shared.Models.Business.Products;
+using WorkflowLib.Shared.Models.Business.Projects;
 
 namespace WorkflowLib.Shared.Models.Business.InformationSystem
 {
     /// <summary>
     /// Working day.
     /// </summary>
-    public class WorkingDay : BusinessEntityWF, IBusinessEntityWF
+    public class WorkingDay : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Date.

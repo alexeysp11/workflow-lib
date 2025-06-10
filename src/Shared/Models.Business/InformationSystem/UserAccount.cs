@@ -1,11 +1,9 @@
-using WorkflowLib.Shared.Models.Business;
-
 namespace WorkflowLib.Shared.Models.Business.InformationSystem
 {
     /// <summary>
     /// User account.
     /// </summary>
-    public class UserAccount : BusinessEntityWF, IBusinessEntityWF
+    public class UserAccount : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// Login of the user.

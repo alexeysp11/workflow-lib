@@ -1,14 +1,11 @@
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using WorkflowLib.Shared.Models.Business;
-using WorkflowLib.Shared.Models.Business.Products;
 
 namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
 {
     /// <summary>
     /// Model for placing order, that is used mostly as the DTO.
     /// </summary>
-    public class InitialOrder : BusinessEntityWF, IBusinessEntityWF
+    public class InitialOrder : WfBusinessEntity, IWfBusinessEntity
     {
         /// <summary>
         /// User GUID.

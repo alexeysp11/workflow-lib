@@ -48,7 +48,7 @@ namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats.TextBased
                 }
             };
 
-            ITextBased converter = new MSWordConverter();
+            IWorkflowTextBased converter = new MSWordConverter();
             CreateFolderIfNotExists(FolderName);
 
             // Act

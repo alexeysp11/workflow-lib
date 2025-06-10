@@ -5,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
     /// </summary>
     public enum ReplacementStatus
     {
-        Active,
-        Delete
+        Active = 0,
+        Delete = 1
     }
 }

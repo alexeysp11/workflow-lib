@@ -1,13 +1,24 @@
-using System.Collections.Generic;
-using WorkflowLib.Shared.Models.Business;
+using WorkflowLib.Shared.Models.Business.MeasurementUnits;
 
 namespace WorkflowLib.Shared.Models.Business.Products
 {
     /// <summary>
-    /// Warehouse product.
+    /// Description of the product stored in the warehouse.
+    /// Includes characteristics (e.g. weight, dimensions, expiration date, manufacturer).
+    /// Necessary for product identification, management of their characteristics and traceability.
     /// </summary>
-    public class WHProduct : BusinessEntityWF, IBusinessEntityWF
+    public class WHProduct : WfBusinessEntity, IWfBusinessEntity, IExpirableProduct
     {
+        /// <summary>
+        /// Code of the warehouse product.
+        /// </summary>
+        public string? Code { get; set; }
+
+        /// <summary>
+        /// Serial number of the warehouse product.
+        /// </summary>
+        public string? SerialNumber { get; set; }
+
         /// <summary>
         /// Product.
         /// </summary>
@@ -27,5 +38,40 @@ namespace WorkflowLib.Shared.Models.Business.Products
         /// Maximal allowed quantity of the product.
         /// </summary>
         public int MaxQuantity { get; set; }
+
+        /// <summary>
+        /// Weight of the product.
+        /// </summary>
+        public decimal? Weight { get; set; }
+
+        /// <summary>
+        /// Minimal allowed weight of the product.
+        /// </summary>
+        public decimal? MinWeight { get; set; }
+
+        /// <summary>
+        /// Maximal allowed weight of the product.
+        /// </summary>
+        public decimal? MaxWeight { get; set; }
+
+        /// <summary>
+        /// Weight unit.
+        /// </summary>
+        public WeightUnit? WeightUnit { get; set; }
+        
+        /// <summary>
+        /// Production date.
+        /// </summary>
+        public System.DateTime? DateProduction { get; set; }
+        
+        /// <summary>
+        /// Packaging date.
+        /// </summary>
+        public System.DateTime? DatePackaging { get; set; }
+        
+        /// <summary>
+        /// Expiration date.
+        /// </summary>
+        public System.DateTime? DateExpiration { get; set; }
     }
 }
