@@ -1,6 +1,4 @@
-using WorkflowLib.Shared.Models.Business;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
-using WorkflowLib.Shared.Models.Business.Products;
+using WorkflowLib.Shared.Models.Business.Projects;
 
 namespace WorkflowLib.Shared.Models.Business.InformationSystem
 {

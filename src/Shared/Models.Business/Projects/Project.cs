@@ -1,17 +1,20 @@
-using System.Collections.Generic;
-using WorkflowLib.Shared.Models.Business;
 using WorkflowLib.Shared.Models.Business.BusinessDocuments;
 using WorkflowLib.Shared.Models.Business.Customers;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
 using WorkflowLib.Shared.Models.Business.RiskManagement;
 
-namespace WorkflowLib.Shared.Models.Business.Products
+namespace WorkflowLib.Shared.Models.Business.Projects
 {
     /// <summary>
     /// Project.
     /// </summary>
     public class Project : WfBusinessEntity, IWfBusinessEntity, ITemporalBusinessEntity
     {
+        /// <summary>
+        /// Number of the project.
+        /// </summary>
+        public string? Number { get; set; }
+
         /// <summary>
         /// Boolean variable that shows if the project is active.
         /// </summary>

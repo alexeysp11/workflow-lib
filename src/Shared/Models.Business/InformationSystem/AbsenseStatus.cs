@@ -5,7 +5,7 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
     /// </summary>
     public enum AbsenseStatus
     {
-        Active,
-        Closed
+        Active = 0,
+        Closed = 1
     }
 }

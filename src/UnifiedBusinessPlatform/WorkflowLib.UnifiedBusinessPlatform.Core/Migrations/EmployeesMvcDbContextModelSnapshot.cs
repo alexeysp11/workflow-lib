@@ -859,7 +859,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.ToTable("LanguageKeyValuePairs");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.Project", b =>
+            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Projects.Project", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -918,6 +918,9 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
+                    b.Property<string>("Number")
+                        .HasColumnType("text");
+
                     b.Property<string>("Uid")
                         .HasColumnType("text");
 
@@ -934,7 +937,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.ToTable("Project");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.ProjectPhase", b =>
+            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Projects.ProjectPhase", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -975,7 +978,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.ToTable("ProjectPhase");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.ProjectPlanItem", b =>
+            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Projects.ProjectPlanItem", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1375,7 +1378,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.Navigation("LanguageKey");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.Project", b =>
+            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Projects.Project", b =>
                 {
                     b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Company", "Company")
                         .WithMany("Projects")
@@ -1404,13 +1407,13 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.Navigation("Manager");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.ProjectPhase", b =>
+            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Projects.ProjectPhase", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.Project", "Project")
+                    b.HasOne("WorkflowLib.Shared.Models.Business.Projects.Project", "Project")
                         .WithMany("ProjectPhases")
                         .HasForeignKey("ProjectId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.ProjectPlanItem", "ProjectPlanItem")
+                    b.HasOne("WorkflowLib.Shared.Models.Business.Projects.ProjectPlanItem", "ProjectPlanItem")
                         .WithMany()
                         .HasForeignKey("ProjectPlanItemId");
 
@@ -1419,9 +1422,9 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.Navigation("ProjectPlanItem");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.ProjectPlanItem", b =>
+            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Projects.ProjectPlanItem", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.ProjectPlanItem", null)
+                    b.HasOne("WorkflowLib.Shared.Models.Business.Projects.ProjectPlanItem", null)
                         .WithMany("Items")
                         .HasForeignKey("ProjectPlanItemId");
                 });
@@ -1440,7 +1443,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                         .WithMany()
                         .HasForeignKey("AuthorResolvedId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.Project", null)
+                    b.HasOne("WorkflowLib.Shared.Models.Business.Projects.Project", null)
                         .WithMany("Risks")
                         .HasForeignKey("ProjectId");
 
@@ -1477,14 +1480,14 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.Navigation("SubItems");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.Project", b =>
+            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Projects.Project", b =>
                 {
                     b.Navigation("ProjectPhases");
 
                     b.Navigation("Risks");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.ProjectPlanItem", b =>
+            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Projects.ProjectPlanItem", b =>
                 {
                     b.Navigation("Items");
                 });

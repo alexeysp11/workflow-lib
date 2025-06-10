@@ -1,21 +1,21 @@
-using WorkflowLib.Shared.Models.Business.InformationSystem;
-
-namespace WorkflowLib.Shared.Models.Business.Products
+namespace WorkflowLib.Shared.Models.Business.Warehousing
 {
     /// <summary>
-    /// Associate table between project and employee.
+    /// A record of the amount of a product in a specific location.
+    /// Displays the current stock balance of the product in the warehouse.
+    /// Used for planning, control, and inventory management.
     /// </summary>
-    public class EmployeeProject : WfBusinessEntity, IWfBusinessEntity, ITemporalBusinessEntity
+    public class StockTaking : WfBusinessEntity, IWfBusinessEntity, ITemporalBusinessEntity
     {
         /// <summary>
-        /// 
+        /// Warehouse task.
         /// </summary>
-        public Project? Project { get; set; }
-
+        public WarehouseTask? WarehouseTask { get; set; }
+        
         /// <summary>
-        /// 
+        /// Warehouse order type.
         /// </summary>
-        public Employee? Employee { get; set; }
+        public WarehouseOrder? WarehouseOrder { get; set; }
 
         /// <summary>
         /// Actual start date.

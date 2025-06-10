@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using WorkflowLib.Shared.Models.Business.BusinessDocuments;
 using WorkflowLib.Shared.Models.Business.Customers;
 

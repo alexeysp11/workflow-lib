@@ -1,7 +1,6 @@
-using System.Collections.Generic;
-using WorkflowLib.Shared.Models.Business;
+using WorkflowLib.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.Shared.Models.Business.InformationSystem
+namespace WorkflowLib.Shared.Models.Business.Warehousing
 {
     /// <summary>
     /// Warehouse.
@@ -19,8 +18,8 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
         public ICollection<WarehouseItem> WarehouseItems { get; set; }
 
         /// <summary>
-        /// Location of the warehouse.
+        /// Address of the warehouse.
         /// </summary>
-        public string? Location { get; set; }
+        public string? Address { get; set; }
     }
 }

@@ -1,7 +1,6 @@
-using WorkflowLib.Shared.Models.Business;
 using WorkflowLib.Shared.Models.Business.BusinessDocuments;
 
-namespace WorkflowLib.Shared.Models.Business.Products
+namespace WorkflowLib.Shared.Models.Business.Cooking
 {
     /// <summary>
     /// Order ingredient.

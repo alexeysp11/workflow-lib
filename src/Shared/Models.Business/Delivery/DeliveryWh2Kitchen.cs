@@ -1,6 +1,5 @@
-using System.Collections.Generic;
-using WorkflowLib.Shared.Models.Business;
 using WorkflowLib.Shared.Models.Business.BusinessDocuments;
+using WorkflowLib.Shared.Models.Business.Cooking;
 using WorkflowLib.Shared.Models.Business.Products;
 
 namespace WorkflowLib.Shared.Models.Business.Delivery
@@ -9,6 +8,7 @@ namespace WorkflowLib.Shared.Models.Business.Delivery
     /// Model for transferring products from warehouse to kitchen 
     /// (shipping point, destination, start time, end time, products, ingredients).
     /// </summary>
+    [Obsolete("Should be moved to the client side code")]
     public class DeliveryWh2Kitchen : DeliveryOperation, IWfBusinessEntity
     {
         /// <summary>

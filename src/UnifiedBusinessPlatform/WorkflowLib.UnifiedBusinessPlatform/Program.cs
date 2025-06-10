@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
-using Npgsql.EntityFrameworkCore.PostgreSQL;
 using WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts;
 using WorkflowLib.UnifiedBusinessPlatform.Core.Domain.DatasetGenerators;
 using WorkflowLib.UnifiedBusinessPlatform.Core.Domain.Filtering;
@@ -13,7 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Get configurations.
 var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production";
 var configuration = new ConfigurationBuilder().AddJsonFile($"appsettings.{environment}.json").Build();
-var appsettings = configuration.GetSection("AppSettings").Get<AppSettings>();
+var appsettings = configuration.GetSection("AppSettings").Get<AppSettings>()
+    ?? throw new Exception($"Cannot start the application: '{nameof(AppSettings)}' section is not specified in the config file");
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -35,7 +34,8 @@ builder.Services.AddDbContext<UbpDbContext>(options => options.UseNpgsql(appsett
 var app = builder.Build();
 
 // Initialize datasets.
-var datasetGenerator = app.Services.GetService<DatasetGenerator>();
+var datasetGenerator = app.Services.GetService<DatasetGenerator>()
+    ?? throw new Exception($"Cannot start the application: '{nameof(DatasetGenerator)}' is not initialized");
 datasetGenerator.Initialize();
 
 // Configure the HTTP request pipeline.

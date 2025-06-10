@@ -5,9 +5,9 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
     /// </summary>
     public enum UserStatus
     {
-        Active,
-        Blocked,
-        NotConfirmed,
-        System
+        Active = 0,
+        Blocked = 1,
+        NotConfirmed = 2,
+        System = 3
     }
 }
