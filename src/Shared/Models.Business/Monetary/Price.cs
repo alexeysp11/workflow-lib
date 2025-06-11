@@ -23,7 +23,7 @@ namespace WorkflowLib.Shared.Models.Business.Monetary
         /// <summary>
         /// 
         /// </summary>
-        public decimal ListPrice { get; set; }
+        public decimal? ListPrice { get; set; }
 
         /// <summary>
         /// 
@@ -33,11 +33,11 @@ namespace WorkflowLib.Shared.Models.Business.Monetary
         /// <summary>
         /// 
         /// </summary>
-        public decimal Discount { get; set; }
+        public decimal? Discount { get; set; }
         
         /// <summary>
         /// 
         /// </summary>
-        public decimal NetPrice { get; }
+        public decimal? NetPrice { get; }
     }
 }

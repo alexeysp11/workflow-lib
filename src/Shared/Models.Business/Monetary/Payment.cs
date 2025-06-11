@@ -25,7 +25,7 @@ namespace WorkflowLib.Shared.Models.Business.Monetary
         /// <summary>
         /// Amount of the payment.
         /// </summary>
-        public decimal Amount { get; set; }
+        public decimal? Amount { get; set; }
         
         /// <summary>
         /// Date of the payment.

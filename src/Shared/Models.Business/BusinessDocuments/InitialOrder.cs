@@ -51,7 +51,7 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
         /// <summary>
         /// Amount of payment.
         /// </summary>
-        public decimal PaymentAmount { get; set; }
+        public decimal? PaymentAmount { get; set; }
         
         /// <summary>
         /// Delivery order ID that is associated with the initial order.

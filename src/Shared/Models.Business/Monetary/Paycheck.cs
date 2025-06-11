@@ -31,7 +31,7 @@ namespace WorkflowLib.Shared.Models.Business.Monetary
         /// <summary>
         /// Total amount.
         /// </summary>
-        public decimal Total { get; private set; }
+        public decimal? Total { get; private set; }
 
         /// <summary>
         /// Employee.

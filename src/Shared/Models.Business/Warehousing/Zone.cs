@@ -9,7 +9,7 @@
         /// <summary>
         /// Number of the location.
         /// </summary>
-        public string Number { get; set; }
+        public string? Number { get; set; }
 
         /// <summary>
         /// Zone type.

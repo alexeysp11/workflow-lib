@@ -16,9 +16,9 @@ namespace WorkflowLib.Shared.Models.Business.Languages
         public string Key { get; set; }
         
         /// <summary>
-        /// Endonym of the language.
+        /// Endonym of the language (a name used by the people who speak a language to refer to themselves, or their language).
         /// </summary>
-        public string Endonym { get; set; }
+        public string? Endonym { get; set; }
         
         /// <summary>
         /// Language type.

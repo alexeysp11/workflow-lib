@@ -15,21 +15,21 @@ namespace WorkflowLib.Shared.Models.Business.Monetary
         /// <summary>
         /// Hour rate.
         /// </summary>
-        public decimal HourRate { get; private set; }
+        public decimal? HourRate { get; private set; }
 
         /// <summary>
         /// Extra hour rate.
         /// </summary>
-        public decimal ExtraHourRate { get; private set; }
+        public decimal? ExtraHourRate { get; private set; }
 
         /// <summary>
         /// Hoiday hour rate.
         /// </summary>
-        public decimal HoidayHourRate { get; private set; }
+        public decimal? HoidayHourRate { get; private set; }
 
         /// <summary>
         /// Business trip hour rate.
         /// </summary>
-        public decimal BusinessTripHourRate { get; private set; }
+        public decimal? BusinessTripHourRate { get; private set; }
     }
 }

@@ -35,7 +35,7 @@ namespace WorkflowLib.Shared.Models.Business.Products
         /// <summary>
         /// Actual price.
         /// </summary>
-        public decimal Price { get; set; }
+        public decimal? Price { get; set; }
 
         /// <summary>
         /// Actual start date.

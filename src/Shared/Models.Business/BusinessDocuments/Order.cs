@@ -50,22 +50,22 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
         /// <summary>
         /// Price of the products.
         /// </summary>
-        public decimal ProductsPrice { get; set; }
+        public decimal? ProductsPrice { get; set; }
         
         /// <summary>
         /// Additonal price of the order.
         /// </summary>
-        public decimal AdditonalPrice { get; set; }
+        public decimal? AdditonalPrice { get; set; }
 
         /// <summary>
         /// Taxes of the order.
         /// </summary>
-        public decimal TaxPrice { get; set; }
+        public decimal? TaxPrice { get; set; }
         
         /// <summary>
         /// Total price of the order.
         /// </summary>
-        public decimal TotalPrice { get; set; }
+        public decimal? TotalPrice { get; set; }
 
         /// <summary>
         /// Payments made within the order.

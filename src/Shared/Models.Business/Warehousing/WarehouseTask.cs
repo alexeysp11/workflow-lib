@@ -9,7 +9,7 @@
         /// <summary>
         /// Number of the warehouse order.
         /// </summary>
-        public string Number { get; set; }
+        public string? Number { get; set; }
 
         /// <summary>
         /// Warehouse.
