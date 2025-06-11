@@ -5,8 +5,9 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
     /// </summary>
     public enum OrderExecutorType
     {
-        SoleProprietor,
-        Company,
-        Employee
+        None = 0,
+        SoleProprietor = 1,
+        Company = 2,
+        Employee = 3
     }
 }

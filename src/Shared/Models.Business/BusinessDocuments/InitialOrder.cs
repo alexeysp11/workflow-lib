@@ -36,7 +36,7 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
         /// List of the product IDs, that user has placed into the order.
         /// </summary>
         [NotMapped]
-        public IList<long> ProductIds { get; set; }
+        public IList<long>? ProductIds { get; set; }
 
         /// <summary>
         /// Payment type.
@@ -51,7 +51,7 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
         /// <summary>
         /// Amount of payment.
         /// </summary>
-        public decimal PaymentAmount { get; set; }
+        public decimal? PaymentAmount { get; set; }
         
         /// <summary>
         /// Delivery order ID that is associated with the initial order.

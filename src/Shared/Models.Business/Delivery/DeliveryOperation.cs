@@ -12,7 +12,12 @@ namespace WorkflowLib.Shared.Models.Business.Delivery
         /// Number of the order.
         /// </summary>
         public string? OrderNumber { get; set; }
-        
+
+        /// <summary>
+        /// Generated QR code attached to the order.
+        /// </summary>
+        public string? GeneratedOrderQrCode { get; set; }
+
         /// <summary>
         /// Delivery method.
         /// </summary>
@@ -37,5 +42,15 @@ namespace WorkflowLib.Shared.Models.Business.Delivery
         /// Customer name of the order.
         /// </summary>
         public Contact? Contact { get; set; }
+
+        /// <summary>
+        /// Determines whether the operation is internal.
+        /// </summary>
+        public bool? IsInternal { get; set; }
+
+        /// <summary>
+        /// Type of the delivery operation.
+        /// </summary>
+        public string? DeliveryOperationType { get; set; }
     }
 }

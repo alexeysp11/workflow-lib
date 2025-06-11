@@ -20,7 +20,7 @@ namespace WorkflowLib.Shared.Models.Business.Processes
         /// <summary>
         /// Date.
         /// </summary>
-        public System.DateTime Date { get; set; }
+        public DateTime Date { get; set; }
 
         /// <summary>
         /// Incident severity.

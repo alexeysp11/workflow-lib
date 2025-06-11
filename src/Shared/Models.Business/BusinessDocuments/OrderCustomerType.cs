@@ -5,9 +5,10 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
     /// </summary>
     public enum OrderCustomerType
     {
-        Customer,
-        Client,
-        Company,
-        Employee
+        None = 0,
+        Customer = 1,
+        Client = 2,
+        Company = 3,
+        Employee = 4
     }
 }

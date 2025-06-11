@@ -18,12 +18,12 @@ namespace WorkflowLib.Shared.Models.Business.Products
         /// <summary>
         /// Price of the product.
         /// </summary>
-        public decimal Price { get; set; }
+        public decimal? Price { get; set; }
 
         /// <summary>
         /// Quantity of the product.
         /// </summary>
-        public int Quantity { get; set; }
+        public int? Quantity { get; set; }
 
         /// <summary>
         /// Category of the product.

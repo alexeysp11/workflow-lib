@@ -8,21 +8,21 @@ namespace WorkflowLib.Shared.Models.Business
         /// <summary>
         /// Actual start date.
         /// </summary>
-        System.DateTime? DateStartActual { get; set; }
+        DateTime? DateStartActual { get; set; }
         
         /// <summary>
         /// Actual end date.
         /// </summary>
-        System.DateTime? DateEndActual { get; set; }
+        DateTime? DateEndActual { get; set; }
         
         /// <summary>
         /// Expected start date.
         /// </summary>
-        System.DateTime? DateStartExpected { get; set; }
+        DateTime? DateStartExpected { get; set; }
         
         /// <summary>
         /// Expected end date.
         /// </summary>
-        System.DateTime? DateEndExpected { get; set; }
+        DateTime? DateEndExpected { get; set; }
     }
 }

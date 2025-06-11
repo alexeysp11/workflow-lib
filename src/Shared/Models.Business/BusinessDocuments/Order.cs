@@ -50,26 +50,27 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
         /// <summary>
         /// Price of the products.
         /// </summary>
-        public decimal ProductsPrice { get; set; }
+        public decimal? ProductsPrice { get; set; }
         
         /// <summary>
         /// Additonal price of the order.
         /// </summary>
-        public decimal AdditonalPrice { get; set; }
+        public decimal? AdditonalPrice { get; set; }
 
         /// <summary>
         /// Taxes of the order.
         /// </summary>
-        public decimal TaxPrice { get; set; }
+        public decimal? TaxPrice { get; set; }
         
         /// <summary>
         /// Total price of the order.
         /// </summary>
-        public decimal TotalPrice { get; set; }
+        public decimal? TotalPrice { get; set; }
 
         /// <summary>
         /// Payments made within the order.
         /// </summary>
+        [Obsolete("It's better to use OrderPayment object")]
         public ICollection<Payment> Payments { get; set; }
         
         /// <summary>
@@ -85,21 +86,21 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
         /// <summary>
         /// Actual start date.
         /// </summary>
-        public System.DateTime? DateStartActual { get; set; }
+        public DateTime? DateStartActual { get; set; }
         
         /// <summary>
         /// Actual end date.
         /// </summary>
-        public System.DateTime? DateEndActual { get; set; }
+        public DateTime? DateEndActual { get; set; }
         
         /// <summary>
         /// Expected start date.
         /// </summary>
-        public System.DateTime? DateStartExpected { get; set; }
+        public DateTime? DateStartExpected { get; set; }
         
         /// <summary>
         /// Expected end date.
         /// </summary>
-        public System.DateTime? DateEndExpected { get; set; }
+        public DateTime? DateEndExpected { get; set; }
     }
 }

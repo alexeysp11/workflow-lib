@@ -13,6 +13,6 @@ namespace WorkflowLib.Shared.Models.Business.Delivery
         /// <summary>
         /// Price of the delivery method.
         /// </summary>
-        public decimal Price { get; set; }
+        public decimal? Price { get; set; }
     }
 }

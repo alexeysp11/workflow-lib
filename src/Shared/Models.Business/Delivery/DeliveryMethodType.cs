@@ -7,13 +7,16 @@ namespace WorkflowLib.Shared.Models.Business.Delivery
     /// </summary>
     public enum DeliveryMethodType
     {
+        [Display(Name = "Not Selected")]
+        None = 0,
+
         [Display(Name = "On foot")]
-        OnFoot,
+        OnFoot = 1,
 
         [Display(Name = "Electric scooter")]
-        ElectricScooter,
+        ElectricScooter = 2,
         
         [Display(Name = "Car")]
-        Car
+        Car = 3
     }
 }

@@ -11,11 +11,6 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
     public class EmploymentContract : WfBusinessEntity, IWfBusinessEntity, ITemporalBusinessEntity
     {
         /// <summary>
-        /// Contract ID.
-        /// </summary>
-        public long ContractId { get; set; }
-
-        /// <summary>
         /// Contract.
         /// </summary>
         public Contract? Contract { get; set; }
@@ -23,7 +18,7 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
         /// <summary>
         /// Employment contract type.
         /// </summary>
-        public EmploymentContractType EmploymentContractType { get; set; }
+        public EmploymentContractType? EmploymentContractType { get; set; }
 
         /// <summary>
         /// Expired employment contract.
@@ -48,16 +43,19 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
         /// <summary>
         /// Employee responsibilities.
         /// </summary>
+        [Obsolete("It's better to use EmploymentContractResponsibility object")]
         public ICollection<EmployeeResponsibility> EmployeeResponsibilities { get; set; }
 
         /// <summary>
         /// Employer responsibilities.
         /// </summary>
+        [Obsolete("It's better to use EmploymentContractResponsibility object")]
         public ICollection<EmployerResponsibility> EmployerResponsibilities { get; set; }
         
         /// <summary>
         /// Employee benifits.
         /// </summary>
+        [Obsolete("It's better to use EmploymentContractBenefit object")]
         public ICollection<EmployeeBenefit> EmployeeBenifits { get; set; }
         
         /// <summary>
@@ -73,36 +71,36 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
         /// <summary>
         /// Status of the employment contract.
         /// </summary>
-        public EmploymentContractStatus Status { get; set; }
+        public EmploymentContractStatus? Status { get; set; }
 
         /// <summary>
-        /// Internal termination reasons.
+        /// Internal termination reason.
         /// </summary>
-        public ICollection<EmploymentTerminationReason> InternalTerminationReasons { get; set; }
+        public EmploymentTerminationReason? InternalTerminationReason { get; set; }
 
         /// <summary>
-        /// Official termination reasons.
+        /// Official termination reason.
         /// </summary>
         public EmploymentTerminationReason? OfficialTerminationReason { get; set; }
         
         /// <summary>
         /// Actual start date.
         /// </summary>
-        public System.DateTime? DateStartActual { get; set; }
+        public DateTime? DateStartActual { get; set; }
         
         /// <summary>
         /// Actual end date.
         /// </summary>
-        public System.DateTime? DateEndActual { get; set; }
+        public DateTime? DateEndActual { get; set; }
         
         /// <summary>
         /// Expected start date.
         /// </summary>
-        public System.DateTime? DateStartExpected { get; set; }
+        public DateTime? DateStartExpected { get; set; }
         
         /// <summary>
         /// Expected end date.
         /// </summary>
-        public System.DateTime? DateEndExpected { get; set; }
+        public DateTime? DateEndExpected { get; set; }
     }
 }

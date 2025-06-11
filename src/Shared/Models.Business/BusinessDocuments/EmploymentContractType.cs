@@ -7,37 +7,40 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
     /// </summary>
     public enum EmploymentContractType
     {
+        [Display(Name = "Not Selected")]
+        None = 0,
+
         [Display(Name = "Full Time Contract")]
-        FullTimeContract,
+        FullTimeContract = 1,
 
         [Display(Name = "Part Time Contract")]
-        PartTimeContract,
+        PartTimeContract = 2,
 
         [Display(Name = "Fixed Term Contract")]
-        FixedTermContract,
+        FixedTermContract = 3,
 
         [Display(Name = "No Contract")]
-        NoContract,
+        NoContract = 4,
 
         [Display(Name = "Voluntary Work")]
-        VoluntaryWork,
+        VoluntaryWork = 5,
 
         [Display(Name = "Contract Of Mandate")]
-        ContractOfMandate,
+        ContractOfMandate = 6,
 
         [Display(Name = "Contract Of Specific Work")]
-        ContractOfSpecificWork,
+        ContractOfSpecificWork = 7,
 
         [Display(Name = "Internship")]
-        Internship,
+        Internship = 8,
 
         [Display(Name = "Freelance")]
-        Freelance,
+        Freelance = 9,
 
         [Display(Name = "Contractor")]
-        Contractor,
+        Contractor = 10,
 
         [Display(Name = "Agency Workers")]
-        AgencyWorkers
+        AgencyWorkers = 11
     }
 }

@@ -25,12 +25,12 @@ namespace WorkflowLib.Shared.Models.Business.Monetary
         /// <summary>
         /// Amount of the payment.
         /// </summary>
-        public decimal Amount { get; set; }
+        public decimal? Amount { get; set; }
         
         /// <summary>
         /// Date of the payment.
         /// </summary>
-        public System.DateTime? Date { get; private set; }
+        public DateTime? Date { get; private set; }
 
         /// <summary>
         /// Payment type.

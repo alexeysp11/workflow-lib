@@ -11,7 +11,7 @@ namespace WorkflowLib.Shared.Models.Business.Monetary
         /// <summary>
         /// Date.
         /// </summary>
-        public System.DateTime Date { get; private set; }
+        public DateTime Date { get; private set; }
 
         /// <summary>
         /// Working hours.
@@ -31,7 +31,7 @@ namespace WorkflowLib.Shared.Models.Business.Monetary
         /// <summary>
         /// Total amount.
         /// </summary>
-        public decimal Total { get; private set; }
+        public decimal? Total { get; private set; }
 
         /// <summary>
         /// Employee.
@@ -41,21 +41,21 @@ namespace WorkflowLib.Shared.Models.Business.Monetary
         /// <summary>
         /// Actual start date.
         /// </summary>
-        public System.DateTime? DateStartActual { get; set; }
+        public DateTime? DateStartActual { get; set; }
         
         /// <summary>
         /// Actual end date.
         /// </summary>
-        public System.DateTime? DateEndActual { get; set; }
+        public DateTime? DateEndActual { get; set; }
         
         /// <summary>
         /// Expected start date.
         /// </summary>
-        public System.DateTime? DateStartExpected { get; set; }
+        public DateTime? DateStartExpected { get; set; }
         
         /// <summary>
         /// Expected end date.
         /// </summary>
-        public System.DateTime? DateEndExpected { get; set; }
+        public DateTime? DateEndExpected { get; set; }
     }
 }

@@ -7,76 +7,79 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
     /// </summary>
     public enum ContractType
     {
+        [Display(Name = "Not Selected")]
+        None = 0,
+
         // Sales
         [Display(Name = "Purchase Order")]
-        PurchaseOrder,
+        PurchaseOrder = 1,
         [Display(Name = "Renewal Order")]
-        RenewalOrder,
+        RenewalOrder = 2,
         [Display(Name = "Sales Contract")]
-        SalesContract,
+        SalesContract = 3,
         [Display(Name = "Vendor Agreement")]
-        VendorAgreement,
+        VendorAgreement = 4,
         [Display(Name = "Warranty Contract")]
-        WarrantyContract,
+        WarrantyContract = 5,
 
         // Marketing
         [Display(Name = "Advisory Agreement")]
-        AdvisoryAgreement,
+        AdvisoryAgreement = 6,
         [Display(Name = "Confidentiality Agreement")]
-        ConfidentialityAgreement,
+        ConfidentialityAgreement = 7,
         [Display(Name = "Influencer Agreement")]
-        InfluencerAgreement,
+        InfluencerAgreement = 8,
         [Display(Name = "Photography Release")]
-        PhotographyRelease,
+        PhotographyRelease = 9,
         [Display(Name = "Privacy Agreement")]
-        PrivacyAgreement,
+        PrivacyAgreement = 10,
 
         // IT/Operation
         [Display(Name = "Cloud Computing Agreement")]
-        CloudComputingAgreement,
+        CloudComputingAgreement = 11,
         [Display(Name = "Equipment Lease Agreement")]
-        EquipmentLeaseAgreement,
+        EquipmentLeaseAgreement = 12,
         [Display(Name = "Non Disclosure Agreement")]
-        NonDisclosureAgreement,
+        NonDisclosureAgreement = 13,
         [Display(Name = "Property Lease Agreement")]
-        PropertyLeaseAgreement,
+        PropertyLeaseAgreement = 14,
         [Display(Name = "Security Agreement")]
-        SecurityAgreement,
+        SecurityAgreement = 15,
         [Display(Name = "Terms Of Use")]
-        TermsOfUse,
+        TermsOfUse = 16,
 
         // Human Resources
         [Display(Name = "Director Service Agreement")]
-        DirectorServiceAgreement,
+        DirectorServiceAgreement = 17,
         [Display(Name = "Employment Contract")]
-        EmploymentContract,
+        EmploymentContract = 18,
         [Display(Name = "Employee Transfer Agreement")]
-        EmployeeTransferAgreement,
+        EmployeeTransferAgreement = 19,
         [Display(Name = "Independent Contractor Agreement")]
-        IndependentContractorAgreement,
+        IndependentContractorAgreement = 20,
         [Display(Name = "Non-Complete Agreement")]
-        NonCompleteAgreement,
+        NonCompleteAgreement = 21,
         [Display(Name = "Recruitment Agreement")]
-        RecruitmentAgreement,
+        RecruitmentAgreement = 22,
         [Display(Name = "Termination Agreement")]
-        TerminationAgreement,
+        TerminationAgreement = 23,
 
         // Procurement
         [Display(Name = "Contract Amendment")]
-        ContractAmendment,
+        ContractAmendment = 24,
         [Display(Name = "Joint Venture Agreement")]
-        JointVentureAgreement,
+        JointVentureAgreement = 25,
         [Display(Name = "License Agreement")]
-        LicenseAgreement,
+        LicenseAgreement = 26,
         [Display(Name = "Master Service Agreement")]
-        MasterServiceAgreement,
+        MasterServiceAgreement = 27,
         [Display(Name = "Memorandum of understanding")]
-        MemorandumOfUnderstandingAgreement,
+        MemorandumOfUnderstandingAgreement = 28,
         [Display(Name = "Partnership Agreement")]
-        PartnershipAgreement,
+        PartnershipAgreement = 29,
         [Display(Name = "Promissory note")]
-        PromissoryNote,
+        PromissoryNote = 30,
         [Display(Name = "Statement of work")]
-        SatementOfWork
+        SatementOfWork = 31
     }
 }

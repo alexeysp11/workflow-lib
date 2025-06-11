@@ -46,16 +46,16 @@ namespace WorkflowLib.Shared.Models.Business.Products
         /// <summary>
         /// Production date.
         /// </summary>
-        public System.DateTime? DateProduction { get; set; }
+        public DateTime? DateProduction { get; set; }
         
         /// <summary>
         /// Packaging date.
         /// </summary>
-        public System.DateTime? DatePackaging { get; set; }
+        public DateTime? DatePackaging { get; set; }
         
         /// <summary>
         /// Expiration date.
         /// </summary>
-        public System.DateTime? DateExpiration { get; set; }
+        public DateTime? DateExpiration { get; set; }
     }
 }

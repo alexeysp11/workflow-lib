@@ -20,7 +20,7 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
         /// <summary>
         /// Price for the delivery.
         /// </summary>
-        public decimal DeliveryPrice { get; set; }
+        public decimal? DeliveryPrice { get; set; }
         
         /// <summary>
         /// Initial address of the delivery.

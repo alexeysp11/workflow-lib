@@ -29,22 +29,22 @@ namespace WorkflowLib.Shared.Models.Business.Processes
         /// <summary>
         /// Actual start date.
         /// </summary>
-        public System.DateTime? DateStartActual { get; set; }
+        public DateTime? DateStartActual { get; set; }
         
         /// <summary>
         /// Actual end date.
         /// </summary>
-        public System.DateTime? DateEndActual { get; set; }
+        public DateTime? DateEndActual { get; set; }
         
         /// <summary>
         /// Expected start date.
         /// </summary>
-        public System.DateTime? DateStartExpected { get; set; }
+        public DateTime? DateStartExpected { get; set; }
         
         /// <summary>
         /// Expected end date.
         /// </summary>
-        public System.DateTime? DateEndExpected { get; set; }
+        public DateTime? DateEndExpected { get; set; }
 
         /// <summary>
         /// Executor.
@@ -70,15 +70,17 @@ namespace WorkflowLib.Shared.Models.Business.Processes
         /// Business process state.
         /// </summary>
         public BusinessProcessState? BusinessProcessState { get; set; }
-        
+
         /// <summary>
         /// Collection of risks related to the business task.
         /// </summary>
+        [Obsolete("It's better to use BusinessTaskRisk object")]
         public ICollection<Risk> Risks { get; set; }
 
         /// <summary>
         /// Collection of comments associated with the task.
         /// </summary>
+        [Obsolete("It's better to use BusinessTaskComment object")]
         public ICollection<Comment> Comments { get; set; }
 
         /// <summary>

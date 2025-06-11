@@ -15,6 +15,7 @@ namespace WorkflowLib.Shared.Models.Business.Cooking
         /// <summary>
         /// Ingredients.
         /// </summary>
+        [Obsolete("It's better to use IngredientRecipe object")]
         public ICollection<Ingredient> Ingredients { get; set; }
 
         /// <summary>

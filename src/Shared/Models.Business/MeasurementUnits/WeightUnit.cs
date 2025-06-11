@@ -10,6 +10,6 @@ namespace WorkflowLib.Shared.Models.Business.MeasurementUnits
         /// <summary>
         /// Code of the weight unit.
         /// </summary>
-        public string Code { get; set; }
+        public string? Code { get; set; }
     }
 }

@@ -56,12 +56,12 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
         /// <summary>
         /// Bith date of the employee.
         /// </summary>
-        public System.DateTime? BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
 
         /// <summary>
         /// Employment date.
         /// </summary>
-        public System.DateTime? EmployDate { get; set; }
+        public DateTime? EmployDate { get; set; }
 
         /// <summary>
         /// Companies related to the employee.
@@ -91,11 +91,13 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
         /// <summary>
         /// Skills of the employee.
         /// </summary>
+        [Obsolete("It's better to use EmployeeSkill object")]
         public ICollection<Skill> Skills { get; set; }
-                
+
         /// <summary>
         /// Contracts.
         /// </summary>
+        [Obsolete("It's better to use EmployeeContract object")]
         public ICollection<Contract> Contracts { get; private set; }
     }
 }
