@@ -9,24 +9,24 @@ using WorkflowLib.Shared.Models.Network;
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
 using WorkflowLib.Shared.Models.Business.Cooking;
 
-namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
+namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
 {
     /// <summary>
     /// A class that represents a backend service controller that processes requests from the customer.
     /// </summary>
-    public class CustomerBackendController
+    public class CustomerHandler
     {
         private DbContextOptions<FoodDeliveryDbContext> _contextOptions { get; set; }
-        private CustomerClientController _customerClientController { get; set; }
+        //private CustomerClientController _customerClientController { get; set; }
 
         /// <summary>
         /// Constructor by default.
         /// </summary>
-        public CustomerBackendController(
+        public CustomerHandler(
             DbContextOptions<FoodDeliveryDbContext> contextOptions) 
         {
             _contextOptions = contextOptions;
-            _customerClientController = new CustomerClientController(contextOptions, this);
+            //_customerClientController = new CustomerClientController(contextOptions, this);
         }
 
         #region makeorder
@@ -142,10 +142,10 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                 else if (model.PaymentType == EnumExtensions.GetDisplayName(PaymentType.QrCode))
                 {
                     // Generate QR code.
-                    string qrResult = new FileServiceController().GenerateQrCode(new ApiOperation()
-                    {
-                        RequestObject = model
-                    });
+                    //string qrResult = new FileServiceController().GenerateQrCode(new ApiOperation()
+                    //{
+                    //    RequestObject = model
+                    //});
 
                     // Envelope QR code.
                     System.Console.WriteLine("CustomerBackend.MakePayment: envelope qr");
@@ -253,7 +253,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                         BodyText = sbMessageText.ToString()
                     }
                 };
-                string notificationsRequest = new NotificationsBackendController(_contextOptions).SendNotifications(notifications);
+                string notificationsRequest = new NotificationsHandler(_contextOptions).SendNotifications(notifications);
 
                 // Update DB.
                 System.Console.WriteLine("CustomerBackend.MakePayment: cache");
@@ -321,7 +321,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                 System.Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: cache");
 
                 // Calculate delivery time.
-                var preprocessResponse = new WarehouseBackendController(_contextOptions).PreprocessOrderRedirect(new ApiOperation()
+                var preprocessResponse = new WarehouseHandler(_contextOptions).PreprocessOrderRedirect(new ApiOperation()
                 {
                     RequestObject = model
                 });

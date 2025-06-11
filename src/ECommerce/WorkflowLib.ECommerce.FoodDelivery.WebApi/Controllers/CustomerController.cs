@@ -2,23 +2,24 @@ using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Shared.Models.Business.BusinessDocuments;
 using WorkflowLib.Shared.Models.Network;
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
+using WorkflowLib.ECommerce.FoodDelivery.Core.Handlers;
 
 namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
 {
     /// <summary>
     /// A class that represents a client-side app controller that processes requests from the customer.
     /// </summary>
-    public class CustomerClientController
+    public class CustomerController
     {
         private DbContextOptions<FoodDeliveryDbContext> _contextOptions { get; set; }
-        private CustomerBackendController _customerBackendController { get; set; }
+        private CustomerHandler _customerBackendController { get; set; }
 
         /// <summary>
         /// Constructor by default.
         /// </summary>
-        public CustomerClientController(
+        public CustomerController(
             DbContextOptions<FoodDeliveryDbContext> contextOptions,
-            CustomerBackendController customerBackendController)
+            CustomerHandler customerBackendController)
         {
             _contextOptions = contextOptions;
             _customerBackendController = customerBackendController;

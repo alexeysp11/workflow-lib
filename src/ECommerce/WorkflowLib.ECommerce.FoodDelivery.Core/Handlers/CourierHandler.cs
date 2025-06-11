@@ -9,12 +9,12 @@ using WorkflowLib.Shared.Models.Business.Processes;
 using WorkflowLib.Shared.Models.Network;
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
 
-namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
+namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
 {
     /// <summary>
     /// Backend service controller that serves requests from the courier.
     /// </summary>
-    public class CourierBackendController
+    public class CourierHandler
     {
         private DbContextOptions<FoodDeliveryDbContext> _contextOptions { get; set; }
         private Notification Notification { get; set; }
@@ -22,7 +22,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         /// <summary>
         /// Constructor by default.
         /// </summary>
-        public CourierBackendController(
+        public CourierHandler(
             DbContextOptions<FoodDeliveryDbContext> contextOptions) 
         {
             _contextOptions = contextOptions;
@@ -119,7 +119,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                 context.SaveChanges();
 
                 // Notify warehouse backend controller.
-                string deliveryRequest = new WarehouseBackendController(_contextOptions).Store2WhSave(new ApiOperation()
+                string deliveryRequest = new WarehouseHandler(_contextOptions).Store2WhSave(new ApiOperation()
                 {
                     RequestObject = model
                 });
@@ -344,7 +344,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                     TitleText = titleText,
                     BodyText = sbMessageText.ToString()
                 };
-                new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
+                new NotificationsHandler(_contextOptions).SendNotifications(new List<Notification>
                 {
                     Notification
                 });

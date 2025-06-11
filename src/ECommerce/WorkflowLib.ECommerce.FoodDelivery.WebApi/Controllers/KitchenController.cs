@@ -3,20 +3,21 @@ using WorkflowLib.Shared.Models.Business.BusinessDocuments;
 using WorkflowLib.Shared.Models.Business.Customers;
 using WorkflowLib.Shared.Models.Network;
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
+using WorkflowLib.ECommerce.FoodDelivery.Core.Handlers;
 
 namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
 {
     /// <summary>
     /// Client-side app controller that serves requests from the kitchen employees.
     /// </summary>
-    public class KitchenClientController
+    public class KitchenController
     {
         private DbContextOptions<FoodDeliveryDbContext> _contextOptions { get; set; }
 
         /// <summary>
         /// Constructor by default.
         /// </summary>
-        public KitchenClientController(
+        public KitchenController(
             DbContextOptions<FoodDeliveryDbContext> contextOptions) 
         {
             _contextOptions = contextOptions;
@@ -75,7 +76,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                 System.Console.WriteLine("KitchenClient.PrepareMealExecute: cache");
 
                 // Send HTTP request.
-                string backendResponse = new KitchenBackendController(_contextOptions).PrepareMealExecute(new ApiOperation
+                string backendResponse = new KitchenHandler(_contextOptions).PrepareMealExecute(new ApiOperation
                 {
                     RequestObject = model
                 });

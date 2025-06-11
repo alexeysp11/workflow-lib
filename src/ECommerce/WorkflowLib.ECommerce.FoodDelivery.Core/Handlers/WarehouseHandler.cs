@@ -11,19 +11,19 @@ using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
 using WorkflowLib.Shared.Models.Business.Delivery;
 using WorkflowLib.ECommerce.FoodDelivery.Core.Models;
 
-namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
+namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
 {
     /// <summary>
     /// Backend service controller that serves requests from the warehouse employees.
     /// </summary>
-    public class WarehouseBackendController
+    public class WarehouseHandler
     {
         private DbContextOptions<FoodDeliveryDbContext> _contextOptions { get; set; }
 
         /// <summary>
         /// Constructor by default.
         /// </summary>
-        public WarehouseBackendController(
+        public WarehouseHandler(
             DbContextOptions<FoodDeliveryDbContext> contextOptions) 
         {
             _contextOptions = contextOptions;
@@ -283,7 +283,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                     TitleText = titleText,
                     BodyText = sbMessageText.ToString()
                 };
-                new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
+                new NotificationsHandler(_contextOptions).SendNotifications(new List<Notification>
                 {
                     notification
                 });
@@ -364,7 +364,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                 context.SaveChanges();
 
                 // Send HTTP request.
-                string backendResponse = new CourierBackendController(_contextOptions).Store2WhStart(new ApiOperation
+                string backendResponse = new CourierHandler(_contextOptions).Store2WhStart(new ApiOperation
                 {
                     RequestObject = deliveryOrder
                 });
@@ -403,10 +403,10 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                 System.Console.WriteLine("WarehouseBackend.Store2WhSave: cache");
 
                 // Send HTTP request.
-                string backendResponse = new WarehouseClientController(_contextOptions).Store2WhSave(new ApiOperation
-                {
-                    RequestObject = model
-                });
+                //string backendResponse = new WarehouseClientController(_contextOptions).Store2WhSave(new ApiOperation
+                //{
+                //    RequestObject = model
+                //});
                 
                 // Getting the products that should be delivered.
                 var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
@@ -448,7 +448,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                     TitleText = titleText,
                     BodyText = sbMessageText.ToString()
                 };
-                new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
+                new NotificationsHandler(_contextOptions).SendNotifications(new List<Notification>
                 {
                     notification
                 });
@@ -618,7 +618,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                     TitleText = titleText,
                     BodyText = sbMessageText.ToString()
                 };
-                new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
+                new NotificationsHandler(_contextOptions).SendNotifications(new List<Notification>
                 {
                     notification
                 });
@@ -705,7 +705,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                 context.SaveChanges();
 
                 // Send HTTP request.
-                string backendResponse = new KitchenBackendController(_contextOptions).PrepareMealStart(new ApiOperation
+                string backendResponse = new KitchenHandler(_contextOptions).PrepareMealStart(new ApiOperation
                 {
                     RequestObject = model
                 });
@@ -789,7 +789,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                     TitleText = titleText,
                     BodyText = sbMessageText.ToString()
                 };
-                new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
+                new NotificationsHandler(_contextOptions).SendNotifications(new List<Notification>
                 {
                     notification
                 });
@@ -865,7 +865,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                 context.SaveChanges();
 
                 // Send HTTP request.
-                string backendResponse = new CourierBackendController(_contextOptions).DeliverOrderStart(new ApiOperation
+                string backendResponse = new CourierHandler(_contextOptions).DeliverOrderStart(new ApiOperation
                 {
                     RequestObject = model
                 });

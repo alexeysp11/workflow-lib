@@ -2,19 +2,19 @@ using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Shared.Models.Business.Customers;
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
 
-namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
+namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
 {
     /// <summary>
     /// Backend service controller that allows to send notifications to the users of the system.
     /// </summary>
-    public class NotificationsBackendController
+    public class NotificationsHandler
     {
         private DbContextOptions<FoodDeliveryDbContext> _contextOptions { get; set; }
 
         /// <summary>
         /// Constructor by default.
         /// </summary>
-        public NotificationsBackendController(
+        public NotificationsHandler(
             DbContextOptions<FoodDeliveryDbContext> contextOptions) 
         {
             _contextOptions = contextOptions;

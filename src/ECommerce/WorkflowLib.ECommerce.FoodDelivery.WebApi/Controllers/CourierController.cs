@@ -2,20 +2,21 @@ using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Shared.Models.Business.BusinessDocuments;
 using WorkflowLib.Shared.Models.Network;
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
+using WorkflowLib.ECommerce.FoodDelivery.Core.Handlers;
 
 namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
 {
     /// <summary>
     /// Client-side app controller that serves requests from the courier.
     /// </summary>
-    public class CourierClientController
+    public class CourierController
     {
         private DbContextOptions<FoodDeliveryDbContext> _contextOptions { get; set; }
 
         /// <summary>
         /// Constructor by default.
         /// </summary>
-        public CourierClientController(
+        public CourierController(
             DbContextOptions<FoodDeliveryDbContext> contextOptions) 
         {
             _contextOptions = contextOptions;
@@ -65,7 +66,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                 System.Console.WriteLine("CourierClient.Store2WhExecute: cache");
 
                 // Send HTTP request.
-                string backendResponse = new CourierBackendController(_contextOptions).Store2WhExecute(new ApiOperation
+                string backendResponse = new CourierHandler(_contextOptions).Store2WhExecute(new ApiOperation
                 {
                     RequestObject = model
                 });
@@ -127,7 +128,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                 System.Console.WriteLine("CourierClient.DeliverOrderExecute: cache");
 
                 // Send HTTP request.
-                string backendResponse = new CourierBackendController(_contextOptions).DeliverOrderExecute(new ApiOperation
+                string backendResponse = new CourierHandler(_contextOptions).DeliverOrderExecute(new ApiOperation
                 {
                     RequestObject = model
                 });

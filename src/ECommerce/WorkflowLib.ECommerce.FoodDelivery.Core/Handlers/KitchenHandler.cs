@@ -9,19 +9,19 @@ using WorkflowLib.Shared.Models.Business.Processes;
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
+namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
 {
     /// <summary>
     /// Backend service controller that serves requests from the kitchen employees.
     /// </summary>
-    public class KitchenBackendController
+    public class KitchenHandler
     {
         private DbContextOptions<FoodDeliveryDbContext> _contextOptions { get; set; }
 
         /// <summary>
         /// Constructor by default.
         /// </summary>
-        public KitchenBackendController(
+        public KitchenHandler(
             DbContextOptions<FoodDeliveryDbContext> contextOptions) 
         {
             _contextOptions = contextOptions;
@@ -108,7 +108,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                     TitleText = titleText,
                     BodyText = sbMessageText.ToString()
                 };
-                string notificationsRequest = new NotificationsBackendController(_contextOptions).SendNotifications(new List<Notification>
+                string notificationsRequest = new NotificationsHandler(_contextOptions).SendNotifications(new List<Notification>
                 {
                     notification
                 });
@@ -189,7 +189,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                 context.SaveChanges();
 
                 // Send HTTP request.
-                string backendResponse = new WarehouseBackendController(_contextOptions).Kitchen2WhStart(new ApiOperation
+                string backendResponse = new WarehouseHandler(_contextOptions).Kitchen2WhStart(new ApiOperation
                 {
                     RequestObject = model
                 });
