@@ -2,16 +2,23 @@
 
 [English](README.md) | [Русский](README.ru.md)
 
-This project is a comprehensive library that provides a wide range of functionalities for ERP/CRM systems. 
+This project is a centralized library that provides a wide range of functions: reusable data models, services, and extensions that are designed to simplify and speed up the development of business applications, particularly in the areas of ERP and CRM.
 
-Overall, this library is a powerful tool that can be used in ERP/CRM systems to streamline and automate various business processes. 
-It offers a wide range of functionalities and data models that can be customized to meet the specific needs of any organization.
+## Idea
 
-Who can use this library:
-- Developers working on applications that require the functionalities provided by the library could use this application. 
-- Companies in industries such as logistics, finance, and document management could potentially benefit from using applications that incorporate this library.
+This library was created to solve the problem of code duplication and disparate object models when developing business applications. For example, I often had to create identical entities and services in different projects, which led to a loss of time and complicated support. It is worth noting that each project had its own repository, which complicated the integration between projects and the ability to change the object model.
 
-## Library
+As a result, it was decided to create a mono-repository, which included most of the previously created projects, as well as a common object model for representing data in the DB. This approach allows:
+- Avoid code duplication.
+- Ensure data consistency between projects.
+- Reduce development time by reusing ready-made components.
+- Simplify refactoring and dependency management.
+
+## Projects
+
+### Shared
+
+List of the shared projects (reusable data models, services, and extensions):
 
 - [AuthenticationService](src/Shared/AuthenticationService/README.md)
 - [CodeExtensions](src/Shared/CodeExtensions/README.md)
