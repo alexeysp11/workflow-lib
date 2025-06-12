@@ -14,7 +14,11 @@
 - Сократить время разработки за счет повторного использования готовых компонентов.
 - Упростить рефакторинг и управление зависимостями.
 
-## Библиотека
+## Проекты
+
+### Shared
+
+Список общих проектов (переиспользуемые модели данных, сервисы и расширения):
 
 - [AuthenticationService](src/Shared/AuthenticationService/README.ru.md)
 - [CodeExtensions](src/Shared/CodeExtensions/README.ru.md)

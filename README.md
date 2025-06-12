@@ -14,7 +14,11 @@ As a result, it was decided to create a mono-repository, which included most of 
 - Reduce development time by reusing ready-made components.
 - Simplify refactoring and dependency management.
 
-## Library
+## Projects
+
+### Shared
+
+List of the shared projects (reusable data models, services, and extensions):
 
 - [AuthenticationService](src/Shared/AuthenticationService/README.md)
 - [CodeExtensions](src/Shared/CodeExtensions/README.md)
