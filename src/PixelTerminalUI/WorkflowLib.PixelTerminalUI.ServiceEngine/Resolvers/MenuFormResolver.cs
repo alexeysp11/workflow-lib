@@ -14,6 +14,10 @@ public class MenuFormResolver
         _appSettings = appSettings;
     }
 
+    /// <summary>
+    /// Initialize new session.
+    /// </summary>
+    /// <returns>The instance of initialized session</returns>
     public SessionInfo InitSession()
     {
         int formHeight = 18;

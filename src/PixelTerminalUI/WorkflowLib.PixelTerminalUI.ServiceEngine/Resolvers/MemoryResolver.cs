@@ -1,5 +1,8 @@
 namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Resolvers;
 
+/// <summary>
+/// Memory resolver.
+/// </summary>
 public static class MemoryResolver
 {
     private static Dictionary<string, MenuFormResolver> Sessions { get; set; }
@@ -9,11 +12,37 @@ public static class MemoryResolver
         Sessions = new Dictionary<string, MenuFormResolver>();
     }
 
-    public static void SaveMenuFormResolver(string sessionUid, MenuFormResolver menuFormResolver)
+    /// <summary>
+    /// Save the instance of <see cref="MenuFormResolver"/>.
+    /// </summary>
+    /// <param name="sessionUid">Session UID</param>
+    /// <param name="menuFormResolver">New instance of <see cref="MenuFormResolver"/></param>
+    /// <param name="addWithoutCheck">Determines whether the instance is supposed to be added without check</param>
+    public static void SaveMenuFormResolver(
+        string sessionUid,
+        MenuFormResolver menuFormResolver,
+        bool addWithoutCheck)
     {
-        Sessions.Add(sessionUid, menuFormResolver);
+        if (menuFormResolver == null)
+        {
+            throw new ArgumentNullException(nameof(menuFormResolver), $"The instance of {nameof(MenuFormResolver)} could not be null");
+        }
+
+        if (addWithoutCheck || GetMenuFormResolver(sessionUid) == null)
+        {
+            Sessions.Add(sessionUid, menuFormResolver);
+        }
+        else
+        {
+            Sessions[sessionUid] = menuFormResolver;
+        }
     }
 
+    /// <summary>
+    /// Get the instance of <see cref="MenuFormResolver"/>.
+    /// </summary>
+    /// <param name="sessionUid">Session UID</param>
+    /// <returns></returns>
     public static MenuFormResolver? GetMenuFormResolver(string sessionUid)
     {
         MenuFormResolver? menuFormResolver = null;

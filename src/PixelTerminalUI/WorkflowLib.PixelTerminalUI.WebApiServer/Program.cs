@@ -39,7 +39,7 @@ app.MapPost("/pixelterminalui/go", (SessionInfoDto? sessionInfoDto, [FromService
         menuFormResolver = new MenuFormResolver(appSettings);
         SessionInfo sessionInfo = menuFormResolver.InitSession();
         menuFormResolver.Start();
-        MemoryResolver.SaveMenuFormResolver(sessionInfo.SessionUid, menuFormResolver);
+        MemoryResolver.SaveMenuFormResolver(sessionInfo.SessionUid, menuFormResolver, true);
         return new SessionInfoDto(sessionInfo);
     }
 
