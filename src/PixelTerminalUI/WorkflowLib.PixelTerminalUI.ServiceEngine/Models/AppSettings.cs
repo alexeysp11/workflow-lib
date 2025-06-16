@@ -16,9 +16,14 @@ public class AppSettings
     public string? MenuCode { get; set; }
 
     /// <summary>
-    /// Maximum time during which a session can be inactive (in minutes).
+    /// he maximum amount of minutes a session could be active.
     /// </summary>
     public int? MaxMinutesActiveSession { get; set; }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public int? SessionCheckPeriodQty { get; set; }
 
     /// <summary>
     /// List of the database info.
