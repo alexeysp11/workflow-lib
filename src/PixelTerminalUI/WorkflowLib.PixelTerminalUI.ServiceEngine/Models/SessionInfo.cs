@@ -24,6 +24,7 @@ public class SessionInfo
     public bool UserInputProcessed { get; set; }
     public bool FinishUserSession { get; set; }
     public bool IsPasswordInputNeeded { get; set; }
+    public DateTime? DateTimeLastUpdated { get; set; }
 
     /// <summary>
     /// The currently displayed form.

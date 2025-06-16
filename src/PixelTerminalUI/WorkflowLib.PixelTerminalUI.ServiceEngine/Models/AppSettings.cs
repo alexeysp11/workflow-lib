@@ -16,6 +16,11 @@ public class AppSettings
     public string? MenuCode { get; set; }
 
     /// <summary>
+    /// Maximum time during which a session can be inactive (in minutes).
+    /// </summary>
+    public int? MaxMinutesActiveSession { get; set; }
+
+    /// <summary>
     /// List of the database info.
     /// </summary>
     public List<DatabaseInfo>? DatabaseInfoList { get; set; }
