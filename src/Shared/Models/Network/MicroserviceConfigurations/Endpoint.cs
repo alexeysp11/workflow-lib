@@ -58,7 +58,7 @@ namespace WorkflowLib.Shared.Models.Network.MicroserviceConfigurations
             private set
             {
                 m_status = value;
-                LastStatusChange = System.DateTime.Now;
+                LastStatusChange = System.DateTime.UtcNow;
             }
         }
         
