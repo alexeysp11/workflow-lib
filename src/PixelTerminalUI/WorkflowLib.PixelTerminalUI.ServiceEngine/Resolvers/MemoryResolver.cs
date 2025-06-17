@@ -5,7 +5,12 @@ namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Resolvers;
 /// </summary>
 public static class MemoryResolver
 {
-    private static Dictionary<string, MenuFormResolver> Sessions { get; set; }
+    /// <summary>
+    /// Collection of the active sessions.
+    /// </summary>
+    public static Dictionary<string, MenuFormResolver> Sessions { get; private set; }
+
+    private static object _lockObj = new object();
 
     static MemoryResolver()
     {
@@ -51,5 +56,32 @@ public static class MemoryResolver
             menuFormResolver = value;
         }
         return menuFormResolver;
+    }
+
+    /// <summary>
+    /// Get the UID list of inactive sessions.
+    /// </summary>
+    /// <param name="lastAvailableEditDate">Last available edit date</param>
+    /// <returns></returns>
+    public static List<string> GetInactiveSessionUidList(DateTime lastAvailableEditDate)
+    {
+        List<string> sessionsToDelete = Sessions
+            .Select(x => x.Value.SessionInfo)
+            .Where(x => x != null && x.DateTimeLastUpdated.HasValue && x.DateTimeLastUpdated.Value < lastAvailableEditDate)
+            .Select(x => x.SessionUid)
+            .ToList();
+        return sessionsToDelete;
+    }
+
+    /// <summary>
+    /// Delete session.
+    /// </summary>
+    /// <param name="sessionUid">Session UID</param>
+    public static void DeleteSession(string sessionUid)
+    {
+        lock (_lockObj)
+        {
+            Sessions.Remove(sessionUid);
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Hosting;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
+using WorkflowLib.PixelTerminalUI.ServiceEngine.Resolvers;
 
 namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Background
 {
@@ -14,7 +15,7 @@ namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Background
         public const int DefaultMaxMinutesActiveSession = 10;
 
         /// <summary>
-        /// 
+        /// Default value of the number of checks to be performed during the session's active period.
         /// </summary>
         public const int DefaultSessionCheckPeriodQty = 4;
 
@@ -26,12 +27,12 @@ namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Background
         /// <summary>
         /// The maximum amount of minutes a session could be active.
         /// </summary>
-        private int _maxMinutesActiveSession;
+        private readonly int _maxMinutesActiveSession;
 
         /// <summary>
-        /// 
+        /// The number of checks to be performed during the session's active period.
         /// </summary>
-        private int _sessionCheckPeriodQty;
+        private readonly int _sessionCheckPeriodQty;
 
         public SessionCheckWorker(AppSettings? appSettings)
         {
@@ -48,7 +49,12 @@ namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Background
             {
                 try
                 {
-
+                    DateTime lastAvailableEditDate = DateTime.UtcNow.AddMinutes(_maxMinutesActiveSession);
+                    List<string> sessionUidsToDelete = MemoryResolver.GetInactiveSessionUidList(lastAvailableEditDate);
+                    foreach (string sessionUid in sessionUidsToDelete)
+                    {
+                        MemoryResolver.DeleteSession(sessionUid);
+                    }
                 }
                 catch (Exception)
                 {

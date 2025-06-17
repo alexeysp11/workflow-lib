@@ -49,7 +49,7 @@ public class MenuFormResolver
             SessionInfo.CurrentForm = SessionInfo.CurrentForm.ParentForm;
         }
         SessionInfo.FinishUserSession = false;
-        SessionInfo.DateTimeLastUpdated = DateTime.Now;
+        SessionInfo.DateTimeLastUpdated = DateTime.UtcNow;
         SessionInfo.CurrentForm.Show();
     }
 
