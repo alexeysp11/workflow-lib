@@ -49,7 +49,7 @@ namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Background
             {
                 try
                 {
-                    DateTime lastAvailableEditDate = DateTime.UtcNow.AddMinutes(_maxMinutesActiveSession);
+                    DateTime lastAvailableEditDate = DateTime.UtcNow.AddMinutes(-_maxMinutesActiveSession);
                     List<string> sessionUidsToDelete = MemoryResolver.GetInactiveSessionUidList(lastAvailableEditDate);
                     foreach (string sessionUid in sessionUidsToDelete)
                     {
