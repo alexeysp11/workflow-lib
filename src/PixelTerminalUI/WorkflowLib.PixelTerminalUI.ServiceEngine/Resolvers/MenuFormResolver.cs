@@ -14,6 +14,10 @@ public class MenuFormResolver
         _appSettings = appSettings;
     }
 
+    /// <summary>
+    /// Initialize new session.
+    /// </summary>
+    /// <returns>The instance of initialized session</returns>
     public SessionInfo InitSession()
     {
         int formHeight = 18;
@@ -30,6 +34,10 @@ public class MenuFormResolver
         return SessionInfo;
     }
 
+    /// <summary>
+    /// Process user input.
+    /// </summary>
+    /// <param name="userInput">String that the user entered</param>
     public void ProcessUserInput(string userInput)
     {
         SessionInfo.UserInput = userInput;
@@ -37,9 +45,11 @@ public class MenuFormResolver
         SessionInfo.IsPasswordInputNeeded = false;
         if (SessionInfo.FinishUserSession)
         {
+            // Display the parent form because the exit form is currently displayed.
             SessionInfo.CurrentForm = SessionInfo.CurrentForm.ParentForm;
         }
         SessionInfo.FinishUserSession = false;
+        SessionInfo.DateTimeLastUpdated = DateTime.UtcNow;
         SessionInfo.CurrentForm.Show();
     }
 

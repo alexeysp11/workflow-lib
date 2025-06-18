@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WorkflowLib.PixelTerminalUI.ServiceEngine.Background;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Dto;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Resolvers;
@@ -15,6 +16,8 @@ var appsettings = configuration.GetSection("AppSettings").Get<AppSettings>()
 builder.Services.AddSingleton(appsettings);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddHostedService<SessionCheckWorker>();
 
 var app = builder.Build();
 
@@ -39,7 +42,7 @@ app.MapPost("/pixelterminalui/go", (SessionInfoDto? sessionInfoDto, [FromService
         menuFormResolver = new MenuFormResolver(appSettings);
         SessionInfo sessionInfo = menuFormResolver.InitSession();
         menuFormResolver.Start();
-        MemoryResolver.SaveMenuFormResolver(sessionInfo.SessionUid, menuFormResolver);
+        MemoryResolver.SaveMenuFormResolver(sessionInfo.SessionUid, menuFormResolver, true);
         return new SessionInfoDto(sessionInfo);
     }
 

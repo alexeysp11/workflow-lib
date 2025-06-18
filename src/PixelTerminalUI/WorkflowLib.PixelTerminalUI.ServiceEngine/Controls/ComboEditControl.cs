@@ -176,8 +176,14 @@ public class ComboEditControl : TextEditControl
             throw new Exception("Incorrect index: " + textEditControl.Value);
         }
 
-        // Display user input on the control.
+        // Update selected indexes.
+        if (!MultiSelectEnabled)
+        {
+            SelectedIndexes?.Clear();
+        }
         SelectedIndexes?.Add(selectedIndex);
+
+        // Display user input on the control.
         textEditControl.Value = MultiSelectEnabled && SelectedIndexes?.Count > 1
             ? "MULTIPLE"
             : $"{selectedIndex} - {ComboOptions[selectedIndex]}";

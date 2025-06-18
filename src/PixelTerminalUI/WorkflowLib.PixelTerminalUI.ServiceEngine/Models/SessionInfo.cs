@@ -17,13 +17,14 @@ public class SessionInfo
     public bool DisplayBorders { get; set; }
     public string[,] DisplayedInfo { get; set; }
     public string[,] SavedDisplayedInfo { get; set; }
-    public long UserId { get; set; }
+    public long? UserId { get; set; }
     public string? UserLogin { get; set; }
     public string? UserPassword { get; set; }
     public string? UserInput { get; set; }
     public bool UserInputProcessed { get; set; }
     public bool FinishUserSession { get; set; }
     public bool IsPasswordInputNeeded { get; set; }
+    public DateTime? DateTimeLastUpdated { get; set; }
 
     /// <summary>
     /// The currently displayed form.

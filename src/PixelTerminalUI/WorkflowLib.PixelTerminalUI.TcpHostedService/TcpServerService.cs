@@ -18,6 +18,11 @@ public class TcpServerService : IHostedService
         _appSettings = appSettings;
     }
 
+    /// <summary>
+    /// Start the service.
+    /// </summary>
+    /// <param name="cancellationToken">Cancellation token</param>
+    /// <returns></returns>
     public Task StartAsync(CancellationToken cancellationToken)
     {
         _cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
@@ -29,6 +34,11 @@ public class TcpServerService : IHostedService
         return Task.CompletedTask;
     }
 
+    /// <summary>
+    /// Accept clients.
+    /// </summary>
+    /// <param name="cancellationToken">Cancellation token</param>
+    /// <returns></returns>
     private async Task AcceptClientsAsync(CancellationToken cancellationToken)
     {
         while (!cancellationToken.IsCancellationRequested)
@@ -38,6 +48,12 @@ public class TcpServerService : IHostedService
         }
     }
 
+    /// <summary>
+    /// Handle client.
+    /// </summary>
+    /// <param name="client">Instance of <see cref="TcpClient"/></param>
+    /// <param name="cancellationToken">Cancellation token</param>
+    /// <returns></returns>
     private async Task HandleClientAsync(TcpClient client, CancellationToken cancellationToken)
     {
         using (client)
@@ -66,6 +82,11 @@ public class TcpServerService : IHostedService
         }
     }
 
+    /// <summary>
+    /// Stop the service.
+    /// </summary>
+    /// <param name="cancellationToken">Cancellation token</param>
+    /// <returns></returns>
     public Task StopAsync(CancellationToken cancellationToken)
     {
         _listener.Stop();
