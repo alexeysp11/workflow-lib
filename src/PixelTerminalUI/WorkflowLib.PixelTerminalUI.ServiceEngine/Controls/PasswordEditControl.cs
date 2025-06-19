@@ -70,11 +70,13 @@ public class PasswordEditControl : TextEditControl
     /// </summary>
     public override void Show()
     {
-        base.Show();
         if (SessionInfo?.CurrentForm == Form && Form?.FocusedEditControl == this)
         {
+            // Reset password each time the control is focused.
+            Value = "";
             SessionInfo.IsPasswordInputNeeded = true;
         }
+        base.Show();
     }
 
     /// <summary>
