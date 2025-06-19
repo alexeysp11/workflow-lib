@@ -72,6 +72,7 @@ public class PasswordEditControl : TextEditControl
     {
         if (SessionInfo?.CurrentForm == Form && Form?.FocusedEditControl == this)
         {
+            // Reset password each time the control is focused.
             Value = "";
             SessionInfo.IsPasswordInputNeeded = true;
         }
