@@ -70,11 +70,12 @@ public class PasswordEditControl : TextEditControl
     /// </summary>
     public override void Show()
     {
-        base.Show();
         if (SessionInfo?.CurrentForm == Form && Form?.FocusedEditControl == this)
         {
+            Value = "";
             SessionInfo.IsPasswordInputNeeded = true;
         }
+        base.Show();
     }
 
     /// <summary>
