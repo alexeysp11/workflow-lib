@@ -1,4 +1,5 @@
-﻿using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
+﻿using Serilog;
+using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
 
 namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
@@ -230,6 +231,7 @@ public abstract class BaseForm
     /// <param name="message">Message to display</param>
     public void ShowError(string message)
     {
+        Log.Error(message);
         ShowMessageForm("ERROR", message);
     }
 
@@ -239,6 +241,7 @@ public abstract class BaseForm
     /// <param name="message">Message to display</param>
     public void ShowWarning(string message)
     {
+        Log.Warning(message);
         ShowMessageForm("WARNING", message);
     }
 

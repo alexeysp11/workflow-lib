@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Hosting;
+using Serilog;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Resolvers;
 
@@ -56,9 +57,9 @@ namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Background
                         MemoryResolver.DeleteSession(sessionUid);
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    // Log the error.
+                    Log.Error($"Failed to execute {nameof(SessionCheckWorker)}: {ex.Message}");
                 }
                 await Task.Delay(_secondsInMinute * _maxMinutesActiveSession / _sessionCheckPeriodQty, stoppingToken);
             }

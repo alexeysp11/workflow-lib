@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Background;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Dto;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
@@ -17,7 +18,12 @@ builder.Services.AddSingleton(appsettings);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Services.
 builder.Services.AddHostedService<SessionCheckWorker>();
+
+// Logging.
+builder.Host.UseSerilog((context, configuration) =>
+    configuration.ReadFrom.Configuration(context.Configuration));
 
 var app = builder.Build();
 

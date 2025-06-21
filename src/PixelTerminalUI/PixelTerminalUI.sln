@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Shared.Models.B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.PixelTerminalUI.Dal", "WorkflowLib.PixelTerminalUI.Dal\WorkflowLib.PixelTerminalUI.Dal.csproj", "{30340D31-133C-4B57-91E0-F7CDA141EB5F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +68,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B7944427-7381-D209-DA3E-0FBEA11BD434} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{4E8D0C56-C7E3-3156-C722-62964140B831} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {08E094FB-BF12-40FA-A1F1-21F9A09B0553}
