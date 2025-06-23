@@ -25,6 +25,7 @@ public class SessionInfo
     public bool FinishUserSession { get; set; }
     public bool IsPasswordInputNeeded { get; set; }
     public DateTime? DateTimeLastUpdated { get; set; }
+    public bool WaitScreenDisplayed { get; set; }
 
     /// <summary>
     /// The currently displayed form.

@@ -112,13 +112,13 @@ class Program
             int startCursorLeft = Console.CursorLeft;
             int startCursorTop = Console.CursorTop;
 
+            string userInput = "";
             while (true)
             {
                 // Request.
                 if (sessionInfoDto != null)
                 {
-                    string userInput = "";
-                    if (askForEnter)
+                    if (askForEnter && sessionInfoDto?.WaitScreenDisplayed == false)
                     {
                         if (sessionInfoDto?.IsPasswordInputNeeded == true)
                         {
@@ -134,6 +134,10 @@ class Program
                         }
                     }
                     sessionInfoDto.UserInput = userInput;
+                    if (sessionInfoDto?.WaitScreenDisplayed == true)
+                    {
+                        sessionInfoDto.UserInput = "";
+                    }
                     sessionInfoDto.DisplayedInfo = string.Empty;
                     sessionInfoDto.SavedDisplayedInfo = string.Empty;
                 }

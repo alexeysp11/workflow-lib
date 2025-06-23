@@ -80,10 +80,12 @@ public class SimpleMessageForm : BaseForm
     {
         switch (txtConfirmation.Value)
         {
+            case "":
             case "-n":
             case "-b":
                 txtConfirmation.Value = "";
                 SessionInfo.CurrentForm = ParentForm;
+                SessionInfo.MessageFormSkipped = true;
                 return true;
         }
         txtConfirmation.Value = "";

@@ -245,6 +245,11 @@ public abstract class BaseForm
         ShowMessageForm("WARNING", message);
     }
 
+    public void ShowWaitScreenForm(string message = "PLEASE WAIT")
+    {
+        ShowMessageForm(string.Empty, message);
+    }
+
     /// <summary>
     /// Show <see cref="SimpleMessageForm"/> to display messages.
     /// </summary>
