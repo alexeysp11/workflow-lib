@@ -43,6 +43,7 @@ public class MenuFormResolver
         SessionInfo.UserInput = userInput;
         SessionInfo.UserInputProcessed = false;
         SessionInfo.IsPasswordInputNeeded = false;
+        SessionInfo.WaitScreenSkipped = false;
         if (SessionInfo.FinishUserSession)
         {
             // Display the parent form because the exit form is currently displayed.

@@ -87,6 +87,13 @@ public class PasswordEditControl : TextEditControl
     {
         try
         {
+            // Reassign the input value, if the wait screen is displayed.
+            if (SessionInfo?.WaitScreenDisplayed == true)
+            {
+                Value = SessionInfo?.SavedUserInput ?? "";
+            }
+
+            // Process input value.
             switch (Value)
             {
                 case "":
@@ -102,18 +109,20 @@ public class PasswordEditControl : TextEditControl
 
                 default:
                     // Show wait screen.
-                    if (!SessionInfo.WaitScreenDisplayed)
+                    if (SessionInfo?.WaitScreenDisplayed == false)
                     {
                         if (Form != null)
                         {
                             Form?.ShowWaitScreenForm();
-                            SessionInfo.WaitScreenDisplayed = true;
+                            Form?.SetWaitScreen(Form, Value);
                             return true;
                         }
                     }
 
+                    // Reset the properties for wait screen.
+                    Form?.ResetWaitScreen();
+
                     // Resume validation.
-                    SessionInfo.WaitScreenDisplayed = false;
                     if (ValidatePassword != null)
                     {
                         if (UsernameEditControl == null)

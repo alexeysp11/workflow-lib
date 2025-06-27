@@ -21,11 +21,17 @@ public class SessionInfo
     public string? UserLogin { get; set; }
     public string? UserPassword { get; set; }
     public string? UserInput { get; set; }
+    public string? SavedUserInput { get; set; }
     public bool UserInputProcessed { get; set; }
     public bool FinishUserSession { get; set; }
     public bool IsPasswordInputNeeded { get; set; }
     public DateTime? DateTimeLastUpdated { get; set; }
     public bool WaitScreenDisplayed { get; set; }
+
+    /// <summary>
+    /// Waith screen skipped.
+    /// </summary>
+    public bool WaitScreenSkipped { get; set; }
 
     /// <summary>
     /// The currently displayed form.
@@ -46,6 +52,11 @@ public class SessionInfo
     /// User account that was validated during authentication.
     /// </summary>
     public UserAccount? UserAccount { get; set; }
+
+    /// <summary>
+    /// Form which called the wait screen.
+    /// </summary>
+    public BaseForm? WaitScreenParentForm { get; set; }
 
     public void AssignEmptyDisplayedInfo(DisplayedInfoType displayedInfoType = DisplayedInfoType.Current)
     {
