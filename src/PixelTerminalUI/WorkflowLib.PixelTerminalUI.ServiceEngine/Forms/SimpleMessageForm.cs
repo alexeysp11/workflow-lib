@@ -85,7 +85,6 @@ public class SimpleMessageForm : BaseForm
             case "-b":
                 txtConfirmation.Value = "";
                 SessionInfo.CurrentForm = ParentForm;
-                SessionInfo.MessageFormSkipped = true;
                 return true;
         }
         txtConfirmation.Value = "";
