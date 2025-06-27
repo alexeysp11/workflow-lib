@@ -258,7 +258,6 @@ public class TextEditControl : TextControl
         return true;
     }
 
-
     /// <summary>
     /// Show the wait screen.
     /// </summary>
