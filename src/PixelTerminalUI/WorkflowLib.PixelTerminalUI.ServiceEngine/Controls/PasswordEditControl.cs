@@ -108,19 +108,11 @@ public class PasswordEditControl : TextEditControl
                     return false;
 
                 default:
-                    // Show wait screen.
-                    if (SessionInfo?.WaitScreenDisplayed == false)
+                    // Show the wait screen.
+                    if (ShowWaitScreen())
                     {
-                        if (Form != null)
-                        {
-                            Form?.ShowWaitScreenForm();
-                            Form?.SetWaitScreen(Form, Value);
-                            return true;
-                        }
+                        return true;
                     }
-
-                    // Reset the properties for wait screen.
-                    Form?.ResetWaitScreen();
 
                     // Resume validation.
                     if (ValidatePassword != null)
