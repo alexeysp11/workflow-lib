@@ -80,6 +80,7 @@ public class SimpleMessageForm : BaseForm
     {
         switch (txtConfirmation.Value)
         {
+            case "":
             case "-n":
             case "-b":
                 txtConfirmation.Value = "";

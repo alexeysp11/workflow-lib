@@ -150,6 +150,21 @@ public abstract class BaseForm
                 if (currentEditControl != null)
                 {
                     ShowTextEditControl(FocusedEditControl);
+
+                    // Repeat the control processing if the wait screen is displayed.
+                    if (SessionInfo?.WaitScreenParentForm == this
+                        && SessionInfo?.UserInputProcessed == true
+                        && SessionInfo?.WaitScreenDisplayed == true
+                        && SessionInfo?.WaitScreenSkipped == true
+                        && !string.IsNullOrEmpty(SessionInfo?.SavedUserInput))
+                    {
+                        SessionInfo.CurrentForm = this;
+                        FocusedEditControl.Value = SessionInfo?.SavedUserInput ?? "";
+                        SessionInfo.UserInputProcessed = false;
+
+                        ShowTextEditControl(FocusedEditControl);
+                        ResetWaitScreen();
+                    }
                 }
                 else
                 {
@@ -243,6 +258,24 @@ public abstract class BaseForm
     {
         Log.Warning(message);
         ShowMessageForm("WARNING", message);
+    }
+
+    public void ShowWaitScreenForm(string message = "PLEASE WAIT")
+    {
+        try
+        {
+            var frmDisplayMessage = new WaitScreenForm();
+            frmDisplayMessage.Header = string.Empty;
+            frmDisplayMessage.Message = message;
+            frmDisplayMessage.SessionInfo = SessionInfo;
+            frmDisplayMessage.ParentForm = this;
+            frmDisplayMessage.Init();
+            frmDisplayMessage.Show();
+        }
+        catch (Exception ex)
+        {
+            ShowError(ex.Message);
+        }
     }
 
     /// <summary>
@@ -443,5 +476,23 @@ public abstract class BaseForm
         {
             ShowError(ex.Message);
         }
+    }
+
+    /// <summary>
+    /// Set the wait screen configurations.
+    /// </summary>
+    public void SetWaitScreen(BaseForm? form, string? value, bool isWaitScreenDisplayed = true)
+    {
+        SessionInfo.WaitScreenDisplayed = isWaitScreenDisplayed;
+        SessionInfo.WaitScreenParentForm = form;
+        SessionInfo.SavedUserInput = value;
+    }
+
+    /// <summary>
+    /// Reset the wait screen configurations.
+    /// </summary>
+    public void ResetWaitScreen()
+    {
+        SetWaitScreen(null, null, false);
     }
 }

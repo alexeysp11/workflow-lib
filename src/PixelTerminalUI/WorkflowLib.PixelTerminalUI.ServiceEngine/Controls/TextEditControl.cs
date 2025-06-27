@@ -257,4 +257,27 @@ public class TextEditControl : TextControl
         }
         return true;
     }
+
+    /// <summary>
+    /// Show the wait screen.
+    /// </summary>
+    /// <returns>true if the wait screen is configured and displayed; otherwise, false</returns>
+    protected bool ShowWaitScreen()
+    {
+        // Show wait screen.
+        if (SessionInfo?.WaitScreenDisplayed == false)
+        {
+            if (Form != null)
+            {
+                Form?.ShowWaitScreenForm();
+                Form?.SetWaitScreen(Form, Value);
+                return true;
+            }
+        }
+
+        // Reset the properties for wait screen.
+        Form?.ResetWaitScreen();
+
+        return false;
+    }
 }

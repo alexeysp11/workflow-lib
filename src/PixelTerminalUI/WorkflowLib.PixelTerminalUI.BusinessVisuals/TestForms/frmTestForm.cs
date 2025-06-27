@@ -3,6 +3,9 @@ using WorkflowLib.PixelTerminalUI.BusinessVisuals.Forms;
 
 namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.TestForms;
 
+/// <summary>
+/// Test form.
+/// </summary>
 public class frmTestForm : frmTerminalBase
 {
     private TextControl? lblHeader;

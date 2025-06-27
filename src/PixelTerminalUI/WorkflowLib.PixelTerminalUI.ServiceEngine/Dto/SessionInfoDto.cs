@@ -19,6 +19,7 @@ public class SessionInfoDto
     public int UserInputWdith { get; set; }
     public bool FinishUserSession { get; set; }
     public bool IsPasswordInputNeeded { get; set; }
+    public bool WaitScreenDisplayed { get; set; }
 
     public SessionInfoDto()
     {
@@ -50,5 +51,6 @@ public class SessionInfoDto
         UserInputWdith = sessionInfo.CurrentForm?.FocusedEditControl?.Width ?? sessionInfo.FormWidth;
         FinishUserSession = sessionInfo.FinishUserSession;
         IsPasswordInputNeeded = sessionInfo.IsPasswordInputNeeded;
+        WaitScreenDisplayed = sessionInfo.WaitScreenDisplayed;
     }
 }
