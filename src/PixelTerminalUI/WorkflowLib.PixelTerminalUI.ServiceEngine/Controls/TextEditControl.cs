@@ -261,7 +261,7 @@ public class TextEditControl : TextControl
     /// <summary>
     /// Show the wait screen.
     /// </summary>
-    /// <returns>true if the wait screen is configured; otherwise, false</returns>
+    /// <returns>true if the wait screen is configured and displayed; otherwise, false</returns>
     protected bool ShowWaitScreen()
     {
         // Show wait screen.

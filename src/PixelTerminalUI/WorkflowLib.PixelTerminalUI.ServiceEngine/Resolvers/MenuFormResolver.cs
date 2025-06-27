@@ -3,10 +3,19 @@ using WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
 
 namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Resolvers;
 
+/// <summary>
+/// Menu form resolver.
+/// </summary>
 public class MenuFormResolver
 {
+    /// <summary>
+    /// Session info.
+    /// </summary>
     public SessionInfo? SessionInfo { get; set; }
     
+    /// <summary>
+    /// Application settings.
+    /// </summary>
     private AppSettings _appSettings;
 
     public MenuFormResolver(AppSettings appSettings)
