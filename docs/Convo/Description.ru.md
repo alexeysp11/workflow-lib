@@ -49,4 +49,4 @@
 
 Диаграмма коммуникации между сервисами:
 
-![SystemOverview](img/SystemOverview.png)
+![SystemOverview](../img/Convo/SystemOverview.png)

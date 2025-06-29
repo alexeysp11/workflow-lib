@@ -4,7 +4,7 @@
 
 Service for processing group messages 
 
-![SystemOverview](../img/SystemOverview.png)
+![SystemOverview](../../img/Convo/SystemOverview.png)
 
 ## Description 
 

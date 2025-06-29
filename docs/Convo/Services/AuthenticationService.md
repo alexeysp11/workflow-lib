@@ -4,7 +4,7 @@
 
 Service for authentication and getting session tokens.
 
-![SystemOverview](../img/SystemOverview.png)
+![SystemOverview](../../img/Convo/SystemOverview.png)
 
 ## Description of the authentication API
 
@@ -17,7 +17,7 @@ Service for authentication and getting session tokens.
 The [workflow-auth](https://github.com/alexeysp11/workflow-auth) *external service*/*library* is used as an authentication service.
 The communication diagram between services is shown in the figure below:
 
-![AuthService](../img/AuthService.png)
+![AuthService](../../img/Convo/AuthService.png)
 
 In this authentication service, the [ChatAuthService](../Core/Services/ChatAuthService.md) class is responsible for processing network requests.
 

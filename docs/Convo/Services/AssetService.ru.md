@@ -4,6 +4,6 @@
 
 Сервис, который ответственен за работу с файлами (хранение, обработка, получение и отправка).
 
-![SystemOverview](../img/SystemOverview.png)
+![SystemOverview](../../img/Convo/SystemOverview.png)
 
 ## Описание 

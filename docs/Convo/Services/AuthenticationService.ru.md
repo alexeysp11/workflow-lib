@@ -4,7 +4,7 @@
 
 Сервис аутентификации и выдачи сессионных токенов 
 
-![SystemOverview](../img/SystemOverview.png)
+![SystemOverview](../../img/Convo/SystemOverview.png)
 
 ## Описание API для аутентификации
 
@@ -17,7 +17,7 @@
 В качестве сервиса аутентификации используется *внешний сервис*/*библиотека* [workflow-auth](https://github.com/alexeysp11/workflow-auth).
 Схема коммуникации между сервисами представлена на рисунке ниже:
 
-![AuthService](../img/AuthService.png)
+![AuthService](../../img/Convo/AuthService.png)
 
 В данном сервисе аутентификации за обработку сетевых запросов отвечает класс [ChatAuthService](../Core/Services/ChatAuthService.md).
 
