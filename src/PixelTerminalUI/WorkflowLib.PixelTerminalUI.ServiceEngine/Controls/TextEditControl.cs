@@ -262,7 +262,7 @@ public class TextEditControl : TextControl
     /// Show the wait screen.
     /// </summary>
     /// <returns>true if the wait screen is configured and displayed; otherwise, false</returns>
-    protected bool ShowWaitScreen()
+    public bool ShowWaitScreen()
     {
         // Show wait screen.
         if (SessionInfo?.WaitScreenDisplayed == false)
