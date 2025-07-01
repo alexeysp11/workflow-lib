@@ -32,18 +32,18 @@ private bool txtValue1_EnterValidation()
                 return true;
 
             default:
-                // Show the wait screen.
-                if (ShowWaitScreen())
+                using (var waitScreen = new WaitScreen(this))
                 {
-                    return true;
+                    SessionInfo.WaitScreenDisplayed = false;
+                    LongOperationMethod(txtValue1.Value);
+                    FocusedEditControl = txtValue2;
                 }
-
-                // Resume validation.
-                SessionInfo.WaitScreenDisplayed = false;
-                LongOperationMethod(txtValue1.Value);
-                FocusedEditControl = txtValue2;
                 return true;
         }
+        return true;
+    }
+    catch (WaitScreenDisplayedException)
+    {
         return true;
     }
     catch (Exception ex)
