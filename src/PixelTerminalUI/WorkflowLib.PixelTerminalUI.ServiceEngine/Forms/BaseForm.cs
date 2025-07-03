@@ -488,9 +488,9 @@ public abstract class BaseForm
     /// </summary>
     public void SetWaitScreen(BaseForm? form, string? value, bool isWaitScreenDisplayed = true)
     {
-        SessionInfo.WaitScreenDisplayed = isWaitScreenDisplayed;
         SessionInfo.WaitScreenParentForm = form;
         SessionInfo.SavedUserInput = value;
+        SessionInfo.WaitScreenDisplayed = isWaitScreenDisplayed;
     }
 
     /// <summary>

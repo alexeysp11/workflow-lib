@@ -276,7 +276,11 @@ public class TextEditControl : TextControl
         }
 
         // Reset the properties for wait screen.
-        Form?.ResetWaitScreen();
+        if (SessionInfo?.WaitScreenDisplayed == true && SessionInfo?.WaitScreenSkipped == true)
+        {
+            Form?.ResetWaitScreen();
+            return false;
+        }
 
         return false;
     }
