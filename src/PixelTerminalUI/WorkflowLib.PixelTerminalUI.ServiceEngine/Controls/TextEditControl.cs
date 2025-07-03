@@ -265,7 +265,7 @@ public class TextEditControl : TextControl
     public bool ShowWaitScreen()
     {
         // Show wait screen.
-        if (SessionInfo?.WaitScreenDisplayed == false)
+        if (SessionInfo?.WaitScreenDisplayed == false && SessionInfo?.WaitScreenSkipped == false)
         {
             if (Form != null)
             {
