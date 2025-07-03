@@ -1,4 +1,5 @@
-﻿using WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
+﻿using WorkflowLib.PixelTerminalUI.ServiceEngine.Exceptions;
+using WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
 using WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
 
 namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
@@ -108,42 +109,42 @@ public class PasswordEditControl : TextEditControl
                     return false;
 
                 default:
-                    // Show the wait screen.
-                    if (ShowWaitScreen())
+                    using (var waitScreen = new WaitScreen(this))
                     {
-                        return true;
-                    }
-
-                    // Resume validation.
-                    if (ValidatePassword != null)
-                    {
-                        if (UsernameEditControl == null)
+                        if (ValidatePassword != null)
                         {
-                            throw new Exception($"Could not validate password: '{nameof(UsernameEditControl)}' is not set");
+                            if (UsernameEditControl == null)
+                            {
+                                throw new Exception($"Could not validate password: '{nameof(UsernameEditControl)}' is not set");
+                            }
+                            if (!ValidatePassword(UsernameEditControl.Value, Value))
+                            {
+                                throw new Exception(ValidationFailedMessage ?? "Password validation failed");
+                            }
                         }
-                        if (!ValidatePassword(UsernameEditControl.Value, Value))
+                        else
                         {
-                            throw new Exception(ValidationFailedMessage ?? "Password validation failed");
+                            throw new Exception($"Could not validate password: '{nameof(ValidatePassword)}' is not set");
                         }
-                    }
-                    else
-                    {
-                        throw new Exception($"Could not validate password: '{nameof(ValidatePassword)}' is not set");
-                    }
-                    SaveValidatedData();
-                    if (ShowMainMenuOnSuccess)
-                    {
-                        if (Form?.ShowMainMenu != null)
+                        SaveValidatedData();
+                        if (ShowMainMenuOnSuccess)
                         {
-                            Form?.ShowMainMenu();
+                            if (Form?.ShowMainMenu != null)
+                            {
+                                Form?.ShowMainMenu();
+                            }
                         }
-                    }
-                    else
-                    {
-                        OnGoNextSelected();
+                        else
+                        {
+                            OnGoNextSelected();
+                        }
                     }
                     return true;
             }
+        }
+        catch (WaitScreenDisplayedException)
+        {
+            return true;
         }
         catch (Exception ex)
         {

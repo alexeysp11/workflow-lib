@@ -260,12 +260,17 @@ public abstract class BaseForm
         ShowMessageForm("WARNING", message);
     }
 
-    public void ShowWaitScreenForm(string message = "PLEASE WAIT")
+    /// <summary>
+    /// Show the <see cref="WaitScreenForm"/>.
+    /// </summary>
+    /// <param name="header">Header to display</param>
+    /// <param name="message">Message to display</param>
+    public void ShowWaitScreenForm(string header = "", string message = "PLEASE WAIT")
     {
         try
         {
             var frmDisplayMessage = new WaitScreenForm();
-            frmDisplayMessage.Header = string.Empty;
+            frmDisplayMessage.Header = header;
             frmDisplayMessage.Message = message;
             frmDisplayMessage.SessionInfo = SessionInfo;
             frmDisplayMessage.ParentForm = this;
@@ -483,9 +488,9 @@ public abstract class BaseForm
     /// </summary>
     public void SetWaitScreen(BaseForm? form, string? value, bool isWaitScreenDisplayed = true)
     {
-        SessionInfo.WaitScreenDisplayed = isWaitScreenDisplayed;
         SessionInfo.WaitScreenParentForm = form;
         SessionInfo.SavedUserInput = value;
+        SessionInfo.WaitScreenDisplayed = isWaitScreenDisplayed;
     }
 
     /// <summary>
