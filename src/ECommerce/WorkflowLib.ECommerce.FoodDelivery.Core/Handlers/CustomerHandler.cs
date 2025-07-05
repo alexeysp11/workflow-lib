@@ -33,14 +33,13 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         /// <summary>
         /// The method that is responsible for placing an order.
         /// </summary>
-        public string MakeOrderRequest(ApiOperation apiOperation)
+        public string MakeOrderRequest(InitialOrder initialOrder)
         {
             string response = "";
             System.Console.WriteLine("CustomerBackend.MakeOrderRequest: begin");
             try
             {
                 // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Validation.
@@ -50,19 +49,19 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 System.Console.WriteLine("CustomerClient.MakeOrderRequest: cache");
                 var initialOrderProducts = new List<InitialOrderProduct>();
                 var initialOrderIngredients = new List<InitialOrderIngredient>();
-                foreach (var pid in model.ProductIds)
+                foreach (var pid in initialOrder.ProductIds)
                 {
                     if (initialOrderProducts.Any(x => x.Product.Id == pid))
                         continue;
                     
-                    int productQty = model.ProductIds.Where(x => x == pid).Count();
+                    int productQty = initialOrder.ProductIds.Where(x => x == pid).Count();
                     var product = context.Products.Where(x => x.Id == pid).FirstOrDefault();
                     var initialOrderProduct = new InitialOrderProduct
                     {
                         Uid = System.Guid.NewGuid().ToString(),
                         Name = product.Name,
                         Product = product,
-                        InitialOrder = model,
+                        InitialOrder = initialOrder,
                         Quantity = productQty
                     };
                     initialOrderProducts.Add(initialOrderProduct);
@@ -77,18 +76,18 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                             Uid = System.Guid.NewGuid().ToString(),
                             Name = ingredient.Name,
                             Ingredient = ingredient,
-                            InitialOrder = model,
+                            InitialOrder = initialOrder,
                             InitialOrderProduct = initialOrderProduct,
                             Quantity = productQty * (int)ingredient.Quantity
                         });
                     }
                     
-                    model.PaymentAmount += productQty * product.Price;
+                    initialOrder.PaymentAmount += productQty * product.Price;
                 }
-                model.Uid = System.Guid.NewGuid().ToString();
+                initialOrder.Uid = System.Guid.NewGuid().ToString();
                 context.InitialOrderProducts.AddRange(initialOrderProducts);
                 context.InitialOrderIngredients.AddRange(initialOrderIngredients);
-                context.InitialOrders.Add(model);
+                context.InitialOrders.Add(initialOrder);
                 context.SaveChanges();
 
                 // Validation.
@@ -98,10 +97,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 System.Console.WriteLine("CustomerBackend.MakeOrderRequest: cache");
 
                 // Invoke makepayment.
-                response = MakePaymentStart(new ApiOperation()
-                {
-                    RequestObject = model
-                });
+                response = MakePaymentStart(initialOrder);
             }
             catch (System.Exception ex)
             {
@@ -117,14 +113,13 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         /// <summary>
         /// The method that is responsible for starting the electronic payment procedure for an order.
         /// </summary>
-        public string MakePaymentStart(ApiOperation apiOperation)
+        public string MakePaymentStart(InitialOrder initialOrder)
         {
             string response = "";
             System.Console.WriteLine("CustomerBackend.MakePayment: begin");
             try
             {
                 // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Validation.
@@ -134,12 +129,12 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 System.Console.WriteLine("CustomerBackend.MakePayment: cache");
 
                 // Get payment method.
-                if (model.PaymentType == EnumExtensions.GetDisplayName(PaymentType.Card))
+                if (initialOrder.PaymentType == EnumExtensions.GetDisplayName(PaymentType.Card))
                 {
                     // Create a form for card details.
                     System.Console.WriteLine("CustomerBackend.MakePayment: form for card details");
                 }
-                else if (model.PaymentType == EnumExtensions.GetDisplayName(PaymentType.QrCode))
+                else if (initialOrder.PaymentType == EnumExtensions.GetDisplayName(PaymentType.QrCode))
                 {
                     // Generate QR code.
                     //string qrResult = new FileServiceController().GenerateQrCode(new ApiOperation()
@@ -156,7 +151,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 }
 
                 // Save data into DB.
-                var destination = model.Address;
+                var destination = initialOrder.Address;
                 var organization = context.Organizations
                     .Include(x => x.Company)
                     .FirstOrDefault();
@@ -166,11 +161,11 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                     throw new System.Exception("Address of the company is not specified");
                 var customer = context.Customers
                     .Include(x => x.UserAccount)
-                    .FirstOrDefault(x => x.UserAccount != null && x.UserAccount.Uid == model.UserUid);
+                    .FirstOrDefault(x => x.UserAccount != null && x.UserAccount.Uid == initialOrder.UserUid);
                 if (customer == null)
                     throw new System.Exception("Specified customer does not exist in the database");
-                var initialOrder = context.InitialOrders.FirstOrDefault(x => x.Id == model.Id);
-                if (initialOrder == null)
+                InitialOrder? existedInitialOrder = context.InitialOrders.FirstOrDefault(x => x.Id == initialOrder.Id);
+                if (existedInitialOrder == null)
                     throw new System.Exception("Specified initial order does not exist in the database");
                 var deliveryOrder = new DeliveryOrder
                 {
@@ -180,9 +175,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                         new Payment
                         {
                             Uid = System.Guid.NewGuid().ToString(),
-                            PaymentType = model.PaymentType,
-                            PaymentMethod = model.PaymentMethod,
-                            Amount = model.PaymentAmount,
+                            PaymentType = existedInitialOrder.PaymentType,
+                            PaymentMethod = existedInitialOrder.PaymentMethod,
+                            Amount = existedInitialOrder.PaymentAmount,
                             Payer = customer.FullName,
                             Receiver = string.IsNullOrEmpty(organization.Company.Name) ? "Our company" : organization.Company.Name,
                             Status = EnumExtensions.GetDisplayName(PaymentStatus.Requested)
@@ -202,7 +197,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 context.Payments.AddRange(deliveryOrder.Payments);
                 var initialOrderProducts = context.InitialOrderProducts
                     .Include(x => x.Product)
-                    .Where(x => x.InitialOrder != null && x.InitialOrder.Id == model.Id)
+                    .Where(x => x.InitialOrder != null && x.InitialOrder.Id == initialOrder.Id)
                     .ToList();
                 foreach (var iop in initialOrderProducts)
                 {
@@ -215,12 +210,12 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                     };
                     context.DeliveryOrderProducts.Add(deliveryOrderProduct);
                 }
-                deliveryOrder.ProductsPrice = model.PaymentAmount;
-                deliveryOrder.TotalPrice = model.PaymentAmount;
+                deliveryOrder.ProductsPrice = initialOrder.PaymentAmount;
+                deliveryOrder.TotalPrice = initialOrder.PaymentAmount;
                 context.SaveChanges();
 
                 // Save the reference to DeliveryOrder.
-                initialOrder.DeliveryOrderId = deliveryOrder.Id;
+                existedInitialOrder.DeliveryOrderId = deliveryOrder.Id;
                 context.SaveChanges();
 
                 // Title text.
@@ -270,15 +265,12 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         /// <summary>
         /// The method that is responsible for transmitting information from the client regarding the completed electronic payment.
         /// </summary>
-        public string MakePaymentRespond(ApiOperation apiOperation)
+        public string MakePaymentRespond(DeliveryOrder deliveryOrder)
         {
             string response = "";
             System.Console.WriteLine("CustomerBackend.MakePayment: begin");
             try
             {
-                // Initializing.
-                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
-
                 // Validation.
                 System.Console.WriteLine("CustomerBackend.MakePayment: validation");
 
@@ -286,10 +278,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 System.Console.WriteLine("CustomerBackend.MakePayment: cache");
 
                 // Calculate delivery time.
-                string preprocessResponse = PreprocessOrderRedirect(new ApiOperation()
-                {
-                    RequestObject = model
-                });
+                string preprocessResponse = PreprocessOrderRedirect(deliveryOrder);
 
                 response = "success";
             }
@@ -305,15 +294,12 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         /// <summary>
         /// 
         /// </summary>
-        public string PreprocessOrderRedirect(ApiOperation apiOperation)
+        public string PreprocessOrderRedirect(DeliveryOrder deliveryOrder)
         {
             string response = "";
             System.Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: begin");
             try
             {
-                // Initializing.
-                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
-                
                 // Validation.
                 System.Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: validation");
 
@@ -323,7 +309,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 // Calculate delivery time.
                 var preprocessResponse = new WarehouseHandler(_contextOptions).PreprocessOrderRedirect(new ApiOperation()
                 {
-                    RequestObject = model
+                    RequestObject = deliveryOrder
                 });
 
                 response = "success";

@@ -28,20 +28,14 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         /// <summary>
         /// The method that is responsible for placing an order.
         /// </summary>
-        public string MakeOrderRequest(ApiOperation apiOperation)
+        public string MakeOrderRequest(InitialOrder initialOrder)
         {
             string response = "";
             System.Console.WriteLine("CustomerClient.MakeOrderRequest: begin");
             try
             {
-                // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
-
                 // Send HTTP request.
-                string backendResponse = _customerBackendController.MakeOrderRequest(new ApiOperation
-                {
-                    RequestObject = model
-                });
+                string backendResponse = _customerBackendController.MakeOrderRequest(initialOrder);
                 
                 // Insert into cache.
                 System.Console.WriteLine("CustomerClient.MakeOrderRequest: cache");
@@ -61,15 +55,12 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         /// <summary>
         /// A method that stores the data necessary to carry out electronic payment on the part of the client.
         /// </summary>
-        public string MakePaymentSave(ApiOperation apiOperation)
+        public string MakePaymentSave(DeliveryOrder deliveryOrder)
         {
             string response = "";
             System.Console.WriteLine("CustomerClient.MakePaymentSave: begin");
             try
             {
-                // Initializing.
-                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
-
                 // Update DB.
                 System.Console.WriteLine("CustomerClient.MakePaymentSave: cache");
 
@@ -88,15 +79,14 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         /// <summary>
         /// The method that is responsible for transmitting information from the client regarding the completed electronic payment.
         /// </summary>
-        public string MakePaymentRespond(ApiOperation apiOperation)
+        public string MakePaymentRespond(DeliveryOrder deliveryOrder)
         {
             string response = "";
             System.Console.WriteLine("CustomerClient.MakePaymentRespond: begin");
             try
             {
                 // Initializing.
-                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
-                if (model == null)
+                if (deliveryOrder == null)
                     throw new System.ArgumentNullException("apiOperation.RequestObject");
 
                 // Validation.
@@ -109,10 +99,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                 System.Console.WriteLine("CustomerClient.MakePaymentRespond: cache");
 
                 // Send HTTP request.
-                string backendResponse = _customerBackendController.MakePaymentRespond(new ApiOperation()
-                {
-                    RequestObject = model
-                });
+                string backendResponse = _customerBackendController.MakePaymentRespond(deliveryOrder);
                 
                 // Insert into cache.
                 System.Console.WriteLine("CustomerClient.MakePaymentRespond: cache");
