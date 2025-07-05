@@ -29,7 +29,6 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             _contextOptions = contextOptions;
         }
 
-        #region preprocessorder
         /// <summary>
         /// Method for determining the first action of personnel to process an order: for example, 1) transfer ingredients 
         /// from the warehouse to the kitchen or 2) create an order for the delivery of missing ingredients from the store 
@@ -210,9 +209,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             System.Console.WriteLine("WarehouseBackend.PreprocessOrderRedirect: end");
             return response;
         }
-        #endregion  // preprocessorder
-
-        #region store2wh
+        
         /// <summary>
         /// A method that allows you to begin the process of delivering products from the store to the warehouse.
         /// </summary>
@@ -369,9 +366,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             System.Console.WriteLine("WarehouseBackend.RequestStore2WhRespond: end");
             return response;
         }
-        #endregion  // requeststore2wh
         
-        #region store2wh
         /// <summary>
         /// A method that allows you to save the value of an incoming parameter 
         /// as part of the process of delivering products from the store to the warehouse. 
@@ -476,9 +471,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             System.Console.WriteLine("WarehouseBackend.Store2WhSave: end");
             return response;
         }
-        #endregion  // store2wh
-
-        #region confirmstore2wh
+        
         /// <summary>
         /// A method that is responsible for confirming the delivery of products from the store to the warehouse.
         /// </summary>
@@ -542,9 +535,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             System.Console.WriteLine("WarehouseBackend.ConfirmStore2WhAccept: end");
             return response;
         }
-        #endregion  // confirmstore2wh
         
-        #region wh2kitchen
         /// <summary>
         /// A method that allows you to begin the process of delivering products and ingredients from the warehouse to the kitchen.
         /// </summary>
@@ -706,9 +697,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             System.Console.WriteLine("WarehouseBackend.Wh2KitchenExecute: end");
             return response;
         }
-        #endregion  // wh2kitchen
-
-        #region kitchen2wh
+        
         /// <summary>
         /// A method that allows you to begin the process of delivering finished products from the kitchen to the warehouse.
         /// </summary>
@@ -861,8 +850,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             System.Console.WriteLine("WarehouseBackend.Kitchen2WhExecute: end");
             return response;
         }
-        #endregion  // kitchen2wh
-
+        
         /// <summary>
         /// 
         /// </summary>

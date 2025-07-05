@@ -27,7 +27,6 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             _contextOptions = contextOptions;
         }
 
-        #region preparemeal
         /// <summary>
         /// A method that is responsible for storing information necessary for the preparation of an order by kitchen staff.
         /// </summary>
@@ -203,6 +202,5 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             System.Console.WriteLine("KitchenBackend.PrepareMealExecute: end");
             return response;
         }
-        #endregion  // preparemeal
     }
 }

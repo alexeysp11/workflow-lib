@@ -9,16 +9,17 @@ namespace WorkflowLib.Shared.Models.Business.Monetary
         /// Integer.
         /// </summary>
         public int Integer { get; private set; }
+
         /// <summary>
         /// Fraction.
         /// </summary>
         public int Fraction { get; private set; }
+
         /// <summary>
         /// Currency.
         /// </summary>
         public Currency Currency { get; private set; }
 
-        #region Constructors
         /// <summary>
         /// 
         /// </summary>
@@ -56,7 +57,6 @@ namespace WorkflowLib.Shared.Models.Business.Monetary
             Fraction = fraction;
             Currency = currency;
         }
-        #endregion  // Constructors
 
         /// <summary>
         /// 
@@ -67,6 +67,7 @@ namespace WorkflowLib.Shared.Models.Business.Monetary
             Fraction += fraction;
             if (Fraction > 99) { Fraction -= 100; Integer += 1; }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -85,6 +86,7 @@ namespace WorkflowLib.Shared.Models.Business.Monetary
             CheckFractionFormat(Fraction);
             return Integer.ToString() + "." + Fraction.ToString() + " " + Currency.ToString();
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -93,6 +95,7 @@ namespace WorkflowLib.Shared.Models.Business.Monetary
             CheckFractionFormat(Fraction);
             return Integer.ToString() + "." + Fraction.ToString();
         }
+
         /// <summary>
         /// 
         /// </summary>

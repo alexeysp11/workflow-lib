@@ -23,7 +23,6 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             _contextOptions = contextOptions;
         }
 
-        #region requeststore2wh
         /// <summary>
         /// Storing request for filling a form for deliving from the store to warehouse.
         /// </summary>
@@ -74,9 +73,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             System.Console.WriteLine("WarehouseClient.RequestStore2WhRespond: end");
             return response;
         }
-        #endregion  // requeststore2wh
-
-        #region store2wh
+        
         /// <summary>
         /// Storing request for filling a form for deliving from the store to warehouse.
         /// </summary>
@@ -100,9 +97,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             System.Console.WriteLine("WarehouseClient.Store2WhSave: end");
             return response;
         }
-        #endregion  // store2wh
-
-        #region confirmstore2wh
+        
         /// <summary>
         /// A method that is responsible for confirming the delivery of products from the store to the warehouse.
         /// </summary>
@@ -129,9 +124,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             System.Console.WriteLine("WarehouseClient.ConfirmStore2WhAccept: end");
             return response;
         }
-        #endregion  // confirmstore2wh
         
-        #region wh2kitchen
         /// <summary>
         /// Storing the request for warhouse employee to deliver from warehouse to kitchen. 
         /// </summary>
@@ -187,9 +180,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             System.Console.WriteLine("WarehouseClient.Wh2KitchenExecute: end");
             return response;
         }
-        #endregion  // wh2kitchen
-
-        #region kitchen2wh
+        
         /// <summary>
         /// A method that allows you to begin the process of delivering finished products from the kitchen to the warehouse.
         /// </summary>
@@ -240,6 +231,5 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             System.Console.WriteLine("WarehouseClient.Kitchen2WhExecute: end");
             return response;
         }
-        #endregion  // kitchen2wh
     }
 }

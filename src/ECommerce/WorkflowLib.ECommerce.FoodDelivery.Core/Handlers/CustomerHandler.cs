@@ -29,7 +29,6 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             //_customerClientController = new CustomerClientController(contextOptions, this);
         }
 
-        #region makeorder
         /// <summary>
         /// The method that is responsible for placing an order.
         /// </summary>
@@ -66,9 +65,10 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                     };
                     initialOrderProducts.Add(initialOrderProduct);
 
-                    var ingredientsTmp = context.Ingredients
+                    List<Ingredient> ingredientsTmp = context.Ingredients
                         .Include(x => x.IngredientProduct)
-                        .Where(x => x.FinalProduct.Id == product.Id);
+                        .Where(x => x.FinalProduct.Id == product.Id)
+                        .ToList();
                     foreach (var ingredient in ingredientsTmp)
                     {
                         initialOrderIngredients.Add(new InitialOrderIngredient
@@ -107,9 +107,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             System.Console.WriteLine("CustomerBackend.MakeOrderRequest: end");
             return response;
         }
-        #endregion  // makeorder
-
-        #region makepayment
+        
         /// <summary>
         /// The method that is responsible for starting the electronic payment procedure for an order.
         /// </summary>
@@ -319,6 +317,5 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             System.Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: end");
             return response;
         }
-        #endregion  // makepayment
     }
 }

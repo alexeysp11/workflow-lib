@@ -23,7 +23,6 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             _contextOptions = contextOptions;
         }
 
-        #region preparemeal
         /// <summary>
         /// A method that is responsible for storing information necessary for the preparation of an order by kitchen staff.
         /// </summary>
@@ -86,6 +85,5 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             System.Console.WriteLine("KitchenClient.PrepareMealExecute: end");
             return response;
         }
-        #endregion  // preparemeal
     }
 }

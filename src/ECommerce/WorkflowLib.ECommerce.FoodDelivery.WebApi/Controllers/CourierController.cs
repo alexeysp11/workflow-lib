@@ -22,7 +22,6 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             _contextOptions = contextOptions;
         }
 
-        #region store2wh
         /// <summary>
         /// A method that allows to save a request for the delivery of products from a store to a warehouse.
         /// </summary>
@@ -73,9 +72,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             System.Console.WriteLine("CourierClient.Store2WhExecute: end");
             return response;
         }
-        #endregion  // store2wh
-
-        #region deliverorder
+        
         /// <summary>
         /// The method that is responsible for starting the order delivery process.
         /// </summary>
@@ -126,6 +123,5 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             System.Console.WriteLine("CourierClient.DeliverOrderExecute: end");
             return response;
         }
-        #endregion  // deliverorder
     }
 }
