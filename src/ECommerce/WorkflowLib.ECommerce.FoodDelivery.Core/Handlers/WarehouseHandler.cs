@@ -35,15 +35,14 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         /// from the warehouse to the kitchen or 2) create an order for the delivery of missing ingredients from the store 
         /// to the warehouse.
         /// </summary>
-        public string PreprocessOrderRedirect(ApiOperation apiOperation)
+        public string PreprocessOrderRedirect(DeliveryOrder deliveryOrder)
         {
             string response = "";
             System.Console.WriteLine("WarehouseBackend.PreprocessOrderRedirect: begin");
             try
             {
                 // Initializing.
-                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
-                if (model == null)
+                if (deliveryOrder == null)
                     throw new System.ArgumentNullException("apiOperation.RequestObject");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
 
@@ -56,7 +55,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 var deliveryOrderProducts = context.DeliveryOrderProducts
                     .Include(x => x.Product)
                     .Include(x => x.DeliveryOrder)
-                    .Where(x => x.DeliveryOrder.Id == model.Id);
+                    .Where(x => x.DeliveryOrder.Id == deliveryOrder.Id);
                 var productIds = (from product in deliveryOrderProducts select product.Product.Id).ToList();
 
                 // Using product IDs from the order, find the corresponding products in the WHProduct warehouse. It will be more 
@@ -125,14 +124,14 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 var deliveryOrderStore2Wh = new DeliveryOrder
                 {
                     Uid = System.Guid.NewGuid().ToString(),
-                    ParentDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id),
+                    ParentDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrder.Id),
                     CustomerUid = whEmployee.Uid,
                     CustomerName = whEmployee.FullName,
                     OrderCustomerType = OrderCustomerType.Employee,
                     ExecutorUid = courierEmployee.Uid,
                     ExecutorName = courierEmployee.FullName,
                     OrderExecutorType = OrderExecutorType.Employee,
-                    Destination = model.Origin,
+                    Destination = deliveryOrder.Origin,
                     DateStartActual = System.DateTime.Now
                 };
                 var deliveryOrderProductsStore2Wh = new List<DeliveryOrderProduct>();
@@ -195,18 +194,12 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 // - Otherwise, invoke requeststore2wh.
                 if (isSufficient)
                 {
-                    response = Wh2KitchenStart(new ApiOperation()
-                    {
-                        RequestObject = model
-                    });
+                    response = Wh2KitchenStart(deliveryOrder);
                 }
                 else
                 {
                     resultDuration += store2whDuration;
-                    response = RequestStore2WhStart(new ApiOperation()
-                    {
-                        RequestObject = deliveryOrderStore2Wh
-                    });
+                    response = RequestStore2WhStart(deliveryOrderStore2Wh);
                 }
             }
             catch (Exception ex)
@@ -223,15 +216,14 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         /// <summary>
         /// A method that allows you to begin the process of delivering products from the store to the warehouse.
         /// </summary>
-        public string RequestStore2WhStart(ApiOperation apiOperation)
+        public string RequestStore2WhStart(DeliveryOrder deliveryOrder)
         {
             string response = "";
             System.Console.WriteLine("WarehouseBackend.RequestStore2WhStart: begin");
             try
             {
                 // Initializing.
-                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
-                if (model == null)
+                if (deliveryOrder == null)
                     throw new System.ArgumentNullException("apiOperation.RequestObject");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
@@ -239,14 +231,14 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 System.Console.WriteLine("WarehouseBackend.RequestStore2WhStart: update DB");
                 
                 // Getting the products that should be delivered.
-                var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
-                if (deliveryOrder == null)
-                    throw new Exception($"Delivery order could not be null (delivery order ID: {model.Id})");
+                var existedDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrder.Id);
+                if (existedDeliveryOrder == null)
+                    throw new Exception($"Delivery order could not be null (delivery order ID: {deliveryOrder.Id})");
                 var deliveryOrderProducts = context.DeliveryOrderProducts
                     .Include(x => x.Product)
-                    .Where(x => x.DeliveryOrder.Id == model.Id && x.Product != null);
+                    .Where(x => x.DeliveryOrder.Id == deliveryOrder.Id && x.Product != null);
                 if (deliveryOrderProducts.Count() == 0)
-                    throw new Exception($"There are no existing products associated with the specified DeliveryOrder (ID: {model.Id})");
+                    throw new Exception($"There are no existing products associated with the specified DeliveryOrder (ID: {deliveryOrder.Id})");
                 
                 // Get sender and receiver of the notification.
                 var adminUser = context.UserAccounts.FirstOrDefault();
@@ -256,13 +248,13 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
 
                 // Title text.
                 var sbMessageText = new StringBuilder();
-                sbMessageText.Append("RequestStore2Wh: request delivery of order #").Append(model.Id.ToString()).Append(" from the store to the warehouse");
+                sbMessageText.Append("RequestStore2Wh: request delivery of order #").Append(deliveryOrder.Id.ToString()).Append(" from the store to the warehouse");
                 string titleText = sbMessageText.ToString();
                 sbMessageText.Clear();
 
                 // Body text.
                 sbMessageText.Append("Please be informed that you are responsible for requesting delivery of order #");
-                sbMessageText.Append(model.Id.ToString());
+                sbMessageText.Append(deliveryOrder.Id.ToString());
                 sbMessageText.Append(" from the store to the warehouse.\n");
                 sbMessageText.Append("\n");
                 sbMessageText.Append("The system automatically determined that the warehouse is short of the following products:\n");
@@ -301,7 +293,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 {
                     Uid = System.Guid.NewGuid().ToString(),
                     BusinessTask = businessTask,
-                    DeliveryOrder = deliveryOrder,
+                    DeliveryOrder = existedDeliveryOrder,
                     Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.RequestStore2Wh)
                 };
                 context.BusinessTasks.Add(businessTask);
@@ -323,15 +315,14 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         /// <summary>
         /// A method that allows you to request the start of the process of delivering products from the store to the warehouse.
         /// </summary>
-        public string RequestStore2WhRespond(ApiOperation apiOperation)
+        public string RequestStore2WhRespond(DeliveryOrder deliveryOrder)
         {
             string response = "";
             System.Console.WriteLine("WarehouseBackend.RequestStore2WhRespond: begin");
             try
             {
                 // Initializing.
-                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
-                if (model == null)
+                if (deliveryOrder == null)
                     throw new System.ArgumentNullException("apiOperation.RequestObject");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
@@ -340,17 +331,18 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
 
                 // The BusinessTask and DeliveryOrder classes are connected using the BusinessTaskDeliveryOrder class,
                 // so get the collection of business task objects that are related to the delivery order.
-                var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
-                if (deliveryOrder == null)
-                    throw new Exception($"Delivery order could not be null (delivery order ID: {model.Id})");
-                var businessTasks = context.BusinessTaskDeliveryOrders
+                DeliveryOrder? existedDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrder.Id);
+                if (existedDeliveryOrder == null)
+                    throw new Exception($"Delivery order could not be null (delivery order ID: {deliveryOrder.Id})");
+                List<BusinessTask?> businessTasks = context.BusinessTaskDeliveryOrders
                     .Where(x => x.BusinessTask != null 
                         && x.DeliveryOrder != null 
                         && x.Discriminator == EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.RequestStore2Wh)
-                        && x.DeliveryOrder.Id == model.Id)
-                    .Select(x => x.BusinessTask);
+                        && x.DeliveryOrder.Id == deliveryOrder.Id)
+                    .Select(x => x.BusinessTask)
+                    .ToList();
                 if (businessTasks == null || !businessTasks.Any())
-                    throw new Exception($"The collection of BusinessTask objects could not be null or empty (delivery order ID: {model.Id})");
+                    throw new Exception($"The collection of BusinessTask objects could not be null or empty (delivery order ID: {deliveryOrder.Id})");
                 
                 // Iterate through the entire collection of business tasks and "close" each of them 
                 // by setting Status to Closed.
@@ -360,11 +352,11 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 }
 
                 // Change the status of the corresponding delivery order.
-                deliveryOrder.Status = EnumExtensions.GetDisplayName(OrderStatus.Requested);
+                existedDeliveryOrder.Status = EnumExtensions.GetDisplayName(OrderStatus.Requested);
                 context.SaveChanges();
 
                 // Send HTTP request.
-                string backendResponse = new CourierHandler(_contextOptions).Store2WhStart(deliveryOrder);
+                string backendResponse = new CourierHandler(_contextOptions).Store2WhStart(existedDeliveryOrder);
 
                 // 
                 response = "success";
@@ -490,15 +482,14 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         /// <summary>
         /// A method that is responsible for confirming the delivery of products from the store to the warehouse.
         /// </summary>
-        public string ConfirmStore2WhAccept(ApiOperation apiOperation)
+        public string ConfirmStore2WhAccept(DeliveryOrder deliveryOrder)
         {
             string response = "";
             System.Console.WriteLine("WarehouseBackend.ConfirmStore2WhAccept: begin");
             try
             {
                 // Initializing.
-                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
-                if (model == null)
+                if (deliveryOrder == null)
                     throw new System.ArgumentNullException("apiOperation.RequestObject");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
@@ -506,17 +497,18 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 System.Console.WriteLine("WarehouseBackend.ConfirmStore2WhAccept: cache");
 
                 // Close the business task that is related to the delivery order passed as a parameter.
-                var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
-                if (deliveryOrder == null)
-                    throw new Exception($"Delivery order could not be null (delivery order ID: {model.Id})");
-                var businessTasks = context.BusinessTaskDeliveryOrders
+                DeliveryOrder? existedDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrder.Id);
+                if (existedDeliveryOrder == null)
+                    throw new Exception($"Delivery order could not be null (delivery order ID: {deliveryOrder.Id})");
+                List<BusinessTask?> businessTasks = context.BusinessTaskDeliveryOrders
                     .Where(x => x.BusinessTask != null 
                         && x.DeliveryOrder != null 
                         && x.Discriminator == EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.ConfirmStore2Wh)
-                        && x.DeliveryOrder.Id == model.Id)
-                    .Select(x => x.BusinessTask);
+                        && x.DeliveryOrder.Id == deliveryOrder.Id)
+                    .Select(x => x.BusinessTask)
+                    .ToList();
                 if (businessTasks == null || !businessTasks.Any())
-                    throw new Exception($"The collection of BusinessTask objects could not be null or empty (delivery order ID: {model.Id})");
+                    throw new Exception($"The collection of BusinessTask objects could not be null or empty (delivery order ID: {deliveryOrder.Id})");
                 
                 // Iterate through the entire collection of business tasks and "close" each of them 
                 // by setting Status to Closed.
@@ -526,12 +518,12 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 }
 
                 // Change the status of the corresponding delivery order.
-                deliveryOrder.DateEndActual = System.DateTime.Now;
-                deliveryOrder.Status = EnumExtensions.GetDisplayName(OrderStatus.Finished);
+                existedDeliveryOrder.DateEndActual = System.DateTime.Now;
+                existedDeliveryOrder.Status = EnumExtensions.GetDisplayName(OrderStatus.Finished);
 
                 // Get the parent delivery order that should be delivered from the warehouse to the kitchen.
-                var parentDeliveryOrder = context.DeliveryOrders
-                    .Where(x => x.Id == model.Id)
+                DeliveryOrder? parentDeliveryOrder = context.DeliveryOrders
+                    .Where(x => x.Id == deliveryOrder.Id)
                     .Select(x => x.ParentDeliveryOrder)
                     .FirstOrDefault();
                 if (parentDeliveryOrder == null)
@@ -540,10 +532,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 context.SaveChanges();
                 
                 // Start the step for delivering from warehouse to kitchen.
-                response = Wh2KitchenStart(new ApiOperation()
-                {
-                    RequestObject = parentDeliveryOrder
-                });
+                response = Wh2KitchenStart(parentDeliveryOrder);
             }
             catch (Exception ex)
             {
@@ -559,15 +548,14 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         /// <summary>
         /// A method that allows you to begin the process of delivering products and ingredients from the warehouse to the kitchen.
         /// </summary>
-        public string Wh2KitchenStart(ApiOperation apiOperation)
+        public string Wh2KitchenStart(DeliveryOrder deliveryOrder)
         {
             string response = "";
             System.Console.WriteLine("WarehouseBackend.Wh2KitchenStart: begin");
             try
             {
                 // Initializing.
-                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
-                if (model == null)
+                if (deliveryOrder == null)
                     throw new System.ArgumentNullException("apiOperation.RequestObject");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
@@ -575,16 +563,17 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 System.Console.WriteLine("WarehouseBackend.Wh2KitchenStart: cache");
 
                 // Get the object related to the specified delivery order.
-                var deliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == model.Id);
-                if (deliveryOrder == null)
-                    throw new Exception($"Delivery order could not be null (delivery order ID: {model.Id})");
-                
+                DeliveryOrder? existedDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrder.Id);
+                if (existedDeliveryOrder == null)
+                    throw new Exception($"Delivery order could not be null (delivery order ID: {deliveryOrder.Id})");
+
                 // Getting the products that should be delivered.
-                var deliveryOrderProducts = context.DeliveryOrderProducts
+                List<DeliveryOrderProduct> deliveryOrderProducts = context.DeliveryOrderProducts
                     .Include(x => x.Product)
-                    .Where(x => x.DeliveryOrder.Id == deliveryOrder.Id && x.Product != null);
+                    .Where(x => x.DeliveryOrder.Id == existedDeliveryOrder.Id && x.Product != null)
+                    .ToList();
                 if (deliveryOrderProducts.Count() == 0)
-                    throw new Exception($"There are no existing products associated with the specified DeliveryOrder (ID: {deliveryOrder.Id})");
+                    throw new Exception($"There are no existing products associated with the specified DeliveryOrder (ID: {existedDeliveryOrder.Id})");
                 
                 // Get sender and receiver of the notification.
                 var adminUser = context.UserAccounts.FirstOrDefault();
@@ -594,13 +583,13 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 
                 // Title text.
                 var sbMessageText = new StringBuilder();
-                sbMessageText.Append("Wh2Kitchen: deliver order #").Append(deliveryOrder.Id.ToString()).Append(" from the warehouse to the kitchen");
+                sbMessageText.Append("Wh2Kitchen: deliver order #").Append(existedDeliveryOrder.Id.ToString()).Append(" from the warehouse to the kitchen");
                 string titleText = sbMessageText.ToString();
                 sbMessageText.Clear();
                 
                 // Body text.
                 sbMessageText.Append("Please be informed that you are responsible for shipping order #");
-                sbMessageText.Append(deliveryOrder.Id.ToString());
+                sbMessageText.Append(existedDeliveryOrder.Id.ToString());
                 sbMessageText.Append(" from the warehouse to the kitchen.\n");
                 sbMessageText.Append("\n");
                 sbMessageText.Append("Products for delivery:\n");
@@ -624,7 +613,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 });
 
                 // Create input parameter.
-                var initialOrder = context.InitialOrders.FirstOrDefault(x => x.DeliveryOrderId == deliveryOrder.Id);
+                var initialOrder = context.InitialOrders.FirstOrDefault(x => x.DeliveryOrderId == existedDeliveryOrder.Id);
                 if (initialOrder == null)
                     throw new Exception("Initial order could not be null");
                 var initialOrderProducts = context.InitialOrderProducts.Where(x => x.InitialOrder.Id == initialOrder.Id).ToList();
@@ -652,7 +641,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 {
                     Uid = System.Guid.NewGuid().ToString(),
                     BusinessTask = businessTask,
-                    DeliveryOrder = deliveryOrder,
+                    DeliveryOrder = existedDeliveryOrder,
                     Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.DeliveryOperation)
                 };
                 context.DeliveryOperations.Add(businessTask);

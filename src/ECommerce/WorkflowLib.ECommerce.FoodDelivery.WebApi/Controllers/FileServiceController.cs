@@ -11,15 +11,12 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         /// <summary>
         /// A method that generates a QR code for payment based on a customer order. 
         /// </summary>
-        public string GenerateQrCode(ApiOperation apiOperation)
+        public string GenerateQrCode(InitialOrder initialOrder)
         {
             string response = "";
             System.Console.WriteLine("FileServiceController.GenerateQrCode: begin");
             try
             {
-                // Initializing.
-                InitialOrder? model = apiOperation.RequestObject as InitialOrder;
-                
                 // Update DB.
                 System.Console.WriteLine("FileServiceController.GenerateQrCode: cache");
 
@@ -32,7 +29,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                 // 
                 response = "qr code generated";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());

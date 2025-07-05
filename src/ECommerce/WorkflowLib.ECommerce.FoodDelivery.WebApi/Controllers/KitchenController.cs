@@ -27,15 +27,12 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         /// <summary>
         /// A method that is responsible for storing information necessary for the preparation of an order by kitchen staff.
         /// </summary>
-        public string PrepareMealStart(ApiOperation apiOperation)
+        public string PrepareMealStart(InitialOrder initialOrder)
         {
             string response = "";
             System.Console.WriteLine("KitchenClient.PrepareMealStart: begin");
             try
             {
-                // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
-
                 // This method will take CookingOperation as a parameter.
                 // Recipes can be loaded from InitialOrderIngredients -> Ingredient -> Recipe.
 
@@ -48,7 +45,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                 // 
                 response = "success";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());
@@ -60,15 +57,12 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         /// <summary>
         /// The method that the kitchen staff is responsible for preparing the order.
         /// </summary>
-        public string PrepareMealExecute(ApiOperation apiOperation)
+        public string PrepareMealExecute(DeliveryOrder deliveryOrder)
         {
             string response = "";
             System.Console.WriteLine("KitchenClient.PrepareMealExecute: begin");
             try
             {
-                // Initializing.
-                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
-                
                 // Validation.
                 System.Console.WriteLine("KitchenClient.PrepareMealExecute: validation");
                 
@@ -76,7 +70,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                 System.Console.WriteLine("KitchenClient.PrepareMealExecute: cache");
 
                 // Send HTTP request.
-                string backendResponse = new KitchenHandler(_contextOptions).PrepareMealExecute(model);
+                string backendResponse = new KitchenHandler(_contextOptions).PrepareMealExecute(deliveryOrder);
                 
                 // Insert into cache.
                 System.Console.WriteLine("KitchenClient.PrepareMealExecute: cache");
@@ -84,7 +78,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                 // 
                 response = "success";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());

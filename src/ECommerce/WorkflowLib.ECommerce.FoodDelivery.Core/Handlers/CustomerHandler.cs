@@ -307,10 +307,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 System.Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: cache");
 
                 // Calculate delivery time.
-                var preprocessResponse = new WarehouseHandler(_contextOptions).PreprocessOrderRedirect(new ApiOperation()
-                {
-                    RequestObject = deliveryOrder
-                });
+                var preprocessResponse = new WarehouseHandler(_contextOptions).PreprocessOrderRedirect(deliveryOrder);
 
                 response = "success";
             }

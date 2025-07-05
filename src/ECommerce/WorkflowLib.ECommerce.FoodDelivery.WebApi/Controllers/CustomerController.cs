@@ -43,7 +43,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                 // 
                 response = "success";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());
@@ -67,7 +67,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                 // 
                 response = "DB is updated";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());
@@ -107,7 +107,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                 // 
                 response = "success";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());

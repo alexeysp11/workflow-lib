@@ -27,22 +27,19 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         /// <summary>
         /// Storing request for filling a form for deliving from the store to warehouse.
         /// </summary>
-        public string RequestStore2WhSave(ApiOperation apiOperation)
+        public string RequestStore2WhSave(DeliveryOrder deliveryOrder)
         {
             string response = "";
             System.Console.WriteLine("WarehouseClient.RequestStore2WhSave: begin");
             try
             {
-                // Initializing.
-                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
-
                 // Update DB.
                 System.Console.WriteLine("WarehouseClient.RequestStore2WhSave: cache");
 
                 // 
                 response = "success";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());
@@ -54,28 +51,22 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         /// <summary>
         /// Requesting delivering from store to warehouse.
         /// </summary>
-        public string RequestStore2WhRespond(ApiOperation apiOperation)
+        public string RequestStore2WhRespond(DeliveryOrder deliveryOrder)
         {
             string response = "";
             System.Console.WriteLine("WarehouseClient.RequestStore2WhRespond: begin");
             try
             {
-                // Initializing.
-                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
-
                 // Update DB.
                 System.Console.WriteLine("WarehouseClient.RequestStore2WhRespond: cache");
 
                 // Send HTTP request.
-                string backendResponse = new WarehouseHandler(_contextOptions).RequestStore2WhRespond(new ApiOperation
-                {
-                    RequestObject = model
-                });
+                string backendResponse = new WarehouseHandler(_contextOptions).RequestStore2WhRespond(deliveryOrder);
 
                 // 
                 response = "success";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());
@@ -89,22 +80,19 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         /// <summary>
         /// Storing request for filling a form for deliving from the store to warehouse.
         /// </summary>
-        public string Store2WhSave(ApiOperation apiOperation)
+        public string Store2WhSave(DeliveryOrder deliveryOrder)
         {
             string response = "";
             System.Console.WriteLine("WarehouseClient.Store2WhSave: begin");
             try
             {
-                // Initializing.
-                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
-
                 // Update DB.
                 System.Console.WriteLine("WarehouseClient.Store2WhSave: cache");
 
                 // 
                 response = "success";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());
@@ -118,28 +106,22 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         /// <summary>
         /// A method that is responsible for confirming the delivery of products from the store to the warehouse.
         /// </summary>
-        public string ConfirmStore2WhAccept(ApiOperation apiOperation)
+        public string ConfirmStore2WhAccept(DeliveryOrder deliveryOrder)
         {
             string response = "";
             System.Console.WriteLine("WarehouseClient.ConfirmStore2WhAccept: begin");
             try
             {
-                // Initializing.
-                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
-
                 // Update DB.
                 System.Console.WriteLine("WarehouseClient.ConfirmStore2WhAccept: cache");
 
                 // Send HTTP request.
-                string backendResponse = new WarehouseHandler(_contextOptions).ConfirmStore2WhAccept(new ApiOperation
-                {
-                    RequestObject = model
-                });
+                string backendResponse = new WarehouseHandler(_contextOptions).ConfirmStore2WhAccept(deliveryOrder);
 
                 // 
                 response = "success";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());
@@ -153,21 +135,19 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         /// <summary>
         /// Storing the request for warhouse employee to deliver from warehouse to kitchen. 
         /// </summary>
-        public string Wh2KitchenStart(ApiOperation apiOperation)
+        public string Wh2KitchenStart(DeliveryOperation deliveryOperation)
         {
             string response = "";
             System.Console.WriteLine("WarehouseClient.Wh2KitchenStart: begin");
             try
             {
-                DeliveryOperation model = apiOperation.RequestObject as DeliveryOperation;
-
                 // Update DB.
                 System.Console.WriteLine("WarehouseClient.Wh2KitchenStart: cache");
 
                 // 
                 response = "success";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());
@@ -179,15 +159,14 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         /// <summary>
         /// The method that is responsible for carrying out the delivery of products from the warehouse to the kitchen.
         /// </summary>
-        public string Wh2KitchenExecute(ApiOperation apiOperation)
+        public string Wh2KitchenExecute(DeliveryOrder deliveryOrder)
         {
             string response = "";
             System.Console.WriteLine("WarehouseClient.Wh2KitchenExecute: begin");
             try
             {
                 // Initializing.
-                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
-                if (model == null)
+                if (deliveryOrder == null)
                     throw new System.ArgumentNullException("apiOperation.RequestObject");
 
                 // Update DB.
@@ -195,12 +174,12 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
 
                 // Send HTTP request.
                 // think about what type of input parameter the kitchen controller will accept to prepare an order.
-                string backendResponse = new WarehouseHandler(_contextOptions).Wh2KitchenExecute(model);
+                string backendResponse = new WarehouseHandler(_contextOptions).Wh2KitchenExecute(deliveryOrder);
 
                 // 
                 response = "success";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());
@@ -214,22 +193,19 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         /// <summary>
         /// A method that allows you to begin the process of delivering finished products from the kitchen to the warehouse.
         /// </summary>
-        public string Kitchen2WhStart(ApiOperation apiOperation)
+        public string Kitchen2WhStart(InitialOrder initialOrder)
         {
             string response = "";
             System.Console.WriteLine("WarehouseClient.Kitchen2WhStart: begin");
             try
             {
-                // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
-                
                 // Update DB.
                 System.Console.WriteLine("WarehouseClient.Kitchen2WhStart: cache");
 
                 // 
                 response = "success";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());
@@ -241,25 +217,22 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         /// <summary>
         /// A method that is responsible for controlling the delivery of finished products from the kitchen to the warehouse.
         /// </summary>
-        public string Kitchen2WhExecute(ApiOperation apiOperation)
+        public string Kitchen2WhExecute(DeliveryOrder deliveryOrder)
         {
             string response = "";
             System.Console.WriteLine("WarehouseClient.Kitchen2WhExecute: begin");
             try
             {
-                // Initializing.
-                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
-                
                 // Update DB.
                 System.Console.WriteLine("WarehouseClient.Kitchen2WhExecute: cache");
 
                 // Send HTTP request.
-                string backendResponse = new WarehouseHandler(_contextOptions).Kitchen2WhExecute(model);
+                string backendResponse = new WarehouseHandler(_contextOptions).Kitchen2WhExecute(deliveryOrder);
 
                 // 
                 response = "success";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());
