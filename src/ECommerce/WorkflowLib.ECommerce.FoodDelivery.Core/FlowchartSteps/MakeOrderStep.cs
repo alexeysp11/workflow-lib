@@ -36,9 +36,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
 
             Customer? customer = context.Customers.Include(x => x.UserAccount).FirstOrDefault(x => x.UserAccount != null);
             if (customer == null)
-                throw new System.Exception("Specified customer does not exist in the database");
+                throw new Exception("Specified customer does not exist in the database");
             if (customer.UserAccount == null)
-                throw new System.Exception("Specified user account does not exist in the database");
+                throw new Exception("Specified user account does not exist in the database");
             List<long> productIds = context.Products.Take(3).Select(x => x.Id).ToList();
             
             var model = new InitialOrder()

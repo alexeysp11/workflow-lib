@@ -76,10 +76,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                 System.Console.WriteLine("KitchenClient.PrepareMealExecute: cache");
 
                 // Send HTTP request.
-                string backendResponse = new KitchenHandler(_contextOptions).PrepareMealExecute(new ApiOperation
-                {
-                    RequestObject = model
-                });
+                string backendResponse = new KitchenHandler(_contextOptions).PrepareMealExecute(model);
                 
                 // Insert into cache.
                 System.Console.WriteLine("KitchenClient.PrepareMealExecute: cache");

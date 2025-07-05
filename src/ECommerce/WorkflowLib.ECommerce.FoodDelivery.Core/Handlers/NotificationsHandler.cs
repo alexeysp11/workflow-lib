@@ -53,7 +53,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 }
                 context.SaveChanges();
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());
@@ -95,7 +95,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 // 
                 response = "notification is sent";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());

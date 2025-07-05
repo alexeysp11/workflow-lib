@@ -50,7 +50,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
             DeliveryOrder? deliveryOrder = FoodDeliveryDao.GetInternalDeliveryOrder(context);
             if (deliveryOrder == null)
             {
-                throw new System.Exception("Delivery order could not be null");
+                throw new Exception("Delivery order could not be null");
             }
             
             // For the received order, you need to set prices for products and attach a photo/scan of the receipt to the task 
@@ -58,7 +58,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
             float? totalPrice = FoodDeliveryDao.GetDeliveryOrderTotalPrice(context, deliveryOrder.Id);
             if (!totalPrice.HasValue)
             {
-                throw new System.Exception("Calculated total price of the products within the delivery order could not be null");
+                throw new Exception("Calculated total price of the products within the delivery order could not be null");
             }
             FoodDeliveryDao.UpdateDeliveryOrderTotalPrice(context, deliveryOrder, (decimal)totalPrice);
 

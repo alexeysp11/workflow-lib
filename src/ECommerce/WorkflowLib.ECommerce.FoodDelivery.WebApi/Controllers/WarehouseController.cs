@@ -195,10 +195,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
 
                 // Send HTTP request.
                 // think about what type of input parameter the kitchen controller will accept to prepare an order.
-                string backendResponse = new WarehouseHandler(_contextOptions).Wh2KitchenExecute(new ApiOperation
-                {
-                    RequestObject = model
-                });
+                string backendResponse = new WarehouseHandler(_contextOptions).Wh2KitchenExecute(model);
 
                 // 
                 response = "success";
@@ -257,10 +254,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                 System.Console.WriteLine("WarehouseClient.Kitchen2WhExecute: cache");
 
                 // Send HTTP request.
-                string backendResponse = new WarehouseHandler(_contextOptions).Kitchen2WhExecute(new ApiOperation
-                {
-                    RequestObject = model
-                });
+                string backendResponse = new WarehouseHandler(_contextOptions).Kitchen2WhExecute(model);
 
                 // 
                 response = "success";

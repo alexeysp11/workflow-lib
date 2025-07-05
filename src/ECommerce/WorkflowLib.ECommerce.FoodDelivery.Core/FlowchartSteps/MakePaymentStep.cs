@@ -36,13 +36,13 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
             // Check integrity of data.
             Payment? payment = context.Payments.FirstOrDefault();
             if (payment == null)
-                throw new System.Exception("Payment could not be found in the database");
+                throw new Exception("Payment could not be found in the database");
             DeliveryOrder? deliveryOrder = context.DeliveryOrders.FirstOrDefault();
             if (deliveryOrder == null 
                 || (deliveryOrder != null && deliveryOrder.Payments == null) 
                 || (deliveryOrder != null && deliveryOrder.Payments != null && !deliveryOrder.Payments.Contains(payment)))
             {
-                throw new System.Exception("Integrity of data is violated: payment object is not in the payment collection");
+                throw new Exception("Integrity of data is violated: payment object is not in the payment collection");
             }
             
             // Provide card details and save.

@@ -48,7 +48,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
                     && x.OrderExecutorType == OrderExecutorType.Employee
                     && x.OrderCustomerType == OrderCustomerType.Employee);
             if (deliveryOrder == null)
-                throw new System.Exception("Delivery order could not be null");
+                throw new Exception("Delivery order could not be null");
             
             // At the step of confirming delivery from the store to the warehouse there should 
             // be a description of how the quantity of products in the warehouse is updated.
@@ -60,7 +60,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
             {
                 var whproduct = context.WHProducts.FirstOrDefault(x => x.Product.Id == deliveryOrderProduct.Product.Id);
                 if (whproduct == null)
-                    throw new System.Exception("Warehouse product could not be null");
+                    throw new Exception("Warehouse product could not be null");
                 var productTransfer = new ProductTransfer 
                 {
                     Uid = System.Guid.NewGuid().ToString(),

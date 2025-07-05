@@ -66,10 +66,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                 System.Console.WriteLine("CourierClient.Store2WhExecute: cache");
 
                 // Send HTTP request.
-                string backendResponse = new CourierHandler(_contextOptions).Store2WhExecute(new ApiOperation
-                {
-                    RequestObject = model
-                });
+                string backendResponse = new CourierHandler(_contextOptions).Store2WhExecute(model);
 
                 // 
                 response = "success";
@@ -128,10 +125,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                 System.Console.WriteLine("CourierClient.DeliverOrderExecute: cache");
 
                 // Send HTTP request.
-                string backendResponse = new CourierHandler(_contextOptions).DeliverOrderExecute(new ApiOperation
-                {
-                    RequestObject = model
-                });
+                string backendResponse = new CourierHandler(_contextOptions).DeliverOrderExecute(model);
 
                 // 
                 response = "success";

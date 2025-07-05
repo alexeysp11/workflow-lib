@@ -99,7 +99,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 // Invoke makepayment.
                 response = MakePaymentStart(initialOrder);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());
@@ -147,7 +147,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 }
                 else
                 {
-                    throw new System.Exception("Incorrect parameter: PaymentType");
+                    throw new Exception("Incorrect parameter: PaymentType");
                 }
 
                 // Save data into DB.
@@ -156,17 +156,17 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                     .Include(x => x.Company)
                     .FirstOrDefault();
                 if (organization == null || organization.Company == null)
-                    throw new System.Exception("Organization or company is not defined");
+                    throw new Exception("Organization or company is not defined");
                 if (string.IsNullOrEmpty(organization.Company.Address))
-                    throw new System.Exception("Address of the company is not specified");
+                    throw new Exception("Address of the company is not specified");
                 var customer = context.Customers
                     .Include(x => x.UserAccount)
                     .FirstOrDefault(x => x.UserAccount != null && x.UserAccount.Uid == initialOrder.UserUid);
                 if (customer == null)
-                    throw new System.Exception("Specified customer does not exist in the database");
+                    throw new Exception("Specified customer does not exist in the database");
                 InitialOrder? existedInitialOrder = context.InitialOrders.FirstOrDefault(x => x.Id == initialOrder.Id);
                 if (existedInitialOrder == null)
-                    throw new System.Exception("Specified initial order does not exist in the database");
+                    throw new Exception("Specified initial order does not exist in the database");
                 var deliveryOrder = new DeliveryOrder
                 {
                     Uid = System.Guid.NewGuid().ToString(),
@@ -237,7 +237,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 // Send request to the notifications backend.
                 var adminUser = context.UserAccounts.FirstOrDefault();
                 if (adminUser == null)
-                    throw new System.Exception("Admin user could not be null");
+                    throw new Exception("Admin user could not be null");
                 var notifications = new List<Notification>
                 {
                     new Notification
@@ -253,7 +253,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 // Update DB.
                 System.Console.WriteLine("CustomerBackend.MakePayment: cache");
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());
@@ -282,7 +282,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
 
                 response = "success";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());
@@ -314,7 +314,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
 
                 response = "success";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
                 System.Console.WriteLine("ERROR : " + ex.ToString());
