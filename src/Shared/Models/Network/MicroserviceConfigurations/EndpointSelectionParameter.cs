@@ -1,3 +1,5 @@
+using System;
+
 namespace WorkflowLib.Shared.Models.Network.MicroserviceConfigurations
 {
     /// <summary>
@@ -18,6 +20,6 @@ namespace WorkflowLib.Shared.Models.Network.MicroserviceConfigurations
         /// <summary>
         /// Lifetime of an endpoint in memory in inactive status.
         /// </summary>
-        public System.TimeSpan? InactiveTimeSpan { get; set; }
+        public TimeSpan? InactiveTimeSpan { get; set; }
     }
 }
