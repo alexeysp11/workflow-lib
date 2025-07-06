@@ -400,7 +400,6 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 context.BusinessTaskDeliveryOrders.Add(businessTaskDeliveryOrder);
                 context.SaveChanges();
 
-                // 
                 response = "success";
             }
             catch (Exception ex)
@@ -426,9 +425,6 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                     throw new ArgumentNullException("apiOperation.RequestObject");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
-                // Update DB.
-                Console.WriteLine("WarehouseBackend.Wh2KitchenExecute: cache");
-
                 // Close a business task that is associated with a delivery order.
                 var initialOrder = context.InitialOrders
                     .Where(x => x.DeliveryOrderId == deliveryOrder.Id)
@@ -444,10 +440,8 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 deliveryWh2Kitchen.Status = BusinessTaskStatus.Closed;
                 context.SaveChanges();
 
-                // Send HTTP request.
                 string backendResponse = new KitchenHandler(_contextOptions).PrepareMealStart(deliveryOrder);
 
-                // 
                 response = "success";
             }
             catch (Exception ex)
@@ -468,13 +462,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             Console.WriteLine("WarehouseBackend.Kitchen2WhStart: begin");
             try
             {
-                // Initializing.
                 if (deliveryOrder == null)
                     throw new ArgumentNullException("apiOperation.RequestObject");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
-                
-                // Update DB.
-                Console.WriteLine("WarehouseBackend.Kitchen2WhStart: cache");
                 
                 // Get sender and receiver of the notification.
                 var adminUser = context.UserAccounts.FirstOrDefault();
@@ -553,7 +543,6 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 context.BusinessTaskDeliveryOrders.Add(businessTaskDeliveryOrder);
                 context.SaveChanges();
 
-                // 
                 response = "success";
             }
             catch (Exception ex)
@@ -600,7 +589,6 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 // Send HTTP request.
                 string backendResponse = new CourierHandler(_contextOptions).DeliverOrderStart(deliveryOrder);
 
-                // 
                 response = "success";
             }
             catch (Exception ex)

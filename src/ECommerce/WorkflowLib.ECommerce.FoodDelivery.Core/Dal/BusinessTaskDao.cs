@@ -8,6 +8,12 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
 {
     public static class BusinessTaskDao
     {
+        /// <summary>
+        /// Create business task to deliver from store to warehouse.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="deliveryOrder">Delivery order</param>
+        /// <param name="notification">Notification</param>
         public static void CreateStore2WhBusinessTask(
             FoodDeliveryDbContext context,
             DeliveryOrder deliveryOrder,

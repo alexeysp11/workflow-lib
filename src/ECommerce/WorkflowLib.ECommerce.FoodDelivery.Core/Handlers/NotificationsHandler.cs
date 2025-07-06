@@ -30,9 +30,6 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             Console.WriteLine("NotificationsBackend.SendNotifications: begin");
             try
             {
-                // Validation.
-                Console.WriteLine("NotificationsBackend.SendNotifications: validation");
-
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Save notifications.
@@ -75,22 +72,8 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         public string SendPush(Notification notification)
         {
             string response = "";
-            Console.WriteLine("NotificationsBackend.SendPush: begin");
             try
             {
-                // Validation.
-                Console.WriteLine("NotificationsBackend.SendPush: validation");
-                
-                // Update DB.
-                Console.WriteLine("NotificationsBackend.SendPush: cache");
-
-                // Sending push notification.
-                Console.WriteLine("NotificationsBackend.SendPush: notifying");
-                
-                // Update DB.
-                Console.WriteLine("NotificationsBackend.SendPush: cache");
-
-                // 
                 response = "notification is sent";
             }
             catch (Exception ex)
@@ -98,7 +81,6 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 response = "error: " + ex.Message;
                 Console.WriteLine("ERROR : " + ex.ToString());
             }
-            Console.WriteLine("NotificationsBackend.SendPush: end");
             return response;
         }
 

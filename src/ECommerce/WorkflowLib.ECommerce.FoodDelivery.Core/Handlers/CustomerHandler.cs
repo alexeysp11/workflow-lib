@@ -35,23 +35,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             Console.WriteLine("CustomerBackend.MakeOrderRequest: begin");
             try
             {
-                // Initializing.
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
-                // Validation.
-                Console.WriteLine("CustomerClient.MakeOrderRequest: validation");
-
-                // Insert into cache.
-                Console.WriteLine("CustomerClient.MakeOrderRequest: cache");
                 InitialOrderDao.CreateInitialOrder(context, initialOrder);
-
-                // Validation.
-                Console.WriteLine("CustomerBackend.MakeOrderRequest: validation");
-
-                // Update DB.
-                Console.WriteLine("CustomerBackend.MakeOrderRequest: cache");
-
-                // Invoke makepayment.
                 response = MakePaymentStart(initialOrder);
             }
             catch (Exception ex)
@@ -72,15 +58,8 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             Console.WriteLine("CustomerBackend.MakePayment: begin");
             try
             {
-                // Initializing.
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
-                // Validation.
-                Console.WriteLine("CustomerBackend.MakePayment: validation");
-
-                // Update DB.
-                Console.WriteLine("CustomerBackend.MakePayment: cache");
-
                 // Get payment method.
                 if (initialOrder.PaymentType == EnumExtensions.GetDisplayName(PaymentType.Card))
                 {
@@ -138,12 +117,6 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             Console.WriteLine("CustomerBackend.MakePayment: begin");
             try
             {
-                // Validation.
-                Console.WriteLine("CustomerBackend.MakePayment: validation");
-
-                // Update DB.
-                Console.WriteLine("CustomerBackend.MakePayment: cache");
-
                 // Calculate delivery time.
                 string preprocessResponse = PreprocessOrderRedirect(deliveryOrder);
 
@@ -167,12 +140,6 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: begin");
             try
             {
-                // Validation.
-                Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: validation");
-
-                // Update DB.
-                Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: cache");
-
                 // Calculate delivery time.
                 var preprocessResponse = new WarehouseHandler(_contextOptions).PreprocessOrderRedirect(deliveryOrder);
 

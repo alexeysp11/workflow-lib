@@ -36,17 +36,10 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             Console.WriteLine("KitchenBackend.PrepareMealStart: begin");
             try
             {
-                // Initializing.
                 if (deliveryOrder == null)
                     throw new ArgumentNullException("apiOperation.RequestObject");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
-                // Validation.
-                Console.WriteLine("KitchenBackend.PrepareMealStart: validation");
-                
-                // Insert into cache.
-                Console.WriteLine("KitchenBackend.PrepareMealStart: cache");
-
                 // Get initial order, and the products that should be delivered, by delivery order ID.
                 DeliveryOrder? existedDeliveryOrder = DeliveryOrderDao.GetDeliveryOrderById(context, deliveryOrder.Id);
                 if (existedDeliveryOrder == null)
@@ -135,10 +128,6 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 context.BusinessTaskDeliveryOrders.Add(businessTaskDeliveryOrder);
                 context.SaveChanges();
                 
-                // Insert into cache.
-                Console.WriteLine("KitchenBackend.PrepareMealStart: cache");
-
-                // 
                 response = "success";
             }
             catch (Exception ex)
@@ -159,17 +148,10 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             Console.WriteLine("KitchenBackend.PrepareMealExecute: begin");
             try
             {
-                // Initializing.
                 if (deliveryOrder == null)
                     throw new ArgumentNullException("apiOperation.RequestObject");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
-                // Validation.
-                Console.WriteLine("KitchenBackend.PrepareMealExecute: validation");
-                
-                // Insert into cache.
-                Console.WriteLine("KitchenBackend.PrepareMealExecute: cache");
-
                 // Close a business task that is associated with a delivery order.
                 DeliveryOrder? existedDeliveryOrder = DeliveryOrderDao.GetDeliveryOrderById(context, deliveryOrder.Id);
                 if (existedDeliveryOrder == null)
@@ -188,10 +170,6 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 // Send HTTP request.
                 string backendResponse = new WarehouseHandler(_contextOptions).Kitchen2WhStart(existedDeliveryOrder);
                 
-                // Insert into cache.
-                Console.WriteLine("KitchenBackend.PrepareMealExecute: cache");
-
-                // 
                 response = "success";
             }
             catch (Exception ex)
