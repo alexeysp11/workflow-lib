@@ -10,7 +10,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
         /// <summary>
         /// Get customer by user UID.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">Database context</param>
         /// <param name="userUid">Specified user UID</param>
         /// <returns></returns>
         public static Customer? GetCustomerByUserUid(FoodDeliveryDbContext context, string? userUid)

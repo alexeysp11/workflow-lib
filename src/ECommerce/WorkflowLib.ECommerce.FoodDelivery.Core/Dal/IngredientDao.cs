@@ -9,8 +9,8 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
         /// <summary>
         /// Get ingredient list by final product ID.
         /// </summary>
-        /// <param name="context"></param>
-        /// <param name="productId"></param>
+        /// <param name="context">Database context</param>
+        /// <param name="productId">Final product ID</param>
         /// <returns></returns>
         public static List<Ingredient> GetIngredientsByFinalProductId(
             FoodDeliveryDbContext context,

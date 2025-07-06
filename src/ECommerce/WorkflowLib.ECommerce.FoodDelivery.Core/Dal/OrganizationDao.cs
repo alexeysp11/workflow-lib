@@ -9,7 +9,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
         /// <summary>
         /// Get organization.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">Database context</param>
         /// <returns></returns>
         public static Organization? GetOrganization(FoodDeliveryDbContext context)
         {

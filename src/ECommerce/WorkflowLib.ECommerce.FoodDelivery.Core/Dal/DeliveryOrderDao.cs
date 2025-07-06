@@ -88,9 +88,10 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
         /// <summary>
         /// Create delivery order.
         /// </summary>
-        /// <param name="context"></param>
-        /// <param name="customerFullName"></param>
-        /// <param name="receiverName"></param>
+        /// <param name="context">Database context</param>
+        /// <param name="initialOrderId">Initial order ID</param>
+        /// <param name="customerUid">Customer UID</param>
+        /// <param name="customerFullName">Customer full name</param>
         /// <returns></returns>
         public static DeliveryOrder CreateDeliveryOrder(
             FoodDeliveryDbContext context,

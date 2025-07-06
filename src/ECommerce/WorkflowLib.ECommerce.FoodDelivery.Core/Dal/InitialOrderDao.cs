@@ -10,8 +10,8 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
         /// <summary>
         /// Create initial order in the database.
         /// </summary>
-        /// <param name="context"></param>
-        /// <param name="initialOrder"></param>
+        /// <param name="context">Database context</param>
+        /// <param name="initialOrder">Initial order to create</param>
         public static void CreateInitialOrder(FoodDeliveryDbContext context, InitialOrder initialOrder)
         {
             List<InitialOrderProduct> initialOrderProducts = new List<InitialOrderProduct>();
@@ -59,7 +59,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
         /// <summary>
         /// Get initial order by ID.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">Database context</param>
         /// <param name="initialOrderId">Specified initial order ID</param>
         /// <returns></returns>
         public static InitialOrder? GetInitialOrderById(FoodDeliveryDbContext context, long initialOrderId)
