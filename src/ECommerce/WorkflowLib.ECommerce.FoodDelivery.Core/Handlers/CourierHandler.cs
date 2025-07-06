@@ -7,6 +7,7 @@ using WorkflowLib.Shared.Models.Business.InformationSystem;
 using WorkflowLib.Shared.Models.Business.Delivery;
 using WorkflowLib.Shared.Models.Business.Processes;
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
+using WorkflowLib.ECommerce.FoodDelivery.Core.Dal;
 
 namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
 {
@@ -42,7 +43,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 using var context = new FoodDeliveryDbContext(_contextOptions);
 
                 // Get the object related to the specified delivery order.
-                var existedDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrder.Id);
+                var existedDeliveryOrder = DeliveryOrderDao.GetDeliveryOrderById(context, deliveryOrder.Id);
                 if (existedDeliveryOrder == null)
                     throw new Exception($"Delivery order could not be null (delivery order ID: {deliveryOrder.Id})");
 
@@ -147,7 +148,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 Console.WriteLine("CourierBackend.DeliverOrderStart: cache");
 
                 // Get the object related to the specified delivery order.
-                DeliveryOrder? existedDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrder.Id);
+                DeliveryOrder? existedDeliveryOrder = DeliveryOrderDao.GetDeliveryOrderById(context, deliveryOrder.Id);
                 if (existedDeliveryOrder == null)
                     throw new Exception($"Delivery order could not be null (delivery order ID: {deliveryOrder.Id})");
 

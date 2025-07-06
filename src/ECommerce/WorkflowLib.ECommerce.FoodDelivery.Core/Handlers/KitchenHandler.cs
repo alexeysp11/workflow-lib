@@ -7,6 +7,7 @@ using WorkflowLib.Shared.Models.Business.Customers;
 using WorkflowLib.Shared.Models.Business.Processes;
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
+using WorkflowLib.ECommerce.FoodDelivery.Core.Dal;
 
 namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
 {
@@ -47,7 +48,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 Console.WriteLine("KitchenBackend.PrepareMealStart: cache");
 
                 // Get initial order, and the products that should be delivered, by delivery order ID.
-                DeliveryOrder? existedDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrder.Id);
+                DeliveryOrder? existedDeliveryOrder = DeliveryOrderDao.GetDeliveryOrderById(context, deliveryOrder.Id);
                 if (existedDeliveryOrder == null)
                     throw new Exception($"Delivery order could not be null (delivery order ID: {deliveryOrder.Id})");
                 var initialOrder = context.InitialOrders.FirstOrDefault(x => x.DeliveryOrderId == existedDeliveryOrder.Id);
@@ -170,7 +171,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 Console.WriteLine("KitchenBackend.PrepareMealExecute: cache");
 
                 // Close a business task that is associated with a delivery order.
-                DeliveryOrder? existedDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrder.Id);
+                DeliveryOrder? existedDeliveryOrder = DeliveryOrderDao.GetDeliveryOrderById(context, deliveryOrder.Id);
                 if (existedDeliveryOrder == null)
                     throw new Exception($"Delivery order could not be null (delivery order ID: {deliveryOrder.Id})");
                 InitialOrder? initialOrder = context.InitialOrders.FirstOrDefault(x => x.DeliveryOrderId == existedDeliveryOrder.Id);

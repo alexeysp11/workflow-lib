@@ -172,19 +172,21 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
         }
 
         /// <summary>
-        /// Get delivery order products.
+        /// Get the products that should be delivered.
         /// </summary>
         /// <param name="context"></param>
-        /// <param name="deliveryOrderId"></param>
+        /// <param name="deliveryOrderId">Delivery order ID</param>
         /// <returns></returns>
         public static List<DeliveryOrderProduct> GetDeliveryOrderProducts(
             FoodDeliveryDbContext context,
-            long deliveryOrderId)
+            long deliveryOrderId,
+            bool excludeNullProducts = false)
         {
             return context.DeliveryOrderProducts
                 .Include(x => x.Product)
                 .Include(x => x.DeliveryOrder)
-                .Where(x => x.DeliveryOrder.Id == deliveryOrderId)
+                .Where(x => x.DeliveryOrder != null && x.DeliveryOrder.Id == deliveryOrderId)
+                .Where(x => !excludeNullProducts || x.Product != null)
                 .ToList();
         }
 
@@ -202,7 +204,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
             var deliveryOrderStore2Wh = new DeliveryOrder
             {
                 Uid = Guid.NewGuid().ToString(),
-                ParentDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrder.Id),
+                ParentDeliveryOrder = DeliveryOrderDao.GetDeliveryOrderById(context, deliveryOrder.Id),
                 CustomerUid = whEmployee.Uid,
                 CustomerName = whEmployee.FullName,
                 OrderCustomerType = OrderCustomerType.Employee,
@@ -215,7 +217,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
 
             // Find corresponding records in the DeliveryOrderProduct table by order ID (a table of associations between 
             // the Product, DeliveryOrder and Quantity).
-            List<DeliveryOrderProduct> deliveryOrderProducts = DeliveryOrderDao.GetDeliveryOrderProducts(context, deliveryOrder.Id);
+            List<DeliveryOrderProduct> deliveryOrderProducts = GetDeliveryOrderProducts(
+                context,
+                deliveryOrder.Id);
             List<long> productIds = (from product in deliveryOrderProducts select product.Product.Id).ToList();
 
             // Using the product IDs from the Product order, find the corresponding records in the Ingredients table (look 
@@ -278,6 +282,32 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
             context.SaveChanges();
 
             return isSufficient ? null : deliveryOrderStore2Wh;
+        }
+
+        /// <summary>
+        /// Get delivery order by its ID.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="deliveryOrderId">Delivery order ID</param>
+        /// <returns></returns>
+        public static DeliveryOrder? GetDeliveryOrderById(FoodDeliveryDbContext context, long deliveryOrderId)
+        {
+            return context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrderId);
+        }
+
+        /// <summary>
+        /// Change delivery order status.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="deliveryOrder"></param>
+        /// <param name="status"></param>
+        public static void ChangeDeliveryOrderStatus(
+            FoodDeliveryDbContext context,
+            DeliveryOrder deliveryOrder,
+            OrderStatus status)
+        {
+            deliveryOrder.Status = EnumExtensions.GetDisplayName(status);
+            context.SaveChanges();
         }
     }
 }

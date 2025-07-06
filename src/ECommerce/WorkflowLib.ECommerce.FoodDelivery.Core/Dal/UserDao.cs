@@ -2,6 +2,7 @@
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
 using WorkflowLib.Shared.Models.Business.BusinessDocuments;
 using WorkflowLib.Shared.Models.Business.Customers;
+using WorkflowLib.Shared.Models.Business.InformationSystem;
 
 namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
 {
@@ -42,6 +43,16 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
             //var selectedEmployee = potentialExecutors[rand.Next(potentialExecutors.Count)];
             //if (selectedEmployee == null)
             //    throw new Exception("Randomly selected employee is null");
+        }
+
+        /// <summary>
+        /// Get admin user account.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public static UserAccount? GetAdminUserAccount(FoodDeliveryDbContext context)
+        {
+            return context.UserAccounts.FirstOrDefault();
         }
     }
 }

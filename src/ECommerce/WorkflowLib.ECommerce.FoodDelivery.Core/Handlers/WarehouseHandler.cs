@@ -110,78 +110,22 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 
                 // Update DB.
                 Console.WriteLine("WarehouseBackend.RequestStore2WhStart: update DB");
-                
-                // Getting the products that should be delivered.
-                var existedDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrder.Id);
+
+                DeliveryOrder? existedDeliveryOrder = DeliveryOrderDao.GetDeliveryOrderById(context, deliveryOrder.Id);
                 if (existedDeliveryOrder == null)
                     throw new Exception($"Delivery order could not be null (delivery order ID: {deliveryOrder.Id})");
-                var deliveryOrderProducts = context.DeliveryOrderProducts
-                    .Include(x => x.Product)
-                    .Where(x => x.DeliveryOrder.Id == deliveryOrder.Id && x.Product != null);
+                
+                // Get the products that should be delivered.
+                List<DeliveryOrderProduct> deliveryOrderProducts = DeliveryOrderDao.GetDeliveryOrderProducts(
+                    context,
+                    deliveryOrder.Id,
+                    true);
                 if (deliveryOrderProducts.Count() == 0)
                     throw new Exception($"There are no existing products associated with the specified DeliveryOrder (ID: {deliveryOrder.Id})");
-                
-                // Get sender and receiver of the notification.
-                var adminUser = context.UserAccounts.FirstOrDefault();
-                if (adminUser == null)
-                    throw new Exception("Admin user could not be null");
-                var warehouseEmployee = GetWarehouseEmployeeRandomly();
 
-                // Title text.
-                var sbMessageText = new StringBuilder();
-                sbMessageText.Append("RequestStore2Wh: request delivery of order #").Append(deliveryOrder.Id.ToString()).Append(" from the store to the warehouse");
-                string titleText = sbMessageText.ToString();
-                sbMessageText.Clear();
+                // Notify warehouse employee to the deliver order.
+                NotifyEmployeeDeliverStore2Wh(context, existedDeliveryOrder, deliveryOrderProducts);
 
-                // Body text.
-                sbMessageText.Append("Please be informed that you are responsible for requesting delivery of order #");
-                sbMessageText.Append(deliveryOrder.Id.ToString());
-                sbMessageText.Append(" from the store to the warehouse.\n");
-                sbMessageText.Append("\n");
-                sbMessageText.Append("The system automatically determined that the warehouse is short of the following products:\n");
-                foreach (var deliveryOrderProduct in deliveryOrderProducts)
-                {
-                    sbMessageText.Append("- ").Append(deliveryOrderProduct.Product.Name).Append(" ");
-                    sbMessageText.Append("(quantity: ").Append(deliveryOrderProduct.Quantity).Append(").\n");
-                }
-                sbMessageText.Append("\n");
-                sbMessageText.Append("Please check that the list of products required for delivery is correct and confirm your request.\n");
-
-                // Notify warehouse employee.
-                Console.WriteLine("WarehouseBackend.RequestStore2WhStart: notify employee");
-                var notification = new Notification
-                {
-                    SenderId = adminUser.Id,
-                    ReceiverId = warehouseEmployee.Id,
-                    TitleText = titleText,
-                    BodyText = sbMessageText.ToString()
-                };
-                new NotificationsHandler(_contextOptions).SendNotifications(new List<Notification>
-                {
-                    notification
-                });
-
-                // Create a business task for requesting delivery of order from the store to the warehouse.
-                var businessTask = new BusinessTask
-                {
-                    Uid = Guid.NewGuid().ToString(),
-                    Name = notification.TitleText,
-                    Subject = notification.TitleText,
-                    Description = notification.BodyText,
-                    Status = BusinessTaskStatus.Open
-                };
-                var businessTaskDeliveryOrder = new BusinessTaskDeliveryOrder
-                {
-                    Uid = Guid.NewGuid().ToString(),
-                    BusinessTask = businessTask,
-                    DeliveryOrder = existedDeliveryOrder,
-                    Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.RequestStore2Wh)
-                };
-                context.BusinessTasks.Add(businessTask);
-                context.BusinessTaskDeliveryOrders.Add(businessTaskDeliveryOrder);
-                context.SaveChanges();
-
-                // 
                 response = "success";
             }
             catch (Exception ex)
@@ -194,7 +138,8 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         }
 
         /// <summary>
-        /// A method that allows you to request the start of the process of delivering products from the store to the warehouse.
+        /// A method that allows you to request the start of the process of delivering products
+        /// from the store to the warehouse.
         /// </summary>
         public string RequestStore2WhRespond(DeliveryOrder deliveryOrder)
         {
@@ -207,39 +152,28 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                     throw new ArgumentNullException("apiOperation.RequestObject");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
-                // Update DB.
-                Console.WriteLine("WarehouseBackend.RequestStore2WhRespond: cache");
-
-                // The BusinessTask and DeliveryOrder classes are connected using the BusinessTaskDeliveryOrder class,
-                // so get the collection of business task objects that are related to the delivery order.
-                DeliveryOrder? existedDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrder.Id);
+                // Get the delivery order from DB.
+                DeliveryOrder? existedDeliveryOrder = DeliveryOrderDao.GetDeliveryOrderById(context, deliveryOrder.Id);
                 if (existedDeliveryOrder == null)
                     throw new Exception($"Delivery order could not be null (delivery order ID: {deliveryOrder.Id})");
-                List<BusinessTask?> businessTasks = context.BusinessTaskDeliveryOrders
-                    .Where(x => x.BusinessTask != null 
-                        && x.DeliveryOrder != null 
-                        && x.Discriminator == EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.RequestStore2Wh)
-                        && x.DeliveryOrder.Id == deliveryOrder.Id)
-                    .Select(x => x.BusinessTask)
-                    .ToList();
+
+                // Get the business tasks.
+                List<BusinessTask?> businessTasks = BusinessTaskDao.GetStore2WhBusinessTask(context, deliveryOrder.Id);
                 if (businessTasks == null || !businessTasks.Any())
                     throw new Exception($"The collection of BusinessTask objects could not be null or empty (delivery order ID: {deliveryOrder.Id})");
-                
-                // Iterate through the entire collection of business tasks and "close" each of them 
-                // by setting Status to Closed.
-                foreach (var businessTask in businessTasks)
-                {
-                    businessTask.Status = BusinessTaskStatus.Closed;
-                }
+
+                // Close the business tasks.
+                BusinessTaskDao.CloseBusinessTasks(context, businessTasks);
 
                 // Change the status of the corresponding delivery order.
-                existedDeliveryOrder.Status = EnumExtensions.GetDisplayName(OrderStatus.Requested);
-                context.SaveChanges();
+                DeliveryOrderDao.ChangeDeliveryOrderStatus(
+                    context,
+                    existedDeliveryOrder,
+                    OrderStatus.Requested);
 
                 // Send HTTP request.
                 string backendResponse = new CourierHandler(_contextOptions).Store2WhStart(existedDeliveryOrder);
 
-                // 
                 response = "success";
             }
             catch (Exception ex)
@@ -276,7 +210,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 //});
 
                 // Getting the products that should be delivered.
-                DeliveryOrder? existedDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrder.Id);
+                DeliveryOrder? existedDeliveryOrder = DeliveryOrderDao.GetDeliveryOrderById(context, deliveryOrder.Id);
                 if (existedDeliveryOrder == null)
                 {
                     throw new Exception($"Specified delivery order is not found");
@@ -374,7 +308,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 Console.WriteLine("WarehouseBackend.ConfirmStore2WhAccept: cache");
 
                 // Close the business task that is related to the delivery order passed as a parameter.
-                DeliveryOrder? existedDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrder.Id);
+                DeliveryOrder? existedDeliveryOrder = DeliveryOrderDao.GetDeliveryOrderById(context, deliveryOrder.Id);
                 if (existedDeliveryOrder == null)
                     throw new Exception($"Delivery order could not be null (delivery order ID: {deliveryOrder.Id})");
                 List<BusinessTask?> businessTasks = context.BusinessTaskDeliveryOrders
@@ -438,7 +372,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 Console.WriteLine("WarehouseBackend.Wh2KitchenStart: cache");
 
                 // Get the object related to the specified delivery order.
-                DeliveryOrder? existedDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrder.Id);
+                DeliveryOrder? existedDeliveryOrder = DeliveryOrderDao.GetDeliveryOrderById(context, deliveryOrder.Id);
                 if (existedDeliveryOrder == null)
                     throw new Exception($"Delivery order could not be null (delivery order ID: {deliveryOrder.Id})");
 
@@ -606,7 +540,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 var warehouseEmployee = GetWarehouseEmployeeRandomly();
 
                 // Get initial order by delivery order ID.
-                DeliveryOrder? existedDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrder.Id);
+                DeliveryOrder? existedDeliveryOrder = DeliveryOrderDao.GetDeliveryOrderById(context, deliveryOrder.Id);
                 if (existedDeliveryOrder == null)
                     throw new Exception($"Delivery order could not be null (delivery order ID: {deliveryOrder.Id})");
                 InitialOrder? initialOrder = context.InitialOrders.FirstOrDefault(x => x.DeliveryOrderId == existedDeliveryOrder.Id);
@@ -736,7 +670,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         }
         
         /// <summary>
-        /// 
+        /// Get warehouse employee randomly.
         /// </summary>
         private Employee GetWarehouseEmployeeRandomly()
         {
@@ -757,6 +691,63 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             //    throw new Exception($"Randomly selected employee is null");
             //return selectedEmployee;
             return new Employee();
+        }
+
+        /// <summary>
+        /// Notify warehouse employee to the deliver order.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="deliveryOrder">Delivery order</param>
+        /// <param name="deliveryOrderProducts">Delivery order products</param>
+        /// <returns></returns>
+        private void NotifyEmployeeDeliverStore2Wh(
+            FoodDeliveryDbContext context,
+            DeliveryOrder deliveryOrder,
+            List<DeliveryOrderProduct> deliveryOrderProducts)
+        {
+            // Get sender and receiver of the notification.
+            UserAccount? adminUser = UserDao.GetAdminUserAccount(context);
+            if (adminUser == null)
+                throw new Exception("Admin user could not be null");
+            Employee warehouseEmployee = GetWarehouseEmployeeRandomly();
+
+            // Title text.
+            var sbMessageText = new StringBuilder();
+            sbMessageText.Append("RequestStore2Wh: request delivery of order #").Append(deliveryOrder.Id.ToString()).Append(" from the store to the warehouse");
+            string titleText = sbMessageText.ToString();
+            sbMessageText.Clear();
+
+            // Body text.
+            sbMessageText.Append("Please be informed that you are responsible for requesting delivery of order #");
+            sbMessageText.Append(deliveryOrder.Id.ToString());
+            sbMessageText.Append(" from the store to the warehouse.\n");
+            sbMessageText.Append("\n");
+            sbMessageText.Append("The system automatically determined that the warehouse is short of the following products:\n");
+            foreach (var deliveryOrderProduct in deliveryOrderProducts)
+            {
+                sbMessageText.Append("- ").Append(deliveryOrderProduct.Product.Name).Append(" ");
+                sbMessageText.Append("(quantity: ").Append(deliveryOrderProduct.Quantity).Append(").\n");
+            }
+            sbMessageText.Append("\n");
+            sbMessageText.Append("Please check that the list of products required for delivery is correct and confirm your request.\n");
+
+            // Create notification object.
+            var notification = new Notification
+            {
+                SenderId = adminUser.Id,
+                ReceiverId = warehouseEmployee.Id,
+                TitleText = titleText,
+                BodyText = sbMessageText.ToString()
+            };
+
+            // Create a business task for requesting delivery of order from the store to the warehouse.
+            BusinessTaskDao.CreateStore2WhBusinessTask(context, deliveryOrder, notification);
+
+            // Notify warehouse employee.
+            new NotificationsHandler(_contextOptions).SendNotifications(new List<Notification>
+            {
+                notification
+            });
         }
     }
 }
