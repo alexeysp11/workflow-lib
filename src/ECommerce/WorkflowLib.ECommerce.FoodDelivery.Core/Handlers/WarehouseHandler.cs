@@ -9,7 +9,7 @@ using WorkflowLib.Shared.Models.Business.Processes;
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
 using WorkflowLib.Shared.Models.Business.Delivery;
 using WorkflowLib.ECommerce.FoodDelivery.Core.Models;
-using WorkflowLib.Shared.Models.Business.Cooking;
+using WorkflowLib.ECommerce.FoodDelivery.Core.Dal;
 
 namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
 {
@@ -20,6 +20,11 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
     {
         private DbContextOptions<FoodDeliveryDbContext> _contextOptions { get; set; }
 
+        private TimeSpan _wh2kitchenDuration;
+        private TimeSpan _kitchen2whDuration;
+        private TimeSpan _store2whDuration;
+        private TimeSpan _prepareMealDuration;
+
         /// <summary>
         /// Constructor by default.
         /// </summary>
@@ -27,6 +32,12 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             DbContextOptions<FoodDeliveryDbContext> contextOptions) 
         {
             _contextOptions = contextOptions;
+            
+            // Calculte delivery time.
+            _wh2kitchenDuration = new TimeSpan(0, 5, 0);
+            _kitchen2whDuration = new TimeSpan(0, 5, 0);
+            _store2whDuration = new TimeSpan(0, 15, 0);
+            _prepareMealDuration = new TimeSpan(0, 15, 0);
         }
 
         /// <summary>
@@ -45,158 +56,32 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                     throw new ArgumentNullException("apiOperation.RequestObject");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
 
-                // Get ingredients amount from DB.
-                bool isSufficient = true;
-
-                // Find corresponding records in the DeliveryOrderProduct table by order ID (a table of associations between 
-                // the Product, DeliveryOrder and Quantity).
-                var deliveryOrderProducts = context.DeliveryOrderProducts
-                    .Include(x => x.Product)
-                    .Include(x => x.DeliveryOrder)
-                    .Where(x => x.DeliveryOrder.Id == deliveryOrder.Id);
-                var productIds = (from product in deliveryOrderProducts select product.Product.Id).ToList();
-
-                // Using product IDs from the order, find the corresponding products in the WHProduct warehouse. It will be more 
-                // relevant for those products that need to be stored in a warehouse in finished form (for example, drinks, snacks).
-                // var whproducts = context.WHProducts.Where(x => productIds.Any(pid => pid == x.Product.Id));
-
-                // Using the product IDs from the Product order, find the corresponding records in the Ingredients table (look 
-                // at the link to the object FinalProduct). This will allow you to find:
-                //     1) corresponding records in the Recipes table (if it is necessary to check the relevance of the recipe 
-                // by the BusinessEntityStatus value);
-                //     2) products that correspond to the ingredient (look at the link to the IngredientProduct object).
-                var ingredients = context.Ingredients
-                    .Include(x => x.IngredientProduct)
-                    .Include(x => x.FinalProduct)
-                    .Where(x => productIds.Any(pid => pid == x.FinalProduct.Id));
-                var ingredientProductIds = (from ingredient in ingredients select ingredient.IngredientProduct.Id).ToList();
-
                 // Pseudo-randomly select executors from the warehouse and courier delivery departments.
                 var rand = new System.Random();
                 var responsibleEmployees = new Dictionary<string, Employee>();
                 var userGroupNames = new List<string>() { "warehouse employee", "courier" };
                 foreach (var userGroupName in userGroupNames)
                 {
-                    //var userGroup = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == userGroupName);
-                    //if (userGroup == null)
-                    //    throw new Exception("Specified user group is not defined");
-
-                    //var userAccountIds = (from userAccount in userGroup.Users select userAccount.Id).ToList();
-                    //var potentialExecutors = 
-                    //    (from employee in context.Employees 
-                    //    where employee.UserAccounts != null && employee.UserAccounts.Any(ua => userAccountIds.Contains(ua.Id))
-                    //    select employee).ToList();
-                    //if (potentialExecutors == null || !potentialExecutors.Any())
-                    //    throw new Exception("The list of potential executors is null or empty");
-                    
-                    //var selectedEmployee = potentialExecutors[rand.Next(potentialExecutors.Count)];
-                    //if (selectedEmployee == null)
-                    //    throw new Exception("Randomly selected employee is null");
-                    
+                    UserDao.GetResponsibleEmployeeByGroupName(context, userGroupName);
                     //responsibleEmployees.Add(userGroupName, selectedEmployee);
                 }
-                var whEmployee = responsibleEmployees[userGroupNames[0]];
-                var courierEmployee = responsibleEmployees[userGroupNames[1]];
+                Employee whEmployee = responsibleEmployees[userGroupNames[0]];
+                Employee courierEmployee = responsibleEmployees[userGroupNames[1]];
 
-                // Based on product IDs and corresponding ingredients, you can:
-                //     1) find the corresponding products in the WHProduct warehouse;
-                //     2) create a product transfer ProductTransfer, specifying the quantity DeliveryOrderProduct.Quantity as 
-                // QuantityDelta (all other fields must also be filled in);
-                //     3) subtract the quantity DeliveryOrderProduct.Quantity from the quantity of products in the warehouse 
-                // WHProduct.Quantity multiplied by Ingredient.Quantity;
-                //     4) compare the number of products that are currently in stock with the minimum quantity WHProduct.MinQuantity:
-                //             - if WHProduct.Quantity is greater than or equal to WHProduct.MinQuantity, then deliver from the 
-                // warehouse to the kitchen;
-                //             - if WHProduct.Quantity is less than WHProduct.MinQuantity, then create DeliveryOrder and 
-                // DeliveryOrderProduct objects in order to order delivery from the store (the quantity of each product in the order 
-                // is equal to the delta between the actual current value of WHProduct.Quantity and the average of WHProduct.MinQuantity 
-                // and WHProduct.MaxQuantity).
-                // Attention: Point 4 (see the general description of working with data structures) does not take into account 
-                // a situation that can slow down the business process of order processing if WHProduct.Quantity is less than 
-                // WHProduct.MinQuantity and greater than zero.
-                // In this case, it is necessary to both start the delivery process from the warehouse to the kitchen and order 
-                // delivery from the store.
-                var whingredients = context.WHProducts
-                    .Include(x => x.Product)
-                    .Where(x => ingredientProductIds.Any(pid => pid == x.Product.Id));
-                var deliveryOrderStore2Wh = new DeliveryOrder
-                {
-                    Uid = Guid.NewGuid().ToString(),
-                    ParentDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrder.Id),
-                    CustomerUid = whEmployee.Uid,
-                    CustomerName = whEmployee.FullName,
-                    OrderCustomerType = OrderCustomerType.Employee,
-                    ExecutorUid = courierEmployee.Uid,
-                    ExecutorName = courierEmployee.FullName,
-                    OrderExecutorType = OrderExecutorType.Employee,
-                    Destination = deliveryOrder.Origin,
-                    DateStartActual = DateTime.UtcNow
-                };
-                var deliveryOrderProductsStore2Wh = new List<DeliveryOrderProduct>();
-                foreach (var whingredient in whingredients)
-                {
-                    Ingredient? ingredient = ingredients.FirstOrDefault(x => x.IngredientProduct.Id == whingredient.Product.Id);
-                    if (ingredient == null)
-                        throw new Exception("Specified ingredient does not exist in the collection");
-
-                    DeliveryOrderProduct? deliveryOrderProduct = deliveryOrderProducts.FirstOrDefault(x => x.Product.Id == ingredient.FinalProduct.Id);
-                    if (deliveryOrderProduct == null)
-                        throw new Exception("Specified IngredientProduct does not exist in the DeliveryOrderProducts collection");
-                    
-                    var qtyDelta = deliveryOrderProduct.Quantity * ingredient.Quantity;
-                    var productTransfer = new ProductTransfer
-                    {
-                        Uid = Guid.NewGuid().ToString(),
-                        WHProduct = whingredient,
-                        DeliveryOrderProduct = deliveryOrderProduct,
-                        DeliveryOrder = deliveryOrderProduct.DeliveryOrder,
-                        Date = DateTime.UtcNow,
-                        OldQuantity = whingredient.Quantity,
-                        NewQuantity = whingredient.Quantity - qtyDelta,
-                        QuantityDelta = qtyDelta
-                    };
-                    whingredient.Quantity = (int)productTransfer.NewQuantity;
-                    if (whingredient.Quantity < whingredient.MinQuantity)
-                    {
-                        isSufficient = false;
-                        var whingredientLimits = new List<int> { whingredient.MinQuantity, whingredient.MaxQuantity };
-                        var deliveryOrderProductStore2Wh = new DeliveryOrderProduct
-                        {
-                            Uid = Guid.NewGuid().ToString(),
-                            Product = whingredient.Product,
-                            DeliveryOrder = deliveryOrderStore2Wh,
-                            Quantity = (int)whingredientLimits.Average() - whingredient.Quantity
-                        };
-                        deliveryOrderProductsStore2Wh.Add(deliveryOrderProductStore2Wh);
-                    }
-                    context.ProductTransfers.Add(productTransfer);
-                }
-                if (!isSufficient)
-                {
-                    deliveryOrderStore2Wh.ProductsPrice = deliveryOrderProductsStore2Wh.Sum(x => x.Product.Price * x.Quantity);
-                    context.DeliveryOrders.Add(deliveryOrderStore2Wh);
-                    context.DeliveryOrderProducts.AddRange(deliveryOrderProductsStore2Wh);
-                }
-                Console.WriteLine($"isSufficient : {isSufficient}");
-                context.SaveChanges();
-
-                // Calculte delivery time.
-                var wh2kitchenDuration = new System.TimeSpan(0, 5, 0);
-                var kitchen2whDuration = new System.TimeSpan(0, 5, 0);
-                var store2whDuration = new System.TimeSpan(0, 15, 0);
-                var prepareMealDuration = new System.TimeSpan(0, 15, 0);
-                var resultDuration = wh2kitchenDuration + kitchen2whDuration + prepareMealDuration;
-
-                // Start creating tasks for employees as part of order processing, preparation and delivery. 
-                // - If the amount of products/ingredients is sufficient, then invoke wh2kitchen.
-                // - Otherwise, invoke requeststore2wh.
-                if (isSufficient)
+                // Create delivery order on warehouse.
+                TimeSpan resultDuration = _wh2kitchenDuration + _kitchen2whDuration + _prepareMealDuration;
+                DeliveryOrder? deliveryOrderStore2Wh = DeliveryOrderDao.CreateDeliveryOrderOnWh(
+                    context,
+                    deliveryOrder,
+                    whEmployee,
+                    courierEmployee);
+                if (deliveryOrderStore2Wh == null)
                 {
                     response = Wh2KitchenStart(deliveryOrder);
                 }
                 else
                 {
-                    resultDuration += store2whDuration;
+                    resultDuration += _store2whDuration;
                     response = RequestStore2WhStart(deliveryOrderStore2Wh);
                 }
             }

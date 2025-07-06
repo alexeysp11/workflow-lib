@@ -19,5 +19,29 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
                 .Include(x => x.UserAccount)
                 .FirstOrDefault(x => x.UserAccount != null && x.UserAccount.Uid == userUid);
         }
+
+        /// <summary>
+        /// Get responsible employee gy group name.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="userGroupName"></param>
+        public static void GetResponsibleEmployeeByGroupName(FoodDeliveryDbContext context, string userGroupName)
+        {
+            //var userGroup = context.UserGroups.Include(x => x.Users).FirstOrDefault(x => x.Name == userGroupName);
+            //if (userGroup == null)
+            //    throw new Exception("Specified user group is not defined");
+
+            //var userAccountIds = (from userAccount in userGroup.Users select userAccount.Id).ToList();
+            //var potentialExecutors = 
+            //    (from employee in context.Employees 
+            //    where employee.UserAccounts != null && employee.UserAccounts.Any(ua => userAccountIds.Contains(ua.Id))
+            //    select employee).ToList();
+            //if (potentialExecutors == null || !potentialExecutors.Any())
+            //    throw new Exception("The list of potential executors is null or empty");
+
+            //var selectedEmployee = potentialExecutors[rand.Next(potentialExecutors.Count)];
+            //if (selectedEmployee == null)
+            //    throw new Exception("Randomly selected employee is null");
+        }
     }
 }

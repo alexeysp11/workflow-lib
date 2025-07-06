@@ -2,6 +2,7 @@
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
 using WorkflowLib.Extensions;
 using WorkflowLib.Shared.Models.Business.BusinessDocuments;
+using WorkflowLib.Shared.Models.Business.Cooking;
 using WorkflowLib.Shared.Models.Business.Delivery;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
 using WorkflowLib.Shared.Models.Business.Monetary;
@@ -86,14 +87,14 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
         }
 
         /// <summary>
-        /// Create delivery order.
+        /// Create delivery order by initial order.
         /// </summary>
         /// <param name="context">Database context</param>
         /// <param name="initialOrderId">Initial order ID</param>
         /// <param name="customerUid">Customer UID</param>
         /// <param name="customerFullName">Customer full name</param>
         /// <returns></returns>
-        public static DeliveryOrder CreateDeliveryOrder(
+        public static DeliveryOrder CreateDeliveryOrderInitial(
             FoodDeliveryDbContext context,
             long initialOrderId,
             string? customerUid,
@@ -168,6 +169,115 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
             context.SaveChanges();
 
             return deliveryOrder;
+        }
+
+        /// <summary>
+        /// Get delivery order products.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="deliveryOrderId"></param>
+        /// <returns></returns>
+        public static List<DeliveryOrderProduct> GetDeliveryOrderProducts(
+            FoodDeliveryDbContext context,
+            long deliveryOrderId)
+        {
+            return context.DeliveryOrderProducts
+                .Include(x => x.Product)
+                .Include(x => x.DeliveryOrder)
+                .Where(x => x.DeliveryOrder.Id == deliveryOrderId)
+                .ToList();
+        }
+
+        /// <summary>
+        /// Create delivery order on warehouse.
+        /// </summary>
+        public static DeliveryOrder? CreateDeliveryOrderOnWh(
+            FoodDeliveryDbContext context,
+            DeliveryOrder deliveryOrder,
+            Employee whEmployee,
+            Employee courierEmployee)
+        {
+            var isSufficient = true;
+
+            var deliveryOrderStore2Wh = new DeliveryOrder
+            {
+                Uid = Guid.NewGuid().ToString(),
+                ParentDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrder.Id),
+                CustomerUid = whEmployee.Uid,
+                CustomerName = whEmployee.FullName,
+                OrderCustomerType = OrderCustomerType.Employee,
+                ExecutorUid = courierEmployee.Uid,
+                ExecutorName = courierEmployee.FullName,
+                OrderExecutorType = OrderExecutorType.Employee,
+                Destination = deliveryOrder.Origin,
+                DateStartActual = DateTime.UtcNow
+            };
+
+            // Find corresponding records in the DeliveryOrderProduct table by order ID (a table of associations between 
+            // the Product, DeliveryOrder and Quantity).
+            List<DeliveryOrderProduct> deliveryOrderProducts = DeliveryOrderDao.GetDeliveryOrderProducts(context, deliveryOrder.Id);
+            List<long> productIds = (from product in deliveryOrderProducts select product.Product.Id).ToList();
+
+            // Using the product IDs from the Product order, find the corresponding records in the Ingredients table (look 
+            // at the link to the object FinalProduct).
+            List<Ingredient> ingredients = IngredientDao.GetIngredientsByMulipleFinalProductIds(context, productIds);
+            List<long> ingredientProductIds = (from ingredient in ingredients select ingredient.IngredientProduct.Id).ToList();
+
+            var deliveryOrderProductsStore2Wh = new List<DeliveryOrderProduct>();
+            List<WHProduct> whIngredients = context.WHProducts
+                .Include(x => x.Product)
+                .Where(x => ingredientProductIds.Any(pid => pid == x.Product.Id))
+                .ToList();
+            foreach (var whIngredient in whIngredients)
+            {
+                Ingredient? ingredient = ingredients.FirstOrDefault(x => x.IngredientProduct.Id == whIngredient.Product.Id);
+                if (ingredient == null)
+                    throw new Exception("Specified ingredient does not exist in the collection");
+
+                DeliveryOrderProduct? deliveryOrderProduct = deliveryOrderProducts.FirstOrDefault(x => x.Product.Id == ingredient.FinalProduct.Id);
+                if (deliveryOrderProduct == null)
+                    throw new Exception("Specified IngredientProduct does not exist in the DeliveryOrderProducts collection");
+
+                var qtyDelta = deliveryOrderProduct.Quantity * ingredient.Quantity;
+                var productTransfer = new ProductTransfer
+                {
+                    Uid = Guid.NewGuid().ToString(),
+                    WHProduct = whIngredient,
+                    DeliveryOrderProduct = deliveryOrderProduct,
+                    DeliveryOrder = deliveryOrderProduct.DeliveryOrder,
+                    Date = DateTime.UtcNow,
+                    OldQuantity = whIngredient.Quantity,
+                    NewQuantity = whIngredient.Quantity - qtyDelta,
+                    QuantityDelta = qtyDelta
+                };
+                whIngredient.Quantity = (int)productTransfer.NewQuantity;
+                if (whIngredient.Quantity < whIngredient.MinQuantity)
+                {
+                    isSufficient = false;
+                    var whingredientLimits = new List<int> { whIngredient.MinQuantity, whIngredient.MaxQuantity };
+                    var deliveryOrderProductStore2Wh = new DeliveryOrderProduct
+                    {
+                        Uid = Guid.NewGuid().ToString(),
+                        Product = whIngredient.Product,
+                        DeliveryOrder = deliveryOrderStore2Wh,
+                        Quantity = (int)whingredientLimits.Average() - whIngredient.Quantity
+                    };
+                    deliveryOrderProductsStore2Wh.Add(deliveryOrderProductStore2Wh);
+                }
+                context.ProductTransfers.Add(productTransfer);
+            }
+            
+            // If the amount of ingredients is not sufficient on the warehouse, create a record for delivering from store to WH.
+            if (!isSufficient)
+            {
+                deliveryOrderStore2Wh.ProductsPrice = deliveryOrderProductsStore2Wh.Sum(x => x.Product.Price * x.Quantity);
+                context.DeliveryOrders.Add(deliveryOrderStore2Wh);
+                context.DeliveryOrderProducts.AddRange(deliveryOrderProductsStore2Wh);
+            }
+
+            context.SaveChanges();
+
+            return isSufficient ? null : deliveryOrderStore2Wh;
         }
     }
 }

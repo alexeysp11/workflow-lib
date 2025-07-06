@@ -21,5 +21,22 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
                 .Where(x => x.FinalProduct.Id == productId)
                 .ToList();
         }
+
+        /// <summary>
+        /// Get ingredients by multiple final product IDs.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="productIds">Final product IDs</param>
+        /// <returns></returns>
+        internal static List<Ingredient> GetIngredientsByMulipleFinalProductIds(
+            FoodDeliveryDbContext context,
+            List<long> productIds)
+        {
+            return context.Ingredients
+                .Include(x => x.IngredientProduct)
+                .Include(x => x.FinalProduct)
+                .Where(x => productIds.Any(pid => pid == x.FinalProduct.Id))
+                .ToList();
+        }
     }
 }

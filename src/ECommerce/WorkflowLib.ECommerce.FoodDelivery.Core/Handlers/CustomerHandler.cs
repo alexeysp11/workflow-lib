@@ -109,7 +109,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                     throw new Exception("Specified customer does not exist in the database");
 
                 // Create delivery order.
-                DeliveryOrder deliveryOrder = DeliveryOrderDao.CreateDeliveryOrder(
+                DeliveryOrder deliveryOrder = DeliveryOrderDao.CreateDeliveryOrderInitial(
                     context,
                     initialOrder.Id,
                     customer.Uid,
