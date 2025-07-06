@@ -7,6 +7,8 @@ using WorkflowLib.Shared.Models.Business.Monetary;
 using WorkflowLib.Shared.Models.Business.Products;
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
 using WorkflowLib.Shared.Models.Business.Cooking;
+using WorkflowLib.ECommerce.FoodDelivery.Core.Dal;
+using WorkflowLib.Shared.Models.Business.InformationSystem;
 
 namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
 {
@@ -45,49 +47,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
 
                 // Insert into cache.
                 Console.WriteLine("CustomerClient.MakeOrderRequest: cache");
-                var initialOrderProducts = new List<InitialOrderProduct>();
-                var initialOrderIngredients = new List<InitialOrderIngredient>();
-                foreach (var pid in initialOrder.ProductIds)
-                {
-                    if (initialOrderProducts.Any(x => x.Product.Id == pid))
-                        continue;
-                    
-                    int productQty = initialOrder.ProductIds.Where(x => x == pid).Count();
-                    var product = context.Products.Where(x => x.Id == pid).FirstOrDefault();
-                    var initialOrderProduct = new InitialOrderProduct
-                    {
-                        Uid = System.Guid.NewGuid().ToString(),
-                        Name = product.Name,
-                        Product = product,
-                        InitialOrder = initialOrder,
-                        Quantity = productQty
-                    };
-                    initialOrderProducts.Add(initialOrderProduct);
-
-                    List<Ingredient> ingredientsTmp = context.Ingredients
-                        .Include(x => x.IngredientProduct)
-                        .Where(x => x.FinalProduct.Id == product.Id)
-                        .ToList();
-                    foreach (var ingredient in ingredientsTmp)
-                    {
-                        initialOrderIngredients.Add(new InitialOrderIngredient
-                        {
-                            Uid = System.Guid.NewGuid().ToString(),
-                            Name = ingredient.Name,
-                            Ingredient = ingredient,
-                            InitialOrder = initialOrder,
-                            InitialOrderProduct = initialOrderProduct,
-                            Quantity = productQty * (int)ingredient.Quantity
-                        });
-                    }
-                    
-                    initialOrder.PaymentAmount += productQty * product.Price;
-                }
-                initialOrder.Uid = System.Guid.NewGuid().ToString();
-                context.InitialOrderProducts.AddRange(initialOrderProducts);
-                context.InitialOrderIngredients.AddRange(initialOrderIngredients);
-                context.InitialOrders.Add(initialOrder);
-                context.SaveChanges();
+                InitialOrderDao.CreateInitialOrder(context, initialOrder);
 
                 // Validation.
                 Console.WriteLine("CustomerBackend.MakeOrderRequest: validation");
@@ -147,74 +107,18 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                     throw new Exception("Incorrect parameter: PaymentType");
                 }
 
-                // Save data into DB.
-                var destination = initialOrder.Address;
-                var organization = context.Organizations
-                    .Include(x => x.Company)
-                    .FirstOrDefault();
-                if (organization == null || organization.Company == null)
-                    throw new Exception("Organization or company is not defined");
-                if (string.IsNullOrEmpty(organization.Company.Address))
-                    throw new Exception("Address of the company is not specified");
-                var customer = context.Customers
-                    .Include(x => x.UserAccount)
-                    .FirstOrDefault(x => x.UserAccount != null && x.UserAccount.Uid == initialOrder.UserUid);
+                // Get customer by user UID.
+                Customer? customer = UserDao.GetCustomerByUserUid(context, userUid: initialOrder.UserUid);
                 if (customer == null)
                     throw new Exception("Specified customer does not exist in the database");
-                InitialOrder? existedInitialOrder = context.InitialOrders.FirstOrDefault(x => x.Id == initialOrder.Id);
-                if (existedInitialOrder == null)
-                    throw new Exception("Specified initial order does not exist in the database");
-                var deliveryOrder = new DeliveryOrder
-                {
-                    Uid = System.Guid.NewGuid().ToString(),
-                    Payments = new List<Payment>
-                    {
-                        new Payment
-                        {
-                            Uid = System.Guid.NewGuid().ToString(),
-                            PaymentType = existedInitialOrder.PaymentType,
-                            PaymentMethod = existedInitialOrder.PaymentMethod,
-                            Amount = existedInitialOrder.PaymentAmount,
-                            Payer = customer.FullName,
-                            Receiver = string.IsNullOrEmpty(organization.Company.Name) ? "Our company" : organization.Company.Name,
-                            Status = EnumExtensions.GetDisplayName(PaymentStatus.Requested)
-                        }
-                    },
-                    CustomerUid = customer.Uid,
-                    CustomerName = customer.FullName,
-                    OrderCustomerType = OrderCustomerType.Customer,
-                    ExecutorUid = organization.Company.Uid,
-                    ExecutorName = organization.Company.Name,
-                    OrderExecutorType = OrderExecutorType.Company,
-                    Origin = organization.Company.Address,
-                    Destination = destination,
-                    DateStartActual = System.DateTime.Now
-                };
-                context.DeliveryOrders.Add(deliveryOrder);
-                context.Payments.AddRange(deliveryOrder.Payments);
-                var initialOrderProducts = context.InitialOrderProducts
-                    .Include(x => x.Product)
-                    .Where(x => x.InitialOrder != null && x.InitialOrder.Id == initialOrder.Id)
-                    .ToList();
-                foreach (var iop in initialOrderProducts)
-                {
-                    var deliveryOrderProduct = new DeliveryOrderProduct
-                    {
-                        Uid = System.Guid.NewGuid().ToString(),
-                        Product = iop.Product,
-                        DeliveryOrder = deliveryOrder,
-                        Quantity = iop.Quantity
-                    };
-                    context.DeliveryOrderProducts.Add(deliveryOrderProduct);
-                }
-                deliveryOrder.ProductsPrice = initialOrder.PaymentAmount;
-                deliveryOrder.TotalPrice = initialOrder.PaymentAmount;
-                context.SaveChanges();
 
-                // Save the reference to DeliveryOrder.
-                existedInitialOrder.DeliveryOrderId = deliveryOrder.Id;
-                context.SaveChanges();
-
+                // Create delivery order.
+                DeliveryOrder deliveryOrder = DeliveryOrderDao.CreateDeliveryOrder(
+                    context,
+                    initialOrder.Id,
+                    customer.Uid,
+                    customer.FullName);
+                
                 // Title text.
                 var sbMessageText = new StringBuilder();
                 sbMessageText.Append("Please, provide your card details to pay for the order #").Append(deliveryOrder.Id.ToString());
@@ -232,7 +136,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 sbMessageText.Append("Thank you for using our services!");
 
                 // Send request to the notifications backend.
-                var adminUser = context.UserAccounts.FirstOrDefault();
+                UserAccount? adminUser = context.UserAccounts.FirstOrDefault();
                 if (adminUser == null)
                     throw new Exception("Admin user could not be null");
                 var notifications = new List<Notification>

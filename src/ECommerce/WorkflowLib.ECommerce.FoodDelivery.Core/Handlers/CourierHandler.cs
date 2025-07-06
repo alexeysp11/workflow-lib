@@ -53,7 +53,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 NotifyDeliverOrder(deliveryOrder, "Store2Wh");
                 var businessTask = new DeliveryOperation
                 {
-                    Uid = System.Guid.NewGuid().ToString(),
+                    Uid = Guid.NewGuid().ToString(),
                     Name = Notification.TitleText,
                     Subject = Notification.TitleText,
                     Description = Notification.BodyText,
@@ -64,7 +64,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 };
                 var businessTaskDeliveryOrder = new BusinessTaskDeliveryOrder
                 {
-                    Uid = System.Guid.NewGuid().ToString(),
+                    Uid = Guid.NewGuid().ToString(),
                     BusinessTask = businessTask,
                     DeliveryOrder = existedDeliveryOrder,
                     Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.DeliveryOperation)
@@ -155,7 +155,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 NotifyDeliverOrder(deliveryOrder, "DeliverOrder");
                 var businessTask = new DeliveryOperation
                 {
-                    Uid = System.Guid.NewGuid().ToString(),
+                    Uid = Guid.NewGuid().ToString(),
                     Name = Notification.TitleText,
                     Subject = Notification.TitleText,
                     Description = Notification.BodyText,
@@ -166,7 +166,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 };
                 var businessTaskDeliveryOrder = new BusinessTaskDeliveryOrder
                 {
-                    Uid = System.Guid.NewGuid().ToString(),
+                    Uid = Guid.NewGuid().ToString(),
                     BusinessTask = businessTask,
                     DeliveryOrder = existedDeliveryOrder,
                     Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.DeliveryOperation)
@@ -220,7 +220,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 {
                     deliveryOperation.Status = BusinessTaskStatus.Closed;
                 }
-                existedDeliveryOrder.DateEndActual = System.DateTime.Now;
+                existedDeliveryOrder.DateEndActual = DateTime.Now;
                 existedDeliveryOrder.Status = EnumExtensions.GetDisplayName(OrderStatus.Finished);
                 context.SaveChanges();
 

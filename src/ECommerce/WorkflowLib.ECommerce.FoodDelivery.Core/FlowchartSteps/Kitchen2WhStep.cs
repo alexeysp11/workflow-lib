@@ -31,7 +31,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
             using var context = new FoodDeliveryDbContext(_contextOptions);
 
             // Unload a delivery order that has a parent and is an internal delivery order.
-            DeliveryOrder? devileryOrder = FoodDeliveryDao.GetDeliveryOrderByNumber(context, "");
+            DeliveryOrder? devileryOrder = DeliveryOrderDao.GetDeliveryOrderByNumber(context, "");
             if (devileryOrder == null)
                 throw new Exception("Delivery order could not be null");
 

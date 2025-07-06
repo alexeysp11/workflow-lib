@@ -121,7 +121,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                     .Where(x => ingredientProductIds.Any(pid => pid == x.Product.Id));
                 var deliveryOrderStore2Wh = new DeliveryOrder
                 {
-                    Uid = System.Guid.NewGuid().ToString(),
+                    Uid = Guid.NewGuid().ToString(),
                     ParentDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrder.Id),
                     CustomerUid = whEmployee.Uid,
                     CustomerName = whEmployee.FullName,
@@ -130,7 +130,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                     ExecutorName = courierEmployee.FullName,
                     OrderExecutorType = OrderExecutorType.Employee,
                     Destination = deliveryOrder.Origin,
-                    DateStartActual = System.DateTime.Now
+                    DateStartActual = DateTime.Now
                 };
                 var deliveryOrderProductsStore2Wh = new List<DeliveryOrderProduct>();
                 foreach (var whingredient in whingredients)
@@ -146,11 +146,11 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                     var qtyDelta = deliveryOrderProduct.Quantity * ingredient.Quantity;
                     var productTransfer = new ProductTransfer
                     {
-                        Uid = System.Guid.NewGuid().ToString(),
+                        Uid = Guid.NewGuid().ToString(),
                         WHProduct = whingredient,
                         DeliveryOrderProduct = deliveryOrderProduct,
                         DeliveryOrder = deliveryOrderProduct.DeliveryOrder,
-                        Date = System.DateTime.Now,
+                        Date = DateTime.Now,
                         OldQuantity = whingredient.Quantity,
                         NewQuantity = whingredient.Quantity - qtyDelta,
                         QuantityDelta = qtyDelta
@@ -162,7 +162,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                         var whingredientLimits = new List<int> { whingredient.MinQuantity, whingredient.MaxQuantity };
                         var deliveryOrderProductStore2Wh = new DeliveryOrderProduct
                         {
-                            Uid = System.Guid.NewGuid().ToString(),
+                            Uid = Guid.NewGuid().ToString(),
                             Product = whingredient.Product,
                             DeliveryOrder = deliveryOrderStore2Wh,
                             Quantity = (int)whingredientLimits.Average() - whingredient.Quantity
@@ -279,7 +279,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 // Create a business task for requesting delivery of order from the store to the warehouse.
                 var businessTask = new BusinessTask
                 {
-                    Uid = System.Guid.NewGuid().ToString(),
+                    Uid = Guid.NewGuid().ToString(),
                     Name = notification.TitleText,
                     Subject = notification.TitleText,
                     Description = notification.BodyText,
@@ -287,7 +287,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 };
                 var businessTaskDeliveryOrder = new BusinessTaskDeliveryOrder
                 {
-                    Uid = System.Guid.NewGuid().ToString(),
+                    Uid = Guid.NewGuid().ToString(),
                     BusinessTask = businessTask,
                     DeliveryOrder = existedDeliveryOrder,
                     Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.RequestStore2Wh)
@@ -442,7 +442,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 // Create a business task for requesting delivery of order from the store to the warehouse.
                 var businessTask = new BusinessTask
                 {
-                    Uid = System.Guid.NewGuid().ToString(),
+                    Uid = Guid.NewGuid().ToString(),
                     Name = notification.TitleText,
                     Subject = notification.TitleText,
                     Description = notification.BodyText,
@@ -450,7 +450,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 };
                 var businessTaskDeliveryOrder = new BusinessTaskDeliveryOrder
                 {
-                    Uid = System.Guid.NewGuid().ToString(),
+                    Uid = Guid.NewGuid().ToString(),
                     BusinessTask = businessTask,
                     DeliveryOrder = deliveryOrder,
                     Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.ConfirmStore2Wh)
@@ -510,7 +510,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 }
 
                 // Change the status of the corresponding delivery order.
-                existedDeliveryOrder.DateEndActual = System.DateTime.Now;
+                existedDeliveryOrder.DateEndActual = DateTime.Now;
                 existedDeliveryOrder.Status = EnumExtensions.GetDisplayName(OrderStatus.Finished);
 
                 // Get the parent delivery order that should be delivered from the warehouse to the kitchen.
@@ -614,7 +614,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                     throw new Exception("List of ingredients that is related to the initial order could not be null or empty");
                 var businessTask = new DeliveryOperation
                 {
-                    Uid = System.Guid.NewGuid().ToString(),
+                    Uid = Guid.NewGuid().ToString(),
                     Name = notification.TitleText,
                     Subject = notification.TitleText,
                     Description = notification.BodyText,
@@ -629,7 +629,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 };
                 var businessTaskDeliveryOrder = new BusinessTaskDeliveryOrder
                 {
-                    Uid = System.Guid.NewGuid().ToString(),
+                    Uid = Guid.NewGuid().ToString(),
                     BusinessTask = businessTask,
                     DeliveryOrder = existedDeliveryOrder,
                     Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.DeliveryOperation)
@@ -769,7 +769,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 // Create DeliveryKitchen2Wh object.
                 var businessTask = new DeliveryOperation
                 {
-                    Uid = System.Guid.NewGuid().ToString(),
+                    Uid = Guid.NewGuid().ToString(),
                     Name = notification.TitleText,
                     Subject = notification.TitleText,
                     Description = notification.BodyText,
@@ -782,7 +782,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 };
                 var businessTaskDeliveryOrder = new BusinessTaskDeliveryOrder
                 {
-                    Uid = System.Guid.NewGuid().ToString(),
+                    Uid = Guid.NewGuid().ToString(),
                     BusinessTask = businessTask,
                     DeliveryOrder = existedDeliveryOrder,
                     Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.DeliveryOperation)

@@ -31,7 +31,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
 
             // Check if a delivery has already been made from the warehouse to the kitchen.
             // Run this step only if delivery has NOT taken place.
-            var deliveryWh2Kitchen = FoodDeliveryDao.GetDeliveryOperation(context, FoodDeliveryType.Wh2Kitchen.ToString());
+            var deliveryWh2Kitchen = DeliveryOrderDao.GetDeliveryOperation(context, FoodDeliveryType.Wh2Kitchen.ToString());
             if (deliveryWh2Kitchen != null)
             {
                 return false;
@@ -47,7 +47,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
             // Check whether there were enough ingredients in the order preprocessing step.
 
             // Unload a delivery order that has a parent and is an internal delivery order.
-            DeliveryOrder? deliveryOrder = FoodDeliveryDao.GetInternalDeliveryOrder(context);
+            DeliveryOrder? deliveryOrder = DeliveryOrderDao.GetInternalDeliveryOrder(context);
             if (deliveryOrder == null)
             {
                 throw new Exception("Delivery order could not be null");
@@ -55,12 +55,12 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
             
             // For the received order, you need to set prices for products and attach a photo/scan of the receipt to the task 
             // (the last one has not yet been implemented).
-            float? totalPrice = FoodDeliveryDao.GetDeliveryOrderTotalPrice(context, deliveryOrder.Id);
+            float? totalPrice = DeliveryOrderDao.GetDeliveryOrderTotalPrice(context, deliveryOrder.Id);
             if (!totalPrice.HasValue)
             {
                 throw new Exception("Calculated total price of the products within the delivery order could not be null");
             }
-            FoodDeliveryDao.UpdateDeliveryOrderTotalPrice(context, deliveryOrder, (decimal)totalPrice);
+            DeliveryOrderDao.UpdateDeliveryOrderTotalPrice(context, deliveryOrder, (decimal)totalPrice);
 
             // 
             //string response = new CourierClientController(_contextOptions).Store2WhExecute(new ApiOperation

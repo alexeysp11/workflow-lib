@@ -113,7 +113,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 // Create the cooking operation object.
                 var businessTask = new CookingOperation
                 {
-                    Uid = System.Guid.NewGuid().ToString(),
+                    Uid = Guid.NewGuid().ToString(),
                     Name = notification.TitleText,
                     Subject = notification.TitleText,
                     Description = notification.BodyText,
@@ -125,7 +125,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 };
                 var businessTaskDeliveryOrder = new BusinessTaskDeliveryOrder
                 {
-                    Uid = System.Guid.NewGuid().ToString(),
+                    Uid = Guid.NewGuid().ToString(),
                     BusinessTask = businessTask,
                     DeliveryOrder = existedDeliveryOrder,
                     Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.CookingOperation)

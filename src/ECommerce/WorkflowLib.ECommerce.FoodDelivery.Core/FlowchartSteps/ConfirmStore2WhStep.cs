@@ -63,11 +63,11 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
                     throw new Exception("Warehouse product could not be null");
                 var productTransfer = new ProductTransfer 
                 {
-                    Uid = System.Guid.NewGuid().ToString(),
+                    Uid = Guid.NewGuid().ToString(),
                     WHProduct = whproduct,
                     DeliveryOrderProduct = deliveryOrderProduct,
                     DeliveryOrder = deliveryOrderProduct.DeliveryOrder,
-                    Date = System.DateTime.Now,
+                    Date = DateTime.Now,
                     OldQuantity = whproduct.Quantity,
                     NewQuantity = whproduct.Quantity + deliveryOrderProduct.Quantity,
                     QuantityDelta = deliveryOrderProduct.Quantity
