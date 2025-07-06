@@ -1,3 +1,5 @@
+using System;
+
 namespace WorkflowLib.Shared.Models.Logging
 {
     /// <summary>
@@ -28,11 +30,11 @@ namespace WorkflowLib.Shared.Models.Logging
         /// <summary>
         /// Date of creation.
         /// </summary>
-        public System.DateTime? DateCreated { get; set; }
+        public DateTime? DateCreated { get; set; }
         
         /// <summary>
         /// Date of change.
         /// </summary>
-        public System.DateTime? DateChanged { get; set; }
+        public DateTime? DateChanged { get; set; }
     }
 }
