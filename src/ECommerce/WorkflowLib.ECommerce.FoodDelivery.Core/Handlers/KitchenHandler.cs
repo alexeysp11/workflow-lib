@@ -33,7 +33,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         public string PrepareMealStart(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("KitchenBackend.PrepareMealStart: begin");
+            Console.WriteLine("KitchenBackend.PrepareMealStart: begin");
             try
             {
                 // Initializing.
@@ -42,10 +42,10 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Validation.
-                System.Console.WriteLine("KitchenBackend.PrepareMealStart: validation");
+                Console.WriteLine("KitchenBackend.PrepareMealStart: validation");
                 
                 // Insert into cache.
-                System.Console.WriteLine("KitchenBackend.PrepareMealStart: cache");
+                Console.WriteLine("KitchenBackend.PrepareMealStart: cache");
 
                 // Get initial order, and the products that should be delivered, by delivery order ID.
                 DeliveryOrder? existedDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrder.Id);
@@ -136,7 +136,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 context.SaveChanges();
                 
                 // Insert into cache.
-                System.Console.WriteLine("KitchenBackend.PrepareMealStart: cache");
+                Console.WriteLine("KitchenBackend.PrepareMealStart: cache");
 
                 // 
                 response = "success";
@@ -144,9 +144,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("KitchenBackend.PrepareMealStart: end");
+            Console.WriteLine("KitchenBackend.PrepareMealStart: end");
             return response;
         }
 
@@ -156,7 +156,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         public string PrepareMealExecute(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("KitchenBackend.PrepareMealExecute: begin");
+            Console.WriteLine("KitchenBackend.PrepareMealExecute: begin");
             try
             {
                 // Initializing.
@@ -165,10 +165,10 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Validation.
-                System.Console.WriteLine("KitchenBackend.PrepareMealExecute: validation");
+                Console.WriteLine("KitchenBackend.PrepareMealExecute: validation");
                 
                 // Insert into cache.
-                System.Console.WriteLine("KitchenBackend.PrepareMealExecute: cache");
+                Console.WriteLine("KitchenBackend.PrepareMealExecute: cache");
 
                 // Close a business task that is associated with a delivery order.
                 DeliveryOrder? existedDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrder.Id);
@@ -189,7 +189,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 string backendResponse = new WarehouseHandler(_contextOptions).Kitchen2WhStart(existedDeliveryOrder);
                 
                 // Insert into cache.
-                System.Console.WriteLine("KitchenBackend.PrepareMealExecute: cache");
+                Console.WriteLine("KitchenBackend.PrepareMealExecute: cache");
 
                 // 
                 response = "success";
@@ -197,9 +197,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("KitchenBackend.PrepareMealExecute: end");
+            Console.WriteLine("KitchenBackend.PrepareMealExecute: end");
             return response;
         }
     }

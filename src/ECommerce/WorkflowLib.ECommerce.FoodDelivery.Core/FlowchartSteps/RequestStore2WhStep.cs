@@ -36,7 +36,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
                 return false;
             }
 
-            System.Console.WriteLine("RequestStore2WhStep.Start: begin");
+            Console.WriteLine("RequestStore2WhStep.Start: begin");
 
             // When a warehouse employee receives a BusinessTask to request a delivery from the store to the warehouse, 
             // his active tasks are simply downloaded to them.
@@ -48,8 +48,8 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
             //{
             //    RequestObject = model
             //});
-            //System.Console.WriteLine($"response: {response}");
-            System.Console.WriteLine("RequestStore2WhStep.Start: end");
+            //Console.WriteLine($"response: {response}");
+            Console.WriteLine("RequestStore2WhStep.Start: end");
             
             //return response == "success";
             return true;

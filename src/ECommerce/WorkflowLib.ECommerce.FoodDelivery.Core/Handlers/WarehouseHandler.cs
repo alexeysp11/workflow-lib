@@ -37,7 +37,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         public string PreprocessOrderRedirect(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseBackend.PreprocessOrderRedirect: begin");
+            Console.WriteLine("WarehouseBackend.PreprocessOrderRedirect: begin");
             try
             {
                 // Initializing.
@@ -178,7 +178,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                     context.DeliveryOrders.Add(deliveryOrderStore2Wh);
                     context.DeliveryOrderProducts.AddRange(deliveryOrderProductsStore2Wh);
                 }
-                System.Console.WriteLine($"isSufficient : {isSufficient}");
+                Console.WriteLine($"isSufficient : {isSufficient}");
                 context.SaveChanges();
 
                 // Calculte delivery time.
@@ -204,9 +204,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("WarehouseBackend.PreprocessOrderRedirect: end");
+            Console.WriteLine("WarehouseBackend.PreprocessOrderRedirect: end");
             return response;
         }
         
@@ -216,7 +216,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         public string RequestStore2WhStart(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseBackend.RequestStore2WhStart: begin");
+            Console.WriteLine("WarehouseBackend.RequestStore2WhStart: begin");
             try
             {
                 // Initializing.
@@ -225,7 +225,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Update DB.
-                System.Console.WriteLine("WarehouseBackend.RequestStore2WhStart: update DB");
+                Console.WriteLine("WarehouseBackend.RequestStore2WhStart: update DB");
                 
                 // Getting the products that should be delivered.
                 var existedDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrder.Id);
@@ -264,7 +264,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 sbMessageText.Append("Please check that the list of products required for delivery is correct and confirm your request.\n");
 
                 // Notify warehouse employee.
-                System.Console.WriteLine("WarehouseBackend.RequestStore2WhStart: notify employee");
+                Console.WriteLine("WarehouseBackend.RequestStore2WhStart: notify employee");
                 var notification = new Notification
                 {
                     SenderId = adminUser.Id,
@@ -303,9 +303,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("WarehouseBackend.RequestStore2WhStart: end");
+            Console.WriteLine("WarehouseBackend.RequestStore2WhStart: end");
             return response;
         }
 
@@ -315,7 +315,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         public string RequestStore2WhRespond(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseBackend.RequestStore2WhRespond: begin");
+            Console.WriteLine("WarehouseBackend.RequestStore2WhRespond: begin");
             try
             {
                 // Initializing.
@@ -324,7 +324,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Update DB.
-                System.Console.WriteLine("WarehouseBackend.RequestStore2WhRespond: cache");
+                Console.WriteLine("WarehouseBackend.RequestStore2WhRespond: cache");
 
                 // The BusinessTask and DeliveryOrder classes are connected using the BusinessTaskDeliveryOrder class,
                 // so get the collection of business task objects that are related to the delivery order.
@@ -361,9 +361,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("WarehouseBackend.RequestStore2WhRespond: end");
+            Console.WriteLine("WarehouseBackend.RequestStore2WhRespond: end");
             return response;
         }
         
@@ -374,7 +374,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         public string Store2WhSave(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseBackend.Store2WhSave: begin");
+            Console.WriteLine("WarehouseBackend.Store2WhSave: begin");
             try
             {
                 // Initializing.
@@ -383,7 +383,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Update DB.
-                System.Console.WriteLine("WarehouseBackend.Store2WhSave: cache");
+                Console.WriteLine("WarehouseBackend.Store2WhSave: cache");
 
                 // Send HTTP request.
                 //string backendResponse = new WarehouseClientController(_contextOptions).Store2WhSave(new ApiOperation
@@ -466,9 +466,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("WarehouseBackend.Store2WhSave: end");
+            Console.WriteLine("WarehouseBackend.Store2WhSave: end");
             return response;
         }
         
@@ -478,7 +478,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         public string ConfirmStore2WhAccept(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseBackend.ConfirmStore2WhAccept: begin");
+            Console.WriteLine("WarehouseBackend.ConfirmStore2WhAccept: begin");
             try
             {
                 // Initializing.
@@ -487,7 +487,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Update DB.
-                System.Console.WriteLine("WarehouseBackend.ConfirmStore2WhAccept: cache");
+                Console.WriteLine("WarehouseBackend.ConfirmStore2WhAccept: cache");
 
                 // Close the business task that is related to the delivery order passed as a parameter.
                 DeliveryOrder? existedDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrder.Id);
@@ -530,9 +530,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("WarehouseBackend.ConfirmStore2WhAccept: end");
+            Console.WriteLine("WarehouseBackend.ConfirmStore2WhAccept: end");
             return response;
         }
         
@@ -542,7 +542,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         public string Wh2KitchenStart(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseBackend.Wh2KitchenStart: begin");
+            Console.WriteLine("WarehouseBackend.Wh2KitchenStart: begin");
             try
             {
                 // Initializing.
@@ -551,7 +551,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Update DB.
-                System.Console.WriteLine("WarehouseBackend.Wh2KitchenStart: cache");
+                Console.WriteLine("WarehouseBackend.Wh2KitchenStart: cache");
 
                 // Get the object related to the specified delivery order.
                 DeliveryOrder? existedDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrder.Id);
@@ -645,9 +645,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("WarehouseBackend.Wh2KitchenStart: end");
+            Console.WriteLine("WarehouseBackend.Wh2KitchenStart: end");
             return response;
         }
 
@@ -657,7 +657,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         public string Wh2KitchenExecute(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseBackend.Wh2KitchenExecute: begin");
+            Console.WriteLine("WarehouseBackend.Wh2KitchenExecute: begin");
             try
             {
                 // Initializing.
@@ -666,7 +666,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Update DB.
-                System.Console.WriteLine("WarehouseBackend.Wh2KitchenExecute: cache");
+                Console.WriteLine("WarehouseBackend.Wh2KitchenExecute: cache");
 
                 // Close a business task that is associated with a delivery order.
                 var initialOrder = context.InitialOrders
@@ -692,9 +692,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("WarehouseBackend.Wh2KitchenExecute: end");
+            Console.WriteLine("WarehouseBackend.Wh2KitchenExecute: end");
             return response;
         }
         
@@ -704,7 +704,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         public string Kitchen2WhStart(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseBackend.Kitchen2WhStart: begin");
+            Console.WriteLine("WarehouseBackend.Kitchen2WhStart: begin");
             try
             {
                 // Initializing.
@@ -713,7 +713,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Update DB.
-                System.Console.WriteLine("WarehouseBackend.Kitchen2WhStart: cache");
+                Console.WriteLine("WarehouseBackend.Kitchen2WhStart: cache");
                 
                 // Get sender and receiver of the notification.
                 var adminUser = context.UserAccounts.FirstOrDefault();
@@ -798,9 +798,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("WarehouseBackend.Kitchen2WhStart: end");
+            Console.WriteLine("WarehouseBackend.Kitchen2WhStart: end");
             return response;
         }
 
@@ -810,7 +810,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         public string Kitchen2WhExecute(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseBackend.Kitchen2WhExecute: begin");
+            Console.WriteLine("WarehouseBackend.Kitchen2WhExecute: begin");
             try
             {
                 // Initializing.
@@ -819,7 +819,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Update DB.
-                System.Console.WriteLine("WarehouseBackend.Kitchen2WhExecute: cache");
+                Console.WriteLine("WarehouseBackend.Kitchen2WhExecute: cache");
 
                 // Close a business task that is associated with a delivery order.
                 InitialOrder? initialOrder = context.InitialOrders
@@ -845,9 +845,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("WarehouseBackend.Kitchen2WhExecute: end");
+            Console.WriteLine("WarehouseBackend.Kitchen2WhExecute: end");
             return response;
         }
         

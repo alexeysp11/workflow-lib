@@ -27,7 +27,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
         /// </summary>
         public bool Start()
         {
-            System.Console.WriteLine("Wh2KitchenStep.Start: begin");
+            Console.WriteLine("Wh2KitchenStep.Start: begin");
 
             using var context = new FoodDeliveryDbContext(_contextOptions);
 
@@ -41,8 +41,8 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
             //{
             //    RequestObject = devileryOrder
             //});
-            //System.Console.WriteLine($"response: {response}");
-            System.Console.WriteLine("Wh2KitchenStep.Start: end");
+            //Console.WriteLine($"response: {response}");
+            Console.WriteLine("Wh2KitchenStep.Start: end");
             
             //return response == "success";
             return true;

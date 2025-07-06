@@ -31,14 +31,14 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         public string MakeOrderRequest(InitialOrder initialOrder)
         {
             string response = "";
-            System.Console.WriteLine("CustomerClient.MakeOrderRequest: begin");
+            Console.WriteLine("CustomerClient.MakeOrderRequest: begin");
             try
             {
                 // Send HTTP request.
                 string backendResponse = _customerBackendController.MakeOrderRequest(initialOrder);
                 
                 // Insert into cache.
-                System.Console.WriteLine("CustomerClient.MakeOrderRequest: cache");
+                Console.WriteLine("CustomerClient.MakeOrderRequest: cache");
 
                 // 
                 response = "success";
@@ -46,9 +46,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("CustomerClient.MakeOrderRequest: end");
+            Console.WriteLine("CustomerClient.MakeOrderRequest: end");
             return response;
         }
         
@@ -58,11 +58,11 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         public string MakePaymentSave(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("CustomerClient.MakePaymentSave: begin");
+            Console.WriteLine("CustomerClient.MakePaymentSave: begin");
             try
             {
                 // Update DB.
-                System.Console.WriteLine("CustomerClient.MakePaymentSave: cache");
+                Console.WriteLine("CustomerClient.MakePaymentSave: cache");
 
                 // 
                 response = "DB is updated";
@@ -70,9 +70,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("CustomerClient.MakePaymentSave: end");
+            Console.WriteLine("CustomerClient.MakePaymentSave: end");
             return response;
         }
 
@@ -82,7 +82,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         public string MakePaymentRespond(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("CustomerClient.MakePaymentRespond: begin");
+            Console.WriteLine("CustomerClient.MakePaymentRespond: begin");
             try
             {
                 // Initializing.
@@ -90,19 +90,19 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                     throw new System.ArgumentNullException("apiOperation.RequestObject");
 
                 // Validation.
-                System.Console.WriteLine("CustomerClient.MakePaymentRespond: validation");
+                Console.WriteLine("CustomerClient.MakePaymentRespond: validation");
                 
                 // Insert into cache.
                 // Attention: in this particular example, it is unnecessary to save data, that is in the model object, 
                 // because it has already been inserted on the MakePaymentStep.
                 // However in a real world app you might need to save data in the method.
-                System.Console.WriteLine("CustomerClient.MakePaymentRespond: cache");
+                Console.WriteLine("CustomerClient.MakePaymentRespond: cache");
 
                 // Send HTTP request.
                 string backendResponse = _customerBackendController.MakePaymentRespond(deliveryOrder);
                 
                 // Insert into cache.
-                System.Console.WriteLine("CustomerClient.MakePaymentRespond: cache");
+                Console.WriteLine("CustomerClient.MakePaymentRespond: cache");
 
                 // 
                 response = "success";
@@ -110,9 +110,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("CustomerClient.MakePaymentRespond: end");
+            Console.WriteLine("CustomerClient.MakePaymentRespond: end");
             return response;
         }
     }

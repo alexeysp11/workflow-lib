@@ -40,7 +40,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
                 return false;
             }
             
-            System.Console.WriteLine("ConfirmStore2WhStep.Start: begin");
+            Console.WriteLine("ConfirmStore2WhStep.Start: begin");
 
             // Get a delivery order that has a parent and is an internal delivery order.
             var deliveryOrder = context.DeliveryOrders
@@ -82,8 +82,8 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
             //{
             //    RequestObject = deliveryOrder
             //});
-            //System.Console.WriteLine($"response: {response}");
-            System.Console.WriteLine("ConfirmStore2WhStep.Start: end");
+            //Console.WriteLine($"response: {response}");
+            Console.WriteLine("ConfirmStore2WhStep.Start: end");
             
             //return response == "success";
             return true;

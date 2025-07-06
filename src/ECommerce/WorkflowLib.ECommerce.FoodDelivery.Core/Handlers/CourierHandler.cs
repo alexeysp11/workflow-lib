@@ -34,7 +34,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         public string Store2WhStart(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("CourierBackend.Store2WhStart: begin");
+            Console.WriteLine("CourierBackend.Store2WhStart: begin");
             try
             {
                 // Initializing.
@@ -48,7 +48,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                     throw new Exception($"Delivery order could not be null (delivery order ID: {deliveryOrder.Id})");
 
                 // Update DB.
-                System.Console.WriteLine("CourierBackend.Store2WhStart: cache");
+                Console.WriteLine("CourierBackend.Store2WhStart: cache");
                 
                 // Create a DeliveryOperation object and associate it with the delivery order.
                 NotifyDeliverOrder(deliveryOrder, "Store2Wh");
@@ -81,9 +81,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("CourierBackend.Store2WhStart: end");
+            Console.WriteLine("CourierBackend.Store2WhStart: end");
             return response;
         }
 
@@ -93,7 +93,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         public string Store2WhExecute(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("CourierBackend.Store2WhExecute: begin");
+            Console.WriteLine("CourierBackend.Store2WhExecute: begin");
             try
             {
                 // Initializing.
@@ -102,7 +102,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Update DB.
-                System.Console.WriteLine("CourierBackend.Store2WhExecute: cache");
+                Console.WriteLine("CourierBackend.Store2WhExecute: cache");
 
                 // Close the related business tasks.
                 var deliveryOperations = context.BusinessTaskDeliveryOrders
@@ -124,9 +124,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("CourierBackend.Store2WhExecute: end");
+            Console.WriteLine("CourierBackend.Store2WhExecute: end");
             return response;
         }
         
@@ -136,7 +136,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         public string DeliverOrderStart(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("CourierBackend.DeliverOrderStart: begin");
+            Console.WriteLine("CourierBackend.DeliverOrderStart: begin");
             try
             {
                 // Initializing.
@@ -145,7 +145,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Update DB.
-                System.Console.WriteLine("CourierBackend.DeliverOrderStart: cache");
+                Console.WriteLine("CourierBackend.DeliverOrderStart: cache");
 
                 // Get the object related to the specified delivery order.
                 DeliveryOrder? existedDeliveryOrder = context.DeliveryOrders.FirstOrDefault(x => x.Id == deliveryOrder.Id);
@@ -183,9 +183,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("CourierBackend.DeliverOrderStart: end");
+            Console.WriteLine("CourierBackend.DeliverOrderStart: end");
             return response;
         }
 
@@ -195,7 +195,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         public string DeliverOrderExecute(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("CourierBackend.DeliverOrderExecute: begin");
+            Console.WriteLine("CourierBackend.DeliverOrderExecute: begin");
             try
             {
                 // Initializing.
@@ -204,7 +204,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Update DB.
-                System.Console.WriteLine("CourierBackend.DeliverOrderExecute: cache");
+                Console.WriteLine("CourierBackend.DeliverOrderExecute: cache");
 
                 DeliveryOrder? existedDeliveryOrder = context.DeliveryOrders
                     .Where(x => x.Id == deliveryOrder.Id)
@@ -231,16 +231,16 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("CourierBackend.DeliverOrderExecute: end");
+            Console.WriteLine("CourierBackend.DeliverOrderExecute: end");
             return response;
         }
         
         private string NotifyDeliverOrder(DeliveryOrder model, string stageName)
         {
             string response = "";
-            System.Console.WriteLine("CourierBackend.NotifyDeliveryOrder: begin");
+            Console.WriteLine("CourierBackend.NotifyDeliveryOrder: begin");
             try
             {
                 if (model == null)
@@ -344,9 +344,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("CourierBackend.NotifyDeliveryOrder: end");
+            Console.WriteLine("CourierBackend.NotifyDeliveryOrder: end");
             return response;
         }
     }

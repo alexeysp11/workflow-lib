@@ -29,11 +29,11 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         public string RequestStore2WhSave(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseClient.RequestStore2WhSave: begin");
+            Console.WriteLine("WarehouseClient.RequestStore2WhSave: begin");
             try
             {
                 // Update DB.
-                System.Console.WriteLine("WarehouseClient.RequestStore2WhSave: cache");
+                Console.WriteLine("WarehouseClient.RequestStore2WhSave: cache");
 
                 // 
                 response = "success";
@@ -41,9 +41,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("WarehouseClient.RequestStore2WhSave: end");
+            Console.WriteLine("WarehouseClient.RequestStore2WhSave: end");
             return response;
         }
 
@@ -53,11 +53,11 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         public string RequestStore2WhRespond(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseClient.RequestStore2WhRespond: begin");
+            Console.WriteLine("WarehouseClient.RequestStore2WhRespond: begin");
             try
             {
                 // Update DB.
-                System.Console.WriteLine("WarehouseClient.RequestStore2WhRespond: cache");
+                Console.WriteLine("WarehouseClient.RequestStore2WhRespond: cache");
 
                 // Send HTTP request.
                 string backendResponse = new WarehouseHandler(_contextOptions).RequestStore2WhRespond(deliveryOrder);
@@ -68,9 +68,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("WarehouseClient.RequestStore2WhRespond: end");
+            Console.WriteLine("WarehouseClient.RequestStore2WhRespond: end");
             return response;
         }
         
@@ -80,11 +80,11 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         public string Store2WhSave(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseClient.Store2WhSave: begin");
+            Console.WriteLine("WarehouseClient.Store2WhSave: begin");
             try
             {
                 // Update DB.
-                System.Console.WriteLine("WarehouseClient.Store2WhSave: cache");
+                Console.WriteLine("WarehouseClient.Store2WhSave: cache");
 
                 // 
                 response = "success";
@@ -92,9 +92,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("WarehouseClient.Store2WhSave: end");
+            Console.WriteLine("WarehouseClient.Store2WhSave: end");
             return response;
         }
         
@@ -104,11 +104,11 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         public string ConfirmStore2WhAccept(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseClient.ConfirmStore2WhAccept: begin");
+            Console.WriteLine("WarehouseClient.ConfirmStore2WhAccept: begin");
             try
             {
                 // Update DB.
-                System.Console.WriteLine("WarehouseClient.ConfirmStore2WhAccept: cache");
+                Console.WriteLine("WarehouseClient.ConfirmStore2WhAccept: cache");
 
                 // Send HTTP request.
                 string backendResponse = new WarehouseHandler(_contextOptions).ConfirmStore2WhAccept(deliveryOrder);
@@ -119,9 +119,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("WarehouseClient.ConfirmStore2WhAccept: end");
+            Console.WriteLine("WarehouseClient.ConfirmStore2WhAccept: end");
             return response;
         }
         
@@ -131,11 +131,11 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         public string Wh2KitchenStart(DeliveryOperation deliveryOperation)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseClient.Wh2KitchenStart: begin");
+            Console.WriteLine("WarehouseClient.Wh2KitchenStart: begin");
             try
             {
                 // Update DB.
-                System.Console.WriteLine("WarehouseClient.Wh2KitchenStart: cache");
+                Console.WriteLine("WarehouseClient.Wh2KitchenStart: cache");
 
                 // 
                 response = "success";
@@ -143,9 +143,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("WarehouseClient.Wh2KitchenStart: end");
+            Console.WriteLine("WarehouseClient.Wh2KitchenStart: end");
             return response;
         }
 
@@ -155,7 +155,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         public string Wh2KitchenExecute(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseClient.Wh2KitchenExecute: begin");
+            Console.WriteLine("WarehouseClient.Wh2KitchenExecute: begin");
             try
             {
                 // Initializing.
@@ -163,7 +163,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                     throw new System.ArgumentNullException("apiOperation.RequestObject");
 
                 // Update DB.
-                System.Console.WriteLine("WarehouseClient.Wh2KitchenExecute: cache");
+                Console.WriteLine("WarehouseClient.Wh2KitchenExecute: cache");
 
                 // Send HTTP request.
                 // think about what type of input parameter the kitchen controller will accept to prepare an order.
@@ -175,9 +175,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("WarehouseClient.Wh2KitchenExecute: end");
+            Console.WriteLine("WarehouseClient.Wh2KitchenExecute: end");
             return response;
         }
         
@@ -187,11 +187,11 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         public string Kitchen2WhStart(InitialOrder initialOrder)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseClient.Kitchen2WhStart: begin");
+            Console.WriteLine("WarehouseClient.Kitchen2WhStart: begin");
             try
             {
                 // Update DB.
-                System.Console.WriteLine("WarehouseClient.Kitchen2WhStart: cache");
+                Console.WriteLine("WarehouseClient.Kitchen2WhStart: cache");
 
                 // 
                 response = "success";
@@ -199,9 +199,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("WarehouseClient.Kitchen2WhStart: end");
+            Console.WriteLine("WarehouseClient.Kitchen2WhStart: end");
             return response;
         }
 
@@ -211,11 +211,11 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         public string Kitchen2WhExecute(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("WarehouseClient.Kitchen2WhExecute: begin");
+            Console.WriteLine("WarehouseClient.Kitchen2WhExecute: begin");
             try
             {
                 // Update DB.
-                System.Console.WriteLine("WarehouseClient.Kitchen2WhExecute: cache");
+                Console.WriteLine("WarehouseClient.Kitchen2WhExecute: cache");
 
                 // Send HTTP request.
                 string backendResponse = new WarehouseHandler(_contextOptions).Kitchen2WhExecute(deliveryOrder);
@@ -226,9 +226,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("WarehouseClient.Kitchen2WhExecute: end");
+            Console.WriteLine("WarehouseClient.Kitchen2WhExecute: end");
             return response;
         }
     }

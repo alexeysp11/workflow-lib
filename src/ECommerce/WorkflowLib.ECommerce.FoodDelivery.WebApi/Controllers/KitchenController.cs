@@ -29,17 +29,17 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         public string PrepareMealStart(InitialOrder initialOrder)
         {
             string response = "";
-            System.Console.WriteLine("KitchenClient.PrepareMealStart: begin");
+            Console.WriteLine("KitchenClient.PrepareMealStart: begin");
             try
             {
                 // This method will take CookingOperation as a parameter.
                 // Recipes can be loaded from InitialOrderIngredients -> Ingredient -> Recipe.
 
                 // Validation.
-                System.Console.WriteLine("KitchenClient.PrepareMealStart: validation");
+                Console.WriteLine("KitchenClient.PrepareMealStart: validation");
                 
                 // Insert into cache.
-                System.Console.WriteLine("KitchenClient.PrepareMealStart: cache");
+                Console.WriteLine("KitchenClient.PrepareMealStart: cache");
 
                 // 
                 response = "success";
@@ -47,9 +47,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("KitchenClient.PrepareMealStart: end");
+            Console.WriteLine("KitchenClient.PrepareMealStart: end");
             return response;
         }
 
@@ -59,20 +59,20 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         public string PrepareMealExecute(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("KitchenClient.PrepareMealExecute: begin");
+            Console.WriteLine("KitchenClient.PrepareMealExecute: begin");
             try
             {
                 // Validation.
-                System.Console.WriteLine("KitchenClient.PrepareMealExecute: validation");
+                Console.WriteLine("KitchenClient.PrepareMealExecute: validation");
                 
                 // Insert into cache.
-                System.Console.WriteLine("KitchenClient.PrepareMealExecute: cache");
+                Console.WriteLine("KitchenClient.PrepareMealExecute: cache");
 
                 // Send HTTP request.
                 string backendResponse = new KitchenHandler(_contextOptions).PrepareMealExecute(deliveryOrder);
                 
                 // Insert into cache.
-                System.Console.WriteLine("KitchenClient.PrepareMealExecute: cache");
+                Console.WriteLine("KitchenClient.PrepareMealExecute: cache");
 
                 // 
                 response = "success";
@@ -80,9 +80,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("KitchenClient.PrepareMealExecute: end");
+            Console.WriteLine("KitchenClient.PrepareMealExecute: end");
             return response;
         }
     }

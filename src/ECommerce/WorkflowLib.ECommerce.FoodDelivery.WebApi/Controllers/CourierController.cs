@@ -28,11 +28,11 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         public string Store2WhStart(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("CourierClient.Store2WhStart: begin");
+            Console.WriteLine("CourierClient.Store2WhStart: begin");
             try
             {
                 // Update DB.
-                System.Console.WriteLine("CourierClient.Store2WhStart: cache");
+                Console.WriteLine("CourierClient.Store2WhStart: cache");
 
                 // 
                 response = "success";
@@ -40,9 +40,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("CourierClient.Store2WhStart: end");
+            Console.WriteLine("CourierClient.Store2WhStart: end");
             return response;
         }
 
@@ -52,11 +52,11 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         public string Store2WhExecute(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("CourierClient.Store2WhExecute: begin");
+            Console.WriteLine("CourierClient.Store2WhExecute: begin");
             try
             {
                 // Update DB.
-                System.Console.WriteLine("CourierClient.Store2WhExecute: cache");
+                Console.WriteLine("CourierClient.Store2WhExecute: cache");
 
                 // Send HTTP request.
                 string backendResponse = new CourierHandler(_contextOptions).Store2WhExecute(deliveryOrder);
@@ -67,9 +67,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("CourierClient.Store2WhExecute: end");
+            Console.WriteLine("CourierClient.Store2WhExecute: end");
             return response;
         }
         
@@ -79,11 +79,11 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         public string DeliverOrderStart(InitialOrder initialOrder)
         {
             string response = "";
-            System.Console.WriteLine("CourierClient.DeliverOrderStart: begin");
+            Console.WriteLine("CourierClient.DeliverOrderStart: begin");
             try
             {
                 // Update DB.
-                System.Console.WriteLine("CourierClient.DeliverOrderStart: cache");
+                Console.WriteLine("CourierClient.DeliverOrderStart: cache");
 
                 // 
                 response = "success";
@@ -91,9 +91,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("CourierClient.DeliverOrderStart: end");
+            Console.WriteLine("CourierClient.DeliverOrderStart: end");
             return response;
         }
         
@@ -103,11 +103,11 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         public string DeliverOrderExecute(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("CourierClient.DeliverOrderExecute: begin");
+            Console.WriteLine("CourierClient.DeliverOrderExecute: begin");
             try
             {
                 // Update DB.
-                System.Console.WriteLine("CourierClient.DeliverOrderExecute: cache");
+                Console.WriteLine("CourierClient.DeliverOrderExecute: cache");
 
                 // Send HTTP request.
                 string backendResponse = new CourierHandler(_contextOptions).DeliverOrderExecute(deliveryOrder);
@@ -118,9 +118,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("CourierClient.DeliverOrderExecute: end");
+            Console.WriteLine("CourierClient.DeliverOrderExecute: end");
             return response;
         }
     }

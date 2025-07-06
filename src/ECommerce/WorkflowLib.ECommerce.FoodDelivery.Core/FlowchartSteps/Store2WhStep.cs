@@ -37,7 +37,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
                 return false;
             }
             
-            System.Console.WriteLine("Store2WhStep.Start: begin");
+            Console.WriteLine("Store2WhStep.Start: begin");
 
             // Since at the stage of generating a delivery request, a warehouse employee cannot merge several DeliveryOrders 
             // into one task, the courier simply receives several tasks that indicate orders and products for delivery 
@@ -67,8 +67,8 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
             //{
             //    RequestObject = model
             //});
-            //System.Console.WriteLine($"response: {response}");
-            System.Console.WriteLine("Store2WhStep.Start: end");
+            //Console.WriteLine($"response: {response}");
+            Console.WriteLine("Store2WhStep.Start: end");
             
             //return response == "success";
             return true;

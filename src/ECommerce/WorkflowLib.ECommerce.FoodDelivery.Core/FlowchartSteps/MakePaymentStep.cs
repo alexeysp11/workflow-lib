@@ -29,7 +29,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
         /// </summary>
         public bool Start()
         {
-            System.Console.WriteLine("MakePaymentStep.Start: begin");
+            Console.WriteLine("MakePaymentStep.Start: begin");
             
             using var context = new FoodDeliveryDbContext(_contextOptions);
 
@@ -55,8 +55,8 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
             //{
             //    RequestObject = deliveryOrder
             //});
-            //System.Console.WriteLine($"response: {response}");
-            System.Console.WriteLine("MakePaymentStep.Start: end");
+            //Console.WriteLine($"response: {response}");
+            Console.WriteLine("MakePaymentStep.Start: end");
             
             //return response == "success";
             return true;

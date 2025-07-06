@@ -35,17 +35,17 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         public string MakeOrderRequest(InitialOrder initialOrder)
         {
             string response = "";
-            System.Console.WriteLine("CustomerBackend.MakeOrderRequest: begin");
+            Console.WriteLine("CustomerBackend.MakeOrderRequest: begin");
             try
             {
                 // Initializing.
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Validation.
-                System.Console.WriteLine("CustomerClient.MakeOrderRequest: validation");
+                Console.WriteLine("CustomerClient.MakeOrderRequest: validation");
 
                 // Insert into cache.
-                System.Console.WriteLine("CustomerClient.MakeOrderRequest: cache");
+                Console.WriteLine("CustomerClient.MakeOrderRequest: cache");
                 var initialOrderProducts = new List<InitialOrderProduct>();
                 var initialOrderIngredients = new List<InitialOrderIngredient>();
                 foreach (var pid in initialOrder.ProductIds)
@@ -91,10 +91,10 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 context.SaveChanges();
 
                 // Validation.
-                System.Console.WriteLine("CustomerBackend.MakeOrderRequest: validation");
+                Console.WriteLine("CustomerBackend.MakeOrderRequest: validation");
 
                 // Update DB.
-                System.Console.WriteLine("CustomerBackend.MakeOrderRequest: cache");
+                Console.WriteLine("CustomerBackend.MakeOrderRequest: cache");
 
                 // Invoke makepayment.
                 response = MakePaymentStart(initialOrder);
@@ -102,9 +102,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("CustomerBackend.MakeOrderRequest: end");
+            Console.WriteLine("CustomerBackend.MakeOrderRequest: end");
             return response;
         }
         
@@ -114,23 +114,23 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         public string MakePaymentStart(InitialOrder initialOrder)
         {
             string response = "";
-            System.Console.WriteLine("CustomerBackend.MakePayment: begin");
+            Console.WriteLine("CustomerBackend.MakePayment: begin");
             try
             {
                 // Initializing.
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Validation.
-                System.Console.WriteLine("CustomerBackend.MakePayment: validation");
+                Console.WriteLine("CustomerBackend.MakePayment: validation");
 
                 // Update DB.
-                System.Console.WriteLine("CustomerBackend.MakePayment: cache");
+                Console.WriteLine("CustomerBackend.MakePayment: cache");
 
                 // Get payment method.
                 if (initialOrder.PaymentType == EnumExtensions.GetDisplayName(PaymentType.Card))
                 {
                     // Create a form for card details.
-                    System.Console.WriteLine("CustomerBackend.MakePayment: form for card details");
+                    Console.WriteLine("CustomerBackend.MakePayment: form for card details");
                 }
                 else if (initialOrder.PaymentType == EnumExtensions.GetDisplayName(PaymentType.QrCode))
                 {
@@ -141,7 +141,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                     //});
 
                     // Envelope QR code.
-                    System.Console.WriteLine("CustomerBackend.MakePayment: envelope qr");
+                    Console.WriteLine("CustomerBackend.MakePayment: envelope qr");
                 }
                 else
                 {
@@ -249,14 +249,14 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 string notificationsRequest = new NotificationsHandler(_contextOptions).SendNotifications(notifications);
 
                 // Update DB.
-                System.Console.WriteLine("CustomerBackend.MakePayment: cache");
+                Console.WriteLine("CustomerBackend.MakePayment: cache");
             }
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("CustomerBackend.MakePayment: end");
+            Console.WriteLine("CustomerBackend.MakePayment: end");
             return response;
         }
         
@@ -266,14 +266,14 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         public string MakePaymentRespond(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("CustomerBackend.MakePayment: begin");
+            Console.WriteLine("CustomerBackend.MakePayment: begin");
             try
             {
                 // Validation.
-                System.Console.WriteLine("CustomerBackend.MakePayment: validation");
+                Console.WriteLine("CustomerBackend.MakePayment: validation");
 
                 // Update DB.
-                System.Console.WriteLine("CustomerBackend.MakePayment: cache");
+                Console.WriteLine("CustomerBackend.MakePayment: cache");
 
                 // Calculate delivery time.
                 string preprocessResponse = PreprocessOrderRedirect(deliveryOrder);
@@ -283,9 +283,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("CustomerBackend.MakePayment: end");
+            Console.WriteLine("CustomerBackend.MakePayment: end");
             return response;
         }
 
@@ -295,14 +295,14 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         public string PreprocessOrderRedirect(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: begin");
+            Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: begin");
             try
             {
                 // Validation.
-                System.Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: validation");
+                Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: validation");
 
                 // Update DB.
-                System.Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: cache");
+                Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: cache");
 
                 // Calculate delivery time.
                 var preprocessResponse = new WarehouseHandler(_contextOptions).PreprocessOrderRedirect(deliveryOrder);
@@ -312,9 +312,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: end");
+            Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: end");
             return response;
         }
     }
