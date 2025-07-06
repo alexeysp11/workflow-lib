@@ -86,7 +86,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             {
                 // Initializing.
                 if (deliveryOrder == null)
-                    throw new System.ArgumentNullException("apiOperation.RequestObject");
+                    throw new ArgumentNullException("apiOperation.RequestObject");
 
                 // Validation.
                 Console.WriteLine("CustomerClient.MakePaymentRespond: validation");

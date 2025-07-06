@@ -38,7 +38,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             {
                 // Initializing.
                 if (deliveryOrder == null)
-                    throw new System.ArgumentNullException("apiOperation.RequestObject");
+                    throw new ArgumentNullException("apiOperation.RequestObject");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
 
                 // Get the object related to the specified delivery order.
@@ -97,7 +97,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             {
                 // Initializing.
                 if (deliveryOrder == null)
-                    throw new System.ArgumentNullException("apiOperation.RequestObject");
+                    throw new ArgumentNullException("apiOperation.RequestObject");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Update DB.
@@ -140,7 +140,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             {
                 // Initializing.
                 if (deliveryOrder == null)
-                    throw new System.ArgumentNullException("apiOperation.RequestObject");
+                    throw new ArgumentNullException("apiOperation.RequestObject");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Update DB.
@@ -199,7 +199,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             {
                 // Initializing.
                 if (deliveryOrder == null)
-                    throw new System.ArgumentNullException("apiOperation.RequestObject");
+                    throw new ArgumentNullException("apiOperation.RequestObject");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Update DB.

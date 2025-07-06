@@ -159,7 +159,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             {
                 // Initializing.
                 if (deliveryOrder == null)
-                    throw new System.ArgumentNullException("apiOperation.RequestObject");
+                    throw new ArgumentNullException("apiOperation.RequestObject");
 
                 // Update DB.
                 Console.WriteLine("WarehouseClient.Wh2KitchenExecute: cache");

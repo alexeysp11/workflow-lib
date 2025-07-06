@@ -9,6 +9,7 @@ using WorkflowLib.Shared.Models.Business.Processes;
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
 using WorkflowLib.Shared.Models.Business.Delivery;
 using WorkflowLib.ECommerce.FoodDelivery.Core.Models;
+using WorkflowLib.Shared.Models.Business.Cooking;
 
 namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
 {
@@ -41,11 +42,10 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             {
                 // Initializing.
                 if (deliveryOrder == null)
-                    throw new System.ArgumentNullException("apiOperation.RequestObject");
+                    throw new ArgumentNullException("apiOperation.RequestObject");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
 
                 // Get ingredients amount from DB.
-                int ingredientsAmount = 0;
                 bool isSufficient = true;
 
                 // Find corresponding records in the DeliveryOrderProduct table by order ID (a table of associations between 
@@ -135,11 +135,11 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 var deliveryOrderProductsStore2Wh = new List<DeliveryOrderProduct>();
                 foreach (var whingredient in whingredients)
                 {
-                    var ingredient = ingredients.FirstOrDefault(x => x.IngredientProduct.Id == whingredient.Product.Id);
+                    Ingredient? ingredient = ingredients.FirstOrDefault(x => x.IngredientProduct.Id == whingredient.Product.Id);
                     if (ingredient == null)
                         throw new Exception("Specified ingredient does not exist in the collection");
-                    
-                    var deliveryOrderProduct = deliveryOrderProducts.FirstOrDefault(x => x.Product.Id == ingredient.FinalProduct.Id);
+
+                    DeliveryOrderProduct? deliveryOrderProduct = deliveryOrderProducts.FirstOrDefault(x => x.Product.Id == ingredient.FinalProduct.Id);
                     if (deliveryOrderProduct == null)
                         throw new Exception("Specified IngredientProduct does not exist in the DeliveryOrderProducts collection");
                     
@@ -184,8 +184,8 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 var wh2kitchenDuration = new System.TimeSpan(0, 5, 0);
                 var kitchen2whDuration = new System.TimeSpan(0, 5, 0);
                 var store2whDuration = new System.TimeSpan(0, 15, 0);
-                var preparemealDuration = new System.TimeSpan(0, 15, 0);
-                var resultDuration = wh2kitchenDuration + kitchen2whDuration + preparemealDuration;
+                var prepareMealDuration = new System.TimeSpan(0, 15, 0);
+                var resultDuration = wh2kitchenDuration + kitchen2whDuration + prepareMealDuration;
 
                 // Start creating tasks for employees as part of order processing, preparation and delivery. 
                 // - If the amount of products/ingredients is sufficient, then invoke wh2kitchen.
@@ -220,7 +220,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             {
                 // Initializing.
                 if (deliveryOrder == null)
-                    throw new System.ArgumentNullException("apiOperation.RequestObject");
+                    throw new ArgumentNullException("apiOperation.RequestObject");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Update DB.
@@ -319,7 +319,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             {
                 // Initializing.
                 if (deliveryOrder == null)
-                    throw new System.ArgumentNullException("apiOperation.RequestObject");
+                    throw new ArgumentNullException("apiOperation.RequestObject");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Update DB.
@@ -378,7 +378,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             {
                 // Initializing.
                 if (deliveryOrder == null)
-                    throw new System.ArgumentNullException("apiOperation.RequestObject");
+                    throw new ArgumentNullException("apiOperation.RequestObject");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Update DB.
@@ -482,7 +482,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             {
                 // Initializing.
                 if (deliveryOrder == null)
-                    throw new System.ArgumentNullException("apiOperation.RequestObject");
+                    throw new ArgumentNullException("apiOperation.RequestObject");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Update DB.
@@ -546,7 +546,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             {
                 // Initializing.
                 if (deliveryOrder == null)
-                    throw new System.ArgumentNullException("apiOperation.RequestObject");
+                    throw new ArgumentNullException("apiOperation.RequestObject");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Update DB.
@@ -661,7 +661,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             {
                 // Initializing.
                 if (deliveryOrder == null)
-                    throw new System.ArgumentNullException("apiOperation.RequestObject");
+                    throw new ArgumentNullException("apiOperation.RequestObject");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Update DB.
@@ -708,7 +708,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             {
                 // Initializing.
                 if (deliveryOrder == null)
-                    throw new System.ArgumentNullException("apiOperation.RequestObject");
+                    throw new ArgumentNullException("apiOperation.RequestObject");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Update DB.
@@ -814,7 +814,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             {
                 // Initializing.
                 if (deliveryOrder == null)
-                    throw new System.ArgumentNullException("apiOperation.RequestObject");
+                    throw new ArgumentNullException("apiOperation.RequestObject");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
                 // Update DB.
