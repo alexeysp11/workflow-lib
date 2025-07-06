@@ -195,90 +195,33 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             Console.WriteLine("WarehouseBackend.Store2WhSave: begin");
             try
             {
-                // Initializing.
                 if (deliveryOrder == null)
                     throw new ArgumentNullException("apiOperation.RequestObject");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
                 
-                // Update DB.
-                Console.WriteLine("WarehouseBackend.Store2WhSave: cache");
-
                 // Send HTTP request.
                 //string backendResponse = new WarehouseClientController(_contextOptions).Store2WhSave(new ApiOperation
                 //{
                 //    RequestObject = model
                 //});
 
-                // Getting the products that should be delivered.
                 DeliveryOrder? existedDeliveryOrder = DeliveryOrderDao.GetDeliveryOrderById(context, deliveryOrder.Id);
                 if (existedDeliveryOrder == null)
                 {
                     throw new Exception($"Specified delivery order is not found");
                 }
-                var deliveryOrderProducts = context.DeliveryOrderProducts
-                    .Include(x => x.Product)
-                    .Where(x => x.DeliveryOrder.Id == deliveryOrder.Id && x.Product != null);
-                if (deliveryOrderProducts.Count() == 0)
+
+                // Get the products that should be delivered.
+                List<DeliveryOrderProduct> deliveryOrderProducts = DeliveryOrderDao.GetDeliveryOrderProducts(
+                    context,
+                    deliveryOrder.Id,
+                    true);
+                if (deliveryOrderProducts == null || !deliveryOrderProducts.Any())
                     throw new Exception($"There are no existing products associated with the specified DeliveryOrder (ID: {deliveryOrder.Id})");
-                
-                // Get sender and receiver of the notification.
-                var adminUser = context.UserAccounts.FirstOrDefault();
-                if (adminUser == null)
-                    throw new Exception("Admin user could not be null");
-                var warehouseEmployee = GetWarehouseEmployeeRandomly();
-                
-                // Title text.
-                var sbMessageText = new StringBuilder();
-                sbMessageText.Append("ConfirmStore2Wh: confirm delivery of order #").Append(deliveryOrder.Id.ToString()).Append(" from the store to the warehouse");
-                string titleText = sbMessageText.ToString();
-                sbMessageText.Clear();
 
-                // Body text.
-                sbMessageText.Append("Please be informed that you are responsible for confirming delivery of order #");
-                sbMessageText.Append(deliveryOrder.Id.ToString());
-                sbMessageText.Append(" from the store to the warehouse.\n");
-                sbMessageText.Append("\n");
-                sbMessageText.Append("Products for delivery:\n");
-                foreach (var deliveryOrderProduct in deliveryOrderProducts)
-                {
-                    sbMessageText.Append("- ").Append(deliveryOrderProduct.Product.Name).Append(" ");
-                    sbMessageText.Append("(quantity: ").Append(deliveryOrderProduct.Quantity).Append(").\n");
-                }
+                // Notify employee to confirm the delivery order from store to warehouse.
+                NotifyEmployeeConfirmStore2Wh(context, deliveryOrder, deliveryOrderProducts);
 
-                // Notify warehouse employee.
-                var notification = new Notification
-                {
-                    SenderId = adminUser.Id,
-                    ReceiverId = warehouseEmployee.Id,
-                    TitleText = titleText,
-                    BodyText = sbMessageText.ToString()
-                };
-                new NotificationsHandler(_contextOptions).SendNotifications(new List<Notification>
-                {
-                    notification
-                });
-
-                // Create a business task for requesting delivery of order from the store to the warehouse.
-                var businessTask = new BusinessTask
-                {
-                    Uid = Guid.NewGuid().ToString(),
-                    Name = notification.TitleText,
-                    Subject = notification.TitleText,
-                    Description = notification.BodyText,
-                    Status = BusinessTaskStatus.Open
-                };
-                var businessTaskDeliveryOrder = new BusinessTaskDeliveryOrder
-                {
-                    Uid = Guid.NewGuid().ToString(),
-                    BusinessTask = businessTask,
-                    DeliveryOrder = deliveryOrder,
-                    Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.ConfirmStore2Wh)
-                };
-                context.BusinessTasks.Add(businessTask);
-                context.BusinessTaskDeliveryOrders.Add(businessTaskDeliveryOrder);
-                context.SaveChanges();
-
-                // 
                 response = "success";
             }
             catch (Exception ex)
@@ -289,7 +232,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             Console.WriteLine("WarehouseBackend.Store2WhSave: end");
             return response;
         }
-        
+
         /// <summary>
         /// A method that is responsible for confirming the delivery of products from the store to the warehouse.
         /// </summary>
@@ -742,6 +685,76 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
 
             // Create a business task for requesting delivery of order from the store to the warehouse.
             BusinessTaskDao.CreateStore2WhBusinessTask(context, deliveryOrder, notification);
+
+            // Notify warehouse employee.
+            new NotificationsHandler(_contextOptions).SendNotifications(new List<Notification>
+            {
+                notification
+            });
+        }
+
+        /// <summary>
+        /// Notify employee to confirm the delivery order from store to warehouse.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="deliveryOrder"></param>
+        private void NotifyEmployeeConfirmStore2Wh(
+            FoodDeliveryDbContext context,
+            DeliveryOrder deliveryOrder,
+            List<DeliveryOrderProduct> deliveryOrderProducts)
+        {
+            // Get sender and receiver of the notification.
+            var adminUser = context.UserAccounts.FirstOrDefault();
+            if (adminUser == null)
+                throw new Exception("Admin user could not be null");
+            var warehouseEmployee = GetWarehouseEmployeeRandomly();
+
+            // Title text.
+            var sbMessageText = new StringBuilder();
+            sbMessageText.Append("ConfirmStore2Wh: confirm delivery of order #").Append(deliveryOrder.Id.ToString()).Append(" from the store to the warehouse");
+            string titleText = sbMessageText.ToString();
+            sbMessageText.Clear();
+
+            // Body text.
+            sbMessageText.Append("Please be informed that you are responsible for confirming delivery of order #");
+            sbMessageText.Append(deliveryOrder.Id.ToString());
+            sbMessageText.Append(" from the store to the warehouse.\n");
+            sbMessageText.Append("\n");
+            sbMessageText.Append("Products for delivery:\n");
+            foreach (var deliveryOrderProduct in deliveryOrderProducts)
+            {
+                sbMessageText.Append("- ").Append(deliveryOrderProduct.Product.Name).Append(" ");
+                sbMessageText.Append("(quantity: ").Append(deliveryOrderProduct.Quantity).Append(").\n");
+            }
+            
+            // Create notification object.
+            var notification = new Notification
+            {
+                SenderId = adminUser.Id,
+                ReceiverId = warehouseEmployee.Id,
+                TitleText = titleText,
+                BodyText = sbMessageText.ToString()
+            };
+
+            // Create a business task for requesting delivery of order from the store to the warehouse.
+            var businessTask = new BusinessTask
+            {
+                Uid = Guid.NewGuid().ToString(),
+                Name = notification.TitleText,
+                Subject = notification.TitleText,
+                Description = notification.BodyText,
+                Status = BusinessTaskStatus.Open
+            };
+            var businessTaskDeliveryOrder = new BusinessTaskDeliveryOrder
+            {
+                Uid = Guid.NewGuid().ToString(),
+                BusinessTask = businessTask,
+                DeliveryOrder = deliveryOrder,
+                Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.ConfirmStore2Wh)
+            };
+            context.BusinessTasks.Add(businessTask);
+            context.BusinessTaskDeliveryOrders.Add(businessTaskDeliveryOrder);
+            context.SaveChanges();
 
             // Notify warehouse employee.
             new NotificationsHandler(_contextOptions).SendNotifications(new List<Notification>
