@@ -130,7 +130,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                     ExecutorName = courierEmployee.FullName,
                     OrderExecutorType = OrderExecutorType.Employee,
                     Destination = deliveryOrder.Origin,
-                    DateStartActual = DateTime.Now
+                    DateStartActual = DateTime.UtcNow
                 };
                 var deliveryOrderProductsStore2Wh = new List<DeliveryOrderProduct>();
                 foreach (var whingredient in whingredients)
@@ -150,7 +150,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                         WHProduct = whingredient,
                         DeliveryOrderProduct = deliveryOrderProduct,
                         DeliveryOrder = deliveryOrderProduct.DeliveryOrder,
-                        Date = DateTime.Now,
+                        Date = DateTime.UtcNow,
                         OldQuantity = whingredient.Quantity,
                         NewQuantity = whingredient.Quantity - qtyDelta,
                         QuantityDelta = qtyDelta
@@ -510,7 +510,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 }
 
                 // Change the status of the corresponding delivery order.
-                existedDeliveryOrder.DateEndActual = DateTime.Now;
+                existedDeliveryOrder.DateEndActual = DateTime.UtcNow;
                 existedDeliveryOrder.Status = EnumExtensions.GetDisplayName(OrderStatus.Finished);
 
                 // Get the parent delivery order that should be delivered from the warehouse to the kitchen.

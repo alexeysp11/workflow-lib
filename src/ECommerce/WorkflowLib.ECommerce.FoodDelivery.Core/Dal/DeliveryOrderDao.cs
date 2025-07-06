@@ -136,7 +136,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
                 OrderExecutorType = OrderExecutorType.Company,
                 Origin = organization.Company.Address,
                 Destination = existedInitialOrder.Address,
-                DateStartActual = DateTime.Now
+                DateStartActual = DateTime.UtcNow
             };
             context.DeliveryOrders.Add(deliveryOrder);
             context.Payments.AddRange(deliveryOrder.Payments);

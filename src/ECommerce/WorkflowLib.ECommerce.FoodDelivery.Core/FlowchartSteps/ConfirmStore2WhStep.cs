@@ -67,7 +67,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
                     WHProduct = whproduct,
                     DeliveryOrderProduct = deliveryOrderProduct,
                     DeliveryOrder = deliveryOrderProduct.DeliveryOrder,
-                    Date = DateTime.Now,
+                    Date = DateTime.UtcNow,
                     OldQuantity = whproduct.Quantity,
                     NewQuantity = whproduct.Quantity + deliveryOrderProduct.Quantity,
                     QuantityDelta = deliveryOrderProduct.Quantity

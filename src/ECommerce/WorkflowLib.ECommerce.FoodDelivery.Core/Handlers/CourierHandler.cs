@@ -220,7 +220,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 {
                     deliveryOperation.Status = BusinessTaskStatus.Closed;
                 }
-                existedDeliveryOrder.DateEndActual = DateTime.Now;
+                existedDeliveryOrder.DateEndActual = DateTime.UtcNow;
                 existedDeliveryOrder.Status = EnumExtensions.GetDisplayName(OrderStatus.Finished);
                 context.SaveChanges();
 
