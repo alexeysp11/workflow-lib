@@ -16,7 +16,6 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
     public class CustomerHandler
     {
         private DbContextOptions<FoodDeliveryDbContext> _contextOptions { get; set; }
-        //private CustomerClientController _customerClientController { get; set; }
 
         /// <summary>
         /// Constructor by default.
@@ -25,7 +24,6 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             DbContextOptions<FoodDeliveryDbContext> contextOptions) 
         {
             _contextOptions = contextOptions;
-            //_customerClientController = new CustomerClientController(contextOptions, this);
         }
 
         /// <summary>
