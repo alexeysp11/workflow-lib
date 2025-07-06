@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Shared.Models.Business.Customers;
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
+using WorkflowLib.ECommerce.FoodDelivery.Core.Dal;
 
 namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
 {
@@ -31,14 +32,15 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             {
                 // Validation.
                 Console.WriteLine("NotificationsBackend.SendNotifications: validation");
-                using var context = new FoodDeliveryDbContext(_contextOptions);
 
+                using var context = new FoodDeliveryDbContext(_contextOptions);
+                
+                // Save notifications.
+                NotificationDao.SaveNotifications(context, notifications);
+
+                // Send notifications.
                 foreach (var notification in notifications)
                 {
-                    // Update DB.
-                    Console.WriteLine("NotificationsBackend.SendNotifications: cache");
-                    context.Notifications.Add(notification);
-
                     // Send email.
                     // SendEmail();
 
@@ -47,11 +49,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
 
                     // Send message via Telegram.
                     // SendMsgTelegram();
-                    
-                    // Update DB.
-                    Console.WriteLine("NotificationsBackend.SendNotifications: cache");
                 }
-                context.SaveChanges();
             }
             catch (Exception ex)
             {

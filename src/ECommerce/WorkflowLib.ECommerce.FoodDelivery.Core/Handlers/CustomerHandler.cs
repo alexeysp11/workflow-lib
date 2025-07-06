@@ -4,9 +4,7 @@ using WorkflowLib.Extensions;
 using WorkflowLib.Shared.Models.Business.BusinessDocuments;
 using WorkflowLib.Shared.Models.Business.Customers;
 using WorkflowLib.Shared.Models.Business.Monetary;
-using WorkflowLib.Shared.Models.Business.Products;
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
-using WorkflowLib.Shared.Models.Business.Cooking;
 using WorkflowLib.ECommerce.FoodDelivery.Core.Dal;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
 
@@ -118,38 +116,8 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                     initialOrder.Id,
                     customer.Uid,
                     customer.FullName);
-                
-                // Title text.
-                var sbMessageText = new StringBuilder();
-                sbMessageText.Append("Please, provide your card details to pay for the order #").Append(deliveryOrder.Id.ToString());
-                string titleText = sbMessageText.ToString();
-                sbMessageText.Clear();
 
-                // Body text.
-                sbMessageText.Append("Hello,\n");
-                sbMessageText.Append("\n");
-                sbMessageText.Append("We have just received a request from you to process the order #").Append(deliveryOrder.Id.ToString()).Append(".\n");
-                sbMessageText.Append("Please provide us with your card details so that we can complete the payment process for your order.\n");
-                sbMessageText.Append("\n");
-                sbMessageText.Append("Your order will be prepared and delivered after payment.\n");
-                sbMessageText.Append("\n");
-                sbMessageText.Append("Thank you for using our services!");
-
-                // Send request to the notifications backend.
-                UserAccount? adminUser = context.UserAccounts.FirstOrDefault();
-                if (adminUser == null)
-                    throw new Exception("Admin user could not be null");
-                var notifications = new List<Notification>
-                {
-                    new Notification
-                    {
-                        SenderId = adminUser.Id,
-                        ReceiverId = customer.UserAccount.Id,
-                        TitleText = titleText,
-                        BodyText = sbMessageText.ToString()
-                    }
-                };
-                string notificationsRequest = new NotificationsHandler(_contextOptions).SendNotifications(notifications);
+                NotifyCustomerOrderStartProcessing(context, customer.UserAccount.Id, deliveryOrder.Id);
 
                 // Update DB.
                 Console.WriteLine("CustomerBackend.MakePayment: cache");
@@ -162,7 +130,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             Console.WriteLine("CustomerBackend.MakePayment: end");
             return response;
         }
-        
+
         /// <summary>
         /// The method that is responsible for transmitting information from the client regarding the completed electronic payment.
         /// </summary>
@@ -219,6 +187,52 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             }
             Console.WriteLine("CustomerBackend.PreprocessOrderRedirect: end");
             return response;
+        }
+
+        /// <summary>
+        /// Notify customer that initial order is ready for processing.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="customerUserAccountId"></param>
+        /// <param name="deliveryOrderId"></param>
+        /// <exception cref="Exception"></exception>
+        private void NotifyCustomerOrderStartProcessing(
+            FoodDeliveryDbContext context,
+            long customerUserAccountId,
+            long deliveryOrderId)
+        {
+            var sbMessageText = new StringBuilder();
+
+            // Title text.
+            sbMessageText.Append("Please, provide your card details to pay for the order #").Append(deliveryOrderId.ToString());
+            string titleText = sbMessageText.ToString();
+            sbMessageText.Clear();
+
+            // Body text.
+            sbMessageText.Append("Hello,\n");
+            sbMessageText.Append("\n");
+            sbMessageText.Append("We have just received a request from you to process the order #").Append(deliveryOrderId.ToString()).Append(".\n");
+            sbMessageText.Append("Please provide us with your card details so that we can complete the payment process for your order.\n");
+            sbMessageText.Append("\n");
+            sbMessageText.Append("Your order will be prepared and delivered after payment.\n");
+            sbMessageText.Append("\n");
+            sbMessageText.Append("Thank you for using our services!");
+
+            // Send request to the notifications backend.
+            UserAccount? adminUser = context.UserAccounts.FirstOrDefault();
+            if (adminUser == null)
+                throw new Exception("Admin user could not be null");
+            var notifications = new List<Notification>
+            {
+                new Notification
+                {
+                    SenderId = adminUser.Id,
+                    ReceiverId = customerUserAccountId,
+                    TitleText = titleText,
+                    BodyText = sbMessageText.ToString()
+                }
+            };
+            string notificationsRequest = new NotificationsHandler(_contextOptions).SendNotifications(notifications);
         }
     }
 }
