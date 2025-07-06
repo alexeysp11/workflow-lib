@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.Shared.Models.Network;
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
 using WorkflowLib.ECommerce.FoodDelivery.Core.Handlers;
 
@@ -12,17 +11,17 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
     public class CustomerController
     {
         private DbContextOptions<FoodDeliveryDbContext> _contextOptions { get; set; }
-        private CustomerHandler _customerBackendController { get; set; }
+        private CustomerHandler _customerHandler { get; set; }
 
         /// <summary>
         /// Constructor by default.
         /// </summary>
         public CustomerController(
             DbContextOptions<FoodDeliveryDbContext> contextOptions,
-            CustomerHandler customerBackendController)
+            CustomerHandler customerHandler)
         {
             _contextOptions = contextOptions;
-            _customerBackendController = customerBackendController;
+            _customerHandler = customerHandler;
         }
 
         /// <summary>
@@ -35,7 +34,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             try
             {
                 // Send HTTP request.
-                string backendResponse = _customerBackendController.MakeOrderRequest(initialOrder);
+                string backendResponse = _customerHandler.MakeOrderRequest(initialOrder);
                 
                 // Insert into cache.
                 Console.WriteLine("CustomerClient.MakeOrderRequest: cache");
@@ -99,7 +98,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
                 Console.WriteLine("CustomerClient.MakePaymentRespond: cache");
 
                 // Send HTTP request.
-                string backendResponse = _customerBackendController.MakePaymentRespond(deliveryOrder);
+                string backendResponse = _customerHandler.MakePaymentRespond(deliveryOrder);
                 
                 // Insert into cache.
                 Console.WriteLine("CustomerClient.MakePaymentRespond: cache");
