@@ -44,17 +44,21 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
         }
 
         /// <summary>
-        /// Get business task for delivering from store to warehouse.
+        /// Get business task list by delivery order ID.
         /// </summary>
         /// <param name="context"></param>
-        /// <param name="deliveryOrderId"></param>
+        /// <param name="deliveryOrderId">Delivery order ID</param>
+        /// <param name="taskDiscriminator">Task discriminator</param>
         /// <returns></returns>
-        public static List<BusinessTask?> GetStore2WhBusinessTask(FoodDeliveryDbContext context, long deliveryOrderId)
+        public static List<BusinessTask?> GetBusinessTasksByDeliveryOrderId(
+            FoodDeliveryDbContext context,
+            long deliveryOrderId,
+            BusinessTaskDiscriminator taskDiscriminator)
         {
             return context.BusinessTaskDeliveryOrders
                 .Where(x => x.BusinessTask != null
                     && x.DeliveryOrder != null
-                    && x.Discriminator == EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.RequestStore2Wh)
+                    && x.Discriminator == EnumExtensions.GetDisplayName(taskDiscriminator)
                     && x.DeliveryOrder.Id == deliveryOrderId)
                 .Select(x => x.BusinessTask)
                 .ToList();
@@ -67,6 +71,11 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
         /// <param name="businessTasks">Specified business tasks</param>
         internal static void CloseBusinessTasks(FoodDeliveryDbContext context, List<BusinessTask?> businessTasks)
         {
+            if (businessTasks == null || !businessTasks.Any())
+            {
+                return;
+            }
+
             foreach (var businessTask in businessTasks)
             {
                 if (businessTask == null)

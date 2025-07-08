@@ -299,7 +299,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
         /// Change delivery order status.
         /// </summary>
         /// <param name="context"></param>
-        /// <param name="deliveryOrder"></param>
+        /// <param name="deliveryOrder">Delivery order</param>
         /// <param name="status"></param>
         public static void ChangeDeliveryOrderStatus(
             FoodDeliveryDbContext context,
@@ -308,6 +308,20 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
         {
             deliveryOrder.Status = EnumExtensions.GetDisplayName(status);
             context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Get parent delivery order by delivery order ID.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="deliveryOrderId">Delivery order ID</param>
+        /// <returns></returns>
+        public static DeliveryOrder? GetParentDeliveryOrderById(FoodDeliveryDbContext context, long deliveryOrderId)
+        {
+            return context.DeliveryOrders
+                .Where(x => x.Id == deliveryOrderId)
+                .Select(x => x.ParentDeliveryOrder)
+                .FirstOrDefault();
         }
     }
 }
