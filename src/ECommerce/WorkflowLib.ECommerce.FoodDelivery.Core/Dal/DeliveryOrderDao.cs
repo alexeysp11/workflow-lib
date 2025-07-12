@@ -6,6 +6,7 @@ using WorkflowLib.Shared.Models.Business.Cooking;
 using WorkflowLib.Shared.Models.Business.Delivery;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
 using WorkflowLib.Shared.Models.Business.Monetary;
+using WorkflowLib.Shared.Models.Business.Processes;
 using WorkflowLib.Shared.Models.Business.Products;
 
 namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
@@ -322,6 +323,22 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
                 .Where(x => x.Id == deliveryOrderId)
                 .Select(x => x.ParentDeliveryOrder)
                 .FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Get business tasks from DbSet of <see cref="BusinessTaskDeliveryOrder"/> elements.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="deliveryOrderId"></param>
+        /// <returns></returns>
+        public static List<BusinessTask?> GetBusinessTaskDeliveryOrders(
+            FoodDeliveryDbContext context,
+            long deliveryOrderId)
+        {
+            return context.BusinessTaskDeliveryOrders
+                .Where(x => x.DeliveryOrder != null && x.DeliveryOrder.Id == deliveryOrderId && x.BusinessTask != null)
+                .Select(x => x.BusinessTask)
+                .ToList();
         }
     }
 }

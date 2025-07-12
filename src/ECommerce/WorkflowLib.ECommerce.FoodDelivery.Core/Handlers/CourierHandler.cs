@@ -52,30 +52,8 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 
                 // Create a DeliveryOperation object and associate it with the delivery order.
                 NotifyDeliverOrder(deliveryOrder, "Store2Wh");
-                var businessTask = new DeliveryOperation
-                {
-                    Uid = Guid.NewGuid().ToString(),
-                    Name = Notification.TitleText,
-                    Subject = Notification.TitleText,
-                    Description = Notification.BodyText,
-                    CustomerName = existedDeliveryOrder.CustomerName,
-                    Origin = existedDeliveryOrder.Origin,
-                    Destination = existedDeliveryOrder.Destination,
-                    Status = BusinessTaskStatus.Open
-                };
-                var businessTaskDeliveryOrder = new BusinessTaskDeliveryOrder
-                {
-                    Uid = Guid.NewGuid().ToString(),
-                    BusinessTask = businessTask,
-                    DeliveryOrder = existedDeliveryOrder,
-                    Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.DeliveryOperation)
-                };
-                // deliveryOrder.DeliveryOperation = businessTask;
-                context.DeliveryOperations.Add(businessTask);
-                context.BusinessTaskDeliveryOrders.Add(businessTaskDeliveryOrder);
-                context.SaveChanges();
+                CreateDeliveryTaskStore2WhStart(context, existedDeliveryOrder, Notification);
 
-                // 
                 response = "success";
             }
             catch (Exception ex)
@@ -105,20 +83,14 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 Console.WriteLine("CourierBackend.Store2WhExecute: cache");
 
                 // Close the related business tasks.
-                var deliveryOperations = context.BusinessTaskDeliveryOrders
-                    .Where(x => x.DeliveryOrder != null && x.DeliveryOrder.Id == deliveryOrder.Id && x.BusinessTask != null)
-                    .Select(x => x.BusinessTask)
-                    .ToList();
-                foreach (var deliveryOperation in deliveryOperations)
-                {
-                    deliveryOperation.Status = BusinessTaskStatus.Closed;
-                }
-                context.SaveChanges();
+                List<BusinessTask?> deliveryOperations = DeliveryOrderDao.GetBusinessTaskDeliveryOrders(
+                    context,
+                    deliveryOrderId: deliveryOrder.Id);
+                BusinessTaskDao.CloseBusinessTasks(context, deliveryOperations);
 
                 // Notify warehouse backend controller.
                 string deliveryRequest = new WarehouseHandler(_contextOptions).Store2WhSave(deliveryOrder);
 
-                // 
                 response = "success";
             }
             catch (Exception ex)
@@ -154,30 +126,8 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
 
                 // Create a DeliveryOperation object and associate it with the delivery order.
                 NotifyDeliverOrder(deliveryOrder, "DeliverOrder");
-                var businessTask = new DeliveryOperation
-                {
-                    Uid = Guid.NewGuid().ToString(),
-                    Name = Notification.TitleText,
-                    Subject = Notification.TitleText,
-                    Description = Notification.BodyText,
-                    CustomerName = existedDeliveryOrder.CustomerName,
-                    Origin = existedDeliveryOrder.Origin,
-                    Destination = existedDeliveryOrder.Destination,
-                    Status = BusinessTaskStatus.Open
-                };
-                var businessTaskDeliveryOrder = new BusinessTaskDeliveryOrder
-                {
-                    Uid = Guid.NewGuid().ToString(),
-                    BusinessTask = businessTask,
-                    DeliveryOrder = existedDeliveryOrder,
-                    Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.DeliveryOperation)
-                };
-                // deliveryOrder.DeliveryOperation = businessTask;
-                context.DeliveryOperations.Add(businessTask);
-                context.BusinessTaskDeliveryOrders.Add(businessTaskDeliveryOrder);
-                context.SaveChanges();
+                CreateDeliveryTaskDeliverStart(context, existedDeliveryOrder, Notification);
 
-                // 
                 response = "success";
             }
             catch (Exception ex)
@@ -206,26 +156,17 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 // Update DB.
                 Console.WriteLine("CourierBackend.DeliverOrderExecute: cache");
 
-                DeliveryOrder? existedDeliveryOrder = context.DeliveryOrders
-                    .Where(x => x.Id == deliveryOrder.Id)
-                    .FirstOrDefault();
+                DeliveryOrder? existedDeliveryOrder = DeliveryOrderDao.GetDeliveryOrderById(context, deliveryOrder.Id);
                 if (existedDeliveryOrder == null)
                     throw new Exception($"Delivery order is not defined (delivery order ID: {deliveryOrder.Id})");
-                
+
                 // Close the related business tasks.
-                var deliveryOperations = context.BusinessTaskDeliveryOrders
-                    .Where(x => x.DeliveryOrder != null && x.DeliveryOrder.Id == existedDeliveryOrder.Id && x.BusinessTask != null)
-                    .Select(x => x.BusinessTask)
-                    .ToList();
-                foreach (var deliveryOperation in deliveryOperations)
-                {
-                    deliveryOperation.Status = BusinessTaskStatus.Closed;
-                }
+                List<BusinessTask?> deliveryOperations = BusinessTaskDao.GetBusinessTaskDeliveryOrders(context, existedDeliveryOrder.Id);
+                BusinessTaskDao.CloseBusinessTasks(context, deliveryOperations);
                 existedDeliveryOrder.DateEndActual = DateTime.UtcNow;
                 existedDeliveryOrder.Status = EnumExtensions.GetDisplayName(OrderStatus.Finished);
                 context.SaveChanges();
 
-                // 
                 response = "success";
             }
             catch (Exception ex)
@@ -236,32 +177,38 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             Console.WriteLine("CourierBackend.DeliverOrderExecute: end");
             return response;
         }
-        
-        private string NotifyDeliverOrder(DeliveryOrder model, string stageName)
+
+        /// <summary>
+        /// Notify about delivery order.
+        /// </summary>
+        /// <param name="deliveryOrder"></param>
+        /// <param name="stageName"></param>
+        /// <returns></returns>
+        private string NotifyDeliverOrder(DeliveryOrder deliveryOrder, string stageName)
         {
             string response = "";
             Console.WriteLine("CourierBackend.NotifyDeliveryOrder: begin");
             try
             {
-                if (model == null)
+                if (deliveryOrder == null)
                     throw new Exception("Delivery oder could not be null");
-                if (string.IsNullOrEmpty(model.CustomerUid))
-                    throw new Exception($"CustomerUid could not be null or empty in the specified DeliveryOrder (ID: {model.Id})");
-                if (string.IsNullOrEmpty(model.CustomerName))
-                    throw new Exception($"CustomerName could not be null or empty in the specified DeliveryOrder (ID: {model.Id})");
-                if (string.IsNullOrEmpty(model.ExecutorUid))
-                    throw new Exception($"ExecutorUid could not be null or empty in the specified DeliveryOrder (ID: {model.Id})");
-                if (string.IsNullOrEmpty(model.ExecutorName))
-                    throw new Exception($"ExecutorName could not be null or empty in the specified DeliveryOrder (ID: {model.Id})");
+                if (string.IsNullOrEmpty(deliveryOrder.CustomerUid))
+                    throw new Exception($"CustomerUid could not be null or empty in the specified DeliveryOrder (ID: {deliveryOrder.Id})");
+                if (string.IsNullOrEmpty(deliveryOrder.CustomerName))
+                    throw new Exception($"CustomerName could not be null or empty in the specified DeliveryOrder (ID: {deliveryOrder.Id})");
+                if (string.IsNullOrEmpty(deliveryOrder.ExecutorUid))
+                    throw new Exception($"ExecutorUid could not be null or empty in the specified DeliveryOrder (ID: {deliveryOrder.Id})");
+                if (string.IsNullOrEmpty(deliveryOrder.ExecutorName))
+                    throw new Exception($"ExecutorName could not be null or empty in the specified DeliveryOrder (ID: {deliveryOrder.Id})");
                 
                 using var context = new FoodDeliveryDbContext(_contextOptions);
 
                 // Get sender and receiver of the notification.
                 var adminUser = context.UserAccounts.FirstOrDefault();
                 if (adminUser == null)
-                    throw new Exception($"Admin user could not be null (delivery order ID: {model.Id})");
+                    throw new Exception($"Admin user could not be null (delivery order ID: {deliveryOrder.Id})");
                 Employee courierEmployee = null;
-                if (model.OrderExecutorType == OrderExecutorType.Employee)
+                if (deliveryOrder.OrderExecutorType == OrderExecutorType.Employee)
                 {
                     //courierEmployee = context.Employees
                     //    .Include(x => x.UserAccounts)
@@ -285,36 +232,34 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                     
                     //courierEmployee = potentialExecutors[rand.Next(potentialExecutors.Count)];
                     if (courierEmployee == null)
-                        throw new Exception($"Randomly selected employee is null (delivery order ID: {model.Id})");
+                        throw new Exception($"Randomly selected employee is null (delivery order ID: {deliveryOrder.Id})");
                 }
                 if (courierEmployee == null)
-                    throw new Exception($"Courier employee could not be null (delivery order ID: {model.Id})");
+                    throw new Exception($"Courier employee could not be null (delivery order ID: {deliveryOrder.Id})");
                 //var courierUser = courierEmployee.UserAccounts.FirstOrDefault();
                 //if (courierUser == null)
                 //    throw new Exception($"Courier user could not be null (delivery order ID: {model.Id})");
 
                 // Getting the products that should be delivered.
-                var deliveryOrderProducts = context.DeliveryOrderProducts
-                    .Include(x => x.Product)
-                    .Where(x => x.DeliveryOrder.Id == model.Id && x.Product != null);
+                var deliveryOrderProducts = DeliveryOrderDao.GetDeliveryOrderProducts(context, deliveryOrder.Id, true);
                 if (deliveryOrderProducts.Count() == 0)
-                    throw new Exception($"There are no existing products associated with the specified DeliveryOrder (ID: {model.Id})");
+                    throw new Exception($"There are no existing products associated with the specified DeliveryOrder (ID: {deliveryOrder.Id})");
                 
                 // Title text.
                 var sbMessageText = new StringBuilder();
-                sbMessageText.Append(stageName).Append(": deliver order #").Append(model.Id.ToString()).Append(" from the store to the warehouse");
+                sbMessageText.Append(stageName).Append(": deliver order #").Append(deliveryOrder.Id.ToString()).Append(" from the store to the warehouse");
                 string titleText = sbMessageText.ToString();
                 sbMessageText.Clear();
 
                 // Body text.
                 sbMessageText.Append("Please be informed that you are responsible for shipping order #");
-                sbMessageText.Append(model.Id.ToString());
+                sbMessageText.Append(deliveryOrder.Id.ToString());
                 sbMessageText.Append(" from the store to the warehouse.\n");
                 sbMessageText.Append("\n");
                 sbMessageText.Append("Ordering information:\n");
-                sbMessageText.Append("UID: ").Append(model.Uid).Append(".\n");
-                sbMessageText.Append("Creation date: ").Append(model.DateStartActual.ToString()).Append(".\n");
-                sbMessageText.Append("Order author: ").Append(model.OrderCustomerType.ToString()).Append(" ").Append(model.CustomerName).Append(".\n");
+                sbMessageText.Append("UID: ").Append(deliveryOrder.Uid).Append(".\n");
+                sbMessageText.Append("Creation date: ").Append(deliveryOrder.DateStartActual.ToString()).Append(".\n");
+                sbMessageText.Append("Order author: ").Append(deliveryOrder.OrderCustomerType.ToString()).Append(" ").Append(deliveryOrder.CustomerName).Append(".\n");
                 sbMessageText.Append("\n");
                 sbMessageText.Append("Products for delivery:\n");
                 foreach (var deliveryOrderProduct in deliveryOrderProducts)
@@ -323,7 +268,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                     sbMessageText.Append("(quantity: ").Append(deliveryOrderProduct.Quantity).Append(").\n");
                 }
                 sbMessageText.Append("\n");
-                sbMessageText.Append("Approximate price for products: $").Append(model.ProductsPrice.ToString()).Append("\n");
+                sbMessageText.Append("Approximate price for products: $").Append(deliveryOrder.ProductsPrice.ToString()).Append("\n");
 
                 // Notify the customer.
                 Notification = new Notification
@@ -348,6 +293,76 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
             }
             Console.WriteLine("CourierBackend.NotifyDeliveryOrder: end");
             return response;
+        }
+
+        /// <summary>
+        /// Create business task for delivering from store to warehouse.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="existedDeliveryOrder"></param>
+        /// <param name="notification"></param>
+        private void CreateDeliveryTaskStore2WhStart(
+            FoodDeliveryDbContext context,
+            DeliveryOrder existedDeliveryOrder,
+            Notification notification)
+        {
+            var businessTask = new DeliveryOperation
+            {
+                Uid = Guid.NewGuid().ToString(),
+                Name = Notification.TitleText,
+                Subject = Notification.TitleText,
+                Description = Notification.BodyText,
+                CustomerName = existedDeliveryOrder.CustomerName,
+                Origin = existedDeliveryOrder.Origin,
+                Destination = existedDeliveryOrder.Destination,
+                Status = BusinessTaskStatus.Open
+            };
+            var businessTaskDeliveryOrder = new BusinessTaskDeliveryOrder
+            {
+                Uid = Guid.NewGuid().ToString(),
+                BusinessTask = businessTask,
+                DeliveryOrder = existedDeliveryOrder,
+                Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.DeliveryOperation)
+            };
+            // deliveryOrder.DeliveryOperation = businessTask;
+            context.DeliveryOperations.Add(businessTask);
+            context.BusinessTaskDeliveryOrders.Add(businessTaskDeliveryOrder);
+            context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Create business task for delivering order.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="existedDeliveryOrder"></param>
+        /// <param name="notification"></param>
+        private void CreateDeliveryTaskDeliverStart(
+            FoodDeliveryDbContext context,
+            DeliveryOrder existedDeliveryOrder,
+            Notification notification)
+        {
+            var businessTask = new DeliveryOperation
+            {
+                Uid = Guid.NewGuid().ToString(),
+                Name = Notification.TitleText,
+                Subject = Notification.TitleText,
+                Description = Notification.BodyText,
+                CustomerName = existedDeliveryOrder.CustomerName,
+                Origin = existedDeliveryOrder.Origin,
+                Destination = existedDeliveryOrder.Destination,
+                Status = BusinessTaskStatus.Open
+            };
+            var businessTaskDeliveryOrder = new BusinessTaskDeliveryOrder
+            {
+                Uid = Guid.NewGuid().ToString(),
+                BusinessTask = businessTask,
+                DeliveryOrder = existedDeliveryOrder,
+                Discriminator = EnumExtensions.GetDisplayName(BusinessTaskDiscriminator.DeliveryOperation)
+            };
+            // deliveryOrder.DeliveryOperation = businessTask;
+            context.DeliveryOperations.Add(businessTask);
+            context.BusinessTaskDeliveryOrders.Add(businessTaskDeliveryOrder);
+            context.SaveChanges();
         }
     }
 }

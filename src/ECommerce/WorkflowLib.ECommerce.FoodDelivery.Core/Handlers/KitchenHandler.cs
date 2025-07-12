@@ -8,6 +8,7 @@ using WorkflowLib.Shared.Models.Business.Processes;
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
 using WorkflowLib.ECommerce.FoodDelivery.Core.Dal;
+using WorkflowLib.Shared.Models.Business.Products;
 
 namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
 {
@@ -47,9 +48,10 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
                 var initialOrder = context.InitialOrders.FirstOrDefault(x => x.DeliveryOrderId == existedDeliveryOrder.Id);
                 if (initialOrder == null)
                     throw new Exception($"Initial order could not be null (delivery order ID: {deliveryOrder.Id})");
-                var deliveryOrderProducts = context.DeliveryOrderProducts
-                    .Include(x => x.Product)
-                    .Where(x => x.DeliveryOrder.Id == deliveryOrder.Id && x.Product != null);
+                List<DeliveryOrderProduct> deliveryOrderProducts = DeliveryOrderDao.GetDeliveryOrderProducts(
+                    context,
+                    deliveryOrder.Id,
+                    true);
                 if (deliveryOrderProducts.Count() == 0)
                     throw new Exception($"There are no existing products associated with the specified DeliveryOrder (ID: {deliveryOrder.Id})");
                 

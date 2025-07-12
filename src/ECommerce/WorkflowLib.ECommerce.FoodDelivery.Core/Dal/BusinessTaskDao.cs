@@ -86,5 +86,19 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
             }
             context.SaveChanges();
         }
+
+        /// <summary>
+        /// Get business task delivery order by delivery order ID.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="deliveryOrderId"></param>
+        /// <returns></returns>
+        public static List<BusinessTask?> GetBusinessTaskDeliveryOrders(FoodDeliveryDbContext context, long deliveryOrderId)
+        {
+            return context.BusinessTaskDeliveryOrders
+                .Where(x => x.DeliveryOrder != null && x.DeliveryOrder.Id == deliveryOrderId && x.BusinessTask != null)
+                .Select(x => x.BusinessTask)
+                .ToList();
+        }
     }
 }
