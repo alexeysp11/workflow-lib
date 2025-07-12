@@ -1,3 +1,4 @@
+using System;
 using WorkflowLib.Shared.Models.ErrorHandling;
 using WorkflowLib.Shared.Models.Network.MicroserviceConfigurations;
 
@@ -72,12 +73,12 @@ namespace WorkflowLib.Shared.Models.Network
         /// <summary>
         /// Start time of the operation.
         /// </summary>
-        public System.DateTime DateTimeBegin { get; set; }
+        public DateTime DateTimeBegin { get; set; }
 
         /// <summary>
         /// End time of the operation.
         /// </summary>
-        public System.DateTime DateTimeEnd { get; set; }
+        public DateTime DateTimeEnd { get; set; }
 
         /// <summary>
         /// Configuration of interaction between microservices.

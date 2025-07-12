@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Shared.Models.Business.Customers;
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
+using WorkflowLib.ECommerce.FoodDelivery.Core.Dal;
 
 namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
 {
@@ -26,19 +27,17 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         public string SendNotifications(IEnumerable<Notification> notifications)
         {
             string response = "";
-            System.Console.WriteLine("NotificationsBackend.SendNotifications: begin");
+            Console.WriteLine("NotificationsBackend.SendNotifications: begin");
             try
             {
-                // Validation.
-                System.Console.WriteLine("NotificationsBackend.SendNotifications: validation");
                 using var context = new FoodDeliveryDbContext(_contextOptions);
+                
+                // Save notifications.
+                NotificationDao.SaveNotifications(context, notifications);
 
+                // Send notifications.
                 foreach (var notification in notifications)
                 {
-                    // Update DB.
-                    System.Console.WriteLine("NotificationsBackend.SendNotifications: cache");
-                    context.Notifications.Add(notification);
-
                     // Send email.
                     // SendEmail();
 
@@ -47,18 +46,14 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
 
                     // Send message via Telegram.
                     // SendMsgTelegram();
-                    
-                    // Update DB.
-                    System.Console.WriteLine("NotificationsBackend.SendNotifications: cache");
                 }
-                context.SaveChanges();
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("NotificationsBackend.SendNotifications: end");
+            Console.WriteLine("NotificationsBackend.SendNotifications: end");
             return response;
         }
 
@@ -77,30 +72,15 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         public string SendPush(Notification notification)
         {
             string response = "";
-            System.Console.WriteLine("NotificationsBackend.SendPush: begin");
             try
             {
-                // Validation.
-                System.Console.WriteLine("NotificationsBackend.SendPush: validation");
-                
-                // Update DB.
-                System.Console.WriteLine("NotificationsBackend.SendPush: cache");
-
-                // Sending push notification.
-                System.Console.WriteLine("NotificationsBackend.SendPush: notifying");
-                
-                // Update DB.
-                System.Console.WriteLine("NotificationsBackend.SendPush: cache");
-
-                // 
                 response = "notification is sent";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("NotificationsBackend.SendPush: end");
             return response;
         }
 

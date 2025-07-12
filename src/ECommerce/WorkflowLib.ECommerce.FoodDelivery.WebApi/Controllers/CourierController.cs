@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.Shared.Models.Network;
 using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
 using WorkflowLib.ECommerce.FoodDelivery.Core.Handlers;
 
@@ -22,128 +21,106 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
             _contextOptions = contextOptions;
         }
 
-        #region store2wh
         /// <summary>
         /// A method that allows to save a request for the delivery of products from a store to a warehouse.
         /// </summary>
-        public string Store2WhStart(ApiOperation apiOperation)
+        public string Store2WhStart(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("CourierClient.Store2WhStart: begin");
+            Console.WriteLine("CourierClient.Store2WhStart: begin");
             try
             {
-                // Initializing.
-                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
-
                 // Update DB.
-                System.Console.WriteLine("CourierClient.Store2WhStart: cache");
+                Console.WriteLine("CourierClient.Store2WhStart: cache");
 
                 // 
                 response = "success";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("CourierClient.Store2WhStart: end");
+            Console.WriteLine("CourierClient.Store2WhStart: end");
             return response;
         }
 
         /// <summary>
         /// A method that controls the process of delivering products from the store to the warehouse.
         /// </summary>
-        public string Store2WhExecute(ApiOperation apiOperation)
+        public string Store2WhExecute(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("CourierClient.Store2WhExecute: begin");
+            Console.WriteLine("CourierClient.Store2WhExecute: begin");
             try
             {
-                // Initializing.
-                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
-                
                 // Update DB.
-                System.Console.WriteLine("CourierClient.Store2WhExecute: cache");
+                Console.WriteLine("CourierClient.Store2WhExecute: cache");
 
                 // Send HTTP request.
-                string backendResponse = new CourierHandler(_contextOptions).Store2WhExecute(new ApiOperation
-                {
-                    RequestObject = model
-                });
+                string backendResponse = new CourierHandler(_contextOptions).Store2WhExecute(deliveryOrder);
 
                 // 
                 response = "success";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("CourierClient.Store2WhExecute: end");
+            Console.WriteLine("CourierClient.Store2WhExecute: end");
             return response;
         }
-        #endregion  // store2wh
-
-        #region deliverorder
+        
         /// <summary>
         /// The method that is responsible for starting the order delivery process.
         /// </summary>
-        public string DeliverOrderStart(ApiOperation apiOperation)
+        public string DeliverOrderStart(InitialOrder initialOrder)
         {
             string response = "";
-            System.Console.WriteLine("CourierClient.DeliverOrderStart: begin");
+            Console.WriteLine("CourierClient.DeliverOrderStart: begin");
             try
             {
-                // Initializing.
-                InitialOrder model = apiOperation.RequestObject as InitialOrder;
-
                 // Update DB.
-                System.Console.WriteLine("CourierClient.DeliverOrderStart: cache");
+                Console.WriteLine("CourierClient.DeliverOrderStart: cache");
 
                 // 
                 response = "success";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("CourierClient.DeliverOrderStart: end");
+            Console.WriteLine("CourierClient.DeliverOrderStart: end");
             return response;
         }
         
         /// <summary>
         /// The method that is responsible for executing the order delivery process.
         /// </summary>
-        public string DeliverOrderExecute(ApiOperation apiOperation)
+        public string DeliverOrderExecute(DeliveryOrder deliveryOrder)
         {
             string response = "";
-            System.Console.WriteLine("CourierClient.DeliverOrderExecute: begin");
+            Console.WriteLine("CourierClient.DeliverOrderExecute: begin");
             try
             {
-                // Initializing.
-                DeliveryOrder model = apiOperation.RequestObject as DeliveryOrder;
-                
                 // Update DB.
-                System.Console.WriteLine("CourierClient.DeliverOrderExecute: cache");
+                Console.WriteLine("CourierClient.DeliverOrderExecute: cache");
 
                 // Send HTTP request.
-                string backendResponse = new CourierHandler(_contextOptions).DeliverOrderExecute(new ApiOperation
-                {
-                    RequestObject = model
-                });
+                string backendResponse = new CourierHandler(_contextOptions).DeliverOrderExecute(deliveryOrder);
 
                 // 
                 response = "success";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("CourierClient.DeliverOrderExecute: end");
+            Console.WriteLine("CourierClient.DeliverOrderExecute: end");
             return response;
         }
-        #endregion  // deliverorder
     }
 }

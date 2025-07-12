@@ -30,26 +30,26 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
 
             // Check if a delivery has already been made from the warehouse to the kitchen.
             // Run this step only if delivery has NOT taken place.
-            var deliveryWh2Kitchen = FoodDeliveryDao.GetDeliveryOperation(context, FoodDeliveryType.Wh2Kitchen.ToString());
+            var deliveryWh2Kitchen = DeliveryOrderDao.GetDeliveryOperation(context, FoodDeliveryType.Wh2Kitchen.ToString());
             if (deliveryWh2Kitchen != null)
             {
                 return false;
             }
 
-            System.Console.WriteLine("RequestStore2WhStep.Start: begin");
+            Console.WriteLine("RequestStore2WhStep.Start: begin");
 
             // When a warehouse employee receives a BusinessTask to request a delivery from the store to the warehouse, 
             // his active tasks are simply downloaded to them.
             // When a warehouse employee on the client "closes" the BusinessTask task to request delivery from the store
             // to the warehouse, the DeliveryOrder object is passed to the backend.
-            var model = FoodDeliveryDao.GetDeliveryOrderByNumber(context, "");
+            var model = DeliveryOrderDao.GetDeliveryOrderByNumber(context, "");
             
             //string response = new WarehouseClientController(_contextOptions).RequestStore2WhRespond(new ApiOperation
             //{
             //    RequestObject = model
             //});
-            //System.Console.WriteLine($"response: {response}");
-            System.Console.WriteLine("RequestStore2WhStep.Start: end");
+            //Console.WriteLine($"response: {response}");
+            Console.WriteLine("RequestStore2WhStep.Start: end");
             
             //return response == "success";
             return true;

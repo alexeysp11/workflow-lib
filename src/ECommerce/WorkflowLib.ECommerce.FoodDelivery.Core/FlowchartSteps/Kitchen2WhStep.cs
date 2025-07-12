@@ -26,22 +26,22 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
         /// </summary>
         public bool Start()
         {
-            System.Console.WriteLine("Kitchen2WhStep.Start: begin");
+            Console.WriteLine("Kitchen2WhStep.Start: begin");
 
             using var context = new FoodDeliveryDbContext(_contextOptions);
 
             // Unload a delivery order that has a parent and is an internal delivery order.
-            DeliveryOrder? devileryOrder = FoodDeliveryDao.GetDeliveryOrderByNumber(context, "");
+            DeliveryOrder? devileryOrder = DeliveryOrderDao.GetDeliveryOrderByNumber(context, "");
             if (devileryOrder == null)
-                throw new System.Exception("Delivery order could not be null");
+                throw new Exception("Delivery order could not be null");
 
             // 
             //string response = new WarehouseClientController(_contextOptions).Kitchen2WhExecute(new ApiOperation
             //{
             //    RequestObject = devileryOrder
             //});
-            //System.Console.WriteLine($"response: {response}");
-            System.Console.WriteLine("Kitchen2WhStep.Start: end");
+            //Console.WriteLine($"response: {response}");
+            Console.WriteLine("Kitchen2WhStep.Start: end");
             
             //return response == "success";
             return true;

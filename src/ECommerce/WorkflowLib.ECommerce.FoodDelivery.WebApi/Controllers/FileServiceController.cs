@@ -1,5 +1,4 @@
 using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.Shared.Models.Network;
 
 namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
 {
@@ -11,33 +10,30 @@ namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
         /// <summary>
         /// A method that generates a QR code for payment based on a customer order. 
         /// </summary>
-        public string GenerateQrCode(ApiOperation apiOperation)
+        public string GenerateQrCode(InitialOrder initialOrder)
         {
             string response = "";
-            System.Console.WriteLine("FileServiceController.GenerateQrCode: begin");
+            Console.WriteLine("FileServiceController.GenerateQrCode: begin");
             try
             {
-                // Initializing.
-                InitialOrder? model = apiOperation.RequestObject as InitialOrder;
-                
                 // Update DB.
-                System.Console.WriteLine("FileServiceController.GenerateQrCode: cache");
+                Console.WriteLine("FileServiceController.GenerateQrCode: cache");
 
                 // Generating QR code.
-                System.Console.WriteLine("FileServiceController.GenerateQrCode: generating qr code");
+                Console.WriteLine("FileServiceController.GenerateQrCode: generating qr code");
                 
                 // Update DB.
-                System.Console.WriteLine("FileServiceController.GenerateQrCode: cache");
+                Console.WriteLine("FileServiceController.GenerateQrCode: cache");
 
                 // 
                 response = "qr code generated";
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 response = "error: " + ex.Message;
-                System.Console.WriteLine("ERROR : " + ex.ToString());
+                Console.WriteLine("ERROR : " + ex.ToString());
             }
-            System.Console.WriteLine("FileServiceController.GenerateQrCode: end");
+            Console.WriteLine("FileServiceController.GenerateQrCode: end");
             return response;
         }
     }

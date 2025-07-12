@@ -30,15 +30,15 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
         /// </summary>
         public bool Start()
         {
-            System.Console.WriteLine("MakeOrderStep.Start: begin");
+            Console.WriteLine("MakeOrderStep.Start: begin");
             
             using var context = new FoodDeliveryDbContext(_contextOptions);
 
             Customer? customer = context.Customers.Include(x => x.UserAccount).FirstOrDefault(x => x.UserAccount != null);
             if (customer == null)
-                throw new System.Exception("Specified customer does not exist in the database");
+                throw new Exception("Specified customer does not exist in the database");
             if (customer.UserAccount == null)
-                throw new System.Exception("Specified user account does not exist in the database");
+                throw new Exception("Specified user account does not exist in the database");
             List<long> productIds = context.Products.Take(3).Select(x => x.Id).ToList();
             
             var model = new InitialOrder()
@@ -56,8 +56,8 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
             //{
             //    RequestObject = model
             //});
-            //System.Console.WriteLine($"response: {response}");
-            System.Console.WriteLine("MakeOrderStep.Start: end");
+            //Console.WriteLine($"response: {response}");
+            Console.WriteLine("MakeOrderStep.Start: end");
             
             //return response == "success";
             return true;

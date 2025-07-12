@@ -31,13 +31,13 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
 
             // Check if a delivery has already been made from the warehouse to the kitchen.
             // Run this step only if delivery has NOT taken place.
-            var deliveryWh2Kitchen = FoodDeliveryDao.GetDeliveryOperation(context, FoodDeliveryType.Wh2Kitchen.ToString());
+            var deliveryWh2Kitchen = DeliveryOrderDao.GetDeliveryOperation(context, FoodDeliveryType.Wh2Kitchen.ToString());
             if (deliveryWh2Kitchen != null)
             {
                 return false;
             }
             
-            System.Console.WriteLine("Store2WhStep.Start: begin");
+            Console.WriteLine("Store2WhStep.Start: begin");
 
             // Since at the stage of generating a delivery request, a warehouse employee cannot merge several DeliveryOrders 
             // into one task, the courier simply receives several tasks that indicate orders and products for delivery 
@@ -47,28 +47,28 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
             // Check whether there were enough ingredients in the order preprocessing step.
 
             // Unload a delivery order that has a parent and is an internal delivery order.
-            DeliveryOrder? deliveryOrder = FoodDeliveryDao.GetInternalDeliveryOrder(context);
+            DeliveryOrder? deliveryOrder = DeliveryOrderDao.GetInternalDeliveryOrder(context);
             if (deliveryOrder == null)
             {
-                throw new System.Exception("Delivery order could not be null");
+                throw new Exception("Delivery order could not be null");
             }
             
             // For the received order, you need to set prices for products and attach a photo/scan of the receipt to the task 
             // (the last one has not yet been implemented).
-            float? totalPrice = FoodDeliveryDao.GetDeliveryOrderTotalPrice(context, deliveryOrder.Id);
+            float? totalPrice = DeliveryOrderDao.GetDeliveryOrderTotalPrice(context, deliveryOrder.Id);
             if (!totalPrice.HasValue)
             {
-                throw new System.Exception("Calculated total price of the products within the delivery order could not be null");
+                throw new Exception("Calculated total price of the products within the delivery order could not be null");
             }
-            FoodDeliveryDao.UpdateDeliveryOrderTotalPrice(context, deliveryOrder, (decimal)totalPrice);
+            DeliveryOrderDao.UpdateDeliveryOrderTotalPrice(context, deliveryOrder, (decimal)totalPrice);
 
             // 
             //string response = new CourierClientController(_contextOptions).Store2WhExecute(new ApiOperation
             //{
             //    RequestObject = model
             //});
-            //System.Console.WriteLine($"response: {response}");
-            System.Console.WriteLine("Store2WhStep.Start: end");
+            //Console.WriteLine($"response: {response}");
+            Console.WriteLine("Store2WhStep.Start: end");
             
             //return response == "success";
             return true;

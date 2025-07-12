@@ -1,3 +1,5 @@
+using System;
+
 namespace WorkflowLib.Shared.Models.Network.MicroserviceConfigurations
 {
     /// <summary>
@@ -48,7 +50,7 @@ namespace WorkflowLib.Shared.Models.Network.MicroserviceConfigurations
         /// <summary>
         /// Response time.
         /// </summary>
-        public System.TimeSpan? ResponseTime { get; set; }
+        public TimeSpan? ResponseTime { get; set; }
 
         /// <summary>
         /// Weight of the endpoint.

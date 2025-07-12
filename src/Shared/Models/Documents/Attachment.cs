@@ -1,3 +1,4 @@
+using System;
 using WorkflowLib.Shared.Models.Documents.Enums;
 
 namespace WorkflowLib.Shared.Models.Documents
@@ -20,7 +21,7 @@ namespace WorkflowLib.Shared.Models.Documents
         /// <summary>
         /// Upload date.
         /// </summary>
-        public System.DateTime UploadDate { get; private set; }
+        public DateTime UploadDate { get; private set; }
 
         /// <summary>
         /// File.

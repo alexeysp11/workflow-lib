@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WorkflowLib.Shared.Models.Network.MicroserviceConfigurations
@@ -58,7 +59,7 @@ namespace WorkflowLib.Shared.Models.Network.MicroserviceConfigurations
             private set
             {
                 m_status = value;
-                LastStatusChange = System.DateTime.UtcNow;
+                LastStatusChange = DateTime.UtcNow;
             }
         }
         
@@ -66,7 +67,7 @@ namespace WorkflowLib.Shared.Models.Network.MicroserviceConfigurations
         /// Time of last endpoint status change.
         /// </summary>
         [NotMapped]
-        public System.DateTime? LastStatusChange { get; private set; }
+        public DateTime? LastStatusChange { get; private set; }
 
         /// <summary>
         /// Gets the hash code for the object.
