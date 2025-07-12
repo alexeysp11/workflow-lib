@@ -22,10 +22,5 @@ namespace WorkflowLib.Shared.Models.Business.Cooking
         /// Quantity of ingredients that are necessary for cooking the final product.
         /// </summary>
         public double Quantity { get; set; }
-
-        // /// <summary>
-        // /// Substitute ingredients.
-        // /// </summary>
-        // public ICollection<Ingredient> SubstituteIngredients { get; set; }
     }
 }
