@@ -47,11 +47,5 @@ namespace WorkflowLib.Shared.Models.Business.Customers
         /// Company of the customer.
         /// </summary>
         public Company? Company { get; set; }
-
-        /// <summary>
-        /// Contracts.
-        /// </summary>
-        [Obsolete("It's better to use CustomerContract object")]
-        public ICollection<Contract> Contracts { get; set; }
     }
 }

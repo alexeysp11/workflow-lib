@@ -17,10 +17,5 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
         /// Head organization item.
         /// </summary>
         public OrganizationItem? HeadItem { get; set; }
-        
-        /// <summary>
-        /// Contracts.
-        /// </summary>
-        public ICollection<Contract> Contracts { get; set; }
     }
 }

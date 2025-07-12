@@ -93,11 +93,5 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
         /// </summary>
         [Obsolete("It's better to use EmployeeSkill object")]
         public ICollection<Skill> Skills { get; set; }
-
-        /// <summary>
-        /// Contracts.
-        /// </summary>
-        [Obsolete("It's better to use EmployeeContract object")]
-        public ICollection<Contract> Contracts { get; set; }
     }
 }
