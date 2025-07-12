@@ -36,11 +36,6 @@ namespace WorkflowLib.Shared.Models.Business.Projects
         public string? Location { get; set; }
 
         /// <summary>
-        /// Company.
-        /// </summary>
-        public Company? Company { get; set; }
-
-        /// <summary>
         /// Customer.
         /// </summary>
         public Customer? Customer { get; set; }

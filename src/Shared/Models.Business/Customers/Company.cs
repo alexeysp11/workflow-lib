@@ -1,5 +1,3 @@
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.Shared.Models.Business.Projects;
 using WorkflowLib.Shared.Models.Business.InformationSystem;
 
 namespace WorkflowLib.Shared.Models.Business.Customers
@@ -48,11 +46,5 @@ namespace WorkflowLib.Shared.Models.Business.Customers
         /// Collection of the employees of the company.
         /// </summary>
         public ICollection<Employee> Employees { get; set; }
-
-        /// <summary>
-        /// Collection of the projects related to the company.
-        /// </summary>
-        [Obsolete("It's better to use CompanyProject object")]
-        public ICollection<Project> Projects { get; set; }
     }
 }
