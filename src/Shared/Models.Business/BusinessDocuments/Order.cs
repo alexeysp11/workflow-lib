@@ -1,5 +1,3 @@
-using WorkflowLib.Shared.Models.Business.Monetary;
-
 namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
 {
     /// <summary>
@@ -67,12 +65,6 @@ namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
         /// </summary>
         public decimal? TotalPrice { get; set; }
 
-        /// <summary>
-        /// Payments made within the order.
-        /// </summary>
-        [Obsolete("It's better to use OrderPayment object")]
-        public ICollection<Payment> Payments { get; set; }
-        
         /// <summary>
         /// Shows if the order could be cancelled.
         /// </summary>
