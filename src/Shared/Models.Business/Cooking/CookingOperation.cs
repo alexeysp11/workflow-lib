@@ -11,12 +11,6 @@ namespace WorkflowLib.Shared.Models.Business.Cooking
         /// <summary>
         /// 
         /// </summary>
-        [Obsolete("It's better to use InitialOrderProductCooking object")]
-        public ICollection<InitialOrderProduct> InitialOrderProducts { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         [Obsolete("It's better to use InitialOrderIngredientCooking object")]
         public ICollection<InitialOrderIngredient> InitialOrderIngredients { get; set; }
     }
