@@ -1,5 +1,3 @@
-using WorkflowLib.Shared.Models.Business.InformationSystem;
-
 namespace WorkflowLib.Shared.Models.Business.Customers
 {
     /// <summary>
@@ -41,10 +39,5 @@ namespace WorkflowLib.Shared.Models.Business.Customers
         /// Does the company have VAT registration.
         /// </summary>
         public bool HasVatRegistration { get; set; }
-
-        /// <summary>
-        /// Collection of the employees of the company.
-        /// </summary>
-        public ICollection<Employee> Employees { get; set; }
     }
 }

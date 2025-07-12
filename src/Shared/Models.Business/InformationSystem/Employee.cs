@@ -64,11 +64,6 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
         public DateTime? EmployDate { get; set; }
 
         /// <summary>
-        /// Companies related to the employee.
-        /// </summary>
-        public ICollection<Company> Companies { get; set; }
-
-        /// <summary>
         /// Collection of organization items.
         /// </summary>
         public ICollection<OrganizationItem> OrganizationItems { get; set; }
