@@ -1,9 +1,7 @@
-using System.Collections.Generic;
-
 namespace WorkflowLib.Shared.Models.Business.Monetary
 {
     /// <summary>
-    /// Price
+    /// Price.
     /// </summary>
     public class Price
     {
@@ -24,11 +22,6 @@ namespace WorkflowLib.Shared.Models.Business.Monetary
         /// 
         /// </summary>
         public decimal? ListPrice { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public List<Tax> Taxes { get; set; }
 
         /// <summary>
         /// 
