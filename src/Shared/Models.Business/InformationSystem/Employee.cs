@@ -98,6 +98,6 @@ namespace WorkflowLib.Shared.Models.Business.InformationSystem
         /// Contracts.
         /// </summary>
         [Obsolete("It's better to use EmployeeContract object")]
-        public ICollection<Contract> Contracts { get; private set; }
+        public ICollection<Contract> Contracts { get; set; }
     }
 }

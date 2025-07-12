@@ -5,14 +5,14 @@ namespace WorkflowLib.Shared.Models.Business.Monetary
     /// </summary>
     public class SubTotalPayments
     {
-        public decimal PayForHours { get; private set; }
+        public decimal PayForHours { get; set; }
 
-        public decimal PayForBusinessTrip { get; private set; }
+        public decimal PayForBusinessTrip { get; set; }
 
-        public decimal PayForExtraHours { get; private set; }
+        public decimal PayForExtraHours { get; set; }
 
-        public decimal PayForHolidayHours { get; private set; }
+        public decimal PayForHolidayHours { get; set; }
 
-        public decimal PayForPayedDaysOff { get; private set; }
+        public decimal PayForPayedDaysOff { get; set; }
     }
 }

@@ -8,17 +8,17 @@ namespace WorkflowLib.Shared.Models.Business.Monetary
         /// <summary>
         /// Integer.
         /// </summary>
-        public int Integer { get; private set; }
+        public int Integer { get; set; }
 
         /// <summary>
         /// Fraction.
         /// </summary>
-        public int Fraction { get; private set; }
+        public int Fraction { get; set; }
 
         /// <summary>
         /// Currency.
         /// </summary>
-        public Currency Currency { get; private set; }
+        public Currency Currency { get; set; }
 
         /// <summary>
         /// 
