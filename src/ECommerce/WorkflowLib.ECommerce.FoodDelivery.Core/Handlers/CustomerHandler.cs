@@ -157,7 +157,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
         /// <summary>
         /// Notify customer that initial order is ready for processing.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">Database context</param>
         /// <param name="customerUserAccountId"></param>
         /// <param name="deliveryOrderId"></param>
         /// <exception cref="Exception"></exception>

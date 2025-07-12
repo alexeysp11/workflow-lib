@@ -11,7 +11,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
         /// <summary>
         /// Create business task to deliver from store to warehouse.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">Database context</param>
         /// <param name="deliveryOrder">Delivery order</param>
         /// <param name="notification">Notification</param>
         public static void CreateStore2WhBusinessTask(
@@ -46,7 +46,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
         /// <summary>
         /// Get business task list by delivery order ID.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">Database context</param>
         /// <param name="deliveryOrderId">Delivery order ID</param>
         /// <param name="taskDiscriminator">Task discriminator</param>
         /// <returns></returns>
@@ -67,9 +67,9 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
         /// <summary>
         /// Close specified business tasks.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">Database context</param>
         /// <param name="businessTasks">Specified business tasks</param>
-        internal static void CloseBusinessTasks(FoodDeliveryDbContext context, List<BusinessTask?> businessTasks)
+        public static void CloseBusinessTasks(FoodDeliveryDbContext context, List<BusinessTask?> businessTasks)
         {
             if (businessTasks == null || !businessTasks.Any())
             {

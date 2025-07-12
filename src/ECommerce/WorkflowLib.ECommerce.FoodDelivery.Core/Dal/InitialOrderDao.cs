@@ -66,5 +66,18 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
         {
             return context.InitialOrders.FirstOrDefault(x => x.Id == initialOrderId);
         }
+
+        /// <summary>
+        /// Get initial order by delivery order ID.
+        /// </summary>
+        /// <param name="context">Database context</param>
+        /// <param name="deliveryOrderId">Delivery order ID</param>
+        /// <returns></returns>
+        internal static InitialOrder? GetByDeliveryOrderId(FoodDeliveryDbContext context, long deliveryOrderId)
+        {
+            return context.InitialOrders
+                .Where(x => x.DeliveryOrderId == deliveryOrderId)
+                .FirstOrDefault();
+        }
     }
 }

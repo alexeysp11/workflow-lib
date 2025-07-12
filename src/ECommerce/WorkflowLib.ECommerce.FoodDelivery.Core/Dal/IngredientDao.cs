@@ -25,7 +25,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
         /// <summary>
         /// Get ingredients by multiple final product IDs.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">Database context</param>
         /// <param name="productIds">Final product IDs</param>
         /// <returns></returns>
         internal static List<Ingredient> GetIngredientsByMulipleFinalProductIds(

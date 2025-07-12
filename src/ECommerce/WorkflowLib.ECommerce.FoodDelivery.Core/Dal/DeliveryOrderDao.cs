@@ -174,7 +174,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
         /// <summary>
         /// Get the products that should be delivered.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">Database context</param>
         /// <param name="deliveryOrderId">Delivery order ID</param>
         /// <returns></returns>
         public static List<DeliveryOrderProduct> GetDeliveryOrderProducts(
@@ -287,7 +287,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
         /// <summary>
         /// Get delivery order by its ID.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">Database context</param>
         /// <param name="deliveryOrderId">Delivery order ID</param>
         /// <returns></returns>
         public static DeliveryOrder? GetDeliveryOrderById(FoodDeliveryDbContext context, long deliveryOrderId)
@@ -298,7 +298,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
         /// <summary>
         /// Change delivery order status.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">Database context</param>
         /// <param name="deliveryOrder">Delivery order</param>
         /// <param name="status"></param>
         public static void ChangeDeliveryOrderStatus(
@@ -313,7 +313,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
         /// <summary>
         /// Get parent delivery order by delivery order ID.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">Database context</param>
         /// <param name="deliveryOrderId">Delivery order ID</param>
         /// <returns></returns>
         public static DeliveryOrder? GetParentDeliveryOrderById(FoodDeliveryDbContext context, long deliveryOrderId)

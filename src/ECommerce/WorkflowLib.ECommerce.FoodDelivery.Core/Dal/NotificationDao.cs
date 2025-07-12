@@ -8,7 +8,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
         /// <summary>
         /// Save notifications.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">Database context</param>
         /// <param name="notifications"></param>
         public static void SaveNotifications(
             FoodDeliveryDbContext context,

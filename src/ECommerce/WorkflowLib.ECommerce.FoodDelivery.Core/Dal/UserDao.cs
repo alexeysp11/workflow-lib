@@ -24,7 +24,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
         /// <summary>
         /// Get responsible employee gy group name.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">Database context</param>
         /// <param name="userGroupName"></param>
         public static void GetResponsibleEmployeeByGroupName(FoodDeliveryDbContext context, string userGroupName)
         {
@@ -48,7 +48,7 @@ namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
         /// <summary>
         /// Get admin user account.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">Database context</param>
         /// <returns></returns>
         public static UserAccount? GetAdminUserAccount(FoodDeliveryDbContext context)
         {
