@@ -13,12 +13,6 @@ namespace WorkflowLib.Shared.Models.Business.Cooking
         public Product? Product { get; set; }
 
         /// <summary>
-        /// Ingredients.
-        /// </summary>
-        [Obsolete("It's better to use IngredientRecipe object")]
-        public ICollection<Ingredient> Ingredients { get; set; }
-
-        /// <summary>
         /// Instruction how to cook.
         /// </summary>
         public string? Instruction { get; set; }
