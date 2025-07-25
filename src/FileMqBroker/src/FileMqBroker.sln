@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.FileMqBroker.HttpService", "WorkflowLib.FileMqBroker.HttpService\WorkflowLib.FileMqBroker.HttpService.csproj", "{0BD1869C-CC3D-4D41-AB92-5F195BE08DE9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.FileMqBroker.BackendService", "WorkflowLib.FileMqBroker.BackendService\WorkflowLib.FileMqBroker.BackendService.csproj", "{735E2E44-ECBE-4960-926B-3EF46C359DC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.FileMqBroker.MqLibrary", "WorkflowLib.FileMqBroker.MqLibrary\WorkflowLib.FileMqBroker.MqLibrary.csproj", "{DA73926D-AAAC-4F77-AB97-4E6A65907376}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{0BD1869C-CC3D-4D41-AB92-5F195BE08DE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BD1869C-CC3D-4D41-AB92-5F195BE08DE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BD1869C-CC3D-4D41-AB92-5F195BE08DE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{735E2E44-ECBE-4960-926B-3EF46C359DC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{735E2E44-ECBE-4960-926B-3EF46C359DC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{735E2E44-ECBE-4960-926B-3EF46C359DC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{735E2E44-ECBE-4960-926B-3EF46C359DC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA73926D-AAAC-4F77-AB97-4E6A65907376}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA73926D-AAAC-4F77-AB97-4E6A65907376}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA73926D-AAAC-4F77-AB97-4E6A65907376}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA73926D-AAAC-4F77-AB97-4E6A65907376}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -13,9 +13,9 @@ public class FileMqController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet(Name = "GetMessages")]
-    public IEnumerable<WeatherForecast> GetMessages()
+    [HttpGet(Name = "ProcessMessage")]
+    public string ProcessMessage(string request, string queueName)
     {
-        return new List<>;
+        return request;
     }
 }
