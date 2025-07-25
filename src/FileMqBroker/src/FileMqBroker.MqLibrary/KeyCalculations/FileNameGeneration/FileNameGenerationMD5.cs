@@ -11,20 +11,20 @@ namespace FileMqBroker.MqLibrary.KeyCalculations.FileNameGeneration;
 /// </summary>
 public class FileNameGenerationMD5 : IFileNameGeneration
 {
-    private Random m_random;
-    private ConcurrentDictionary<string, string> m_fullpathHashDictionary;
-    private IKeyCalculation m_keyCalculation;
-    private readonly string m_reqExtension = "req";
-    private readonly string m_respExtension = "resp";
+    private Random _random;
+    private ConcurrentDictionary<string, string> _fullpathHashDictionary;
+    private IKeyCalculation _keyCalculation;
+    private readonly string _reqExtension = "req";
+    private readonly string _respExtension = "resp";
 
     /// <summary>
     /// Default constructor.
     /// </summary>
     public FileNameGenerationMD5(KeyCalculationMD5 keyCalculation)
     {
-        m_random = new Random();
-        m_fullpathHashDictionary = new ConcurrentDictionary<string, string>();
-        m_keyCalculation = keyCalculation;
+        _random = new Random();
+        _fullpathHashDictionary = new ConcurrentDictionary<string, string>();
+        _keyCalculation = keyCalculation;
     }
 
     /// <summary>
@@ -33,7 +33,7 @@ public class FileNameGenerationMD5 : IFileNameGeneration
     public string GetFileName(string method, string path, MessageFileType direction)
     {
         var hash = CalculateHash(method, path);
-        var randomPostfix = m_random.Next().ToString("D10");
+        var randomPostfix = _random.Next().ToString("D10");
         return $"{System.DateTime.Now.ToString("yyyyMMddHHmmssfff")}.{hash}.{randomPostfix}.{GetMessageFileExtension(direction)}";
     }
 
@@ -44,13 +44,13 @@ public class FileNameGenerationMD5 : IFileNameGeneration
     {
         var fullpath = Path.Combine(method, path);
         
-        if (m_fullpathHashDictionary.ContainsKey(fullpath))
+        if (_fullpathHashDictionary.ContainsKey(fullpath))
         {
-            return m_fullpathHashDictionary[fullpath];
+            return _fullpathHashDictionary[fullpath];
         }
 
-        var hash = m_keyCalculation.CalculateHash(fullpath);
-        m_fullpathHashDictionary.TryAdd(fullpath, hash);
+        var hash = _keyCalculation.CalculateHash(fullpath);
+        _fullpathHashDictionary.TryAdd(fullpath, hash);
         return hash;
     }
 
@@ -59,6 +59,6 @@ public class FileNameGenerationMD5 : IFileNameGeneration
     /// </summary>
     private string GetMessageFileExtension(MessageFileType direction)
     {
-        return direction == MessageFileType.Request ? m_reqExtension : m_respExtension;
+        return direction == MessageFileType.Request ? _reqExtension : _respExtension;
     }
 }

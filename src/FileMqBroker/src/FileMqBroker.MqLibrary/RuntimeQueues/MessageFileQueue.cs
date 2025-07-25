@@ -13,22 +13,22 @@ namespace FileMqBroker.MqLibrary.RuntimeQueues;
 /// </summary>
 public class MessageFileQueue : IMessageFileQueue
 {
-    private readonly DuplicateRequestCollapseType m_collapseType;
-    private ConcurrentDictionary<string, MessageFile> m_messageQueueDictionary;
-    private ConcurrentQueue<MessageFile> m_messageQueue;
-    private ConcurrentQueue<MessageFile> m_loggingQueue;
-    private ConcurrentQueue<string> m_exceptionQueue;
+    private readonly DuplicateRequestCollapseType _collapseType;
+    private ConcurrentDictionary<string, MessageFile> _messageQueueDictionary;
+    private ConcurrentQueue<MessageFile> _messageQueue;
+    private ConcurrentQueue<MessageFile> _loggingQueue;
+    private ConcurrentQueue<string> _exceptionQueue;
     
     /// <summary>
     /// Default constructor.
     /// </summary>
     public MessageFileQueue(AppInitConfigs appInitConfigs)
     {
-        m_collapseType = appInitConfigs.DuplicateRequestCollapseType;
-        m_messageQueueDictionary = new ConcurrentDictionary<string, MessageFile>();
-        m_messageQueue = new ConcurrentQueue<MessageFile>();
-        m_loggingQueue = new ConcurrentQueue<MessageFile>();
-        m_exceptionQueue = new ConcurrentQueue<string>();
+        _collapseType = appInitConfigs.DuplicateRequestCollapseType;
+        _messageQueueDictionary = new ConcurrentDictionary<string, MessageFile>();
+        _messageQueue = new ConcurrentQueue<MessageFile>();
+        _loggingQueue = new ConcurrentQueue<MessageFile>();
+        _exceptionQueue = new ConcurrentQueue<string>();
     }
     
     /// <summary>
@@ -38,7 +38,7 @@ public class MessageFileQueue : IMessageFileQueue
     {
         get
         {
-            return m_collapseType;
+            return _collapseType;
         }
     }
 
@@ -47,7 +47,7 @@ public class MessageFileQueue : IMessageFileQueue
     /// </summary>
     public bool IsMessageInQueue(string key)
     {
-        return m_messageQueueDictionary.ContainsKey(key);
+        return _messageQueueDictionary.ContainsKey(key);
     }
     
     /// <summary>
@@ -55,17 +55,17 @@ public class MessageFileQueue : IMessageFileQueue
     /// </summary>
     public void EnqueueMessage(MessageFile message)
     {
-        if (m_collapseType == DuplicateRequestCollapseType.Advanced)
+        if (_collapseType == DuplicateRequestCollapseType.Advanced)
         {
             if (!IsMessageInQueue(message.CollapseHashCode))
             {
-                m_messageQueueDictionary.TryAdd(message.CollapseHashCode, message);
-                m_messageQueue.Enqueue(message);
+                _messageQueueDictionary.TryAdd(message.CollapseHashCode, message);
+                _messageQueue.Enqueue(message);
             }
         }
         else
         {
-            m_messageQueue.Enqueue(message);
+            _messageQueue.Enqueue(message);
         }
     }
 
@@ -74,15 +74,15 @@ public class MessageFileQueue : IMessageFileQueue
     /// </summary>
     public List<MessageFile> DequeueMessages(int count)
     {
-        var messages = DequeueItems(m_messageQueue, count);
+        var messages = DequeueItems(_messageQueue, count);
         
-        if (m_collapseType == DuplicateRequestCollapseType.Advanced)
+        if (_collapseType == DuplicateRequestCollapseType.Advanced)
         {
             foreach (var message in messages)
             {
                 if (IsMessageInQueue(message.CollapseHashCode))
                 {
-                    m_messageQueueDictionary.TryRemove(message.CollapseHashCode, out _);
+                    _messageQueueDictionary.TryRemove(message.CollapseHashCode, out _);
                 }
             }
         }
@@ -95,7 +95,7 @@ public class MessageFileQueue : IMessageFileQueue
     /// </summary>
     public void EnqueueMessageLogging(MessageFile message)
     {
-        m_loggingQueue.Enqueue(message);
+        _loggingQueue.Enqueue(message);
     }
 
     /// <summary>
@@ -103,7 +103,7 @@ public class MessageFileQueue : IMessageFileQueue
     /// </summary>
     public List<MessageFile> DequeueMessagesLogging(int count)
     {
-        return DequeueItems(m_loggingQueue, count);
+        return DequeueItems(_loggingQueue, count);
     }
 
     /// <summary>
@@ -111,7 +111,7 @@ public class MessageFileQueue : IMessageFileQueue
     /// </summary>
     public void EnqueueExceptionLogging(string exceptionMessage)
     {
-        m_exceptionQueue.Enqueue(exceptionMessage);
+        _exceptionQueue.Enqueue(exceptionMessage);
     }
 
     /// <summary>
@@ -119,7 +119,7 @@ public class MessageFileQueue : IMessageFileQueue
     /// </summary>
     public List<string> DequeueExceptionLogging(int count)
     {
-        return DequeueItems(m_exceptionQueue, count);
+        return DequeueItems(_exceptionQueue, count);
     }
 
     /// <summary>

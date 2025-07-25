@@ -9,8 +9,8 @@ namespace FileMqBroker.BackendService;
 /// </summary>
 public class BackendServiceWorker : BackgroundService
 {
-    private readonly ILogger<BackendServiceWorker> m_logger;
-    private IReadAdapter m_readAdapter;
+    private readonly ILogger<BackendServiceWorker> _logger;
+    private IReadAdapter _readAdapter;
 
     /// <summary>
     /// Default constructor.
@@ -21,8 +21,8 @@ public class BackendServiceWorker : BackgroundService
         WriteBackResponseHandler responseHandler,
         AppInitConfigs appInitConfigs)
     {
-        m_logger = logger;
-        m_readAdapter = readAdapter;
+        _logger = logger;
+        _readAdapter = readAdapter;
         appInitConfigs.BackendContinuationDelegate = responseHandler.ContinuationMethod;
     }
 
@@ -35,13 +35,13 @@ public class BackendServiceWorker : BackgroundService
         {
             try
             {
-                m_logger.LogInformation("BackendServiceWorker running at: {time}", DateTimeOffset.Now);
-                m_readAdapter.ReadMessageQueue();
+                _logger.LogInformation("BackendServiceWorker running at: {time}", DateTimeOffset.Now);
+                _readAdapter.ReadMessageQueue();
                 await Task.Delay(1000, stoppingToken);
             }
             catch (System.Exception ex)
             {
-                m_logger.LogError(ex.ToString());
+                _logger.LogError(ex.ToString());
             }
         }
     }

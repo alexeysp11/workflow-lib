@@ -7,14 +7,14 @@ namespace FileMqBroker.MqLibrary.LoadTesting.LoadGenerators;
 /// </summary>
 public class HttpLoadGenerator : ILoadGenerator
 {
-    private ILoadCalculation m_loadCalculation;
+    private ILoadCalculation _loadCalculation;
 
     /// <summary>
     /// Default constructor.
     /// </summary>
     public HttpLoadGenerator(ILoadCalculation loadCalculation)
     {
-        m_loadCalculation = loadCalculation;
+        _loadCalculation = loadCalculation;
     }
 
     /// <summary>
@@ -22,7 +22,7 @@ public class HttpLoadGenerator : ILoadGenerator
     /// </summary>
     public void GenerateLoad()
     {
-        var currentLoad = m_loadCalculation.CalculateLoad();
+        var currentLoad = _loadCalculation.CalculateLoad();
         System.Console.WriteLine($"Current load: {currentLoad}");
     }
 }

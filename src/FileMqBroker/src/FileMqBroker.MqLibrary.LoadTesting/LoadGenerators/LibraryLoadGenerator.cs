@@ -8,8 +8,8 @@ namespace FileMqBroker.MqLibrary.LoadTesting.LoadGenerators;
 /// </summary>
 public class LibraryLoadGenerator : ILoadGenerator
 {
-    private ILoadCalculation m_loadCalculation;
-    private InvestmentController m_controller;
+    private ILoadCalculation _loadCalculation;
+    private InvestmentController _controller;
 
     /// <summary>
     /// Default constructor.
@@ -18,8 +18,8 @@ public class LibraryLoadGenerator : ILoadGenerator
         ILoadCalculation loadCalculation, 
         InvestmentController controller)
     {
-        m_loadCalculation = loadCalculation;
-        m_controller = controller;
+        _loadCalculation = loadCalculation;
+        _controller = controller;
     }
 
     /// <summary>
@@ -27,7 +27,7 @@ public class LibraryLoadGenerator : ILoadGenerator
     /// </summary>
     public void GenerateLoad()
     {
-        var currentLoad = m_loadCalculation.CalculateLoad();
+        var currentLoad = _loadCalculation.CalculateLoad();
 
         // Load means the number of requests.
         // Accordingly, it is necessary to create a given number of client classes in a loop.
@@ -36,8 +36,8 @@ public class LibraryLoadGenerator : ILoadGenerator
         {
             Task task = Task.Run(() =>
             {
-                // m_controller.GetInvestmentStats();
-                m_controller.RequestInvestment($"request: {i}");
+                // _controller.GetInvestmentStats();
+                _controller.RequestInvestment($"request: {i}");
             });
             loadTasks[i] = task;
         }

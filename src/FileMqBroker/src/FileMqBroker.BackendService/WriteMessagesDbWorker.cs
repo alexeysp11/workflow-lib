@@ -7,15 +7,15 @@ namespace FileMqBroker.BackendService;
 /// </summary>
 public class WriteMessagesDbWorker : BackgroundService
 {
-    private readonly ILogger<WriteMessagesDbWorker> m_logger;
-    private IMqDispatcher m_dispatcher;
+    private readonly ILogger<WriteMessagesDbWorker> _logger;
+    private IMqDispatcher _dispatcher;
 
     public WriteMessagesDbWorker(
         ILogger<WriteMessagesDbWorker> logger,
         WriteMqDispatcher dispatcher)
     {
-        m_logger = logger;
-        m_dispatcher = dispatcher;
+        _logger = logger;
+        _dispatcher = dispatcher;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -24,13 +24,13 @@ public class WriteMessagesDbWorker : BackgroundService
         {
             try
             {
-                m_logger.LogInformation("WriteMessagesDbWorker running at: {time}", DateTimeOffset.Now);
-                m_dispatcher.ProcessMessageQueue();
+                _logger.LogInformation("WriteMessagesDbWorker running at: {time}", DateTimeOffset.Now);
+                _dispatcher.ProcessMessageQueue();
                 await Task.Delay(1000, stoppingToken);
             }
             catch (System.Exception ex)
             {
-                m_logger.LogError(ex.ToString());
+                _logger.LogError(ex.ToString());
             }
         }
     }

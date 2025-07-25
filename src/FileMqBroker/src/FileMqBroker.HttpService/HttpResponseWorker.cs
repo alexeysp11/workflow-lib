@@ -9,8 +9,8 @@ namespace FileMqBroker.HttpService;
 /// </summary>
 public class HttpResponseWorker : BackgroundService
 {
-    private readonly ILogger<HttpResponseWorker> m_logger;
-    private IReadAdapter m_readAdapter;
+    private readonly ILogger<HttpResponseWorker> _logger;
+    private IReadAdapter _readAdapter;
 
     /// <summary>
     /// Default constructor.
@@ -21,8 +21,8 @@ public class HttpResponseWorker : BackgroundService
         HttpResponseHandler responseHandler,
         AppInitConfigs appInitConfigs)
     {
-        m_logger = logger;
-        m_readAdapter = readAdapter;
+        _logger = logger;
+        _readAdapter = readAdapter;
         appInitConfigs.BackendContinuationDelegate = responseHandler.ContinuationMethod;
     }
 
@@ -33,8 +33,8 @@ public class HttpResponseWorker : BackgroundService
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-            m_logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-            m_readAdapter.ReadMessageQueue();
+            _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+            _readAdapter.ReadMessageQueue();
             await Task.Delay(1000, stoppingToken);
         }
     }

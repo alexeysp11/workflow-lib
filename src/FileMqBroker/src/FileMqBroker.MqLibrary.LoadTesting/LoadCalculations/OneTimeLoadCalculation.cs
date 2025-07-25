@@ -7,14 +7,14 @@ namespace FileMqBroker.MqLibrary.LoadTesting.LoadCalculations;
 /// </summary>
 public class OneTimeLoadCalculation : ILoadCalculation
 {
-    private LoadConfigParams m_loadConfigParams;
+    private LoadConfigParams _loadConfigParams;
 
     /// <summary>
     /// Default constructor.
     /// </summary>
     public OneTimeLoadCalculation(LoadConfigParams loadConfigParams)
     {
-        m_loadConfigParams = loadConfigParams;
+        _loadConfigParams = loadConfigParams;
     }
 
     /// <summary>
@@ -22,6 +22,6 @@ public class OneTimeLoadCalculation : ILoadCalculation
     /// </summary>
     public int CalculateLoad()
     {
-        return m_loadConfigParams.DeltaMax;
+        return _loadConfigParams.DeltaMax;
     }
 }

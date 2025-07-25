@@ -11,15 +11,15 @@ namespace FileMqBroker.MqLibrary.DAL;
 /// </summary>
 public class SqliteExceptionDAL : IExceptionDAL
 {
-    private readonly string m_connectionString;
-    private readonly string m_insertSQL = "INSERT INTO ExceptionLog (ExceptionMessage) VALUES ";
+    private readonly string _connectionString;
+    private readonly string _insertSQL = "INSERT INTO ExceptionLog (ExceptionMessage) VALUES ";
 
     /// <summary>
     /// Default constructor.
     /// </summary>
     public SqliteExceptionDAL(AppInitConfigs appInitConfigs)
     {
-        m_connectionString = appInitConfigs.DbConnectionString;
+        _connectionString = appInitConfigs.DbConnectionString;
     }
 
     /// <summary>
@@ -34,7 +34,7 @@ public class SqliteExceptionDAL : IExceptionDAL
         
         var sqlQuery = GenerateInsertSqlByExceptions(exceptions);
 
-        using (var connection = new SQLiteConnection(m_connectionString))
+        using (var connection = new SQLiteConnection(_connectionString))
         {
             connection.Execute(sqlQuery.Query, sqlQuery.Parameters);
         }
@@ -50,7 +50,7 @@ public class SqliteExceptionDAL : IExceptionDAL
         
         var queryParameters = new DynamicParameters();
         var stringBuilder = new StringBuilder();
-        stringBuilder.Append(m_insertSQL);
+        stringBuilder.Append(_insertSQL);
 
         for (int i = 0; i < exceptions.Count; i++)
         {

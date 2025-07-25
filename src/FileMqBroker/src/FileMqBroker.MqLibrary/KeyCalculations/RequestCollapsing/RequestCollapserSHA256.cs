@@ -8,14 +8,14 @@ namespace FileMqBroker.MqLibrary.KeyCalculations.RequestCollapsing;
 /// </summary>
 public class RequestCollapserSHA256 : IRequestCollapser
 {
-    private IKeyCalculation m_keyCalculation;
+    private IKeyCalculation _keyCalculation;
 
     /// <summary>
     /// Default constructor.
     /// </summary>
     public RequestCollapserSHA256(KeyCalculationSHA256 keyCalculation)
     {
-        m_keyCalculation = keyCalculation;
+        _keyCalculation = keyCalculation;
     }
 
     /// <summary>
@@ -27,6 +27,6 @@ public class RequestCollapserSHA256 : IRequestCollapser
         stringBuilder.Append("<method>").Append(method).Append("</method>");
         stringBuilder.Append("<path>").Append(path).Append("</path>");
         stringBuilder.Append("<content>").Append(content).Append("</content>");
-        return m_keyCalculation.CalculateHash(stringBuilder.ToString());
+        return _keyCalculation.CalculateHash(stringBuilder.ToString());
     }
 }

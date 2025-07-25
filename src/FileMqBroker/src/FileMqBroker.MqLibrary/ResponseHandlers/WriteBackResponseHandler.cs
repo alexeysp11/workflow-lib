@@ -9,8 +9,8 @@ namespace FileMqBroker.MqLibrary.ResponseHandlers;
 /// </summary>
 public class WriteBackResponseHandler : IResponseHandler
 {
-    private IWriteAdapter m_writeAdapter;
-    private IFileContentGenerator m_fileContentGenerator;
+    private IWriteAdapter _writeAdapter;
+    private IFileContentGenerator _fileContentGenerator;
 
     /// <summary>
     /// Default constructor.
@@ -19,8 +19,8 @@ public class WriteBackResponseHandler : IResponseHandler
         IWriteAdapter writeAdapter,
         IFileContentGenerator fileContentGenerator)
     {
-        m_writeAdapter = writeAdapter;
-        m_fileContentGenerator = fileContentGenerator;
+        _writeAdapter = writeAdapter;
+        _fileContentGenerator = fileContentGenerator;
     }
 
     /// <summary>
@@ -31,7 +31,7 @@ public class WriteBackResponseHandler : IResponseHandler
         if (messageFile == null)
             throw new System.ArgumentNullException(nameof(messageFile));
 
-        var responseContent = m_fileContentGenerator.GenerateContent(messageFile.Name);
-        m_writeAdapter.WriteMessage(messageFile.HttpMethod, messageFile.HttpPath, responseContent, MessageFileType.Response, messageFile.Name);
+        var responseContent = _fileContentGenerator.GenerateContent(messageFile.Name);
+        _writeAdapter.WriteMessage(messageFile.HttpMethod, messageFile.HttpPath, responseContent, MessageFileType.Response, messageFile.Name);
     }
 }

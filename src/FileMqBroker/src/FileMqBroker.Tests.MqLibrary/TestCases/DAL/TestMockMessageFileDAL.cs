@@ -12,14 +12,14 @@ namespace FileMqBroker.Tests.MqLibrary.TestCases.DAL;
 /// </summary>
 public class TestMockMessageFileDAL : ITestCase
 {
-    private MockMessageFileDAL m_mockMessageFileDAL;
+    private MockMessageFileDAL _mockMessageFileDAL;
 
     /// <summary>
     /// 
     /// </summary>
     public TestMockMessageFileDAL()
     {
-        m_mockMessageFileDAL = new MockMessageFileDAL();
+        _mockMessageFileDAL = new MockMessageFileDAL();
     }
 
     /// <summary>
@@ -44,7 +44,7 @@ public class TestMockMessageFileDAL : ITestCase
         System.Console.WriteLine($"= {method.ReflectedType.Name}.{method.Name}");
 
         var files = new List<MessageFile>();
-        m_mockMessageFileDAL.InsertMessageFileState(files);
+        _mockMessageFileDAL.InsertMessageFileState(files);
     }
 
     [MqLibraryTestMethod]
@@ -60,6 +60,6 @@ public class TestMockMessageFileDAL : ITestCase
                 Name = "Custom name"
             }
         };
-        m_mockMessageFileDAL.InsertMessageFileState(files);
+        _mockMessageFileDAL.InsertMessageFileState(files);
     }
 }

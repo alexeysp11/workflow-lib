@@ -4,15 +4,15 @@ namespace FileMqBroker.MqLibrary.LoadTesting;
 
 public class LoadTestingWorker : BackgroundService
 {
-    private readonly ILogger<LoadTestingWorker> m_logger;
-    private ILoadGenerator m_loadGenerator;
+    private readonly ILogger<LoadTestingWorker> _logger;
+    private ILoadGenerator _loadGenerator;
 
     public LoadTestingWorker(
         ILogger<LoadTestingWorker> logger,
         ILoadGenerator loadGenerator)
     {
-        m_logger = logger;
-        m_loadGenerator = loadGenerator;
+        _logger = logger;
+        _loadGenerator = loadGenerator;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -21,13 +21,13 @@ public class LoadTestingWorker : BackgroundService
         {
             try
             {
-                m_logger.LogInformation("LoadTestingWorker running at: {time}", DateTimeOffset.Now);
-                m_loadGenerator.GenerateLoad();
+                _logger.LogInformation("LoadTestingWorker running at: {time}", DateTimeOffset.Now);
+                _loadGenerator.GenerateLoad();
                 await Task.Delay(1000, stoppingToken);
             }
             catch (System.Exception ex)
             {
-                m_logger.LogError(ex.ToString());
+                _logger.LogError(ex.ToString());
             }
         }
     }

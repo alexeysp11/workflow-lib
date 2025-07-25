@@ -7,8 +7,8 @@ namespace FileMqBroker.BackendService;
 /// </summary>
 public class ReadMessagesDbWorker : BackgroundService
 {
-    private readonly ILogger<ReadMessagesDbWorker> m_logger;
-    private IMqDispatcher m_dispatcher;
+    private readonly ILogger<ReadMessagesDbWorker> _logger;
+    private IMqDispatcher _dispatcher;
 
     /// <summary>
     /// Default constructor.
@@ -17,8 +17,8 @@ public class ReadMessagesDbWorker : BackgroundService
         ILogger<ReadMessagesDbWorker> logger,
         ReadMqDispatcher dispatcher)
     {
-        m_logger = logger;
-        m_dispatcher = dispatcher;
+        _logger = logger;
+        _dispatcher = dispatcher;
     }
 
     /// <summary>
@@ -30,13 +30,13 @@ public class ReadMessagesDbWorker : BackgroundService
         {
             try
             {
-                m_logger.LogInformation("ReadMessagesDbWorker running at: {time}", DateTimeOffset.Now);
-                m_dispatcher.ProcessMessageQueue();
+                _logger.LogInformation("ReadMessagesDbWorker running at: {time}", DateTimeOffset.Now);
+                _dispatcher.ProcessMessageQueue();
                 await Task.Delay(1000, stoppingToken);
             }
             catch (System.Exception ex)
             {
-                m_logger.LogError(ex.ToString());
+                _logger.LogError(ex.ToString());
             }
         }
     }

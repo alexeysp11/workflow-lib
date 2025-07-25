@@ -13,14 +13,14 @@ namespace FileMqBroker.MqLibrary.QueueDispatchers;
 /// </summary>
 public class ReadMqDispatcher : IMqDispatcher
 {
-    private readonly string m_requestDirectoryName;
-    private readonly string m_responseDirectoryName;
-    private readonly int m_oneTimeProcQueueElements;
-    private readonly MessageFileType m_messageFileType;
-    private readonly IMessageFileDAL m_messageFileDAL;
-    private readonly IExceptionDAL m_exceptionDAL;
-    private readonly FileHandler m_fileHandler;
-    private readonly MessageFileQueue m_messageFileQueue;
+    private readonly string _requestDirectoryName;
+    private readonly string _responseDirectoryName;
+    private readonly int _oneTimeProcQueueElements;
+    private readonly MessageFileType _messageFileType;
+    private readonly IMessageFileDAL _messageFileDAL;
+    private readonly IExceptionDAL _exceptionDAL;
+    private readonly FileHandler _fileHandler;
+    private readonly MessageFileQueue _messageFileQueue;
 
     /// <summary>
     /// Default constructor.
@@ -32,14 +32,14 @@ public class ReadMqDispatcher : IMqDispatcher
         FileHandler fileHandler, 
         ReadMessageFileQueue messageFileQueue)
     {
-        m_oneTimeProcQueueElements = appInitConfigs.OneTimeProcQueueElements;
-        m_requestDirectoryName = appInitConfigs.RequestDirectoryName;
-        m_responseDirectoryName = appInitConfigs.ResponseDirectoryName;
-        m_messageFileType = appInitConfigs.ReadMqDispatcherMessageFileType;
-        m_messageFileDAL = messageFileDAL;
-        m_exceptionDAL = exceptionDAL;
-        m_fileHandler = fileHandler;
-        m_messageFileQueue = messageFileQueue;
+        _oneTimeProcQueueElements = appInitConfigs.OneTimeProcQueueElements;
+        _requestDirectoryName = appInitConfigs.RequestDirectoryName;
+        _responseDirectoryName = appInitConfigs.ResponseDirectoryName;
+        _messageFileType = appInitConfigs.ReadMqDispatcherMessageFileType;
+        _messageFileDAL = messageFileDAL;
+        _exceptionDAL = exceptionDAL;
+        _fileHandler = fileHandler;
+        _messageFileQueue = messageFileQueue;
     }
 
     /// <summary>
@@ -49,8 +49,8 @@ public class ReadMqDispatcher : IMqDispatcher
     {
         // Update the status of old messages so they can be read and removed from the directory.
         // Get files from the database that can be processed.
-        m_messageFileDAL.UpdateOldMessageFileState();
-        var fileMessages = m_messageFileDAL.GetMessageFileInfo(20_000, 1, m_messageFileType);
+        _messageFileDAL.UpdateOldMessageFileState();
+        var fileMessages = _messageFileDAL.GetMessageFileInfo(20_000, 1, _messageFileType);
         if (fileMessages == null)
             throw new System.Exception("File messages could not be null");
         if (fileMessages.Count == 0)
@@ -62,9 +62,9 @@ public class ReadMqDispatcher : IMqDispatcher
             foreach (var fileMessage in fileMessages)
             {
                 fileMessage.MessageFileState = MessageFileState.Reading;
-                m_messageFileQueue.EnqueueMessage(fileMessage);
+                _messageFileQueue.EnqueueMessage(fileMessage);
             }
-            m_messageFileDAL.UpdateMessageFileState(fileMessages);
+            _messageFileDAL.UpdateMessageFileState(fileMessages);
         });
 
         // Read files from the directory.
@@ -81,17 +81,17 @@ public class ReadMqDispatcher : IMqDispatcher
         Task.WaitAll(processingTasks);
         
         // Logging messages as processed elements.
-        var loggingMessages = m_messageFileQueue.DequeueMessagesLogging(m_oneTimeProcQueueElements);
+        var loggingMessages = _messageFileQueue.DequeueMessagesLogging(_oneTimeProcQueueElements);
         ThreadPool.QueueUserWorkItem(state =>
         {
-            m_messageFileDAL.UpdateMessageFileState(loggingMessages);
+            _messageFileDAL.UpdateMessageFileState(loggingMessages);
         });
 
         // Add exceptions into database.
-        var exceptions = m_messageFileQueue.DequeueExceptionLogging(m_oneTimeProcQueueElements);
+        var exceptions = _messageFileQueue.DequeueExceptionLogging(_oneTimeProcQueueElements);
         ThreadPool.QueueUserWorkItem(state =>
         {
-            m_exceptionDAL.InsertExceptions(exceptions);
+            _exceptionDAL.InsertExceptions(exceptions);
         });
     }
 
@@ -100,22 +100,22 @@ public class ReadMqDispatcher : IMqDispatcher
     /// </summary>
     private void ProcessFileReadRequest(MessageFile fileMessage)
     {
-        var fileName = Path.Combine((m_messageFileType == MessageFileType.Request ? m_requestDirectoryName : m_responseDirectoryName), fileMessage.Name);
+        var fileName = Path.Combine((_messageFileType == MessageFileType.Request ? _requestDirectoryName : _responseDirectoryName), fileMessage.Name);
         var fileContent = fileMessage.Content;
         try
         {
-            fileMessage.Content = m_fileHandler.ReadFromFile(fileName);
-            m_fileHandler.DeleteFile(fileName);
+            fileMessage.Content = _fileHandler.ReadFromFile(fileName);
+            _fileHandler.DeleteFile(fileName);
             fileMessage.MessageFileState = MessageFileState.Processed;
         }
         catch (Exception ex)
         {
             fileMessage.MessageFileState = MessageFileState.FailedToRead;
-            m_messageFileQueue.EnqueueExceptionLogging($"Error processing file {fileName}: {ex.Message}");
+            _messageFileQueue.EnqueueExceptionLogging($"Error processing file {fileName}: {ex.Message}");
         }
         finally
         {
-            m_messageFileQueue.EnqueueMessageLogging(fileMessage);
+            _messageFileQueue.EnqueueMessageLogging(fileMessage);
         }
     }
 }

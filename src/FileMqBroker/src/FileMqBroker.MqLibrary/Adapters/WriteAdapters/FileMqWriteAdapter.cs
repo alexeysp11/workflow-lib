@@ -10,10 +10,10 @@ namespace FileMqBroker.MqLibrary.Adapters.WriteAdapters;
 /// </summary>
 public class FileMqWriteAdapter : IWriteAdapter
 {
-    private readonly DuplicateRequestCollapseType m_collapseType;
-    private IRequestCollapser m_requestCollapser;
-    private IFileNameGeneration m_fileNameGeneration;
-    private IMessageFileQueue m_messageFileQueue;
+    private readonly DuplicateRequestCollapseType _collapseType;
+    private IRequestCollapser _requestCollapser;
+    private IFileNameGeneration _fileNameGeneration;
+    private IMessageFileQueue _messageFileQueue;
 
     /// <summary>
     /// Default constructor.
@@ -24,10 +24,10 @@ public class FileMqWriteAdapter : IWriteAdapter
         IFileNameGeneration fileNameGeneration,
         WriteMessageFileQueue messageFileQueue)
     {
-        m_collapseType = appInitConfigs.DuplicateRequestCollapseType;
-        m_requestCollapser = requestCollapser;
-        m_fileNameGeneration = fileNameGeneration;
-        m_messageFileQueue = messageFileQueue;
+        _collapseType = appInitConfigs.DuplicateRequestCollapseType;
+        _requestCollapser = requestCollapser;
+        _fileNameGeneration = fileNameGeneration;
+        _messageFileQueue = messageFileQueue;
     }
     
     /// <summary>
@@ -35,17 +35,17 @@ public class FileMqWriteAdapter : IWriteAdapter
     /// </summary>
     public void WriteMessage(string method, string path, string content, MessageFileType direction, string? oldMessageFileName = null)
     {
-        var collapseHash = m_requestCollapser.CalculateRequestHashCode(method, path, content);
+        var collapseHash = _requestCollapser.CalculateRequestHashCode(method, path, content);
 
-        if (m_collapseType == DuplicateRequestCollapseType.Advanced)
+        if (_collapseType == DuplicateRequestCollapseType.Advanced)
         {
-            if (m_messageFileQueue.IsMessageInQueue(collapseHash))
+            if (_messageFileQueue.IsMessageInQueue(collapseHash))
             {
                 return;
             }
         }
 
-        var name = string.IsNullOrEmpty(oldMessageFileName) ? m_fileNameGeneration.GetFileName(method, path, direction) : oldMessageFileName.Replace(".req", ".resp");
+        var name = string.IsNullOrEmpty(oldMessageFileName) ? _fileNameGeneration.GetFileName(method, path, direction) : oldMessageFileName.Replace(".req", ".resp");
         var messageFile = new MessageFile
         {
             Name = name,
@@ -57,6 +57,6 @@ public class FileMqWriteAdapter : IWriteAdapter
             MessageFileState = MessageFileState.Undefined
         };
 
-        m_messageFileQueue.EnqueueMessage(messageFile);
+        _messageFileQueue.EnqueueMessage(messageFile);
     }
 }

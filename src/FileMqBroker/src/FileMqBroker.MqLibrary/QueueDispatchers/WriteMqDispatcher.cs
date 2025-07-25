@@ -13,13 +13,13 @@ namespace FileMqBroker.MqLibrary.QueueDispatchers;
 /// </summary>
 public class WriteMqDispatcher : IMqDispatcher
 {
-    private readonly string m_requestDirectoryName;
-    private readonly string m_responseDirectoryName;
-    private readonly int m_oneTimeProcQueueElements;
-    private readonly IMessageFileDAL m_messageFileDAL;
-    private readonly IExceptionDAL m_exceptionDAL;
-    private readonly FileHandler m_fileHandler;
-    private readonly MessageFileQueue m_messageFileQueue;
+    private readonly string _requestDirectoryName;
+    private readonly string _responseDirectoryName;
+    private readonly int _oneTimeProcQueueElements;
+    private readonly IMessageFileDAL _messageFileDAL;
+    private readonly IExceptionDAL _exceptionDAL;
+    private readonly FileHandler _fileHandler;
+    private readonly MessageFileQueue _messageFileQueue;
 
     /// <summary>
     /// Default constructor.
@@ -31,13 +31,13 @@ public class WriteMqDispatcher : IMqDispatcher
         FileHandler fileHandler, 
         WriteMessageFileQueue messageFileQueue)
     {
-        m_oneTimeProcQueueElements = appInitConfigs.OneTimeProcQueueElements;
-        m_requestDirectoryName = appInitConfigs.RequestDirectoryName;
-        m_responseDirectoryName = appInitConfigs.ResponseDirectoryName;
-        m_messageFileDAL = messageFileDAL;
-        m_exceptionDAL = exceptionDAL;
-        m_fileHandler = fileHandler;
-        m_messageFileQueue = messageFileQueue;
+        _oneTimeProcQueueElements = appInitConfigs.OneTimeProcQueueElements;
+        _requestDirectoryName = appInitConfigs.RequestDirectoryName;
+        _responseDirectoryName = appInitConfigs.ResponseDirectoryName;
+        _messageFileDAL = messageFileDAL;
+        _exceptionDAL = exceptionDAL;
+        _fileHandler = fileHandler;
+        _messageFileQueue = messageFileQueue;
     }
 
     /// <summary>
@@ -45,7 +45,7 @@ public class WriteMqDispatcher : IMqDispatcher
     /// </summary>
     public void ProcessMessageQueue()
     {
-        var fileMessages = m_messageFileQueue.DequeueMessages(m_oneTimeProcQueueElements);
+        var fileMessages = _messageFileQueue.DequeueMessages(_oneTimeProcQueueElements);
         if (fileMessages == null)
             throw new System.Exception("Collection of the file messages could not be null");
         if (fileMessages.Count == 0)
@@ -58,7 +58,7 @@ public class WriteMqDispatcher : IMqDispatcher
             {
                 fileMessage.MessageFileState = MessageFileState.Writing;
             }
-            m_messageFileDAL.InsertMessageFileState(fileMessages);
+            _messageFileDAL.InsertMessageFileState(fileMessages);
         });
         
         // Create a file.
@@ -75,17 +75,17 @@ public class WriteMqDispatcher : IMqDispatcher
         Task.WaitAll(processingTasks);
 
         // Logging messages as processed elements.
-        var loggingMessages = m_messageFileQueue.DequeueMessagesLogging(m_oneTimeProcQueueElements);
+        var loggingMessages = _messageFileQueue.DequeueMessagesLogging(_oneTimeProcQueueElements);
         ThreadPool.QueueUserWorkItem(state =>
         {
-            m_messageFileDAL.UpdateMessageFileState(loggingMessages);
+            _messageFileDAL.UpdateMessageFileState(loggingMessages);
         });
 
         // Exceptions.
-        var exceptions = m_messageFileQueue.DequeueExceptionLogging(m_oneTimeProcQueueElements);
+        var exceptions = _messageFileQueue.DequeueExceptionLogging(_oneTimeProcQueueElements);
         ThreadPool.QueueUserWorkItem(state =>
         {
-            m_exceptionDAL.InsertExceptions(exceptions);
+            _exceptionDAL.InsertExceptions(exceptions);
         });
     }
 
@@ -94,22 +94,22 @@ public class WriteMqDispatcher : IMqDispatcher
     /// </summary>
     private void ProcessFileCreateRequest(MessageFile fileMessage)
     {
-        var fileName = Path.Combine((fileMessage.MessageFileType == MessageFileType.Request ? m_requestDirectoryName : m_responseDirectoryName), fileMessage.Name);
+        var fileName = Path.Combine((fileMessage.MessageFileType == MessageFileType.Request ? _requestDirectoryName : _responseDirectoryName), fileMessage.Name);
         var fileContent = fileMessage.Content;
         try
         {
-            m_fileHandler.CreateFile(fileName);
-            m_fileHandler.WriteToFile(fileName, fileContent);
+            _fileHandler.CreateFile(fileName);
+            _fileHandler.WriteToFile(fileName, fileContent);
             fileMessage.MessageFileState = MessageFileState.ReadyToRead;
         }
         catch (Exception ex)
         {
             fileMessage.MessageFileState = MessageFileState.FailedToWrite;
-            m_messageFileQueue.EnqueueExceptionLogging($"Error processing file {fileName}: {ex.Message}");
+            _messageFileQueue.EnqueueExceptionLogging($"Error processing file {fileName}: {ex.Message}");
         }
         finally
         {
-            m_messageFileQueue.EnqueueMessageLogging(fileMessage);
+            _messageFileQueue.EnqueueMessageLogging(fileMessage);
         }
     }
 }

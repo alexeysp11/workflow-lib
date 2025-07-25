@@ -9,15 +9,15 @@ namespace FileMqBroker.HttpService.Controllers;
 [Route("[controller]")]
 public class InvestmentController : ControllerBase
 {
-    private readonly ILogger<InvestmentController> m_logger;
-    private IWriteAdapter m_writeAdapter;
+    private readonly ILogger<InvestmentController> _logger;
+    private IWriteAdapter _writeAdapter;
 
     public InvestmentController(
         ILogger<InvestmentController> logger,
         IWriteAdapter writeAdapter)
     {
-        m_logger = logger;
-        m_writeAdapter = writeAdapter;
+        _logger = logger;
+        _writeAdapter = writeAdapter;
     }
 
     [HttpGet(Name = "GetInvestmentStats")]
@@ -25,7 +25,7 @@ public class InvestmentController : ControllerBase
     {
         ThreadPool.QueueUserWorkItem(state =>
         {
-            m_writeAdapter.WriteMessage("HttpGet", "GetInvestmentStats", string.Empty, MessageFileType.Request);
+            _writeAdapter.WriteMessage("HttpGet", "GetInvestmentStats", string.Empty, MessageFileType.Request);
         });
         return 200;
     }
@@ -35,7 +35,7 @@ public class InvestmentController : ControllerBase
     {
         ThreadPool.QueueUserWorkItem(state =>
         {
-            m_writeAdapter.WriteMessage("HttpPost", "RequestInvestment", content, MessageFileType.Request);
+            _writeAdapter.WriteMessage("HttpPost", "RequestInvestment", content, MessageFileType.Request);
         });
         return 200;
     }
