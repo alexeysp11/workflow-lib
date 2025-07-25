@@ -1,0 +1,6 @@
+@WorkflowLib.FileMqBroker.HttpService_HostAddress = http://localhost:5133
+
+GET {{WorkflowLib.FileMqBroker.HttpService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
