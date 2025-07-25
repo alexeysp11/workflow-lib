@@ -53,7 +53,7 @@
         /// </summary>
         /// <param name="filePath">Path to the file.</param>
         /// <returns>Read data from the file.</returns>
-        public string ReadFromFile(string filePath)
+        public static string ReadFromFile(string filePath)
         {
             if (!File.Exists(filePath))
             {
@@ -74,7 +74,7 @@
         /// Deletes a file at the specified path.
         /// </summary>
         /// <param name="filePath">Path to the file.</param>
-        public void DeleteFile(string filePath)
+        public static void DeleteFile(string filePath)
         {
             if (!File.Exists(filePath))
             {
