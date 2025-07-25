@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WorkflowLib.FileMqBroker.MqLibrary;
 
 namespace WorkflowLib.FileMqBroker.HttpService.Controllers;
 
@@ -16,6 +17,6 @@ public class FileMqController : ControllerBase
     [HttpGet(Name = "ProcessMessage")]
     public string ProcessMessage(string request, string queueName)
     {
-        return request;
+        return RequestProcessing.ProcessMessage(request, queueName);
     }
 }
