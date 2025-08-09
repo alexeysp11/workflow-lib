@@ -63,5 +63,6 @@ List of the shared projects (reusable data models, services, and extensions):
 - [Models](src/Shared/Models/README.md)
 - [Models.Business](src/Shared/Models.Business/README.md): is an implementation of a shared object model for business entities used within the mono-repository.
 - [Office](src/Shared/Office/README.md): library for working with office document formats.
+- [Office.Extensions](src/Shared/Office.Extensions/README.md): extension library for working with office document formats.
 - [ServiceDiscoveryBpm](src/Shared/ServiceDiscoveryBpm/README.md)
 - [WpfExtensions](src/Shared/WpfExtensions/README.md): is a library of visual elements for WPF applications.
