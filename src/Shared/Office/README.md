@@ -2,6 +2,8 @@
 
 [English](README.md) | [Русский](README.ru.md)
 
+Library for working with office document formats.
+
 ## General description
 
 The library offers operations with documents, supporting multiple formats such as MS word (doc, docx), MS Excel (XLS, XLSX), PDF, images (PNG, BMP, JPEG), and binary files.

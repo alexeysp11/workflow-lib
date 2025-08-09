@@ -62,6 +62,6 @@ PRESS ENTER TO CONTINUE             |
 - [Communication](src/Shared/Communication/README.ru.md)
 - [Models](src/Shared/Models/README.ru.md)
 - [Models.Business](src/Shared/Models.Business/README.ru.md): является реализацией общей объектной модели для бизнес-сущностей, используемых в рамках данного монорепозитория.
-- [Office](src/Shared/Office/README.ru.md)
+- [Office](src/Shared/Office/README.ru.md): библиотека для работы с офисными форматами документов.
 - [ServiceDiscoveryBpm](src/Shared/ServiceDiscoveryBpm/README.ru.md)
 - [WpfExtensions](src/Shared/WpfExtensions/README.ru.md): библиотека визуальных компонентов для WPF-приложений.
