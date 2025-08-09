@@ -61,6 +61,6 @@ List of the shared projects (reusable data models, services, and extensions):
 - [CodeExtensions](src/Shared/CodeExtensions/README.md)
 - [Communication](src/Shared/Communication/README.md)
 - [Models](src/Shared/Models/README.md)
-- [Models.Business](src/Shared/Models.Business/README.md): is an implementation of a shared object model for business entities used within [workflow-lib](https://github.com/alexeysp11/workflow-lib).
+- [Models.Business](src/Shared/Models.Business/README.md): is an implementation of a shared object model for business entities used within the mono-repository.
 - [Office](src/Shared/Office/README.md)
 - [ServiceDiscoveryBpm](src/Shared/ServiceDiscoveryBpm/README.md)
