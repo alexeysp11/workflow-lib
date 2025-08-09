@@ -18,6 +18,31 @@ As a result, it was decided to create a mono-repository, which included most of 
 
 ### PixelTerminalUI
 
+Example of displaying information in a console application:
+
+```
+------------------------------------
+                                    |
+                                    |
+                                    |
+                                    |
+             WELCOME TO             |
+         PIXEL TERMINAL UI          |
+                                    |
+                                    |
+                                    |
+                                    |
+                                    |
+                                    |
+                                    |
+                                    |
+....................................|
+                                    |
+                                    |
+PRESS ENTER TO CONTINUE             |
+------------------------------------
+```
+
 ### UnifiedBusinessPlatform
 
 ### Shared
