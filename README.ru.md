@@ -61,6 +61,6 @@ PRESS ENTER TO CONTINUE             |
 - [CodeExtensions](src/Shared/CodeExtensions/README.ru.md)
 - [Communication](src/Shared/Communication/README.ru.md)
 - [Models](src/Shared/Models/README.ru.md)
-- [Models.Business](src/Shared/Models.Business/README.ru.md)
+- [Models.Business](src/Shared/Models.Business/README.ru.md): является реализацией общей объектной модели для бизнес-сущностей, используемых в рамках [workflow-lib](https://github.com/alexeysp11/workflow-lib).
 - [Office](src/Shared/Office/README.ru.md)
 - [ServiceDiscoveryBpm](src/Shared/ServiceDiscoveryBpm/README.ru.md)
