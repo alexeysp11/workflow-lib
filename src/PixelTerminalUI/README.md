@@ -2,6 +2,16 @@
 
 [English](README.md) | [Русский](README.ru.md)
 
+## Background
+
+PixelTerminalUI was inspired by my experience working as a C# developer at a large IT company that operated a major marketplace. I worked in the WMS department, developing applications for internal logistics. One of the key applications was a legacy Telnet UI application used for interacting with handheld terminals (PDAs).
+
+As the company sought to modernize its development practices with CI/CD, challenges arose in building and deploying .NET Framework 4.8 applications. Intrigued by how this application achieved a full UI experience using simple characters, I decided to explore its inner workings.
+
+This led to the creation of PixelTerminalUI, a project aimed at reimagining the engine behind this Telnet UI application. It serves as a demonstration of how to create a character-based UI framework in modern .NET.
+
+PixelTerminalUI is a completely independent project, developed in my free time and does not contain any code or confidential information from my previous employer.
+
 ## Usage examples
 
 Example of displaying information in a console application:
