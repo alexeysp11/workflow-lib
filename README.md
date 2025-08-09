@@ -16,7 +16,7 @@ As a result, it was decided to create a mono-repository, which included most of 
 
 ## Projects
 
-### PixelTerminalUI
+### [PixelTerminalUI](src/PixelTerminalUI/README.md)
 
 `PixelTerminalUI` was inspired by my experience working as a C# developer at a large IT company that operated a major marketplace. I worked in the WMS department, developing applications for internal logistics. One of the key applications was a legacy Telnet UI application used for interacting with handheld terminals (PDAs).
 
