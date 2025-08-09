@@ -16,6 +16,10 @@ As a result, it was decided to create a mono-repository, which included most of 
 
 ## Projects
 
+### PixelTerminalUI
+
+### UnifiedBusinessPlatform
+
 ### Shared
 
 List of the shared projects (reusable data models, services, and extensions):
