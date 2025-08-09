@@ -2,6 +2,8 @@
 
 [English](README.md) | [Русский](README.ru.md)
 
+## General description
+
 The library offers operations with documents, supporting multiple formats such as MS word (doc, docx), MS Excel (XLS, XLSX), PDF, images (PNG, BMP, JPEG), and binary files.
 
 This part of the library provides basic functionality for performing operations with documents (writing, reading, converting):
@@ -11,7 +13,7 @@ This part of the library provides basic functionality for performing operations 
 - Images: [PNG](DocFormats/Images/PngConverter.cs), [BMP](DocFormats/Images/BmpConverter.cs), [JPEG](DocFormats/Images/JpegConverter.cs), SVG, GIF, ICO;
 - XML, JSON, OOXML, CSV;
 - HTML, markdown;
-- [Binary](DocFormats/BinaryConverter.cs);
+- [Binary](DocFormats/BinaryConverter.cs).
 
 ## Technologies 
 
