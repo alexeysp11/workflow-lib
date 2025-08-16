@@ -2,20 +2,23 @@
 
 [English](README.md) | [Русский](README.ru.md)
 
-This project involves creating a software application that can efficiently handle the generation and management of employee vacation data, as well as provide insights into vacation crossings based on specific criteria.
+This project is a web application on ASP.NET MVC, designed for company management (organizational structure, employee information, and automation of key HR processes).
 
-## Requirements
+![Ubp.HomePage](docs/img/Ubp.HomePage.png)
 
-1. Generate randomly "employees of the company": 100 user objects (full name, gender, position (listing 10 positions), age).
-2. Randomly generate "vacation schedule": 3 "vacation" objects (start date, end date, user object) with a length of 14,7,7 days for each created user in the current year.
-3. Request the entry of a "new vacation" for the current employee. The length of the new vacation is not more than 14 days.
-4. Display information about vacation crossings according to the criteria:
-    - Crossing vacations with employees of my department. Employees under 30 years of age.
-    - Absense crossing with female employees not from my department. Age of employees - over 30, but under 50.
-    - Absense crossing with employees from any department. Employees are over 50 years old.
-    - Vacations without crossing.
-5. It is desirable to use LINQ, lambda expressions.
-6. It is desirable to choose the most efficient algorithm for determining intersections.
+Visualization of the hierarchical structure of the company: organizations, departments, teams, positions:
+
+![Ubp.Organizations](docs/img/Ubp.Organizations.png)
+
+Employee information management:
+
+![Ubp.Employees](docs/img/Ubp.Employees.png)
+
+Planned improvements:
+- **Absence management**: A system for recording vacations, sick leaves, and other types of employee absences.
+- **Payroll calculation**: Automatic calculation of wages based on hours worked and other factors.
+- **Internal Documentation**: A tool for storing and managing internal company documents such as policies, procedures, instructions.
+- **Knowledge Base**: Creating and maintaining a knowledge base for sharing experiences and information between employees.
 
 ## Getting started
 
@@ -35,13 +38,3 @@ Based on this, additional rules for making changes have emerged:
 
 - When you have made changes to the object model or DB procedures, you must save all information about the changes in the version control system (including all EF Core migrations and SQL scripts).
 - If a SQL script was created, you must add the path to the new SQL script to the end of the list of actions for initialization in [DbInit](WorkflowLib.UnifiedBusinessPlatform.DbInit). Otherwise, your changes will not be applied automatically, which may result in errors for users who will use your changes.
-
-## Using the application
-
-Employees:
-
-![employees_nofilter](../../docs/img/examples/UnifiedBusinessPlatform/employees_nofilter.png)
-
-Vacations:
-
-![vacations_nofilter](../../docs/img/examples/UnifiedBusinessPlatform/vacations_nofilter.png)

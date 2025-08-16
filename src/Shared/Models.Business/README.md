@@ -2,9 +2,21 @@
 
 [English](README.md) | [Русский](README.ru.md)
 
-The library includes several classes for business, such as common data models like address, business task, period, risk, etc. 
-It also includes classes for business documents like bill, delivery order, employment contract, customers like customer, company, contact, information system like employee, user account, working day, monetary models like paycheck, payment, pay rate and products like product, product category, project. 
-Additionally, the library provides classes for responsibilities like employee responsibility, employer responsibility and social communication like message.
+This project is an implementation of a shared object model for business entities used within [workflow-lib](https://github.com/alexeysp11/workflow-lib).
+
+## Idea
+
+The [workflow-lib](https://github.com/alexeysp11/workflow-lib) library was created to solve the problem of code duplication and disparate object models when developing business applications. For example, I often had to create identical entities and services in different projects, which led to a loss of time and complicated support. It is worth noting that each project had its own repository, which complicated the integration between projects and the ability to change the object model.
+
+As a result, it was decided to create a mono-repository, which included most of the previously created projects, as well as a common object model for representing data in the DB. This approach allows:
+- Avoid code duplication.
+- Ensure data consistency between projects.
+- Reduce development time by reusing ready-made components.
+- Simplify refactoring and dependency management.
+
+The `WorkflowLib.Shared.Models.Business` project contains a common object model for business entities.
+
+## Examples of classes
 
 This part of the library provides classes for business:
 - Common: [business task](BusinessTask.cs), [risk](Risk.cs), etc.
