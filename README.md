@@ -16,6 +16,20 @@ As a result, it was decided to create a mono-repository, which included most of 
 
 ## Projects
 
+### Shared
+
+List of the shared projects (reusable data models, services, and extensions):
+
+- [AuthenticationService](src/Shared/AuthenticationService/README.md)
+- [CodeExtensions](src/Shared/CodeExtensions/README.md)
+- [Communication](src/Shared/Communication/README.md)
+- [Models](src/Shared/Models/README.md)
+- [Models.Business](src/Shared/Models.Business/README.md): is an implementation of a shared object model for business entities used within the mono-repository.
+- [Office](src/Shared/Office/README.md): library for working with office document formats.
+- [Office.Extensions](src/Shared/Office.Extensions/README.md): extension library for working with office document formats.
+- [ServiceDiscoveryBpm](src/Shared/ServiceDiscoveryBpm/README.md)
+- [WpfExtensions](src/Shared/WpfExtensions/README.md): is a library of visual elements for WPF applications.
+
 ### [PixelTerminalUI](src/PixelTerminalUI/README.md)
 
 `PixelTerminalUI` was inspired by my experience working as a C# developer at a large IT company that operated a major marketplace. I worked in the WMS department, developing applications for internal logistics. One of the key applications was a legacy Telnet UI application used for interacting with handheld terminals (PDAs).
@@ -55,16 +69,20 @@ PRESS ENTER TO CONTINUE             |
 
 ### [UnifiedBusinessPlatform](src/UnifiedBusinessPlatform/README.md)
 
-### Shared
+This project is a web application on ASP.NET MVC, designed for company management (organizational structure, employee information, and automation of key HR processes).
 
-List of the shared projects (reusable data models, services, and extensions):
+![Ubp.HomePage](src/UnifiedBusinessPlatform/docs/img/Ubp.HomePage.png)
 
-- [AuthenticationService](src/Shared/AuthenticationService/README.md)
-- [CodeExtensions](src/Shared/CodeExtensions/README.md)
-- [Communication](src/Shared/Communication/README.md)
-- [Models](src/Shared/Models/README.md)
-- [Models.Business](src/Shared/Models.Business/README.md): is an implementation of a shared object model for business entities used within the mono-repository.
-- [Office](src/Shared/Office/README.md): library for working with office document formats.
-- [Office.Extensions](src/Shared/Office.Extensions/README.md): extension library for working with office document formats.
-- [ServiceDiscoveryBpm](src/Shared/ServiceDiscoveryBpm/README.md)
-- [WpfExtensions](src/Shared/WpfExtensions/README.md): is a library of visual elements for WPF applications.
+Visualization of the hierarchical structure of the company: organizations, departments, teams, positions:
+
+![Ubp.Organizations](src/UnifiedBusinessPlatform/docs/img/Ubp.Organizations.png)
+
+Employee information management:
+
+![Ubp.Employees](src/UnifiedBusinessPlatform/docs/img/Ubp.Employees.png)
+
+Planned improvements:
+- **Absence management**: A system for recording vacations, sick leaves, and other types of employee absences.
+- **Payroll calculation**: Automatic calculation of wages based on hours worked and other factors.
+- **Internal Documentation**: A tool for storing and managing internal company documents such as policies, procedures, instructions.
+- **Knowledge Base**: Creating and maintaining a knowledge base for sharing experiences and information between employees.
