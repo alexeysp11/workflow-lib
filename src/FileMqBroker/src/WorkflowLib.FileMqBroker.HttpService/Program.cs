@@ -23,7 +23,6 @@ namespace WorkflowLib.FileMqBroker.HttpService
 
             app.UseHttpsRedirection();
 
-
             app.MapControllers();
 
             app.Run();
