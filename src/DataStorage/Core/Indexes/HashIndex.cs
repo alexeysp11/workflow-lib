@@ -26,41 +26,32 @@ public class HashIndex<TKey, TValue>
         }
         else
         {
-            // Handle duplicate key scenario if needed.
-            throw new System.InvalidOperationException("Key already exists in the index.");
+            _index[key] = value;
         }
     }
 
     /// <summary>
     /// Remove an element from the index.
     /// </summary>
-    public void RemoveElement(TKey key)
+    public bool RemoveElement(TKey key)
     {
         if (_index.ContainsKey(key))
         {
             _index.Remove(key);
+            return true;
         }
-        else
-        {
-            // Handle key not found scenario if needed.
-            throw new System.InvalidOperationException("Key not found in the index.");
-        }
+        return false;
     }
 
     /// <summary>
     /// Search for an element in the index.
     /// </summary>
-    public TValue SearchElement(TKey key)
+    public TValue? SearchElement(TKey key)
     {
         if (_index.ContainsKey(key))
         {
             return _index[key];
         }
-        else
-        {
-            // Handle key not found scenario if needed.
-            throw new System.InvalidOperationException("Key not found in the index.");
-            return default(TValue);
-        }
+        return default(TValue);
     }
 }
