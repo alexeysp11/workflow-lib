@@ -1,36 +1,34 @@
-using System.Collections.Generic;
-using WorkflowLib.InMemoryDb.Core.DataStorage.Primitives;
+using WorkflowLib.InMemoryDb.Core.Primitives;
 
-namespace WorkflowLib.InMemoryDb.Core.DataStorage.Indexes;
+namespace WorkflowLib.InMemoryDb.Core.Indexes;
 
 /// <summary>
 /// The BalancedTreeIndex class, which implements a B-tree index.
 /// </summary>
 public class BalancedTreeIndex<TKey, TValue> where TKey : IComparable<TKey>
 {
-    private BalancedTreeElement<KeyValuePair<TKey, TValue>> m_root;
+    private BalancedTreeElement<KeyValuePair<TKey, TValue>> _root;
 
     /// <summary>
     /// Default constructor.
     /// </summary>
     public BalancedTreeIndex()
     {
-        m_root = null;
+        _root = null;
     }
-
-    #region Public methods
+    
     /// <summary>
     /// Method for adding an element to the index.
     /// </summary>
     public void AddElement(TKey key, TValue value)
     {
-        if (m_root == null)
+        if (_root == null)
         {
-            m_root = new BalancedTreeElement<KeyValuePair<TKey, TValue>>(new KeyValuePair<TKey, TValue>(key, value));
+            _root = new BalancedTreeElement<KeyValuePair<TKey, TValue>>(new KeyValuePair<TKey, TValue>(key, value));
         }
         else
         {
-            AddElementRecursive(m_root, key, value);
+            AddElementRecursive(_root, key, value);
         }
     }
 
@@ -39,12 +37,12 @@ public class BalancedTreeIndex<TKey, TValue> where TKey : IComparable<TKey>
     /// </summary>
     public void RemoveElement(TKey key)
     {
-        if (m_root == null)
+        if (_root == null)
         {
             return;
         }
 
-        RemoveElementRecursive(m_root, key);
+        RemoveElementRecursive(_root, key);
     }
 
     /// <summary>
@@ -52,16 +50,14 @@ public class BalancedTreeIndex<TKey, TValue> where TKey : IComparable<TKey>
     /// </summary>
     public TValue FindElement(TKey key)
     {
-        if (m_root == null)
+        if (_root == null)
         {
             throw new InvalidOperationException("Index is empty.");
         }
 
-        return FindElementRecursive(m_root, key);
+        return FindElementRecursive(_root, key);
     }
-    #endregion  // Public methods
 
-    #region Private methods
     /// <summary>
     /// Implementing adding an element to an index using recursion.
     /// </summary>
@@ -188,5 +184,4 @@ public class BalancedTreeIndex<TKey, TValue> where TKey : IComparable<TKey>
         }
         return ret;
     }
-    #endregion  // Private methods
 }

@@ -1,20 +1,18 @@
-using System.Collections.Generic;
-
-namespace WorkflowLib.InMemoryDb.Core.DataStorage.Indexes;
+namespace WorkflowLib.InMemoryDb.Core.Indexes;
 
 /// <summary>
 /// The HashIndex class, which implements a hash index.
 /// </summary>
 public class HashIndex<TKey, TValue>
 {
-    private Dictionary<TKey, TValue> m_index;
+    private Dictionary<TKey, TValue> _index;
 
     /// <summary>
     /// Default constructor.
     /// </summary>
     public HashIndex()
     {
-        m_index = new Dictionary<TKey, TValue>();
+        _index = new Dictionary<TKey, TValue>();
     }
 
     /// <summary>
@@ -22,9 +20,9 @@ public class HashIndex<TKey, TValue>
     /// </summary>
     public void AddElement(TKey key, TValue value)
     {
-        if (!m_index.ContainsKey(key))
+        if (!_index.ContainsKey(key))
         {
-            m_index.Add(key, value);
+            _index.Add(key, value);
         }
         else
         {
@@ -38,9 +36,9 @@ public class HashIndex<TKey, TValue>
     /// </summary>
     public void RemoveElement(TKey key)
     {
-        if (m_index.ContainsKey(key))
+        if (_index.ContainsKey(key))
         {
-            m_index.Remove(key);
+            _index.Remove(key);
         }
         else
         {
@@ -54,9 +52,9 @@ public class HashIndex<TKey, TValue>
     /// </summary>
     public TValue SearchElement(TKey key)
     {
-        if (m_index.ContainsKey(key))
+        if (_index.ContainsKey(key))
         {
-            return m_index[key];
+            return _index[key];
         }
         else
         {

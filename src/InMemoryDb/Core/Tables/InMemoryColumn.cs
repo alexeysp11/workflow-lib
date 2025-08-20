@@ -1,15 +1,12 @@
-using System;
-using System.Collections.Generic;
-
-namespace WorkflowLib.InMemoryDb.Core.DataStorage.Tables;
+namespace WorkflowLib.InMemoryDb.Core.Tables;
 
 /// <summary>
 /// 
 /// </summary>
 public class InMemoryColumn<T> where T : IComparable<T>
 {
-    private List<T> m_cells;
-    private IReadOnlyList<T> m_cachedCells;
+    private List<T> _cells;
+    private IReadOnlyList<T> _cachedCells;
 
     public string Name { get; set; }
     public InMemoryTable InMemoryTable { get; set; }
@@ -17,11 +14,11 @@ public class InMemoryColumn<T> where T : IComparable<T>
     {
         get
         {
-            if (m_cachedCells == null)
+            if (_cachedCells == null)
             {
-                m_cachedCells = new List<T>(m_cells);
+                _cachedCells = new List<T>(_cells);
             }
-            return m_cachedCells;
+            return _cachedCells;
         }
     }
 
@@ -32,11 +29,11 @@ public class InMemoryColumn<T> where T : IComparable<T>
         Name = name;
         InMemoryTable = inMemoryTable;
 
-        m_cells = new List<T>();
+        _cells = new List<T>();
     }
 
     private void ClearCache()
     {
-        m_cachedCells = null;
+        _cachedCells = null;
     }
 }

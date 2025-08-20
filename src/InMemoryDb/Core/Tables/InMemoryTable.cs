@@ -1,26 +1,24 @@
-using System.Collections.Generic;
-
-namespace WorkflowLib.InMemoryDb.Core.DataStorage.Tables;
+namespace WorkflowLib.InMemoryDb.Core.Tables;
 
 /// <summary>
 /// 
 /// </summary>
 public class InMemoryTable
 {
-    private List<InMemoryColumn<IComparable<object>>> m_columns;
-    private IReadOnlyList<InMemoryRecord<IComparable<object>>> m_records;
-    private IReadOnlyList<InMemoryColumn<IComparable<object>>> m_cachedColumns;
-    private IReadOnlyList<InMemoryRecord<IComparable<object>>> m_cachedRecords;
+    private List<InMemoryColumn<IComparable<object>>> _columns;
+    private IReadOnlyList<InMemoryRecord<IComparable<object>>> _records;
+    private IReadOnlyList<InMemoryColumn<IComparable<object>>> _cachedColumns;
+    private IReadOnlyList<InMemoryRecord<IComparable<object>>> _cachedRecords;
     
     public IReadOnlyList<InMemoryColumn<IComparable<object>>> InMemoryColumns
     {
         get
         {
-            if (m_cachedColumns == null)
+            if (_cachedColumns == null)
             {
-                m_cachedColumns = new List<InMemoryColumn<IComparable<object>>>(m_columns);
+                _cachedColumns = new List<InMemoryColumn<IComparable<object>>>(_columns);
             }
-            return m_cachedColumns;
+            return _cachedColumns;
         }
     }
     
@@ -28,26 +26,26 @@ public class InMemoryTable
     {
         get
         {
-            if (m_cachedRecords == null)
+            if (_cachedRecords == null)
             {
-                m_cachedRecords = new List<InMemoryRecord<IComparable<object>>>(m_records);
+                _cachedRecords = new List<InMemoryRecord<IComparable<object>>>(_records);
             }
-            return m_cachedRecords;
+            return _cachedRecords;
         }
     }
 
     public InMemoryTable()
     {
-        m_columns = new List<InMemoryColumn<IComparable<object>>>();
+        _columns = new List<InMemoryColumn<IComparable<object>>>();
     }
 
     public void AddColumn(InMemoryColumn<IComparable<object>> column)
     {
-        m_columns.Add(column);
+        _columns.Add(column);
     }
 
     private void ClearCache()
     {
-        m_cachedColumns = null;
+        _cachedColumns = null;
     }
 }
