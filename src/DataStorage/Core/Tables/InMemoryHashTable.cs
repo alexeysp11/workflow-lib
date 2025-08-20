@@ -1,5 +1,8 @@
 ﻿namespace WorkflowLib.DataStorage.Core.Tables;
 
+/// <summary>
+/// Implements in-memory hash table.
+/// </summary>
 public class InMemoryHashTable<TKey, TValue>
 {
     private Dictionary<TKey, TValue> _records;
