@@ -1,7 +1,7 @@
 ﻿namespace WorkflowLib.DataStorage.Core.Tables;
 
 /// <summary>
-/// Implements in-memory hash table.
+/// Implements a thread-safe in-memory hash table.
 /// </summary>
 public class InMemoryHashTable<TKey, TValue>
 {
