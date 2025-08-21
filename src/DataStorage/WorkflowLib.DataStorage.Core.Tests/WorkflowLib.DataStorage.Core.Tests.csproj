@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Core\WorkflowLib.DataStorage.Core.csproj" />
+    <ProjectReference Include="..\WorkflowLib.DataStorage.Core\WorkflowLib.DataStorage.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
