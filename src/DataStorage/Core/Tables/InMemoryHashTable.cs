@@ -5,8 +5,8 @@
 /// </summary>
 public class InMemoryHashTable<TKey, TValue>
 {
-    private object _obj = new object();
-    private Dictionary<TKey, TValue> _records;
+    protected object _obj = new object();
+    protected Dictionary<TKey, TValue> _records;
 
     /// <summary>
     /// Default constructor.
@@ -19,7 +19,7 @@ public class InMemoryHashTable<TKey, TValue>
     /// <summary>
     /// Add an element to the hash table.
     /// </summary>
-    public void AddElement(TKey key, TValue value)
+    public virtual void AddElement(TKey key, TValue value)
     {
         lock (_obj)
         {
@@ -37,7 +37,7 @@ public class InMemoryHashTable<TKey, TValue>
     /// <summary>
     /// Remove an element from the hash table.
     /// </summary>
-    public bool RemoveElement(TKey key)
+    public virtual bool RemoveElement(TKey key)
     {
         lock (_obj)
         {
@@ -53,7 +53,7 @@ public class InMemoryHashTable<TKey, TValue>
     /// <summary>
     /// Search for an element in the hash table.
     /// </summary>
-    public TValue? SearchElement(TKey key)
+    public virtual TValue? SearchElement(TKey key)
     {
         lock (_obj)
         {
