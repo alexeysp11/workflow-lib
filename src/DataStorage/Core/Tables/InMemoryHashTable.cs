@@ -5,6 +5,7 @@
 /// </summary>
 public class InMemoryHashTable<TKey, TValue>
 {
+    private object _obj = new object();
     private Dictionary<TKey, TValue> _records;
 
     /// <summary>
@@ -20,13 +21,16 @@ public class InMemoryHashTable<TKey, TValue>
     /// </summary>
     public void AddElement(TKey key, TValue value)
     {
-        if (!_records.ContainsKey(key))
+        lock (_obj)
         {
-            _records.Add(key, value);
-        }
-        else
-        {
-            _records[key] = value;
+            if (!_records.ContainsKey(key))
+            {
+                _records.Add(key, value);
+            }
+            else
+            {
+                _records[key] = value;
+            }
         }
     }
 
@@ -35,10 +39,13 @@ public class InMemoryHashTable<TKey, TValue>
     /// </summary>
     public bool RemoveElement(TKey key)
     {
-        if (_records.ContainsKey(key))
+        lock (_obj)
         {
-            _records.Remove(key);
-            return true;
+            if (_records.ContainsKey(key))
+            {
+                _records.Remove(key);
+                return true;
+            }
         }
         return false;
     }
@@ -48,9 +55,12 @@ public class InMemoryHashTable<TKey, TValue>
     /// </summary>
     public TValue? SearchElement(TKey key)
     {
-        if (_records.ContainsKey(key))
+        lock (_obj)
         {
-            return _records[key];
+            if (_records.ContainsKey(key))
+            {
+                return _records[key];
+            }
         }
         return default(TValue);
     }
