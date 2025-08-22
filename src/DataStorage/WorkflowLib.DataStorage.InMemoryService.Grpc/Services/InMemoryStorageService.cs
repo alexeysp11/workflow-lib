@@ -17,6 +17,7 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
 
     public override Task<SaveResponse> Save(SaveRequest request, ServerCallContext context)
     {
+        string requestUid = Guid.NewGuid().ToString();
         try
         {
             if (string.IsNullOrEmpty(request.Key))
@@ -24,24 +25,25 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
                 throw new ArgumentNullException(nameof(request.Key), "String that is null or empty could not be used as a key in KV data storage");
             }
 
-            Log.Information($"Save called with Key: {request.Key}, Value: {request.Value}");
+            Log.Information($"[UID: {requestUid}] Save called with Key: {request.Key}, Value: {request.Value}");
             _hashTable.AddElement(request.Key, request.Value);
             return Task.FromResult(new SaveResponse { Success = true });
         }
         catch (ArgumentNullException ex)
         {
-            Log.Error(ex, $"Error saving element with Key: {request.Key}, Value: {request.Value}.  Key or Value was null.");
-            throw new RpcException(new Status(StatusCode.InvalidArgument, "Key cannot be null."), ex.Message);
+            Log.Error(ex, $"[UID: {requestUid}] Error saving element with Key: {request.Key}, Value: {request.Value}.  Key or Value was null.");
+            throw new RpcException(new Status(StatusCode.InvalidArgument, $"[UID: {requestUid}] Key cannot be null."), ex.Message);
         }
         catch (Exception ex)
         {
-            Log.Error(ex, $"An unexpected error occurred while saving element with Key: {request.Key}, Value: {request.Value}");
-            throw new RpcException(new Status(StatusCode.Internal, "An unexpected error occurred."), ex.Message);
+            Log.Error(ex, $"[UID: {requestUid}] An unexpected error occurred while saving element with Key: {request.Key}, Value: {request.Value}");
+            throw new RpcException(new Status(StatusCode.Internal, $"[UID: {requestUid}] An unexpected error occurred."), ex.Message);
         }
     }
 
     public override Task<SearchResponse> Search(SearchRequest request, ServerCallContext context)
     {
+        string requestUid = Guid.NewGuid().ToString();
         try
         {
             if (string.IsNullOrEmpty(request.Key))
@@ -49,7 +51,7 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
                 throw new ArgumentNullException(nameof(request.Key), "String that is null or empty could not be used as a key in KV data storage");
             }
 
-            Log.Information($"Search called with Key: {request.Key}");
+            Log.Information($"[UID: {requestUid}] Search called with Key: {request.Key}");
             string? value = _hashTable.SearchElement(request.Key);
             bool found = value != null;
 
@@ -57,38 +59,39 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
         }
         catch (ArgumentNullException ex)
         {
-            Log.Error($"Error searching for element with Key: {request.Key}. Key was null.");
+            Log.Error($"[UID: {requestUid}] Error searching for element with Key: {request.Key}. Key was null.");
             throw new RpcException(new Status(StatusCode.InvalidArgument, "Key cannot be null."), ex.Message);
         }
         catch (Exception ex)
         {
-            Log.Error($"An unexpected error occurred while searching for element with Key: {request.Key}");
-            throw new RpcException(new Status(StatusCode.Internal, "An unexpected error occurred."), ex.Message);
+            Log.Error($"[UID: {requestUid}] An unexpected error occurred while searching for element with Key: {request.Key}");
+            throw new RpcException(new Status(StatusCode.Internal, $"[UID: {requestUid}] An unexpected error occurred."), ex.Message);
         }
     }
 
     public override Task<RemoveResponse> Remove(RemoveRequest request, ServerCallContext context)
     {
+        string requestUid = Guid.NewGuid().ToString();
         try
         {
             if (string.IsNullOrEmpty(request.Key))
             {
                 throw new ArgumentNullException(nameof(request.Key), "String that is null or empty could not be used as a key in KV data storage");
             }
-            
-            Log.Information($"Remove called with Key: {request.Key}");
+
+            Log.Information($"[UID: {requestUid}] Remove called with Key: {request.Key}");
             bool success = _hashTable.RemoveElement(request.Key);
             return Task.FromResult(new RemoveResponse { Success = success });
         }
         catch (ArgumentNullException ex)
         {
-            Log.Error($"Error removing element with Key: {request.Key}. Key was null.");
-            throw new RpcException(new Status(StatusCode.InvalidArgument, "Key cannot be null."), ex.Message);
+            Log.Error($"[UID: {requestUid}] Error removing element with Key: {request.Key}. Key was null.");
+            throw new RpcException(new Status(StatusCode.InvalidArgument, $"[UID: {requestUid}] Key cannot be null."), ex.Message);
         }
         catch (Exception ex)
         {
-            Log.Error($"An unexpected error occurred while removing element with Key: {request.Key}");
-            throw new RpcException(new Status(StatusCode.Internal, "An unexpected error occurred."), ex.Message);
+            Log.Error($"[UID: {requestUid}] An unexpected error occurred while removing element with Key: {request.Key}");
+            throw new RpcException(new Status(StatusCode.Internal, $"[UID: {requestUid}] An unexpected error occurred."), ex.Message);
         }
     }
 }
