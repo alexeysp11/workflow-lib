@@ -7,7 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Protobuf Include="Protos\InMemoryService.proto" GrpcServices="Server" />
+    <Protobuf Include="Protos\in_memory_storage.proto" GrpcServices="Server" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WorkflowLib.DataStorage.Core\WorkflowLib.DataStorage.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
