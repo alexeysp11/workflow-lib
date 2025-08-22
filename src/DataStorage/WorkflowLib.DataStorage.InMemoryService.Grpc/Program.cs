@@ -1,12 +1,22 @@
+using Serilog;
 using WorkflowLib.DataStorage.Core.Tables;
 using WorkflowLib.DataStorage.InMemoryService.Grpc.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddGrpc();
+// Get configurations.
+var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production";
+var configuration = new ConfigurationBuilder().AddJsonFile($"appsettings.{environment}.json").Build();
+// var appsettings = configuration.GetSection("AppSettings").Get<AppSettings>()
+//     ?? throw new Exception($"Could not initialize {nameof(AppSettings)}");
 
-builder.Services.AddSingleton(typeof(InMemoryHashTable<string, string>));
+// Logging.
+builder.Host.UseSerilog((context, configuration) =>
+    configuration.ReadFrom.Configuration(context.Configuration));
+
+// Services.
+builder.Services.AddGrpc();
+builder.Services.AddSingleton<InMemoryHashTable<string, string>>();
 
 var app = builder.Build();
 
