@@ -1,9 +1,12 @@
+using WorkflowLib.DataStorage.Core.Tables;
 using WorkflowLib.DataStorage.InMemoryService.Grpc.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddGrpc();
+
+builder.Services.AddSingleton(typeof(InMemoryHashTable<string, string>));
 
 var app = builder.Build();
 

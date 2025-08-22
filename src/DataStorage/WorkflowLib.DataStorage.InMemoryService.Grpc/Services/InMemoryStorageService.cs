@@ -10,9 +10,9 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
     private readonly InMemoryHashTable<string, string> _hashTable;
     private readonly ILogger<InMemoryStorageService> _logger;
 
-    public InMemoryStorageService(ILogger<InMemoryStorageService> logger)
+    public InMemoryStorageService(ILogger<InMemoryStorageService> logger, InMemoryHashTable<string, string> hashTable)
     {
-        _hashTable = new InMemoryHashTable<string, string>();
+        _hashTable = hashTable;
         _logger = logger;
     }
 
