@@ -5,6 +5,6 @@ namespace WorkflowLib.DataStorage.Core.Indexes;
 /// <summary>
 /// Implements a hash index.
 /// </summary>
-public class HashIndex<TKey, TValue> : InMemoryHashTable<TKey, TValue>
+public class HashIndex<TKey, TValue> : InMemoryHashTable<TKey, TValue> where TKey : notnull
 {
 }

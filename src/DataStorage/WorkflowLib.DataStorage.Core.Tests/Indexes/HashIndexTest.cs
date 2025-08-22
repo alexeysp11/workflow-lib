@@ -1,5 +1,3 @@
-using Xunit;
-using System;
 using WorkflowLib.DataStorage.Core.Indexes;
 
 namespace WorkflowLib.DataStorage.Core.Tests.Indexes
