@@ -9,10 +9,12 @@ namespace WorkflowLib.DataStorage.InMemoryService.Grpc.Services;
 public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
 {
     private readonly InMemoryHashTable<string, string> _hashTable;
+    private readonly string _environmentVariableName;
 
     public InMemoryStorageService(InMemoryHashTable<string, string> hashTable)
     {
         _hashTable = hashTable;
+        _environmentVariableName = "ASPNETCORE_ENVIRONMENT";
     }
 
     public override Task<SaveResponse> Save(SaveRequest request, ServerCallContext context)
@@ -24,11 +26,14 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
             _hashTable.AddElement(request.Key, request.Value);
 
             // Log the status.
-#if DEBUG
-            Log.Information($"[UID: {requestUid}] Saved the record (Key: '{request.Key}', Value: '{request.Value}')");
-#else
-            Log.Information("Saved the record");
-#endif
+            if (Environment.GetEnvironmentVariable(_environmentVariableName) == "Production")
+            {
+                Log.Information("Saved the record");
+            }
+            else
+            {
+                Log.Information($"[UID: {requestUid}] Saved the record (Key: '{request.Key}', Value: '{request.Value}')");
+            }
 
             return Task.FromResult(new SaveResponse { Success = true });
         }
@@ -50,11 +55,14 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
             bool found = value != null;
 
             // Log the status.
-#if DEBUG
-            Log.Information($"[UID: {requestUid}] Search the record (Key: '{request.Key}') - Found: {found}");
-#else
-            Log.Information($"Search the record");
-#endif
+            if (Environment.GetEnvironmentVariable(_environmentVariableName) == "Production")
+            {
+                Log.Information("Search the record");
+            }
+            else
+            {
+                Log.Information($"[UID: {requestUid}] Search the record (Key: '{request.Key}') - Found: {found}");
+            }
 
             return Task.FromResult(new SearchResponse { Value = value ?? "", Found = found });
         }
@@ -75,11 +83,14 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
             bool success = _hashTable.RemoveElement(request.Key);
 
             // Log the status.
-#if DEBUG
-            Log.Information($"[UID: {requestUid}] Remove the record (Key: '{request.Key}') - Status: {success}");
-#else
-            Log.Information($"Remove the record");
-#endif
+            if (Environment.GetEnvironmentVariable(_environmentVariableName) == "Production")
+            {
+                Log.Information("Remove the record");
+            }
+            else
+            {
+                Log.Information($"[UID: {requestUid}] Remove the record (Key: '{request.Key}') - Status: {success}");
+            }
 
             return Task.FromResult(new RemoveResponse { Success = success });
         }
@@ -101,12 +112,8 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
 
     private string GetRequestUid()
     {
-        string uid = string.Empty;
-#if DEBUG
-        uid = Guid.NewGuid().ToString();
-#else
-        uid = "N/A";
-#endif
-        return uid;
+        return Environment.GetEnvironmentVariable(_environmentVariableName) == "Production"
+            ? "N/A"
+            : Guid.NewGuid().ToString();
     }
 }
