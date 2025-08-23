@@ -62,7 +62,7 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
         }
         catch (Exception ex)
         {
-            string errorMessage = $"[UID: {requestUid}] An unexpected error occurred while searching for element with Key: '{request.Key}'";
+            string errorMessage = $"[UID: {requestUid}] An unexpected error occurred while searching for element (Key: '{request.Key}')";
             Log.Error(ex, errorMessage);
             throw new RpcException(new Status(StatusCode.Internal, errorMessage), ex.Message);
         }
@@ -87,7 +87,7 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
         }
         catch (Exception ex)
         {
-            string errorMessage = $"[UID: {requestUid}] An unexpected error occurred while removing element with Key: '{request.Key}'";
+            string errorMessage = $"[UID: {requestUid}] An unexpected error occurred while removing element (Key: '{request.Key}')";
             Log.Error(ex, errorMessage);
             throw new RpcException(new Status(StatusCode.Internal, errorMessage), ex.Message);
         }
