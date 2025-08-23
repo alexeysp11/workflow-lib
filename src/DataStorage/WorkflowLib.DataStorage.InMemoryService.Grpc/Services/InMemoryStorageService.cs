@@ -24,9 +24,7 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
         try
         {
             _hashTable.AddElement(request.Key, request.Value);
-
-            // Log the status.
-            if (Environment.GetEnvironmentVariable(_environmentVariableName) == "Production")
+            if (IsProductionEnvironment())
             {
                 Log.Information("Saved the record");
             }
@@ -34,7 +32,6 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
             {
                 Log.Information($"[UID: {requestUid}] Saved the record (Key: '{request.Key}', Value: '{request.Value}')");
             }
-
             return Task.FromResult(new SaveResponse { Success = true });
         }
         catch (Exception ex)
@@ -53,9 +50,7 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
         {
             string? value = _hashTable.SearchElement(request.Key);
             bool found = value != null;
-
-            // Log the status.
-            if (Environment.GetEnvironmentVariable(_environmentVariableName) == "Production")
+            if (IsProductionEnvironment())
             {
                 Log.Information("Search the record");
             }
@@ -63,7 +58,6 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
             {
                 Log.Information($"[UID: {requestUid}] Search the record (Key: '{request.Key}') - Found: {found}");
             }
-
             return Task.FromResult(new SearchResponse { Value = value ?? "", Found = found });
         }
         catch (Exception ex)
@@ -81,9 +75,7 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
         try
         {
             bool success = _hashTable.RemoveElement(request.Key);
-
-            // Log the status.
-            if (Environment.GetEnvironmentVariable(_environmentVariableName) == "Production")
+            if (IsProductionEnvironment())
             {
                 Log.Information("Remove the record");
             }
@@ -91,7 +83,6 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
             {
                 Log.Information($"[UID: {requestUid}] Remove the record (Key: '{request.Key}') - Status: {success}");
             }
-
             return Task.FromResult(new RemoveResponse { Success = success });
         }
         catch (Exception ex)
@@ -112,8 +103,11 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
 
     private string GetRequestUid()
     {
-        return Environment.GetEnvironmentVariable(_environmentVariableName) == "Production"
-            ? "N/A"
-            : Guid.NewGuid().ToString();
+        return IsProductionEnvironment() ? "N/A" : Guid.NewGuid().ToString();
+    }
+
+    private bool IsProductionEnvironment()
+    {
+        return Environment.GetEnvironmentVariable(_environmentVariableName) == "Production";
     }
 }
