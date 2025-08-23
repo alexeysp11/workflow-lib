@@ -17,12 +17,12 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
 
     public override Task<SaveResponse> Save(SaveRequest request, ServerCallContext context)
     {
+        CheckIfRequestKeyIsNullOrEmpty(request.Key);
         string requestUid = Guid.NewGuid().ToString();
-        CheckIfRequestKeyIsNullOrEmpty(requestUid, request.Key);
         try
         {
-            Log.Information($"[UID: {requestUid}] Save called with Key: '{request.Key}', Value: '{request.Value}'");
             _hashTable.AddElement(request.Key, request.Value);
+            Log.Information($"[UID: {requestUid}] Saved record (Key: '{request.Key}', Value: '{request.Value}')");
             return Task.FromResult(new SaveResponse { Success = true });
         }
         catch (Exception ex)
@@ -35,13 +35,13 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
 
     public override Task<SearchResponse> Search(SearchRequest request, ServerCallContext context)
     {
+        CheckIfRequestKeyIsNullOrEmpty(request.Key);
         string requestUid = Guid.NewGuid().ToString();
-        CheckIfRequestKeyIsNullOrEmpty(requestUid, request.Key);
         try
         {
-            Log.Information($"[UID: {requestUid}] Search called with Key: '{request.Key}'");
             string? value = _hashTable.SearchElement(request.Key);
             bool found = value != null;
+            Log.Information($"[UID: {requestUid}] Search record (Key: '{request.Key}') - Found: {found}");
 
             return Task.FromResult(new SearchResponse { Value = value ?? "", Found = found });
         }
@@ -55,12 +55,12 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
 
     public override Task<RemoveResponse> Remove(RemoveRequest request, ServerCallContext context)
     {
+        CheckIfRequestKeyIsNullOrEmpty(request.Key);
         string requestUid = Guid.NewGuid().ToString();
-        CheckIfRequestKeyIsNullOrEmpty(requestUid, request.Key);
         try
         {
-            Log.Information($"[UID: {requestUid}] Remove called with Key: '{request.Key}'");
             bool success = _hashTable.RemoveElement(request.Key);
+            Log.Information($"[UID: {requestUid}] Remove record (Key: '{request.Key}') - Success: {success}");
             return Task.FromResult(new RemoveResponse { Success = success });
         }
         catch (Exception ex)
@@ -71,13 +71,11 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
         }
     }
 
-    private void CheckIfRequestKeyIsNullOrEmpty(string requestUid, string requestKey)
+    private void CheckIfRequestKeyIsNullOrEmpty(string requestKey)
     {
         if (string.IsNullOrEmpty(requestKey))
         {
-            string errorMessage = $"[UID: {requestUid}] Key cannot be null";
-            Log.Error(errorMessage);
-            throw new RpcException(new Status(StatusCode.InvalidArgument, errorMessage));
+            throw new RpcException(new Status(StatusCode.InvalidArgument, "Key cannot be null"));
         }
     }
 }
