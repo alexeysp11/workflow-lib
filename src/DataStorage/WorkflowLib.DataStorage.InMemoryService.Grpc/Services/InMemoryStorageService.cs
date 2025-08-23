@@ -18,15 +18,18 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
     public override Task<SaveResponse> Save(SaveRequest request, ServerCallContext context)
     {
         CheckIfRequestKeyIsNullOrEmpty(request.Key);
-#if DEBUG
-        string requestUid = Guid.NewGuid().ToString();
-#else
-        const string requestUid = "N/A";
-#endif
+        string requestUid = GetRequestUid();
         try
         {
             _hashTable.AddElement(request.Key, request.Value);
-            Log.Information($"[UID: {requestUid}] Saved record (Key: '{request.Key}', Value: '{request.Value}')");
+
+            // Log the status.
+#if DEBUG
+            Log.Information($"[UID: {requestUid}] Saved the record (Key: '{request.Key}', Value: '{request.Value}')");
+#else
+            Log.Information("Saved the record");
+#endif
+
             return Task.FromResult(new SaveResponse { Success = true });
         }
         catch (Exception ex)
@@ -40,16 +43,18 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
     public override Task<SearchResponse> Search(SearchRequest request, ServerCallContext context)
     {
         CheckIfRequestKeyIsNullOrEmpty(request.Key);
-#if DEBUG
-        string requestUid = Guid.NewGuid().ToString();
-#else
-        const string requestUid = "N/A";
-#endif
+        string requestUid = GetRequestUid();
         try
         {
             string? value = _hashTable.SearchElement(request.Key);
             bool found = value != null;
-            Log.Information($"[UID: {requestUid}] Search record (Key: '{request.Key}') - Found: {found}");
+
+            // Log the status.
+#if DEBUG
+            Log.Information($"[UID: {requestUid}] Search the record (Key: '{request.Key}') - Found: {found}");
+#else
+            Log.Information($"Search the record");
+#endif
 
             return Task.FromResult(new SearchResponse { Value = value ?? "", Found = found });
         }
@@ -64,15 +69,18 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
     public override Task<RemoveResponse> Remove(RemoveRequest request, ServerCallContext context)
     {
         CheckIfRequestKeyIsNullOrEmpty(request.Key);
-#if DEBUG
-        string requestUid = Guid.NewGuid().ToString();
-#else
-        const string requestUid = "N/A";
-#endif
+        string requestUid = GetRequestUid();
         try
         {
             bool success = _hashTable.RemoveElement(request.Key);
-            Log.Information($"[UID: {requestUid}] Remove record (Key: '{request.Key}') - Success: {success}");
+
+            // Log the status.
+#if DEBUG
+            Log.Information($"[UID: {requestUid}] Remove the record (Key: '{request.Key}') - Status: {success}");
+#else
+            Log.Information($"Remove the record");
+#endif
+
             return Task.FromResult(new RemoveResponse { Success = success });
         }
         catch (Exception ex)
@@ -89,5 +97,16 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
         {
             throw new RpcException(new Status(StatusCode.InvalidArgument, "Key cannot be null"));
         }
+    }
+
+    private string GetRequestUid()
+    {
+        string uid = string.Empty;
+#if DEBUG
+        uid = Guid.NewGuid().ToString();
+#else
+        uid = "N/A";
+#endif
+        return uid;
     }
 }
