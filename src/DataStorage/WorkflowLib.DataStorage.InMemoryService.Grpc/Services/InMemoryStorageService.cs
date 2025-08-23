@@ -18,7 +18,11 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
     public override Task<SaveResponse> Save(SaveRequest request, ServerCallContext context)
     {
         CheckIfRequestKeyIsNullOrEmpty(request.Key);
+#if DEBUG
         string requestUid = Guid.NewGuid().ToString();
+#else
+        const string requestUid = "N/A";
+#endif
         try
         {
             _hashTable.AddElement(request.Key, request.Value);
@@ -36,7 +40,11 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
     public override Task<SearchResponse> Search(SearchRequest request, ServerCallContext context)
     {
         CheckIfRequestKeyIsNullOrEmpty(request.Key);
+#if DEBUG
         string requestUid = Guid.NewGuid().ToString();
+#else
+        const string requestUid = "N/A";
+#endif
         try
         {
             string? value = _hashTable.SearchElement(request.Key);
@@ -56,7 +64,11 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
     public override Task<RemoveResponse> Remove(RemoveRequest request, ServerCallContext context)
     {
         CheckIfRequestKeyIsNullOrEmpty(request.Key);
+#if DEBUG
         string requestUid = Guid.NewGuid().ToString();
+#else
+        const string requestUid = "N/A";
+#endif
         try
         {
             bool success = _hashTable.RemoveElement(request.Key);
