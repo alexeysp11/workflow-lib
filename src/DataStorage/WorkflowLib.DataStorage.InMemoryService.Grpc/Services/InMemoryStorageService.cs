@@ -3,18 +3,21 @@ using Serilog;
 using System.Threading.Tasks;
 using WorkflowLib.DataStorage.Core.Tables;
 using WorkflowLib.DataStorage.InMemoryService.Grpc;
+using WorkflowLib.DataStorage.Models;
 
 namespace WorkflowLib.DataStorage.InMemoryService.Grpc.Services;
 
 public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
 {
     private readonly InMemoryHashTable<string, string> _hashTable;
+    private readonly AppSettings _appSettings;
     private readonly string _environmentVariableName;
 
-    public InMemoryStorageService(InMemoryHashTable<string, string> hashTable)
+    public InMemoryStorageService(AppSettings appSettings, InMemoryHashTable<string, string> hashTable)
     {
         _hashTable = hashTable;
-        _environmentVariableName = "ASPNETCORE_ENVIRONMENT";
+        _appSettings = appSettings;
+        _environmentVariableName = appSettings?.EnvironmentVariableName ?? "ASPNETCORE_ENVIRONMENT";
     }
 
     public override Task<SaveResponse> Save(SaveRequest request, ServerCallContext context)

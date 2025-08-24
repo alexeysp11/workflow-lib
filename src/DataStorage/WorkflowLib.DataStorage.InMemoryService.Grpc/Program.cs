@@ -1,16 +1,25 @@
 using Serilog;
 using WorkflowLib.DataStorage.Core.Tables;
 using WorkflowLib.DataStorage.InMemoryService.Grpc.Services;
+using WorkflowLib.DataStorage.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Get configurations.
-var environmentVariableName = "ASPNETCORE_ENVIRONMENT";
+// Get main configurations.
+var mainAppSettingsConfig = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+var environmentVariableName = mainAppSettingsConfig.GetValue<string>("AppSettings:EnvironmentVariableName");
+if (string.IsNullOrEmpty(environmentVariableName))
+{
+    throw new Exception("Environment variable name is not initialized in the appsettings.json file");
+}
+
+// Get configurations for the specific environment.
 var environment = Environment.GetEnvironmentVariable(environmentVariableName)
     ?? throw new Exception($"Environment variable '{environmentVariableName}' is not initialized");
 var configuration = new ConfigurationBuilder().AddJsonFile($"appsettings.{environment}.json").Build();
-// var appsettings = configuration.GetSection("AppSettings").Get<AppSettings>()
-//     ?? throw new Exception($"Could not initialize {nameof(AppSettings)}");
+var appSettings = configuration.GetSection("AppSettings").Get<AppSettings>()
+    ?? throw new Exception($"Could not initialize {nameof(AppSettings)}");
+appSettings.EnvironmentVariableName = environmentVariableName;
 
 // Logging.
 builder.Host.UseSerilog((context, configuration) =>
