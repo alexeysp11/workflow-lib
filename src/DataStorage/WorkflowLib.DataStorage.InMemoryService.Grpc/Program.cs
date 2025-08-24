@@ -27,6 +27,7 @@ builder.Host.UseSerilog((context, configuration) =>
 
 // Services.
 builder.Services.AddGrpc();
+builder.Services.AddSingleton(appSettings);
 builder.Services.AddSingleton<InMemoryHashTable<string, string>>();
 
 var app = builder.Build();
