@@ -2,5 +2,5 @@
 
 public class AppSettings
 {
-    public string? EnvironmentVariableName { get; set; }
+    public string? EnvironmentVariable { get; set; }
 }

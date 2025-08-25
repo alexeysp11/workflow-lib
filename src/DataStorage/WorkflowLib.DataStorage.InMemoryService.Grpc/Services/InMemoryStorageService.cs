@@ -1,8 +1,6 @@
 using Grpc.Core;
 using Serilog;
-using System.Threading.Tasks;
 using WorkflowLib.DataStorage.Core.Tables;
-using WorkflowLib.DataStorage.InMemoryService.Grpc;
 using WorkflowLib.DataStorage.Models;
 
 namespace WorkflowLib.DataStorage.InMemoryService.Grpc.Services;
@@ -11,13 +9,26 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
 {
     private readonly InMemoryHashTable<string, string> _hashTable;
     private readonly AppSettings _appSettings;
-    private readonly string _environmentVariableName;
+    private readonly string _environmentVariable;
 
     public InMemoryStorageService(AppSettings appSettings, InMemoryHashTable<string, string> hashTable)
     {
+        if (hashTable == null)
+        {
+            throw new ArgumentNullException(nameof(hashTable));
+        }
+        if (appSettings == null)
+        {
+            throw new ArgumentNullException(nameof(appSettings));
+        }
+        if (string.IsNullOrEmpty(appSettings.EnvironmentVariable))
+        {
+            throw new ArgumentNullException(nameof(appSettings.EnvironmentVariable));
+        }
+
         _hashTable = hashTable;
         _appSettings = appSettings;
-        _environmentVariableName = appSettings?.EnvironmentVariableName ?? "ASPNETCORE_ENVIRONMENT";
+        _environmentVariable = appSettings.EnvironmentVariable;
     }
 
     public override Task<SaveResponse> Save(SaveRequest request, ServerCallContext context)
@@ -111,6 +122,6 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
 
     private bool IsProductionEnvironment()
     {
-        return Environment.GetEnvironmentVariable(_environmentVariableName) == "Production";
+        return _environmentVariable == "Production";
     }
 }

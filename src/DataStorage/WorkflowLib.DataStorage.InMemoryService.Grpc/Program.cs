@@ -19,7 +19,7 @@ var environment = Environment.GetEnvironmentVariable(environmentVariableName)
 var configuration = new ConfigurationBuilder().AddJsonFile($"appsettings.{environment}.json").Build();
 var appSettings = configuration.GetSection("AppSettings").Get<AppSettings>()
     ?? throw new Exception($"Could not initialize {nameof(AppSettings)}");
-appSettings.EnvironmentVariableName = environmentVariableName;
+appSettings.EnvironmentVariable = environment;
 
 // Logging.
 builder.Host.UseSerilog((context, configuration) =>
