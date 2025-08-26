@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.DataStorage.InM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.DataStorage.Models", "WorkflowLib.DataStorage.Models\WorkflowLib.DataStorage.Models.csproj", "{4944598A-6053-4E86-A0D1-F2D9DFB9E915}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.DataStorage.InMemoryService.Grpc.Tests", "WorkflowLib.DataStorage.InMemoryService.Grpc.Tests\WorkflowLib.DataStorage.InMemoryService.Grpc.Tests.csproj", "{61AAFF42-D6DE-4E1E-B0E7-07BB76089C7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{4944598A-6053-4E86-A0D1-F2D9DFB9E915}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4944598A-6053-4E86-A0D1-F2D9DFB9E915}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4944598A-6053-4E86-A0D1-F2D9DFB9E915}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61AAFF42-D6DE-4E1E-B0E7-07BB76089C7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61AAFF42-D6DE-4E1E-B0E7-07BB76089C7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61AAFF42-D6DE-4E1E-B0E7-07BB76089C7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61AAFF42-D6DE-4E1E-B0E7-07BB76089C7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
