@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -10,14 +10,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.57.0" />
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="xunit" Version="2.5.3" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
+    <PackageReference Include="Moq" Version="4.8.2" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <ProjectReference Include="..\WorkflowLib.DataStorage.Core\WorkflowLib.DataStorage.Core.csproj" />
+    <ProjectReference Include="..\WorkflowLib.DataStorage.Models\WorkflowLib.DataStorage.Models.csproj" />
+    <ProjectReference Include="..\WorkflowLib.DataStorage.InMemoryService.Grpc\WorkflowLib.DataStorage.InMemoryService.Grpc.csproj" />
   </ItemGroup>
 
   <ItemGroup>

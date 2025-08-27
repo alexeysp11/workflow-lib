@@ -1,5 +1,3 @@
-using Xunit;
-using System;
 using WorkflowLib.DataStorage.Core.Tables;
 
 namespace WorkflowLib.DataStorage.Core.Tests.Tables

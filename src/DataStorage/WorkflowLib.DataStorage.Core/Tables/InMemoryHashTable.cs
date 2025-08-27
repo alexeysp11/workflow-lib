@@ -3,7 +3,7 @@
 /// <summary>
 /// Implements a thread-safe in-memory hash table.
 /// </summary>
-public class InMemoryHashTable<TKey, TValue>
+public class InMemoryHashTable<TKey, TValue> where TKey : notnull
 {
     protected object _obj = new object();
     protected Dictionary<TKey, TValue> _records;
