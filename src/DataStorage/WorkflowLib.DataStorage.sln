@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.DataStorage.InM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.DataStorage.InMemoryService.Cli", "WorkflowLib.DataStorage.InMemoryService.Cli\WorkflowLib.DataStorage.InMemoryService.Cli.csproj", "{883EC6CD-4CAC-4D2D-BB1B-8EFC5BA6F76F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.DataStorage.InMemoryService.Clients", "WorkflowLib.DataStorage.InMemoryService.Clients\WorkflowLib.DataStorage.InMemoryService.Clients.csproj", "{DD9CF704-93A4-4D76-8B75-8D0272450D70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{883EC6CD-4CAC-4D2D-BB1B-8EFC5BA6F76F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{883EC6CD-4CAC-4D2D-BB1B-8EFC5BA6F76F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{883EC6CD-4CAC-4D2D-BB1B-8EFC5BA6F76F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD9CF704-93A4-4D76-8B75-8D0272450D70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD9CF704-93A4-4D76-8B75-8D0272450D70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD9CF704-93A4-4D76-8B75-8D0272450D70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD9CF704-93A4-4D76-8B75-8D0272450D70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
