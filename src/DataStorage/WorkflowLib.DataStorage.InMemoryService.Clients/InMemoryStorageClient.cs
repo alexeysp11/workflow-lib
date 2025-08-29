@@ -11,8 +11,14 @@ namespace WorkflowLib.DataStorage.InMemoryService.Clients
 
         public InMemoryStorageClient(string serverAddress)
         {
-             _channel = GrpcChannel.ForAddress(serverAddress);
+            _channel = GrpcChannel.ForAddress(serverAddress);
             _client = new InMemoryStorage.InMemoryStorageClient(_channel);
+        }
+
+        public InMemoryStorageClient(InMemoryStorage.InMemoryStorageClient client, GrpcChannel channel)
+        {
+            _channel = channel;
+            _client = client;
         }
 
         public async Task<bool> Save(string key, string value)
@@ -38,7 +44,7 @@ namespace WorkflowLib.DataStorage.InMemoryService.Clients
 
         public void Dispose()
         {
-            _channel.Dispose();
+            _channel?.Dispose();
         }
     }
 }
