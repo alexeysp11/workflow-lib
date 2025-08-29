@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WorkflowLib.DataStorage.InMemoryService.Clients;
 
 namespace WorkflowLib.DataStorage.InMemoryService.Cli
 {
     public class Program
     {
+        private static IInMemoryStorageClient? _storageClient = null;
+
         private static string? _currentServerAddress = null;
         private static bool _isConnected = false;
 
@@ -86,12 +89,20 @@ namespace WorkflowLib.DataStorage.InMemoryService.Cli
             }
 
             string address = parts[1];
+            try
+            {
+                _storageClient = new InMemoryStorageClient(address);
+                _currentServerAddress = address;
+                _isConnected = true;
+                Console.WriteLine($"Connected to {address}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error connecting: {ex.Message}");
+                _storageClient = null;
+                _isConnected = false;
+            }
 
-            // TODO: Implement gRPC connection logic here
-            // For now, simulate the connection
-            _currentServerAddress = address;
-            _isConnected = true;
-            Console.WriteLine($"Connected to {address}");
             await Task.CompletedTask;
         }
 
@@ -103,8 +114,11 @@ namespace WorkflowLib.DataStorage.InMemoryService.Cli
                 return;
             }
 
-            // TODO: Implement gRPC disconnection logic here
-            // For now, simulate the disconnection
+            if (_storageClient != null)
+            {
+                ((InMemoryStorageClient)_storageClient).Dispose();
+                _storageClient = null;
+            }
             _currentServerAddress = null;
             _isConnected = false;
             Console.WriteLine("OK");
@@ -134,9 +148,23 @@ namespace WorkflowLib.DataStorage.InMemoryService.Cli
                 value = value.TrimEnd(';');
             }
 
-            // TODO: Implement gRPC set logic here
-            // For now, simulate the operation
-            Console.WriteLine("OK");
+            try
+            {
+                bool success = await _storageClient.Save(key, value);
+                if (success)
+                {
+                    Console.WriteLine("OK");
+                }
+                else
+                {
+                    Console.WriteLine("Error: Save operation failed on the server.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+
             await Task.CompletedTask;
         }
 
@@ -155,10 +183,23 @@ namespace WorkflowLib.DataStorage.InMemoryService.Cli
             }
 
             string key = parts[1].Trim('"');
+            try
+            {
+                var (value, found) = await _storageClient.Search(key);
+                if (found)
+                {
+                    Console.WriteLine(value);
+                }
+                else
+                {
+                    Console.WriteLine("nil");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
 
-            // TODO: Implement gRPC get logic here
-            // For now, simulate the operation
-            Console.WriteLine("value"); // Replace with the actual value from gRPC response
             await Task.CompletedTask;
         }
 
@@ -177,10 +218,23 @@ namespace WorkflowLib.DataStorage.InMemoryService.Cli
             }
 
             string key = parts[1].Trim('"');
+            try
+            {
+                bool success = await _storageClient.Remove(key);
+                if (success)
+                {
+                    Console.WriteLine("OK");
+                }
+                else
+                {
+                    Console.WriteLine("Error: Remove operation failed on the server.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
 
-            // TODO: Implement gRPC delete logic here
-            // For now, simulate the operation
-            Console.WriteLine("OK");
             await Task.CompletedTask;
         }
     }

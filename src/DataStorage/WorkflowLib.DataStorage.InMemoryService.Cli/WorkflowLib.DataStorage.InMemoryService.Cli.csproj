@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WorkflowLib.DataStorage.InMemoryService.Clients\WorkflowLib.DataStorage.InMemoryService.Clients.csproj" />
+  </ItemGroup>
+
 </Project>
