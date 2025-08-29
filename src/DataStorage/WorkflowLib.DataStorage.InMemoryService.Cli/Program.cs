@@ -134,24 +134,6 @@ namespace WorkflowLib.DataStorage.InMemoryService.Cli
                 value = value.TrimEnd(';');
             }
 
-            // if (value.Contains("\n"))
-            // {
-            //     //Multi-line input handling
-            //     string nextLine;
-            //     Console.Write($"{_currentServerAddress}> ");
-
-            //     while (!string.IsNullOrEmpty(nextLine = Console.ReadLine()))
-            //     {
-            //         if (nextLine.Equals("."))
-            //         {
-            //             break;
-            //         }
-
-            //         value += "\n" + nextLine;
-            //         Console.Write($"{_currentServerAddress}> ");
-            //     }
-            // }
-
             // TODO: Implement gRPC set logic here
             // For now, simulate the operation
             Console.WriteLine("OK");
