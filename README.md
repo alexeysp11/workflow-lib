@@ -86,3 +86,9 @@ Planned improvements:
 - **Payroll calculation**: Automatic calculation of wages based on hours worked and other factors.
 - **Internal Documentation**: A tool for storing and managing internal company documents such as policies, procedures, instructions.
 - **Knowledge Base**: Creating and maintaining a knowledge base for sharing experiences and information between employees.
+
+### [DataStorage](src/DataStorage/README.md)
+
+This project is designed to study and implement various types of data storage, as well as to study the principles of building distributed systems.
+
+Project goal: in-depth understanding of the architecture, features and optimization methods of various data storages, from relational databases to key-value and key-attribute-value storages, both in-memory and persistent implementations.
