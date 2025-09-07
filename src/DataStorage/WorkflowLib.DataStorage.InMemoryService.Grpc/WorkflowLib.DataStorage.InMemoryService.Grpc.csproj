@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Protobuf Include="..\Protos\in_memory_storage.proto" GrpcServices="Server" />
+    <Protobuf Include="..\WorkflowLib.DataStorage.Grpc.Common\Protos\in_memory_storage.proto" GrpcServices="Server" />
   </ItemGroup>
 
   <ItemGroup>

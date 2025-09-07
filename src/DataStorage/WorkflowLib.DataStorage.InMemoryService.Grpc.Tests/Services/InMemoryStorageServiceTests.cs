@@ -50,6 +50,70 @@ public class InMemoryStorageServiceTests
         Assert.True(response.Found);
         Assert.Equal("existingValue", response.Value);
     }
+
+    [Fact]
+    public async Task IncrementElement_NonExistingKey_ReturnsZero()
+    {
+        // Arrange
+        string key = "incrementNonExistingKey";
+        var incrementRequest = new IncrementRequest { Key = key };
+        var searchRequest = new SearchRequest { Key = key };
+
+        // Act
+        var context = TestServerCallContext.Create();
+        var incrementResult = await _service.Increment(incrementRequest, context);
+        var searchResponse = await _service.Search(searchRequest, context);
+
+        // Assert
+        Assert.Equal(0, incrementResult.Value);
+        Assert.Equal("0", searchResponse.Value);
+        Assert.True(incrementResult.Success);
+    }
+
+    [Fact]
+    public async Task IncrementElement_ExistingKeyCorrectType_ReturnsIncremented()
+    {
+        // Arrange
+        string key = "incrementExistingKeyCorrectType";
+        int value = 1;
+        int expected = value + 1;
+        var saveRequest = new SaveRequest { Key = key, Value = value.ToString() };
+        var incrementRequest = new IncrementRequest { Key = key };
+        var searchRequest = new SearchRequest { Key = key };
+
+        // Act
+        var context = TestServerCallContext.Create();
+        var saveResponse = await _service.Save(saveRequest, context);
+        var incrementResult = await _service.Increment(incrementRequest, context);
+        var searchResponse = await _service.Search(searchRequest, context);
+
+        // Assert
+        Assert.Equal(expected, incrementResult.Value);
+        Assert.Equal(expected.ToString(), searchResponse.Value);
+        Assert.True(incrementResult.Success);
+    }
+
+    [Fact]
+    public async Task IncrementElement_ExistingKeyStringType_ReturnsNull()
+    {
+        // Arrange
+        string key = "incrementExistingKeyStringType";
+        string value = "Test";
+        var saveRequest = new SaveRequest { Key = key, Value = value };
+        var incrementRequest = new IncrementRequest { Key = key };
+        var searchRequest = new SearchRequest { Key = key };
+
+        // Act
+        var context = TestServerCallContext.Create();
+        var saveResponse = await _service.Save(saveRequest, context);
+        var incrementResult = await _service.Increment(incrementRequest, context);
+        var searchResponse = await _service.Search(searchRequest, context);
+
+        // Assert
+        Assert.Equal(value, searchResponse.Value);
+        Assert.Null(incrementResult.Value);
+        Assert.False(incrementResult.Success);
+    }
 }
 
 public static class TestServerCallContext

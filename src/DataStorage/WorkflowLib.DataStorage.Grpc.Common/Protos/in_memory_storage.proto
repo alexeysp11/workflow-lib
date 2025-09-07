@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "google/protobuf/wrappers.proto";
+
 option csharp_namespace = "WorkflowLib.DataStorage.InMemoryService.Grpc";
 
 package InMemoryService;
@@ -8,6 +10,7 @@ service InMemoryStorage {
   rpc Save (SaveRequest) returns (SaveResponse);
   rpc Search (SearchRequest) returns (SearchResponse);
   rpc Remove (RemoveRequest) returns (RemoveResponse);
+  rpc Increment (IncrementRequest) returns (IncrementResponse);
 }
 
 message SaveRequest {
@@ -34,4 +37,13 @@ message RemoveRequest {
 
 message RemoveResponse {
   bool success = 1;
+}
+
+message IncrementRequest {
+  string key = 1;
+}
+
+message IncrementResponse {
+  google.protobuf.Int32Value value = 1;
+  bool success = 2;
 }

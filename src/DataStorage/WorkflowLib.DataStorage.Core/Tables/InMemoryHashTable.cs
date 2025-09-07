@@ -64,4 +64,15 @@ public class InMemoryHashTable<TKey, TValue> where TKey : notnull
         }
         return default(TValue);
     }
+
+    /// <summary>
+    /// Search for an element in the hash table.
+    /// </summary>
+    public virtual bool ContainsElement(TKey key)
+    {
+        lock (_obj)
+        {
+            return _records.ContainsKey(key);
+        }
+    }
 }
