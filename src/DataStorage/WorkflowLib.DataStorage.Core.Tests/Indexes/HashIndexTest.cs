@@ -8,60 +8,60 @@ namespace WorkflowLib.DataStorage.Core.Tests.Indexes
         public void AddElement_NewKey_AddsElementToTable()
         {
             // Arrange
-            var table = new HashIndex<string, int>();
+            var index = new HashIndex<string, int>();
             string key = "one";
             int value = 1;
 
             // Act
-            table.AddElement(key, value);
+            index.AddElement(key, value);
 
             // Assert
-            Assert.Equal(value, table.SearchElement(key));
+            Assert.Equal(value, index.SearchElement(key));
         }
 
         [Fact]
         public void AddElement_ExistingKey_UpdatesElementInTable()
         {
             // Arrange
-            var table = new HashIndex<string, int>();
+            var index = new HashIndex<string, int>();
             string key = "one";
             int initialValue = 1;
             int updatedValue = 2;
-            table.AddElement(key, initialValue);
+            index.AddElement(key, initialValue);
 
             // Act
-            table.AddElement(key, updatedValue);
+            index.AddElement(key, updatedValue);
 
             // Assert
-            Assert.Equal(updatedValue, table.SearchElement(key));
+            Assert.Equal(updatedValue, index.SearchElement(key));
         }
 
         [Fact]
         public void RemoveElement_ExistingKey_RemovesElementFromTable()
         {
             // Arrange
-            var table = new HashIndex<string, int>();
+            var index = new HashIndex<string, int>();
             string key = "one";
             int value = 1;
-            table.AddElement(key, value);
+            index.AddElement(key, value);
 
             // Act
-            bool result = table.RemoveElement(key);
+            bool result = index.RemoveElement(key);
 
             // Assert
             Assert.True(result);
-            Assert.Equal(default(int), table.SearchElement(key));
+            Assert.Equal(default(int), index.SearchElement(key));
         }
 
         [Fact]
         public void RemoveElement_NonExistingKey_ReturnsFalse()
         {
             // Arrange
-            var table = new HashIndex<string, int>();
+            var index = new HashIndex<string, int>();
             string key = "one";
 
             // Act
-            bool result = table.RemoveElement(key);
+            bool result = index.RemoveElement(key);
 
             // Assert
             Assert.False(result);
@@ -71,13 +71,13 @@ namespace WorkflowLib.DataStorage.Core.Tests.Indexes
         public void SearchElement_ExistingKey_ReturnsValue()
         {
             // Arrange
-            var table = new HashIndex<string, int>();
+            var index = new HashIndex<string, int>();
             string key = "one";
             int value = 1;
-            table.AddElement(key, value);
+            index.AddElement(key, value);
 
             // Act
-            int result = table.SearchElement(key);
+            int result = index.SearchElement(key);
 
             // Assert
             Assert.Equal(value, result);
@@ -87,11 +87,11 @@ namespace WorkflowLib.DataStorage.Core.Tests.Indexes
         public void SearchElement_NonExistingKey_ReturnsDefault()
         {
             // Arrange
-            var table = new HashIndex<string, int>();
+            var index = new HashIndex<string, int>();
             string key = "one";
 
             // Act
-            int result = table.SearchElement(key);
+            int result = index.SearchElement(key);
 
             // Assert
             Assert.Equal(default(int), result); // Compare to default(TValue) for type safety
@@ -304,6 +304,36 @@ namespace WorkflowLib.DataStorage.Core.Tests.Indexes
 
             // Assert:  Hard to assert definitively due to the randomness.  A "did not crash" is sufficient
             //          Can add more sophisticated checks if needed, but this demonstrates the general approach.
+        }
+
+        [Fact]
+        public void ContainsElement_ExistingKey_ReturnsTrue()
+        {
+            // Arrange
+            var index = new HashIndex<string, int>();
+            string key = "one";
+            int value = 1;
+            index.AddElement(key, value);
+
+            // Act
+            bool result = index.ContainsElement(key);
+
+            // Assert
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void ContainsElement_NonExistingKey_ReturnsFalse()
+        {
+            // Arrange
+            var index = new HashIndex<string, int>();
+            string key = "one";
+
+            // Act
+            bool result = index.ContainsElement(key);
+
+            // Assert
+            Assert.False(result);
         }
     }
 }

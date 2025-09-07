@@ -305,5 +305,35 @@ namespace WorkflowLib.DataStorage.Core.Tests.Tables
             // Assert:  Hard to assert definitively due to the randomness.  A "did not crash" is sufficient
             //          Can add more sophisticated checks if needed, but this demonstrates the general approach.
         }
+
+        [Fact]
+        public void ContainsElement_ExistingKey_ReturnsTrue()
+        {
+            // Arrange
+            var table = new InMemoryHashTable<string, int>();
+            string key = "one";
+            int value = 1;
+            table.AddElement(key, value);
+
+            // Act
+            bool result = table.ContainsElement(key);
+
+            // Assert
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void ContainsElement_NonExistingKey_ReturnsFalse()
+        {
+            // Arrange
+            var table = new InMemoryHashTable<string, int>();
+            string key = "one";
+
+            // Act
+            bool result = table.ContainsElement(key);
+
+            // Assert
+            Assert.False(result);
+        }
     }
 }
