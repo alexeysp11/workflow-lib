@@ -45,5 +45,42 @@ namespace WorkflowLib.DataStorage.Core.Tests.Tables
             Assert.Equal(incremented, incrementResult.Incremented);
             Assert.Equal($"Value: '{value}', IsNew: {isNew}, Incremented: {incremented}", incrementResult.ToString());
         }
+
+        [Fact]
+        public void CreateTwoEqualObjects()
+        {
+            // Arrange
+            HashTableIncrementResult incrementResult1 = new(200, true, false);
+            HashTableIncrementResult incrementResult2 = new(200, true, false);
+
+            // Act & Assert
+            Assert.Equal(incrementResult1.Value, incrementResult2.Value);
+            Assert.Equal(incrementResult1.IsNew, incrementResult2.IsNew);
+            Assert.Equal(incrementResult1.Incremented, incrementResult2.Incremented);
+            Assert.Equal(incrementResult1.GetHashCode(), incrementResult2.GetHashCode());
+            Assert.True(incrementResult1.Equals(incrementResult2));
+            Assert.True(incrementResult2.Equals(incrementResult1));
+            Assert.True(incrementResult1 == incrementResult2);
+            Assert.False(incrementResult1 != incrementResult2);
+            Assert.Equal(incrementResult1, incrementResult2);
+        }
+
+        [Fact]
+        public void CreateTwoUnequalObjects()
+        {
+            // Arrange
+            HashTableIncrementResult incrementResult1 = new(-423, false, true);
+            HashTableIncrementResult incrementResult2 = new(2, true, false);
+
+            // Act & Assert
+            Assert.NotEqual(incrementResult1.Value, incrementResult2.Value);
+            Assert.NotEqual(incrementResult1.IsNew, incrementResult2.IsNew);
+            Assert.NotEqual(incrementResult1.Incremented, incrementResult2.Incremented);
+            Assert.False(incrementResult1.Equals(incrementResult2));
+            Assert.False(incrementResult2.Equals(incrementResult1));
+            Assert.False(incrementResult1 == incrementResult2);
+            Assert.True(incrementResult1 != incrementResult2);
+            Assert.NotEqual(incrementResult1, incrementResult2);
+        }
     }
 }
