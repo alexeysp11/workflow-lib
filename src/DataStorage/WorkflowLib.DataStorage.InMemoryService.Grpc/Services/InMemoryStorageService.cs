@@ -10,6 +10,7 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
     private readonly InMemoryHashTable<string, string> _hashTable;
     private readonly AppSettings _appSettings;
     private readonly string _environmentVariable;
+    private object _obj;
 
     public InMemoryStorageService(AppSettings appSettings, InMemoryHashTable<string, string> hashTable)
     {
@@ -26,6 +27,7 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
             throw new ArgumentNullException(nameof(appSettings.EnvironmentVariable));
         }
 
+        _obj = new object();
         _hashTable = hashTable;
         _appSettings = appSettings;
         _environmentVariable = appSettings.EnvironmentVariable;
@@ -113,7 +115,7 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
         string requestUid = GetRequestUid();
         try
         {
-            HashTableIncrementResult incrementResult = _hashTable.IncrementElement(request.Key);
+            HashTableIncrementResult incrementResult = IncrementElement(request.Key);
             if (IsProductionEnvironment())
             {
                 Log.Information("Increment the record");
@@ -122,13 +124,45 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
             {
                 Log.Information($"[UID: {requestUid}] Increment the record (Key: '{request.Key}') - Result: [{incrementResult}]");
             }
-            return Task.FromResult(new IncrementResponse { Value = incrementResult.Value, Created = incrementResult.IsNew, Success = incrementResult.Incremented });
+            return Task.FromResult(new IncrementResponse
+            {
+                Value = incrementResult.Value,
+                Created = incrementResult.IsNew,
+                Incremented = incrementResult.Incremented,
+                Success = incrementResult.Success
+            });
         }
         catch (Exception ex)
         {
             string errorMessage = $"[UID: {requestUid}] An unexpected error occurred while incrementing element (Key: '{request.Key}')";
             Log.Error(ex, errorMessage);
             throw new RpcException(new Status(StatusCode.Internal, errorMessage), ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// Increment an element in the hash table.
+    /// </summary>
+    private HashTableIncrementResult IncrementElement(string key)
+    {
+        lock (_obj)
+        {
+            if (_hashTable.ContainsElement(key))
+            {
+                string? value = _hashTable.SearchElement(key);
+                if (int.TryParse(value?.ToString(), out int parsedValue))
+                {
+                    parsedValue += 1;
+                    _hashTable.AddElement(key, parsedValue.ToString());
+                    return new HashTableIncrementResult(parsedValue, false, true);
+                }
+                return new HashTableIncrementResult(null, false, false);
+            }
+            else
+            {
+                _hashTable.AddElement(key, "0");
+                return new HashTableIncrementResult(0, true, false);
+            }
         }
     }
 

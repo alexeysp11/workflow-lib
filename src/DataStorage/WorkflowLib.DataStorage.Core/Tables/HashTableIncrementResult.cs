@@ -16,9 +16,14 @@ public readonly struct HashTableIncrementResult
     public bool IsNew { get; }
 
     /// <summary>
-    /// Whether the value could be incremented.
+    /// Whether the value is incremented.
     /// </summary>
     public bool Incremented { get; }
+
+    /// <summary>
+    /// Whether the incrementing operation is successful.
+    /// </summary>
+    public bool Success => Value != null;
 
     public HashTableIncrementResult(int? value, bool isNew, bool incremented)
     {

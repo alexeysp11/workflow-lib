@@ -75,30 +75,4 @@ public class InMemoryHashTable<TKey, TValue> where TKey : notnull
             return _records.ContainsKey(key);
         }
     }
-
-    /// <summary>
-    /// Increment an element in the hash table.
-    /// </summary>
-    public virtual HashTableIncrementResult IncrementElement(TKey key)
-    {
-        lock (_obj)
-        {
-            if (_records.ContainsKey(key))
-            {
-                TValue value = _records[key];
-                if (int.TryParse(value?.ToString(), out int parsedValue))
-                {
-                    parsedValue += 1;
-                    _records[key] = (TValue)(object)parsedValue;
-                    return new HashTableIncrementResult(parsedValue, true, true);
-                }
-                return new HashTableIncrementResult(null, false, false);
-            }
-            else
-            {
-                _records.Add(key, (TValue)(object)0);
-                return new HashTableIncrementResult(0, false, true);
-            }
-        }
-    }
 }

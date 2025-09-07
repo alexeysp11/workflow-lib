@@ -46,5 +46,6 @@ message IncrementRequest {
 message IncrementResponse {
   google.protobuf.Int32Value value = 1;
   bool created = 2;
-  bool success = 3;
+  bool incremented = 3;
+  bool success = 4;
 }
