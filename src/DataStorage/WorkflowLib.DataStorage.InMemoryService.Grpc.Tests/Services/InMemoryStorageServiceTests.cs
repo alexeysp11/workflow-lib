@@ -67,8 +67,6 @@ public class InMemoryStorageServiceTests
         // Assert
         Assert.Equal(0, incrementResult.Value);
         Assert.Equal("0", searchResponse.Value);
-        Assert.True(incrementResult.Created);
-        Assert.False(incrementResult.Incremented);
         Assert.True(incrementResult.Success);
     }
 
@@ -92,8 +90,6 @@ public class InMemoryStorageServiceTests
         // Assert
         Assert.Equal(expected, incrementResult.Value);
         Assert.Equal(expected.ToString(), searchResponse.Value);
-        Assert.False(incrementResult.Created);
-        Assert.True(incrementResult.Incremented);
         Assert.True(incrementResult.Success);
     }
 

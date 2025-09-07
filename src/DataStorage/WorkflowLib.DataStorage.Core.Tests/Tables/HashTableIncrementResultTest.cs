@@ -12,51 +12,40 @@ namespace WorkflowLib.DataStorage.Core.Tests.Tables
 
             // Act & Assert
             Assert.Null(incrementResult.Value);
-            Assert.False(incrementResult.IsNew);
-            Assert.False(incrementResult.Incremented);
-            Assert.Equal("Value: '', IsNew: False, Incremented: False", incrementResult.ToString());
+            Assert.Equal("Value: '', Success: False", incrementResult.ToString());
         }
 
         [Theory]
-        [InlineData(null, false, false)]
-        [InlineData(null, true, false)]
-        [InlineData(null, false, true)]
-        [InlineData(null, true, true)]
-        [InlineData(0, false, false)]
-        [InlineData(0, true, false)]
-        [InlineData(0, false, true)]
-        [InlineData(0, true, true)]
-        [InlineData(1, false, false)]
-        [InlineData(2, true, false)]
-        [InlineData(3, false, true)]
-        [InlineData(4, true, true)]
-        [InlineData(-10, false, false)]
-        [InlineData(200, true, false)]
-        [InlineData(-423, false, true)]
-        [InlineData(4932, true, true)]
-        public void CreateUsingParameterizedConstructor(int? value, bool isNew, bool incremented)
+        [InlineData(null)]
+        [InlineData(0)]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(-10)]
+        [InlineData(200)]
+        [InlineData(-423)]
+        [InlineData(4932)]
+        public void CreateUsingParameterizedConstructor(int? value)
         {
             // Arrange
-            HashTableIncrementResult incrementResult = new(value, isNew, incremented);
+            HashTableIncrementResult incrementResult = new(value);
 
             // Act & Assert
             Assert.Equal(value, incrementResult.Value);
-            Assert.Equal(isNew, incrementResult.IsNew);
-            Assert.Equal(incremented, incrementResult.Incremented);
-            Assert.Equal($"Value: '{value}', IsNew: {isNew}, Incremented: {incremented}", incrementResult.ToString());
+            Assert.Equal($"Value: '{value}', Success: {value.HasValue}", incrementResult.ToString());
         }
 
         [Fact]
         public void CreateTwoEqualObjects()
         {
             // Arrange
-            HashTableIncrementResult incrementResult1 = new(200, true, false);
-            HashTableIncrementResult incrementResult2 = new(200, true, false);
+            HashTableIncrementResult incrementResult1 = new(200);
+            HashTableIncrementResult incrementResult2 = new(200);
 
             // Act & Assert
             Assert.Equal(incrementResult1.Value, incrementResult2.Value);
-            Assert.Equal(incrementResult1.IsNew, incrementResult2.IsNew);
-            Assert.Equal(incrementResult1.Incremented, incrementResult2.Incremented);
+            Assert.Equal(incrementResult1.Success, incrementResult2.Success);
             Assert.Equal(incrementResult1.GetHashCode(), incrementResult2.GetHashCode());
             Assert.True(incrementResult1.Equals(incrementResult2));
             Assert.True(incrementResult2.Equals(incrementResult1));
@@ -69,13 +58,12 @@ namespace WorkflowLib.DataStorage.Core.Tests.Tables
         public void CreateTwoUnequalObjects()
         {
             // Arrange
-            HashTableIncrementResult incrementResult1 = new(-423, false, true);
-            HashTableIncrementResult incrementResult2 = new(2, true, false);
+            HashTableIncrementResult incrementResult1 = new(-423);
+            HashTableIncrementResult incrementResult2 = new(2);
 
             // Act & Assert
             Assert.NotEqual(incrementResult1.Value, incrementResult2.Value);
-            Assert.NotEqual(incrementResult1.IsNew, incrementResult2.IsNew);
-            Assert.NotEqual(incrementResult1.Incremented, incrementResult2.Incremented);
+            Assert.Equal(incrementResult1.Success, incrementResult2.Success);
             Assert.False(incrementResult1.Equals(incrementResult2));
             Assert.False(incrementResult2.Equals(incrementResult1));
             Assert.False(incrementResult1 == incrementResult2);

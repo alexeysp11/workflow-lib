@@ -127,8 +127,6 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
             return Task.FromResult(new IncrementResponse
             {
                 Value = incrementResult.Value,
-                Created = incrementResult.IsNew,
-                Incremented = incrementResult.Incremented,
                 Success = incrementResult.Success
             });
         }
@@ -154,14 +152,14 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
                 {
                     parsedValue += 1;
                     _hashTable.AddElement(key, parsedValue.ToString());
-                    return new HashTableIncrementResult(parsedValue, false, true);
+                    return new HashTableIncrementResult(parsedValue);
                 }
-                return new HashTableIncrementResult(null, false, false);
+                return new HashTableIncrementResult(null);
             }
             else
             {
                 _hashTable.AddElement(key, "0");
-                return new HashTableIncrementResult(0, true, false);
+                return new HashTableIncrementResult(0);
             }
         }
     }

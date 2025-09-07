@@ -11,30 +11,18 @@ public readonly struct HashTableIncrementResult
     public int? Value { get; }
 
     /// <summary>
-    /// Whether the value is new.
-    /// </summary>
-    public bool IsNew { get; }
-
-    /// <summary>
-    /// Whether the value is incremented.
-    /// </summary>
-    public bool Incremented { get; }
-
-    /// <summary>
     /// Whether the incrementing operation is successful.
     /// </summary>
-    public bool Success => Value != null;
+    public bool Success => Value.HasValue;
 
-    public HashTableIncrementResult(int? value, bool isNew, bool incremented)
+    public HashTableIncrementResult(int? value)
     {
         Value = value;
-        IsNew = isNew;
-        Incremented = incremented;
     }
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(Value, IsNew, Incremented);
+        return HashCode.Combine(Value, Success);
     }
 
     public override bool Equals(object? obj)
@@ -45,13 +33,12 @@ public readonly struct HashTableIncrementResult
         }
         HashTableIncrementResult other = (HashTableIncrementResult)obj;
         return Value == other.Value
-            && IsNew == other.IsNew
-            && Incremented == other.Incremented;
+            && Success == other.Success;
     }
 
     public override string ToString()
     {
-        return $"Value: '{Value}', IsNew: {IsNew}, Incremented: {Incremented}";
+        return $"Value: '{Value}', Success: {Success}";
     }
 
     public static bool operator ==(HashTableIncrementResult left, HashTableIncrementResult right)
