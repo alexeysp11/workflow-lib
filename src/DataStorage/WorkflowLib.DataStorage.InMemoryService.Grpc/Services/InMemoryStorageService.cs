@@ -107,6 +107,31 @@ public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
         }
     }
 
+    public override Task<IncrementResponse> Increment(IncrementRequest request, ServerCallContext context)
+    {
+        CheckIfRequestKeyIsNullOrEmpty(request.Key);
+        string requestUid = GetRequestUid();
+        try
+        {
+            HashTableIncrementResult incrementResult = _hashTable.IncrementElement(request.Key);
+            if (IsProductionEnvironment())
+            {
+                Log.Information("Increment the record");
+            }
+            else
+            {
+                Log.Information($"[UID: {requestUid}] Increment the record (Key: '{request.Key}') - Result: [{incrementResult}]");
+            }
+            return Task.FromResult(new IncrementResponse { Value = incrementResult.Value, Created = incrementResult.IsNew, Success = incrementResult.Incremented });
+        }
+        catch (Exception ex)
+        {
+            string errorMessage = $"[UID: {requestUid}] An unexpected error occurred while incrementing element (Key: '{request.Key}')";
+            Log.Error(ex, errorMessage);
+            throw new RpcException(new Status(StatusCode.Internal, errorMessage), ex.Message);
+        }
+    }
+
     private void CheckIfRequestKeyIsNullOrEmpty(string requestKey)
     {
         if (string.IsNullOrEmpty(requestKey))
