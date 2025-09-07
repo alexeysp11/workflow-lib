@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.DataStorage.InM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.DataStorage.Grpc.Common", "WorkflowLib.DataStorage.Grpc.Common\WorkflowLib.DataStorage.Grpc.Common.csproj", "{6F66AE8A-9579-467F-AE83-9D32EA1F77F1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,6 +62,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C21B2258-2826-4337-9F12-2A19428478E3} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{61AAFF42-D6DE-4E1E-B0E7-07BB76089C7D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {14B76162-FC5C-41A9-AB47-7EC3E8133A22}
