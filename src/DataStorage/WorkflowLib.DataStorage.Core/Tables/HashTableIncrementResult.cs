@@ -29,6 +29,6 @@ public readonly struct HashTableIncrementResult
 
     public override string ToString()
     {
-        return $"Value: {Value}, IsNew: {IsNew}, Incremented: {Incremented}";
+        return $"Value: '{Value}', IsNew: {IsNew}, Incremented: {Incremented}";
     }
 }

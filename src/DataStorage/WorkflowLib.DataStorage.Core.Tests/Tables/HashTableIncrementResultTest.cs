@@ -14,6 +14,7 @@ namespace WorkflowLib.DataStorage.Core.Tests.Tables
             Assert.Null(incrementResult.Value);
             Assert.False(incrementResult.IsNew);
             Assert.False(incrementResult.Incremented);
+            Assert.Equal("Value: '', IsNew: False, Incremented: False", incrementResult.ToString());
         }
 
         [Theory]
@@ -42,6 +43,7 @@ namespace WorkflowLib.DataStorage.Core.Tests.Tables
             Assert.Equal(value, incrementResult.Value);
             Assert.Equal(isNew, incrementResult.IsNew);
             Assert.Equal(incremented, incrementResult.Incremented);
+            Assert.Equal($"Value: '{value}', IsNew: {isNew}, Incremented: {incremented}", incrementResult.ToString());
         }
     }
 }
