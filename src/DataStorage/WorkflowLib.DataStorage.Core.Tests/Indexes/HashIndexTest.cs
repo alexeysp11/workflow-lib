@@ -101,51 +101,51 @@ namespace WorkflowLib.DataStorage.Core.Tests.Indexes
         public void AddAndRemoveMultipleElements_WorksCorrectly()
         {
             // Arrange
-            var table = new HashIndex<int, string>();
+            var index = new HashIndex<int, string>();
 
             // Act
-            table.AddElement(1, "one");
-            table.AddElement(2, "two");
-            table.AddElement(3, "three");
+            index.AddElement(1, "one");
+            index.AddElement(2, "two");
+            index.AddElement(3, "three");
 
             // Assert
-            Assert.Equal("one", table.SearchElement(1));
-            Assert.Equal("two", table.SearchElement(2));
-            Assert.Equal("three", table.SearchElement(3));
+            Assert.Equal("one", index.SearchElement(1));
+            Assert.Equal("two", index.SearchElement(2));
+            Assert.Equal("three", index.SearchElement(3));
 
             // Act
-            table.RemoveElement(2);
+            index.RemoveElement(2);
 
             // Assert
-            Assert.Equal("one", table.SearchElement(1));
-            Assert.Equal(default(string), table.SearchElement(2));
-            Assert.Equal("three", table.SearchElement(3));
+            Assert.Equal("one", index.SearchElement(1));
+            Assert.Equal(default(string), index.SearchElement(2));
+            Assert.Equal("three", index.SearchElement(3));
 
-            table.RemoveElement(1);
-            Assert.Equal(default(string), table.SearchElement(1));
-            Assert.Equal("three", table.SearchElement(3));
+            index.RemoveElement(1);
+            Assert.Equal(default(string), index.SearchElement(1));
+            Assert.Equal("three", index.SearchElement(3));
 
-            table.RemoveElement(3);
-            Assert.Equal(default(string), table.SearchElement(3));
+            index.RemoveElement(3);
+            Assert.Equal(default(string), index.SearchElement(3));
         }
 
         [Fact]
         public void AddElement_DifferentTypes_WorksCorrectly()
         {
-            var table = new HashIndex<Guid, DateTime>();
+            var index = new HashIndex<Guid, DateTime>();
             Guid key1 = Guid.NewGuid();
             DateTime value1 = DateTime.Now;
 
-            table.AddElement(key1, value1);
+            index.AddElement(key1, value1);
 
-            Assert.Equal(value1, table.SearchElement(key1));
+            Assert.Equal(value1, index.SearchElement(key1));
         }
 
         [Fact]
         public async Task AddElement_ParallelAdds_NoDataLoss()
         {
             // Arrange
-            var table = new HashIndex<int, int>();
+            var index = new HashIndex<int, int>();
             int numTasks = 100;
             int numElementsPerTask = 100;
             var tasks = new List<Task>();
@@ -158,7 +158,7 @@ namespace WorkflowLib.DataStorage.Core.Tests.Indexes
                 {
                     for (int j = 0; j < numElementsPerTask; j++)
                     {
-                        table.AddElement(taskId * numElementsPerTask + j, taskId * numElementsPerTask + j);
+                        index.AddElement(taskId * numElementsPerTask + j, taskId * numElementsPerTask + j);
                     }
                 }));
             }
@@ -171,7 +171,7 @@ namespace WorkflowLib.DataStorage.Core.Tests.Indexes
                 for (int j = 0; j < numElementsPerTask; j++)
                 {
                     int key = i * numElementsPerTask + j;
-                    Assert.Equal(key, table.SearchElement(key));
+                    Assert.Equal(key, index.SearchElement(key));
                 }
             }
         }
@@ -180,14 +180,14 @@ namespace WorkflowLib.DataStorage.Core.Tests.Indexes
         public async Task RemoveElement_ParallelRemoves_NoExceptions()
         {
             // Arrange
-            var table = new HashIndex<int, int>();
+            var index = new HashIndex<int, int>();
             int numTasks = 100;
             int numElementsPerTask = 100;
 
             // Populate the table first
             for (int i = 0; i < numTasks * numElementsPerTask; i++)
             {
-                table.AddElement(i, i);
+                index.AddElement(i, i);
             }
 
             var tasks = new List<Task>();
@@ -200,7 +200,7 @@ namespace WorkflowLib.DataStorage.Core.Tests.Indexes
                 {
                     for (int j = 0; j < numElementsPerTask; j++)
                     {
-                        table.RemoveElement(taskId * numElementsPerTask + j);
+                        index.RemoveElement(taskId * numElementsPerTask + j);
                     }
                 }));
             }
@@ -210,7 +210,7 @@ namespace WorkflowLib.DataStorage.Core.Tests.Indexes
             // Assert
             for (int i = 0; i < numTasks * numElementsPerTask; i++)
             {
-                Assert.Equal(default(int), table.SearchElement(i));
+                Assert.Equal(default(int), index.SearchElement(i));
             }
         }
 
@@ -218,7 +218,7 @@ namespace WorkflowLib.DataStorage.Core.Tests.Indexes
         public async Task AddAndRemoveElement_ParallelAddAndRemove_NoCorruption()
         {
             // Arrange
-            var table = new HashIndex<int, int>();
+            var index = new HashIndex<int, int>();
             int numTasks = 50;
             int numElementsPerTask = 50;
             var tasks = new List<Task>();
@@ -236,12 +236,12 @@ namespace WorkflowLib.DataStorage.Core.Tests.Indexes
                         int key = taskId * numElementsPerTask + j;
 
                         //Simulate add and remove
-                        table.AddElement(key, key);
+                        index.AddElement(key, key);
                         lock (lockObj)
                         {
                             addedKeys.Add(key);
                         }
-                        table.RemoveElement(key);
+                        index.RemoveElement(key);
 
                         lock (lockObj)
                         {
@@ -256,12 +256,12 @@ namespace WorkflowLib.DataStorage.Core.Tests.Indexes
             // Assert:  Table should be empty
             foreach (var key in addedKeys)
             {
-            Assert.Equal(default(int), table.SearchElement(key));
+            Assert.Equal(default(int), index.SearchElement(key));
             }
 
             for (int i = 0; i < numTasks * numElementsPerTask; i++)
             {
-                Assert.Equal(default(int), table.SearchElement(i));
+                Assert.Equal(default(int), index.SearchElement(i));
             }
         }
 
@@ -269,7 +269,7 @@ namespace WorkflowLib.DataStorage.Core.Tests.Indexes
         public async Task Add_Remove_Search_Parallel()
         {
             // Arrange
-            var table = new HashIndex<int, string>();
+            var index = new HashIndex<int, string>();
             int numTasks = 50;
             int numElements = 100;
             var tasks = new List<Task>();
@@ -286,15 +286,15 @@ namespace WorkflowLib.DataStorage.Core.Tests.Indexes
 
                         if (rnd.Next(0, 3) == 0) // Simulate add
                         {
-                            table.AddElement(key, $"Value_{key}");
+                            index.AddElement(key, $"Value_{key}");
                         }
                         else if (rnd.Next(0, 3) == 1) // Simulate remove
                         {
-                            table.RemoveElement(key);
+                            index.RemoveElement(key);
                         }
                         else // Simulate search
                         {
-                            table.SearchElement(key); // Just call it; we don't assert on it directly here
+                            index.SearchElement(key); // Just call it; we don't assert on it directly here
                         }
                     }
                 }));
