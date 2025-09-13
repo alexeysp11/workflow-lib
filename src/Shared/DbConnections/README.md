@@ -1,4 +1,4 @@
-# DbConnections
+# WorkflowLib.Shared.DbConnections
 
 [English](README.md) | [Русский](README.ru.md)
 

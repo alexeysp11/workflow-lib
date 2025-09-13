@@ -1,8 +1,8 @@
-# WpfExtensions
+# WorkflowLib.Shared.WpfExtensions
 
 [English](README.md) | [Русский](README.ru.md)
 
-`WpfExtensions` is a library of visual elements for WPF applications.
+`WorkflowLib.Shared.WpfExtensions` is a library of visual elements for WPF applications.
 
 ## Auth
 
