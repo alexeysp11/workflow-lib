@@ -4,6 +4,11 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageId>WorkflowLib.Shared.Models.Business</PackageId>
+    <Version>1.0.0-alpha</Version>
+    <Authors>alexeysp11</Authors>
+    <PackageDescription>The library is an implementation of a shared object model for business entities.</PackageDescription>
+    <RepositoryUrl>https://github.com/alexeysp11/workflow-lib</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

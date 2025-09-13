@@ -4,6 +4,11 @@
     <TargetFramework>net8.0-windows</TargetFramework>
     <RootNamespace>WorkflowLib.Shared.WpfExtensions</RootNamespace>
     <UseWPF>true</UseWPF>
+    <PackageId>WorkflowLib.Shared.WpfExtensions</PackageId>
+    <Version>1.0.0-alpha</Version>
+    <Authors>alexeysp11</Authors>
+    <PackageDescription>A library of visual elements for WPF applications.</PackageDescription>
+    <RepositoryUrl>https://github.com/alexeysp11/workflow-lib</RepositoryUrl>
   </PropertyGroup>
 
 </Project>
