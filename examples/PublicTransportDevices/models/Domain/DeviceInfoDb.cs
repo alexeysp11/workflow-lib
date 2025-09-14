@@ -1,7 +1,7 @@
-using WorkflowLib.Examples.PublicTransportDevices.DbConnections;
-using WorkflowLib.Examples.PublicTransportDevices.Models.Data;
+using VelocipedeUtils.Examples.PublicTransportDevices.DbConnections;
+using VelocipedeUtils.Examples.PublicTransportDevices.Models.Data;
 
-namespace WorkflowLib.Examples.PublicTransportDevices.Models.Domain;
+namespace VelocipedeUtils.Examples.PublicTransportDevices.Models.Domain;
 
 public class DeviceInfoDb
 {

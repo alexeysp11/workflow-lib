@@ -28,7 +28,7 @@
 2. Выполнить команду для обновления базы данных на основе миграций.
 
 ```
-dotnet ef database update --project BL/WorkflowLib.Examples.Delivering.ServiceInteraction.BL.csproj --startup-project InitializeDb/WorkflowLib.Examples.Delivering.ServiceInteraction.InitializeDb.csproj
+dotnet ef database update --project BL/VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.csproj --startup-project InitializeDb/VelocipedeUtils.Examples.Delivering.ServiceInteraction.InitializeDb.csproj
 ```
 
 3. Заполнить базу данных тестовыми данными: запустить консольное приложение `InitializeDb`.

@@ -1,6 +1,6 @@
-using WorkflowLib.Shared.Models.Business;
+using VelocipedeUtils.Shared.Models.Business;
 
-namespace WorkflowLib.Shared.Models.Business.MeasurementUnits
+namespace VelocipedeUtils.Shared.Models.Business.MeasurementUnits
 {
     /// <summary>
     /// Weight unit.

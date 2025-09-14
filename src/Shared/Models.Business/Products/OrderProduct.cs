@@ -1,7 +1,7 @@
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.Shared.Models.Business.Packing;
+using VelocipedeUtils.Shared.Models.Business.BusinessDocuments;
+using VelocipedeUtils.Shared.Models.Business.Packing;
 
-namespace WorkflowLib.Shared.Models.Business.Products
+namespace VelocipedeUtils.Shared.Models.Business.Products
 {
     /// <summary>
     /// Order product.

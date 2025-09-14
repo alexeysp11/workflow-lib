@@ -1,6 +1,6 @@
-using WorkflowLib.DataStorage.Core.Tables;
+using VelocipedeUtils.DataStorage.Core.Tables;
 
-namespace WorkflowLib.DataStorage.Core.Indexes;
+namespace VelocipedeUtils.DataStorage.Core.Indexes;
 
 /// <summary>
 /// Implements a hash index.

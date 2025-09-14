@@ -1,7 +1,7 @@
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Forms;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Models;
 
-namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Resolvers;
+namespace VelocipedeUtils.PixelTerminalUI.ServiceEngine.Resolvers;
 
 /// <summary>
 /// Menu form resolver.

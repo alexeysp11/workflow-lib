@@ -1,9 +1,9 @@
-using WorkflowLib.PixelTerminalUI.BusinessVisuals.Info;
-using WorkflowLib.PixelTerminalUI.BusinessVisuals.Menu;
-using WorkflowLib.PixelTerminalUI.BusinessVisuals.Settings;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
+using VelocipedeUtils.PixelTerminalUI.BusinessVisuals.Info;
+using VelocipedeUtils.PixelTerminalUI.BusinessVisuals.Menu;
+using VelocipedeUtils.PixelTerminalUI.BusinessVisuals.Settings;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Forms;
 
-namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.Forms;
+namespace VelocipedeUtils.PixelTerminalUI.BusinessVisuals.Forms;
 
 public abstract class frmTerminalBase : BaseForm
 {

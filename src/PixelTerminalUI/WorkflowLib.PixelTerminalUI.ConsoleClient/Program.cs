@@ -1,9 +1,9 @@
 ﻿using System.Net.Http.Json;
 using System.Net.Sockets;
 using System.Text;
-using WorkflowLib.PixelTerminalUI.ConsoleAdapter.Helpers;
-using WorkflowLib.PixelTerminalUI.ConsoleClient.Models;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Dto;
+using VelocipedeUtils.PixelTerminalUI.ConsoleAdapter.Helpers;
+using VelocipedeUtils.PixelTerminalUI.ConsoleClient.Models;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Dto;
 
 class Program
 {

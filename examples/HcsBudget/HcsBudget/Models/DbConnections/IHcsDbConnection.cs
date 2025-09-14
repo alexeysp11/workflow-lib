@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Data;
 
-namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
+namespace VelocipedeUtils.Examples.HcsBudget.Models.DbConnections
 {
     public interface IHcsDbConnection 
     {

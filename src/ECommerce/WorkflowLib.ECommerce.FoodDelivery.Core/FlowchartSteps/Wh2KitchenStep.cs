@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Shared.Models.Network;
-using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.ECommerce.FoodDelivery.Core.Dal;
+using VelocipedeUtils.Shared.Models.Network;
+using VelocipedeUtils.ECommerce.FoodDelivery.Core.DbContexts;
+using VelocipedeUtils.Shared.Models.Business.BusinessDocuments;
+using VelocipedeUtils.ECommerce.FoodDelivery.Core.Dal;
 
-namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
+namespace VelocipedeUtils.ECommerce.FoodDelivery.Core.FlowchartSteps
 {
     /// <summary>
     /// A step that completes the procedure for delivering products from the warehouse to the kitchen.

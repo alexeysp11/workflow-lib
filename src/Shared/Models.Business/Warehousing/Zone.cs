@@ -1,4 +1,4 @@
-﻿namespace WorkflowLib.Shared.Models.Business.Warehousing
+﻿namespace VelocipedeUtils.Shared.Models.Business.Warehousing
 {
     /// <summary>
     /// A group of locations united by some feature (e.g. receiving zone, shipping zone, storage zone).

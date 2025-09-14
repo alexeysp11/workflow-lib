@@ -1,6 +1,6 @@
-﻿using WorkflowLib.Examples.TechSupport.Customers.Models;
+﻿using VelocipedeUtils.Examples.TechSupport.Customers.Models;
 
-namespace WorkflowLib.Examples.TechSupport.Incidents.Models;
+namespace VelocipedeUtils.Examples.TechSupport.Incidents.Models;
 
 /// <summary>
 /// Represents an individual incident.

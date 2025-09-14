@@ -1,6 +1,6 @@
-using WorkflowLib.Shared.Models.Network.MicroserviceConfigurations;
+using VelocipedeUtils.Shared.Models.Network.MicroserviceConfigurations;
 
-namespace WorkflowLib.Shared.Models.Business.Processes
+namespace VelocipedeUtils.Shared.Models.Business.Processes
 {
     /// <summary>
     /// Represents a transition between states of a business process with workflow functionality.

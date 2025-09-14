@@ -1,11 +1,11 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.ServiceRegistry;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.DAL;
-using WorkflowLib.Shared.Models.Business.Processes;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.ServiceRegistry;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.DAL;
+using VelocipedeUtils.Shared.Models.Business.Processes;
 
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Controllers;
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.Controllers;
 
 /// <summary>
 /// Represents kitchen controller.

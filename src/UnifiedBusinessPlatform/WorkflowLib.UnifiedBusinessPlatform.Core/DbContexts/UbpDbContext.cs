@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Shared.Models.Business.Customers;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
-using WorkflowLib.Shared.Models.Business.Languages;
+using VelocipedeUtils.Shared.Models.Business.Customers;
+using VelocipedeUtils.Shared.Models.Business.InformationSystem;
+using VelocipedeUtils.Shared.Models.Business.Languages;
 
-namespace WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts;
+namespace VelocipedeUtils.UnifiedBusinessPlatform.Core.DbContexts;
 
 /// <summary>
 /// Database context of the UnifiedBusinessPlatform.

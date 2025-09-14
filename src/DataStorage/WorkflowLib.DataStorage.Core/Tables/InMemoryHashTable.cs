@@ -1,4 +1,4 @@
-﻿namespace WorkflowLib.DataStorage.Core.Tables;
+﻿namespace VelocipedeUtils.DataStorage.Core.Tables;
 
 /// <summary>
 /// Implements a thread-safe in-memory hash table.

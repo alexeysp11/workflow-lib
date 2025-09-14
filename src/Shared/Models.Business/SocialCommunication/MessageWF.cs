@@ -1,12 +1,12 @@
 using System.Collections.Generic;
-using WorkflowLib.Shared.Models.Business;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
-using WorkflowLib.Shared.Models.Documents;
+using VelocipedeUtils.Shared.Models.Business;
+using VelocipedeUtils.Shared.Models.Business.InformationSystem;
+using VelocipedeUtils.Shared.Models.Documents;
 
-namespace WorkflowLib.Shared.Models.Business.SocialCommunication
+namespace VelocipedeUtils.Shared.Models.Business.SocialCommunication
 {
     /// <summary>
-    /// Respresents a message that is specific for the workflow-lib.
+    /// Respresents a message that is specific for the velocipede-utils.
     /// </summary>
     public class MessageWF : WfBusinessEntity, IWfBusinessEntity, ISendableBusinessEntity, IReceivableBusinessEntity
     {

@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../WorkflowLib.PixelTerminalUI.ConsoleAdapter/WorkflowLib.PixelTerminalUI.ConsoleAdapter.csproj" />
-    <ProjectReference Include="../WorkflowLib.PixelTerminalUI.ServiceEngine/WorkflowLib.PixelTerminalUI.ServiceEngine.csproj" />
+    <ProjectReference Include="../VelocipedeUtils.PixelTerminalUI.ConsoleAdapter/VelocipedeUtils.PixelTerminalUI.ConsoleAdapter.csproj" />
+    <ProjectReference Include="../VelocipedeUtils.PixelTerminalUI.ServiceEngine/VelocipedeUtils.PixelTerminalUI.ServiceEngine.csproj" />
   </ItemGroup>
 
 </Project>

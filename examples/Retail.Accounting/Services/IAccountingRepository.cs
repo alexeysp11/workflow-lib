@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using WorkflowLib.Examples.Retail.Accounting.Models;
+using VelocipedeUtils.Examples.Retail.Accounting.Models;
 
-namespace WorkflowLib.Examples.Retail.Accounting.Services
+namespace VelocipedeUtils.Examples.Retail.Accounting.Services
 {
     public interface IAccountingRepository
     {

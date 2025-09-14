@@ -1,7 +1,7 @@
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Forms;
+using VelocipedeUtils.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
+namespace VelocipedeUtils.PixelTerminalUI.ServiceEngine.Models;
 
 /// <summary>
 /// Information required to process the user session.

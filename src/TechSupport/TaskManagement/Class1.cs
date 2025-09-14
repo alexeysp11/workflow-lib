@@ -1,4 +1,4 @@
-﻿namespace WorkflowLib.Examples.TechSupport.TaskManagement;
+﻿namespace VelocipedeUtils.Examples.TechSupport.TaskManagement;
 public class Class1
 {
 

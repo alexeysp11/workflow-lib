@@ -1,13 +1,13 @@
-<Window x:Class="WorkflowLib.Examples.HcsBudget.Views.SettingsWindow"
+<Window x:Class="VelocipedeUtils.Examples.HcsBudget.Views.SettingsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WorkflowLib.Examples.HcsBudget"
-        xmlns:uc="clr-namespace:WorkflowLib.Examples.HcsBudget.UserControls"
+        xmlns:local="clr-namespace:VelocipedeUtils.Examples.HcsBudget"
+        xmlns:uc="clr-namespace:VelocipedeUtils.Examples.HcsBudget.UserControls"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="WorkflowLib.Examples.HcsBudget (for Windows): Settings" 
+        Title="VelocipedeUtils.Examples.HcsBudget (for Windows): Settings" 
         MaxHeight="415" MaxWidth="400" MinHeight="415" MinWidth="400">
     <Grid>
         <Grid.RowDefinitions>

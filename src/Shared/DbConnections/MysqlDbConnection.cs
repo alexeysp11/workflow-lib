@@ -2,7 +2,7 @@ using System.Data;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
-namespace WorkflowLib.Shared.DbConnections
+namespace VelocipedeUtils.Shared.DbConnections
 {
     /// <summary>
     /// MySQL database connection.

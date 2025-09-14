@@ -1,7 +1,7 @@
 ﻿{
   "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
-    "WorkflowLib.Reporting.PrintService": {
+    "VelocipedeUtils.Reporting.PrintService": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "environmentVariables": {

@@ -1,4 +1,4 @@
-namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Resolvers;
+namespace VelocipedeUtils.PixelTerminalUI.ServiceEngine.Resolvers;
 
 /// <summary>
 /// Memory resolver.

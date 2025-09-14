@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using WorkflowLib.Examples.PublicTransportDevices.DbConnections;
-using WorkflowLib.Examples.PublicTransportDevices.Models.Data;
+using VelocipedeUtils.Examples.PublicTransportDevices.DbConnections;
+using VelocipedeUtils.Examples.PublicTransportDevices.Models.Data;
 
-namespace WorkflowLib.Examples.PublicTransportDevices.WebApi.Controllers;
+namespace VelocipedeUtils.Examples.PublicTransportDevices.WebApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]

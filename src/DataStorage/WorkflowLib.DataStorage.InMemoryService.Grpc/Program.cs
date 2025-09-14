@@ -1,7 +1,7 @@
 using Serilog;
-using WorkflowLib.DataStorage.Core.Tables;
-using WorkflowLib.DataStorage.InMemoryService.Grpc.Services;
-using WorkflowLib.DataStorage.Models;
+using VelocipedeUtils.DataStorage.Core.Tables;
+using VelocipedeUtils.DataStorage.InMemoryService.Grpc.Services;
+using VelocipedeUtils.DataStorage.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

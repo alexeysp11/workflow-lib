@@ -1,4 +1,4 @@
-namespace WorkflowLib.UnifiedBusinessPlatform.DbInit.Models;
+namespace VelocipedeUtils.UnifiedBusinessPlatform.DbInit.Models;
 
 /// <summary>
 /// Settings for initializing the database.

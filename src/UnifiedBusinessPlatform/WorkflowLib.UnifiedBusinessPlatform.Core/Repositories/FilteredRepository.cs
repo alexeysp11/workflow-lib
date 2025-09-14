@@ -1,8 +1,8 @@
 using System.Collections.Concurrent;
-using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations;
-using WorkflowLib.UnifiedBusinessPlatform.Core.Models;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Models.Configurations;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Models;
 
-namespace WorkflowLib.UnifiedBusinessPlatform.Core.Repositories;
+namespace VelocipedeUtils.UnifiedBusinessPlatform.Core.Repositories;
 
 /// <summary>
 /// Allows to interact with the filtered collections.

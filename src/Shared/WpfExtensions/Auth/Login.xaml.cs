@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WorkflowLib.Shared.WpfExtensions.Auth
+namespace VelocipedeUtils.Shared.WpfExtensions.Auth
 {
     /// <summary>
     /// Interaction logic for Login.xaml

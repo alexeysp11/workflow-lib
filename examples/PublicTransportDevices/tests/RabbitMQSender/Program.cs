@@ -2,9 +2,9 @@
 using System.Text;
 using System.Text.Json;
 using RabbitMQ.Client;
-using WorkflowLib.Examples.PublicTransportDevices.Models.Data;
+using VelocipedeUtils.Examples.PublicTransportDevices.Models.Data;
 
-// namespace WorkflowLib.Examples.PublicTransportDevices.Examples.RabbitMQSender;
+// namespace VelocipedeUtils.Examples.PublicTransportDevices.Examples.RabbitMQSender;
 
 var factory = new ConnectionFactory { HostName = "localhost" };
 using var connection = factory.CreateConnection();

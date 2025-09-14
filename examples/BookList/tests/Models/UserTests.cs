@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Xunit;
-using WorkflowLib.Examples.BookList.Models;
+using VelocipedeUtils.Examples.BookList.Models;
 
 namespace Tests.BookList.Models
 {

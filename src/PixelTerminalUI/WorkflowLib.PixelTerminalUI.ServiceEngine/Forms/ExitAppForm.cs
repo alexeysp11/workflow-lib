@@ -1,4 +1,4 @@
-﻿namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
+﻿namespace VelocipedeUtils.PixelTerminalUI.ServiceEngine.Forms;
 
 /// <summary>
 /// The form displayed before exiting the application.

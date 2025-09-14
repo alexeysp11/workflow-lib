@@ -1,8 +1,8 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using WorkflowLib.NetworkAPIs;
-using WorkflowLib.Shared.Models.ErrorHandling;
-using WorkflowLib.Shared.Models.Network;
+using VelocipedeUtils.NetworkAPIs;
+using VelocipedeUtils.Shared.Models.ErrorHandling;
+using VelocipedeUtils.Shared.Models.Network;
 using WokflowLib.Authentication.Models.ConfigParameters;
 using WokflowLib.Authentication.Models.NetworkParameters;
 

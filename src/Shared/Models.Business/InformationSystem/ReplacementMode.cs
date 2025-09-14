@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Business.InformationSystem
+namespace VelocipedeUtils.Shared.Models.Business.InformationSystem
 {
     /// <summary>
     /// Replacement mode.

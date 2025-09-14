@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\database\WorkflowLib.Examples.RealEstateManager.Database.csproj" />
+    <ProjectReference Include="..\database\VelocipedeUtils.Examples.RealEstateManager.Database.csproj" />
   </ItemGroup>
 
 </Project>

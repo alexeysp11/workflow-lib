@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace WorkflowLib.Examples.RealEstateManager.Controllers
+namespace VelocipedeUtils.Examples.RealEstateManager.Controllers
 {
     [ApiController]
     [Route("[controller]")]

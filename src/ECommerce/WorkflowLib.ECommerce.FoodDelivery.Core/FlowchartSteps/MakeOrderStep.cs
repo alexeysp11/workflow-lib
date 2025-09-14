@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.Shared.Models.Business.Monetary;
-using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
-using WorkflowLib.Extensions;
-using WorkflowLib.Shared.Models.Business.Customers;
+using VelocipedeUtils.Shared.Models.Business.BusinessDocuments;
+using VelocipedeUtils.Shared.Models.Business.Monetary;
+using VelocipedeUtils.ECommerce.FoodDelivery.Core.DbContexts;
+using VelocipedeUtils.Extensions;
+using VelocipedeUtils.Shared.Models.Business.Customers;
 
-namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
+namespace VelocipedeUtils.ECommerce.FoodDelivery.Core.FlowchartSteps
 {
     /// <summary>
     /// The step that allows the customer to place an order.

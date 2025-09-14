@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../WorkflowLib.UnifiedBusinessPlatform.Core/WorkflowLib.UnifiedBusinessPlatform.Core.csproj" />
+    <ProjectReference Include="../VelocipedeUtils.UnifiedBusinessPlatform.Core/VelocipedeUtils.UnifiedBusinessPlatform.Core.csproj" />
   </ItemGroup>
 
 </Project>

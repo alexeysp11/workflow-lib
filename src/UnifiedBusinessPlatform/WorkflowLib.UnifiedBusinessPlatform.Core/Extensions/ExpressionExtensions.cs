@@ -1,6 +1,6 @@
 using System.Linq.Expressions;
 
-namespace WorkflowLib.UnifiedBusinessPlatform.Core.Extensions;
+namespace VelocipedeUtils.UnifiedBusinessPlatform.Core.Extensions;
 
 public static class ExpressionExtensions
 {

@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using Npgsql;
 
-namespace WorkflowLib.UnifiedBusinessPlatform.DbInit.Dal
+namespace VelocipedeUtils.UnifiedBusinessPlatform.DbInit.Dal
 {
     /// <summary>
     /// DAO for initializing postgres database for UnifiedBusinessPlatform.

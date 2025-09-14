@@ -1,14 +1,14 @@
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Extensions;
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.Shared.Models.Business.Customers;
-using WorkflowLib.Shared.Models.Business.Monetary;
-using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
-using WorkflowLib.ECommerce.FoodDelivery.Core.Dal;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
+using VelocipedeUtils.Extensions;
+using VelocipedeUtils.Shared.Models.Business.BusinessDocuments;
+using VelocipedeUtils.Shared.Models.Business.Customers;
+using VelocipedeUtils.Shared.Models.Business.Monetary;
+using VelocipedeUtils.ECommerce.FoodDelivery.Core.DbContexts;
+using VelocipedeUtils.ECommerce.FoodDelivery.Core.Dal;
+using VelocipedeUtils.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
+namespace VelocipedeUtils.ECommerce.FoodDelivery.Core.Handlers
 {
     /// <summary>
     /// A class that represents a backend service controller that processes requests from the customer.

@@ -10,10 +10,10 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WorkflowLib.Examples.BookList.Models;
-using WorkflowLib.Examples.BookList.Services;
+using VelocipedeUtils.Examples.BookList.Models;
+using VelocipedeUtils.Examples.BookList.Services;
 
-namespace WorkflowLib.Examples.BookList
+namespace VelocipedeUtils.Examples.BookList
 {
     public class Startup
     {

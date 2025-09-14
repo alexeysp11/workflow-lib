@@ -1,7 +1,7 @@
-using WorkflowLib.Shared.Models.Business;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
+using VelocipedeUtils.Shared.Models.Business;
+using VelocipedeUtils.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.Shared.Models.Business.SocialCommunication
+namespace VelocipedeUtils.Shared.Models.Business.SocialCommunication
 {
     /// <summary>
     /// Like.

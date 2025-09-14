@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
-using WorkflowLib.ECommerce.FoodDelivery.Core.Handlers;
+using VelocipedeUtils.Shared.Models.Business.BusinessDocuments;
+using VelocipedeUtils.ECommerce.FoodDelivery.Core.DbContexts;
+using VelocipedeUtils.ECommerce.FoodDelivery.Core.Handlers;
 
-namespace WorkflowLib.ECommerce.FoodDelivery.WebApi.Controllers
+namespace VelocipedeUtils.ECommerce.FoodDelivery.WebApi.Controllers
 {
     /// <summary>
     /// Client-side app controller that serves requests from the courier.

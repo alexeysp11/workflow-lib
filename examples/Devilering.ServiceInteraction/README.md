@@ -28,7 +28,7 @@ There are several types of client applications:
 2. Run the command to update the database based on the migrations.
 
 ```
-dotnet ef database update --project BL/WorkflowLib.Examples.Delivering.ServiceInteraction.BL.csproj --startup-project InitializeDb/WorkflowLib.Examples.Delivering.ServiceInteraction.InitializeDb.csproj
+dotnet ef database update --project BL/VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.csproj --startup-project InitializeDb/VelocipedeUtils.Examples.Delivering.ServiceInteraction.InitializeDb.csproj
 ```
 
 3. Fill the database with test data: run the `InitializeDb` console application.

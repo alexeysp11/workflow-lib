@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
+namespace VelocipedeUtils.UnifiedBusinessPlatform.Core.Migrations
 {
     public partial class AbsensesIsPaid : Migration
     {

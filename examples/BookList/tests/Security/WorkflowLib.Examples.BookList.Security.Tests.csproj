@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Security\WorkflowLib.Examples.BookList.Security.csproj" />
+    <ProjectReference Include="..\..\src\Security\VelocipedeUtils.Examples.BookList.Security.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

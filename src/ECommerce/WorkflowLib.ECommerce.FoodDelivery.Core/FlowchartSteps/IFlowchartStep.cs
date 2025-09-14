@@ -1,4 +1,4 @@
-namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
+namespace VelocipedeUtils.ECommerce.FoodDelivery.Core.FlowchartSteps
 {
     /// <summary>
     /// Interface for implementing steps within the order delivery process.

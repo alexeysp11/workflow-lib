@@ -4,9 +4,9 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
-using WorkflowLib.Examples.PublicTransportDevices.Models.Data;
+using VelocipedeUtils.Examples.PublicTransportDevices.Models.Data;
 
-namespace WorkflowLib.Examples.PublicTransportDevices.Examples.HttpSender;
+namespace VelocipedeUtils.Examples.PublicTransportDevices.Examples.HttpSender;
 
 class Program
 {

@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WorkflowLib.DataStorage.InMemoryService.Clients\WorkflowLib.DataStorage.InMemoryService.Clients.csproj" />
+    <ProjectReference Include="..\VelocipedeUtils.DataStorage.InMemoryService.Clients\VelocipedeUtils.DataStorage.InMemoryService.Clients.csproj" />
   </ItemGroup>
 
 </Project>

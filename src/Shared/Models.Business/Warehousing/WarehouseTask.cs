@@ -1,4 +1,4 @@
-﻿namespace WorkflowLib.Shared.Models.Business.Warehousing
+﻿namespace VelocipedeUtils.Shared.Models.Business.Warehousing
 {
     /// <summary>
     /// A specific task that must be completed in the warehouse (e.g., receiving goods, placing goods, assembling an order).

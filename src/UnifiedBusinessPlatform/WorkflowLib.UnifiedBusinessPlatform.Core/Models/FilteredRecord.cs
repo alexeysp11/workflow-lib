@@ -1,4 +1,4 @@
-namespace WorkflowLib.UnifiedBusinessPlatform.Core.Models;
+namespace VelocipedeUtils.UnifiedBusinessPlatform.Core.Models;
 
 /// <summary>
 /// Represents data retrieved after applying a filter against the inintial dataset.

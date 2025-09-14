@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WorkflowLib.Shared.Models.Business.Processes
+namespace VelocipedeUtils.Shared.Models.Business.Processes
 {
     /// <summary>
     /// Allows you to connect business diagram elements.

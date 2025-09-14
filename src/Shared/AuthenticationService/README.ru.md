@@ -52,7 +52,7 @@
 ```
 cd C:\PathToProj\your-project
 cd ..
-git clone https://github.com/alexeysp11/workflow-lib.git
+git clone https://github.com/alexeysp11/velocipede-utils.git
 cd your-project
 ```
 

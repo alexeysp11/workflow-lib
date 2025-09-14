@@ -3,12 +3,12 @@ using System.Data;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using WorkflowLib.Examples.HcsBudget.Views;
-using WorkflowLib.Examples.HcsBudget.Commands;
-using WorkflowLib.Examples.HcsBudget.Models;
-using WorkflowLib.Examples.HcsBudget.Models.DbConnections;
+using VelocipedeUtils.Examples.HcsBudget.Views;
+using VelocipedeUtils.Examples.HcsBudget.Commands;
+using VelocipedeUtils.Examples.HcsBudget.Models;
+using VelocipedeUtils.Examples.HcsBudget.Models.DbConnections;
 
-namespace WorkflowLib.Examples.HcsBudget.ViewModels
+namespace VelocipedeUtils.Examples.HcsBudget.ViewModels
 {
     public class MainVM
     {
@@ -438,7 +438,7 @@ namespace WorkflowLib.Examples.HcsBudget.ViewModels
             {
                 System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
                 {
-                    FileName = "https://github.com/alexeysp11/WorkflowLib.Examples.HcsBudget",
+                    FileName = "https://github.com/alexeysp11/VelocipedeUtils.Examples.HcsBudget",
                     UseShellExecute = true
                 });
             }

@@ -1,6 +1,6 @@
-﻿using WorkflowLib.DataStorage.Core.Tables;
+﻿using VelocipedeUtils.DataStorage.Core.Tables;
 
-namespace WorkflowLib.DataStorage.Core.Tests.Tables
+namespace VelocipedeUtils.DataStorage.Core.Tests.Tables
 {
     public class HashTableIncrementResultTest
     {

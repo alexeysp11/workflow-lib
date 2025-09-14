@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using WorkflowLib.Examples.Retail.Accounting;
-using WorkflowLib.Examples.Retail.Accounting.Models;
+using VelocipedeUtils.Examples.Retail.Accounting;
+using VelocipedeUtils.Examples.Retail.Accounting.Models;
 
-namespace WorkflowLib.Examples.Retail.Accounting.Pages
+namespace VelocipedeUtils.Examples.Retail.Accounting.Pages
 {
     public class ImportModel : PageModel
     {

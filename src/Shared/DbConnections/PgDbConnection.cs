@@ -1,7 +1,7 @@
 using System.Data;
 using Npgsql;
 
-namespace WorkflowLib.Shared.DbConnections
+namespace VelocipedeUtils.Shared.DbConnections
 {
     /// <summary>
     /// PostgreSQL database connection.

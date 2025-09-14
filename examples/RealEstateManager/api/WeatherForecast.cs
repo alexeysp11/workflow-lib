@@ -1,6 +1,6 @@
 using System;
 
-namespace WorkflowLib.Examples.RealEstateManager
+namespace VelocipedeUtils.Examples.RealEstateManager
 {
     public class WeatherForecast
     {

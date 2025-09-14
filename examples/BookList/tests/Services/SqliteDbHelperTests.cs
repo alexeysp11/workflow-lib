@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Data.Sqlite;
-using WorkflowLib.Examples.BookList.Models;
+using VelocipedeUtils.Examples.BookList.Models;
 using Xunit;
-using WorkflowLib.Examples.BookList.Services;
+using VelocipedeUtils.Examples.BookList.Services;
 
 namespace Tests.BookList.Services
 {

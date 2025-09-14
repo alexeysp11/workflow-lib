@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.BookList.Models
+namespace VelocipedeUtils.Examples.BookList.Models
 {
     public class Book
     {

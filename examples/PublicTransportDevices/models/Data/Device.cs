@@ -1,6 +1,6 @@
-using WorkflowLib.Examples.PublicTransportDevices.Models.Data.Enums;
+using VelocipedeUtils.Examples.PublicTransportDevices.Models.Data.Enums;
 
-namespace WorkflowLib.Examples.PublicTransportDevices.Models.Data;
+namespace VelocipedeUtils.Examples.PublicTransportDevices.Models.Data;
 
 public class Device
 {

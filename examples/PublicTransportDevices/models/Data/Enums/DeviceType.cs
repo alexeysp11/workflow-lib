@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.PublicTransportDevices.Models.Data.Enums;
+namespace VelocipedeUtils.Examples.PublicTransportDevices.Models.Data.Enums;
 
 public enum DeviceType
 {

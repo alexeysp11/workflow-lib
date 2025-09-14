@@ -1,4 +1,4 @@
-﻿namespace WorkflowLib.Shared.FuzzyModules.Examples
+﻿namespace VelocipedeUtils.Shared.FuzzyModules.Examples
 {
     public class Program
     {

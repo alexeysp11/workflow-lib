@@ -5,10 +5,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using WorkflowLib.Examples.PublicTransportDevices.Models.Data;
-using WorkflowLib.Examples.PublicTransportDevices.Models.Domain;
+using VelocipedeUtils.Examples.PublicTransportDevices.Models.Data;
+using VelocipedeUtils.Examples.PublicTransportDevices.Models.Domain;
 
-namespace WorkflowLib.Examples.PublicTransportDevices.Models.MessageQueues;
+namespace VelocipedeUtils.Examples.PublicTransportDevices.Models.MessageQueues;
 
 public class RabbitMQConsumer
 {

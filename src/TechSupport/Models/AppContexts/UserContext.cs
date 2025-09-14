@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.TechSupport.Common.Models.AppContexts;
+namespace VelocipedeUtils.Examples.TechSupport.Common.Models.AppContexts;
 
 /// <summary>
 /// Содержит данные о пользователе, такие как его имя, адрес электронной почты и настройки.

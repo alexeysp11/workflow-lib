@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
+namespace VelocipedeUtils.UnifiedBusinessPlatform.Core.Migrations
 {
     public partial class AddedWfApplicationAndForm : Migration
     {

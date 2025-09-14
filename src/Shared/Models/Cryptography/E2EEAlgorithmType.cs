@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Cryptography
+namespace VelocipedeUtils.Shared.Models.Cryptography
 {
     /// <summary>
     /// End to end encryption algorithm type.

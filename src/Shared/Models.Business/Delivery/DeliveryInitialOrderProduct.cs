@@ -1,7 +1,7 @@
-﻿using WorkflowLib.Shared.Models.Business.Processes;
-using WorkflowLib.Shared.Models.Business.Products;
+﻿using VelocipedeUtils.Shared.Models.Business.Processes;
+using VelocipedeUtils.Shared.Models.Business.Products;
 
-namespace WorkflowLib.Shared.Models.Business.Delivery
+namespace VelocipedeUtils.Shared.Models.Business.Delivery
 {
     public class DeliveryInitialOrderProduct : BusinessTask, IWfBusinessEntity
     {

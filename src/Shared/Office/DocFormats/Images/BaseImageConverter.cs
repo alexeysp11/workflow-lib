@@ -1,6 +1,6 @@
 using System.Linq;
 
-namespace WorkflowLib.Shared.Office.DocFormats.Images 
+namespace VelocipedeUtils.Shared.Office.DocFormats.Images 
 {
     /// <summary>
     /// Base image converter.

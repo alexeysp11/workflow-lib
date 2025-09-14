@@ -19,9 +19,9 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\WorkflowLib.DataStorage.Core\WorkflowLib.DataStorage.Core.csproj" />
-    <ProjectReference Include="..\WorkflowLib.DataStorage.Models\WorkflowLib.DataStorage.Models.csproj" />
-    <ProjectReference Include="..\WorkflowLib.DataStorage.InMemoryService.Grpc\WorkflowLib.DataStorage.InMemoryService.Grpc.csproj" />
+    <ProjectReference Include="..\VelocipedeUtils.DataStorage.Core\VelocipedeUtils.DataStorage.Core.csproj" />
+    <ProjectReference Include="..\VelocipedeUtils.DataStorage.Models\VelocipedeUtils.DataStorage.Models.csproj" />
+    <ProjectReference Include="..\VelocipedeUtils.DataStorage.InMemoryService.Grpc\VelocipedeUtils.DataStorage.InMemoryService.Grpc.csproj" />
   </ItemGroup>
 
   <ItemGroup>

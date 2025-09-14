@@ -1,8 +1,8 @@
 ﻿using Serilog;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Controls;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Models;
 
-namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
+namespace VelocipedeUtils.PixelTerminalUI.ServiceEngine.Forms;
 
 /// <summary>
 /// Base implementation of the form.

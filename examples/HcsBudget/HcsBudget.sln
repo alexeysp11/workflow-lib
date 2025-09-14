@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Examples.HcsBudget", "HcsBudget\WorkflowLib.Examples.HcsBudget.csproj", "{3CE5C2ED-E949-494B-9491-D235E150C632}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Examples.HcsBudget", "HcsBudget\VelocipedeUtils.Examples.HcsBudget.csproj", "{3CE5C2ED-E949-494B-9491-D235E150C632}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

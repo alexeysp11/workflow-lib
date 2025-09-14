@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
-using WorkflowLib.ECommerce.FoodDelivery.Core.Models;
+using VelocipedeUtils.ECommerce.FoodDelivery.Core.DbContexts;
+using VelocipedeUtils.ECommerce.FoodDelivery.Core.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

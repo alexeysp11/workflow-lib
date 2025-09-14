@@ -1,7 +1,7 @@
-using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Models.Configurations;
+using VelocipedeUtils.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.UnifiedBusinessPlatform.Core.Domain.DatasetGenerators;
+namespace VelocipedeUtils.UnifiedBusinessPlatform.Core.Domain.DatasetGenerators;
 
 /// <summary>
 /// Randomly generates a set of employees

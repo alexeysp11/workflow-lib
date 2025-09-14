@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.Shared.Models.Business.Processes;
+using VelocipedeUtils.Shared.Models.Business.BusinessDocuments;
+using VelocipedeUtils.Shared.Models.Business.Processes;
 
-namespace WorkflowLib.Shared.ServiceDiscoveryBpm.DAL;
+namespace VelocipedeUtils.Shared.ServiceDiscoveryBpm.DAL;
 
 /// <summary>
 /// An interface at the DAL level that performs operations related to business processes in the database.

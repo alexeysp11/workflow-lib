@@ -1,6 +1,6 @@
-using WorkflowLib.Shared.Models.Business.Processes;
+using VelocipedeUtils.Shared.Models.Business.Processes;
 
-namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
+namespace VelocipedeUtils.Shared.Models.Business.BusinessDocuments
 {
     /// <summary>
     /// Associate table between business task and order.

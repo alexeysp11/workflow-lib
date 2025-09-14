@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
+namespace VelocipedeUtils.Shared.Models.Business.BusinessDocuments
 {
     /// <summary>
     /// Model for placing order, that is used mostly as the DTO.

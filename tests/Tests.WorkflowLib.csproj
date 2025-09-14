@@ -14,10 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../src/Shared/CodeExtensions/WorkflowLib.Shared.CodeExtensions.csproj" />
-    <ProjectReference Include="../src/Shared/DbConnections/WorkflowLib.Shared.DbConnections.csproj" />
-    <ProjectReference Include="../src/Shared/Office/WorkflowLib.Shared.Office.csproj" />
-    <ProjectReference Include="../src/Shared/Office.Extensions/WorkflowLib.Shared.Office.Extensions.csproj" />
+    <ProjectReference Include="../src/Shared/CodeExtensions/VelocipedeUtils.Shared.CodeExtensions.csproj" />
+    <ProjectReference Include="../src/Shared/DbConnections/VelocipedeUtils.Shared.DbConnections.csproj" />
+    <ProjectReference Include="../src/Shared/Office/VelocipedeUtils.Shared.Office.csproj" />
+    <ProjectReference Include="../src/Shared/Office.Extensions/VelocipedeUtils.Shared.Office.Extensions.csproj" />
   </ItemGroup>
 
 </Project>

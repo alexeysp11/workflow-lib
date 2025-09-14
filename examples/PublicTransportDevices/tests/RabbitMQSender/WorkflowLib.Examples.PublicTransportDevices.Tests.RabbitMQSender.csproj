@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../models/WorkflowLib.Examples.PublicTransportDevices.Models.csproj" />
+    <ProjectReference Include="../../models/VelocipedeUtils.Examples.PublicTransportDevices.Models.csproj" />
   </ItemGroup>
 
 </Project>

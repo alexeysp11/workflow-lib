@@ -3,23 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Examples.TechSupport.Common", "Common\WorkflowLib.Examples.TechSupport.Common.csproj", "{EFADF327-9139-4379-A983-26E04EB67B46}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Examples.TechSupport.Common", "Common\VelocipedeUtils.Examples.TechSupport.Common.csproj", "{EFADF327-9139-4379-A983-26E04EB67B46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Examples.TechSupport.Customers", "Customers\WorkflowLib.Examples.TechSupport.Customers.csproj", "{CE9C989A-E5B1-40AB-B6CF-1BC4D772586D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Examples.TechSupport.Customers", "Customers\VelocipedeUtils.Examples.TechSupport.Customers.csproj", "{CE9C989A-E5B1-40AB-B6CF-1BC4D772586D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Examples.TechSupport.EventJournal", "EventJournal\WorkflowLib.Examples.TechSupport.EventJournal.csproj", "{AFE9FFFA-AED4-423F-BE7F-339E70DCCEA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Examples.TechSupport.EventJournal", "EventJournal\VelocipedeUtils.Examples.TechSupport.EventJournal.csproj", "{AFE9FFFA-AED4-423F-BE7F-339E70DCCEA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Examples.TechSupport.Incidents", "Incidents\WorkflowLib.Examples.TechSupport.Incidents.csproj", "{0900F54C-271E-4E82-A137-D578E9B08F4B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Examples.TechSupport.Incidents", "Incidents\VelocipedeUtils.Examples.TechSupport.Incidents.csproj", "{0900F54C-271E-4E82-A137-D578E9B08F4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Examples.TechSupport.KnowledgeBase", "KnowledgeBase\WorkflowLib.Examples.TechSupport.KnowledgeBase.csproj", "{41E5FD22-994F-4C7F-B8D9-0CE49393C10B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Examples.TechSupport.KnowledgeBase", "KnowledgeBase\VelocipedeUtils.Examples.TechSupport.KnowledgeBase.csproj", "{41E5FD22-994F-4C7F-B8D9-0CE49393C10B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Examples.TechSupport.Models", "Models\WorkflowLib.Examples.TechSupport.Models.csproj", "{DF306E7B-4E31-4FF0-884D-06D3C25C70FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Examples.TechSupport.Models", "Models\VelocipedeUtils.Examples.TechSupport.Models.csproj", "{DF306E7B-4E31-4FF0-884D-06D3C25C70FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Examples.TechSupport.Notifications", "Notifications\WorkflowLib.Examples.TechSupport.Notifications.csproj", "{79DF1D37-4F12-48E2-9DDF-51F24D02AD97}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Examples.TechSupport.Notifications", "Notifications\VelocipedeUtils.Examples.TechSupport.Notifications.csproj", "{79DF1D37-4F12-48E2-9DDF-51F24D02AD97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Examples.TechSupport.Server", "Server\WorkflowLib.Examples.TechSupport.Server.csproj", "{DCEA77D1-90A0-4A19-9237-02A21CF8B243}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Examples.TechSupport.Server", "Server\VelocipedeUtils.Examples.TechSupport.Server.csproj", "{DCEA77D1-90A0-4A19-9237-02A21CF8B243}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Examples.TechSupport.TaskManagement", "TaskManagement\WorkflowLib.Examples.TechSupport.TaskManagement.csproj", "{9C8492FA-EE11-4877-AD83-FD70E9421BDE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Examples.TechSupport.TaskManagement", "TaskManagement\VelocipedeUtils.Examples.TechSupport.TaskManagement.csproj", "{9C8492FA-EE11-4877-AD83-FD70E9421BDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

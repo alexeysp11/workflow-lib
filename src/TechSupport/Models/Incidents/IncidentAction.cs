@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.TechSupport.Incidents.Models;
+namespace VelocipedeUtils.Examples.TechSupport.Incidents.Models;
 
 /// <summary>
 /// 

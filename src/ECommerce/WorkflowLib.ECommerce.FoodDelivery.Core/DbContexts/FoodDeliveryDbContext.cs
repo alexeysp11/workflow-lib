@@ -1,17 +1,17 @@
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.Shared.Models.Business.Cooking;
-using WorkflowLib.Shared.Models.Business.Customers;
-using WorkflowLib.Shared.Models.Business.Delivery;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
-using WorkflowLib.Shared.Models.Business.Monetary;
-using WorkflowLib.Shared.Models.Business.Products;
-using WorkflowLib.Shared.Models.Business.Processes;
-using WorkflowLib.Shared.Models.Business.SocialCommunication;
-using WorkflowLib.Shared.Models.Business.Packing;
-using WorkflowLib.Shared.Models.Business.MeasurementUnits;
+using VelocipedeUtils.Shared.Models.Business.BusinessDocuments;
+using VelocipedeUtils.Shared.Models.Business.Cooking;
+using VelocipedeUtils.Shared.Models.Business.Customers;
+using VelocipedeUtils.Shared.Models.Business.Delivery;
+using VelocipedeUtils.Shared.Models.Business.InformationSystem;
+using VelocipedeUtils.Shared.Models.Business.Monetary;
+using VelocipedeUtils.Shared.Models.Business.Products;
+using VelocipedeUtils.Shared.Models.Business.Processes;
+using VelocipedeUtils.Shared.Models.Business.SocialCommunication;
+using VelocipedeUtils.Shared.Models.Business.Packing;
+using VelocipedeUtils.Shared.Models.Business.MeasurementUnits;
 
-namespace WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts
+namespace VelocipedeUtils.ECommerce.FoodDelivery.Core.DbContexts
 {
     /// <summary>
     /// Database context that allows you to work with entities from the database and store them as regular collections.

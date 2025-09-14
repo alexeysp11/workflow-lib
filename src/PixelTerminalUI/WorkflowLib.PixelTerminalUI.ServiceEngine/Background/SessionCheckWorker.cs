@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Serilog;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Resolvers;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Models;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Resolvers;
 
-namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Background
+namespace VelocipedeUtils.PixelTerminalUI.ServiceEngine.Background
 {
     /// <summary>
     /// Worker to check if the session is valid.

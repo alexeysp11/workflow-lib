@@ -1,9 +1,9 @@
-using WorkflowLib.Shared.Models.Business.Customers;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
-using WorkflowLib.Shared.Models.Business.Monetary;
-using WorkflowLib.Shared.Models.Business.Responsibilities;
+using VelocipedeUtils.Shared.Models.Business.Customers;
+using VelocipedeUtils.Shared.Models.Business.InformationSystem;
+using VelocipedeUtils.Shared.Models.Business.Monetary;
+using VelocipedeUtils.Shared.Models.Business.Responsibilities;
 
-namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
+namespace VelocipedeUtils.Shared.Models.Business.BusinessDocuments
 {
     /// <summary>
     /// Employment contract.

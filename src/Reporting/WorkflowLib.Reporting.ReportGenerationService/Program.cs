@@ -1,4 +1,4 @@
-using WorkflowLib.Reporting.ReportGenerationService;
+using VelocipedeUtils.Reporting.ReportGenerationService;
 
 var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddHostedService<Worker>();

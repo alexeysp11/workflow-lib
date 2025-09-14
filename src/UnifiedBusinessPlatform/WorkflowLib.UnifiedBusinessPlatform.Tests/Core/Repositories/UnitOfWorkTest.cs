@@ -1,10 +1,10 @@
 using System.Linq;
 using Xunit;
-using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
-using WorkflowLib.UnifiedBusinessPlatform.Core.Repositories;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Models.Configurations;
+using VelocipedeUtils.Shared.Models.Business.InformationSystem;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Repositories;
 
-namespace Tests.WorkflowLib.UnifiedBusinessPlatform.Core.Repositories;
+namespace Tests.VelocipedeUtils.UnifiedBusinessPlatform.Core.Repositories;
 
 public class UnitOfWorkTest
 {

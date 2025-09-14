@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.Webapi.Customer
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.Webapi.Customer
 {
     /// <summary>
     /// An interface that allows you to initialize this example and also start executing it.

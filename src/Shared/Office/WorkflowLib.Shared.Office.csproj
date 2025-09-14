@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../Models/WorkflowLib.Shared.Models.csproj" />
+    <ProjectReference Include="../Models/VelocipedeUtils.Shared.Models.csproj" />
   </ItemGroup>
 
 </Project>

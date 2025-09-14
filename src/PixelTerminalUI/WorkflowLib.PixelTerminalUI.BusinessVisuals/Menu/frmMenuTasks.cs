@@ -1,6 +1,6 @@
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Controls;
 
-namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.Menu;
+namespace VelocipedeUtils.PixelTerminalUI.BusinessVisuals.Menu;
 
 public class frmMenuTasks : frmMenu
 {

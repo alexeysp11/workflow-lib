@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
+using VelocipedeUtils.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.UnifiedBusinessPlatform.Core.Repositories;
+namespace VelocipedeUtils.UnifiedBusinessPlatform.Core.Repositories;
 
 public interface IUnitOfWork
 {

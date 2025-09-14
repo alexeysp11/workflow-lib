@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.Tests
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.Tests
 {
     /// <summary>
     /// An interface that allows you to initialize this example and also start executing it.

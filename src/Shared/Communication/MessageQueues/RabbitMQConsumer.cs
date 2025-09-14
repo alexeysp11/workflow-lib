@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-namespace WorkflowLib.Shared.Models.MessageQueues
+namespace VelocipedeUtils.Shared.Models.MessageQueues
 {
     /// <summary>
     /// RabbitMQ consumer.

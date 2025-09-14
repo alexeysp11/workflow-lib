@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace WorkflowLib.Examples.RealEstateManager
+namespace VelocipedeUtils.Examples.RealEstateManager
 {
     public class Program
     {

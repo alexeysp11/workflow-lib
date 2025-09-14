@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using WorkflowLib.Shared.Models.Business;
+using VelocipedeUtils.Shared.Models.Business;
 
-namespace WorkflowLib.Shared.Models.Business.Processes
+namespace VelocipedeUtils.Shared.Models.Business.Processes
 {
     /// <summary>
     /// Business process diagram

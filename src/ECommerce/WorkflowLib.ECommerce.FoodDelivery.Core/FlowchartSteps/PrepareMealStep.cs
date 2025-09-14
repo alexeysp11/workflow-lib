@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Shared.Models.Network;
-using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
-using WorkflowLib.ECommerce.FoodDelivery.Core.Dal;
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
+using VelocipedeUtils.Shared.Models.Network;
+using VelocipedeUtils.ECommerce.FoodDelivery.Core.DbContexts;
+using VelocipedeUtils.ECommerce.FoodDelivery.Core.Dal;
+using VelocipedeUtils.Shared.Models.Business.BusinessDocuments;
 
-namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
+namespace VelocipedeUtils.ECommerce.FoodDelivery.Core.FlowchartSteps
 {
     /// <summary>
     /// The step that involves preparing food in the kitchen as part of order processing.

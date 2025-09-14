@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
-using WorkflowLib.ECommerce.FoodDelivery.DbInit.Models;
-using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
+using VelocipedeUtils.ECommerce.FoodDelivery.DbInit.Models;
+using VelocipedeUtils.ECommerce.FoodDelivery.Core.DbContexts;
 using Microsoft.EntityFrameworkCore;
 
-namespace WorkflowLib.ECommerce.FoodDelivery.DbInit;
+namespace VelocipedeUtils.ECommerce.FoodDelivery.DbInit;
 
 public class Program
 {

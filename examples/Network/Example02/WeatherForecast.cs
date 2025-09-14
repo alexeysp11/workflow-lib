@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.Network.Example01;
+namespace VelocipedeUtils.Examples.Network.Example01;
 
 public class WeatherForecast
 {

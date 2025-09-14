@@ -1,13 +1,13 @@
-using WorkflowLib.PixelTerminalUI.BusinessVisuals.Applications;
-using WorkflowLib.PixelTerminalUI.BusinessVisuals.ConfigVariables;
-using WorkflowLib.PixelTerminalUI.BusinessVisuals.Forms;
-using WorkflowLib.PixelTerminalUI.BusinessVisuals.TestForms;
-using WorkflowLib.PixelTerminalUI.BusinessVisuals.Tasks;
-using WorkflowLib.PixelTerminalUI.BusinessVisuals.Users;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
-using WorkflowLib.PixelTerminalUI.BusinessVisuals.Info;
+using VelocipedeUtils.PixelTerminalUI.BusinessVisuals.Applications;
+using VelocipedeUtils.PixelTerminalUI.BusinessVisuals.ConfigVariables;
+using VelocipedeUtils.PixelTerminalUI.BusinessVisuals.Forms;
+using VelocipedeUtils.PixelTerminalUI.BusinessVisuals.TestForms;
+using VelocipedeUtils.PixelTerminalUI.BusinessVisuals.Tasks;
+using VelocipedeUtils.PixelTerminalUI.BusinessVisuals.Users;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Controls;
+using VelocipedeUtils.PixelTerminalUI.BusinessVisuals.Info;
 
-namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.Menu;
+namespace VelocipedeUtils.PixelTerminalUI.BusinessVisuals.Menu;
 
 public class frmMenu : frmTerminalBase
 {

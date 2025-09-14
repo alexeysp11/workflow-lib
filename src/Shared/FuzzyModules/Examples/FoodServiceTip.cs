@@ -1,8 +1,8 @@
 using System;
-using WorkflowLib.Shared.FuzzyModules.API;
-using WorkflowLib.Shared.FuzzyModules.API.Membership;
+using VelocipedeUtils.Shared.FuzzyModules.API;
+using VelocipedeUtils.Shared.FuzzyModules.API.Membership;
 
-namespace WorkflowLib.Shared.FuzzyModules.Examples
+namespace VelocipedeUtils.Shared.FuzzyModules.Examples
 {
     public class FoodServiceTip
     {

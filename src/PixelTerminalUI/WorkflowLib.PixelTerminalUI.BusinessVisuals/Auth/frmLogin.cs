@@ -1,10 +1,10 @@
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
-using WorkflowLib.PixelTerminalUI.BusinessVisuals.Forms;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
-using WorkflowLib.PixelTerminalUI.Dal.Auth;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Controls;
+using VelocipedeUtils.PixelTerminalUI.BusinessVisuals.Forms;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Models;
+using VelocipedeUtils.PixelTerminalUI.Dal.Auth;
+using VelocipedeUtils.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.Auth;
+namespace VelocipedeUtils.PixelTerminalUI.BusinessVisuals.Auth;
 
 public class frmLogin : frmTerminalBase
 {

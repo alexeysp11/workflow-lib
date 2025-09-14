@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\WorkflowLib.Examples.FirmsAccounting.csproj" />
+    <ProjectReference Include="..\src\VelocipedeUtils.Examples.FirmsAccounting.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-using WorkflowLib.Examples.Delivering.ServiceInteraction.Grpc.Services;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.Grpc.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,4 +1,4 @@
-namespace WorkflowLib.UnifiedBusinessPlatform.Core.Models.HumanResources;
+namespace VelocipedeUtils.UnifiedBusinessPlatform.Core.Models.HumanResources;
 
 /// <summary>
 /// Job titles used in the company.

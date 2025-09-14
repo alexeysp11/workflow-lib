@@ -1,6 +1,6 @@
-using WorkflowLib.Examples.HcsBudget.ViewModels;
+using VelocipedeUtils.Examples.HcsBudget.ViewModels;
 
-namespace WorkflowLib.Examples.HcsBudget.Commands
+namespace VelocipedeUtils.Examples.HcsBudget.Commands
 {
     public class InputCommand : System.Windows.Input.ICommand
     {

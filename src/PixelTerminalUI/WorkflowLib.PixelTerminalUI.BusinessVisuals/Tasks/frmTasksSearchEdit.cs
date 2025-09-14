@@ -1,7 +1,7 @@
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
-using WorkflowLib.PixelTerminalUI.BusinessVisuals.Forms;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Controls;
+using VelocipedeUtils.PixelTerminalUI.BusinessVisuals.Forms;
 
-namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.Tasks;
+namespace VelocipedeUtils.PixelTerminalUI.BusinessVisuals.Tasks;
 
 public class frmTasksSearchEdit : frmTerminalBase
 {

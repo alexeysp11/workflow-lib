@@ -1,10 +1,10 @@
 using Grpc.Core;
 using Moq;
-using WorkflowLib.DataStorage.Core.Tables;
-using WorkflowLib.DataStorage.InMemoryService.Grpc.Services;
-using WorkflowLib.DataStorage.Models;
+using VelocipedeUtils.DataStorage.Core.Tables;
+using VelocipedeUtils.DataStorage.InMemoryService.Grpc.Services;
+using VelocipedeUtils.DataStorage.Models;
 
-namespace WorkflowLib.DataStorage.InMemoryService.Grpc.Tests;
+namespace VelocipedeUtils.DataStorage.InMemoryService.Grpc.Tests;
 
 public class InMemoryStorageServiceTests
 {

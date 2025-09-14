@@ -2,12 +2,12 @@ using System.Windows;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
-using WorkflowLib.Examples.FirmsAccounting.Views;
-using WorkflowLib.Examples.FirmsAccounting.Commands;
-using WorkflowLib.Examples.FirmsAccounting.Models.DbConnections;
-using WorkflowLib.Examples.FirmsAccounting.Models.Data;
+using VelocipedeUtils.Examples.FirmsAccounting.Views;
+using VelocipedeUtils.Examples.FirmsAccounting.Commands;
+using VelocipedeUtils.Examples.FirmsAccounting.Models.DbConnections;
+using VelocipedeUtils.Examples.FirmsAccounting.Models.Data;
 
-namespace WorkflowLib.Examples.FirmsAccounting.ViewModels
+namespace VelocipedeUtils.Examples.FirmsAccounting.ViewModels
 {
     public class MainVM
     {

@@ -1,4 +1,4 @@
-namespace WorkflowLib.DataStorage.Core.Queries;
+namespace VelocipedeUtils.DataStorage.Core.Queries;
 
 /// <summary>
 /// 

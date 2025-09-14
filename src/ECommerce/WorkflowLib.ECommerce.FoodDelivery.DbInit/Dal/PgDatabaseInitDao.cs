@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using Npgsql;
 
-namespace WorkflowLib.ECommerce.FoodDelivery.DbInit.Dal
+namespace VelocipedeUtils.ECommerce.FoodDelivery.DbInit.Dal
 {
     /// <summary>
     /// DAO for initializing postgres database for UnifiedBusinessPlatform.

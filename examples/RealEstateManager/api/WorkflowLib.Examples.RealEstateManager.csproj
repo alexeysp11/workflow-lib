@@ -5,9 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\dataaccess\WorkflowLib.Examples.RealEstateManager.DataAccess.csproj" />
-    <ProjectReference Include="..\database\WorkflowLib.Examples.RealEstateManager.Database.csproj" />
-    <ProjectReference Include="..\types\WorkflowLib.Examples.RealEstateManager.Types.csproj" />
+    <ProjectReference Include="..\dataaccess\VelocipedeUtils.Examples.RealEstateManager.DataAccess.csproj" />
+    <ProjectReference Include="..\database\VelocipedeUtils.Examples.RealEstateManager.Database.csproj" />
+    <ProjectReference Include="..\types\VelocipedeUtils.Examples.RealEstateManager.Types.csproj" />
   </ItemGroup>
 
   <ItemGroup>

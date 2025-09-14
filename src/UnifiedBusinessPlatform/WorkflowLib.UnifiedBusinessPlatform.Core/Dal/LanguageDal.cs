@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using System.Collections.Generic;
-using WorkflowLib.Shared.Models.Business;
-using WorkflowLib.Shared.Models.Business.Languages;
-using WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts;
+using VelocipedeUtils.Shared.Models.Business;
+using VelocipedeUtils.Shared.Models.Business.Languages;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.DbContexts;
 
-namespace WorkflowLib.UnifiedBusinessPlatform.Core.Dal
+namespace VelocipedeUtils.UnifiedBusinessPlatform.Core.Dal
 {
     /// <summary>
     /// A class that provides general functionality for working with databases in the context of languages.

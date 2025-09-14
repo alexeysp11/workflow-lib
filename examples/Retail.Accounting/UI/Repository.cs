@@ -1,6 +1,6 @@
-using WorkflowLib.Examples.Retail.Accounting.Services;
+using VelocipedeUtils.Examples.Retail.Accounting.Services;
 
-namespace WorkflowLib.Examples.Retail.Accounting
+namespace VelocipedeUtils.Examples.Retail.Accounting
 {
     public static class Repository
     {

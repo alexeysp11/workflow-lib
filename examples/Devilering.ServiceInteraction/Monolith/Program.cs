@@ -1,19 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BPInitializers;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DbContexts;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Controllers;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DAL;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.DAL;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.LoadBalancers;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.ObjectPooling;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.ServiceRegistry;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.Routing;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.Monolith;
-using WorkflowLib.Shared.Models.Business.Processes;
-using WorkflowLib.Shared.Models.Logging;
-using WorkflowLib.Shared.Models.Network.MicroserviceConfigurations;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.BPInitializers;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.DbContexts;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.Controllers;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.DAL;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.DAL;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.LoadBalancers;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.ObjectPooling;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.ServiceRegistry;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.Routing;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.Monolith;
+using VelocipedeUtils.Shared.Models.Business.Processes;
+using VelocipedeUtils.Shared.Models.Logging;
+using VelocipedeUtils.Shared.Models.Network.MicroserviceConfigurations;
 
 public class Program
 {
@@ -40,7 +40,7 @@ public class Program
         services.AddDbContext<ServiceInteractionDbContext>((serviceProvider, options) =>
         {
             options.UseNpgsql("Server=127.0.0.1;Port=5432;Database=deliveryservicelibexample;Username=postgres;Password=postgres",
-                b => b.MigrationsAssembly("WorkflowLib.Examples.Delivering.ServiceInteraction.BL"));
+                b => b.MigrationsAssembly("VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL"));
         });
 
         // Register parameters.

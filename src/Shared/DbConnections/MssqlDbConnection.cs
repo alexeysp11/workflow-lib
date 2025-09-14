@@ -1,7 +1,7 @@
 using System.Data;
 using Microsoft.Data.SqlClient;
 
-namespace WorkflowLib.Shared.DbConnections
+namespace VelocipedeUtils.Shared.DbConnections
 {
     /// <summary>
     /// MS SQL database connection.

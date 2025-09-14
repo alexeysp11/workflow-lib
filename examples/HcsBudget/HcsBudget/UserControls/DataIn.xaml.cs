@@ -1,7 +1,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace WorkflowLib.Examples.HcsBudget.UserControls
+namespace VelocipedeUtils.Examples.HcsBudget.UserControls
 {
     /// <summary>
     /// Interaction logic for DataIn.xaml

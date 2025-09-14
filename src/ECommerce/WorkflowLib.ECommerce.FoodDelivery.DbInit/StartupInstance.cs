@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
-using WorkflowLib.ECommerce.FoodDelivery.DbInit.Dal;
-using WorkflowLib.ECommerce.FoodDelivery.DbInit.Models;
+using VelocipedeUtils.ECommerce.FoodDelivery.Core.DbContexts;
+using VelocipedeUtils.ECommerce.FoodDelivery.DbInit.Dal;
+using VelocipedeUtils.ECommerce.FoodDelivery.DbInit.Models;
 
-namespace WorkflowLib.ECommerce.FoodDelivery.DbInit;
+namespace VelocipedeUtils.ECommerce.FoodDelivery.DbInit;
 
 /// <summary>
 /// Class for standardized launch of an application instance.

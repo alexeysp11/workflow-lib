@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Protobuf Include="..\WorkflowLib.DataStorage.Grpc.Common\Protos\in_memory_storage.proto" GrpcServices="Server" />
+    <Protobuf Include="..\VelocipedeUtils.DataStorage.Grpc.Common\Protos\in_memory_storage.proto" GrpcServices="Server" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WorkflowLib.DataStorage.Core\WorkflowLib.DataStorage.Core.csproj" />
-    <ProjectReference Include="..\WorkflowLib.DataStorage.Models\WorkflowLib.DataStorage.Models.csproj" />
+    <ProjectReference Include="..\VelocipedeUtils.DataStorage.Core\VelocipedeUtils.DataStorage.Core.csproj" />
+    <ProjectReference Include="..\VelocipedeUtils.DataStorage.Models\VelocipedeUtils.DataStorage.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>

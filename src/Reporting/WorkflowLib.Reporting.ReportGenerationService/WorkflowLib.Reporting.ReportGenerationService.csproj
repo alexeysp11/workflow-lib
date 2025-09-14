@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>dotnet-WorkflowLib.Reporting.ReportGenerationService-d0464706-19f8-4851-9dfc-0107157df2d9</UserSecretsId>
+    <UserSecretsId>dotnet-VelocipedeUtils.Reporting.ReportGenerationService-d0464706-19f8-4851-9dfc-0107157df2d9</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../Shared/Models.Business/WorkflowLib.Shared.Models.Business.csproj" />
+    <ProjectReference Include="../../Shared/Models.Business/VelocipedeUtils.Shared.Models.Business.csproj" />
   </ItemGroup>
 
 </Project>

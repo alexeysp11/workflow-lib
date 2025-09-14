@@ -1,6 +1,6 @@
-using WorkflowLib.Shared.Models.Business.Reporting;
+using VelocipedeUtils.Shared.Models.Business.Reporting;
 
-namespace WorkflowLib.Reporting.PrintService;
+namespace VelocipedeUtils.Reporting.PrintService;
 
 public interface IWfPrintService
 {

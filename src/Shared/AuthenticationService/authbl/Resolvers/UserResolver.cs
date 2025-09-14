@@ -1,6 +1,6 @@
 using System.Data;
-using WorkflowLib.Shared.DbConnections;
-using WorkflowLib.Shared.Models.ErrorHandling;
+using VelocipedeUtils.Shared.DbConnections;
+using VelocipedeUtils.Shared.Models.ErrorHandling;
 using WokflowLib.Authentication.Models;
 using WokflowLib.Authentication.Models.NetworkParameters;
 

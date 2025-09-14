@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace WorkflowLib.UnifiedBusinessPlatform.Core.Models.Pipes;
+namespace VelocipedeUtils.UnifiedBusinessPlatform.Core.Models.Pipes;
 
 /// <summary>
 /// Parameters used for the purpose of generating initial datasets.

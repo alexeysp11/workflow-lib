@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.ServiceDiscoveryBpm.ProcPipes;
+namespace VelocipedeUtils.Shared.ServiceDiscoveryBpm.ProcPipes;
 
 /// <summary>
 /// Unit of work as part of a request processing sequence.

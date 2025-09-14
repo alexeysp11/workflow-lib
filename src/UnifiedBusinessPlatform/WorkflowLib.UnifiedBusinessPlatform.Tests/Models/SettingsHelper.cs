@@ -1,6 +1,6 @@
-using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Models.Configurations;
 
-namespace Tests.WorkflowLib.UnifiedBusinessPlatform;
+namespace Tests.VelocipedeUtils.UnifiedBusinessPlatform;
 
 internal static class SettingsHelper
 {

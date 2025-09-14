@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.OpenApi.Models;
-using WorkflowLib.Examples.TechSupport.Server.Data;
+using VelocipedeUtils.Examples.TechSupport.Server.Data;
 using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);

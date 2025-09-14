@@ -1,4 +1,4 @@
-namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
+namespace VelocipedeUtils.PixelTerminalUI.ServiceEngine.Controls;
 
 /// <summary>
 /// The horizontal alignment applied to the control.

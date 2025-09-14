@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations;
+namespace VelocipedeUtils.UnifiedBusinessPlatform.Core.Models.Configurations;
 
 /// <summary>
 /// Class for storing commonly used config values.

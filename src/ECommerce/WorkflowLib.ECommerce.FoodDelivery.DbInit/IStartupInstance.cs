@@ -1,4 +1,4 @@
-namespace WorkflowLib.ECommerce.FoodDelivery.DbInit;
+namespace VelocipedeUtils.ECommerce.FoodDelivery.DbInit;
 
 /// <summary>
 /// Interface for standardized launch of an application instance.

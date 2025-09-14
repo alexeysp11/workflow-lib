@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
+namespace VelocipedeUtils.Examples.HcsBudget.Models.DbConnections
 {
     public interface IStateDbConnection
     {

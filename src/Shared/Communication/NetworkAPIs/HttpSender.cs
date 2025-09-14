@@ -7,9 +7,9 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using WorkflowLib.Shared.Models.Network;
+using VelocipedeUtils.Shared.Models.Network;
 
-namespace WorkflowLib.NetworkAPIs
+namespace VelocipedeUtils.NetworkAPIs
 {
     /// <summary>
     /// Class for sending objects via HTTP

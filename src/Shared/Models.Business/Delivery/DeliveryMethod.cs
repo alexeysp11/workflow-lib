@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Business.Delivery
+namespace VelocipedeUtils.Shared.Models.Business.Delivery
 {
     /// <summary>
     /// Delivery method

@@ -1,6 +1,6 @@
-using WorkflowLib.Shared.Models.Business.Delivery;
+using VelocipedeUtils.Shared.Models.Business.Delivery;
 
-namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
+namespace VelocipedeUtils.Shared.Models.Business.BusinessDocuments
 {
     /// <summary>
     /// Delivery order.

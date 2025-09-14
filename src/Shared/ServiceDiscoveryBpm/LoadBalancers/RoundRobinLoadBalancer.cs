@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.ObjectPooling;
-using WorkflowLib.Shared.Models.Network.MicroserviceConfigurations;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.ObjectPooling;
+using VelocipedeUtils.Shared.Models.Network.MicroserviceConfigurations;
 
-namespace WorkflowLib.Shared.ServiceDiscoveryBpm.LoadBalancers;
+namespace VelocipedeUtils.Shared.ServiceDiscoveryBpm.LoadBalancers;
 
 /// <summary>
 /// Load balancer that selects endpoints in a round-robin manner.

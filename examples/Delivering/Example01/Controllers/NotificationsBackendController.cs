@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.Shared.Models.Business.Customers;
-using WorkflowLib.Examples.Delivering.Example01.Contexts;
-using WorkflowLib.Examples.Delivering.Example01.Interfaces;
+using VelocipedeUtils.Shared.Models.Business.BusinessDocuments;
+using VelocipedeUtils.Shared.Models.Business.Customers;
+using VelocipedeUtils.Examples.Delivering.Example01.Contexts;
+using VelocipedeUtils.Examples.Delivering.Example01.Interfaces;
 
-namespace WorkflowLib.Examples.Delivering.Example01.Controllers
+namespace VelocipedeUtils.Examples.Delivering.Example01.Controllers
 {
     /// <summary>
     /// Backend service controller that allows to send notifications to the users of the system.

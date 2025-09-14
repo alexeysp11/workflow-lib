@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace WorkflowLib.Examples.RealEstateManager.Database.Models
+namespace VelocipedeUtils.Examples.RealEstateManager.Database.Models
 {
     public class Property 
     {

@@ -1,11 +1,11 @@
 using System.Linq.Expressions;
-using WorkflowLib.UnifiedBusinessPlatform.Core.Dto;
-using WorkflowLib.UnifiedBusinessPlatform.Core.Enums;
-using WorkflowLib.UnifiedBusinessPlatform.Core.Extensions;
-using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Dto;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Enums;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Extensions;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Models.Configurations;
+using VelocipedeUtils.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.UnifiedBusinessPlatform.Core.Domain.Filtering;
+namespace VelocipedeUtils.UnifiedBusinessPlatform.Core.Domain.Filtering;
 
 /// <summary>
 /// Class for applying filters against initial datasets.

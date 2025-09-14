@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace WorkflowLib.ECommerce.FoodDelivery.Core.Migrations
+namespace VelocipedeUtils.ECommerce.FoodDelivery.Core.Migrations
 {
     public partial class PluralizeEntitiesTray : Migration
     {

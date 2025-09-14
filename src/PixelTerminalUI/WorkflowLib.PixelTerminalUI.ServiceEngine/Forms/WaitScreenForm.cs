@@ -1,4 +1,4 @@
-﻿namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
+﻿namespace VelocipedeUtils.PixelTerminalUI.ServiceEngine.Forms;
 
 /// <summary>
 /// Wait screen form.

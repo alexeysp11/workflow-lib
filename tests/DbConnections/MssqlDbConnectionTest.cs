@@ -1,9 +1,9 @@
 using System;
 using System.Data;
 using Xunit;
-using WorkflowLib.Shared.DbConnections;
+using VelocipedeUtils.Shared.DbConnections;
 
-namespace Cims.Tests.WorkflowLib.Shared.DbConnections
+namespace Cims.Tests.VelocipedeUtils.Shared.DbConnections
 {
     public class MssqlDbConnectionTest 
     {

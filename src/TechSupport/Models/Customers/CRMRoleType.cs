@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.TechSupport.Common.Models.Customers
+namespace VelocipedeUtils.Examples.TechSupport.Common.Models.Customers
 {
     /// <summary>
     /// 

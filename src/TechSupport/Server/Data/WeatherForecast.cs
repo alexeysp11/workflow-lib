@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.TechSupport.Server.Data;
+namespace VelocipedeUtils.Examples.TechSupport.Server.Data;
 
 public class WeatherForecast
 {

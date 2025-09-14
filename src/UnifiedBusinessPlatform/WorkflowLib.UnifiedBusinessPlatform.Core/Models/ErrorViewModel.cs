@@ -1,4 +1,4 @@
-namespace WorkflowLib.UnifiedBusinessPlatform.Core.Models;
+namespace VelocipedeUtils.UnifiedBusinessPlatform.Core.Models;
 
 public class ErrorViewModel
 {

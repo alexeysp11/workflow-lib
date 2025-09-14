@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
+using VelocipedeUtils.ECommerce.FoodDelivery.Core.DbContexts;
+using VelocipedeUtils.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
+namespace VelocipedeUtils.ECommerce.FoodDelivery.Core.Dal
 {
     public static class OrganizationDao
     {

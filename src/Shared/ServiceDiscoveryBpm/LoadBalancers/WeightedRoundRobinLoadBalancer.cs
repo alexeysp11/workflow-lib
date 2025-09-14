@@ -1,6 +1,6 @@
-using WorkflowLib.Shared.ServiceDiscoveryBpm.ObjectPooling;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.ObjectPooling;
 
-namespace WorkflowLib.Shared.ServiceDiscoveryBpm.LoadBalancers;
+namespace VelocipedeUtils.Shared.ServiceDiscoveryBpm.LoadBalancers;
 
 /// <summary>
 /// Load balancer that uses weighted round-robin to select endpoints based on their weights.

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
+using VelocipedeUtils.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.UnifiedBusinessPlatform.Core.Domain.DatasetGenerators;
+namespace VelocipedeUtils.UnifiedBusinessPlatform.Core.Domain.DatasetGenerators;
 
 /// <summary>
 /// Randomly generates a set of vacations 

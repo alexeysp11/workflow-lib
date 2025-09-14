@@ -1,9 +1,9 @@
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.Shared.Models.Business.Customers;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
-using WorkflowLib.Shared.Models.Business.RiskManagement;
+using VelocipedeUtils.Shared.Models.Business.BusinessDocuments;
+using VelocipedeUtils.Shared.Models.Business.Customers;
+using VelocipedeUtils.Shared.Models.Business.InformationSystem;
+using VelocipedeUtils.Shared.Models.Business.RiskManagement;
 
-namespace WorkflowLib.Shared.Models.Business.Projects
+namespace VelocipedeUtils.Shared.Models.Business.Projects
 {
     /// <summary>
     /// Project.

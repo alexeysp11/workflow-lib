@@ -2,16 +2,16 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.UnifiedBusinessPlatform.Core.Domain.Filtering;
-using WorkflowLib.UnifiedBusinessPlatform.Core.Dto;
-using WorkflowLib.UnifiedBusinessPlatform.Core.Enums;
-using WorkflowLib.UnifiedBusinessPlatform.Core.Models;
-using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations;
-using WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts;
-using WorkflowLib.UnifiedBusinessPlatform.Core.Repositories;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Domain.Filtering;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Dto;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Enums;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Models;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Models.Configurations;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.DbContexts;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Repositories;
+using VelocipedeUtils.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.UnifiedBusinessPlatform.Controllers;
+namespace VelocipedeUtils.UnifiedBusinessPlatform.Controllers;
 
 [Authorize]
 public class HrmController : Controller

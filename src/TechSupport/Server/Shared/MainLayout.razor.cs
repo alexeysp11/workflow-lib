@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 
-namespace WorkflowLib.Examples.TechSupport.Server.Shared;
+namespace VelocipedeUtils.Examples.TechSupport.Server.Shared;
 
 public partial class MainLayout : LayoutComponentBase
 {

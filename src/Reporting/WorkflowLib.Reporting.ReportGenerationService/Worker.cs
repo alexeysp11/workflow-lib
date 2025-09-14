@@ -1,4 +1,4 @@
-namespace WorkflowLib.Reporting.ReportGenerationService;
+namespace VelocipedeUtils.Reporting.ReportGenerationService;
 
 public class Worker : BackgroundService
 {

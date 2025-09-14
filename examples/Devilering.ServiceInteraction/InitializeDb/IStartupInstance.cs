@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.InitializeDb
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.InitializeDb
 {
     /// <summary>
     /// An interface that allows you to initialize this example and also start executing it.

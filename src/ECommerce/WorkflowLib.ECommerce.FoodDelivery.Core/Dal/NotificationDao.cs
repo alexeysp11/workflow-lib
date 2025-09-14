@@ -1,7 +1,7 @@
-﻿using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
-using WorkflowLib.Shared.Models.Business.Customers;
+﻿using VelocipedeUtils.ECommerce.FoodDelivery.Core.DbContexts;
+using VelocipedeUtils.Shared.Models.Business.Customers;
 
-namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
+namespace VelocipedeUtils.ECommerce.FoodDelivery.Core.Dal
 {
     public static class NotificationDao
     {

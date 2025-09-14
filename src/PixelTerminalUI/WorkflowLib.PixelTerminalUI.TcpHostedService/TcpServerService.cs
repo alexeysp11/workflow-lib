@@ -1,8 +1,8 @@
 using System.Net;
 using System.Net.Sockets;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Helpers;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Resolvers;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Helpers;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Models;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Resolvers;
 
 namespace TcpHostedService;
 

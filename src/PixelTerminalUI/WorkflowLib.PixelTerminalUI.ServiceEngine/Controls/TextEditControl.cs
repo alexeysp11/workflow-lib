@@ -1,4 +1,4 @@
-namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
+namespace VelocipedeUtils.PixelTerminalUI.ServiceEngine.Controls;
 
 /// <summary>
 /// Text input field.

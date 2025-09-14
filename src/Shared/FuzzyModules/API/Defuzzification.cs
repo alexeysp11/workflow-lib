@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace WorkflowLib.Shared.FuzzyModules.API
+namespace VelocipedeUtils.Shared.FuzzyModules.API
 {
     public class Defuzzification
     {

@@ -1,8 +1,8 @@
 ﻿using Grpc.Net.Client;
 using System.Threading.Tasks;
-using WorkflowLib.DataStorage.InMemoryService.Grpc;
+using VelocipedeUtils.DataStorage.InMemoryService.Grpc;
 
-namespace WorkflowLib.DataStorage.InMemoryService.Clients
+namespace VelocipedeUtils.DataStorage.InMemoryService.Clients
 {
     public class InMemoryStorageClient : IInMemoryStorageClient
     {

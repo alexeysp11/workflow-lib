@@ -42,7 +42,7 @@ The data bus is implemented in two possible ways:
 Details of communication between microservices:
 - if service A **knows** which service to contact:
      - service A contacts the resolver to send a request to service B;
-     - the resolver accesses the database to determine the method of interaction, based on this it calls the corresponding class from the library [workflow-lib](https://github.com/alexeysp11/workflow-lib) for communication (directly via HTTP, directly via gRPC, HTTP proxy, gRPC proxy, RabbitMQ etc);
+     - the resolver accesses the database to determine the method of interaction, based on this it calls the corresponding class from the library [velocipede-utils](https://github.com/alexeysp11/velocipede-utils) for communication (directly via HTTP, directly via gRPC, HTTP proxy, gRPC proxy, RabbitMQ etc);
      - in the case of any communication via HTTP or gRPC, the calling module simply waits for the response and gives it to the module that initiated the communication and called the resolver;
      - in the case of communication via a message broker, we simply send the status of whether the message is recorded in the queue.
 - if service A **doesn’t know** which service to contact:
@@ -51,7 +51,7 @@ Details of communication between microservices:
      - after this, all interaction between services is carried out in the same way as in the previous option.
 
 The above methods of interservice communication would allow very flexible configuration of communication between microservices through configs or databases.
-The corresponding classes for configuring inter-service communication can be found in the namespace [WorkflowLib.Shared.Models.Network.MicroserviceConfigurations](https://github.com/alexeysp11/workflow-lib/tree/main/src/Shared/Models/Network/MicroserviceConfigurations).
+The corresponding classes for configuring inter-service communication can be found in the namespace [VelocipedeUtils.Shared.Models.Network.MicroserviceConfigurations](https://github.com/alexeysp11/velocipede-utils/tree/main/src/Shared/Models/Network/MicroserviceConfigurations).
 
 ### Registration and monitoring of the services
 

@@ -1,7 +1,7 @@
 ﻿using System.Text;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Controls;
 
-namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
+namespace VelocipedeUtils.PixelTerminalUI.ServiceEngine.Forms;
 
 /// <summary>
 /// The form that opens when <see cref="Controls.ComboEditControl"/> is used.

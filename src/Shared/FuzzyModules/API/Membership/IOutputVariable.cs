@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.FuzzyModules.API.Membership
+namespace VelocipedeUtils.Shared.FuzzyModules.API.Membership
 {
     public interface IOutputVariable 
     {

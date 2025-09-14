@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../WorkflowLib.PixelTerminalUI.ConsoleAdapter/WorkflowLib.PixelTerminalUI.ConsoleAdapter.csproj" />
-    <ProjectReference Include="..\..\Shared\Models.Business\WorkflowLib.Shared.Models.Business.csproj" />
+    <ProjectReference Include="../VelocipedeUtils.PixelTerminalUI.ConsoleAdapter/VelocipedeUtils.PixelTerminalUI.ConsoleAdapter.csproj" />
+    <ProjectReference Include="..\..\Shared\Models.Business\VelocipedeUtils.Shared.Models.Business.csproj" />
   </ItemGroup>
 
 </Project>

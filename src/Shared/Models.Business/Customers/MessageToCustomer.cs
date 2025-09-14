@@ -1,6 +1,6 @@
-using WorkflowLib.Shared.Models.Business.InformationSystem;
+using VelocipedeUtils.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.Shared.Models.Business.Customers
+namespace VelocipedeUtils.Shared.Models.Business.Customers
 {
     /// <summary>
     /// Message to the customer.

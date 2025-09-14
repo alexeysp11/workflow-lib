@@ -1,7 +1,7 @@
 using System.Data;
 using Npgsql;
 
-namespace WorkflowLib.Examples.PublicTransportDevices.DbConnections
+namespace VelocipedeUtils.Examples.PublicTransportDevices.DbConnections
 {
     public class PgDbConnection : ICommonDbConnection
     {

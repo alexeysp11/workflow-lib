@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Business.RiskManagement
+namespace VelocipedeUtils.Shared.Models.Business.RiskManagement
 {
     /// <summary>
     /// Risk status.

@@ -1,7 +1,7 @@
-﻿using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Exceptions;
+﻿using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Controls;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Exceptions;
 
-namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
+namespace VelocipedeUtils.PixelTerminalUI.ServiceEngine.Forms;
 
 /// <summary>
 /// Class for configuring wait screen form.

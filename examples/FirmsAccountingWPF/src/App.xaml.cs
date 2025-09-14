@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace WorkflowLib.Examples.FirmsAccounting
+namespace VelocipedeUtils.Examples.FirmsAccounting
 {
     /// <summary>
     /// Interaction logic for App.xaml

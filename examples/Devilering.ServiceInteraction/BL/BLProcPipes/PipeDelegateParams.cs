@@ -1,7 +1,7 @@
-using WorkflowLib.Shared.ServiceDiscoveryBpm.ProcPipes;
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.ProcPipes;
+using VelocipedeUtils.Shared.Models.Business.BusinessDocuments;
 
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
 
 /// <summary>
 /// Parameters for the request processing delegate.

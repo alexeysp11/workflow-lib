@@ -1,4 +1,4 @@
-namespace WorkflowLib.UnifiedBusinessPlatform.Core.Enums;
+namespace VelocipedeUtils.UnifiedBusinessPlatform.Core.Enums;
 
 public enum FilterOptionType
 {

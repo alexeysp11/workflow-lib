@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace WorkflowLib.ECommerce.FoodDelivery.Core.Migrations
+namespace VelocipedeUtils.ECommerce.FoodDelivery.Core.Migrations
 {
     public partial class InitialCreate : Migration
     {

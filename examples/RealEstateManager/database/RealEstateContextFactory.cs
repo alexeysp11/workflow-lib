@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace WorkflowLib.Examples.RealEstateManager.Database 
+namespace VelocipedeUtils.Examples.RealEstateManager.Database 
 {
     public class RealEstateContextFactory : IDesignTimeDbContextFactory<RealEstateContext>
     {

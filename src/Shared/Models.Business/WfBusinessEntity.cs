@@ -1,7 +1,7 @@
-namespace WorkflowLib.Shared.Models.Business
+namespace VelocipedeUtils.Shared.Models.Business
 {
     /// <summary>
-    /// Business entity in the workflow-lib.
+    /// Business entity in the velocipede-utils.
     /// </summary>
     public abstract class WfBusinessEntity : IWfBusinessEntity
     {

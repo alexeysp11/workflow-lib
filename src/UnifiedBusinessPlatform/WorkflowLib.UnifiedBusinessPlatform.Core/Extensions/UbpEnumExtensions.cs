@@ -1,7 +1,7 @@
 using System;
-using WorkflowLib.Shared.Models.Business.Languages;
+using VelocipedeUtils.Shared.Models.Business.Languages;
 
-namespace WorkflowLib.UnifiedBusinessPlatform.Core.Extensions;
+namespace VelocipedeUtils.UnifiedBusinessPlatform.Core.Extensions;
 
 /// <summary>
 /// Class of extension methods for enums.

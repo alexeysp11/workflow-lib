@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
-using WorkflowLib.Examples.HcsBudget.Models;
-using WorkflowLib.Examples.HcsBudget.ViewModels;
+using VelocipedeUtils.Examples.HcsBudget.Models;
+using VelocipedeUtils.Examples.HcsBudget.ViewModels;
 
-namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
+namespace VelocipedeUtils.Examples.HcsBudget.Models.DbConnections
 {
     public class DbConnection : BaseDbConnection, IHcsDbConnection, IStateDbConnection
     {

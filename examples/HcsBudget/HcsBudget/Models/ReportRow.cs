@@ -1,6 +1,6 @@
-using WorkflowLib.Examples.HcsBudget.ViewModels;
+using VelocipedeUtils.Examples.HcsBudget.ViewModels;
 
-namespace WorkflowLib.Examples.HcsBudget.Models
+namespace VelocipedeUtils.Examples.HcsBudget.Models
 {
     public class ReportRow
     {

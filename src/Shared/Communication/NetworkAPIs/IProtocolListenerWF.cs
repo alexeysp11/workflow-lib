@@ -1,4 +1,4 @@
-namespace WorkflowLib.NetworkAPIs
+namespace VelocipedeUtils.NetworkAPIs
 {
     /// <summary>
     /// Interface for listeners.

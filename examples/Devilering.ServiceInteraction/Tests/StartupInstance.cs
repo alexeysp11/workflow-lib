@@ -1,11 +1,11 @@
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DbContexts;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.DAL;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.ServiceRegistry;
-using WorkflowLib.Shared.Models.Network.MicroserviceConfigurations;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.DbContexts;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.DAL;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.ServiceRegistry;
+using VelocipedeUtils.Shared.Models.Network.MicroserviceConfigurations;
 
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.Tests
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.Tests
 {
     /// <summary>
     /// 

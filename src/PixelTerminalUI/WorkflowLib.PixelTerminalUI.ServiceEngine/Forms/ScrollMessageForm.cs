@@ -1,6 +1,6 @@
-﻿using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
+﻿using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Controls;
 
-namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
+namespace VelocipedeUtils.PixelTerminalUI.ServiceEngine.Forms;
 
 /// <summary>
 /// Form for displaying a long message.

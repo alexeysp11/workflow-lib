@@ -1,7 +1,7 @@
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.Shared.Models.Business.Products;
+using VelocipedeUtils.Shared.Models.Business.BusinessDocuments;
+using VelocipedeUtils.Shared.Models.Business.Products;
 
-namespace WorkflowLib.Shared.Models.Business.Cooking
+namespace VelocipedeUtils.Shared.Models.Business.Cooking
 {
     /// <summary>
     /// 

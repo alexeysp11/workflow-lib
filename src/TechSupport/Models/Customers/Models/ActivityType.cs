@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.TechSupport.Customers.Models;
+namespace VelocipedeUtils.Examples.TechSupport.Customers.Models;
 
 public enum ActivityType
 {

@@ -1,7 +1,7 @@
-using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Controllers;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.ProcPipes;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.Controllers;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.ProcPipes;
 
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
 
 /// <summary>
 /// Pipe which is responsible for processing the request on the kitchen service side.

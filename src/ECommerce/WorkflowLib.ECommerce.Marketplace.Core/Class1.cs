@@ -1,4 +1,4 @@
-﻿namespace WorkflowLib.ECommerce.Marketplace.Core;
+﻿namespace VelocipedeUtils.ECommerce.Marketplace.Core;
 
 public class Class1
 {

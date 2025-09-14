@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Business.Projects
+namespace VelocipedeUtils.Shared.Models.Business.Projects
 {
     /// <summary>
     /// Project phase.

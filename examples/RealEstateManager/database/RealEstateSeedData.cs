@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using WorkflowLib.Examples.RealEstateManager.Database.Models;
+using VelocipedeUtils.Examples.RealEstateManager.Database.Models;
 
-namespace WorkflowLib.Examples.RealEstateManager.Database
+namespace VelocipedeUtils.Examples.RealEstateManager.Database
 {
     public static class RealEstateSeedData
     {

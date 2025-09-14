@@ -4,9 +4,9 @@ using System.Linq;
 using System.Collections.Generic;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
-using WorkflowLib.Shared.Models.Documents;
+using VelocipedeUtils.Shared.Models.Documents;
 
-namespace WorkflowLib.Shared.Office.DocFormats.TextBased
+namespace VelocipedeUtils.Shared.Office.DocFormats.TextBased
 {
     /// <summary>
     /// Class for using MS Word (MS Word converter)

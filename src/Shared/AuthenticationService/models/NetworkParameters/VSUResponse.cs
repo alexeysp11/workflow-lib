@@ -1,4 +1,4 @@
-using WorkflowLib.Shared.Models.ErrorHandling;
+using VelocipedeUtils.Shared.Models.ErrorHandling;
 
 namespace WokflowLib.Authentication.Models.NetworkParameters;
 

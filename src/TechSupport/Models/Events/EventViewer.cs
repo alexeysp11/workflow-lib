@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.TechSupport.EventJournal.Models;
+namespace VelocipedeUtils.Examples.TechSupport.EventJournal.Models;
 
 /// <summary>
 /// Provides an interface to view detailed information about each event.

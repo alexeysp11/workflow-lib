@@ -1,4 +1,4 @@
-namespace WorkflowLib.UnifiedBusinessPlatform.Core.Dto;
+namespace VelocipedeUtils.UnifiedBusinessPlatform.Core.Dto;
 
 public class EmployeeDto
 {

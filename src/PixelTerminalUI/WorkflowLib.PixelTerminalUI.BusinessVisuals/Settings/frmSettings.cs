@@ -1,7 +1,7 @@
-﻿using WorkflowLib.PixelTerminalUI.BusinessVisuals.Forms;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
+﻿using VelocipedeUtils.PixelTerminalUI.BusinessVisuals.Forms;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Controls;
 
-namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.Settings
+namespace VelocipedeUtils.PixelTerminalUI.BusinessVisuals.Settings
 {
     public class frmSettings : frmTerminalBase
     {

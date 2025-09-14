@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Business.Reporting
+namespace VelocipedeUtils.Shared.Models.Business.Reporting
 {
     /// <summary>
     /// Location of the printer.

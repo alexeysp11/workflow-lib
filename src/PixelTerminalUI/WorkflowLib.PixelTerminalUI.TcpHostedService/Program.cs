@@ -1,5 +1,5 @@
 using TcpHostedService;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Models;
 
 var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddHostedService<TcpServerService>();

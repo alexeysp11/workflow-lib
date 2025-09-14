@@ -1,8 +1,8 @@
 ﻿using Dapper;
 using Npgsql;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
+using VelocipedeUtils.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.PixelTerminalUI.Dal.Auth
+namespace VelocipedeUtils.PixelTerminalUI.Dal.Auth
 {
     /// <summary>
     /// DAO for authentication operations.

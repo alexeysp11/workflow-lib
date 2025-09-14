@@ -6,8 +6,8 @@
 
   <ItemGroup>
     <ProjectReference Include="../../../../Open-Xml-PowerTools/OpenXmlPowerTools/OpenXmlPowerTools.csproj" />
-    <ProjectReference Include="../Office/WorkflowLib.Shared.Office.csproj" />
-    <ProjectReference Include="../Models/WorkflowLib.Shared.Models.csproj" />
+    <ProjectReference Include="../Office/VelocipedeUtils.Shared.Office.csproj" />
+    <ProjectReference Include="../Models/VelocipedeUtils.Shared.Models.csproj" />
   </ItemGroup>
 
 </Project>

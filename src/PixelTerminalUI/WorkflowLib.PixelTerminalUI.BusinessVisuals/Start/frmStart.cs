@@ -1,8 +1,8 @@
-using WorkflowLib.PixelTerminalUI.BusinessVisuals.Auth;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
-using WorkflowLib.PixelTerminalUI.BusinessVisuals.Forms;
+using VelocipedeUtils.PixelTerminalUI.BusinessVisuals.Auth;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Controls;
+using VelocipedeUtils.PixelTerminalUI.BusinessVisuals.Forms;
 
-namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.Start;
+namespace VelocipedeUtils.PixelTerminalUI.BusinessVisuals.Start;
 
 public class frmStart : frmTerminalBase
 {

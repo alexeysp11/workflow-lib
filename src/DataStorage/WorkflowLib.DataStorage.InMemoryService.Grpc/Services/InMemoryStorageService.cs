@@ -1,9 +1,9 @@
 using Grpc.Core;
 using Serilog;
-using WorkflowLib.DataStorage.Core.Tables;
-using WorkflowLib.DataStorage.Models;
+using VelocipedeUtils.DataStorage.Core.Tables;
+using VelocipedeUtils.DataStorage.Models;
 
-namespace WorkflowLib.DataStorage.InMemoryService.Grpc.Services;
+namespace VelocipedeUtils.DataStorage.InMemoryService.Grpc.Services;
 
 public class InMemoryStorageService : InMemoryStorage.InMemoryStorageBase
 {

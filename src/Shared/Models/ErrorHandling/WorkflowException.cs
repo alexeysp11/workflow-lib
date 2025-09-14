@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.ErrorHandling
+namespace VelocipedeUtils.Shared.Models.ErrorHandling
 {
     /// <summary>
     /// Exception that is occurred during execution of the API operation.

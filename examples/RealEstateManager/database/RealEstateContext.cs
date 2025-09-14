@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Examples.RealEstateManager.Database.Models;
+using VelocipedeUtils.Examples.RealEstateManager.Database.Models;
 
-namespace WorkflowLib.Examples.RealEstateManager.Database
+namespace VelocipedeUtils.Examples.RealEstateManager.Database
 {
     public class RealEstateContext : DbContext
     {

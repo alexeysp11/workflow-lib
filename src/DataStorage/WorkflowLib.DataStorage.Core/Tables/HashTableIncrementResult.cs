@@ -1,4 +1,4 @@
-﻿namespace WorkflowLib.DataStorage.Core.Tables;
+﻿namespace VelocipedeUtils.DataStorage.Core.Tables;
 
 /// <summary>
 /// Result of the increment operation in the hash table.

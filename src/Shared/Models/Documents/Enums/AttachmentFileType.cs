@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WorkflowLib.Shared.Models.Documents.Enums
+namespace VelocipedeUtils.Shared.Models.Documents.Enums
 {
     /// <summary>
     /// Attachment file type.

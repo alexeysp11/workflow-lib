@@ -1,4 +1,4 @@
-namespace WorkflowLib.PixelTerminalUI.ConsoleClient.Models;
+namespace VelocipedeUtils.PixelTerminalUI.ConsoleClient.Models;
 
 public enum TerminalCommunicationType
 {

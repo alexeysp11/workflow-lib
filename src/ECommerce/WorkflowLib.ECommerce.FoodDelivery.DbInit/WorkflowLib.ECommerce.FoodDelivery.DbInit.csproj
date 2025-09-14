@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WorkflowLib.ECommerce.FoodDelivery.Core\WorkflowLib.ECommerce.FoodDelivery.Core.csproj" />
+    <ProjectReference Include="..\VelocipedeUtils.ECommerce.FoodDelivery.Core\VelocipedeUtils.ECommerce.FoodDelivery.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

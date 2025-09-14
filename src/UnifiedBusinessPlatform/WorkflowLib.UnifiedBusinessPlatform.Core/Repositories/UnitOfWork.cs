@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Models.Configurations;
+using VelocipedeUtils.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.UnifiedBusinessPlatform.Core.Repositories;
+namespace VelocipedeUtils.UnifiedBusinessPlatform.Core.Repositories;
 
 /// <summary>
 /// Implementation of the Unit of work pattern.

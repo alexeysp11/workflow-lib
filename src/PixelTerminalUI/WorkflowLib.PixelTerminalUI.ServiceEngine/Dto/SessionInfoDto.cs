@@ -1,7 +1,7 @@
-using WorkflowLib.PixelTerminalUI.ConsoleAdapter.Helpers;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
+using VelocipedeUtils.PixelTerminalUI.ConsoleAdapter.Helpers;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Models;
 
-namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Dto;
+namespace VelocipedeUtils.PixelTerminalUI.ServiceEngine.Dto;
 
 /// <summary>
 /// Information required to process the user session (DTO).

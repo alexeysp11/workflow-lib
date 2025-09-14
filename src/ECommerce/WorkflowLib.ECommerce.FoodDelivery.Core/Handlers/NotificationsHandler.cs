@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Shared.Models.Business.Customers;
-using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
-using WorkflowLib.ECommerce.FoodDelivery.Core.Dal;
+using VelocipedeUtils.Shared.Models.Business.Customers;
+using VelocipedeUtils.ECommerce.FoodDelivery.Core.DbContexts;
+using VelocipedeUtils.ECommerce.FoodDelivery.Core.Dal;
 
-namespace WorkflowLib.ECommerce.FoodDelivery.Core.Handlers
+namespace VelocipedeUtils.ECommerce.FoodDelivery.Core.Handlers
 {
     /// <summary>
     /// Backend service controller that allows to send notifications to the users of the system.

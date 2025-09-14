@@ -1,6 +1,6 @@
-using WorkflowLib.Shared.Models.Network.MicroserviceConfigurations;
+using VelocipedeUtils.Shared.Models.Network.MicroserviceConfigurations;
 
-namespace WorkflowLib.Shared.ServiceDiscoveryBpm.LoadBalancers;
+namespace VelocipedeUtils.Shared.ServiceDiscoveryBpm.LoadBalancers;
 
 /// <summary>
 /// Represents a load balancer that manages endpoints based on their current load.

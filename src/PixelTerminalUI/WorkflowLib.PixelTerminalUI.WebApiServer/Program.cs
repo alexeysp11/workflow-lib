@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Background;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Dto;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Resolvers;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Background;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Dto;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Models;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Resolvers;
 
 var builder = WebApplication.CreateBuilder(args);
 

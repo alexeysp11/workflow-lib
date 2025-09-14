@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.ServiceDiscoveryBpm.EsbProxies;
+namespace VelocipedeUtils.Shared.ServiceDiscoveryBpm.EsbProxies;
 
 /// <summary>
 /// Enables communication between components by listening to a message broker queue.

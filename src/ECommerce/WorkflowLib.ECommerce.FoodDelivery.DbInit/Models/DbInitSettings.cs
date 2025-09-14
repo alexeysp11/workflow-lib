@@ -1,4 +1,4 @@
-namespace WorkflowLib.ECommerce.FoodDelivery.DbInit.Models;
+namespace VelocipedeUtils.ECommerce.FoodDelivery.DbInit.Models;
 
 /// <summary>
 /// Settings for initializing the database.

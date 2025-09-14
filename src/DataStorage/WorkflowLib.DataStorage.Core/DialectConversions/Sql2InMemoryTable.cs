@@ -1,4 +1,4 @@
-namespace WorkflowLib.DataStorage.Core.DialectConversions;
+namespace VelocipedeUtils.DataStorage.Core.DialectConversions;
 
 /// <summary>
 /// 

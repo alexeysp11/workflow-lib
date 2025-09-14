@@ -1,4 +1,4 @@
-﻿namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Exceptions;
+﻿namespace VelocipedeUtils.PixelTerminalUI.ServiceEngine.Exceptions;
 
 public class WaitScreenDisplayedException : Exception
 {

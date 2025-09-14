@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Business.Processes
+namespace VelocipedeUtils.Shared.Models.Business.Processes
 {
     /// <summary>
     /// Represents a state of a business process with workflow functionality.

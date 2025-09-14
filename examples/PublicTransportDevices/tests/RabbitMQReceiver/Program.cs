@@ -2,7 +2,7 @@
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-// namespace WorkflowLib.Examples.PublicTransportDevices.Examples.RabbitMQReceiver;
+// namespace VelocipedeUtils.Examples.PublicTransportDevices.Examples.RabbitMQReceiver;
 
 var factory = new ConnectionFactory { HostName = "localhost" };
 using var connection = factory.CreateConnection();

@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.FirmsAccounting.Models.Data
+namespace VelocipedeUtils.Examples.FirmsAccounting.Models.Data
 {
     public class DocsCalendarSum
     {

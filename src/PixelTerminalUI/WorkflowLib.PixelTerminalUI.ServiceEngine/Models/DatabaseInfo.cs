@@ -1,4 +1,4 @@
-﻿namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
+﻿namespace VelocipedeUtils.PixelTerminalUI.ServiceEngine.Models;
 
 /// <summary>
 /// Information about databases.

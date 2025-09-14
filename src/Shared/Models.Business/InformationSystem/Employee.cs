@@ -1,7 +1,7 @@
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.Shared.Models.Business.Customers;
+using VelocipedeUtils.Shared.Models.Business.BusinessDocuments;
+using VelocipedeUtils.Shared.Models.Business.Customers;
 
-namespace WorkflowLib.Shared.Models.Business.InformationSystem
+namespace VelocipedeUtils.Shared.Models.Business.InformationSystem
 {
     /// <summary>
     /// Employee.

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Examples.FirmsAccounting", "src\WorkflowLib.Examples.FirmsAccounting.csproj", "{A964A7F2-BDEC-4D7E-B8B3-33BC9723C901}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Examples.FirmsAccounting", "src\VelocipedeUtils.Examples.FirmsAccounting.csproj", "{A964A7F2-BDEC-4D7E-B8B3-33BC9723C901}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Examples.FirmsAccounting.Tests", "tests\WorkflowLib.Examples.FirmsAccounting.Tests.csproj", "{13BF1F82-2931-4B2B-BD15-7A695E17F82B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Examples.FirmsAccounting.Tests", "tests\VelocipedeUtils.Examples.FirmsAccounting.Tests.csproj", "{13BF1F82-2931-4B2B-BD15-7A695E17F82B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.ObjectPooling;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.ObjectPooling;
 
-namespace WorkflowLib.Shared.ServiceDiscoveryBpm.LoadBalancers;
+namespace VelocipedeUtils.Shared.ServiceDiscoveryBpm.LoadBalancers;
 
 /// <summary>
 /// Represents a load balancer that randomly selects endpoints from a collection.

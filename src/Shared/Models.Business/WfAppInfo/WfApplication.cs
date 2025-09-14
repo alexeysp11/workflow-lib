@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Business.WfAppInfo
+namespace VelocipedeUtils.Shared.Models.Business.WfAppInfo
 {
     /// <summary>
     /// Information about the application.

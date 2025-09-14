@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WorkflowLib.Shared.Models.Network.MicroserviceConfigurations
+namespace VelocipedeUtils.Shared.Models.Network.MicroserviceConfigurations
 {
     /// <summary>
     /// Endpoint.

@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.ServiceDiscoveryBpm.ProcPipes;
+namespace VelocipedeUtils.Shared.ServiceDiscoveryBpm.ProcPipes;
 
 /// <summary>
 /// Parameters for the request processing delegate.

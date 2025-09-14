@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WorkflowLib.Examples.Delivering.Example01.Contexts;
+using VelocipedeUtils.Examples.Delivering.Example01.Contexts;
 
 #nullable disable
 
-namespace WorkflowLib.Examples.Delivering.Example01.Migrations
+namespace VelocipedeUtils.Examples.Delivering.Example01.Migrations
 {
     [DbContext(typeof(DeliveringContext))]
     [Migration("20240519113628_NullbableDateTimeInBusinessModels")]
@@ -94,7 +94,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("ContractOrganization");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.BusinessDocuments.BusinessTaskDeliveryOrder", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.BusinessTaskDeliveryOrder", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -136,7 +136,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("BusinessTaskDeliveryOrders");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.BusinessDocuments.Contract", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.Contract", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -168,7 +168,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("Contract");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.BusinessDocuments.InitialOrder", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.InitialOrder", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -239,7 +239,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("InitialOrders");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.BusinessDocuments.Order", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.Order", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -330,7 +330,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Order");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Customers.Company", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Customers.Company", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -382,7 +382,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("Companies");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Customers.Contact", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Customers.Contact", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -429,7 +429,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("Contacts");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Customers.Customer", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Customers.Customer", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -488,7 +488,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Customers.Notification", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Customers.Notification", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -538,7 +538,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("Notifications");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Delivery.DeliveryMethod", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Delivery.DeliveryMethod", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -573,7 +573,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("DeliveryMethods");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.Employee", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -641,7 +641,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.Organization", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.Organization", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -680,7 +680,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("Organizations");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.OrganizationItem", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.OrganizationItem", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -731,7 +731,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("OrganizationItems");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.Skill", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.Skill", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -765,7 +765,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("Skill");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.UserAccount", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.UserAccount", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -835,7 +835,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("UserAccounts");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.UserGroup", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.UserGroup", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -880,7 +880,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("UserGroups");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Monetary.Payment", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Monetary.Payment", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -938,7 +938,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("Payments");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Processes.BusinessDiagram", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Processes.BusinessDiagram", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -967,7 +967,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("BusinessDiagram");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Processes.BusinessDiagramElement", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Processes.BusinessDiagramElement", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1001,7 +1001,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("BusinessDiagramElement");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Processes.BusinessProcess", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Processes.BusinessProcess", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1043,7 +1043,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("BusinessProcess");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Processes.BusinessProcessState", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Processes.BusinessProcessState", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1077,7 +1077,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("BusinessProcessState");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Processes.BusinessTask", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Processes.BusinessTask", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1164,7 +1164,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("BusinessTask");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.DeliveryOrderProduct", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.DeliveryOrderProduct", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1206,7 +1206,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("DeliveryOrderProducts");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.Ingredient", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.Ingredient", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1253,7 +1253,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("Ingredients");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.InitialOrderIngredient", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.InitialOrderIngredient", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1310,7 +1310,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("InitialOrderIngredients");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.InitialOrderProduct", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.InitialOrderProduct", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1367,7 +1367,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("InitialOrderProducts");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.OrderProduct", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.OrderProduct", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1409,7 +1409,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("OrderProducts");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.Product", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.Product", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1455,7 +1455,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.ProductCategory", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.ProductCategory", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1493,7 +1493,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("ProductCategories");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.ProductTransfer", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.ProductTransfer", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1573,7 +1573,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("ProductTransfers");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.Project", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.Project", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1646,7 +1646,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("Project");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.ProjectPhase", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.ProjectPhase", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1685,7 +1685,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("ProjectPhase");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.ProjectPlanItem", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.ProjectPlanItem", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1722,7 +1722,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("ProjectPlanItem");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.Recipe", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.Recipe", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1759,7 +1759,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("Recipes");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.WHProduct", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.WHProduct", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1802,7 +1802,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("WHProducts");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.RiskManagement.Risk", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.RiskManagement.Risk", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1868,7 +1868,7 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("Risk");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.SocialCommunication.Comment", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.SocialCommunication.Comment", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1910,9 +1910,9 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.BusinessDocuments.DeliveryOrder", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.DeliveryOrder", b =>
                 {
-                    b.HasBaseType("WorkflowLib.Shared.Models.Business.BusinessDocuments.Order");
+                    b.HasBaseType("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.Order");
 
                     b.Property<long?>("DeliveryMethodId")
                         .HasColumnType("INTEGER");
@@ -1936,16 +1936,16 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.HasDiscriminator().HasValue("DeliveryOrder");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Cooking.CookingOperation", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Cooking.CookingOperation", b =>
                 {
-                    b.HasBaseType("WorkflowLib.Shared.Models.Business.Processes.BusinessTask");
+                    b.HasBaseType("VelocipedeUtils.Shared.Models.Business.Processes.BusinessTask");
 
                     b.HasDiscriminator().HasValue("CookingOperation");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Delivery.DeliveryOperation", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Delivery.DeliveryOperation", b =>
                 {
-                    b.HasBaseType("WorkflowLib.Shared.Models.Business.Processes.BusinessTask");
+                    b.HasBaseType("VelocipedeUtils.Shared.Models.Business.Processes.BusinessTask");
 
                     b.Property<long?>("ContactId")
                         .HasColumnType("INTEGER");
@@ -1972,9 +1972,9 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.HasDiscriminator().HasValue("DeliveryOperation");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Delivery.DeliveryKitchen2Wh", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Delivery.DeliveryKitchen2Wh", b =>
                 {
-                    b.HasBaseType("WorkflowLib.Shared.Models.Business.Delivery.DeliveryOperation");
+                    b.HasBaseType("VelocipedeUtils.Shared.Models.Business.Delivery.DeliveryOperation");
 
                     b.Property<string>("GeneratedOrderQrCode")
                         .HasColumnType("TEXT");
@@ -1982,22 +1982,22 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.HasDiscriminator().HasValue("DeliveryKitchen2Wh");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Delivery.DeliveryWh2Kitchen", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Delivery.DeliveryWh2Kitchen", b =>
                 {
-                    b.HasBaseType("WorkflowLib.Shared.Models.Business.Delivery.DeliveryOperation");
+                    b.HasBaseType("VelocipedeUtils.Shared.Models.Business.Delivery.DeliveryOperation");
 
                     b.HasDiscriminator().HasValue("DeliveryWh2Kitchen");
                 });
 
             modelBuilder.Entity("CompanyContract", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.BusinessDocuments.Contract", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.Contract", null)
                         .WithMany()
                         .HasForeignKey("ContractsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Company", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Customers.Company", null)
                         .WithMany()
                         .HasForeignKey("CustomerCompaniesId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2006,13 +2006,13 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
 
             modelBuilder.Entity("CompanyEmployee", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Company", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Customers.Company", null)
                         .WithMany()
                         .HasForeignKey("CompaniesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.Employee", null)
                         .WithMany()
                         .HasForeignKey("EmployeesId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2021,13 +2021,13 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
 
             modelBuilder.Entity("ContractCustomer", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.BusinessDocuments.Contract", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.Contract", null)
                         .WithMany()
                         .HasForeignKey("ContractsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Customer", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Customers.Customer", null)
                         .WithMany()
                         .HasForeignKey("CustomersId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2036,13 +2036,13 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
 
             modelBuilder.Entity("ContractEmployee", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.BusinessDocuments.Contract", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.Contract", null)
                         .WithMany()
                         .HasForeignKey("ContractsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.Employee", null)
                         .WithMany()
                         .HasForeignKey("OurEmployeesId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2051,26 +2051,26 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
 
             modelBuilder.Entity("ContractOrganization", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.BusinessDocuments.Contract", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.Contract", null)
                         .WithMany()
                         .HasForeignKey("ContractsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Organization", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.Organization", null)
                         .WithMany()
                         .HasForeignKey("OurOrganizationsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.BusinessDocuments.BusinessTaskDeliveryOrder", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.BusinessTaskDeliveryOrder", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Processes.BusinessTask", "BusinessTask")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Processes.BusinessTask", "BusinessTask")
                         .WithMany()
                         .HasForeignKey("BusinessTaskId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.BusinessDocuments.DeliveryOrder", "DeliveryOrder")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.DeliveryOrder", "DeliveryOrder")
                         .WithMany()
                         .HasForeignKey("DeliveryOrderId");
 
@@ -2079,50 +2079,50 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.Navigation("DeliveryOrder");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.BusinessDocuments.InitialOrder", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.InitialOrder", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Cooking.CookingOperation", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Cooking.CookingOperation", null)
                         .WithMany("InitialOrders")
                         .HasForeignKey("CookingOperationId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Delivery.DeliveryKitchen2Wh", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Delivery.DeliveryKitchen2Wh", null)
                         .WithMany("InitialOrders")
                         .HasForeignKey("DeliveryKitchen2WhId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Delivery.DeliveryWh2Kitchen", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Delivery.DeliveryWh2Kitchen", null)
                         .WithMany("InitialOrders")
                         .HasForeignKey("DeliveryWh2KitchenId");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.BusinessDocuments.Order", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.Order", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.BusinessDocuments.Order", "ParentOrder")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.Order", "ParentOrder")
                         .WithMany()
                         .HasForeignKey("ParentOrderId");
 
                     b.Navigation("ParentOrder");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Customers.Company", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Customers.Company", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Contact", "Contact")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Customers.Contact", "Contact")
                         .WithMany()
                         .HasForeignKey("ContactId");
 
                     b.Navigation("Contact");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Customers.Customer", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Customers.Customer", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Company", "Company")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Customers.Company", "Company")
                         .WithMany()
                         .HasForeignKey("CompanyId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Contact", "Contact")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Customers.Contact", "Contact")
                         .WithMany()
                         .HasForeignKey("ContactId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.UserAccount", "UserAccount")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.UserAccount", "UserAccount")
                         .WithMany()
                         .HasForeignKey("UserAccountId");
 
@@ -2133,13 +2133,13 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.Navigation("UserAccount");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.Organization", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.Organization", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Company", "Company")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Customers.Company", "Company")
                         .WithMany()
                         .HasForeignKey("CompanyId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.OrganizationItem", "HeadItem")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.OrganizationItem", "HeadItem")
                         .WithMany()
                         .HasForeignKey("HeadItemId");
 
@@ -2148,13 +2148,13 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.Navigation("HeadItem");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.OrganizationItem", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.OrganizationItem", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.OrganizationItem", "ParentItem")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.OrganizationItem", "ParentItem")
                         .WithMany("SubItems")
                         .HasForeignKey("ParentItemId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.UserAccount", "User")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.UserAccount", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
@@ -2163,35 +2163,35 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.Skill", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.Skill", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.Employee", null)
                         .WithMany("Skills")
                         .HasForeignKey("EmployeeId");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.UserAccount", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.UserAccount", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.Employee", null)
                         .WithMany("UserAccounts")
                         .HasForeignKey("EmployeeId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.OrganizationItem", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.OrganizationItem", null)
                         .WithMany("Users")
                         .HasForeignKey("OrganizationItemId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.UserGroup", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.UserGroup", null)
                         .WithMany("Users")
                         .HasForeignKey("UserGroupId");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.UserGroup", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.UserGroup", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.UserAccount", "AuthorChanged")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.UserAccount", "AuthorChanged")
                         .WithMany()
                         .HasForeignKey("AuthorChangedId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.UserAccount", "AuthorCreated")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.UserAccount", "AuthorCreated")
                         .WithMany()
                         .HasForeignKey("AuthorCreatedId");
 
@@ -2200,27 +2200,27 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.Navigation("AuthorCreated");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Monetary.Payment", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Monetary.Payment", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.BusinessDocuments.Order", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.Order", null)
                         .WithMany("Payments")
                         .HasForeignKey("OrderId");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Processes.BusinessDiagramElement", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Processes.BusinessDiagramElement", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Processes.BusinessDiagram", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Processes.BusinessDiagram", null)
                         .WithMany("Elements")
                         .HasForeignKey("BusinessDiagramId");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Processes.BusinessProcess", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Processes.BusinessProcess", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Processes.BusinessDiagram", "Diagram")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Processes.BusinessDiagram", "Diagram")
                         .WithMany()
                         .HasForeignKey("DiagramId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Processes.BusinessProcess", "Parent")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Processes.BusinessProcess", "Parent")
                         .WithMany("SubProcesses")
                         .HasForeignKey("ParentId");
 
@@ -2229,34 +2229,34 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.Navigation("Parent");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Processes.BusinessProcessState", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Processes.BusinessProcessState", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Processes.BusinessProcess", "BusinessProcess")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Processes.BusinessProcess", "BusinessProcess")
                         .WithMany()
                         .HasForeignKey("BusinessProcessId");
 
                     b.Navigation("BusinessProcess");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Processes.BusinessTask", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Processes.BusinessTask", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Processes.BusinessProcessState", "BusinessProcessState")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Processes.BusinessProcessState", "BusinessProcessState")
                         .WithMany()
                         .HasForeignKey("BusinessProcessStateId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.UserAccount", "Executor")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.UserAccount", "Executor")
                         .WithMany()
                         .HasForeignKey("ExecutorId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.UserAccount", "ExecutorIsEmulation")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.UserAccount", "ExecutorIsEmulation")
                         .WithMany()
                         .HasForeignKey("ExecutorIsEmulationId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.UserAccount", "ExecutorReplaced")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.UserAccount", "ExecutorReplaced")
                         .WithMany()
                         .HasForeignKey("ExecutorReplacedId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Processes.BusinessTask", "ParentTask")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Processes.BusinessTask", "ParentTask")
                         .WithMany("ChildTasks")
                         .HasForeignKey("ParentTaskId");
 
@@ -2271,13 +2271,13 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.Navigation("ParentTask");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.DeliveryOrderProduct", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.DeliveryOrderProduct", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.BusinessDocuments.DeliveryOrder", "DeliveryOrder")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.DeliveryOrder", "DeliveryOrder")
                         .WithMany()
                         .HasForeignKey("DeliveryOrderId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.Product", "Product")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Products.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId");
 
@@ -2286,17 +2286,17 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.Ingredient", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.Ingredient", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.Product", "FinalProduct")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Products.Product", "FinalProduct")
                         .WithMany()
                         .HasForeignKey("FinalProductId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.Product", "IngredientProduct")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Products.Product", "IngredientProduct")
                         .WithMany()
                         .HasForeignKey("IngredientProductId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.Recipe", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Products.Recipe", null)
                         .WithMany("Ingredients")
                         .HasForeignKey("RecipeId");
 
@@ -2305,25 +2305,25 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.Navigation("IngredientProduct");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.InitialOrderIngredient", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.InitialOrderIngredient", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Cooking.CookingOperation", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Cooking.CookingOperation", null)
                         .WithMany("InitialOrderIngredients")
                         .HasForeignKey("CookingOperationId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Delivery.DeliveryWh2Kitchen", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Delivery.DeliveryWh2Kitchen", null)
                         .WithMany("InitialOrderIngredients")
                         .HasForeignKey("DeliveryWh2KitchenId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.Ingredient", "Ingredient")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Products.Ingredient", "Ingredient")
                         .WithMany()
                         .HasForeignKey("IngredientId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.BusinessDocuments.InitialOrder", "InitialOrder")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.InitialOrder", "InitialOrder")
                         .WithMany()
                         .HasForeignKey("InitialOrderId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.InitialOrderProduct", "InitialOrderProduct")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Products.InitialOrderProduct", "InitialOrderProduct")
                         .WithMany()
                         .HasForeignKey("InitialOrderProductId");
 
@@ -2334,25 +2334,25 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.Navigation("InitialOrderProduct");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.InitialOrderProduct", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.InitialOrderProduct", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Cooking.CookingOperation", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Cooking.CookingOperation", null)
                         .WithMany("InitialOrderProducts")
                         .HasForeignKey("CookingOperationId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Delivery.DeliveryKitchen2Wh", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Delivery.DeliveryKitchen2Wh", null)
                         .WithMany("InitialOrderProducts")
                         .HasForeignKey("DeliveryKitchen2WhId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Delivery.DeliveryWh2Kitchen", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Delivery.DeliveryWh2Kitchen", null)
                         .WithMany("InitialOrderProducts")
                         .HasForeignKey("DeliveryWh2KitchenId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.BusinessDocuments.InitialOrder", "InitialOrder")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.InitialOrder", "InitialOrder")
                         .WithMany()
                         .HasForeignKey("InitialOrderId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.Product", "Product")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Products.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId");
 
@@ -2361,13 +2361,13 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.OrderProduct", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.OrderProduct", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.BusinessDocuments.Order", "Order")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.Order", "Order")
                         .WithMany()
                         .HasForeignKey("OrderId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.Product", "Product")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Products.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId");
 
@@ -2376,38 +2376,38 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.Product", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.Product", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.ProductCategory", "ProductCategory")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Products.ProductCategory", "ProductCategory")
                         .WithMany("Products")
                         .HasForeignKey("ProductCategoryId");
 
                     b.Navigation("ProductCategory");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.ProductTransfer", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.ProductTransfer", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.BusinessDocuments.DeliveryOrder", "DeliveryOrder")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.DeliveryOrder", "DeliveryOrder")
                         .WithMany()
                         .HasForeignKey("DeliveryOrderId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.DeliveryOrderProduct", "DeliveryOrderProduct")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Products.DeliveryOrderProduct", "DeliveryOrderProduct")
                         .WithMany()
                         .HasForeignKey("DeliveryOrderProductId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.BusinessDocuments.Order", "Order")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.Order", "Order")
                         .WithMany()
                         .HasForeignKey("OrderId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.OrderProduct", "OrderProduct")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Products.OrderProduct", "OrderProduct")
                         .WithMany()
                         .HasForeignKey("OrderProductId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.ProductTransfer", "Parent")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Products.ProductTransfer", "Parent")
                         .WithMany()
                         .HasForeignKey("ParentId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.WHProduct", "WHProduct")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Products.WHProduct", "WHProduct")
                         .WithMany()
                         .HasForeignKey("WHProductId");
 
@@ -2424,27 +2424,27 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.Navigation("WHProduct");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.Project", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.Project", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Company", "Company")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Customers.Company", "Company")
                         .WithMany("Projects")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.BusinessDocuments.Contract", "Contract")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.Contract", "Contract")
                         .WithMany()
                         .HasForeignKey("ContractId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Customer", "Customer")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Customers.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", "Manager")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.Employee", "Manager")
                         .WithMany()
                         .HasForeignKey("ManagerId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2459,13 +2459,13 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.Navigation("Manager");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.ProjectPhase", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.ProjectPhase", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.Project", "Project")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Products.Project", "Project")
                         .WithMany("ProjectPhases")
                         .HasForeignKey("ProjectId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.ProjectPlanItem", "ProjectPlanItem")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Products.ProjectPlanItem", "ProjectPlanItem")
                         .WithMany()
                         .HasForeignKey("ProjectPlanItemId");
 
@@ -2474,56 +2474,56 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.Navigation("ProjectPlanItem");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.ProjectPlanItem", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.ProjectPlanItem", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.ProjectPlanItem", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Products.ProjectPlanItem", null)
                         .WithMany("Items")
                         .HasForeignKey("ProjectPlanItemId");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.Recipe", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.Recipe", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.Product", "Product")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Products.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId");
 
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.WHProduct", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.WHProduct", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.Product", "Product")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Products.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId");
 
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.RiskManagement.Risk", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.RiskManagement.Risk", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", "AuthorChanged")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.Employee", "AuthorChanged")
                         .WithMany()
                         .HasForeignKey("AuthorChangedId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", "AuthorCreated")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.Employee", "AuthorCreated")
                         .WithMany()
                         .HasForeignKey("AuthorCreatedId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", "AuthorResolved")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.Employee", "AuthorResolved")
                         .WithMany()
                         .HasForeignKey("AuthorResolvedId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Processes.BusinessTask", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Processes.BusinessTask", null)
                         .WithMany("Risks")
                         .HasForeignKey("BusinessTaskId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.Project", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Products.Project", null)
                         .WithMany("Risks")
                         .HasForeignKey("ProjectId");
 
@@ -2534,28 +2534,28 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.Navigation("AuthorResolved");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.SocialCommunication.Comment", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.SocialCommunication.Comment", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.UserAccount", "AuthorCreated")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.UserAccount", "AuthorCreated")
                         .WithMany()
                         .HasForeignKey("AuthorCreatedId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Processes.BusinessTask", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Processes.BusinessTask", null)
                         .WithMany("Comments")
                         .HasForeignKey("BusinessTaskId");
 
                     b.Navigation("AuthorCreated");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.BusinessDocuments.DeliveryOrder", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.DeliveryOrder", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Delivery.DeliveryMethod", "DeliveryMethod")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Delivery.DeliveryMethod", "DeliveryMethod")
                         .WithMany()
                         .HasForeignKey("DeliveryMethodId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.BusinessDocuments.DeliveryOrder", "ParentDeliveryOrder")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.DeliveryOrder", "ParentDeliveryOrder")
                         .WithMany()
                         .HasForeignKey("ParentDeliveryOrderId");
 
@@ -2564,13 +2564,13 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.Navigation("ParentDeliveryOrder");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Delivery.DeliveryOperation", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Delivery.DeliveryOperation", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Contact", "Contact")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Customers.Contact", "Contact")
                         .WithMany()
                         .HasForeignKey("ContactId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Delivery.DeliveryMethod", "DeliveryMethod")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Delivery.DeliveryMethod", "DeliveryMethod")
                         .WithMany()
                         .HasForeignKey("DeliveryMethodId");
 
@@ -2579,46 +2579,46 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.Navigation("DeliveryMethod");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.BusinessDocuments.Order", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.Order", b =>
                 {
                     b.Navigation("Payments");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Customers.Company", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Customers.Company", b =>
                 {
                     b.Navigation("Projects");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.Employee", b =>
                 {
                     b.Navigation("Skills");
 
                     b.Navigation("UserAccounts");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.OrganizationItem", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.OrganizationItem", b =>
                 {
                     b.Navigation("SubItems");
 
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.UserGroup", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.UserGroup", b =>
                 {
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Processes.BusinessDiagram", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Processes.BusinessDiagram", b =>
                 {
                     b.Navigation("Elements");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Processes.BusinessProcess", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Processes.BusinessProcess", b =>
                 {
                     b.Navigation("SubProcesses");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Processes.BusinessTask", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Processes.BusinessTask", b =>
                 {
                     b.Navigation("ChildTasks");
 
@@ -2627,29 +2627,29 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.Navigation("Risks");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.ProductCategory", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.ProductCategory", b =>
                 {
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.Project", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.Project", b =>
                 {
                     b.Navigation("ProjectPhases");
 
                     b.Navigation("Risks");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.ProjectPlanItem", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.ProjectPlanItem", b =>
                 {
                     b.Navigation("Items");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.Recipe", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.Recipe", b =>
                 {
                     b.Navigation("Ingredients");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Cooking.CookingOperation", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Cooking.CookingOperation", b =>
                 {
                     b.Navigation("InitialOrderIngredients");
 
@@ -2658,14 +2658,14 @@ namespace WorkflowLib.Examples.Delivering.Example01.Migrations
                     b.Navigation("InitialOrders");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Delivery.DeliveryKitchen2Wh", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Delivery.DeliveryKitchen2Wh", b =>
                 {
                     b.Navigation("InitialOrderProducts");
 
                     b.Navigation("InitialOrders");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Delivery.DeliveryWh2Kitchen", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Delivery.DeliveryWh2Kitchen", b =>
                 {
                     b.Navigation("InitialOrderIngredients");
 

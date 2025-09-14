@@ -1,4 +1,4 @@
-﻿namespace WorkflowLib.ECommerce.FoodDelivery.Core.Models
+﻿namespace VelocipedeUtils.ECommerce.FoodDelivery.Core.Models
 {
     public enum FoodDeliveryType
     {

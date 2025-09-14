@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts;
-using WorkflowLib.UnifiedBusinessPlatform.DbInit.Dal;
-using WorkflowLib.UnifiedBusinessPlatform.DbInit.Models;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.DbContexts;
+using VelocipedeUtils.UnifiedBusinessPlatform.DbInit.Dal;
+using VelocipedeUtils.UnifiedBusinessPlatform.DbInit.Models;
 
-namespace WorkflowLib.UnifiedBusinessPlatform.DbInit;
+namespace VelocipedeUtils.UnifiedBusinessPlatform.DbInit;
 
 /// <summary>
 /// Class for standardized launch of an application instance.

@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.TechSupport.Common.Models.AppContexts;
+namespace VelocipedeUtils.Examples.TechSupport.Common.Models.AppContexts;
 
 /// <summary>
 /// Предоставляет информацию об аутентификации пользователя, такую как имя пользователя, роль и токен доступа.

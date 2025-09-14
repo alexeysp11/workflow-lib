@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkflowLib.Examples.BookList", "src\BookList\WorkflowLib.Examples.BookList.csproj", "{72074FBB-D55A-4815-BA98-CE0D3132D0EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VelocipedeUtils.Examples.BookList", "src\BookList\VelocipedeUtils.Examples.BookList.csproj", "{72074FBB-D55A-4815-BA98-CE0D3132D0EC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkflowLib.Examples.BookList.Models", "src\Models\WorkflowLib.Examples.BookList.Models.csproj", "{2B9124C4-B3D6-48D2-8B41-26B9D6ABF223}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VelocipedeUtils.Examples.BookList.Models", "src\Models\VelocipedeUtils.Examples.BookList.Models.csproj", "{2B9124C4-B3D6-48D2-8B41-26B9D6ABF223}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkflowLib.Examples.BookList.Models.Tests", "tests\Models\WorkflowLib.Examples.BookList.Models.Tests.csproj", "{D4246D76-A9D4-4008-8279-FC32D534BCDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VelocipedeUtils.Examples.BookList.Models.Tests", "tests\Models\VelocipedeUtils.Examples.BookList.Models.Tests.csproj", "{D4246D76-A9D4-4008-8279-FC32D534BCDE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkflowLib.Examples.BookList.Services", "src\Services\WorkflowLib.Examples.BookList.Services.csproj", "{2775F2AC-7A63-48CF-9C2C-B7663A52D9A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VelocipedeUtils.Examples.BookList.Services", "src\Services\VelocipedeUtils.Examples.BookList.Services.csproj", "{2775F2AC-7A63-48CF-9C2C-B7663A52D9A4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkflowLib.Examples.BookList.Services.Tests", "tests\Services\WorkflowLib.Examples.BookList.Services.Tests.csproj", "{486A547B-93E8-4581-9DBB-919F03B0EC38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VelocipedeUtils.Examples.BookList.Services.Tests", "tests\Services\VelocipedeUtils.Examples.BookList.Services.Tests.csproj", "{486A547B-93E8-4581-9DBB-919F03B0EC38}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkflowLib.Examples.BookList.Security", "src\Security\WorkflowLib.Examples.BookList.Security.csproj", "{5E8B6540-870F-4533-A9A6-65D1981ABA34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VelocipedeUtils.Examples.BookList.Security", "src\Security\VelocipedeUtils.Examples.BookList.Security.csproj", "{5E8B6540-870F-4533-A9A6-65D1981ABA34}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkflowLib.Examples.BookList.Security.Tests", "tests\Security\WorkflowLib.Examples.BookList.Security.Tests.csproj", "{BA7F3D13-7D71-47A2-8ACF-EA2305F2AB1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VelocipedeUtils.Examples.BookList.Security.Tests", "tests\Security\VelocipedeUtils.Examples.BookList.Security.Tests.csproj", "{BA7F3D13-7D71-47A2-8ACF-EA2305F2AB1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

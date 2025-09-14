@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations;
-using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Pipes;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Models.Configurations;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Models.Pipes;
 
-namespace WorkflowLib.UnifiedBusinessPlatform.Core.Pipes;
+namespace VelocipedeUtils.UnifiedBusinessPlatform.Core.Pipes;
 
 /// <summary>
 /// Represent an abstract pipe component that is used for composing sequences of the generators of initial datasets 

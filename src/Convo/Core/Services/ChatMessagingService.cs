@@ -1,4 +1,4 @@
-﻿// using WorkflowLib.Shared.Models.Business.SocialCommunication.DTOs;
+﻿// using VelocipedeUtils.Shared.Models.Business.SocialCommunication.DTOs;
 
 namespace Chat.Core.Services;
 

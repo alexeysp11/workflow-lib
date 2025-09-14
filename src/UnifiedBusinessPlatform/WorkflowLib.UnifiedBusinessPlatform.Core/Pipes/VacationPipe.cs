@@ -1,11 +1,11 @@
 using System.Linq;
 using System.Collections.Generic;
-using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
-using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Pipes;
-using WorkflowLib.UnifiedBusinessPlatform.Core.Domain.DatasetGenerators;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Models.Configurations;
+using VelocipedeUtils.Shared.Models.Business.InformationSystem;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Models.Pipes;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Domain.DatasetGenerators;
 
-namespace WorkflowLib.UnifiedBusinessPlatform.Core.Pipes;
+namespace VelocipedeUtils.UnifiedBusinessPlatform.Core.Pipes;
 
 /// <summary>
 /// Pipe component for generating a collection of employees.

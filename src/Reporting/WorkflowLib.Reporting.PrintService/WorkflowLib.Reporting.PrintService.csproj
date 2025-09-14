@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>dotnet-WorkflowLib.Reporting.PrintService-bf0a5e07-677c-4201-9006-a9bc0bb42594</UserSecretsId>
+    <UserSecretsId>dotnet-VelocipedeUtils.Reporting.PrintService-bf0a5e07-677c-4201-9006-a9bc0bb42594</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../Shared/Models.Business/WorkflowLib.Shared.Models.Business.csproj" />
+    <ProjectReference Include="../../Shared/Models.Business/VelocipedeUtils.Shared.Models.Business.csproj" />
   </ItemGroup>
 
 </Project>

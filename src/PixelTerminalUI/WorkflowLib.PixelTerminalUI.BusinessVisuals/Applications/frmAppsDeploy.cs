@@ -1,7 +1,7 @@
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
-using WorkflowLib.PixelTerminalUI.BusinessVisuals.Forms;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Controls;
+using VelocipedeUtils.PixelTerminalUI.BusinessVisuals.Forms;
 
-namespace WorkflowLib.PixelTerminalUI.BusinessVisuals.Applications;
+namespace VelocipedeUtils.PixelTerminalUI.BusinessVisuals.Applications;
 
 public class frmAppsDeploy : frmTerminalBase
 {

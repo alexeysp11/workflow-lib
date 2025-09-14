@@ -1,6 +1,6 @@
-using WorkflowLib.DataStorage.Core.Indexes;
+using VelocipedeUtils.DataStorage.Core.Indexes;
 
-namespace WorkflowLib.DataStorage.Core.Tests.Indexes
+namespace VelocipedeUtils.DataStorage.Core.Tests.Indexes
 {
     public class HashIndexTest
     {

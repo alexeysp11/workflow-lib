@@ -1,4 +1,4 @@
-﻿namespace WorkflowLib.DataStorage.Models;
+﻿namespace VelocipedeUtils.DataStorage.Models;
 
 public class AppSettings
 {

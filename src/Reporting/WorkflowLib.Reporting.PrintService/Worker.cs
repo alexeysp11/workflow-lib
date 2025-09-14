@@ -1,4 +1,4 @@
-namespace WorkflowLib.Reporting.PrintService;
+namespace VelocipedeUtils.Reporting.PrintService;
 
 public class Worker : BackgroundService
 {

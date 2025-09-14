@@ -1,6 +1,6 @@
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
+using VelocipedeUtils.Shared.Models.Business.BusinessDocuments;
 
-namespace WorkflowLib.Shared.Models.Business.Cooking
+namespace VelocipedeUtils.Shared.Models.Business.Cooking
 {
     /// <summary>
     /// Order ingredient.

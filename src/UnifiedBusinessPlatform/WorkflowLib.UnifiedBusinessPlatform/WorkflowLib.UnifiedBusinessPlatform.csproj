@@ -7,8 +7,8 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <ProjectReference Include="../WorkflowLib.UnifiedBusinessPlatform.Core/WorkflowLib.UnifiedBusinessPlatform.Core.csproj" />
-    <ProjectReference Include="../../../src/Shared/CodeExtensions/WorkflowLib.Shared.CodeExtensions.csproj" />
+    <ProjectReference Include="../VelocipedeUtils.UnifiedBusinessPlatform.Core/VelocipedeUtils.UnifiedBusinessPlatform.Core.csproj" />
+    <ProjectReference Include="../../../src/Shared/CodeExtensions/VelocipedeUtils.Shared.CodeExtensions.csproj" />
   </ItemGroup>
 
   <ItemGroup>

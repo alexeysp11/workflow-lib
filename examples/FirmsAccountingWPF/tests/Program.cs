@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WorkflowLib.Examples.FirmsAccounting.Examples
+namespace VelocipedeUtils.Examples.FirmsAccounting.Examples
 {
     class Program
     {

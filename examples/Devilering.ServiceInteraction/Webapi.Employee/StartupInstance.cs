@@ -1,9 +1,9 @@
 using Microsoft.Extensions.DependencyInjection;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BPInitializers;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.Routing;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.BPInitializers;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.Routing;
 
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.Webapi.Employee
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.Webapi.Employee
 {
     /// <summary>
     /// The class that is responsible for initializing this example.

@@ -3,7 +3,7 @@ using System.Security;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace WorkflowLib.PixelTerminalUI.ConsoleAdapter.Helpers;
+namespace VelocipedeUtils.PixelTerminalUI.ConsoleAdapter.Helpers;
 
 public static class ConsoleHelper
 {

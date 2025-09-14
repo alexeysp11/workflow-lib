@@ -1,6 +1,6 @@
-﻿using WorkflowLib.DataStorage.InMemoryService.Clients;
+﻿using VelocipedeUtils.DataStorage.InMemoryService.Clients;
 
-namespace WorkflowLib.DataStorage.InMemoryService.Cli
+namespace VelocipedeUtils.DataStorage.InMemoryService.Cli
 {
     public class Program
     {

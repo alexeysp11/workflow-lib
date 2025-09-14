@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Network.MicroserviceConfigurations
+namespace VelocipedeUtils.Shared.Models.Network.MicroserviceConfigurations
 {
     /// <summary>
     /// Endpoint type.

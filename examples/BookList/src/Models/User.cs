@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace WorkflowLib.Examples.BookList.Models
+namespace VelocipedeUtils.Examples.BookList.Models
 {
     public class User
     {

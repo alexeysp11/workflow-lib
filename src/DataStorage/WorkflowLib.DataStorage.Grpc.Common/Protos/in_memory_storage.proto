@@ -2,7 +2,7 @@ syntax = "proto3";
 
 import "google/protobuf/wrappers.proto";
 
-option csharp_namespace = "WorkflowLib.DataStorage.InMemoryService.Grpc";
+option csharp_namespace = "VelocipedeUtils.DataStorage.InMemoryService.Grpc";
 
 package InMemoryService;
 

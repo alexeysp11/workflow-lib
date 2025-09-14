@@ -2,11 +2,11 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DbContexts;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.DAL;
-using WorkflowLib.Shared.Models.Network.MicroserviceConfigurations;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.DbContexts;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.DAL;
+using VelocipedeUtils.Shared.Models.Network.MicroserviceConfigurations;
 
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DAL;
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.DAL;
 
 /// <summary>
 /// A class at the DAL level that performs endpoint-related operations in the database.

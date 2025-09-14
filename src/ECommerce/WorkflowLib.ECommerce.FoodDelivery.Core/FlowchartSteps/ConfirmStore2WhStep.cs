@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.Shared.Models.Business.Products;
-using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
-using WorkflowLib.ECommerce.FoodDelivery.Core.Models;
-using WorkflowLib.Shared.Models.Business.Delivery;
+using VelocipedeUtils.Shared.Models.Business.BusinessDocuments;
+using VelocipedeUtils.Shared.Models.Business.Products;
+using VelocipedeUtils.ECommerce.FoodDelivery.Core.DbContexts;
+using VelocipedeUtils.ECommerce.FoodDelivery.Core.Models;
+using VelocipedeUtils.Shared.Models.Business.Delivery;
 
-namespace WorkflowLib.ECommerce.FoodDelivery.Core.FlowchartSteps
+namespace VelocipedeUtils.ECommerce.FoodDelivery.Core.FlowchartSteps
 {
     /// <summary>
     /// The step that consists of confirming delivery from the store to the warehouse 

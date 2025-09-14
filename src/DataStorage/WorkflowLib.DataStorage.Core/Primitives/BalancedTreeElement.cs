@@ -1,4 +1,4 @@
-namespace WorkflowLib.DataStorage.Core.Primitives;
+namespace VelocipedeUtils.DataStorage.Core.Primitives;
 
 /// <summary>
 /// 

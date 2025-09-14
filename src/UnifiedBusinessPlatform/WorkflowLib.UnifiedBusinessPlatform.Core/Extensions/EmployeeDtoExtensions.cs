@@ -1,6 +1,6 @@
-using WorkflowLib.UnifiedBusinessPlatform.Core.Dto;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Dto;
 
-namespace WorkflowLib.UnifiedBusinessPlatform.Core.Extensions;
+namespace VelocipedeUtils.UnifiedBusinessPlatform.Core.Extensions;
 
 public static class EmployeeDtoExtensions
 {

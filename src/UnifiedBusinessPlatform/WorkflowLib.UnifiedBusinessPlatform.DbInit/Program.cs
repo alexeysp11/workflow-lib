@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
-using WorkflowLib.UnifiedBusinessPlatform.DbInit.Models;
-using WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts;
+using VelocipedeUtils.UnifiedBusinessPlatform.DbInit.Models;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.DbContexts;
 using Microsoft.EntityFrameworkCore;
 
-namespace WorkflowLib.UnifiedBusinessPlatform.DbInit;
+namespace VelocipedeUtils.UnifiedBusinessPlatform.DbInit;
 
 public class Program
 {

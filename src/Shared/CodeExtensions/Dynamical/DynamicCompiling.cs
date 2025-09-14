@@ -9,7 +9,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Emit;
 using Microsoft.CodeAnalysis.Text;
 
-namespace WorkflowLib.Dynamical
+namespace VelocipedeUtils.Dynamical
 {
     /// <summary>
     /// Class for dynamically compiling a string containing a C# code

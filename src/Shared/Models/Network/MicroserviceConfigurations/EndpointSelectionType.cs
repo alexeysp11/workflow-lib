@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Network.MicroserviceConfigurations
+namespace VelocipedeUtils.Shared.Models.Network.MicroserviceConfigurations
 {
     /// <summary>
     /// Represents the types of endpoint selection algorithms that can be used in a load balancer.

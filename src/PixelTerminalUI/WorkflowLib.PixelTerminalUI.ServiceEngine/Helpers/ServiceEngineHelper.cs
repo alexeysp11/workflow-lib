@@ -1,9 +1,9 @@
 using System.Net.Sockets;
 using System.Text;
-using WorkflowLib.PixelTerminalUI.ConsoleAdapter.Helpers;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
+using VelocipedeUtils.PixelTerminalUI.ConsoleAdapter.Helpers;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Models;
 
-namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Helpers;
+namespace VelocipedeUtils.PixelTerminalUI.ServiceEngine.Helpers;
 
 public static class ServiceEngineHelper
 {

@@ -1,6 +1,6 @@
-using WorkflowLib.Examples.TechSupport.Common.Models;
+using VelocipedeUtils.Examples.TechSupport.Common.Models;
 
-namespace WorkflowLib.Examples.TechSupport.Common.Models.AppContexts;
+namespace VelocipedeUtils.Examples.TechSupport.Common.Models.AppContexts;
 
 public class CustomersAppContext : IAppContext
 {

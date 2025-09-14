@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using WorkflowLib.Examples.BookList.Models;
+using VelocipedeUtils.Examples.BookList.Models;
 using Security.Models;
 
-namespace WorkflowLib.Examples.BookList.Services
+namespace VelocipedeUtils.Examples.BookList.Services
 {
     /// <summary>
     /// Class that allows users to interact with database 

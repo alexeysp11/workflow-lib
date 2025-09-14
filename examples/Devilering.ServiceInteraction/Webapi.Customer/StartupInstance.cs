@@ -1,7 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BPInitializers;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.BPInitializers;
 
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.Webapi.Customer
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.Webapi.Customer
 {
     /// <summary>
     /// The class that is responsible for initializing this example.

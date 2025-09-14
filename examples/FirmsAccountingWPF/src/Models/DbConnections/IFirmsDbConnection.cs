@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using WorkflowLib.Examples.FirmsAccounting.Models.Data;
+using VelocipedeUtils.Examples.FirmsAccounting.Models.Data;
 
-namespace WorkflowLib.Examples.FirmsAccounting.Models.DbConnections
+namespace VelocipedeUtils.Examples.FirmsAccounting.Models.DbConnections
 {
     public interface IFirmsDbConnection
     {

@@ -12,9 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WorkflowLib.Examples.FirmsAccounting.ViewModels;
+using VelocipedeUtils.Examples.FirmsAccounting.ViewModels;
 
-namespace WorkflowLib.Examples.FirmsAccounting.Views
+namespace VelocipedeUtils.Examples.FirmsAccounting.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

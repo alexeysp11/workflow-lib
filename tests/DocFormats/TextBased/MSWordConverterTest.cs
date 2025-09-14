@@ -4,11 +4,11 @@ using System.Linq;
 using System.Reflection;
 using System.Data;
 using Xunit;
-using WorkflowLib.Shared.Office.DocFormats.TextBased;
-using WorkflowLib.Shared.Models.Documents;
-using WorkflowLib.Shared.Models.Documents.Enums;
+using VelocipedeUtils.Shared.Office.DocFormats.TextBased;
+using VelocipedeUtils.Shared.Models.Documents;
+using VelocipedeUtils.Shared.Models.Documents.Enums;
 
-namespace Cims.Tests.WorkflowLib.Shared.Office.DocFormats.TextBased
+namespace Cims.Tests.VelocipedeUtils.Shared.Office.DocFormats.TextBased
 {
     public class MSWordConverterTest
     {

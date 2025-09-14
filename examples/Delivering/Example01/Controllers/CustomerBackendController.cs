@@ -1,17 +1,17 @@
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using WorkflowLib.Extensions;
-using WorkflowLib.Shared.Models.Business;
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.Shared.Models.Business.Customers;
-using WorkflowLib.Shared.Models.Business.Monetary;
-using WorkflowLib.Shared.Models.Business.Products;
-using WorkflowLib.Shared.Models.Network;
-using WorkflowLib.Examples.Delivering.Example01.Contexts;
-using WorkflowLib.Examples.Delivering.Example01.Interfaces;
+using VelocipedeUtils.Extensions;
+using VelocipedeUtils.Shared.Models.Business;
+using VelocipedeUtils.Shared.Models.Business.BusinessDocuments;
+using VelocipedeUtils.Shared.Models.Business.Customers;
+using VelocipedeUtils.Shared.Models.Business.Monetary;
+using VelocipedeUtils.Shared.Models.Business.Products;
+using VelocipedeUtils.Shared.Models.Network;
+using VelocipedeUtils.Examples.Delivering.Example01.Contexts;
+using VelocipedeUtils.Examples.Delivering.Example01.Interfaces;
 
-namespace WorkflowLib.Examples.Delivering.Example01.Controllers
+namespace VelocipedeUtils.Examples.Delivering.Example01.Controllers
 {
     /// <summary>
     /// A class that represents a backend service controller that processes requests from the customer.

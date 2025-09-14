@@ -1,8 +1,8 @@
-<UserControl x:Class="WorkflowLib.Examples.HcsBudget.UserControls.Menu"
+<UserControl x:Class="VelocipedeUtils.Examples.HcsBudget.UserControls.Menu"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:WorkflowLib.Examples.HcsBudget"
-        xmlns:uc="clr-namespace:WorkflowLib.Examples.HcsBudget.UserControls">
+        xmlns:local="clr-namespace:VelocipedeUtils.Examples.HcsBudget"
+        xmlns:uc="clr-namespace:VelocipedeUtils.Examples.HcsBudget.UserControls">
     <Grid>
         <Menu>
             <MenuItem Header="File">

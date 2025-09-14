@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../Services/WorkflowLib.MeetPlanning.Services.csproj" />
+    <ProjectReference Include="../Services/VelocipedeUtils.MeetPlanning.Services.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using WorkflowLib.Shared.Models.Business.Processes;
+using VelocipedeUtils.Shared.Models.Business.Processes;
 
-namespace WorkflowLib.Shared.ServiceDiscoveryBpm.ObjectPooling;
+namespace VelocipedeUtils.Shared.ServiceDiscoveryBpm.ObjectPooling;
 
 /// <summary>
 /// Class for managing a pool of business process transitions.

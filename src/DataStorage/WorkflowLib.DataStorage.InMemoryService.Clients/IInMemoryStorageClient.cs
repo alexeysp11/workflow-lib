@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace WorkflowLib.DataStorage.InMemoryService.Clients
+namespace VelocipedeUtils.DataStorage.InMemoryService.Clients
 {
     public interface IInMemoryStorageClient
     {

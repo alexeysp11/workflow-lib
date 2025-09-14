@@ -1,10 +1,10 @@
-﻿using WorkflowLib.ECommerce.FoodDelivery.Core.DbContexts;
-using WorkflowLib.Extensions;
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.Shared.Models.Business.Customers;
-using WorkflowLib.Shared.Models.Business.Processes;
+﻿using VelocipedeUtils.ECommerce.FoodDelivery.Core.DbContexts;
+using VelocipedeUtils.Extensions;
+using VelocipedeUtils.Shared.Models.Business.BusinessDocuments;
+using VelocipedeUtils.Shared.Models.Business.Customers;
+using VelocipedeUtils.Shared.Models.Business.Processes;
 
-namespace WorkflowLib.ECommerce.FoodDelivery.Core.Dal
+namespace VelocipedeUtils.ECommerce.FoodDelivery.Core.Dal
 {
     public static class BusinessTaskDao
     {

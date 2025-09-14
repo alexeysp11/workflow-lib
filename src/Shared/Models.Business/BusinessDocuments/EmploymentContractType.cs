@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
+namespace VelocipedeUtils.Shared.Models.Business.BusinessDocuments
 {
     /// <summary>
     /// Type of the employment contract.

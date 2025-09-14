@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.ProcPipes;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.ProcPipes;
 
-namespace WorkflowLib.Shared.ServiceDiscoveryBpm.Routing;
+namespace VelocipedeUtils.Shared.ServiceDiscoveryBpm.Routing;
 
 /// <summary>
 /// Class for EBS routing configuration settings.

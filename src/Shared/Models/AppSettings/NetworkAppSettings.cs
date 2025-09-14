@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.AppSettings
+namespace VelocipedeUtils.Shared.Models.AppSettings
 {
     /// <summary>
     /// Class for storing confidurations related to the core server.

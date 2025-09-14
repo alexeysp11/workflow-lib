@@ -8,9 +8,9 @@
 
   <ItemGroup>
     <ProjectReference Include="../models/WokflowLib.Authentication.Models.csproj" />
-    <ProjectReference Include="../../Communication/WorkflowLib.Shared.Communication.csproj" />
-    <ProjectReference Include="../../DbConnections/WorkflowLib.Shared.DbConnections.csproj" />
-    <ProjectReference Include="../../Models/WorkflowLib.Shared.Models.csproj" />
+    <ProjectReference Include="../../Communication/VelocipedeUtils.Shared.Communication.csproj" />
+    <ProjectReference Include="../../DbConnections/VelocipedeUtils.Shared.DbConnections.csproj" />
+    <ProjectReference Include="../../Models/VelocipedeUtils.Shared.Models.csproj" />
   </ItemGroup>
 
 </Project>

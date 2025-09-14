@@ -1,11 +1,11 @@
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DbContexts;
-using WorkflowLib.Shared.Models.Business.Processes;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.DAL;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.DbContexts;
+using VelocipedeUtils.Shared.Models.Business.Processes;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.DAL;
 
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DAL;
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.DAL;
 
 /// <summary>
 /// A class at the DAL level that performs operations related to business processes in the database.

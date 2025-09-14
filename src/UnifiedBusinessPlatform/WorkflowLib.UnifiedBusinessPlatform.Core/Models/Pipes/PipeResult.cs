@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
+using VelocipedeUtils.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.UnifiedBusinessPlatform.Core.Models.Pipes;
+namespace VelocipedeUtils.UnifiedBusinessPlatform.Core.Models.Pipes;
 
 /// <summary>
 /// Represents all the generated collections.

@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts;
-using WorkflowLib.UnifiedBusinessPlatform.Core.Domain.DatasetGenerators;
-using WorkflowLib.UnifiedBusinessPlatform.Core.Domain.Filtering;
-using WorkflowLib.UnifiedBusinessPlatform.Core.Models.Configurations;
-using WorkflowLib.UnifiedBusinessPlatform.Core.Repositories;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.DbContexts;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Domain.DatasetGenerators;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Domain.Filtering;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Models.Configurations;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 

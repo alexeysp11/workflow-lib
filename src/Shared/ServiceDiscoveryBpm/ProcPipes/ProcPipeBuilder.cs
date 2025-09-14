@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace WorkflowLib.Shared.ServiceDiscoveryBpm.ProcPipes;
+namespace VelocipedeUtils.Shared.ServiceDiscoveryBpm.ProcPipes;
 
 /// <summary>
 /// Builds the sequence of request processing.

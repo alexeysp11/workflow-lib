@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using WorkflowLib.UnifiedBusinessPlatform.Core.DbContexts;
+using VelocipedeUtils.UnifiedBusinessPlatform.Core.DbContexts;
 
 #nullable disable
 
-namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
+namespace VelocipedeUtils.UnifiedBusinessPlatform.Core.Migrations
 {
     [DbContext(typeof(UbpDbContext))]
     [Migration("20241211193402_AddedLanguageKeyForm")]
@@ -114,7 +114,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.ToTable("EmployeeOrganizationItem");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.BusinessDocuments.Contract", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.Contract", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -148,7 +148,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.ToTable("Contract");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Customers.Company", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Customers.Company", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -202,7 +202,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.ToTable("Companies");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Customers.Contact", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Customers.Contact", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -251,7 +251,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.ToTable("Contacts");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Customers.Customer", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Customers.Customer", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -312,7 +312,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.ToTable("Customer");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.Absense", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.Absense", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -369,7 +369,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.ToTable("Absenses");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.Employee", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -442,7 +442,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.EmployeeUserAccount", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.EmployeeUserAccount", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -483,7 +483,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.ToTable("EmployeeUserAccounts");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.Organization", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.Organization", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -524,7 +524,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.ToTable("Organizations");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.OrganizationItem", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.OrganizationItem", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -575,7 +575,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.ToTable("OrganizationItems");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.Skill", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.Skill", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -611,7 +611,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.ToTable("Skill");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.UserAccount", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.UserAccount", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -668,7 +668,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.ToTable("UserAccounts");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.UserAccountGroup", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.UserAccountGroup", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -709,7 +709,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.ToTable("UserAccountGroups");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.UserGroup", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.UserGroup", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -756,7 +756,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.ToTable("UserGroups");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Languages.LanguageKey", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Languages.LanguageKey", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -780,7 +780,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.ToTable("LanguageKeys");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Languages.LanguageKeyForm", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Languages.LanguageKeyForm", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -813,7 +813,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.ToTable("LanguageKeyForms");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Languages.LanguageKeyValuePair", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Languages.LanguageKeyValuePair", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -854,7 +854,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.ToTable("LanguageKeyValuePairs");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.Project", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.Project", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -929,7 +929,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.ToTable("Project");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.ProjectPhase", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.ProjectPhase", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -970,7 +970,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.ToTable("ProjectPhase");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.ProjectPlanItem", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.ProjectPlanItem", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1009,7 +1009,7 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.ToTable("ProjectPlanItem");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.RiskManagement.Risk", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.RiskManagement.Risk", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1074,13 +1074,13 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
 
             modelBuilder.Entity("CompanyContract", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.BusinessDocuments.Contract", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.Contract", null)
                         .WithMany()
                         .HasForeignKey("ContractsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Company", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Customers.Company", null)
                         .WithMany()
                         .HasForeignKey("CustomerCompaniesId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1089,13 +1089,13 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
 
             modelBuilder.Entity("CompanyEmployee", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Company", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Customers.Company", null)
                         .WithMany()
                         .HasForeignKey("CompaniesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.Employee", null)
                         .WithMany()
                         .HasForeignKey("EmployeesId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1104,13 +1104,13 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
 
             modelBuilder.Entity("ContractCustomer", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.BusinessDocuments.Contract", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.Contract", null)
                         .WithMany()
                         .HasForeignKey("ContractsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Customer", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Customers.Customer", null)
                         .WithMany()
                         .HasForeignKey("CustomersId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1119,13 +1119,13 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
 
             modelBuilder.Entity("ContractEmployee", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.BusinessDocuments.Contract", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.Contract", null)
                         .WithMany()
                         .HasForeignKey("ContractsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.Employee", null)
                         .WithMany()
                         .HasForeignKey("OurEmployeesId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1134,13 +1134,13 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
 
             modelBuilder.Entity("ContractOrganization", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.BusinessDocuments.Contract", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.Contract", null)
                         .WithMany()
                         .HasForeignKey("ContractsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Organization", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.Organization", null)
                         .WithMany()
                         .HasForeignKey("OurOrganizationsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1149,39 +1149,39 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
 
             modelBuilder.Entity("EmployeeOrganizationItem", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.Employee", null)
                         .WithMany()
                         .HasForeignKey("EmployeesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.OrganizationItem", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.OrganizationItem", null)
                         .WithMany()
                         .HasForeignKey("OrganizationItemsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Customers.Company", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Customers.Company", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Contact", "Contact")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Customers.Contact", "Contact")
                         .WithMany()
                         .HasForeignKey("ContactId");
 
                     b.Navigation("Contact");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Customers.Customer", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Customers.Customer", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Company", "Company")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Customers.Company", "Company")
                         .WithMany()
                         .HasForeignKey("CompanyId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Contact", "Contact")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Customers.Contact", "Contact")
                         .WithMany()
                         .HasForeignKey("ContactId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.UserAccount", "UserAccount")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.UserAccount", "UserAccount")
                         .WithMany()
                         .HasForeignKey("UserAccountId");
 
@@ -1192,24 +1192,24 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.Navigation("UserAccount");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.Absense", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.Absense", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", "Employee")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.Employee", "Employee")
                         .WithMany()
                         .HasForeignKey("EmployeeId");
 
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.EmployeeUserAccount", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.EmployeeUserAccount", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", "Employee")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.Employee", "Employee")
                         .WithMany()
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.UserAccount", "UserAccount")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.UserAccount", "UserAccount")
                         .WithMany()
                         .HasForeignKey("UserAccountId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1220,13 +1220,13 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.Navigation("UserAccount");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.Organization", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.Organization", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Company", "Company")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Customers.Company", "Company")
                         .WithMany()
                         .HasForeignKey("CompanyId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.OrganizationItem", "HeadItem")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.OrganizationItem", "HeadItem")
                         .WithMany()
                         .HasForeignKey("HeadItemId");
 
@@ -1235,31 +1235,31 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.Navigation("HeadItem");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.OrganizationItem", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.OrganizationItem", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.OrganizationItem", "ParentItem")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.OrganizationItem", "ParentItem")
                         .WithMany("SubItems")
                         .HasForeignKey("ParentItemId");
 
                     b.Navigation("ParentItem");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.Skill", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.Skill", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.Employee", null)
                         .WithMany("Skills")
                         .HasForeignKey("EmployeeId");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.UserAccountGroup", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.UserAccountGroup", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.UserAccount", "UserAccount")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.UserAccount", "UserAccount")
                         .WithMany()
                         .HasForeignKey("UserAccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.UserGroup", "UserGroup")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.UserGroup", "UserGroup")
                         .WithMany()
                         .HasForeignKey("UserGroupId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1270,13 +1270,13 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.Navigation("UserGroup");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.UserGroup", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.UserGroup", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.UserAccount", "AuthorChanged")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.UserAccount", "AuthorChanged")
                         .WithMany()
                         .HasForeignKey("AuthorChangedId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.UserAccount", "AuthorCreated")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.UserAccount", "AuthorCreated")
                         .WithMany()
                         .HasForeignKey("AuthorCreatedId");
 
@@ -1285,32 +1285,32 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.Navigation("AuthorCreated");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Languages.LanguageKeyValuePair", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Languages.LanguageKeyValuePair", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Languages.LanguageKey", "LanguageKey")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Languages.LanguageKey", "LanguageKey")
                         .WithMany()
                         .HasForeignKey("LanguageKeyId");
 
                     b.Navigation("LanguageKey");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.Project", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.Project", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Company", "Company")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Customers.Company", "Company")
                         .WithMany("Projects")
                         .HasForeignKey("CompanyId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.BusinessDocuments.Contract", "Contract")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.BusinessDocuments.Contract", "Contract")
                         .WithMany()
                         .HasForeignKey("ContractId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Customers.Customer", "Customer")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Customers.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", "Manager")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.Employee", "Manager")
                         .WithMany()
                         .HasForeignKey("ManagerId");
 
@@ -1323,13 +1323,13 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.Navigation("Manager");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.ProjectPhase", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.ProjectPhase", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.Project", "Project")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Products.Project", "Project")
                         .WithMany("ProjectPhases")
                         .HasForeignKey("ProjectId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.ProjectPlanItem", "ProjectPlanItem")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Products.ProjectPlanItem", "ProjectPlanItem")
                         .WithMany()
                         .HasForeignKey("ProjectPlanItemId");
 
@@ -1338,28 +1338,28 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.Navigation("ProjectPlanItem");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.ProjectPlanItem", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.ProjectPlanItem", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.ProjectPlanItem", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Products.ProjectPlanItem", null)
                         .WithMany("Items")
                         .HasForeignKey("ProjectPlanItemId");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.RiskManagement.Risk", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.RiskManagement.Risk", b =>
                 {
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", "AuthorChanged")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.Employee", "AuthorChanged")
                         .WithMany()
                         .HasForeignKey("AuthorChangedId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", "AuthorCreated")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.Employee", "AuthorCreated")
                         .WithMany()
                         .HasForeignKey("AuthorCreatedId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", "AuthorResolved")
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.InformationSystem.Employee", "AuthorResolved")
                         .WithMany()
                         .HasForeignKey("AuthorResolvedId");
 
-                    b.HasOne("WorkflowLib.Shared.Models.Business.Products.Project", null)
+                    b.HasOne("VelocipedeUtils.Shared.Models.Business.Products.Project", null)
                         .WithMany("Risks")
                         .HasForeignKey("ProjectId");
 
@@ -1370,29 +1370,29 @@ namespace WorkflowLib.UnifiedBusinessPlatform.Core.Migrations
                     b.Navigation("AuthorResolved");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Customers.Company", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Customers.Company", b =>
                 {
                     b.Navigation("Projects");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.Employee", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.Employee", b =>
                 {
                     b.Navigation("Skills");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.InformationSystem.OrganizationItem", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.InformationSystem.OrganizationItem", b =>
                 {
                     b.Navigation("SubItems");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.Project", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.Project", b =>
                 {
                     b.Navigation("ProjectPhases");
 
                     b.Navigation("Risks");
                 });
 
-            modelBuilder.Entity("WorkflowLib.Shared.Models.Business.Products.ProjectPlanItem", b =>
+            modelBuilder.Entity("VelocipedeUtils.Shared.Models.Business.Products.ProjectPlanItem", b =>
                 {
                     b.Navigation("Items");
                 });

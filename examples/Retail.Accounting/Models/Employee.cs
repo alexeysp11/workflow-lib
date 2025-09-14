@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WorkflowLib.Examples.Retail.Accounting.Models
+namespace VelocipedeUtils.Examples.Retail.Accounting.Models
 {
     public class Employee
     {

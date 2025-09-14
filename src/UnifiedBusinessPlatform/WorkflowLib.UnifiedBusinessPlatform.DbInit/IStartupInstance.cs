@@ -1,4 +1,4 @@
-namespace WorkflowLib.UnifiedBusinessPlatform.DbInit;
+namespace VelocipedeUtils.UnifiedBusinessPlatform.DbInit;
 
 /// <summary>
 /// Interface for standardized launch of an application instance.

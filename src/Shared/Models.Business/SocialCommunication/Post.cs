@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using WorkflowLib.Shared.Models.Business;
+using VelocipedeUtils.Shared.Models.Business;
 
-namespace WorkflowLib.Shared.Models.Business.SocialCommunication
+namespace VelocipedeUtils.Shared.Models.Business.SocialCommunication
 {
     /// <summary>
     /// Post.

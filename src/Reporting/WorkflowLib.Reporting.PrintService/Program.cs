@@ -1,4 +1,4 @@
-using WorkflowLib.Reporting.PrintService;
+using VelocipedeUtils.Reporting.PrintService;
 
 var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddHostedService<Worker>();

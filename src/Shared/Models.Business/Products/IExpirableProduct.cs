@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Business.Products
+namespace VelocipedeUtils.Shared.Models.Business.Products
 {
     /// <summary>
     /// Interface that represents a business entity which is expirable.

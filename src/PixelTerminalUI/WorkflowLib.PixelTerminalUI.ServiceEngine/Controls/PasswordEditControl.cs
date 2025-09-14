@@ -1,8 +1,8 @@
-﻿using WorkflowLib.PixelTerminalUI.ServiceEngine.Exceptions;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Forms;
-using WorkflowLib.PixelTerminalUI.ServiceEngine.Models;
+﻿using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Exceptions;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Forms;
+using VelocipedeUtils.PixelTerminalUI.ServiceEngine.Models;
 
-namespace WorkflowLib.PixelTerminalUI.ServiceEngine.Controls;
+namespace VelocipedeUtils.PixelTerminalUI.ServiceEngine.Controls;
 
 /// <summary>
 /// A control that allows you to process the user's password.
