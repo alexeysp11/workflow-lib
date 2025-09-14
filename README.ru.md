@@ -20,15 +20,15 @@
 
 Список общих проектов (переиспользуемые модели данных, сервисы и расширения):
 
-- [AuthenticationService](src/Shared/AuthenticationService/README.ru.md)
-- [CodeExtensions](src/Shared/CodeExtensions/README.ru.md)
-- [Communication](src/Shared/Communication/README.ru.md)
-- [Models](src/Shared/Models/README.ru.md)
-- [Models.Business](src/Shared/Models.Business/README.ru.md): является реализацией общей объектной модели для бизнес-сущностей, используемых в рамках данного монорепозитория.
-- [Office](src/Shared/Office/README.ru.md): библиотека для работы с офисными форматами документов.
-- [Office.Extensions](src/Shared/Office.Extensions/README.ru.md): библиотека расширений для работы с офисными форматами документов.
-- [ServiceDiscoveryBpm](src/Shared/ServiceDiscoveryBpm/README.ru.md)
-- [WpfExtensions](src/Shared/WpfExtensions/README.ru.md): библиотека визуальных компонентов для WPF-приложений.
+- [AuthenticationService](VelocipedeUtils/Shared/AuthenticationService/README.ru.md)
+- [CodeExtensions](VelocipedeUtils/Shared/src/CodeExtensions/README.ru.md)
+- [Communication](VelocipedeUtils/Shared/Communication/README.ru.md)
+- [Models](VelocipedeUtils/Shared/src/Models/README.ru.md)
+- [Models.Business](VelocipedeUtils/Shared/src/Models.Business/README.ru.md): является реализацией общей объектной модели для бизнес-сущностей, используемых в рамках данного монорепозитория.
+- [Office](VelocipedeUtils/Shared/Office/README.ru.md): библиотека для работы с офисными форматами документов.
+- [Office.Extensions](VelocipedeUtils/Shared/Office.Extensions/README.ru.md): библиотека расширений для работы с офисными форматами документов.
+- [ServiceDiscoveryBpm](VelocipedeUtils/Shared/src/ServiceDiscoveryBpm/README.ru.md)
+- [WpfExtensions](VelocipedeUtils/Shared/WpfExtensions/README.ru.md): библиотека визуальных компонентов для WPF-приложений.
 
 ### [PixelTerminalUI](src/PixelTerminalUI/README.ru.md)
 

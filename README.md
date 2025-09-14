@@ -20,15 +20,15 @@ As a result, it was decided to create a mono-repository, which included most of 
 
 List of the shared projects (reusable data models, services, and extensions):
 
-- [AuthenticationService](src/Shared/AuthenticationService/README.md)
-- [CodeExtensions](src/Shared/CodeExtensions/README.md)
-- [Communication](src/Shared/Communication/README.md)
-- [Models](src/Shared/Models/README.md)
-- [Models.Business](src/Shared/Models.Business/README.md): is an implementation of a shared object model for business entities used within the mono-repository.
-- [Office](src/Shared/Office/README.md): library for working with office document formats.
-- [Office.Extensions](src/Shared/Office.Extensions/README.md): extension library for working with office document formats.
-- [ServiceDiscoveryBpm](src/Shared/ServiceDiscoveryBpm/README.md)
-- [WpfExtensions](src/Shared/WpfExtensions/README.md): is a library of visual elements for WPF applications.
+- [AuthenticationService](VelocipedeUtils/Shared/AuthenticationService/README.md)
+- [CodeExtensions](VelocipedeUtils/Shared/src/CodeExtensions/README.md)
+- [Communication](VelocipedeUtils/Shared/Communication/README.md)
+- [Models](VelocipedeUtils/Shared/src/Models/README.md)
+- [Models.Business](VelocipedeUtils/Shared/src/Models.Business/README.md): is an implementation of a shared object model for business entities used within the mono-repository.
+- [Office](VelocipedeUtils/Shared/Office/README.md): library for working with office document formats.
+- [Office.Extensions](VelocipedeUtils/Shared/Office.Extensions/README.md): extension library for working with office document formats.
+- [ServiceDiscoveryBpm](VelocipedeUtils/Shared/src/ServiceDiscoveryBpm/README.md)
+- [WpfExtensions](VelocipedeUtils/Shared/WpfExtensions/README.md): is a library of visual elements for WPF applications.
 
 ### [PixelTerminalUI](src/PixelTerminalUI/README.md)
 
