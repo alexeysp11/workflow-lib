@@ -20,7 +20,6 @@ As a result, it was decided to create a mono-repository, which included most of 
 
 List of the shared projects (reusable data models, services, and extensions):
 
-- [AuthenticationService](VelocipedeUtils/Shared/src/AuthenticationService/README.md)
 - [CodeExtensions](VelocipedeUtils/Shared/src/CodeExtensions/README.md)
 - [Communication](VelocipedeUtils/Shared/src/Communication/README.md)
 - [Models](VelocipedeUtils/Shared/src/Models/README.md)

@@ -20,7 +20,6 @@
 
 Список общих проектов (переиспользуемые модели данных, сервисы и расширения):
 
-- [AuthenticationService](VelocipedeUtils/Shared/src/AuthenticationService/README.ru.md)
 - [CodeExtensions](VelocipedeUtils/Shared/src/CodeExtensions/README.ru.md)
 - [Communication](VelocipedeUtils/Shared/src/Communication/README.ru.md)
 - [Models](VelocipedeUtils/Shared/src/Models/README.ru.md)
