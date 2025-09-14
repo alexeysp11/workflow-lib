@@ -1,5 +1,5 @@
-using WokflowLib.Authentication.AuthGrpcApi.Services;
-using WokflowLib.Authentication.Models.Protos;
+using VelocipedeUtils.Authentication.AuthGrpcApi.Services;
+using VelocipedeUtils.Authentication.Models.Protos;
 
 var builder = WebApplication.CreateBuilder(args);
 

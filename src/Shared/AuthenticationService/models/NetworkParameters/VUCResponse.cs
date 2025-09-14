@@ -1,6 +1,6 @@
 using VelocipedeUtils.Shared.Models.ErrorHandling;
 
-namespace WokflowLib.Authentication.Models.NetworkParameters;
+namespace VelocipedeUtils.Authentication.Models.NetworkParameters;
 
 /// <summary>
 /// The result of verification of user credintials.

@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "WokflowLib.Authentication.AuthWebApi": {
+    "VelocipedeUtils.Authentication.AuthWebApi": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WokflowLib.Authentication.Models;
+namespace VelocipedeUtils.Authentication.Models;
 
 /// <summary>
 /// Type of authentication closing code.

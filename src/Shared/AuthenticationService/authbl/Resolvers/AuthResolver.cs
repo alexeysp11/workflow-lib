@@ -3,10 +3,10 @@ using System.Text.Json.Serialization;
 using VelocipedeUtils.NetworkAPIs;
 using VelocipedeUtils.Shared.Models.ErrorHandling;
 using VelocipedeUtils.Shared.Models.Network;
-using WokflowLib.Authentication.Models.ConfigParameters;
-using WokflowLib.Authentication.Models.NetworkParameters;
+using VelocipedeUtils.Authentication.Models.ConfigParameters;
+using VelocipedeUtils.Authentication.Models.NetworkParameters;
 
-namespace WokflowLib.Authentication.AuthBL;
+namespace VelocipedeUtils.Authentication.AuthBL;
 
 /// <summary>
 /// Class that processes authentication requests.

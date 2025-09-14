@@ -1,7 +1,7 @@
 syntax = "proto3";
 import "google/protobuf/timestamp.proto";
 
-option csharp_namespace = "WokflowLib.Authentication.Models.Protos";
+option csharp_namespace = "VelocipedeUtils.Authentication.Models.Protos";
 
 package DeliveryFiles;
 

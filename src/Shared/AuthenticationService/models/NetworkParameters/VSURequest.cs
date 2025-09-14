@@ -1,4 +1,4 @@
-namespace WokflowLib.Authentication.Models.NetworkParameters;
+namespace VelocipedeUtils.Authentication.Models.NetworkParameters;
 
 /// <summary>
 /// The request to confirm sign up using a verification code.

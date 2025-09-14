@@ -1,4 +1,4 @@
-namespace WokflowLib.Authentication.Models;
+namespace VelocipedeUtils.Authentication.Models;
 
 /// <summary>
 /// Authentication closing code.

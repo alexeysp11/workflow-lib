@@ -1,10 +1,10 @@
 using System.Data;
 using VelocipedeUtils.Shared.DbConnections;
 using VelocipedeUtils.Shared.Models.ErrorHandling;
-using WokflowLib.Authentication.Models.ConfigParameters;
-using WokflowLib.Authentication.Models.NetworkParameters;
+using VelocipedeUtils.Authentication.Models.ConfigParameters;
+using VelocipedeUtils.Authentication.Models.NetworkParameters;
 
-namespace WokflowLib.Authentication.AuthBL;
+namespace VelocipedeUtils.Authentication.AuthBL;
 
 /// <summary>
 /// Class that processes authentication requests and interacts with the DB directly.

@@ -1,18 +1,18 @@
 using Grpc.Core;
 using Google.Protobuf.WellKnownTypes;
-using WokflowLib.Authentication.AuthBL;
-using WokflowLib.Authentication.AuthGrpcApi;
-using WokflowLib.Authentication.Models.Protos;
-using UserCredentialsCommon = WokflowLib.Authentication.Models.NetworkParameters.UserCredentials;
-using VSURequestCommon = WokflowLib.Authentication.Models.NetworkParameters.VSURequest;
-using TokenRequestCommon = WokflowLib.Authentication.Models.NetworkParameters.TokenRequest;
+using VelocipedeUtils.Authentication.AuthBL;
+using VelocipedeUtils.Authentication.AuthGrpcApi;
+using VelocipedeUtils.Authentication.Models.Protos;
+using UserCredentialsCommon = VelocipedeUtils.Authentication.Models.NetworkParameters.UserCredentials;
+using VSURequestCommon = VelocipedeUtils.Authentication.Models.NetworkParameters.VSURequest;
+using TokenRequestCommon = VelocipedeUtils.Authentication.Models.NetworkParameters.TokenRequest;
 
-namespace WokflowLib.Authentication.AuthGrpcApi.Services;
+namespace VelocipedeUtils.Authentication.AuthGrpcApi.Services;
 
 /// <summary>
 /// Authentication service that is implemented as a gRPC service.
 /// </summary>
-public class AuthGrpcApiService : WokflowLib.Authentication.Models.Protos.AuthGrpcApi.AuthGrpcApiBase
+public class AuthGrpcApiService : VelocipedeUtils.Authentication.Models.Protos.AuthGrpcApi.AuthGrpcApiBase
 {
     private readonly ILogger<AuthGrpcApiService> _logger;
     public AuthGrpcApiService(ILogger<AuthGrpcApiService> logger)

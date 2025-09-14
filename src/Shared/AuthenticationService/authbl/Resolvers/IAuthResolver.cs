@@ -1,6 +1,6 @@
-using WokflowLib.Authentication.Models.NetworkParameters;
+using VelocipedeUtils.Authentication.Models.NetworkParameters;
 
-namespace WokflowLib.Authentication.AuthBL;
+namespace VelocipedeUtils.Authentication.AuthBL;
 
 /// <summary>
 /// The interfaces that processes authentication requests.

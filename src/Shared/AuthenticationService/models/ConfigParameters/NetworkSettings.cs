@@ -1,4 +1,4 @@
-namespace WokflowLib.Authentication.Models.ConfigParameters;
+namespace VelocipedeUtils.Authentication.Models.ConfigParameters;
 
 /// <summary>
 /// Settings for network communication.

@@ -1,4 +1,4 @@
-namespace WokflowLib.Authentication.Models.NetworkParameters;
+namespace VelocipedeUtils.Authentication.Models.NetworkParameters;
 
 /// <summary>
 /// The request to receive a session token for the user.

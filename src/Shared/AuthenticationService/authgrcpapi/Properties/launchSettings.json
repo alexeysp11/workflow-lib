@@ -1,6 +1,6 @@
 ﻿{
   "profiles": {
-    "WokflowLib.Authentication.AuthGrpcApi": {
+    "VelocipedeUtils.Authentication.AuthGrpcApi": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": false,

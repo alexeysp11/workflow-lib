@@ -1,7 +1,7 @@
 using System.Text;
-using WokflowLib.Authentication.Models.ConfigParameters;
+using VelocipedeUtils.Authentication.Models.ConfigParameters;
 
-namespace WokflowLib.Authentication.AuthBL;
+namespace VelocipedeUtils.Authentication.AuthBL;
 
 /// <summary>
 /// The class that helps to use configs.

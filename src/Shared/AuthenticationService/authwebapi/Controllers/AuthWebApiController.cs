@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using WokflowLib.Authentication.AuthBL;
-using WokflowLib.Authentication.Models.NetworkParameters;
+using VelocipedeUtils.Authentication.AuthBL;
+using VelocipedeUtils.Authentication.Models.NetworkParameters;
 
-namespace WokflowLib.Authentication.AuthWebApi.Controllers;
+namespace VelocipedeUtils.Authentication.AuthWebApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]

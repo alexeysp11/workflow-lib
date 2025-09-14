@@ -1,4 +1,4 @@
-namespace WokflowLib.Authentication.Models.ConfigParameters;
+namespace VelocipedeUtils.Authentication.Models.ConfigParameters;
 
 /// <summary>
 /// Config properties that is used for checking if the user credentials were filled properly.
