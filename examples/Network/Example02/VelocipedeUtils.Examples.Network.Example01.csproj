@@ -11,7 +11,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="../../../src/Shared/Models/VelocipedeUtils.Shared.Models.csproj" />
+    <ProjectReference Include="../../../VelocipedeUtils/Shared/src/Models/VelocipedeUtils.Shared.Models.csproj" />
   </ItemGroup>
 
 </Project>
