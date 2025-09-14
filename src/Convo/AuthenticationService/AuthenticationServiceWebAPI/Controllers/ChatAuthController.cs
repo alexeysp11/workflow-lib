@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using WokflowLib.Authentication.AuthBL;
-using WokflowLib.Authentication.Models.NetworkParameters;
+using VelocipedeUtils.Authentication.AuthBL;
+using VelocipedeUtils.Authentication.Models.NetworkParameters;
 using Chat.Core.Services;
 
 namespace AuthenticationServiceWebAPI.Controllers;

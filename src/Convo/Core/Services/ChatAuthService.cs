@@ -1,6 +1,6 @@
-﻿using WokflowLib.Authentication.AuthBL;
-using WokflowLib.Authentication.Models.ConfigParameters;
-using WokflowLib.Authentication.Models.NetworkParameters;
+﻿using VelocipedeUtils.Authentication.AuthBL;
+using VelocipedeUtils.Authentication.Models.ConfigParameters;
+using VelocipedeUtils.Authentication.Models.NetworkParameters;
 
 namespace Chat.Core.Services;
 
@@ -10,7 +10,7 @@ namespace Chat.Core.Services;
 public class ChatAuthService
 {
     /// <summary>
-    /// Authentication resolver from WokflowLib.
+    /// Authentication resolver from VelocipedeUtils.
     /// </summary>
     private IAuthResolver AuthResolver { get; set; }
 
