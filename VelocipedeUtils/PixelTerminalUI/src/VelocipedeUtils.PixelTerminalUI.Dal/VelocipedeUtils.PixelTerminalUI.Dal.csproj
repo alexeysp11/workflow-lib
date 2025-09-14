@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Shared\Models.Business\VelocipedeUtils.Shared.Models.Business.csproj" />
+    <ProjectReference Include="..\..\Shared\src\Models.Business\VelocipedeUtils.Shared.Models.Business.csproj" />
   </ItemGroup>
 
 </Project>
