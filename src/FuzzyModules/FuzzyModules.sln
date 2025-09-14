@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Shared.FuzzyModules.API", "API\VelocipedeUtils.Shared.FuzzyModules.API.csproj", "{11B66CC8-6803-4A25-BD0F-4EA864F9EB12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Shared.FuzzyModules.Examples", "Examples\VelocipedeUtils.Shared.FuzzyModules.Examples.csproj", "{49ADC223-0CE2-4DF4-899E-83344FE860DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Shared.FuzzyModules.API.Tests", "API.Tests\VelocipedeUtils.Shared.FuzzyModules.API.Tests.csproj", "{C5473041-0AD3-4B09-B24B-8008F204A26B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11B66CC8-6803-4A25-BD0F-4EA864F9EB12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11B66CC8-6803-4A25-BD0F-4EA864F9EB12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11B66CC8-6803-4A25-BD0F-4EA864F9EB12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11B66CC8-6803-4A25-BD0F-4EA864F9EB12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49ADC223-0CE2-4DF4-899E-83344FE860DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49ADC223-0CE2-4DF4-899E-83344FE860DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49ADC223-0CE2-4DF4-899E-83344FE860DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49ADC223-0CE2-4DF4-899E-83344FE860DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5473041-0AD3-4B09-B24B-8008F204A26B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5473041-0AD3-4B09-B24B-8008F204A26B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5473041-0AD3-4B09-B24B-8008F204A26B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5473041-0AD3-4B09-B24B-8008F204A26B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
