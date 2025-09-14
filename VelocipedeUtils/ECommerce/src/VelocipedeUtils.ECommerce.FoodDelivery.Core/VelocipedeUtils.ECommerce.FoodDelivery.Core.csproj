@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Shared\CodeExtensions\VelocipedeUtils.Shared.CodeExtensions.csproj" />
-    <ProjectReference Include="..\..\Shared\Models\VelocipedeUtils.Shared.Models.csproj" />
-    <ProjectReference Include="..\..\Shared\Models.Business\VelocipedeUtils.Shared.Models.Business.csproj" />
+    <ProjectReference Include="..\..\..\Shared\src\CodeExtensions\VelocipedeUtils.Shared.CodeExtensions.csproj" />
+    <ProjectReference Include="..\..\..\Shared\src\Models\VelocipedeUtils.Shared.Models.csproj" />
+    <ProjectReference Include="..\..\..\Shared\src\Models.Business\VelocipedeUtils.Shared.Models.Business.csproj" />
   </ItemGroup>
 
   <ItemGroup>
