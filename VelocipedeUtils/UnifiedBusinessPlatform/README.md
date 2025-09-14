@@ -26,7 +26,7 @@ This project includes a utility (the console application [DbInit](VelocipedeUtil
 
 ### Object model
 
-EF Core is used to work with the database, and for most of the application's functionality, the object model has already been implemented in [Models.Business](../Shared/Models.Business). If changes are necessary, it is better to stick to the **Code-first** approach, i.e. first change the class, and then migrate and apply it to the database.
+EF Core is used to work with the database, and for most of the application's functionality, the object model has already been implemented in [Models.Business](../Shared/src/Models.Business). If changes are necessary, it is better to stick to the **Code-first** approach, i.e. first change the class, and then migrate and apply it to the database.
 
 Due to the fact that full use of this application is impossible with an empty database, at the very beginning there was a little confusion in the use of approaches to working with the database. First, the first migrations were performed based on models from `Models.Business`. Thus, the corresponding tables were created in the database, and then these tables were filled with data (mainly, data on the organizational structure of several companies at once).
 

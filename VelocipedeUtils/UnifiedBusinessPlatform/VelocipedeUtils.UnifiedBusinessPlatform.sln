@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35828.75 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.UnifiedBusinessPlatform.Core", "VelocipedeUtils.UnifiedBusinessPlatform.Core\VelocipedeUtils.UnifiedBusinessPlatform.Core.csproj", "{BE7DED0A-9DAD-4294-88AE-E0CD8BBD9238}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.UnifiedBusinessPlatform.Core", "src\VelocipedeUtils.UnifiedBusinessPlatform.Core\VelocipedeUtils.UnifiedBusinessPlatform.Core.csproj", "{BE7DED0A-9DAD-4294-88AE-E0CD8BBD9238}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.UnifiedBusinessPlatform.Tests", "VelocipedeUtils.UnifiedBusinessPlatform.Tests\VelocipedeUtils.UnifiedBusinessPlatform.Tests.csproj", "{CE8457F4-5E55-4D0A-8A6B-5BC384848DE8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.UnifiedBusinessPlatform.Tests", "src\VelocipedeUtils.UnifiedBusinessPlatform.Tests\VelocipedeUtils.UnifiedBusinessPlatform.Tests.csproj", "{CE8457F4-5E55-4D0A-8A6B-5BC384848DE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.UnifiedBusinessPlatform", "VelocipedeUtils.UnifiedBusinessPlatform\VelocipedeUtils.UnifiedBusinessPlatform.csproj", "{253B28F7-CB28-4231-B8C2-5BE07BC26453}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.UnifiedBusinessPlatform", "src\VelocipedeUtils.UnifiedBusinessPlatform\VelocipedeUtils.UnifiedBusinessPlatform.csproj", "{253B28F7-CB28-4231-B8C2-5BE07BC26453}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Shared.Models.Business", "..\Shared\Models.Business\VelocipedeUtils.Shared.Models.Business.csproj", "{4E8D0C56-C7E3-3156-C722-62964140B831}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Shared.Models.Business", "..\Shared\src\Models.Business\VelocipedeUtils.Shared.Models.Business.csproj", "{4E8D0C56-C7E3-3156-C722-62964140B831}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Shared.Models", "..\Shared\Models\VelocipedeUtils.Shared.Models.csproj", "{B7944427-7381-D209-DA3E-0FBEA11BD434}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Shared.Models", "..\Shared\src\Models\VelocipedeUtils.Shared.Models.csproj", "{B7944427-7381-D209-DA3E-0FBEA11BD434}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Shared.CodeExtensions", "..\Shared\CodeExtensions\VelocipedeUtils.Shared.CodeExtensions.csproj", "{3A4ED49D-0720-6A96-1D9D-F327394D687B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Shared.CodeExtensions", "..\Shared\src\CodeExtensions\VelocipedeUtils.Shared.CodeExtensions.csproj", "{3A4ED49D-0720-6A96-1D9D-F327394D687B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.UnifiedBusinessPlatform.DbInit", "VelocipedeUtils.UnifiedBusinessPlatform.DbInit\VelocipedeUtils.UnifiedBusinessPlatform.DbInit.csproj", "{73C1750E-11C2-C4C2-5CED-52558607220F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.UnifiedBusinessPlatform.DbInit", "src\VelocipedeUtils.UnifiedBusinessPlatform.DbInit\VelocipedeUtils.UnifiedBusinessPlatform.DbInit.csproj", "{73C1750E-11C2-C4C2-5CED-52558607220F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
