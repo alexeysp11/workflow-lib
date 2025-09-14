@@ -20,17 +20,17 @@
 
 Список общих проектов (переиспользуемые модели данных, сервисы и расширения):
 
-- [AuthenticationService](VelocipedeUtils/Shared/AuthenticationService/README.ru.md)
+- [AuthenticationService](VelocipedeUtils/Shared/src/AuthenticationService/README.ru.md)
 - [CodeExtensions](VelocipedeUtils/Shared/src/CodeExtensions/README.ru.md)
-- [Communication](VelocipedeUtils/Shared/Communication/README.ru.md)
+- [Communication](VelocipedeUtils/Shared/src/Communication/README.ru.md)
 - [Models](VelocipedeUtils/Shared/src/Models/README.ru.md)
 - [Models.Business](VelocipedeUtils/Shared/src/Models.Business/README.ru.md): является реализацией общей объектной модели для бизнес-сущностей, используемых в рамках данного монорепозитория.
-- [Office](VelocipedeUtils/Shared/Office/README.ru.md): библиотека для работы с офисными форматами документов.
-- [Office.Extensions](VelocipedeUtils/Shared/Office.Extensions/README.ru.md): библиотека расширений для работы с офисными форматами документов.
+- [Office](VelocipedeUtils/Shared/src/Office/README.ru.md): библиотека для работы с офисными форматами документов.
+- [Office.Extensions](VelocipedeUtils/Shared/src/Office.Extensions/README.ru.md): библиотека расширений для работы с офисными форматами документов.
 - [ServiceDiscoveryBpm](VelocipedeUtils/Shared/src/ServiceDiscoveryBpm/README.ru.md)
-- [WpfExtensions](VelocipedeUtils/Shared/WpfExtensions/README.ru.md): библиотека визуальных компонентов для WPF-приложений.
+- [WpfExtensions](VelocipedeUtils/Shared/src/WpfExtensions/README.ru.md): библиотека визуальных компонентов для WPF-приложений.
 
-### [PixelTerminalUI](src/PixelTerminalUI/README.ru.md)
+### [PixelTerminalUI](VelocipedeUtils/PixelTerminalUI/README.ru.md)
 
 `PixelTerminalUI` был вдохновлён моим опытом работы разработчиком на C# в крупной IT-компании, работавшей для крупного маркетплейса. Я работал в отделе WMS, разрабатывая приложения для внутренней логистики. Одним из ключевых приложений было устаревшее UI приложение, работавшее на Telnet, используемое для взаимодействия с терминалами сбора данных (ТСД).
 
@@ -87,7 +87,7 @@ PRESS ENTER TO CONTINUE             |
 - **Внутренняя документация**: Инструмент для хранения и управления внутренними документами компании, такими как политики, процедуры, инструкции.
 - **База знаний**: Создание и поддержка базы знаний для обмена опытом и информацией между сотрудниками.
 
-### [DataStorage](src/DataStorage/README.ru.md)
+### [DataStorage](VelocipedeUtils/DataStorage/README.ru.md)
 
 Данный проект предназначен для изучения и реализации различных типов хранилищ данных, а также для исследования принципов построения распределенных систем.
 

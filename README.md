@@ -20,17 +20,17 @@ As a result, it was decided to create a mono-repository, which included most of 
 
 List of the shared projects (reusable data models, services, and extensions):
 
-- [AuthenticationService](VelocipedeUtils/Shared/AuthenticationService/README.md)
+- [AuthenticationService](VelocipedeUtils/Shared/src/AuthenticationService/README.md)
 - [CodeExtensions](VelocipedeUtils/Shared/src/CodeExtensions/README.md)
-- [Communication](VelocipedeUtils/Shared/Communication/README.md)
+- [Communication](VelocipedeUtils/Shared/src/Communication/README.md)
 - [Models](VelocipedeUtils/Shared/src/Models/README.md)
 - [Models.Business](VelocipedeUtils/Shared/src/Models.Business/README.md): is an implementation of a shared object model for business entities used within the mono-repository.
-- [Office](VelocipedeUtils/Shared/Office/README.md): library for working with office document formats.
-- [Office.Extensions](VelocipedeUtils/Shared/Office.Extensions/README.md): extension library for working with office document formats.
+- [Office](VelocipedeUtils/Shared/src/Office/README.md): library for working with office document formats.
+- [Office.Extensions](VelocipedeUtils/Shared/src/Office.Extensions/README.md): extension library for working with office document formats.
 - [ServiceDiscoveryBpm](VelocipedeUtils/Shared/src/ServiceDiscoveryBpm/README.md)
-- [WpfExtensions](VelocipedeUtils/Shared/WpfExtensions/README.md): is a library of visual elements for WPF applications.
+- [WpfExtensions](VelocipedeUtils/Shared/src/WpfExtensions/README.md): is a library of visual elements for WPF applications.
 
-### [PixelTerminalUI](src/PixelTerminalUI/README.md)
+### [PixelTerminalUI](VelocipedeUtils/PixelTerminalUI/README.md)
 
 `PixelTerminalUI` was inspired by my experience working as a C# developer at a large IT company that operated a major marketplace. I worked in the WMS department, developing applications for internal logistics. One of the key applications was a legacy Telnet UI application used for interacting with handheld terminals (PDAs).
 
@@ -87,7 +87,7 @@ Planned improvements:
 - **Internal Documentation**: A tool for storing and managing internal company documents such as policies, procedures, instructions.
 - **Knowledge Base**: Creating and maintaining a knowledge base for sharing experiences and information between employees.
 
-### [DataStorage](src/DataStorage/README.md)
+### [DataStorage](VelocipedeUtils/DataStorage/README.md)
 
 This project is designed to study and implement various types of data storage, as well as to study the principles of building distributed systems.
 
