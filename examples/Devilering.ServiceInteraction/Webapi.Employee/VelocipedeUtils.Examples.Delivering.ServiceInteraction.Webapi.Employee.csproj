@@ -9,12 +9,12 @@
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <ProjectReference Include="..\BL\VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.csproj" />
-    <ProjectReference Include="..\..\..\src\Shared\ServiceDiscoveryBpm\VelocipedeUtils.Shared.ServiceDiscoveryBpm.csproj" />
-    <ProjectReference Include="..\..\..\src\Shared\Models\VelocipedeUtils.Shared.Models.csproj" />
-    <ProjectReference Include="..\..\..\src\Shared\Models.Business\VelocipedeUtils.Shared.Models.Business.csproj" />
+    <ProjectReference Include="..\..\..\VelocipedeUtils\Shared\src\ServiceDiscoveryBpm\VelocipedeUtils.Shared.ServiceDiscoveryBpm.csproj" />
+    <ProjectReference Include="..\..\..\VelocipedeUtils\Shared\src\Models\VelocipedeUtils.Shared.Models.csproj" />
+    <ProjectReference Include="..\..\..\VelocipedeUtils\Shared\src\Models.Business\VelocipedeUtils.Shared.Models.Business.csproj" />
   </ItemGroup>
 
 </Project>

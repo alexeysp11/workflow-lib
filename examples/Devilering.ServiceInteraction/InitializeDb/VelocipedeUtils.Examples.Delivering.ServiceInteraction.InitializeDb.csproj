@@ -9,9 +9,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BL\VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.csproj" />
-    <ProjectReference Include="..\..\..\src\Shared\ServiceDiscoveryBpm\VelocipedeUtils.Shared.ServiceDiscoveryBpm.csproj" />
-    <ProjectReference Include="..\..\..\src\Shared\Models\VelocipedeUtils.Shared.Models.csproj" />
-    <ProjectReference Include="..\..\..\src\Shared\Models.Business\VelocipedeUtils.Shared.Models.Business.csproj" />
+    <ProjectReference Include="..\..\..\VelocipedeUtils\Shared\src\Models\VelocipedeUtils.Shared.Models.csproj" />
+    <ProjectReference Include="..\..\..\VelocipedeUtils\Shared\src\Models.Business\VelocipedeUtils.Shared.Models.Business.csproj" />
   </ItemGroup>
 
   <ItemGroup>
