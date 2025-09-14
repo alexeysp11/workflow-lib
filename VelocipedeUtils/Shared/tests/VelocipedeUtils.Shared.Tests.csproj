@@ -14,10 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../src/Shared/CodeExtensions/VelocipedeUtils.Shared.CodeExtensions.csproj" />
-    <ProjectReference Include="../src/Shared/DbConnections/VelocipedeUtils.Shared.DbConnections.csproj" />
-    <ProjectReference Include="../src/Shared/Office/VelocipedeUtils.Shared.Office.csproj" />
-    <ProjectReference Include="../src/Shared/Office.Extensions/VelocipedeUtils.Shared.Office.Extensions.csproj" />
+    <ProjectReference Include="../src/CodeExtensions/VelocipedeUtils.Shared.CodeExtensions.csproj" />
+    <ProjectReference Include="../src/DbConnections/VelocipedeUtils.Shared.DbConnections.csproj" />
+    <ProjectReference Include="../src/Office/VelocipedeUtils.Shared.Office.csproj" />
+    <ProjectReference Include="../src/Office.Extensions/VelocipedeUtils.Shared.Office.Extensions.csproj" />
   </ItemGroup>
 
 </Project>
