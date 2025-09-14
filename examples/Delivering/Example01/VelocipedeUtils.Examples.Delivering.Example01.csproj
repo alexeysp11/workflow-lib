@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Shared\CodeExtensions\VelocipedeUtils.Shared.CodeExtensions.csproj" />
-    <ProjectReference Include="..\..\..\src\Shared\Models.Business\VelocipedeUtils.Shared.Models.Business.csproj" />
+    <ProjectReference Include="..\..\..\VelocipedeUtils\Shared\src\CodeExtensions\VelocipedeUtils.Shared.CodeExtensions.csproj" />
+    <ProjectReference Include="..\..\..\VelocipedeUtils\Shared\src\Models.Business\VelocipedeUtils.Shared.Models.Business.csproj" />
   </ItemGroup>
 
   <ItemGroup>
