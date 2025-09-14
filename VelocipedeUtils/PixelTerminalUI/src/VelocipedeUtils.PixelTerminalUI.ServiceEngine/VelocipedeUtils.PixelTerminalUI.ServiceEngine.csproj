@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../VelocipedeUtils.PixelTerminalUI.ConsoleAdapter/VelocipedeUtils.PixelTerminalUI.ConsoleAdapter.csproj" />
-    <ProjectReference Include="..\..\Shared\src\Models.Business\VelocipedeUtils.Shared.Models.Business.csproj" />
+    <ProjectReference Include="..\..\..\Shared\src\Models.Business\VelocipedeUtils.Shared.Models.Business.csproj" />
   </ItemGroup>
 
 </Project>
