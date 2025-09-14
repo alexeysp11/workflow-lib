@@ -1,4 +1,4 @@
-# workflow-lib 
+# velocipede-utils 
 
 [English](README.md) | [Русский](README.ru.md)
 

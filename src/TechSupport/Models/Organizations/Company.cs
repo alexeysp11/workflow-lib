@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using WorkflowLib.Shared.Models.Business;
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.Shared.Models.Business.Products;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
+using VelocipedeUtils.Shared.Models.Business;
+using VelocipedeUtils.Shared.Models.Business.BusinessDocuments;
+using VelocipedeUtils.Shared.Models.Business.Products;
+using VelocipedeUtils.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.Shared.Models.Business.Customers
+namespace VelocipedeUtils.Shared.Models.Business.Customers
 {
     /// <summary>
     /// Company (usually related to the customer).

@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Business
+namespace VelocipedeUtils.Shared.Models.Business
 {
     /// <summary>
     /// Interface that represents a business entity.

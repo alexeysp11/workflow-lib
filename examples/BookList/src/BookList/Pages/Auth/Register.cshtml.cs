@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using WorkflowLib.Examples.BookList;
-using WorkflowLib.Examples.BookList.Models;
-using WorkflowLib.Examples.BookList.Services;
+using VelocipedeUtils.Examples.BookList;
+using VelocipedeUtils.Examples.BookList.Models;
+using VelocipedeUtils.Examples.BookList.Services;
 
-namespace WorkflowLib.Examples.BookList.Pages
+namespace VelocipedeUtils.Examples.BookList.Pages
 {
     public class RegisterModel : PageModel 
     {

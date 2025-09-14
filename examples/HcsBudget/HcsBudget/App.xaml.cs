@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace WorkflowLib.Examples.HcsBudget
+namespace VelocipedeUtils.Examples.HcsBudget
 {
     /// <summary>
     /// Interaction logic for App.xaml

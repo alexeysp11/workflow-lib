@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using WorkflowLib.Shared.Models.Business;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
-using WorkflowLib.Shared.Models.Business.SocialCommunication;
+using VelocipedeUtils.Shared.Models.Business;
+using VelocipedeUtils.Shared.Models.Business.InformationSystem;
+using VelocipedeUtils.Shared.Models.Business.SocialCommunication;
 
-namespace WorkflowLib.Shared.Models.Business.Processes
+namespace VelocipedeUtils.Shared.Models.Business.Processes
 {
     /// <summary>
     /// A specific entity (workflow instance) that implements a business process.

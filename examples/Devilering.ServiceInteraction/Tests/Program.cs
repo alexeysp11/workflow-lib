@@ -1,15 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WorkflowLib.Shared.ServiceDiscoveryBpm;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DbContexts;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DAL;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.DAL;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.LoadBalancers;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.ObjectPooling;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.ServiceRegistry;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.Tests;
-using WorkflowLib.Shared.Models.Network.MicroserviceConfigurations;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.DbContexts;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.DAL;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.DAL;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.LoadBalancers;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.ObjectPooling;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.ServiceRegistry;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.Tests;
+using VelocipedeUtils.Shared.Models.Network.MicroserviceConfigurations;
 
 public class Program
 {
@@ -36,7 +36,7 @@ public class Program
         services.AddSingleton((_) => {
             return new DbContextOptionsBuilder<ServiceInteractionDbContext>()
                 .UseNpgsql("Server=127.0.0.1;Port=5432;Database=deliveryservicelibexample;Username=postgres;Password=postgres", 
-                    b => b.MigrationsAssembly("WorkflowLib.Examples.Delivering.ServiceInteraction.BL"))
+                    b => b.MigrationsAssembly("VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL"))
                 .Options;
         });
         

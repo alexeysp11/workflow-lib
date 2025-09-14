@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Business.Customers
+namespace VelocipedeUtils.Shared.Models.Business.Customers
 {
     /// <summary>
     /// Customer device.

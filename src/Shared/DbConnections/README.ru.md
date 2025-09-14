@@ -1,4 +1,4 @@
-# WorkflowLib.Shared.DbConnections
+# VelocipedeUtils.Shared.DbConnections
 
 [English](README.md) | [Русский](README.ru.md)
 

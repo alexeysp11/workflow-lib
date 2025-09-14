@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace WorkflowLib.Shared.Office.DocFormats
+namespace VelocipedeUtils.Shared.Office.DocFormats
 {
     /// <summary>
     /// Class for using banaries (binary converter)

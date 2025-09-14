@@ -2,9 +2,9 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
-using WorkflowLib.Shared.Models.Documents;
+using VelocipedeUtils.Shared.Models.Documents;
 
-namespace WorkflowLib.Shared.Office.DocFormats.TextBased
+namespace VelocipedeUtils.Shared.Office.DocFormats.TextBased
 {
     /// <summary>
     /// Class for using TXT documents 

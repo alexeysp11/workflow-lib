@@ -1,8 +1,8 @@
 using System;
-using WorkflowLib.Shared.Models.ErrorHandling;
-using WorkflowLib.Shared.Models.Network.MicroserviceConfigurations;
+using VelocipedeUtils.Shared.Models.ErrorHandling;
+using VelocipedeUtils.Shared.Models.Network.MicroserviceConfigurations;
 
-namespace WorkflowLib.Shared.Models.Network
+namespace VelocipedeUtils.Shared.Models.Network
 {
     /// <summary>
     /// Represents any attempt to communcate with API server as an operation.

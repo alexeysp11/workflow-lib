@@ -1,6 +1,6 @@
-using WorkflowLib.Shared.Models.Documents.Enums;
+using VelocipedeUtils.Shared.Models.Documents.Enums;
 
-namespace WorkflowLib.Shared.Models.Documents
+namespace VelocipedeUtils.Shared.Models.Documents
 {
     /// <summary>
     /// Class for representing an element of spreadsheet document.

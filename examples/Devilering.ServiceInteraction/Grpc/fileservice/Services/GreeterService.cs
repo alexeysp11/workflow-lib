@@ -1,7 +1,7 @@
-using WorkflowLib.Examples.Delivering.ServiceInteraction.Grpc.Core;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.Grpc;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.Grpc.Core;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.Grpc;
 
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.Grpc.Services;
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.Grpc.Services;
 
 public class GreeterService : Greeter.GreeterBase
 {

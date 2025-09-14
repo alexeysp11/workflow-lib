@@ -1,6 +1,6 @@
-using WorkflowLib.Shared.Models.Business.MeasurementUnits;
+using VelocipedeUtils.Shared.Models.Business.MeasurementUnits;
 
-namespace WorkflowLib.Shared.Models.Business.Packing
+namespace VelocipedeUtils.Shared.Models.Business.Packing
 {
     /// <summary>
     /// Description of the type of packaging (e.g. box, pallet, crate).

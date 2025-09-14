@@ -1,6 +1,6 @@
-using WorkflowLib.Shared.Models.Business.Processes;
+using VelocipedeUtils.Shared.Models.Business.Processes;
 
-namespace WorkflowLib.Shared.Models.Business.Projects
+namespace VelocipedeUtils.Shared.Models.Business.Projects
 {
     /// <summary>
     /// Project plan item.

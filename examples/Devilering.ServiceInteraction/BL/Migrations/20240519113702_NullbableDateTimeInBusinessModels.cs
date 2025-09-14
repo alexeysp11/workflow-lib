@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.Migrations
 {
     public partial class NullbableDateTimeInBusinessModels : Migration
     {

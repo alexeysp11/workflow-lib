@@ -36,7 +36,7 @@
     - [PostgreSQL](https://www.postgresql.org/)
 - Внешние сервисы (библиотеки): 
     - [workflow-auth](https://github.com/alexeysp11/workflow-auth)
-    - [workflow-lib](https://github.com/alexeysp11/workflow-lib)
+    - [velocipede-utils](https://github.com/alexeysp11/velocipede-utils)
 - [Swagger](https://swagger.io/tools/swagger-ui)
 
 ## Как использовать
@@ -59,7 +59,7 @@
 Для того, чтобы скачать данный репозиторий, необходимо выполнить следующие комманды в командной строке:
 ```
 git clone https://github.com/alexeysp11/workflow-auth.git
-git clone https://github.com/alexeysp11/workflow-lib.git
+git clone https://github.com/alexeysp11/velocipede-utils.git
 git clone https://github.com/alexeysp11/Convo.git
 ```
 

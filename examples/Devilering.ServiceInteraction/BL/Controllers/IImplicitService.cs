@@ -1,6 +1,6 @@
-using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
 
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Controllers;
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.Controllers;
 
 /// <summary>
 /// An interface for providing implicit communication between services.

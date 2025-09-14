@@ -1,6 +1,6 @@
-using WorkflowLib.Examples.FirmsAccounting.ViewModels;
+using VelocipedeUtils.Examples.FirmsAccounting.ViewModels;
 
-namespace WorkflowLib.Examples.FirmsAccounting.Commands
+namespace VelocipedeUtils.Examples.FirmsAccounting.Commands
 {
     public class ClearCommand : System.Windows.Input.ICommand
     {

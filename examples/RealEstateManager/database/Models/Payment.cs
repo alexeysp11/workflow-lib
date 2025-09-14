@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.RealEstateManager.Database.Models
+namespace VelocipedeUtils.Examples.RealEstateManager.Database.Models
 {
     public class Payment 
     {

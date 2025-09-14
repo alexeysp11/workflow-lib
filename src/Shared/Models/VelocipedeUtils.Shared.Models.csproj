@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp3.1;net6.0;net8.0</TargetFrameworks>
+    <PackageId>VelocipedeUtils.Shared.Models</PackageId>
+    <Version>1.0.0-alpha</Version>
+    <Authors>alexeysp11</Authors>
+    <PackageDescription>The library provides basic models used to simplify application development.</PackageDescription>
+    <RepositoryUrl>https://github.com/alexeysp11/velocipede-utils</RepositoryUrl>
+  </PropertyGroup>
+
+</Project>

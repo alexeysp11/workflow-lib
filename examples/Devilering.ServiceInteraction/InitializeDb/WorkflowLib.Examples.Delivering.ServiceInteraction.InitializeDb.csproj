@@ -8,9 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BL\WorkflowLib.Examples.Delivering.ServiceInteraction.BL.csproj" />
-    <ProjectReference Include="..\..\..\src\Shared\Models\WorkflowLib.Shared.Models.csproj" />
-    <ProjectReference Include="..\..\..\src\Shared\Models.Business\WorkflowLib.Shared.Models.Business.csproj" />
+    <ProjectReference Include="..\BL\VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.csproj" />
+    <ProjectReference Include="..\..\..\src\Shared\Models\VelocipedeUtils.Shared.Models.csproj" />
+    <ProjectReference Include="..\..\..\src\Shared\Models.Business\VelocipedeUtils.Shared.Models.Business.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,7 +1,7 @@
-using WorkflowLib.Shared.Models.Business.Projects;
-using WorkflowLib.Shared.Models.Business.InformationSystem;
+using VelocipedeUtils.Shared.Models.Business.Projects;
+using VelocipedeUtils.Shared.Models.Business.InformationSystem;
 
-namespace WorkflowLib.Shared.Models.Business.Responsibilities
+namespace VelocipedeUtils.Shared.Models.Business.Responsibilities
 {
     /// <summary>
     /// Employee responsibility.

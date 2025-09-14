@@ -1,7 +1,7 @@
-﻿using WorkflowLib.Shared.Models.Business;
-using WorkflowLib.Shared.Models.Business.Delivery;
-using WorkflowLib.Shared.Models.Business.Products;
-using WorkflowLib.Examples.DbConnections.PostgreSQL.Example01.Resolvers;
+﻿using VelocipedeUtils.Shared.Models.Business;
+using VelocipedeUtils.Shared.Models.Business.Delivery;
+using VelocipedeUtils.Shared.Models.Business.Products;
+using VelocipedeUtils.Examples.DbConnections.PostgreSQL.Example01.Resolvers;
 
 IEnumerable<Product> menuItems = new List<Product>();
 IEnumerable<ProductCategory> categories = new List<ProductCategory>();

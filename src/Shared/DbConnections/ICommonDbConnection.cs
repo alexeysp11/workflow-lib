@@ -1,6 +1,6 @@
 using System.Data;
 
-namespace WorkflowLib.Shared.DbConnections
+namespace VelocipedeUtils.Shared.DbConnections
 {
     /// <summary>
     /// Interface for database connections.

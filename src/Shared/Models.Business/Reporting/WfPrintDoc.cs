@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace WorkflowLib.Shared.Models.Business.Reporting
+namespace VelocipedeUtils.Shared.Models.Business.Reporting
 {
     /// <summary>
     /// The main object of a printed document.

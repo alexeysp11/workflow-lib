@@ -1,6 +1,6 @@
 using System.Windows;
 
-namespace WorkflowLib.Examples.HcsBudget.Views
+namespace VelocipedeUtils.Examples.HcsBudget.Views
 {
     /// <summary>
     /// Interaction logic for ReportWindow.xaml

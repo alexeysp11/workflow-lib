@@ -1,6 +1,6 @@
 using System.Data;
 
-namespace WorkflowLib.Examples.PublicTransportDevices.DbConnections
+namespace VelocipedeUtils.Examples.PublicTransportDevices.DbConnections
 {
     public interface ICommonDbConnection
     {

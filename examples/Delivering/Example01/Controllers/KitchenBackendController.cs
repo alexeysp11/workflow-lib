@@ -1,14 +1,14 @@
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Extensions;
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.Shared.Models.Business.Cooking;
-using WorkflowLib.Shared.Models.Business.Customers;
-using WorkflowLib.Shared.Models.Network;
-using WorkflowLib.Shared.Models.Business.Processes;
-using WorkflowLib.Examples.Delivering.Example01.Contexts;
+using VelocipedeUtils.Extensions;
+using VelocipedeUtils.Shared.Models.Business.BusinessDocuments;
+using VelocipedeUtils.Shared.Models.Business.Cooking;
+using VelocipedeUtils.Shared.Models.Business.Customers;
+using VelocipedeUtils.Shared.Models.Network;
+using VelocipedeUtils.Shared.Models.Business.Processes;
+using VelocipedeUtils.Examples.Delivering.Example01.Contexts;
 
-namespace WorkflowLib.Examples.Delivering.Example01.Controllers
+namespace VelocipedeUtils.Examples.Delivering.Example01.Controllers
 {
     /// <summary>
     /// Backend service controller that serves requests from the kitchen employees.

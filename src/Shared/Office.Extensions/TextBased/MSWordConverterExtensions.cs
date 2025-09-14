@@ -4,9 +4,9 @@ using OpenXmlPowerTools;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
-using WorkflowLib.Shared.Office.DocFormats.TextBased;
+using VelocipedeUtils.Shared.Office.DocFormats.TextBased;
 
-namespace WorkflowLib.Shared.Office.DocFormats.TextBased
+namespace VelocipedeUtils.Shared.Office.DocFormats.TextBased
 {
     /// <summary>
     /// 

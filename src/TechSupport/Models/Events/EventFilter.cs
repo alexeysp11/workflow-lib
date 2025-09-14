@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.TechSupport.EventJournal.Models;
+namespace VelocipedeUtils.Examples.TechSupport.EventJournal.Models;
 
 /// <summary>
 /// Allows you to filter events by various criteria.

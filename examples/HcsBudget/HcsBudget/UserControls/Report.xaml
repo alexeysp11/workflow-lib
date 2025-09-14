@@ -1,9 +1,9 @@
-<UserControl x:Class="WorkflowLib.Examples.HcsBudget.UserControls.Report"
+<UserControl x:Class="VelocipedeUtils.Examples.HcsBudget.UserControls.Report"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:WorkflowLib.Examples.HcsBudget"
-        xmlns:uc="clr-namespace:WorkflowLib.Examples.HcsBudget.UserControls"
-        xmlns:vm="clr-namespace:WorkflowLib.Examples.HcsBudget.ViewModels">
+        xmlns:local="clr-namespace:VelocipedeUtils.Examples.HcsBudget"
+        xmlns:uc="clr-namespace:VelocipedeUtils.Examples.HcsBudget.UserControls"
+        xmlns:vm="clr-namespace:VelocipedeUtils.Examples.HcsBudget.ViewModels">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="145" />

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>VelocipedeUtils.Shared.FuzzyModules.Examples</AssemblyName>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\API\VelocipedeUtils.Shared.FuzzyModules.API.csproj" />
+  </ItemGroup>
+
+</Project>

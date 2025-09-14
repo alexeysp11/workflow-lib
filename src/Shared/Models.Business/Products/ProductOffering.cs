@@ -1,6 +1,6 @@
-using WorkflowLib.Shared.Models.Business.Customers;
+using VelocipedeUtils.Shared.Models.Business.Customers;
 
-namespace WorkflowLib.Shared.Models.Business.Products
+namespace VelocipedeUtils.Shared.Models.Business.Products
 {
     /// <summary>
     /// Product offering.

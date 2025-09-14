@@ -1,7 +1,7 @@
 using System.Data;
 using Oracle.ManagedDataAccess.Client;
 
-namespace WorkflowLib.Shared.DbConnections
+namespace VelocipedeUtils.Shared.DbConnections
 {
     /// <summary>
     /// Oracle database connection.

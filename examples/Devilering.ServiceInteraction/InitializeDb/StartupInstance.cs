@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.InitializeDb
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.InitializeDb
 {
     /// <summary>
     /// The class that is responsible for initializing this example.

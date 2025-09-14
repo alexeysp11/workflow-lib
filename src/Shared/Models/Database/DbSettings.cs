@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Database 
+namespace VelocipedeUtils.Shared.Models.Database 
 {
     /// <summary>
     /// DB settings.

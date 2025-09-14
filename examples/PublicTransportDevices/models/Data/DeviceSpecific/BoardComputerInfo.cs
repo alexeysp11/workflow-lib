@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.PublicTransportDevices.Models.Data;
+namespace VelocipedeUtils.Examples.PublicTransportDevices.Models.Data;
 
 /// <summary>
 /// Represents board computer 

@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Business.Products
+namespace VelocipedeUtils.Shared.Models.Business.Products
 {
     /// <summary>
     /// Product attribute type.

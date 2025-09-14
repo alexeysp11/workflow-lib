@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
-using WorkflowLib.Shared.Models.Network.MicroserviceConfigurations;
+using VelocipedeUtils.Shared.Models.Network.MicroserviceConfigurations;
 
-namespace WorkflowLib.Shared.ServiceDiscoveryBpm.DAL;
+namespace VelocipedeUtils.Shared.ServiceDiscoveryBpm.DAL;
 
 /// <summary>
 /// An interface at the DAL level that performs endpoint-related operations in the database.

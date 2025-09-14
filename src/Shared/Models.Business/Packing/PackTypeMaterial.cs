@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Business.Packing
+namespace VelocipedeUtils.Shared.Models.Business.Packing
 {
     /// <summary>
     /// Pack type material.

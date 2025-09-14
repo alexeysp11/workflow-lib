@@ -6,9 +6,9 @@ using System.Text.RegularExpressions;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
-using WorkflowLib.Shared.Models.Documents;
+using VelocipedeUtils.Shared.Models.Documents;
 
-namespace WorkflowLib.Shared.Office.DocFormats.Spreadsheets
+namespace VelocipedeUtils.Shared.Office.DocFormats.Spreadsheets
 {
     /// <summary>
     /// Class for using MS Excel (MS Excel converter).

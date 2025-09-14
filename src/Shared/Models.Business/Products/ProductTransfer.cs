@@ -1,6 +1,6 @@
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
+using VelocipedeUtils.Shared.Models.Business.BusinessDocuments;
 
-namespace WorkflowLib.Shared.Models.Business.Products
+namespace VelocipedeUtils.Shared.Models.Business.Products
 {
     /// <summary>
     /// Product transfer.

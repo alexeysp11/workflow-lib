@@ -5,10 +5,10 @@ using System.Linq;
 using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
-using WorkflowLib.Shared.Models.Documents;
-using WorkflowLib.Shared.Office.DocFormats.TextBased;
+using VelocipedeUtils.Shared.Models.Documents;
+using VelocipedeUtils.Shared.Office.DocFormats.TextBased;
 
-namespace WorkflowLib.Shared.Office.DocFormats
+namespace VelocipedeUtils.Shared.Office.DocFormats
 {
     /// <summary>
     /// Class for using PDF (PDF converter)

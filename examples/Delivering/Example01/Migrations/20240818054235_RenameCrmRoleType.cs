@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace WorkflowLib.Examples.Delivering.Example01.Migrations
+namespace VelocipedeUtils.Examples.Delivering.Example01.Migrations
 {
     public partial class RenameCrmRoleType : Migration
     {

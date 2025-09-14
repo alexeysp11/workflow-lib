@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Network
+namespace VelocipedeUtils.Shared.Models.Network
 {
     /// <summary>
     /// Email configuration.

@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Business.Responsibilities
+namespace VelocipedeUtils.Shared.Models.Business.Responsibilities
 {
     /// <summary>
     /// Employer responsibility.

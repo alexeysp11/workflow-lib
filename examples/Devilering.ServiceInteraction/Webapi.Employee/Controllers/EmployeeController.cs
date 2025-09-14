@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.ProcPipes;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.Routing;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.Webapi.Employee;
-using WorkflowLib.Shared.Models.Business.Processes;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.ProcPipes;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.Routing;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.Webapi.Employee;
+using VelocipedeUtils.Shared.Models.Business.Processes;
 
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.Webapi.Employee.Controllers
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.Webapi.Employee.Controllers
 {
     /// <summary>
     /// Controller for processing employee requests.

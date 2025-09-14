@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace WorkflowLib.Examples.Retail.Accounting
+namespace VelocipedeUtils.Examples.Retail.Accounting
 {
     public class Startup
     {

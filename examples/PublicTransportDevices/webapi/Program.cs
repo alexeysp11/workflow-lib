@@ -1,7 +1,7 @@
-using WorkflowLib.Examples.PublicTransportDevices.Models;
-using WorkflowLib.Examples.PublicTransportDevices.DbConnections;
-using WorkflowLib.Examples.PublicTransportDevices.Models.Domain;
-using WorkflowLib.Examples.PublicTransportDevices.Models.MessageQueues;
+using VelocipedeUtils.Examples.PublicTransportDevices.Models;
+using VelocipedeUtils.Examples.PublicTransportDevices.DbConnections;
+using VelocipedeUtils.Examples.PublicTransportDevices.Models.Domain;
+using VelocipedeUtils.Examples.PublicTransportDevices.Models.MessageQueues;
 
 var builder = WebApplication.CreateBuilder(args);
 

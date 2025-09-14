@@ -1,12 +1,12 @@
-using WorkflowLib.Shared.ServiceDiscoveryBpm.DAL;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.LoadBalancers;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.ObjectPooling;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.ProcPipes;
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.Shared.Models.Business.Processes;
-using WorkflowLib.Shared.Models.Network.MicroserviceConfigurations;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.DAL;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.LoadBalancers;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.ObjectPooling;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.ProcPipes;
+using VelocipedeUtils.Shared.Models.Business.BusinessDocuments;
+using VelocipedeUtils.Shared.Models.Business.Processes;
+using VelocipedeUtils.Shared.Models.Network.MicroserviceConfigurations;
 
-namespace WorkflowLib.Shared.ServiceDiscoveryBpm.ServiceRegistry;
+namespace VelocipedeUtils.Shared.ServiceDiscoveryBpm.ServiceRegistry;
 
 /// <summary>
 /// Receives information from the database where the request can be forwarded and uses load balancers to calculate the load.

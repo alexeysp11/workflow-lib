@@ -36,7 +36,7 @@ The main functionalities the chat should have include sending and receiving mess
     - [PostgreSQL](https://www.postgresql.org/)
 - External services (libraries): 
     - [workflow-auth](https://github.com/alexeysp11/workflow-auth)
-    - [workflow-lib](https://github.com/alexeysp11/workflow-lib)
+    - [velocipede-utils](https://github.com/alexeysp11/velocipede-utils)
 - [Swagger](https://swagger.io/tools/swagger-ui)
 
 ## How to use 
@@ -59,7 +59,7 @@ Dependencies for this application:
 In order to get the application, run the following command in the CMD:
 ```
 git clone https://github.com/alexeysp11/workflow-auth.git
-git clone https://github.com/alexeysp11/workflow-lib.git
+git clone https://github.com/alexeysp11/velocipede-utils.git
 git clone https://github.com/alexeysp11/Convo.git
 ```
 

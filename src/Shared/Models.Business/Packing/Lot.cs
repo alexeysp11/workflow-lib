@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Business.Packing
+namespace VelocipedeUtils.Shared.Models.Business.Packing
 {
     /// <summary>
     /// A group of identical inventory items produced at the same time or to the same specification

@@ -1,6 +1,6 @@
-using WorkflowLib.Shared.Models.Business.WfAppInfo;
+using VelocipedeUtils.Shared.Models.Business.WfAppInfo;
 
-namespace WorkflowLib.Shared.Models.Business.Languages
+namespace VelocipedeUtils.Shared.Models.Business.Languages
 {
     /// <summary>
     /// Association between key used for translation, and the name of the form or view.

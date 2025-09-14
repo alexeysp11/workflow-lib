@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Business.Packing
+namespace VelocipedeUtils.Shared.Models.Business.Packing
 {
     /// <summary>
     /// A physical container in which a product is stored or moved (e.g. a box, pallet, barrel).

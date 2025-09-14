@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace WorkflowLib.Examples.Retail.Accounting.Pages
+namespace VelocipedeUtils.Examples.Retail.Accounting.Pages
 {
     public class SettingsModel : PageModel
     {

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Models\VelocipedeUtils.Examples.BookList.Models.csproj" />
+    <ProjectReference Include="..\Security\VelocipedeUtils.Examples.BookList.Security.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="3.1.0" />
+  </ItemGroup>
+
+</Project>

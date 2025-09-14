@@ -1,4 +1,4 @@
-﻿namespace WorkflowLib.Shared.Models.Business.Warehousing
+﻿namespace VelocipedeUtils.Shared.Models.Business.Warehousing
 {
     /// <summary>
     /// Physical location of the product in the warehouse.

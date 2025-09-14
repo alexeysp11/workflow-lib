@@ -1,7 +1,7 @@
-using WorkflowLib.Shared.Models.Business;
-using WorkflowLib.Shared.Models.Business.SocialCommunication;
+using VelocipedeUtils.Shared.Models.Business;
+using VelocipedeUtils.Shared.Models.Business.SocialCommunication;
 
-namespace WorkflowLib.Shared.Models.Business.Processes
+namespace VelocipedeUtils.Shared.Models.Business.Processes
 {
     /// <summary>
     /// Represents an item used for tracking the progress of a workflow instance.

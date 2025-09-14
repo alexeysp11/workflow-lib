@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Examples.RealEstateManager", "api\WorkflowLib.Examples.RealEstateManager.csproj", "{8403421A-F3BE-40DA-8C68-90A55D6DF0A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Examples.RealEstateManager", "api\VelocipedeUtils.Examples.RealEstateManager.csproj", "{8403421A-F3BE-40DA-8C68-90A55D6DF0A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Examples.RealEstateManager.DataAccess", "dataaccess\WorkflowLib.Examples.RealEstateManager.DataAccess.csproj", "{B09CCFA9-0C3C-4935-A822-4CED3F64C0D6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Examples.RealEstateManager.DataAccess", "dataaccess\VelocipedeUtils.Examples.RealEstateManager.DataAccess.csproj", "{B09CCFA9-0C3C-4935-A822-4CED3F64C0D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Examples.RealEstateManager.Database", "database\WorkflowLib.Examples.RealEstateManager.Database.csproj", "{DC802A28-BDB8-43A0-928E-F4CF5C96838A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Examples.RealEstateManager.Database", "database\VelocipedeUtils.Examples.RealEstateManager.Database.csproj", "{DC802A28-BDB8-43A0-928E-F4CF5C96838A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Examples.RealEstateManager.Types", "types\WorkflowLib.Examples.RealEstateManager.Types.csproj", "{DC1860BB-1566-40A5-9420-77FB14A3A72C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Examples.RealEstateManager.Types", "types\VelocipedeUtils.Examples.RealEstateManager.Types.csproj", "{DC1860BB-1566-40A5-9420-77FB14A3A72C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib.Examples.RealEstateManager.Utilities", "utilities\WorkflowLib.Examples.RealEstateManager.Utilities.csproj", "{289A71C9-1C6D-476C-908E-48DE662C2CBB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Examples.RealEstateManager.Utilities", "utilities\VelocipedeUtils.Examples.RealEstateManager.Utilities.csproj", "{289A71C9-1C6D-476C-908E-48DE662C2CBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

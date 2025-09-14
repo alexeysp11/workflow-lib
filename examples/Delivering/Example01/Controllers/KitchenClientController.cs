@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.Shared.Models.Business.Customers;
-using WorkflowLib.Shared.Models.Network;
-using WorkflowLib.Examples.Delivering.Example01.Contexts;
+using VelocipedeUtils.Shared.Models.Business.BusinessDocuments;
+using VelocipedeUtils.Shared.Models.Business.Customers;
+using VelocipedeUtils.Shared.Models.Network;
+using VelocipedeUtils.Examples.Delivering.Example01.Contexts;
 
-namespace WorkflowLib.Examples.Delivering.Example01.Controllers
+namespace VelocipedeUtils.Examples.Delivering.Example01.Controllers
 {
     /// <summary>
     /// Client-side app controller that serves requests from the kitchen employees.

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Windows;
-using WorkflowLib.Examples.HcsBudget.ViewModels;
+using VelocipedeUtils.Examples.HcsBudget.ViewModels;
 
-namespace WorkflowLib.Examples.HcsBudget.Views
+namespace VelocipedeUtils.Examples.HcsBudget.Views
 {
     /// <summary>
     /// Interaction logic for ServiceWindow.xaml

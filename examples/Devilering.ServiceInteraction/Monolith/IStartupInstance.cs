@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.Monolith
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.Monolith
 {
     /// <summary>
     /// An interface that allows you to initialize this example and also start executing it.

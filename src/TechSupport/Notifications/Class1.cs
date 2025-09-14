@@ -1,4 +1,4 @@
-﻿namespace WorkflowLib.Examples.TechSupport.Notifications;
+﻿namespace VelocipedeUtils.Examples.TechSupport.Notifications;
 public class Class1
 {
 

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Data.Sqlite;
-using WorkflowLib.Examples.BookList.Models;
+using VelocipedeUtils.Examples.BookList.Models;
 
-namespace WorkflowLib.Examples.BookList.Services
+namespace VelocipedeUtils.Examples.BookList.Services
 {
     /// <summary>
     /// Allows to interact with the database.

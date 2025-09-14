@@ -1,6 +1,6 @@
 using System;
 
-namespace WorkflowLib.Examples.Retail.Accounting.Services
+namespace VelocipedeUtils.Examples.Retail.Accounting.Services
 {
     public class ExportItemInfo
     {

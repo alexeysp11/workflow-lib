@@ -1,6 +1,6 @@
 using System;
 
-namespace WorkflowLib.Shared.Models.Logging
+namespace VelocipedeUtils.Shared.Models.Logging
 {
     /// <summary>
     /// Debug logs.

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using WorkflowLib.Examples.HcsBudget.ViewModels;
+using VelocipedeUtils.Examples.HcsBudget.ViewModels;
 
-namespace WorkflowLib.Examples.HcsBudget.UserControls
+namespace VelocipedeUtils.Examples.HcsBudget.UserControls
 {
     /// <summary>
     /// Interaction logic for Report.xaml

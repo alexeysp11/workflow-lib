@@ -1,6 +1,6 @@
-using WorkflowLib.Examples.BookList.Services;
+using VelocipedeUtils.Examples.BookList.Services;
 
-namespace WorkflowLib.Examples.BookList
+namespace VelocipedeUtils.Examples.BookList
 {
     /// <summary>
     /// Static class for storing and accessing classes that implement 

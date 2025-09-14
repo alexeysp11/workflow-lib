@@ -1,4 +1,4 @@
-﻿namespace WorkflowLib.Shared.Models.Business.Warehousing
+﻿namespace VelocipedeUtils.Shared.Models.Business.Warehousing
 {
     /// <summary>
     /// Definition of the functional purpose of the location (e.g. receiving location, storage location, picking location).

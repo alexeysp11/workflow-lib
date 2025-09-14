@@ -1,6 +1,6 @@
-using WorkflowLib.Shared.Models.Business.MeasurementUnits;
+using VelocipedeUtils.Shared.Models.Business.MeasurementUnits;
 
-namespace WorkflowLib.Shared.Models.Business.Products
+namespace VelocipedeUtils.Shared.Models.Business.Products
 {
     /// <summary>
     /// Description of the product stored in the warehouse.

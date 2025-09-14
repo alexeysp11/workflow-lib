@@ -1,6 +1,6 @@
-using WorkflowLib.Shared.Models.Business.Products;
+using VelocipedeUtils.Shared.Models.Business.Products;
 
-namespace WorkflowLib.Shared.Models.Business.Warehousing
+namespace VelocipedeUtils.Shared.Models.Business.Warehousing
 {
     /// <summary>
     /// Warehouse item.

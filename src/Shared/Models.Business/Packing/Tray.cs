@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Business.Packing
+namespace VelocipedeUtils.Shared.Models.Business.Packing
 {
     /// <summary>
     /// A small movable container, often used to store and move individual items or small batches within a warehouse. 

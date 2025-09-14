@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DbContexts;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.DAL;
-using WorkflowLib.Shared.Models.Logging;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.DbContexts;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.DAL;
+using VelocipedeUtils.Shared.Models.Logging;
 
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DAL;
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.DAL;
 
 /// <summary>
 /// A class at the DAL level that performs logging-related operations in the database.

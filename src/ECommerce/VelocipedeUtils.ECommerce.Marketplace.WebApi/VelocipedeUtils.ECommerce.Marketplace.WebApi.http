@@ -1,0 +1,6 @@
+@VelocipedeUtils.ECommerce.Marketplace.WebApi_HostAddress = http://localhost:5290
+
+GET {{VelocipedeUtils.ECommerce.Marketplace.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

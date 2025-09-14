@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Business.Languages
+namespace VelocipedeUtils.Shared.Models.Business.Languages
 {
     /// <summary>
     /// Language type.

@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace WorkflowLib.Examples.BookList
+namespace VelocipedeUtils.Examples.BookList
 {
     public class Program
     {

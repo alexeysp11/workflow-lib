@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Documents.Enums
+namespace VelocipedeUtils.Shared.Models.Documents.Enums
 {
     /// <summary>
     /// Text alignment enumeration.

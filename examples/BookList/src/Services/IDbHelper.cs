@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using WorkflowLib.Examples.BookList.Models;
+using VelocipedeUtils.Examples.BookList.Models;
 
-namespace WorkflowLib.Examples.BookList.Services
+namespace VelocipedeUtils.Examples.BookList.Services
 {
     /// <summary>
     /// Interface that allows to implement any database helper 

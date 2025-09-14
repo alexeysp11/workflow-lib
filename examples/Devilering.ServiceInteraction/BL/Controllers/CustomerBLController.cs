@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DAL;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.ServiceRegistry;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.DAL;
-using WorkflowLib.Shared.Models.Business.Processes;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.DAL;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.ServiceRegistry;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.DAL;
+using VelocipedeUtils.Shared.Models.Business.Processes;
 
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Controllers;
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.Controllers;
 
 /// <summary>
 /// Represents customer controller.
@@ -57,7 +57,7 @@ public class CustomerBLController : IImplicitService
             
             // Invoke file service using reflection.
             string nextState = "FileService";
-            var className = "WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Controllers." + nextState;
+            var className = "VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.Controllers." + nextState;
             var methodName = "ProcessCustomerControllerBL";
             var type = Type.GetType(className);
             var instance = m_serviceProvider.GetRequiredService(type);

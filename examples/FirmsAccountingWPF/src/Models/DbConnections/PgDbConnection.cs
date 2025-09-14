@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Data.SqlTypes;
 using Npgsql;
-using WorkflowLib.Examples.FirmsAccounting.Models.Data;
+using VelocipedeUtils.Examples.FirmsAccounting.Models.Data;
 
-namespace WorkflowLib.Examples.FirmsAccounting.Models.DbConnections
+namespace VelocipedeUtils.Examples.FirmsAccounting.Models.DbConnections
 {
     public class PgDbConnection : IFirmsDbConnection, IDocsDbConnection
     {
@@ -174,7 +174,7 @@ namespace WorkflowLib.Examples.FirmsAccounting.Models.DbConnections
 
         public List<DocsCalendarSum> GetDocs(int firmId)
         {
-            string funcRequest = System.IO.File.ReadAllText("C:\\Users\\User\\Desktop\\projects\\utility\\employment\\TMK\\TestTask\\WorkflowLib.Examples.FirmsAccounting\\SQL\\SelectDocsFirm.sql");
+            string funcRequest = System.IO.File.ReadAllText("C:\\Users\\User\\Desktop\\projects\\utility\\employment\\TMK\\TestTask\\VelocipedeUtils.Examples.FirmsAccounting\\SQL\\SelectDocsFirm.sql");
             funcRequest += $"SELECT test_task.GetDocsFirm({firmId});";
             
             List<DocsCalendarSum> result = new List<DocsCalendarSum>();
@@ -229,7 +229,7 @@ namespace WorkflowLib.Examples.FirmsAccounting.Models.DbConnections
 
         public List<DocsCalendarSum> GetDocs()
         {
-            string funcRequest = System.IO.File.ReadAllText("C:\\Users\\User\\Desktop\\projects\\utility\\employment\\TMK\\TestTask\\WorkflowLib.Examples.FirmsAccounting\\SQL\\SelectDocs.sql");
+            string funcRequest = System.IO.File.ReadAllText("C:\\Users\\User\\Desktop\\projects\\utility\\employment\\TMK\\TestTask\\VelocipedeUtils.Examples.FirmsAccounting\\SQL\\SelectDocs.sql");
             
             List<DocsCalendarSum> result = new List<DocsCalendarSum>();
 

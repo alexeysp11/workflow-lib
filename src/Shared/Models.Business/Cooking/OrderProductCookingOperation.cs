@@ -1,7 +1,7 @@
-using WorkflowLib.Shared.Models.Business.Processes;
-using WorkflowLib.Shared.Models.Business.Products;
+using VelocipedeUtils.Shared.Models.Business.Processes;
+using VelocipedeUtils.Shared.Models.Business.Products;
 
-namespace WorkflowLib.Shared.Models.Business.Cooking
+namespace VelocipedeUtils.Shared.Models.Business.Cooking
 {
     /// <summary>
     /// Associate table that connects a order product and cooking operation.

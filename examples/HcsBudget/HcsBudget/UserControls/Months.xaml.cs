@@ -1,8 +1,8 @@
 using System.Windows;
 using System.Windows.Controls;
-using WorkflowLib.Examples.HcsBudget.ViewModels;
+using VelocipedeUtils.Examples.HcsBudget.ViewModels;
 
-namespace WorkflowLib.Examples.HcsBudget.UserControls
+namespace VelocipedeUtils.Examples.HcsBudget.UserControls
 {
     /// <summary>
     /// Interaction logic for Months.xaml
@@ -28,7 +28,7 @@ namespace WorkflowLib.Examples.HcsBudget.UserControls
                     if (month.Label == selectedMonth)
                     {
                         this.MainVM.SelectHcs(month.PeriodId);
-                        this.MainVM.SelectedHcs = new WorkflowLib.Examples.HcsBudget.Models.Hcs(month.PeriodId);
+                        this.MainVM.SelectedHcs = new VelocipedeUtils.Examples.HcsBudget.Models.Hcs(month.PeriodId);
                         break;
                     }
                 }

@@ -1,7 +1,7 @@
 using System.IO;
 using System.Xml.Serialization;
 
-namespace WorkflowLib.Examples.Retail.Accounting.Services
+namespace VelocipedeUtils.Examples.Retail.Accounting.Services
 {
     public static class MainCompanyService
     {

@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Reporting.ReportGenerationService", "VelocipedeUtils.Reporting.ReportGenerationService\VelocipedeUtils.Reporting.ReportGenerationService.csproj", "{65CAA194-3809-4F9F-A27B-D82B20EACA9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.Reporting.PrintService", "VelocipedeUtils.Reporting.PrintService\VelocipedeUtils.Reporting.PrintService.csproj", "{7A4936A7-B39F-49EB-B46E-56D69D73261B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65CAA194-3809-4F9F-A27B-D82B20EACA9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65CAA194-3809-4F9F-A27B-D82B20EACA9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65CAA194-3809-4F9F-A27B-D82B20EACA9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65CAA194-3809-4F9F-A27B-D82B20EACA9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A4936A7-B39F-49EB-B46E-56D69D73261B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A4936A7-B39F-49EB-B46E-56D69D73261B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A4936A7-B39F-49EB-B46E-56D69D73261B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A4936A7-B39F-49EB-B46E-56D69D73261B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

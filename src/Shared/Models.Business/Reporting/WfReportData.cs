@@ -1,6 +1,6 @@
 using System.Data;
 
-namespace WorkflowLib.Shared.Models.Business.Reporting
+namespace VelocipedeUtils.Shared.Models.Business.Reporting
 {
     /// <summary>
     /// Container for report data.

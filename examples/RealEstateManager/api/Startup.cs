@@ -11,9 +11,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using WorkflowLib.Examples.RealEstateManager.Database;
+using VelocipedeUtils.Examples.RealEstateManager.Database;
 
-namespace WorkflowLib.Examples.RealEstateManager
+namespace VelocipedeUtils.Examples.RealEstateManager
 {
     public class Startup
     {

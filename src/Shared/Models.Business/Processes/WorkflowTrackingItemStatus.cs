@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Business.Processes
+namespace VelocipedeUtils.Shared.Models.Business.Processes
 {
     /// <summary>
     /// Represents the status of the workflow tracking item.

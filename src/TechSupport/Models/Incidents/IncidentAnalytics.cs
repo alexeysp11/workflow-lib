@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.TechSupport.Incidents.Models;
+namespace VelocipedeUtils.Examples.TechSupport.Incidents.Models;
 
 /// <summary>
 /// Provides incident analysis and reporting capabilities, allowing you to examine historical data and identify trends, root causes, and areas for improvement.

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using WorkflowLib.Shared.Models.Documents;
+using VelocipedeUtils.Shared.Models.Documents;
 
-namespace WorkflowLib.Shared.Office.DocFormats.Spreadsheets
+namespace VelocipedeUtils.Shared.Office.DocFormats.Spreadsheets
 {
     /// <summary>
     /// Interface for using spreadsheets.

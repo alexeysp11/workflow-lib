@@ -26,13 +26,13 @@ public SendMsgResponseDTO SendMessage(SendMsgRequestDTO request);
 
 #### Parameters 
 
-- `request`: [SendMsgRequestDTO](https://github.com/alexeysp11/workflow-lib/blob/main/docs/Models/Business/SocialCommunication/DTOs/SendMsgRequestDTO.md)
+- `request`: [SendMsgRequestDTO](https://github.com/alexeysp11/velocipede-utils/blob/main/docs/Models/Business/SocialCommunication/DTOs/SendMsgRequestDTO.md)
 
 Request.
 
 #### Returns 
 
-[SendMsgResponseDTO](https://github.com/alexeysp11/workflow-lib/blob/main/docs/Models/Business/SocialCommunication/DTOs/SendMsgResponseDTO.md)
+[SendMsgResponseDTO](https://github.com/alexeysp11/velocipede-utils/blob/main/docs/Models/Business/SocialCommunication/DTOs/SendMsgResponseDTO.md)
 
 Response.
 
@@ -46,13 +46,13 @@ public GetMsgResponseDTO GetMessages(GetMsgRequestDTO request);
 
 #### Parameters 
 
-- `request`: [GetMsgRequestDTO](https://github.com/alexeysp11/workflow-lib/blob/main/docs/Models/Business/SocialCommunication/DTOs/GetMsgRequestDTO.md)
+- `request`: [GetMsgRequestDTO](https://github.com/alexeysp11/velocipede-utils/blob/main/docs/Models/Business/SocialCommunication/DTOs/GetMsgRequestDTO.md)
 
 Request.
 
 #### Returns 
 
-[GetMsgResponseDTO](https://github.com/alexeysp11/workflow-lib/blob/main/docs/Models/Business/SocialCommunication/DTOs/GetMsgResponseDTO.md)
+[GetMsgResponseDTO](https://github.com/alexeysp11/velocipede-utils/blob/main/docs/Models/Business/SocialCommunication/DTOs/GetMsgResponseDTO.md)
 
 Response.
 
@@ -66,12 +66,12 @@ public SetMsgStatusResponseDTO GetMessages(SetMsgStatusRequestDTO request);
 
 #### Parameters 
 
-- `request`: [SetMsgStatusRequestDTO](https://github.com/alexeysp11/workflow-lib/blob/main/docs/Models/Business/SocialCommunication/DTOs/SetMsgStatusRequestDTO.md)
+- `request`: [SetMsgStatusRequestDTO](https://github.com/alexeysp11/velocipede-utils/blob/main/docs/Models/Business/SocialCommunication/DTOs/SetMsgStatusRequestDTO.md)
 
 Request.
 
 #### Returns 
 
-[SetMsgStatusResponseDTO](https://github.com/alexeysp11/workflow-lib/blob/main/docs/Models/Business/SocialCommunication/DTOs/SetMsgStatusResponseDTO.md)
+[SetMsgStatusResponseDTO](https://github.com/alexeysp11/velocipede-utils/blob/main/docs/Models/Business/SocialCommunication/DTOs/SetMsgStatusResponseDTO.md)
 
 Response.

@@ -1,8 +1,8 @@
-using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Controllers;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.ProcPipes;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.Routing;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.Controllers;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.ProcPipes;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.Routing;
 
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
 
 /// <summary>
 /// The pipe responsible for getting the state of the process.

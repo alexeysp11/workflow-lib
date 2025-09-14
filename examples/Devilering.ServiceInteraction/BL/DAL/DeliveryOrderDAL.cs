@@ -1,11 +1,11 @@
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DbContexts;
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.Shared.Models.Business.Products;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.DbContexts;
+using VelocipedeUtils.Shared.Models.Business.BusinessDocuments;
+using VelocipedeUtils.Shared.Models.Business.Products;
 
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.DAL;
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.DAL;
 
 /// <summary>
 /// A class at the DAL level that performs operations related to business orders in the database.

@@ -3,9 +3,9 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Xunit;
-using WorkflowLib.Dynamical;
+using VelocipedeUtils.Dynamical;
 
-namespace Cims.Tests.WorkflowLib.Dynamical
+namespace Cims.Tests.VelocipedeUtils.Dynamical
 {
     public class DynamicCompilingTest
     {

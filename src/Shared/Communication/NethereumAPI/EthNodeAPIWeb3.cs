@@ -3,7 +3,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Nethereum.Web3;
 
-namespace WorkflowLib.NethereumAPI
+namespace VelocipedeUtils.NethereumAPI
 {
     /// <summary>
     /// Communication with ETH node (or imition of it)

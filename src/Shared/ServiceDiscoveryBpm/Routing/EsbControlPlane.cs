@@ -1,8 +1,8 @@
-using WorkflowLib.Shared.ServiceDiscoveryBpm.ProcPipes;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.ServiceRegistry;
-using WorkflowLib.Shared.Models.Business.Processes;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.ProcPipes;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.ServiceRegistry;
+using VelocipedeUtils.Shared.Models.Business.Processes;
 
-namespace WorkflowLib.Shared.ServiceDiscoveryBpm.Routing;
+namespace VelocipedeUtils.Shared.ServiceDiscoveryBpm.Routing;
 
 /// <summary>
 /// Provides functionality for the service mesh control plane (receives information where to redirect the process 

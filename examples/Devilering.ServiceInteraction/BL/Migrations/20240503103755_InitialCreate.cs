@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Migrations
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.Migrations
 {
     public partial class InitialCreate : Migration
     {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace WorkflowLib.Examples.TechSupport.EventJournal.Models;
+namespace VelocipedeUtils.Examples.TechSupport.EventJournal.Models;
 
 /// <summary>
 /// Stores a collection of all recorded events.

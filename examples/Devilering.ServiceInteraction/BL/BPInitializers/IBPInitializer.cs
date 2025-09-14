@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BPInitializers;
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.BPInitializers;
 
 /// <summary>
 /// Business process initializer.

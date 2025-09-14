@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "WorkflowLib.Examples.TechSupport.Server": {
+    "VelocipedeUtils.Examples.TechSupport.Server": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

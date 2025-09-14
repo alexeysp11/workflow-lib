@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace WorkflowLib.Shared.Models.Business.Monetary
+namespace VelocipedeUtils.Shared.Models.Business.Monetary
 {
     /// <summary>
     /// Price

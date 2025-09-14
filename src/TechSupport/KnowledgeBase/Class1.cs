@@ -1,4 +1,4 @@
-﻿namespace WorkflowLib.Examples.TechSupport.KnowledgeBase;
+﻿namespace VelocipedeUtils.Examples.TechSupport.KnowledgeBase;
 public class Class1
 {
 

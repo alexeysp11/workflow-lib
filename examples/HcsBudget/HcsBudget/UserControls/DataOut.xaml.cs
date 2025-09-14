@@ -1,10 +1,10 @@
 using System.Data;
 using System.Windows;
 using System.Windows.Controls;
-using WorkflowLib.Examples.HcsBudget.ViewModels;
-using WorkflowLib.Examples.HcsBudget.Models;
+using VelocipedeUtils.Examples.HcsBudget.ViewModels;
+using VelocipedeUtils.Examples.HcsBudget.Models;
 
-namespace WorkflowLib.Examples.HcsBudget.UserControls
+namespace VelocipedeUtils.Examples.HcsBudget.UserControls
 {
     /// <summary>
     /// Interaction logic for DataOut.xaml

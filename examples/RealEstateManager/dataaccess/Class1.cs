@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WorkflowLib.Examples.RealEstateManager.DataAccess
+namespace VelocipedeUtils.Examples.RealEstateManager.DataAccess
 {
     public class Class1
     {

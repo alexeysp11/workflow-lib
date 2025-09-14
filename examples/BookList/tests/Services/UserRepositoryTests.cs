@@ -1,6 +1,6 @@
 using System;
 using Xunit;
-using WorkflowLib.Examples.BookList.Services;
+using VelocipedeUtils.Examples.BookList.Services;
 
 namespace Tests.BookList.Services
 {

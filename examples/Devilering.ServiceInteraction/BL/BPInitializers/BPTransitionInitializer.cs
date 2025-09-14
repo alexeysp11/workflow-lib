@@ -1,7 +1,7 @@
-using WorkflowLib.Shared.ServiceDiscoveryBpm.DAL;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.ObjectPooling;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.DAL;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.ObjectPooling;
 
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BPInitializers;
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.BPInitializers;
 
 /// <summary>
 /// Business process transition initializer.

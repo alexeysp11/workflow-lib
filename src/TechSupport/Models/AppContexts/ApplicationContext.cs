@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.TechSupport.Common.Models.AppContexts;
+namespace VelocipedeUtils.Examples.TechSupport.Common.Models.AppContexts;
 
 /// <summary>
 /// Хранит данные, специфичные для данного приложения, такие как текущая страница, активная вкладка и любые другие данные, 

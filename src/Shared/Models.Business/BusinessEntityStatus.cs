@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Business
+namespace VelocipedeUtils.Shared.Models.Business
 {
     /// <summary>
     /// Business entity status.

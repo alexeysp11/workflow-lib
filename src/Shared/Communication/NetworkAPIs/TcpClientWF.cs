@@ -1,6 +1,6 @@
 using System.Net.Sockets;
 
-namespace WorkflowLib.NetworkAPIs 
+namespace VelocipedeUtils.NetworkAPIs 
 {
     /// <summary>
     /// TCP client.

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using WorkflowLib.Shared.Models.Network;
+using VelocipedeUtils.Shared.Models.Network;
 
-namespace WorkflowLib.Examples.Network.Example01.Controllers;
+namespace VelocipedeUtils.Examples.Network.Example01.Controllers;
 
 [ApiController]
 [Route("[controller]")]

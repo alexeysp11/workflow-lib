@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace WorkflowLib.Examples.BookList.Pages
+namespace VelocipedeUtils.Examples.BookList.Pages
 {
     public class IndexModel : PageModel
     {

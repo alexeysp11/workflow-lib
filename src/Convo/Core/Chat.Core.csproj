@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../workflow-lib/src/WorkflowLib.csproj" />
-    <ProjectReference Include="../../workflow-auth/authbl/WokflowLib.Authentication.AuthBL.csproj" />
+    <ProjectReference Include="../../velocipede-utils/src/VelocipedeUtils.csproj" />
+    <ProjectReference Include="../../workflow-auth/authbl/VelocipedeUtils.Authentication.AuthBL.csproj" />
   </ItemGroup>
 
 </Project>

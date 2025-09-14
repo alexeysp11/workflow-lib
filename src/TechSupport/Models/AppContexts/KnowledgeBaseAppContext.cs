@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.TechSupport.Common.Models.AppContexts;
+namespace VelocipedeUtils.Examples.TechSupport.Common.Models.AppContexts;
 
 public class KnowledgeBaseAppContext : IAppContext
 {

@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.ServiceDiscoveryBpm.DAL;
+namespace VelocipedeUtils.Shared.ServiceDiscoveryBpm.DAL;
 
 /// <summary>
 /// An interface at the DAL level that performs logging-related operations in the database.

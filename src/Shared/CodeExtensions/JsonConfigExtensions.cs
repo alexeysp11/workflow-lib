@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Configuration;
 
-namespace WorkflowLib.Extensions
+namespace VelocipedeUtils.Extensions
 {
     /// <summary>
     /// Class for getting settings from config file.

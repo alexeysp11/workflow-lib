@@ -2,7 +2,7 @@ using System.Data;
 using System.Globalization;
 using Microsoft.Data.Sqlite;
 
-namespace WorkflowLib.Examples.HcsBudget.Models.DbConnections
+namespace VelocipedeUtils.Examples.HcsBudget.Models.DbConnections
 {
     public abstract class BaseDbConnection
     {

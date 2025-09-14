@@ -69,7 +69,7 @@ For example, if you need to add some new user into the DB, you might want to do 
 
 In the code this can be represented the following way: 
 ```C#
-namespace WorkflowLib.Examples.BookList.Services
+namespace VelocipedeUtils.Examples.BookList.Services
 {
     /// <summary>
     /// Class that allows users to interact with database 

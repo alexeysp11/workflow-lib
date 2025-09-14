@@ -1,4 +1,4 @@
-﻿namespace WorkflowLib.Shared.Models.Business.Warehousing
+﻿namespace VelocipedeUtils.Shared.Models.Business.Warehousing
 {
     /// <summary>
     /// A record of the movement of a product between locations, zones, or warehouses.

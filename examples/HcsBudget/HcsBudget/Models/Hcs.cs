@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.HcsBudget.Models
+namespace VelocipedeUtils.Examples.HcsBudget.Models
 {
     public class Hcs 
     {

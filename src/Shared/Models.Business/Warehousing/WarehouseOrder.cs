@@ -1,4 +1,4 @@
-namespace WorkflowLib.Shared.Models.Business.Warehousing
+namespace VelocipedeUtils.Shared.Models.Business.Warehousing
 {
     /// <summary>
     /// Request for assembly and shipment of a certain number of goods.

@@ -1,6 +1,6 @@
-using WorkflowLib.Shared.Models.Business.Projects;
+using VelocipedeUtils.Shared.Models.Business.Projects;
 
-namespace WorkflowLib.Shared.Models.Business.InformationSystem
+namespace VelocipedeUtils.Shared.Models.Business.InformationSystem
 {
     /// <summary>
     /// Working day.

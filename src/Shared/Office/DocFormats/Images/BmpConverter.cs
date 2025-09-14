@@ -2,7 +2,7 @@ using System.IO;
 using System.Drawing;
 using System.Linq;
 
-namespace WorkflowLib.Shared.Office.DocFormats.Images
+namespace VelocipedeUtils.Shared.Office.DocFormats.Images
 {
     /// <summary>
     /// Class for converting text into a BMP image.

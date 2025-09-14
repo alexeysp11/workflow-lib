@@ -1,8 +1,8 @@
-# WorkflowLib.Shared.WpfExtensions
+# VelocipedeUtils.Shared.WpfExtensions
 
 [English](README.md) | [Русский](README.ru.md)
 
-`WorkflowLib.Shared.WpfExtensions` - это библиотека визуальных компонентов для WPF-приложений.
+`VelocipedeUtils.Shared.WpfExtensions` - это библиотека визуальных компонентов для WPF-приложений.
 
 ## Auth
 

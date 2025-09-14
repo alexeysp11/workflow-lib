@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option csharp_namespace = "WorkflowLib.Examples.Delivering.ServiceInteraction.Grpc";
+option csharp_namespace = "VelocipedeUtils.Examples.Delivering.ServiceInteraction.Grpc";
 
 package greet;
 

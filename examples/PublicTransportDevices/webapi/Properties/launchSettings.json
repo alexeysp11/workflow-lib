@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "WorkflowLib.Examples.PublicTransportDevices.WebApi": {
+    "VelocipedeUtils.Examples.PublicTransportDevices.WebApi": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

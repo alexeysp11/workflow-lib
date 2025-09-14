@@ -1,6 +1,6 @@
 using System.Data;
 
-namespace WorkflowLib.Shared.DbConnections
+namespace VelocipedeUtils.Shared.DbConnections
 {
     /// <summary>
     /// Base database connection.
@@ -9,8 +9,10 @@ namespace WorkflowLib.Shared.DbConnections
     {
         public string GetSqlFromDataTable(DataTable dt, string tableName)
         {
-            if (dt == null) throw new System.Exception("Data table could not be null");
-            if (string.IsNullOrEmpty(tableName)) throw new System.Exception("Table name is not assigned");
+            if (dt == null)
+                throw new System.Exception("Data table could not be null");
+            if (string.IsNullOrEmpty(tableName))
+                throw new System.Exception("Table name is not assigned");
 
             int i = 0;
             string sqlRequest = "CREATE TABLE " + tableName + " (";

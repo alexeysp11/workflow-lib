@@ -1,7 +1,7 @@
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.Shared.Models.Network;
+using VelocipedeUtils.Shared.Models.Business.BusinessDocuments;
+using VelocipedeUtils.Shared.Models.Network;
 
-namespace WorkflowLib.Examples.Delivering.Example01.Controllers
+namespace VelocipedeUtils.Examples.Delivering.Example01.Controllers
 {
     /// <summary>
     /// A backend service that is responsible for generating and processing files.

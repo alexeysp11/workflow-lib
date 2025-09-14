@@ -1,8 +1,8 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.DAL;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.DAL;
 
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.BL.Controllers;
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.Controllers;
 
 /// <summary>
 /// Represents service E.

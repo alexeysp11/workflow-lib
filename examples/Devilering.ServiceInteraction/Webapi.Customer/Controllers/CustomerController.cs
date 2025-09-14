@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
-using WorkflowLib.Shared.ServiceDiscoveryBpm.Routing;
-using WorkflowLib.Examples.Delivering.ServiceInteraction.Webapi.Customer;
-using WorkflowLib.Shared.Models.Business.BusinessDocuments;
-using WorkflowLib.Shared.Models.Business.Monetary;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.BL.BLProcPipes;
+using VelocipedeUtils.Shared.ServiceDiscoveryBpm.Routing;
+using VelocipedeUtils.Examples.Delivering.ServiceInteraction.Webapi.Customer;
+using VelocipedeUtils.Shared.Models.Business.BusinessDocuments;
+using VelocipedeUtils.Shared.Models.Business.Monetary;
 
-namespace WorkflowLib.Examples.Delivering.ServiceInteraction.Webapi.Customer.Controllers
+namespace VelocipedeUtils.Examples.Delivering.ServiceInteraction.Webapi.Customer.Controllers
 {
     /// <summary>
     /// Controller for processing customer requests.

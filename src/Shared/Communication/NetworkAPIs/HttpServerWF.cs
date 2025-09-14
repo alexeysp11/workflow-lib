@@ -2,7 +2,7 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace WorkflowLib.NetworkAPIs
+namespace VelocipedeUtils.NetworkAPIs
 {
     /// <summary>
     /// HTTP server.

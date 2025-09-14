@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.Delivering.Example01.FlowchartSteps
+namespace VelocipedeUtils.Examples.Delivering.Example01.FlowchartSteps
 {
     /// <summary>
     /// Interface for implementing steps within the order delivery process.

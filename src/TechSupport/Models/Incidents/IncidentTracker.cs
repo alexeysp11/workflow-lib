@@ -1,4 +1,4 @@
-namespace WorkflowLib.Examples.TechSupport.Incidents.Models;
+namespace VelocipedeUtils.Examples.TechSupport.Incidents.Models;
 
 /// <summary>
 /// Allows you to track the progress of incidents.

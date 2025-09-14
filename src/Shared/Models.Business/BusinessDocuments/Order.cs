@@ -1,6 +1,6 @@
-using WorkflowLib.Shared.Models.Business.Monetary;
+using VelocipedeUtils.Shared.Models.Business.Monetary;
 
-namespace WorkflowLib.Shared.Models.Business.BusinessDocuments
+namespace VelocipedeUtils.Shared.Models.Business.BusinessDocuments
 {
     /// <summary>
     /// Order.

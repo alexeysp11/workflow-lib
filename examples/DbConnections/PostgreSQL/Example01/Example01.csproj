@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\src\Shared\DbConnections\WorkflowLib.Shared.DbConnections.csproj" />
-    <ProjectReference Include="..\..\..\..\src\Shared\Models.Business\WorkflowLib.Shared.Models.Business.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Shared\DbConnections\VelocipedeUtils.Shared.DbConnections.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Shared\Models.Business\VelocipedeUtils.Shared.Models.Business.csproj" />
   </ItemGroup>
 
 </Project>
