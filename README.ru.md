@@ -67,19 +67,19 @@ PRESS ENTER TO CONTINUE             |
 ------------------------------------
 ```
 
-### [UnifiedBusinessPlatform](src/UnifiedBusinessPlatform/README.ru.md)
+### [UnifiedBusinessPlatform](VelocipedeUtils/UnifiedBusinessPlatform/README.ru.md)
 
 Данный проект представляет собой веб-приложение на ASP.NET MVC, предназначенное для управления компанией (организационная структура, информация о сотрудниках, а также автоматизация ключевых HR-процессов).
 
-![Ubp.HomePage](src/UnifiedBusinessPlatform/docs/img/Ubp.HomePage.png)
+![Ubp.HomePage](VelocipedeUtils/UnifiedBusinessPlatform/docs/img/Ubp.HomePage.png)
 
 Визуализация иерархической структуры компании: организации, департаменты, команды, должности:
 
-![Ubp.Organizations](src/UnifiedBusinessPlatform/docs/img/Ubp.Organizations.png)
+![Ubp.Organizations](VelocipedeUtils/UnifiedBusinessPlatform/docs/img/Ubp.Organizations.png)
 
 Управление информацией о сотрудниках:
 
-![Ubp.Employees](src/UnifiedBusinessPlatform/docs/img/Ubp.Employees.png)
+![Ubp.Employees](VelocipedeUtils/UnifiedBusinessPlatform/docs/img/Ubp.Employees.png)
 
 Планируемые доработки:
 - **Управление отсутствиями**: Система учета отпусков, больничных и других видов отсутствий сотрудников.
