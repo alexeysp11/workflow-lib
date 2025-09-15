@@ -20,17 +20,16 @@
 
 Список общих проектов (переиспользуемые модели данных, сервисы и расширения):
 
-- [AuthenticationService](src/Shared/AuthenticationService/README.ru.md)
-- [CodeExtensions](src/Shared/CodeExtensions/README.ru.md)
-- [Communication](src/Shared/Communication/README.ru.md)
-- [Models](src/Shared/Models/README.ru.md)
-- [Models.Business](src/Shared/Models.Business/README.ru.md): является реализацией общей объектной модели для бизнес-сущностей, используемых в рамках данного монорепозитория.
-- [Office](src/Shared/Office/README.ru.md): библиотека для работы с офисными форматами документов.
-- [Office.Extensions](src/Shared/Office.Extensions/README.ru.md): библиотека расширений для работы с офисными форматами документов.
-- [ServiceDiscoveryBpm](src/Shared/ServiceDiscoveryBpm/README.ru.md)
-- [WpfExtensions](src/Shared/WpfExtensions/README.ru.md): библиотека визуальных компонентов для WPF-приложений.
+- [CodeExtensions](VelocipedeUtils/Shared/src/CodeExtensions/README.ru.md)
+- [Communication](VelocipedeUtils/Shared/src/Communication/README.ru.md)
+- [Models](VelocipedeUtils/Shared/src/Models/README.ru.md)
+- [Models.Business](VelocipedeUtils/Shared/src/Models.Business/README.ru.md): является реализацией общей объектной модели для бизнес-сущностей, используемых в рамках данного монорепозитория.
+- [Office](VelocipedeUtils/Shared/src/Office/README.ru.md): библиотека для работы с офисными форматами документов.
+- [Office.Extensions](VelocipedeUtils/Shared/src/Office.Extensions/README.ru.md): библиотека расширений для работы с офисными форматами документов.
+- [ServiceDiscoveryBpm](VelocipedeUtils/Shared/src/ServiceDiscoveryBpm/README.ru.md)
+- [WpfExtensions](VelocipedeUtils/Shared/src/WpfExtensions/README.ru.md): библиотека визуальных компонентов для WPF-приложений.
 
-### [PixelTerminalUI](src/PixelTerminalUI/README.ru.md)
+### [PixelTerminalUI](VelocipedeUtils/PixelTerminalUI/README.ru.md)
 
 `PixelTerminalUI` был вдохновлён моим опытом работы разработчиком на C# в крупной IT-компании, работавшей для крупного маркетплейса. Я работал в отделе WMS, разрабатывая приложения для внутренней логистики. Одним из ключевых приложений было устаревшее UI приложение, работавшее на Telnet, используемое для взаимодействия с терминалами сбора данных (ТСД).
 
@@ -67,19 +66,19 @@ PRESS ENTER TO CONTINUE             |
 ------------------------------------
 ```
 
-### [UnifiedBusinessPlatform](src/UnifiedBusinessPlatform/README.ru.md)
+### [UnifiedBusinessPlatform](VelocipedeUtils/UnifiedBusinessPlatform/README.ru.md)
 
 Данный проект представляет собой веб-приложение на ASP.NET MVC, предназначенное для управления компанией (организационная структура, информация о сотрудниках, а также автоматизация ключевых HR-процессов).
 
-![Ubp.HomePage](src/UnifiedBusinessPlatform/docs/img/Ubp.HomePage.png)
+![Ubp.HomePage](VelocipedeUtils/UnifiedBusinessPlatform/docs/img/Ubp.HomePage.png)
 
 Визуализация иерархической структуры компании: организации, департаменты, команды, должности:
 
-![Ubp.Organizations](src/UnifiedBusinessPlatform/docs/img/Ubp.Organizations.png)
+![Ubp.Organizations](VelocipedeUtils/UnifiedBusinessPlatform/docs/img/Ubp.Organizations.png)
 
 Управление информацией о сотрудниках:
 
-![Ubp.Employees](src/UnifiedBusinessPlatform/docs/img/Ubp.Employees.png)
+![Ubp.Employees](VelocipedeUtils/UnifiedBusinessPlatform/docs/img/Ubp.Employees.png)
 
 Планируемые доработки:
 - **Управление отсутствиями**: Система учета отпусков, больничных и других видов отсутствий сотрудников.
@@ -87,7 +86,7 @@ PRESS ENTER TO CONTINUE             |
 - **Внутренняя документация**: Инструмент для хранения и управления внутренними документами компании, такими как политики, процедуры, инструкции.
 - **База знаний**: Создание и поддержка базы знаний для обмена опытом и информацией между сотрудниками.
 
-### [DataStorage](src/DataStorage/README.ru.md)
+### [DataStorage](VelocipedeUtils/DataStorage/README.ru.md)
 
 Данный проект предназначен для изучения и реализации различных типов хранилищ данных, а также для исследования принципов построения распределенных систем.
 

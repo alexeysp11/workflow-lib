@@ -1,0 +1,73 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35828.75
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.DataStorage.Core", "src\VelocipedeUtils.DataStorage.Core\VelocipedeUtils.DataStorage.Core.csproj", "{806E50DE-A82A-41BC-B8FF-23CA68A7B19F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.DataStorage.Core.Tests", "src\VelocipedeUtils.DataStorage.Core.Tests\VelocipedeUtils.DataStorage.Core.Tests.csproj", "{C21B2258-2826-4337-9F12-2A19428478E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.DataStorage.InMemoryService.Grpc", "src\VelocipedeUtils.DataStorage.InMemoryService.Grpc\VelocipedeUtils.DataStorage.InMemoryService.Grpc.csproj", "{EAD33A73-B2E9-4C4D-B999-A85C67AA500B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.DataStorage.Models", "src\VelocipedeUtils.DataStorage.Models\VelocipedeUtils.DataStorage.Models.csproj", "{4944598A-6053-4E86-A0D1-F2D9DFB9E915}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.DataStorage.InMemoryService.Grpc.Tests", "src\VelocipedeUtils.DataStorage.InMemoryService.Grpc.Tests\VelocipedeUtils.DataStorage.InMemoryService.Grpc.Tests.csproj", "{61AAFF42-D6DE-4E1E-B0E7-07BB76089C7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.DataStorage.InMemoryService.Cli", "src\VelocipedeUtils.DataStorage.InMemoryService.Cli\VelocipedeUtils.DataStorage.InMemoryService.Cli.csproj", "{883EC6CD-4CAC-4D2D-BB1B-8EFC5BA6F76F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.DataStorage.InMemoryService.Clients", "src\VelocipedeUtils.DataStorage.InMemoryService.Clients\VelocipedeUtils.DataStorage.InMemoryService.Clients.csproj", "{DD9CF704-93A4-4D76-8B75-8D0272450D70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VelocipedeUtils.DataStorage.Grpc.Common", "src\VelocipedeUtils.DataStorage.Grpc.Common\VelocipedeUtils.DataStorage.Grpc.Common.csproj", "{6F66AE8A-9579-467F-AE83-9D32EA1F77F1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{806E50DE-A82A-41BC-B8FF-23CA68A7B19F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{806E50DE-A82A-41BC-B8FF-23CA68A7B19F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{806E50DE-A82A-41BC-B8FF-23CA68A7B19F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{806E50DE-A82A-41BC-B8FF-23CA68A7B19F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C21B2258-2826-4337-9F12-2A19428478E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C21B2258-2826-4337-9F12-2A19428478E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C21B2258-2826-4337-9F12-2A19428478E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C21B2258-2826-4337-9F12-2A19428478E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAD33A73-B2E9-4C4D-B999-A85C67AA500B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAD33A73-B2E9-4C4D-B999-A85C67AA500B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAD33A73-B2E9-4C4D-B999-A85C67AA500B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAD33A73-B2E9-4C4D-B999-A85C67AA500B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4944598A-6053-4E86-A0D1-F2D9DFB9E915}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4944598A-6053-4E86-A0D1-F2D9DFB9E915}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4944598A-6053-4E86-A0D1-F2D9DFB9E915}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4944598A-6053-4E86-A0D1-F2D9DFB9E915}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61AAFF42-D6DE-4E1E-B0E7-07BB76089C7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61AAFF42-D6DE-4E1E-B0E7-07BB76089C7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61AAFF42-D6DE-4E1E-B0E7-07BB76089C7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61AAFF42-D6DE-4E1E-B0E7-07BB76089C7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{883EC6CD-4CAC-4D2D-BB1B-8EFC5BA6F76F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{883EC6CD-4CAC-4D2D-BB1B-8EFC5BA6F76F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{883EC6CD-4CAC-4D2D-BB1B-8EFC5BA6F76F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{883EC6CD-4CAC-4D2D-BB1B-8EFC5BA6F76F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD9CF704-93A4-4D76-8B75-8D0272450D70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD9CF704-93A4-4D76-8B75-8D0272450D70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD9CF704-93A4-4D76-8B75-8D0272450D70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD9CF704-93A4-4D76-8B75-8D0272450D70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F66AE8A-9579-467F-AE83-9D32EA1F77F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F66AE8A-9579-467F-AE83-9D32EA1F77F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F66AE8A-9579-467F-AE83-9D32EA1F77F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F66AE8A-9579-467F-AE83-9D32EA1F77F1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C21B2258-2826-4337-9F12-2A19428478E3} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{61AAFF42-D6DE-4E1E-B0E7-07BB76089C7D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {14B76162-FC5C-41A9-AB47-7EC3E8133A22}
+	EndGlobalSection
+EndGlobal

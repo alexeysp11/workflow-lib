@@ -20,17 +20,16 @@ As a result, it was decided to create a mono-repository, which included most of 
 
 List of the shared projects (reusable data models, services, and extensions):
 
-- [AuthenticationService](src/Shared/AuthenticationService/README.md)
-- [CodeExtensions](src/Shared/CodeExtensions/README.md)
-- [Communication](src/Shared/Communication/README.md)
-- [Models](src/Shared/Models/README.md)
-- [Models.Business](src/Shared/Models.Business/README.md): is an implementation of a shared object model for business entities used within the mono-repository.
-- [Office](src/Shared/Office/README.md): library for working with office document formats.
-- [Office.Extensions](src/Shared/Office.Extensions/README.md): extension library for working with office document formats.
-- [ServiceDiscoveryBpm](src/Shared/ServiceDiscoveryBpm/README.md)
-- [WpfExtensions](src/Shared/WpfExtensions/README.md): is a library of visual elements for WPF applications.
+- [CodeExtensions](VelocipedeUtils/Shared/src/CodeExtensions/README.md)
+- [Communication](VelocipedeUtils/Shared/src/Communication/README.md)
+- [Models](VelocipedeUtils/Shared/src/Models/README.md)
+- [Models.Business](VelocipedeUtils/Shared/src/Models.Business/README.md): is an implementation of a shared object model for business entities used within the mono-repository.
+- [Office](VelocipedeUtils/Shared/src/Office/README.md): library for working with office document formats.
+- [Office.Extensions](VelocipedeUtils/Shared/src/Office.Extensions/README.md): extension library for working with office document formats.
+- [ServiceDiscoveryBpm](VelocipedeUtils/Shared/src/ServiceDiscoveryBpm/README.md)
+- [WpfExtensions](VelocipedeUtils/Shared/src/WpfExtensions/README.md): is a library of visual elements for WPF applications.
 
-### [PixelTerminalUI](src/PixelTerminalUI/README.md)
+### [PixelTerminalUI](VelocipedeUtils/PixelTerminalUI/README.md)
 
 `PixelTerminalUI` was inspired by my experience working as a C# developer at a large IT company that operated a major marketplace. I worked in the WMS department, developing applications for internal logistics. One of the key applications was a legacy Telnet UI application used for interacting with handheld terminals (PDAs).
 
@@ -67,19 +66,19 @@ PRESS ENTER TO CONTINUE             |
 ------------------------------------
 ```
 
-### [UnifiedBusinessPlatform](src/UnifiedBusinessPlatform/README.md)
+### [UnifiedBusinessPlatform](VelocipedeUtils/UnifiedBusinessPlatform/README.md)
 
 This project is a web application on ASP.NET MVC, designed for company management (organizational structure, employee information, and automation of key HR processes).
 
-![Ubp.HomePage](src/UnifiedBusinessPlatform/docs/img/Ubp.HomePage.png)
+![Ubp.HomePage](VelocipedeUtils/UnifiedBusinessPlatform/docs/img/Ubp.HomePage.png)
 
 Visualization of the hierarchical structure of the company: organizations, departments, teams, positions:
 
-![Ubp.Organizations](src/UnifiedBusinessPlatform/docs/img/Ubp.Organizations.png)
+![Ubp.Organizations](VelocipedeUtils/UnifiedBusinessPlatform/docs/img/Ubp.Organizations.png)
 
 Employee information management:
 
-![Ubp.Employees](src/UnifiedBusinessPlatform/docs/img/Ubp.Employees.png)
+![Ubp.Employees](VelocipedeUtils/UnifiedBusinessPlatform/docs/img/Ubp.Employees.png)
 
 Planned improvements:
 - **Absence management**: A system for recording vacations, sick leaves, and other types of employee absences.
@@ -87,7 +86,7 @@ Planned improvements:
 - **Internal Documentation**: A tool for storing and managing internal company documents such as policies, procedures, instructions.
 - **Knowledge Base**: Creating and maintaining a knowledge base for sharing experiences and information between employees.
 
-### [DataStorage](src/DataStorage/README.md)
+### [DataStorage](VelocipedeUtils/DataStorage/README.md)
 
 This project is designed to study and implement various types of data storage, as well as to study the principles of building distributed systems.
 

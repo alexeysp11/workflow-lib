@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../VelocipedeUtils.Authentication.Models/VelocipedeUtils.Authentication.Models.csproj" />
+    <ProjectReference Include="../../../Shared/src/Communication/VelocipedeUtils.Shared.Communication.csproj" />
+    <ProjectReference Include="../../../Shared/src/DbConnections/VelocipedeUtils.Shared.DbConnections.csproj" />
+    <ProjectReference Include="../../../Shared/src/Models/VelocipedeUtils.Shared.Models.csproj" />
+  </ItemGroup>
+
+</Project>
