@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Protobuf Include="..\models\Protos\authgrcpapi.proto" GrpcServices="Server" />
+    <Protobuf Include="..\VelocipedeUtils.Authentication.Models\Protos\authgrcpapi.proto" GrpcServices="Server" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../authbl/VelocipedeUtils.Authentication.AuthBL.csproj" />
-    <ProjectReference Include="../models/VelocipedeUtils.Authentication.Models.csproj" />
+    <ProjectReference Include="../VelocipedeUtils.Authentication.AuthBL/VelocipedeUtils.Authentication.AuthBL.csproj" />
+    <ProjectReference Include="../VelocipedeUtils.Authentication.Models/VelocipedeUtils.Authentication.Models.csproj" />
   </ItemGroup>
 
 </Project>
