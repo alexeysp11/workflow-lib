@@ -1,4 +1,4 @@
-﻿namespace VelocipedeUtils.Shared.FuzzyModules.Examples
+﻿namespace VelocipedeUtils.FuzzyModules.Examples
 {
     public class Program
     {

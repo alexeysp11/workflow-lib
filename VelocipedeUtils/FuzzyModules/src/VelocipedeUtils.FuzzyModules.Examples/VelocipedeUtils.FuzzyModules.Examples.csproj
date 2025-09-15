@@ -2,12 +2,12 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <AssemblyName>VelocipedeUtils.Shared.FuzzyModules.Examples</AssemblyName>
+    <AssemblyName>VelocipedeUtils.FuzzyModules.Examples</AssemblyName>
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\API\VelocipedeUtils.Shared.FuzzyModules.API.csproj" />
+    <ProjectReference Include="..\VelocipedeUtils.FuzzyModules.API\VelocipedeUtils.FuzzyModules.API.csproj" />
   </ItemGroup>
 
 </Project>

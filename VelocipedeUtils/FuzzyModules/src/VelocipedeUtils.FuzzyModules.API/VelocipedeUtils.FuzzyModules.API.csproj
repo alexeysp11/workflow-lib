@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <AssemblyName>VelocipedeUtils.Shared.FuzzyModules.API</AssemblyName>
+    <AssemblyName>VelocipedeUtils.FuzzyModules.API</AssemblyName>
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
 

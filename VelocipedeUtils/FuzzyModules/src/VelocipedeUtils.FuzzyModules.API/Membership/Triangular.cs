@@ -1,4 +1,4 @@
-namespace VelocipedeUtils.Shared.FuzzyModules.API.Membership
+namespace VelocipedeUtils.FuzzyModules.API.Membership
 {
     public class Triangular : IInputVarable, IOutputVariable
     {

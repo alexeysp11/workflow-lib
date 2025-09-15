@@ -1,9 +1,9 @@
 using System;
 using Xunit;
-using VelocipedeUtils.Shared.FuzzyModules.API;
-using VelocipedeUtils.Shared.FuzzyModules.API.Membership;
+using VelocipedeUtils.FuzzyModules.API;
+using VelocipedeUtils.FuzzyModules.API.Membership;
 
-namespace Tests.VelocipedeUtils.Shared.FuzzyModules.API.Membership 
+namespace Tests.VelocipedeUtils.FuzzyModules.API.Membership 
 {
     public class TrapezoidalTest
     {

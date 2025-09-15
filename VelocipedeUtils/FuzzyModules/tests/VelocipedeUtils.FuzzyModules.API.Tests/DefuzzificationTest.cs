@@ -1,8 +1,8 @@
 using System;
 using Xunit;
-using VelocipedeUtils.Shared.FuzzyModules.API;
+using VelocipedeUtils.FuzzyModules.API;
 
-namespace Tests.VelocipedeUtils.Shared.FuzzyModules.API 
+namespace Tests.VelocipedeUtils.FuzzyModules.API 
 {
     public class DefuzzificationTest
     {

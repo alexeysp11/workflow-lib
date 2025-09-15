@@ -1,6 +1,6 @@
-using VelocipedeUtils.Shared.FuzzyModules.API.Membership;
+using VelocipedeUtils.FuzzyModules.API.Membership;
 
-namespace VelocipedeUtils.Shared.FuzzyModules.API
+namespace VelocipedeUtils.FuzzyModules.API
 {
     public class LinguisticVariable
     {

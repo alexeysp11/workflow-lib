@@ -1,8 +1,8 @@
 using System;
-using VelocipedeUtils.Shared.FuzzyModules.API;
-using VelocipedeUtils.Shared.FuzzyModules.API.Membership;
+using VelocipedeUtils.FuzzyModules.API;
+using VelocipedeUtils.FuzzyModules.API.Membership;
 
-namespace VelocipedeUtils.Shared.FuzzyModules.Examples
+namespace VelocipedeUtils.FuzzyModules.Examples
 {
     public class FoodServiceTip
     {

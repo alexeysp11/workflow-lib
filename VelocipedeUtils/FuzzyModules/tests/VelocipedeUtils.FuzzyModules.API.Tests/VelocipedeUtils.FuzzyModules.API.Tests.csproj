@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\API\VelocipedeUtils.Shared.FuzzyModules.API.csproj" />
+    <ProjectReference Include="..\..\src\VelocipedeUtils.FuzzyModules.API\VelocipedeUtils.FuzzyModules.API.csproj" />
   </ItemGroup>
 
 </Project>
